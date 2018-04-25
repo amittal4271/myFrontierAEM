@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="sling:OrderedFolder">
+    <jcr:content
+        jcr:primaryType="nt:unstructured"
+        jcr:title="brands">
+        <folderThumbnail/>
+    </jcr:content>
+    <ScreenHunter_x0020_11.png/>
+    <ScreenHunter_x0020_12.png/>
+    <ScreenHunter_x0020_13.png/>
+    <ScreenHunter_x0020_14.png/>
+    <ScreenHunter_x0020_15.png/>
+    <ScreenHunter_x0020_16.png/>
+</jcr:root>

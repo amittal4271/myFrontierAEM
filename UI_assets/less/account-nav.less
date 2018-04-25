@@ -1,0 +1,206 @@
+.account-nav-wrap {
+	float: left;
+	width: 100%; 
+    clear: both;
+}
+.account-nav-toggle {
+	font-size: 14px;
+    letter-spacing: 1.2px;
+    line-height: 2.21;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: #4d4a48;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    background: none;
+    border:none;
+    padding-left: 0;
+    padding-right: 0;
+
+	.breakpoint_768({
+    	display: none;
+    });
+
+    .glyphicon {
+    	font-size: 10px;
+    	top: 0;
+    	padding-left: 5px;
+    }
+}
+
+.account-nav {
+    
+    position: relative;
+    list-style: none;
+    float: left;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+
+    .breakpoint_768({
+    	background-color: #f4f4f4;
+	    border: 1px solid #ececec;
+	    border-radius: 5px 5px 0 0;
+	    display: block!important;
+    });
+}
+
+.account-nav:after {
+    clear: both;
+    content: "";
+    display: block;
+}
+
+.account-nav-item {
+    display: inline-block;
+    float: left;
+    
+    width: 100%;
+    .breakpoint_768({
+    	width: 16.66%;
+    });
+}
+
+.account-nav-link {
+    font-size: 14px;
+    font-family: 'Open Sans', sans-serif;
+    float: left;
+    width: 100%;
+ 	padding: 3px 0;
+    color: #4d4a48;
+    
+
+    .breakpoint_768({
+    	padding: 30px 0;
+    	text-transform: uppercase;
+    	text-align: center;
+    	font-weight: bold;
+    	font-family: 'Open Sans Condensed', sans-serif;
+    	letter-spacing: 0.2px;
+    });
+
+    .breakpoint_992({
+    	font-size: 16px;
+    });
+
+    &:hover, &:active, &:focus {
+    	color: #f4901c;
+    }
+
+    .glyphicon {
+    	font-size: 10px;
+    	top: 0;
+    	padding-left: 4px;
+    	.breakpoint_768({
+    		display: none;
+    	});
+    }
+}
+.account-nav-link-active {
+	color: #f69b31;
+	font-weight: bold;
+
+	&:hover {
+    	color: #f69b31;
+    }
+
+	.breakpoint_768({
+    	background-color: #e9e9e9;
+    	color: #4d4a48;
+
+    	&:hover, &:active, &:focus {
+	    	color: #4d4a48;
+	    }
+
+    });
+
+	
+}
+
+.account-nav-sub {
+	display: none;
+	list-style: none;
+	float: left;
+	width: 100%;
+	clear: both;
+	margin: 5px 0;
+	padding-left: 20px;
+	padding-right: 0;
+
+	.breakpoint_768({
+    	display: none!important;
+    	padding: 0;
+    });
+}
+.account-nav-sub-item {
+    
+    float: left;
+    width: 100%;
+    clear: both;
+
+    .breakpoint_768({
+	    padding: 0px 35px;
+	    clear: none;
+	    width: auto;
+    });
+}
+.account-nav-sub-link {
+    color: #888888;
+    font-size: 13px;
+    line-height: 1.64;
+    float: left;
+
+    .breakpoint_768({
+    	font-size: 15px;
+	    line-height: normal;
+	    text-align: center;
+	    padding: 20px 0;
+    });
+
+    &:hover, &:active, &:focus {
+    	color: #94c750;
+    }
+}
+
+.account-nav-item.account-nav-item-active  .account-nav-sub {
+    
+}
+
+#sub-nav-holder-desktop {
+	float: left;
+	width: 100%;
+	clear: both;
+	background: #fff;
+	border: 1px solid #ececec;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	z-index: 10;
+
+	display: none;
+	.breakpoint_768({
+    	display: block;
+    });
+
+	li {
+		float: left;
+		padding: 0 38px;
+		margin-bottom: -2px;
+		position: relative;
+		z-index: 11;
+
+		&.active-item {
+			a {
+				border-bottom: 2px solid #94c750;
+			}
+		}
+
+		a {
+			float: left;
+			padding: 20px 0;
+			color: #5a524b;
+			font-family: 'Open Sans', sans-serif;
+		}
+	}
+}
+

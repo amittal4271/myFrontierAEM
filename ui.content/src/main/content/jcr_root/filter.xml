@@ -1,0 +1,8 @@
+<workspaceFilter version="1.0">
+    <filter root="/apps/frontierwholesales" />
+    <filter root="/etc/designs/frontierwholesales">
+        <exclude pattern=".*\.gif" />
+        <include pattern="/etc/frontierwholesales/static(/.*)?" />
+    </filter>
+    <filter root="/etc/map" mode="merge" />
+</workspaceFilter>

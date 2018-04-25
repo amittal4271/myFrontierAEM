@@ -1,0 +1,53 @@
+
+
+
+<div data-sly-use.topNav="${'com.frontierwholesales.core.models.NavigationModel'}" id="main-nav">
+    <ul id="main-navigtaion-list">
+        <sly data-sly-list.pages="${topNav.frontierWholesalePages}">
+		<li class="top-level-category">
+            <div data-sly-test="${pages.childList.size > 0}" data-sly-unwrap>
+                <a class="top-level-link"   data-attr-name='${pages.name}'>${pages.title}</a>
+            </div>
+            
+             <div data-sly-test="${pages.childList.size == 0}" data-sly-unwrap>
+                <a class="top-level-link"  href="${pages.link}" data-attr-name='${pages.title}'>${pages.title}</a>
+            </div>
+          
+                    <!-- level 1 navigation -->
+                         <ul id='${pages.uniqueId}child' class="sub-nav first-level" data-sly-list.grandChild="${pages.childList}">
+                                                <li class="category-nav-item">
+                                                 
+                                                    <a class="category-nav-link" href="${grandChild.link}" data-attr-name='${grandChild.name}'>${grandChild.title}
+                                                    <span class="glyphicon glyphicon-menu-right">
+                                                        </span></a>
+                                                    
+                                                    <ul id="${grandChild.uniqueId}child" class="sub-nav second-level" data-sly-list.child2="${grandChild.childList}">
+                                                        <li class="category-nav-child-item">
+                                                            <a class="category-nav-child-link" href="${child2.link}" data-attr-name='${child2.name}'>${child2.title}
+                                                                 <span class="glyphicon glyphicon-menu-right">
+                                                        </span>
+                                                            </a>
+                                                            
+                                                              <ul id="${child2.uniqueId}child" class="sub-nav third-level" data-sly-list.child3="${child2.childList}">
+                                                            <li class="category-nav-child-child-item">
+                                                                <a class="category-nav-child-child-link" href="${child3.link}" data-attr-name='${child3.name}'>${child3.title}
+                                                                 </a>
+                                                             </li>
+                                                   
+                                                        
+                                                        </ul>  
+                                                        </li>
+                                                   
+                                                          
+                                                    </ul>
+                                                </li>
+                                            </ul>        
+            
+                   
+             
+            </li>
+            
+        </sly>
+	</ul>
+   
+</div>

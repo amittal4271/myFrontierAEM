@@ -1,0 +1,100 @@
+table.simple-responsive {
+
+	border-collapse: collapse;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	table-layout: fixed;
+	float: left;
+	clear: both;
+
+	.breakpoint_992({
+		border: 0;
+	});
+
+	.additional-order-information-table {
+		background-color: #fff;
+	    border-radius: 3px;
+	    box-shadow: 0 0 25px 0 rgba(0,0,0,0.05);
+	    position: relative;
+	    display: table;
+	    width: 100%;
+
+	    th {
+	    	font-size: 13px;
+	    	color: #594c41;
+	    	padding: 20px 10px;
+	    }
+
+	    td {
+	    	font-size: 13px;
+	    	color: #817266;
+	    	padding: 15px 10px;
+	    }
+	}
+}
+
+table.simple-responsive thead {
+	display: none;
+
+	.breakpoint_992({
+		display: table-header-group;
+	});
+
+	tr {
+		padding: 0;
+	}
+}
+
+
+table.simple-responsive tr {
+	border-bottom: 1px solid #ececec;
+	display: block;
+
+	.breakpoint_992({
+		display: table-row;
+		padding-bottom: 15px;
+		padding-top: 15px;
+	});
+}
+
+table.simple-responsive th {
+	font-size: 16px;
+	font-weight: 700;
+	font-family: 'Open Sans',sans-serif;
+	color: #594c41;
+
+	.breakpoint_992({
+		padding: 25px 15px;
+		display: table-cell;
+	});
+}
+
+table.simple-responsive td {
+	color: #817266;
+	display: block;
+	text-align: left;
+	padding: 10px 15px;
+
+	.breakpoint_992({
+		padding: 25px 15px;
+		display: table-cell;
+	});
+}
+table.simple-responsive td:before {
+	/*
+	* aria-label has no advantage, it won't be read inside a table.simple-responsive
+	content: attr(aria-label);
+	*/
+	content: attr(data-label);
+	float: left;
+	font-weight: bold;
+	width: 100px;
+	color: #594c41;
+
+	.breakpoint_992({
+		content: "";
+		float: none;
+		width: auto;
+	});
+}

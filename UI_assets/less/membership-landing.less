@@ -1,0 +1,140 @@
+ .membership-section {
+ 	float: left;
+    width: 100%;
+    clear: both;
+
+ }
+ .each-membership-section {
+ 	float: left;
+ 	width: 100%;
+ 	background-color: #fcfcfc;
+    border: 1px solid #ebebeb;
+    padding: 30px 15px 15px 15px;
+    border-radius: 5px;
+    position: relative;
+
+ 	.breakpoint_600({
+        width: 44%;
+        padding: 40px 25px 25px 25px;
+        margin: 0 4%; 
+    });
+
+    .breakpoint_992({
+        padding: 50px 35px 35px;
+    });
+}
+
+.image-spacer-leaf {
+	position: absolute;
+    top: 13px; 
+    left: 50%;
+
+	&.coop {
+		width: 107px;
+	    height: 50px;
+	    /*background-image: url('../../../frontierwholesales/images/header-clip-1.fb3e4e38c064.jpg');*/
+	    margin-left: -53px;
+	}
+
+	&.nonmember {
+		width: 110px;
+	    height: 60px;
+	    /*background-image: url('../../../frontierwholesales/images/header-clip-2.d05da0da5426.jpg');*/
+	    margin-left: -60px;
+	}
+}
+
+.coop-membership-section {
+	
+	.breakpoint_600({
+		margin-right: 2%;
+    });
+}
+.nonmember-section {
+	margin-top: 30px;
+
+	.breakpoint_600({
+		margin-left: 2%;
+		margin-top: 0;
+    });
+}
+
+.membership-info {
+	float: left;
+	width: 100%;
+	
+	padding-bottom: 20px;
+	padding-top: 40px;
+	margin-bottom: 30px;
+	border-bottom: 1px solid #e6e6e6;
+	border-top: 4px dotted #ddd;
+
+	.breakpoint_992({
+        min-height: 280px;
+    });
+}
+.membership-requirements {
+	float: left;
+	width: 100%;
+	
+	.breakpoint_992({
+        min-height: 360px;
+    });
+}
+
+.membership-title {
+	color: #4d4a48;
+    font-size: 18px;
+    letter-spacing: 1px;
+    line-height: 1.13;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 28px;
+}
+.membership-subtitle {
+	color: #f69b31;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    line-height: 1.94;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin: 5px 0 10px 0;
+}
+.membership-description {
+	color: #817266;
+    display: block;
+    font-family: 'Open Sans',sans-serif;
+    font-size: 15px;
+    margin: 15px auto;
+    clear: both;
+    max-width: 280px;
+    text-align: center;
+}
+.membership-what-you-get-heading {
+	font-family: 'Open Sans',sans-serif;
+	font-size: 15px;
+	color: #4d4a48;
+	margin-bottom: 10px;
+	font-weight: bold;
+}
+.req-list {
+	list-style: disc;
+	margin-left: 30px;
+
+	li {
+		color: #817266;
+		font-size: 15px;
+		line-height: 24px;
+	}
+}
+.btn-membership-get-started {
+	margin-top: 15px;
+}
+.membership-more-info {
+	margin: 20px 0;
+	a {
+		text-decoration: underline;
+	}
+}

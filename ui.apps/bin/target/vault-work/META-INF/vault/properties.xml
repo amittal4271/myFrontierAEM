@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>Frontier Wholesales Co-op - UI apps</comment>
+<entry key="createdBy">Andrija</entry>
+<entry key="name">frontierWholesales.ui.apps</entry>
+<entry key="created">2018-03-26T11:29:28.716+0200</entry>
+<entry key="groupId">com.frontierWholesales</entry>
+<entry key="version">1.0</entry>
+<entry key="requiresRoot">false</entry>
+<entry key="group">frontierWholesales Content Package</entry>
+<entry key="description">UI apps package for Frontier Wholesales Co-op</entry>
+<entry key="artifactId">frontierWholesales.ui.apps</entry>
+<entry key="path">/etc/packages/frontierWholesales Content Package/frontierWholesales.ui.apps.zip</entry>
+</properties>

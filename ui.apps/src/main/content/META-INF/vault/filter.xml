@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspaceFilter version="1.0">
+    <filter root="/apps/frontierwholesales">
+        <exclude pattern="/apps/frontierwholesales/install" />
+    </filter>
+    <filter root="/apps/sling" />
+    <filter root="/etc/designs/frontierwholesales"/>
+    <filter root="/etc/designs/fonts"/>
+    <filter root="/etc/acs-commons/lists"/>
+</workspaceFilter>

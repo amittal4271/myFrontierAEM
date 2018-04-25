@@ -1,0 +1,52 @@
+<body>
+<div data-sly-resource="${'cloudservices' @ resourceType='cq/cloudserviceconfigs/components/servicecomponents'}" data-sly-unwrap></div>
+<!-- Body text here -->
+<main id="test-home" class="main-content-container">
+<section id="scroller-content">
+<div id="homepage-scroller">
+<div class="swiper-container">
+</div>
+</div>
+<div id="homepage-right-side">
+<div data-sly-resource="${'content-brand-of-the-month' @ resourceType='foundation/components/parsys'}" data-sly-unwrap> </div>
+</div>
+</section>
+<section class="home-featured-brands">
+	<div class="featured-icon-center"></div>
+	<div class="container">
+		<h2 class="featured-title">Featured Brands</h2>
+		<p class="featured-subtext">Learn about the brands that futher our mission of fairness, honesty and quality.</p>
+<div class="featured-holder">
+			<div data-sly-resource="${'content-featured-brand' @ resourceType='foundation/components/parsys'}" data-sly-unwrap> </div>
+</div>
+	</div>
+</section>
+<section class="new-products-specials">
+	<div class="container">
+		<div data-sly-resource="${'content-text-image' @ resourceType='foundation/components/parsys'}" data-sly-unwrap> </div>
+	</div>
+</section>
+<section class="blog-subscribe">
+	<div class="container">
+
+<div class="blog-section">
+        <div data-sly-resource="${'content-from-the-blog' @ resourceType='foundation/components/parsys'}" data-sly-unwrap> </div>
+</div>
+		<div class="subscribe-section">
+			<h4 class="subscribe-header">Subscribe &amp; Save</h4>
+			<p class="subscribe-text">Get great savings, exclusive discounts, special promotions and industry news.</p>
+			<form action="/newsletter/subscribe/" method="post" id="newsletter-form" autocomplete="off">
+				<input name="email" class="form-control email-input" id="email-input" placeholder="Enter Your Email" required="required" type="email">
+				<input class="btn btn-submit-email" id="submit-email" value="Submit" type="submit">
+			</form>
+			<div class="badge-container">			
+				<a href="https://www.instagram.com/frontiercoop/" target="_blank" class="badge badge--social badge--instagram" title="Frontier Co-op Wholesale on Instagram">Instagram</a>
+				<a href="https://www.facebook.com/frontiercoop/" target="_blank" class="badge badge--social badge--facebook" title="Frontier Co-op Wholesale on Facebook">Facebook</a>
+				<a href="https://twitter.com/FrontierCoop" target="_blank" class="badge badge--social badge--twitter" title="Frontier Co-op Wholesale on Twitter">Twitter</a>
+				<a href="https://www.pinterest.com/frontiercoop/" target="_blank" class="badge badge--social badge--pinterest" title="Frontier Co-op Wholesale on Pinterest">Pinterest</a>
+			</div>
+		</div>
+	</div>
+</section>
+</main>
+</body>
