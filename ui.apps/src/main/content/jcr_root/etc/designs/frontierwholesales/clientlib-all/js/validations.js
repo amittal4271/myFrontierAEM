@@ -31,6 +31,14 @@ $.validator.addMethod("url", function(value, element) {
     }
 });
 
+$.validator.addMethod("expiryMonth",function(value,element){
+   var dt = new Date();
+   var currentMonth =  dt.getMonth();
+    if(value > currentMonth){
+        return true;
+    }
+});
+
 ;(function($) {
 
    console.log('validation part...');
@@ -148,7 +156,8 @@ $.validator.addMethod("url", function(value, element) {
                         
                     },"billing-exp_month":{
                         required: true,
-		            	maxlength: 2
+		            	maxlength: 2,
+                         expiryMonth: true
                         
                     },"billing-exp_year":{
                         required: true,
@@ -188,6 +197,8 @@ $.validator.addMethod("url", function(value, element) {
                         
                     },"account-url":{
                         url: "This field is required"
+                    },"billing-exp_month":{
+                        expiryMonth: "Please enter a valid expiration date!"
                     }
 		        }
 		    });

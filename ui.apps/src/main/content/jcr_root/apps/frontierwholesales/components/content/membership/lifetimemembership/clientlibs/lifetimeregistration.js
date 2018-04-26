@@ -38,7 +38,33 @@ $(document).ready(function(){
             console.log('error...');
         }
     });
+
+    $('#id_shipping-shipping_same').on('change',function(e){
+        e.preventDefault();
+        if ($(this).is(':checked')) {
+           var stateVal = $('#id_mailing-locality option:selected').val();
+            $('#id_shipping-name').val($('#id_mailing-name').val());
+            $('#id_shipping-company').val($('#id_account-company_name').val());
+            $('#id_shipping-address').val($('#id_mailing-address').val());
+            $('#id_shipping-address2').val($('#id_mailing-address2').val());
+            $('#id_shipping-city').val($('#id_mailing-city').val());
+            $('#id_shipping-locality option[value='+stateVal+']').prop('selected',true);
+            $('#id_shipping-postal_code').val($('#id_mailing-postal_code').val());
+        }else{
+            $('#id_shipping-name').val('');
+            $('#id_shipping-company').val('');
+            $('#id_shipping-address').val('');
+            $('#id_shipping-address2').val('');
+            $('#id_shipping-city').val('');
+            $('#id_shipping-locality').prop('selectedIndex',0);
+            $('#id_shipping-postal_code').val('');
+        }
+    });
 });
+
+function setTaxAddressToBillingAddress(){
+
+}
 
 function collectUserDetails(){
     var customer={};
