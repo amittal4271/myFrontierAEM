@@ -3,3 +3,4 @@ jquery.hoverIntent.min.js
 jquery.validate.min.js
 additional-methods.min.js
 validations.js
+newsletter.js
