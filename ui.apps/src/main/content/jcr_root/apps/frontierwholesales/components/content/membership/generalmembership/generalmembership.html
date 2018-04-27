@@ -1,7 +1,6 @@
 <sly
     data-sly-use.clientLib="${'/libs/granite/sightly/templates/clientlib.html'}"/>
 <sly data-sly-call="${clientlib.js @ categories='registration'}" data-sly-unwrap/>
-<sly data-sly-call="${clientLib.css @ categories='frontierwholesales.login'}" data-sly-unwrap/>
 
      
 <main class="main-content-container account-section-max-1200">
@@ -12,7 +11,7 @@
                          <div class="lifetime-leaf"></div>
                          <h1 class="plan-heading">General Account</h1>
                          <div class="membership-form-section">
-                              <form id="lifetime-membership-form">
+                              <form id="general-membership-form">
 
                                    <fieldset class="each-form-section">
                                         <legend class="each-form-title">
@@ -80,12 +79,7 @@
                                                   </div>
                                              </div>
                                              <hr class="line-separator after-radio-section">
-                                             <div class="checkbox width-one-third">
-                                                  <label for="id_account-online_only">
-                                                       <input id="id_account-online_only" name="account-online_only" type="checkbox">
-                                                       <span class="label-text">Online Only Store</span>
-                                                  </label>
-                                             </div>
+                                            
                                              <div class="form-group width-two-thirds">
                                                   <label for="id_account-url">Web Address</label>
                                                   <input id="id_account-url" class="form-control" name="account-url" placeholder="www.youronlinestore.com" type="text">
@@ -110,18 +104,18 @@
                                              <div class="form-group width-half first">
                                                   <label for="id_shipping-name">Full Name</label>
                                                   <input id="id_shipping-name" class="form-control" maxlength="150" name="shipping-name" type="text">
-                                                 <div class="error-text shipping-name-text"></div>
+                                                
                                              </div>
                                              <div class="form-group width-half">
                                                   <label for="id_shipping-company">Company</label>
                                                   <input id="id_shipping-company" class="form-control" maxlength="30" name="shipping-company" type="text">
-                                                 <div class="error-text company-text"></div>
+                                                
                                                  
                                              </div>
                                              <div class="form-group">
                                                   <label for="id_shipping-address">Address Line 1</label>
                                                   <input id="id_shipping-address" maxlength="150" class="form-control" name="shipping-address" placeholder="123 Example Street" type="text">
-                                                 <div class="error-text address1-text"></div>
+                                                 
                                              </div>
                                              <div class="form-group width-half first">
                                                   <label for="id_shipping-address2">Address Line 2</label>
@@ -130,7 +124,7 @@
                                              <div class="form-group width-half">
                                                   <label for="id_shipping-city">City</label>
                                                   <input id="id_shipping-city" class="form-control" maxlength="70" name="shipping-city" type="text">
-                                                 <div class="error-text city-text"></div>
+                                                 
                                              </div>
                                              <div class="form-group width-half first">
                                                   <label for="id_shipping-locality">State</label>
@@ -156,7 +150,7 @@
                                              <div class="form-group width-half">
                                                   <label for="id_shipping-phone">Phone</label>
                                                   <input id="id_shipping-phone" class="form-control" name="shipping-phone" type="text">
-                                                 <div class="error-text phone-text"></div>
+                                                 
                                              </div>
                                              <div class="form-group">
                                                   <div class="lifetime-membership-disclaimer">
@@ -191,18 +185,18 @@
                                                   <label for="id_membership-name">Name</label>
                                                   <input id="id_membership-name" class="form-control" name="membership-name" type="text">
                                                 
-                                                 <div class="error-text name-text"></div>
+                                                
                                              </div>
                                              <div class="form-group width-half">
                                                   <label for="id_membership-email">Email</label>
                                                   <input id="id_membership-email" class="form-control" name="membership-email" type="email">
-                                                  <div class="error-text email-text"></div>
+                                                 
                                              </div>
                                              <div class="form-group width-half first">
                                                   <label for="id_membership-password">Password</label>
                                                   <input id="id_membership-password" class="form-control" name="membership-password" type="password">
                                                   <small class="small-form-element">Make sure to use a strong password, 8 character minimum!</small>
-                                                 <div class="error-text password-text"></div>
+                                                
                                              </div>
                                              <div class="form-group width-half">
                                                   <label for="id_membership-password_confirm">Confirm Password</label>

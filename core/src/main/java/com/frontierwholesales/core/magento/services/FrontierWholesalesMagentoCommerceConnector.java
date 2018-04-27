@@ -19,6 +19,7 @@ import org.slf4j.LoggerFactory;
 import com.adobe.cq.commerce.api.CommerceException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.frontierwholesales.core.beans.FrontierWholesalesProductList;
 import com.frontierwholesales.core.utils.AuthCredentials;
 
 
@@ -45,6 +46,8 @@ public class FrontierWholesalesMagentoCommerceConnector {
     private static String adminUser="";
     
     private static String adminPassword="";
+    
+    private long PAGE_SIZE=2;
 
     @Property(
            
@@ -147,6 +150,25 @@ public class FrontierWholesalesMagentoCommerceConnector {
                 .execute().returnContent().asString();
         return "Bearer " + token.replace("\"", "");
 
+    }
+    
+    public FrontierWholesalesProductList getProductsbyPage(String authToken){
+        log.debug("Getting products");
+        FrontierWholesalesProductList productList = null;
+        String response;
+        try {
+            
+            response = Request.Get(server+"/rest/all/V1/products?searchCriteria[pageSize]=" + PAGE_SIZE + "&searchCriteria[currentPage]=0")
+                    .addHeader("Authorization", authToken)
+                    .execute().returnContent().asString();
+            
+            productList =  mapper.readValue(response, FrontierWholesalesProductList.class);
+            System.out.println("Product list is "+productList);
+        } catch (IOException e) {
+            e.printStackTrace();
+            log.error("Error getting Product List: ERROR: " + e.getMessage());
+        }
+        return productList;
     }
 
 
