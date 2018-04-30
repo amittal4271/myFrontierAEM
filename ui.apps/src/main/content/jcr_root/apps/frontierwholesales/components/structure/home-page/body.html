@@ -2,15 +2,17 @@
 <div data-sly-resource="${'cloudservices' @ resourceType='cq/cloudserviceconfigs/components/servicecomponents'}" data-sly-unwrap></div>
 <!-- Body text here -->
 <main id="test-home" class="main-content-container">
-<section id="scroller-content">
-<div id="homepage-scroller">
-<div class="swiper-container">
-</div>
-</div>
-<div id="homepage-right-side">
-<div data-sly-resource="${'content-brand-of-the-month' @ resourceType='foundation/components/parsys'}" data-sly-unwrap> </div>
-</div>
-</section>
+<!-- <section id="scroller-content"> -->
+    <div class="row">
+        <div id="homepage-scroller" class="col-md-8">
+            <div class="swiper-container">
+            </div>
+        </div>
+        <div id="homepage-right-side" class="col-md-4">
+            <div data-sly-resource="${'content-brand-of-the-month' @ resourceType='foundation/components/parsys'}" data-sly-unwrap> </div>
+        </div>
+    </div>    
+<!-- </section> -->
 <section class="home-featured-brands">
 	<div class="featured-icon-center"></div>
 	<div class="container">
@@ -38,3 +40,4 @@
 </section>
 </main>
 </body>
+    
