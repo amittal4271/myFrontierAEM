@@ -45,6 +45,8 @@ public class FrontierWholesalesMagentoCommerceConnector {
     private static String adminUser="";
     
     private static String adminPassword="";
+    
+    private long PAGE_SIZE=2;
 
     @Property(
            
@@ -148,6 +150,8 @@ public class FrontierWholesalesMagentoCommerceConnector {
         return "Bearer " + token.replace("\"", "");
 
     }
+    
+   
 
 
 

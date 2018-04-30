@@ -202,7 +202,88 @@ $.validator.addMethod("expiryMonth",function(value,element){
                     }
 		        }
 		    });
-		}
+		},
+
+        registrationGeneralForm: function($formId) {
+            $($formId).validate({
+                rules: {
+                    "shipping-name":{
+                        required: true,
+                        maxlength: 70,
+                        fullName: true
+                    },"shipping-company":{
+                        required: true,
+                        maxlength: 70
+                    },"shipping-address":{
+                        required: true,
+                        maxlength: 150
+                    },"shipping-city":{
+                        required: true,
+                        maxlength: 70
+                        
+                    },"shipping-postal_code":{
+                        required: true,
+                        minlength: 5,
+                        maxlength: 12
+                        
+                    },"shipping-phone":{
+                        required: true,
+                        maxlength: 10,
+                        phoneno: true
+                        
+                    },"account-signature":{
+                        required: true,
+                        maxlength: 70
+                        
+                    },"membership-name":{
+                        required: true,
+                        maxlength: 70,
+                        fullName: true
+                        
+                    },"membership-email":{
+                        required: true,
+                        maxlength: 150,
+                        email: true
+                        
+                    },"membership-password":{
+                        required: true,
+                        minlength: 8,
+                        maxlength: 50
+                        
+                        
+                    },"membership-password_confirm":{
+                        required: true,
+                        minlength: 8,
+                        maxlength: 50,
+                        equalTo: '#id_membership-password'
+                        
+                    },"account-url":{
+                        url: true
+                    }
+                },messages :{
+                     "shipping-name":{
+                       
+                         fullName: 'Please enter full name'
+                        
+                    },"shipping-phone":{
+                        
+                          phoneno: 'Enter a valid phone number'
+                        
+                    },"membership-name":{
+                       
+                        fullName: 'Please enter full name'
+                        
+                    },"membership-password_confirm":{
+                        
+                        equalTo: 'Password did not match'
+                        
+                    },"account-url":{
+                        url: "This field is required"
+                    }
+                }
+            });
+        }
+
 	};
 
 })(jQuery);

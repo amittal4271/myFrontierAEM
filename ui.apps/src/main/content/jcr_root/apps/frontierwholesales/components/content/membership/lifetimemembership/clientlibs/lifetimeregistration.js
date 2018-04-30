@@ -33,6 +33,7 @@ $(document).ready(function(){
         e.preventDefault();
          $validFlag = $("#lifetime-membership-form").valid();
         if($validFlag){
+            showCurrentMonth();
             collectUserDetails(); 
         }else{
             console.log('error...');
@@ -41,7 +42,19 @@ $(document).ready(function(){
 
     $('#id_shipping-shipping_same').on('change',function(e){
         e.preventDefault();
-        if ($(this).is(':checked')) {
+        setTaxAddressToBillingAddress();
+    });
+});
+
+function showCurrentMonth(){
+    var date = new Date();
+    var currentMonth = date.getMonth();
+
+    $('#id_billing-exp_month').val(currentMonth+1);
+}
+
+function setTaxAddressToBillingAddress(){
+    if ($(this).is(':checked')) {
            var stateVal = $('#id_mailing-locality option:selected').val();
             $('#id_shipping-name').val($('#id_mailing-name').val());
             $('#id_shipping-company').val($('#id_account-company_name').val());
@@ -59,11 +72,6 @@ $(document).ready(function(){
             $('#id_shipping-locality').prop('selectedIndex',0);
             $('#id_shipping-postal_code').val('');
         }
-    });
-});
-
-function setTaxAddressToBillingAddress(){
-
 }
 
 function collectUserDetails(){
@@ -78,7 +86,7 @@ function collectUserDetails(){
     var web_retail = $('.radio-checkbox-section-holder input:radio:checked').attr('id');
     var url=$('#id_account-url').val();
     if(undefined !== web_retail){
-        web_retail = web_retailer.substr(web_retail.length-1,web_retil.length);
+        web_retail = web_retail.substr(web_retail.length-1,web_retail.length);
        
     }else{
         web_retail='';
@@ -99,8 +107,8 @@ function collectUserDetails(){
     address['region']={};
     address['street']=[];
     
-    address['defaultShipping']='';
-    address['defaultBilling']='';
+    address['defaultShipping']='false';
+    address['defaultBilling']='true';
     address['firstname']=shippingNameSplit[0];
     address['lastname']=shippingNameSplit[1];
     address['postcode']=$('#id_shipping-postal_code').val();
@@ -134,9 +142,9 @@ function collectUserDetails(){
     companyJsonData['status']=1;
     companyJsonData['company_name']=$('#id_account-company_name').val();
     companyJsonData['legal_name']=$('#id_mailing-name').val();
-    companyJsonData['company_email']=''
+    companyJsonData['company_email']=$('#id_membership-email').val();
     // customer id will be passed after customer service call. This will happen in servlet class side.
-    companyJsonData['super_user_id']=''
+    companyJsonData['super_user_id']='';
     companyJsonData['city']=$('#id_mailing-city').val();
     companyJsonData['country_id']='US';
     companyJsonData['region']=$('#id_mailing-locality option:selected').text();
@@ -200,8 +208,11 @@ function fnCallService(customer,company,pwd){
             },
         success:function(data){
             console.log(data);
+            window.location.href=getRedirectPath();
+
         },error:function(error){
             console.log(error);
         }
     });
 }
+

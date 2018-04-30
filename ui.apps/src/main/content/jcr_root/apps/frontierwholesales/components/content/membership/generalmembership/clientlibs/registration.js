@@ -20,183 +20,42 @@ $(document).ready(function(){
         },error:function(error){
             console.log(error);
         }
-    })
+    });
+
+     validation.registrationGeneralForm('#general-membership-form');
     
     $('#btn-general-registration').on('click',function(e){
         e.preventDefault();
-       collectUserDetails(); 
+         $validFlag = $("#general-membership-form").valid();
+         if($validFlag){
+          collectUserDetails(); 
+        }else{
+          console.log('error in validation');
+        }
     });
 });
 
-function requiredField(obj,className,msg){
-   if(undefined === obj || obj.trim().length == 0){
-       assignError(className,msg);
-       return false;
-   } 
-    return true;
-}
 
-function fullNameValidation(obj,className,msg){
-    if(undefined !== obj && obj.trim().length > 0 && obj.trim().indexOf(' ') == -1){
-        assignError(className,msg);
-        return false;
-    }
-    return true;
-}
 
-function validateFields(){
-    var bReturn = true;
-    
-    var shippingName = $('#id_shipping-name').val();
-    if(!requiredField(shippingName,'shipping-name-text','This field is required.')){
-        bReturn = false;
-    }
-    
-    if(!fullNameValidation(shippingName,'shipping-name-text','Please enter full name')){
-        bReturn = false;
-    }
-    
-    
-    var companyName=$('#id_shipping-company').val();
-    
-     if(!requiredField(companyName,'company-text','This field is required.')){
-        bReturn = false;
-    }
-    
-   
-    
-    var address = $('#id_shipping-address').val();
-    if(!requiredField(address,'address1-text','This field is required.')){
-        bReturn = false;
-    }
-   
-    var city = $('#id_shipping-city').val();
-      
-    if(!requiredField(city,'city-text','This field is required.')){
-        bReturn = false;
-    }
-   
-    
-    var postalCode = $('#id_shipping-postal_code').val();
-    
-    if(!requiredField(postalCode,'zip-text','This field is required.')){
-        bReturn = false;
-    }
-    
-    
-    
-    var phone = $('#id_shipping-phone').val();
-    
-     if(!requiredField(phone,'phone-text','This field is required.')){
-        bReturn = false;
-    }
-     
-    
-    if(!validatePhonenumber(phone)){
-        assignError('phone-text','Enter a valid phone number');
-         bReturn = false;
-    }
-    
-    var name =  $('#id_membership-name').val();
-    
-    
-     if(!requiredField(name,'name-text','Name is required.')){
-        bReturn = false;
-    }
-     
-    
-    
-    if(undefined !== name && name.trim().length > 0 && name.trim().indexOf(' ') == -1){
-         $('.name-text').css('display','block');
-        $('.name-text').html('Please enter full name');
-         bReturn = false;
-    }
-    
-    var email = $('#id_membership-email').val()
-    if(!validateEmail(email)){
-        $('.email-text').css('display','block');
-        $('.email-text').html('Enter a valid email address.');
-         bReturn = false;
-        
-    }
-   
-     var pwd = $('#id_membership-password').val();
-    
-    var confirmPwd = $('#id_membership-password_confirm').val();
-    
-    if(!requiredField(pwd,'password-text','This field is required.')){
-        bReturn = false;
-    }
-    
-   
-    
-    if(undefined !== pwd && (pwd.trim().length > 0 && pwd.trim().length < 8)){
-         $('.password-text').css('display','block');
-        $('.password-text').html('Ensure this value has at least 8 characters (it has 7).');
-         bReturn = false;
-    }
-    
-   
-    
-    if(pwd !== confirmPwd){
-        assignError('password-text','Password did not match.');
-       // $('.password-text').css('display','block');
-        //$('.password-text').html('Passwords did not match.')
-         bReturn = false;
-       
-    }
-    return bReturn;
-    
-}
 
-function assignError(className,errorMsg){
-    $('.'+className).css('display','block');
-     $('.'+className).html(errorMsg);
-}
 
-function validateEmail(mail) 
-{
-    if(undefined !== mail && mail.trim().length > 0){
-  var emailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    if(mail.match(emailFormat)){
-        return true;
-    }else{
-        return false;
-    }
-    }else{
-        return false;
-    }
-  
-}
 
-function validatePhonenumber(inputtxt)
-{
-    if(undefined !== inputtxt && inputtxt.trim().length > 0){
-     var phoneno = /^\d{10}$/;
-    
-    if(phoneno.test(inputtxt)){
-        return true;
-    }else{
-        return false;
-    }
-    }else{
-        return false;
-    }
-}
-
-function clearFields(){
-    $('.name-text').css('display','none');
-     $('.email-text').css('display','none');
-     $('.password-text').css('display','none');
-    $('.shipping-name-text').css('display','none');
-    $('.company-text').css('display','none');
-   $('.address1-text').css('display','none');
-    $('.city-text').css('display','none');
-   $('.zip-text').css('display','none');
-   $('.phone-text').css('display','none');
-}
 function collectUserDetails(){
    
+    var memberName = $('#id_membership-name').val();
+    var memberNameSplit = memberName.split(' ');
+
+     var shippingName = $('#id_shipping-name').val();
+    var shippingNameSplit = shippingName.split(' ');
+
+     var web_retail = $('.radio-checkbox-section-holder input:radio:checked').attr('id');
+    var url=$('#id_account-url').val();
+    if(undefined !== web_retail){
+        web_retail = web_retail.substr(web_retail.length-1,web_retail.length);
+       
+    }else{
+        web_retail='';
+    }
   
     var customer={};
      var pwd = $('#id_membership-password').val();
@@ -205,43 +64,101 @@ function collectUserDetails(){
     var customerJsonData={};
     customerJsonData['addresses']=[];
     customerJsonData['email'] = $('#id_membership-email').val();
-    customerJsonData['firstname'] = $('#id_membership-name').val();
-    customerJsonData['lastname']='last name';
+    customerJsonData['firstname'] = memberNameSplit[0];
+    customerJsonData['lastname']=memberNameSplit[1];
     customerJsonData['website_id']='1';
    
     var addressData=[];
     addressData['region']={};
     addressData['street']=[];
-    addressData.push('defaultShipping','true');
-    addressData.push('defaultBilling','true');
-    addressData.push('firstname',$('#id_shipping-name').val());
-    addressData.push('lastname',' ');
-    addressData.push('postcode',$('#id_shipping-postal_code').val());
-    addressData.push('city',$('#id_shipping-city').val());
-    addressData.push('telephone',$('#id_shipping-phone').val());
-    addressData.push('countryId',"US");
+    addressData['defaultShipping']='false';
+    addressData['defaultBilling']='true';
+    addressData['firstname']=shippingNameSplit[0];
+    addressData['lastname']=shippingNameSplit[1];
+    addressData['postcode']=$('#id_shipping-postal_code').val();
+    addressData['city']=$('#id_shipping-city').val();
+    addressData['telephone']=$('#id_shipping-phone').val();
+    addressData['countryId']="US";
    
     var regionData={};
-    regionData['regionCode']='NJ';
-    regionData['regionId']='32';
-    regionData['region']='New Jersey';
-    addressData.push('region',regionData);
+    regionData['regionCode']=$('#id_shipping-locality option:selected').val();
+    regionData['regionId']=$('#id_shipping-locality option:selected').attr('data-attr-id');;
+    regionData['region']=$('#id_shipping-locality option:selected').text();
+    addressData['region']=regionData;
     var streetData=[];
     
     streetData.push($('#id_shipping-address').val());
     streetData.push($('#id_shipping-address2').val());
-    addressData.push('street',streetData);
+    addressData['street']=streetData;
     
-    customerJsonData['addresses'].push(addressData);
+    customerJsonData['addresses']=addressData;
     
     customer['customer']=customerJsonData;
     console.log("consumer data "+customer);
-   // if(validateFields()){
-        
+
+
+    var company={};
+    company['company']={};
     
+    var companyJsonData={};
+    companyJsonData['status']=1;
+    companyJsonData['company_name']=$('#id_shipping-company').val();
+    companyJsonData['legal_name']=$('#id_mailing-name').val();
+    companyJsonData['company_email']=$('#id_membership-email').val();
+    // customer id will be passed after customer service call. This will happen in servlet class side.
+    companyJsonData['super_user_id']=''
+    companyJsonData['city']=$('#id_shipping-city').val();
+    companyJsonData['country_id']='US';
+    companyJsonData['region']=$('#id_shipping-locality option:selected').text();
+    companyJsonData['region_id']=$('#id_shipping-locality option:selected').attr('data-attr-id');
+    
+    companyJsonData['postcode']=$('#id_shipping-postal_code').val();
+    companyJsonData['telephone']=$('#id_shipping-phone').val();
+    // 8 is for non member
+    companyJsonData['customer_group_id']='8';
+    
+   
+    companyJsonData['street']=[];
+    companyJsonData['street']=streetData;
+    
+    var taxInfo={};
+    taxInfo['tax_fullname']='';
+    taxInfo['tax_companyname']='';
+    taxInfo['tax_payerid']='';
+    var businessType={};
+    businessType['business_type']=web_retail;
+    businessType['web_address']=url;
+    var card_details={};
+    card_details['full_name']='';
+    card_details['company']='';
+    card_details['address_line_one']='';
+    card_details['address_line_two']='';
+    card_details['city']='';
+    card_details['state']='';
+    card_details['zip']='';
+    card_details['country']='US'
+    card_details['credit_card_number']='';
+    card_details['cvv_code']='';
+    card_details['expiration_month']='';
+    card_details['expiration_year']='';
+    var extensionAttributes={};
+    extensionAttributes['tax_info']={};
+    extensionAttributes['business_type']={};
+    extensionAttributes['card_details']={};
+    companyJsonData['extension_attributes']={};
+    
+    extensionAttributes['tax_info']=taxInfo;
+    extensionAttributes['business_type']=businessType;
+    extensionAttributes['card_details']=card_details;
+    
+    companyJsonData['extension_attributes']=extensionAttributes;
+    company['company']=companyJsonData;
+    
+    console.log('company details '+company);
+   
     $.ajax({
         url:"/services/registration",
-        data:{customer:JSON.stringify(customer)},
+        data:{customer:JSON.stringify(customer),company:JSON.stringify(company)},
         method: "POST",
          headers:{
 
@@ -249,15 +166,14 @@ function collectUserDetails(){
                 'Authorization':'Basic '+btoa(pwd)
             },
         success:function(data){
-            console.log(data);
+            
+            var object = JSON.parse(data);
+            window.location.href=getRedirectPath();
         },error:function(error){
             console.log(error);
         }
     });
-   // }else{
-     //   console.log("error in validation");
-    //}
-    
+  
    
     
 }

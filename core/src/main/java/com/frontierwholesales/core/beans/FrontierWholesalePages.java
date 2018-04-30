@@ -20,6 +20,7 @@ public class FrontierWholesalePages
   private List<List<FrontierWholesalePages>> columns;
   private String title;
   private String uniqueId;
+  private String sideNav;
   
   public FrontierWholesalePages(Page page)
   {
@@ -46,7 +47,7 @@ public class FrontierWholesalePages
     setIconClass((String)properties.get("iconClass", String.class));
     setContentPath(page.getPath() + "/_jcr_content/main");
     setHideInNav((String)properties.get("hidden", String.class));
-    
+    setSideNav((String)properties.get("sideNav",String.class));
     setColumn((String)properties.get("column", String.class));
   }
   
@@ -169,4 +170,12 @@ public class FrontierWholesalePages
   {
     this.columns = columns;
   }
+
+public String getSideNav() {
+	return sideNav;
+}
+
+public void setSideNav(String sideNav) {
+	this.sideNav = sideNav;
+}
 }

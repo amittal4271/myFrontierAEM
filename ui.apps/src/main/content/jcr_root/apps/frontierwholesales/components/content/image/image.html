@@ -1,0 +1,9 @@
+<div class="content-page-banner">
+<a
+  data-sly-use.image="image.js"
+  data-sly-unwrap="${!image.linkUrl}">
+<img src="${image.src}" alt="${image.alt}" class="${image.cssClass} img-responsive ${wcmmode.edit ? 'image-edit-placeholder' : ''}"
+    data-emptytext="Image"
+    title="${image.title}" /></a>
+    <p class="content-page-banner-heading">${image.title}</p>
+  </div>

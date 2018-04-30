@@ -38,7 +38,7 @@ public class FrontierWholesalesUserRegistrationServlet  extends SlingAllMethodsS
 	@Override
 	protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response)
 			throws ServletException, IOException {
-		//String adminToken="Bearer 0w5q8qyucriykjaiwke22ludd8nqtixk";
+		
 		String object;
 		JsonObject jsonObject = new JsonObject();
 		FrontierWholesalesMagentoCommerceConnector connector = new FrontierWholesalesMagentoCommerceConnector();
