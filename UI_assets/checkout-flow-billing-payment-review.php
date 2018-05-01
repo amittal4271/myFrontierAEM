@@ -38,11 +38,11 @@
                          </ol>
                     </nav>
 
-                    <!--
+                    
                     <div id="checkout-message-holder" class="global-server-side-message-holder">
                          <div class="alert alert-danger" role="alert"> <strong>Message Alert:</strong> Some type of message that shows errors </div>
                     </div>
-                    -->
+                    
 
                     <section class="account-main-holder checkout-holder shipping-page billing-page">
                          <div id="checkout-steps-holder">
@@ -114,7 +114,7 @@
                                         
                                    </fieldset>
 
-                                   <fieldset id="billing-address-holder" class="billing-section">
+                                   <fieldset id="billing-address-holder" class="billing-section below-section">
                                         <legend class="checkout-sub-header">Billing Address</legend>
                                         <div id="radio-billing-address-options" class="clearfix">
                                              <div class="radio">
@@ -193,6 +193,25 @@
                                         </div>
                                    </fieldset>
 
+                                   <fieldset id="billing-address-holder" class="billing-section below-section">
+                                        <legend class="checkout-sub-header">Sales Rep Assistance</legend>
+
+                                        <div class="checkbox">
+                                             <label for="id_sales-rep_assistance">
+                                                  <input id="id_sales-rep_assistance" name="sales-rep_assistance" type="checkbox">
+                                                  <span class="label-text">Click here if you'd like assistance from an Inside Sales Representative for merchandising aids such as displays, jars, labels, testers, etc. Your order will be delayed up to 24 hours.</span>
+                                             </label>
+                                        </div>
+
+                                        <div id="sales-rep-textarea-holder">
+                                             <div class="form-group">
+                                                  <label for="id_sales-rep_message">Message</label>
+                                                  <textarea id="id_sales-rep_message" class="form-control" name="sales-rep_message">
+                                                  </textarea>
+                                             </div>
+                                        </div>
+                                   </fieldset>
+
                                    <div class="submit-holder checkout-flow">
                                         <button class="btn btn-light-green btn-larger btn-cart-checkout">Place Order</button>
                                    </div>
@@ -227,6 +246,10 @@
                                                   <td>Tax</td>
                                                   <td class="amount">$0.00</td>
                                              </tr>
+                                             <tr class="discounts">
+                                                  <td>Discounts</td>
+                                                  <td class="amount">-$10.00</td>
+                                             </tr>
                                         </tbody>
                                         <tfoot>
                                              <tr class="total">
@@ -258,6 +281,22 @@
           <script>
           $(document).ready(function() {
                console.log('checkout doc ready');
+
+               $(document).on( "change", "#id_sales-rep_assistance", function(e) {
+                    console.log('sales rep radio change');
+                    var $this = $(this);
+
+                    var $salesRepMessageHolder = $('#sales-rep-textarea-holder');
+                    
+                    if ($salesRepMessageHolder.hasClass('show-holder')) {
+                         $salesRepMessageHolder.removeClass('show-holder').slideUp("fast");
+                         $this.removeClass('sales-rep-selected');
+                    } else {
+                         $salesRepMessageHolder.addClass('show-holder').slideDown("fast");
+                         $this.addClass('sales-rep-selected');
+                    }
+               });
+
           });
           </script>
      </body>

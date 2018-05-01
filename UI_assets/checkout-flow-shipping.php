@@ -36,11 +36,11 @@
                          </ol>
                     </nav>
 
-                    <!--
+                    
                     <div id="checkout-message-holder" class="global-server-side-message-holder">
                          <div class="alert alert-danger" role="alert"> <strong>Message Alert:</strong> Some type of message that shows errors </div>
                     </div>
-                    -->
+                    
 
                     <section class="account-main-holder checkout-holder shipping-page">
                          <div id="checkout-steps-holder">
@@ -193,6 +193,11 @@
                                              <tr class="tax">
                                                   <td>Tax</td>
                                                   <td class="amount">$0.00</td>
+                                             </tr>
+
+                                             <tr class="discounts">
+                                                  <td>Discounts</td>
+                                                  <td class="amount">-$10.00</td>
                                              </tr>
                                         </tbody>
                                         <tfoot>

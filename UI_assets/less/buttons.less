@@ -159,10 +159,37 @@
     background: none;
     text-transform: none;
 
+    &.green-link {
+        color: #8bba4a;
+        font-weight: normal;
+
+        &:link, &:hover, &:focus, &:active {
+            color: #8bba4a;
+            outline: none;
+        }
+    }
+
+    &.red-link {
+        color: #d83644;
+        font-weight: normal;
+
+        &:link, &:hover, &:focus, &:active {
+            color: #d83644;
+            outline: none;
+        }
+    }
+
     &:link, &:hover, &:focus, &:active {
         color: inherit;
         outline: none;
     }
+
+    .glyphicon {
+        font-size: 10px;
+        top: -1px;
+        padding-right: 2px;
+    }
+
 }
 
 .btn-switch-to-cart-orders {

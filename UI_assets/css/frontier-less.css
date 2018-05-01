@@ -223,12 +223,39 @@
   background: none;
   text-transform: none;
 }
+.btn-link.green-link {
+  color: #8bba4a;
+  font-weight: normal;
+}
+.btn-link.green-link:link,
+.btn-link.green-link:hover,
+.btn-link.green-link:focus,
+.btn-link.green-link:active {
+  color: #8bba4a;
+  outline: none;
+}
+.btn-link.red-link {
+  color: #d83644;
+  font-weight: normal;
+}
+.btn-link.red-link:link,
+.btn-link.red-link:hover,
+.btn-link.red-link:focus,
+.btn-link.red-link:active {
+  color: #d83644;
+  outline: none;
+}
 .btn-link:link,
 .btn-link:hover,
 .btn-link:focus,
 .btn-link:active {
   color: inherit;
   outline: none;
+}
+.btn-link .glyphicon {
+  font-size: 10px;
+  top: -1px;
+  padding-right: 2px;
 }
 .btn-switch-to-cart-orders {
   color: #817266;
@@ -283,6 +310,10 @@
   float: left;
   width: 100%;
   margin-bottom: 10px;
+}
+.form-group textarea {
+  width: 100%;
+  height: 100px;
 }
 input,
 select,
@@ -400,6 +431,19 @@ hr.line-separator.after-radio-section {
   .account-fieldset-third-holder {
     width: 66.666%;
   }
+}
+.validate-error {
+  color: #a94442;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: 'Lato', sans-serif;
+  float: left;
+  clear: both;
+  margin-top: 7px;
+  background: #f2dede;
+  border: 1px solid #ebccd1;
+  border-radius: 3px;
+  padding: 4px 10px;
 }
 table.simple-responsive {
   border-collapse: collapse;
@@ -4258,6 +4302,29 @@ legend.each-form-title .form-title-information a {
 .submit-holder.checkout-flow button {
   float: left;
 }
+#buyer-club-group-holder,
+.each-invite-group-section {
+  float: left;
+  width: 100%;
+  clear: both;
+}
+#buying-club-additional-invites-holder {
+  float: left;
+  width: 100%;
+  clear: both;
+  margin: 0 0 20px 0;
+  display: none;
+}
+#invite-group-actions {
+  float: left;
+  width: 100%;
+  clear: both;
+  margin-top: 20px;
+}
+.form-group.remove-buying-club-btn-holder {
+  margin-top: 0;
+  margin-bottom: 0;
+}
 .article-help-section {
   float: left;
   width: 100%;
@@ -4292,9 +4359,7 @@ legend.each-form-title .form-title-information a {
   }
 }
 .content-page-banner {
-  float: left;
   width: 100%;
-  clear: both;
   position: relative;
   margin-bottom: 40px;
 }
@@ -5258,6 +5323,7 @@ legend.each-form-title .form-title-information a {
   width: 100%;
   clear: both;
   margin-bottom: 40px;
+  margin-top: 20px;
 }
 .checkout-nav-list {
   position: relative;
@@ -5399,6 +5465,9 @@ table.table-order-summary td {
 table.table-order-summary td.amount {
   text-align: right;
 }
+table.table-order-summary .discounts {
+  color: #a94442;
+}
 .shipping-section,
 .billing-section {
   float: left;
@@ -5422,6 +5491,11 @@ table.table-order-summary td.amount {
 	padding: 15px;
 	border-radius: 8px;
 	*/
+}
+#sales-rep-textarea-holder {
+  float: left;
+  width: 100%;
+  display: none;
 }
 /*! HTML5 Boilerplate v4.3.0 | MIT License | http://h5bp.com/ */
 /*

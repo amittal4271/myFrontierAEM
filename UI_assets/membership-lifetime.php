@@ -37,23 +37,80 @@
                                                        <span class="label-text">Buying Club</span>
                                                   </label>
                                              </div>
+                                             <div id="buying-club-additional-invites-holder">
+                                                  <small class="small-form-element">You must invite 4 people to join the buying club</small>
+
+                                                  <input type="hidden" value="4" id="buyer-member-count-input"/>
+
+                                                  <div id="buyer-club-group-holder">
+                                                       <div id="invite-group-section-1" class="each-invite-group-section">
+                                                            <div class="form-group name-group width-half first">
+                                                                 <label for="id_invite-1-name">Name</label>
+                                                                 <input id="id_invite-1-name" name="invite-1-name" placeholder="Name" type="text" class="form-control">
+                                                            </div>
+                                                            <div class="form-group email-group width-half">
+                                                                 <label for="id_invite-1-email">Email</label>
+                                                                 <input id="id_invite-1-email" name="id_invite-1-email" placeholder="Email" type="text" class="form-control">
+                                                            </div>
+                                                       </div>
+
+                                                       <div id="invite-group-section-2" class="each-invite-group-section">
+                                                            <div class="form-group name-group width-half first">
+                                                                 <label for="id_invite-2-name">Name</label>
+                                                                 <input id="id_invite-2-name" name="invite-2-name" placeholder="Name" type="text" class="form-control">
+                                                            </div>
+                                                            <div class="form-group email-group width-half">
+                                                                 <label for="id_invite-2-email">Email</label>
+                                                                 <input id="id_invite-2-email" name="id_invite-2-email" placeholder="Email" type="text" class="form-control">
+                                                            </div>
+                                                       </div>
+
+                                                       <div id="invite-group-section-3" class="each-invite-group-section">
+                                                            <div class="form-group name-group width-half first">
+                                                                 <label for="id_invite-3-name">Name</label>
+                                                                 <input id="id_invite-3-name" name="invite-3-name" placeholder="Name" type="text" class="form-control">
+                                                            </div>
+                                                            <div class="form-group email-group width-half">
+                                                                 <label for="id_invite-3-email">Email</label>
+                                                                 <input id="id_invite-3-email" name="id_invite-3-email" placeholder="Email" type="text" class="form-control">
+                                                            </div>
+                                                       </div>
+
+                                                       <div id="invite-group-section-4" class="each-invite-group-section">
+                                                            <div class="form-group name-group width-half first">
+                                                                 <label for="id_invite-4-name">Name</label>
+                                                                 <input id="id_invite-4-name" name="invite-4-name" placeholder="Name" type="text" class="form-control">
+                                                            </div>
+                                                            <div class="form-group email-group width-half">
+                                                                 <label for="id_invite-4-email">Email</label>
+                                                                 <input id="id_invite-4-email" name="id_invite-4-email" placeholder="Email" type="text" class="form-control">
+                                                            </div>
+                                                       </div>
+                                                  </div>
+
+                                                  <div id="invite-group-actions">
+                                                       <button type="button" class="btn btn-link green-link btn-add-another-buyer-member">
+                                                            <span class="glyphicon glyphicon-plus"></span>Add Another Line
+                                                       </button>
+                                                  </div>
+                                             </div>
                                              <hr class="line-separator after-buying-club">
                                              <div class="radio-checkbox-section-holder thirds">
                                                   <div class="radio">
                                                        <label for="id_account-business_type_0">
-                                                            <input id="id_account-business_type_0" name="account-business_type" type="radio" value="food-service">
+                                                            <input id="id_account-business_type_0" class="other-than-buying-club-input" name="account-business_type" type="radio" value="food-service">
                                                             <span class="label-text">Food Service</span>
                                                        </label>
                                                   </div>
                                                   <div class="radio">
                                                        <label for="id_account-business_type_1">
-                                                            <input id="id_account-business_type_1" name="account-business_type" type="radio" value="grocery">
+                                                            <input id="id_account-business_type_1" class="other-than-buying-club-input" name="account-business_type" type="radio" value="grocery">
                                                             <span class="label-text">Grocery</span>
                                                        </label>
                                                   </div>
                                                   <div class="radio">
                                                        <label for="id_account-business_type_2">
-                                                            <input id="id_account-business_type_2" name="account-business_type" type="radio" value="health">
+                                                            <input id="id_account-business_type_2" class="other-than-buying-club-input" name="account-business_type" type="radio" value="health">
                                                             <span class="label-text">Health Practitioner</span>
                                                        </label>
                                                   </div>
@@ -61,32 +118,32 @@
 
                                                   <div class="radio">
                                                        <label for="id_account-business_type_3">
-                                                            <input id="id_account-business_type_3" name="account-business_type" type="radio" value="massage">
+                                                            <input id="id_account-business_type_3" class="other-than-buying-club-input" name="account-business_type" type="radio" value="massage">
                                                             <span class="label-text">Massage/Spa</span>
                                                        </label>
                                                   </div>
                                                   <div class="radio">
                                                        <label for="id_account-business_type_4">
-                                                            <input id="id_account-business_type_4" name="account-business_type" type="radio" value="natural-foods">
+                                                            <input id="id_account-business_type_4" class="other-than-buying-club-input" name="account-business_type" type="radio" value="natural-foods">
                                                             <span class="label-text">Natural Foods Retailer</span>
                                                        </label>
                                                   </div>
                                                   <div class="radio">
                                                        <label for="id_account-business_type_5">
-                                                            <input id="id_account-business_type_5" name="account-business_type" type="radio" value="other">
+                                                            <input id="id_account-business_type_5" class="other-than-buying-club-input" name="account-business_type" type="radio" value="other">
                                                             <span class="label-text">Other</span>
                                                        </label>
                                                   </div>
 
                                                   <div class="radio">
                                                        <label for="id_account-business_type_6">
-                                                            <input id="id_account-business_type_6" name="account-business_type" type="radio" value="retail">
+                                                            <input id="id_account-business_type_6" class="other-than-buying-club-input" name="account-business_type" type="radio" value="retail">
                                                             <span class="label-text">Retail Business</span>
                                                        </label>
                                                   </div>
                                                   <div class="radio">
                                                        <label for="id_account-business_type_7">
-                                                            <input id="id_account-business_type_7" name="account-business_type" type="radio" value="web">
+                                                            <input id="id_account-business_type_7" class="other-than-buying-club-input" name="account-business_type" type="radio" value="web">
                                                             <span class="label-text">Web Retailer</span>
                                                        </label>
                                                   </div>
@@ -98,10 +155,7 @@
                                                        <span class="label-text">Online Only Store</span>
                                                   </label>
                                              </div>
-                                             <div class="form-group width-two-thirds">
-                                                  <label for="id_account-url">Web Address</label>
-                                                  <input id="id_account-url" class="form-control" name="account-url" placeholder="www.youronlinestore.com" type="text">
-                                             </div>
+                                             
                                         </div>
                                    </fieldset>
 
@@ -372,7 +426,7 @@
                                    </fieldset>
 
                                    <div class="submit-holder">
-                                        <button class="btn btn-light-green btn-account-form">Submit for Approval</button>
+                                        <button type="button" class="btn btn-light-green btn-account-form" id="btn-submit-lifetime-registration">Submit for Approval</button>
                                    </div>
 
                               </form>
@@ -381,8 +435,186 @@
                </section>
           </main>
 
+          
+
           <?php include(dirname(__FILE__).'/snippets/footer.php');?>
 
           <?php include(dirname(__FILE__).'/snippets/footer-files-include.php');?>
+
+          <script>
+               ;(function($) {
+
+                    window.buyingClub = {
+                         buyerMemberCountInput: $('#buyer-member-count-input'),
+                         groupHolder: $('#buyer-club-group-holder'),
+                         countMin: 4,
+                         countMax: 100,
+                         currentCount: 4,
+
+                         addNewRowHtml: function () {
+                              var $newRowHtml = '';
+
+                              $newRowHtml += '<div id="invite-group-section-'+buyingClub.currentCount+'" class="each-invite-group-section">';
+                                   $newRowHtml += '<div class="form-group name-group width-half first">';
+                                        $newRowHtml += '<label for="id_invite-'+buyingClub.currentCount+'-name">Name</label>';
+                                        $newRowHtml += '<input id="id_invite-'+buyingClub.currentCount+'-name" name="invite-'+buyingClub.currentCount+'-name" placeholder="Name" type="text" class="form-control">';
+                                   $newRowHtml += '</div>';
+                                   $newRowHtml += '<div class="form-group email-group width-half">';
+                                        $newRowHtml += '<label for="id_invite-'+buyingClub.currentCount+'-email">Email</label>';
+                                        $newRowHtml += '<input id="id_invite-'+buyingClub.currentCount+'-email" name="id_invite-'+buyingClub.currentCount+'-email" placeholder="Email" type="text" class="form-control">';
+                                   $newRowHtml += '</div>';
+                                   $newRowHtml += '<div class="form-group remove-buying-club-btn-holder">';
+                                        $newRowHtml += '<button type="button" class="btn btn-link red-link btn-remove-buyer-member">';
+                                             $newRowHtml += '<span class="glyphicon glyphicon-minus"></span>Remove Line Item';
+                                        $newRowHtml += '</button>';
+                                   $newRowHtml += '</div>';
+                              $newRowHtml += '</div>';
+
+                              buyingClub.groupHolder.append($newRowHtml);
+                         },
+
+                         removeRow: function ($btnEl) {
+                              // find parent invite group holder
+                              var $inviteGroupSectionRemoveHolder = $btnEl.parents('.each-invite-group-section');
+                              // remove html
+                              $inviteGroupSectionRemoveHolder.remove();
+                              buyingClub.updateLineItemCountsOnRemove();
+                         },
+
+                         updateLineItemCountsOnRemove: function () {
+                              // we need to update numbering based on line item number that is removed
+                              if (buyingClub.currentCount > 4) {
+                                   $('.each-invite-group-section').each(function (index, value) {
+                                        var $this = $(this);
+                                        var $nameGroup = $this.children('.name-group');
+                                        var $emailGroup = $this.children('.email-group');
+                                        console.log(index+1);
+                                        // set index to match numbers starting at 1
+                                        var $newIndex = index+1;
+                                        // reset html that has numbers according to new index
+                                        $this.attr('id', 'invite-group-section-'+$newIndex);
+
+                                        // set new index values on labels and inputs for name and email
+                                        var $nameLabel = $nameGroup.find('label');
+                                        var $nameInput = $nameGroup.find('input');
+
+                                        $nameLabel.attr('for', 'id_invite-'+$newIndex+'-name');
+                                        $nameInput.attr('id', 'id_invite-'+$newIndex+'-name');
+                                        $nameInput.attr('name', 'invite-'+$newIndex+'-name');
+
+                                        var $emailLabel = $emailGroup.find('label');
+                                        var $emailInput = $emailGroup.find('input');
+
+                                        $emailLabel.attr('for', 'id_invite-'+$newIndex+'-email');
+                                        $emailInput.attr('id', 'id_invite-'+$newIndex+'-email');
+                                        $emailInput.attr('name', 'invite-'+$newIndex+'-email');
+                                   });
+                              }
+                         }
+                    };
+
+               })(jQuery);
+          
+               $(document).ready(function() {
+
+                    validation.registrationLifetimeForm('#lifetime-membership-form');
+
+                    $(document).on( "click", "#btn-submit-lifetime-registration", function(e) {
+                         e.preventDefault();
+
+                         $validFlag = $("#lifetime-membership-form").valid();
+
+                         if ($validFlag) {
+                              console.log('valid form');
+                              
+                              alert('We can reference our ajax function here, maybe set up another namespace for ajax forms');
+                         } else {
+                              console.log('not valid');
+                         }
+                    });
+
+                    $(document).on( "change", "#id_account-buying_club", function(e) {
+                         console.log('buying club radio change');
+                         var $this = $(this);
+
+                         var $buyingClubInvitesHolder = $('#buying-club-additional-invites-holder');
+                         
+                         if ($buyingClubInvitesHolder.hasClass('show-invites-holder')) {
+                              $buyingClubInvitesHolder.removeClass('show-invites-holder').slideUp("fast");
+                              $this.removeClass('buying-club-selected');
+                         } else {
+                              $buyingClubInvitesHolder.addClass('show-invites-holder').slideDown("fast");
+                              $this.addClass('buying-club-selected');
+                              // de-select other business type options if buying club is selected
+                              $('.other-than-buying-club-input').prop('checked', false);
+                              $('#id_account-online_only').prop('checked', false);
+                         }
+                    });
+
+                    $(document).on( "change", ".other-than-buying-club-input", function(e) {
+                         console.log('other than buying club change');
+                         var $this = $(this);
+
+                         var $buyingClubInvitesHolder = $('#buying-club-additional-invites-holder');
+                         var $buyingClubInput = $('#id_account-buying_club');
+                         
+                         if ($buyingClubInvitesHolder.hasClass('show-invites-holder')) {
+                              $buyingClubInvitesHolder.removeClass('show-invites-holder').slideUp("fast");
+                              $buyingClubInput.removeClass('buying-club-selected');
+                              // de-select buying club and online only if other options chosen
+                              $buyingClubInput.prop('checked', false);
+                         }
+                         // de-select other options chosen
+                         $('#id_account-online_only').prop('checked', false);
+                    });
+
+                    $(document).on( "change", "#id_account-online_only", function(e) {
+                         console.log('other than buying club change');
+                         var $this = $(this);
+                         // de-select buying club and other than fields
+                         var $buyingClubInvitesHolder = $('#buying-club-additional-invites-holder');
+                         var $buyingClubInput = $('#id_account-buying_club');
+                         
+                         if ($buyingClubInvitesHolder.hasClass('show-invites-holder')) {
+                              $buyingClubInvitesHolder.removeClass('show-invites-holder').slideUp("fast");
+                              $buyingClubInput.removeClass('buying-club-selected');
+                              // de-select buying club and online only if other options chosen
+                              $buyingClubInput.prop('checked', false);
+                         }
+                         $('.other-than-buying-club-input').prop('checked', false);
+                    });
+
+                    $(document).on( "click", ".btn-add-another-buyer-member", function(e) {
+                         var $this = $(this);
+                         // update current count 
+                         buyingClub.currentCount++;
+                         // log
+                         console.log(buyingClub.currentCount);
+                         // update input count val
+                         buyingClub.buyerMemberCountInput.val(buyingClub.currentCount);
+
+                         buyingClub.addNewRowHtml();
+                    });
+
+                    $(document).on( "click", ".btn-remove-buyer-member", function(e) {
+                         var $this = $(this);
+                         var $btnEl = $this;
+                         // update current count 
+                         buyingClub.currentCount--;
+                         // log
+                         console.log(buyingClub.currentCount);
+                         // update input count val
+                         buyingClub.buyerMemberCountInput.val(buyingClub.currentCount);
+                         // remove row
+                         buyingClub.removeRow($btnEl);
+                    });
+                    
+                    
+
+                    
+               });
+
+          </script>
+
      </body>
 </html>
