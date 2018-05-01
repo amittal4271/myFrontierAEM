@@ -1,0 +1,9 @@
+
+	<!--<sly data-sly-use.clientlib="${'/libs/granite/sightly/templates/clientlib.html'}" 
+		data-sly-resource="${clientLib.all @ categories='frontierwholesales.faq'}" ></sly>-->
+	<sly data-sly-use.titledesc="title-description.js"></sly>
+
+<div class="titledesc">
+	<h1 class="content-main-heading">${titledesc.title}</h1>
+	<p >${titledesc.text @context='html'}</p>
+</div>

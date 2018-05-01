@@ -22,12 +22,20 @@
                         jcr:primaryType="nt:unstructured"
                         sling:resourceType="granite/ui/components/foundation/container">
                         <items jcr:primaryType="nt:unstructured">
+                             <title
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                                fieldDescription="Enter Title"
+                                                fieldLabel="Enter Title"
+                                                required="true"
+                                                name="./title"/>
                             <titletext
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="cq/gui/components/authoring/dialog/richtext"
                                 fieldDescription="Enter text in Rich text editor "
                                 fieldLabel="Paragraph Text"
                                 name="./jcr:titletext"
+                                 removeSingleParagraphContainer="{Boolean}true"
                                 useFixedInlineToolbar="{Boolean}true">
                                 <rtePlugins jcr:primaryType="nt:unstructured">
                                     <format
