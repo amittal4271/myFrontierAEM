@@ -149,12 +149,18 @@
                                                   </div>
                                              </div>
                                              <hr class="line-separator after-radio-section">
+                                             <div class="form-group width-two-thirds">
+                                                  <label for="id_account-url">Web Address</label>
+                                                  <input id="id_account-url" class="form-control" name="account-url" placeholder="www.youronlinestore.com" type="text">
+                                             </div>
+                                             <!--
                                              <div class="checkbox width-one-third">
                                                   <label for="id_account-online_only">
                                                        <input id="id_account-online_only" name="account-online_only" type="checkbox">
                                                        <span class="label-text">Online Only Store</span>
                                                   </label>
                                              </div>
+                                             -->
                                              
                                         </div>
                                    </fieldset>
@@ -547,7 +553,6 @@
                               $this.addClass('buying-club-selected');
                               // de-select other business type options if buying club is selected
                               $('.other-than-buying-club-input').prop('checked', false);
-                              $('#id_account-online_only').prop('checked', false);
                          }
                     });
 
@@ -564,24 +569,6 @@
                               // de-select buying club and online only if other options chosen
                               $buyingClubInput.prop('checked', false);
                          }
-                         // de-select other options chosen
-                         $('#id_account-online_only').prop('checked', false);
-                    });
-
-                    $(document).on( "change", "#id_account-online_only", function(e) {
-                         console.log('other than buying club change');
-                         var $this = $(this);
-                         // de-select buying club and other than fields
-                         var $buyingClubInvitesHolder = $('#buying-club-additional-invites-holder');
-                         var $buyingClubInput = $('#id_account-buying_club');
-                         
-                         if ($buyingClubInvitesHolder.hasClass('show-invites-holder')) {
-                              $buyingClubInvitesHolder.removeClass('show-invites-holder').slideUp("fast");
-                              $buyingClubInput.removeClass('buying-club-selected');
-                              // de-select buying club and online only if other options chosen
-                              $buyingClubInput.prop('checked', false);
-                         }
-                         $('.other-than-buying-club-input').prop('checked', false);
                     });
 
                     $(document).on( "click", ".btn-add-another-buyer-member", function(e) {
