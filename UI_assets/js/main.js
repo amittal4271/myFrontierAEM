@@ -90,8 +90,26 @@ function hideHeaderFlyout () {
 	}
 }
 
+function showMiniCart () {
+	var $this = $(this);
+	var $miniCartFlyout = $this.children('.mini-cart-holder');
+	$miniCartFlyout.fadeIn("fast");
+}
+
+function hideMiniCart () {
+	var $this = $(this);
+	var $miniCartFlyout = $this.children('.mini-cart-holder');
+	$miniCartFlyout.fadeOut("fast");
+}
+
 
 $(document).ready(function() {
+
+	$("#header").hoverIntent({
+		over: showMiniCart,
+		out: hideMiniCart,
+		selector: '#cart-holder'
+	});
 
 	console.log('main.js doc ready');
 
@@ -217,6 +235,8 @@ $(document).ready(function() {
 		out: hideThirdLevelNavigation,
 		selector: '.category-nav-child-item'
 	});
+
+	
 
 	$(document).on( "click", "#mobile-menu-icon", function(e) {
 		var $mobileNav = $('#mobile-nav');

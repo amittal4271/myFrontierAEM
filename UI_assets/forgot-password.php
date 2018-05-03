@@ -23,7 +23,7 @@
                          <div class="return-customer-section">
                               <h2 class="heading-login-page">Forgot your password?</h2>
                               
-                              <p class="standard-text">Enter your email address and we'll send you a password reset email.</p>
+                              <p>Enter your email address and we'll send you a password reset email.</p>
 
                               <form id="forgot-password-form" class="form-section-start">
                                    <div class="form-group">

@@ -47,6 +47,7 @@
                          <li class="spacer"><a href="./checkout-flow-approval.php">Checkout Flow - Approval</a></li>
                          <li><a href="./checkout-flow-shipping.php">Checkout Flow - Shipping</a></li>
                          <li><a href="./checkout-flow-billing-payment-review.php">Checkout Flow - Payment / Review</a></li>
+                         <li><a href="./checkout-flow-order-confirmation.php">Checkout Flow - Order Confirmation</a></li>
                          
                          
 

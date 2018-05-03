@@ -3,7 +3,7 @@
     background-size: auto 114px;
     background-position: left top;
     background-repeat: repeat-x;
-    padding: 20px 0 20px 0;
+    padding: 20px 0 0 0;
     position: relative;
     z-index: 18;
     height: 118px;
@@ -210,8 +210,8 @@
 
 #secondary-nav-holder {
     float: left;
-    width: 34%;
-    padding: 0 2%;
+    width: 32%;
+    padding: 0 0 0 2%;
     margin-top: 30px;
     display: none;
     z-index: 18;
@@ -223,15 +223,50 @@
 }
 #cart-holder {
     float: left;
-    width: 17%;
+    width: 19%;
     margin-top: 23px;
     display: none;
-    padding-right: 25px;
+    padding-right: 15px;
     text-align: right;
+    position: relative;
+    height: 70px;
 
     .breakpoint_1200({
         display: block;
     });
+
+    &.owner-account-cart-holder {
+        margin-top: 5px;
+        height: 90px;
+
+        .mini-cart-holder {
+            top: 88px;
+        }
+    }
+
+    .mini-cart-holder {
+        position: absolute;
+        top: 50px;
+        right: 28px;
+        box-shadow: 0 0 25px 0 rgba(0,0,0,0.4);
+        border-radius: 5px;
+        background: #fff;
+        display: none;
+        padding: 20px;
+        width: 320px;
+
+        &:before {
+            content: "";
+            height: 0;
+            border-bottom: 10px solid #fff;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            right: 20px;
+            position: absolute;
+            top: -10px;
+            width: 0;
+        }
+    }
 }
 
 .user-menu {
@@ -289,7 +324,7 @@
     font-size: 20px;
 }
 .cart-amount {
-    font-size: 12px;
+    font-size: 13px;
     margin: 2px 0 0 10px;
 }
 

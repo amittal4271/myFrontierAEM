@@ -10,7 +10,7 @@
           </button>
      </div>
      <div id="logo-header">
-          <a href="/" class="logo-link" title="Frontier Co-op Wholesale">
+          <a href="./" class="logo-link" title="Frontier Co-op Wholesale">
                <span class="logo-icon-header">
                     <img src="https://dh6qdiyp93d9u.cloudfront.net/static/frontierwholesale/images/logo.6694741e49f1.svg"/>
                     <span class="visuallyhidden">Frontier Co-op Wholesale</span>
@@ -47,14 +47,31 @@
                </li>
           </ul>
      </div>
-     <div id="cart-holder">
+     <!-- the class owner-account-cart-holder should only be added when the owner is logged in -->
+     <div id="cart-holder" class="owner-account-cart-holder">
           <a href="#" class="btn btn-cart-display cart-display" title="Cart">
                <span class="icon-cart">
                     <span class="glyphicon glyphicon-shopping-cart"></span>
                     <span class="cart-count quantity">0</span>
                </span>
-               <span class="cart-amount">My Total: <span class="amount">$0.00</span></span>
+               <span class="cart-amount">My Total: <span class="amount">$130.00</span></span>
           </a>
+
+          <!-- this link should only be shown when owner is logged in -->
+          <a href="#" class="btn btn-cart-display cart-display-owner-total" title="Cart">
+               <span class="icon-cart">
+                    <span class="glyphicon glyphicon-shopping-cart"></span>
+               </span>
+               <span class="cart-amount">Our Total: <span class="amount">$1,230.00</span></span>
+          </a>
+
+          <div class="mini-cart-holder">
+               <div class="each-mini-cart-item">
+                    <p>Item 1</p>
+                    <p>Item 2</p>
+               </div>
+          </div>
+          
      </div>
      <div id="right-header-icons-mobile">
           <a href="#" id="mobile-account-icon" class="header-mobile-icon">

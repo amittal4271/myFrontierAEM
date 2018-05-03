@@ -15,16 +15,16 @@
                          <div id="product-images">
                               <div id="product-thumbnails">
                                    <button type="button" class="each-thumbnail">
-                                        <img src="https://dh6qdiyp93d9u.cloudfront.net/media/CACHE/images/products/fronti/frontier-almond-flavor-4-fl-oz-one-23002-23002-default-0-d752/eec638b1b952377272bb769cacd120f4.jpg"/>
+                                        <img src="https://dh6qdiyp93d9u.cloudfront.net/media/CACHE/images/products/simply/simply-organic-spicy-guacamole-mix-sauce-40-oz-one-19639-19639-default-1-5d19/c56d62d0dac6add6b54132a116b9ccbc.jpg"/>
                                    </button>
                                    <button type="button" class="each-thumbnail">
-                                        <img src="https://dh6qdiyp93d9u.cloudfront.net/media/CACHE/images/products/fronti/frontier-almond-flavor-4-fl-oz-one-23002-23002-default-0-d752/eec638b1b952377272bb769cacd120f4.jpg"/>
+                                        <img src="https://dh6qdiyp93d9u.cloudfront.net/media/CACHE/images/products/simply/simply-organic-spicy-guacamole-mix-sauce-40-oz-one-19639-19639-default-0-672e/9d65335a71660e67e539d8b8a4b48fc5.jpg"/>
                                    </button>
                               </div>
                               <div id="product-main-image">
                                    <span class="badge badge-sale">Sale</span>
                                    <div class="product-main-image-holder">
-                                        <img src="https://dh6qdiyp93d9u.cloudfront.net/media/CACHE/images/products/fronti/frontier-almond-flavor-4-fl-oz-one-23002-23002-default-0-d752/0fb515bd8364a251e93c709d85fd9763.jpg"/>
+                                        <img src="https://dh6qdiyp93d9u.cloudfront.net/media/CACHE/images/products/simply/simply-organic-spicy-guacamole-mix-sauce-40-oz-one-19639-19639-default-1-5d19/d5e0f7544fe8f8fd6e8dc7d9294e31b6.jpg"/>
                                    </div>
                               </div>
                          </div>
@@ -40,8 +40,9 @@
                                         <a href="/shop/frontier/" class="dd-value-link">Frontier</a>
                                    </span>
                               
-                                   <span class="dt-label">Size: </span>
+                                   <!--<span class="dt-label">Size: </span>
                                    <span class="dd-value">4.0 Fluid Ounce</span>
+                                   -->
                               
                                    <span class="dt-label">UPC: </span>
                                    <span class="dd-value upc">089836230027</span>
@@ -51,10 +52,26 @@
                               <div class="product-price-summary"> 
                                    <span class="product-sale-price">$5.80</span> 
                                    <span class="product-now-price">Now $4.93</span>
-                                   <span class="product-save-percent">Save 25% <span class="save-percent-additional">($1.23 on each item)</span></span>
+                                   <span class="product-save-percent">Save 25%</span>
                               </div>
 
                               <div class="product-detail-message">Availability: In Stock</div>
+
+                              <div class="pdp-message-holder">
+                                   <div class="alert alert-danger" role="alert"> 
+                                        <span class="glyphicon glyphicon-exclamation-sign"></span>
+                                        <strong>Restricted Shipping Item:</strong> Some type of message that explains the situation.
+                                   </div>
+                                   <div class="alert alert-bulk" role="alert">
+                                        <span class="glyphicon glyphicon-info-sign"></span>
+                                        <strong>Buy 5 to save 5%:</strong> Discount price will display in cart.
+                                   </div>
+                              </div>
+
+                              <div class="product-wishlist">
+                                   <button class="btn btn-add-wishlist btn-wishlist">Add to Wishlist +</button>
+                                   <button class="btn btn-add-wishlist btn-shelve">Add to Shelves +</button>
+                              </div>
 
 
                               <form action="" method="post" class="product-detail-form-add">
@@ -75,10 +92,6 @@
                                         </div>
                                    </div>
                               </form>
-
-                              <div class="product-wishlist">
-                                   <button class="btn btn-add-wishlist">Add to Wishlist +</button>
-                              </div>
 
                               <div class="product-overview">
                                    <h2 class="heading-product-overview">Product Overview</h2>
@@ -172,7 +185,7 @@
                                         <div class="swiper-slide">
                                              <a class="each-slider-related-link-holder" href="#">
                                                   <span class="image-holder">
-                                                       <img src="https://dh6qdiyp93d9u.cloudfront.net/media/CACHE/images/products/foodsc/foodscience-of-vermont-b12-mc-one-216971-216971-default-0-b9b2/21b5fa4eadcd9386ceb39f7d5aaa40a0.jpg"/>
+                                                       <img src="../frontierwholesales/images/pdp-related-one.jpg"/>
                                                   </span>
                                                   <span class="title-holder">
                                                        <span class="product-tile-sku">Item #: 216971</span>
@@ -183,7 +196,7 @@
                                         <div class="swiper-slide">
                                              <a class="each-slider-related-link-holder" href="#">
                                                   <span class="image-holder">
-                                                       <img src="https://dh6qdiyp93d9u.cloudfront.net/media/CACHE/images/products/thomps/thompson-vitamin-d-cholecalciferol-2-one-223274-223274-default-0-ca63/2967c4598255261451484142664e8154.jpg"/>
+                                                       <img src="../frontierwholesales/images/pdp-related-two.jpg"/>
                                                   </span>
                                                   <span class="title-holder">
                                                        <span class="product-tile-sku">Item #: 216971</span>
@@ -194,7 +207,7 @@
                                         <div class="swiper-slide">
                                              <a class="each-slider-related-link-holder" href="#">
                                                   <span class="image-holder">
-                                                       <img src="https://dh6qdiyp93d9u.cloudfront.net/media/CACHE/images/products/jarrow/jarrow-formulas-k-right-one-232934-232934-default-0-3a49/efe07ffefc0fccabcdb8fe4d00eec8db.jpg"/>
+                                                       <img src="../frontierwholesales/images/pdp-related-three.jpg"/>
                                                   </span>
                                                   <span class="title-holder">
                                                        <span class="product-tile-sku">Item #: 216971</span>
@@ -205,7 +218,7 @@
                                         <div class="swiper-slide">
                                              <a class="each-slider-related-link-holder" href="#">
                                                   <span class="image-holder">
-                                                       <img src="https://dh6qdiyp93d9u.cloudfront.net/media/CACHE/images/products/foodsc/foodscience-of-vermont-b12-mc-one-216971-216971-default-0-b9b2/21b5fa4eadcd9386ceb39f7d5aaa40a0.jpg"/>
+                                                       <img src="../frontierwholesales/images/pdp-related-one.jpg"/>
                                                   </span>
                                                   <span class="title-holder">
                                                        <span class="product-tile-sku">Item #: 216971</span>
@@ -216,33 +229,22 @@
                                         <div class="swiper-slide">
                                              <a class="each-slider-related-link-holder" href="#">
                                                   <span class="image-holder">
-                                                       <img src="https://dh6qdiyp93d9u.cloudfront.net/media/CACHE/images/products/jarrow/jarrow-formulas-vitamin-d3-one-232931-232931-default-0-18a6/68bff32f7274b3ed6107c0dd59ac24ae.jpg"/>
-                                                  </span>
-                                                  <span class="title-holder">
-                                                       <span class="product-tile-sku">Item #: 216971</span>
-                                                       <span class="product-tile-name">Jarrow Formulas Vitamin D3 100 soft gels</span>
-                                                  </span>
-                                             </a>
-                                        </div>
-                                        <div class="swiper-slide">
-                                             <a class="each-slider-related-link-holder" href="#">
-                                                  <span class="image-holder">
-                                                       <img src="https://dh6qdiyp93d9u.cloudfront.net/media/CACHE/images/products/foodsc/foodscience-of-vermont-b12-mc-one-216971-216971-default-0-b9b2/21b5fa4eadcd9386ceb39f7d5aaa40a0.jpg"/>
-                                                  </span>
-                                                  <span class="title-holder">
-                                                       <span class="product-tile-sku">Item #: 216971</span>
-                                                       <span class="product-tile-name">FoodScience of Vermont B12-MC Chewable Tablets </span>
-                                                  </span>
-                                             </a>
-                                        </div>
-                                        <div class="swiper-slide">
-                                             <a class="each-slider-related-link-holder" href="#">
-                                                  <span class="image-holder">
-                                                       <img src="https://dh6qdiyp93d9u.cloudfront.net/media/CACHE/images/products/thomps/thompson-vitamin-d-cholecalciferol-2-one-223274-223274-default-0-ca63/2967c4598255261451484142664e8154.jpg"/>
+                                                       <img src="../frontierwholesales/images/pdp-related-two.jpg"/>
                                                   </span>
                                                   <span class="title-holder">
                                                        <span class="product-tile-sku">Item #: 216971</span>
                                                        <span class="product-tile-name">Thompson Vitamin D Cholecalciferol 90 tablets</span>
+                                                  </span>
+                                             </a>
+                                        </div>
+                                        <div class="swiper-slide">
+                                             <a class="each-slider-related-link-holder" href="#">
+                                                  <span class="image-holder">
+                                                       <img src="../frontierwholesales/images/pdp-related-three.jpg"/>
+                                                  </span>
+                                                  <span class="title-holder">
+                                                       <span class="product-tile-sku">Item #: 216971</span>
+                                                       <span class="product-tile-name">FoodScience of Vermont B12-MC Chewable Tablets </span>
                                                   </span>
                                              </a>
                                         </div>
