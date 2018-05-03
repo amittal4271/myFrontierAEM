@@ -67,9 +67,52 @@
 
           <div class="mini-cart-holder">
                <div class="each-mini-cart-item">
-                    <p>Item 1</p>
-                    <p>Item 2</p>
+                    <div class="mini-cart-image-holder">
+                         <img src="../frontierwholesales/images/mini-cart-item-one.jpg"/>
+                    </div>
+                    <div class="mini-cart-info-holder">
+                         <div class="mini-cart-name">Handy Pantry Arugula Microgreen Kit</div>
+                         <div class="mini-cart-price">
+                              <span class="original-price strike-through-price">$3.20</span>
+                              <span class="sale-now-price">Now $2.99</span>
+                         </div>
+                    </div>
+                    <div class="mini-cart-remove-holder">
+                         <button class="btn btn-mini-cart-remove">
+                              <span class="glyphicon glyphicon-remove"></span>
+                              <span class="remove-text">Remove Item</span>
+                         </button>
+                    </div>
                </div>
+
+               <div class="each-mini-cart-item">
+                    <div class="mini-cart-image-holder">
+                         <img src="../frontierwholesales/images/mini-cart-item-two.jpg"/>
+                    </div>
+                    <div class="mini-cart-info-holder">
+                         <div class="mini-cart-name">Handy Pantry Arugula Microgreen Kit</div>
+                         <div class="mini-cart-price">
+                              <span class="original-price strike-through-price">$3.20</span>
+                              <span class="sale-now-price">Now $2.99</span>
+                         </div>
+                    </div>
+                    <div class="mini-cart-remove-holder">
+                         <button class="btn btn-mini-cart-remove">
+                              <span class="glyphicon glyphicon-remove"></span>
+                              <span class="remove-text">Remove Item</span>
+                         </button>
+                    </div>
+               </div>
+
+               <div class="mini-cart-subtotal-holder">
+                    <div class="subtotal-text">Subtotal</div>
+                    <div class="subtotal-amount">$44.50</div>
+               </div>
+
+               <div class="mini-cart-go-to-cart-holder">
+                    <a href="#" class="btn btn-light-green btn-mini-cart-go-to-cart">Go to Cart</a>
+               </div>
+
           </div>
           
      </div>

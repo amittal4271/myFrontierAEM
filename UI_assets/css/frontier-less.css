@@ -255,6 +255,17 @@
 .btn-only-green-icon:focus {
   color: #8bba4a;
 }
+.btn-mini-cart-remove {
+  padding: 0;
+}
+.btn-mini-cart-remove .glyphicon {
+  font-size: 9px;
+  color: #fff;
+  background: #94c750;
+  padding: 4px 3px 4px 4px;
+  border-radius: 10px;
+  top: 0;
+}
 .btn-green-edit-icon {
   border: 1px solid #8bba4a;
   background: #8bba4a;
@@ -1737,6 +1748,7 @@ body.mobile-nav-overflow {
   display: none;
   padding: 20px;
   width: 320px;
+  z-index: 100;
 }
 #cart-holder .mini-cart-holder:before {
   content: "";
@@ -1748,6 +1760,81 @@ body.mobile-nav-overflow {
   position: absolute;
   top: -10px;
   width: 0;
+}
+.each-mini-cart-item {
+  float: left;
+  width: 100%;
+  clear: both;
+  margin-bottom: 20px;
+}
+.mini-cart-image-holder {
+  float: left;
+  width: 25%;
+}
+.mini-cart-image-holder img {
+  display: block;
+  width: 100%;
+}
+.mini-cart-info-holder {
+  float: left;
+  width: 60%;
+  padding: 0 10px;
+  text-align: left;
+  font-size: 12px;
+  font-family: 'Open Sans', sans-serif;
+  padding-top: 5px;
+}
+.mini-cart-info-holder .mini-cart-name {
+  float: left;
+  width: 100%;
+  margin-bottom: 5px;
+  color: #817266;
+}
+.mini-cart-info-holder .mini-cart-price {
+  font-weight: 700;
+  color: #817266;
+}
+.mini-cart-info-holder .mini-cart-price .original-price.strike-through-price {
+  text-decoration: line-through;
+}
+.mini-cart-info-holder .mini-cart-price .sale-now-price {
+  color: #f4901c;
+  padding-left: 4px;
+}
+.mini-cart-remove-holder {
+  float: left;
+  width: 15%;
+  padding-top: 5px;
+}
+.mini-cart-remove-holder .btn-mini-cart-remove .remove-text {
+  display: none;
+}
+.btn-mini-cart-go-to-cart {
+  width: 100%;
+}
+.mini-cart-subtotal-holder {
+  float: left;
+  width: 100%;
+  clear: both;
+  padding: 10px 0;
+  border-top: 1px solid #ececec;
+}
+.mini-cart-subtotal-holder .subtotal-text,
+.mini-cart-subtotal-holder .subtotal-amount {
+  color: #5a524b;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+}
+.mini-cart-subtotal-holder .subtotal-text {
+  float: left;
+  width: 50%;
+  text-align: left;
+}
+.mini-cart-subtotal-holder .subtotal-amount {
+  float: left;
+  width: 50%;
+  text-align: right;
 }
 .user-menu {
   float: left;
@@ -3720,10 +3807,6 @@ tr.order-details-table-section-row td.inner-table-td-holder {
   border-bottom: 1px solid #e6e6e6;
 }
 .each-additional-section .additional-description {
-  color: #817266;
-  display: block;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 14px;
   margin: 0 auto 15px 0;
   clear: both;
 }
@@ -4566,7 +4649,6 @@ legend.each-form-title .form-title-information a {
   font-size: 14px;
 }
 .btn-heading {
-  float: left;
   width: 100%;
   clear: both;
   margin: 0;
