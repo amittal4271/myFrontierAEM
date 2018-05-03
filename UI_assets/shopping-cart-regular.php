@@ -143,6 +143,12 @@
 
                          </div>
 
+                         <div class="cart-subtotal-holder">
+                              <div class="cart-subtotal-text">
+                                   3 Item(s) Subtotal: $23.98
+                              </div>
+                         </div>
+
                          <div class="submit-holder">
                               <button class="btn btn-light-green btn-larger btn-cart-checkout">Checkout</button>
                          </div>

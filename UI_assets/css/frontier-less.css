@@ -4488,10 +4488,10 @@ legend.each-form-title .form-title-information a {
   padding-top: 10px;
 }
 .submit-holder button {
-  float: left;
+  float: right;
 }
 .submit-holder.checkout-flow button {
-  float: left;
+  float: right;
 }
 #buyer-club-group-holder,
 .each-invite-group-section {
@@ -5444,6 +5444,20 @@ legend.each-form-title .form-title-information a {
 }
 .btn-toggle-cart-actions .btn-toggle-open {
   margin-bottom: 15px;
+}
+.cart-subtotal-holder {
+  float: left;
+  width: 100%;
+  clear: both;
+  padding: 20px 0;
+  text-align: right;
+  border-bottom: 1px solid #ececec;
+}
+.cart-subtotal-holder .cart-subtotal-text {
+  color: #5a524b;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 26px;
+  font-weight: 700;
 }
 .account-main-holder.shipping-page,
 .account-main-holder.order-confirmation-page {
