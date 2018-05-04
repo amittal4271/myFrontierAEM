@@ -1,5 +1,4 @@
 #base=css
 bootstrap.min.css
 frontier-less-minified.css
-#frontier.css
 ie10-viewport-bug-workaround.css

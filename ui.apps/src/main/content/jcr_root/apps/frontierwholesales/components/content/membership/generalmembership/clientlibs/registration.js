@@ -1,6 +1,6 @@
 $(document).ready(function(){
     
-   console.log('user registration...'); 
+   console.log('user registration...'+$('#serverurl').val()); 
     
     $.ajax({
         url:"/services/registration",
@@ -31,7 +31,14 @@ $(document).ready(function(){
           collectUserDetails(); 
         }else{
           console.log('error in validation');
+          $('.global-server-side-message-holder').css('display','block');
         }
+    });
+    
+    
+    $('#id_membership-email').on('onchange',function(e){
+        e.preventDefault();
+        emailValidation();
     });
 });
 
@@ -41,7 +48,8 @@ $(document).ready(function(){
 
 
 function collectUserDetails(){
-   
+    //hide top level error
+    $('.global-server-side-message-holder').css('display','none');
     var memberName = $('#id_membership-name').val();
     var memberNameSplit = memberName.split(' ');
 
@@ -69,27 +77,33 @@ function collectUserDetails(){
     customerJsonData['website_id']='1';
    
     var addressData=[];
-    addressData['region']={};
-    addressData['street']=[];
-    addressData['defaultShipping']='false';
-    addressData['defaultBilling']='true';
-    addressData['firstname']=shippingNameSplit[0];
-    addressData['lastname']=shippingNameSplit[1];
-    addressData['postcode']=$('#id_shipping-postal_code').val();
-    addressData['city']=$('#id_shipping-city').val();
-    addressData['telephone']=$('#id_shipping-phone').val();
-    addressData['countryId']="US";
+    
+    var address={};
+    address['region']={};
+    address['street']=[];
+    
+    
+    address['defaultShipping']='false';
+    address['defaultBilling']='true';
+    address['firstname']=shippingNameSplit[0];
+    address['lastname']=shippingNameSplit[1];
+    address['postcode']=$('#id_shipping-postal_code').val();
+    address['city']=$('#id_shipping-city').val();
+    address['telephone']=$('#id_shipping-phone').val();
+    address['countryId']="US";
    
     var regionData={};
     regionData['regionCode']=$('#id_shipping-locality option:selected').val();
-    regionData['regionId']=$('#id_shipping-locality option:selected').attr('data-attr-id');;
+    regionData['regionId']=$('#id_shipping-locality option:selected').attr('data-attr-id');
     regionData['region']=$('#id_shipping-locality option:selected').text();
-    addressData['region']=regionData;
+    address['region']=regionData;
     var streetData=[];
     
     streetData.push($('#id_shipping-address').val());
     streetData.push($('#id_shipping-address2').val());
-    addressData['street']=streetData;
+    address['street']=streetData;
+    
+    addressData.push(address);
     
     customerJsonData['addresses']=addressData;
     
@@ -156,7 +170,25 @@ function collectUserDetails(){
     
     console.log('company details '+company);
    
-    $.ajax({
+    
+  
+    var emailReq = emailValidation();
+    emailReq.done(function(data){
+       console.log("after done is "+data); 
+        if(data == true){
+            userRegistrationService(customer,company,pwd);
+        }else{
+            console.log("Email is existing...");
+        }
+    });
+    
+    
+   
+    
+}
+
+function userRegistrationService(customer,company,pwd){
+     $.ajax({
         url:"/services/registration",
         data:{customer:JSON.stringify(customer),company:JSON.stringify(company)},
         method: "POST",
@@ -173,7 +205,36 @@ function collectUserDetails(){
             console.log(error);
         }
     });
-  
-   
+}
+
+function emailValidation(){
+    var serverurl = $('#serverurl').val();
+    var validation = false;
+    var jsonData={};
+    jsonData['customerEmail']=$('#id_membership-email').val();
+    jsonData['websiteId']=1;
     
+    var emailRequest= $.ajax({
+       url:serverurl+"/rest/all/V1/customers/isEmailAvailable",
+       method:"POST",
+        crossDomain: "true",
+        headers:{
+            "content-Type":"application/json",
+            "Access-Control-Allow-Origin":"http://frontierb2b.ztech.io/index.jsp",
+            "Access-Control-Allow-Credentials":"true"
+        },
+       data:JSON.stringify(jsonData)
+    });
+    
+    var success = function(response){
+        console.log('success '+response);
+        
+    };
+    
+    var failure = function (error){
+      console.log('error '+error);  
+       
+    };
+   return emailRequest;
+  
 }
