@@ -1,11 +1,15 @@
 <section class="home-featured-brands">
 	<div class="featured-icon-center"></div>
 	<div class="container">
-		<h2 class="featured-title">Featured Brands</h2>
-		<p class="featured-subtext">Learn about the brands that futher our mission of fairness, honesty and quality.</p>
-		<div class="featured-holder">
+		<div class="row">
+			<div class="col-md-12">
+				<h2 class="featured-title">Featured Brands</h2>
+				<p class="featured-subtext">Learn about the brands that futher our mission of fairness, honesty and quality.</p>
+			</div>
+		</div>
+		<div class="row featured-holder">
 
-			<div class="each-featured-section">
+			<div class="each-featured-section col-xs-12 col-md-3 clearfix">
 				<a class="featured-link-holder" href="#">
 					<div class="brand-image">
 						<img src="https://dh6qdiyp93d9u.cloudfront.net/media/CACHE/images/imageblocks/128-e0/128-e05c/2772c2ddf2d8d299510defa171b336f7.jpg"/>
@@ -32,7 +36,7 @@
 				</a>
 			</div>
 
-			<div class="each-featured-section">
+			<div class="each-featured-section col-xs-12 col-md-3 clearfix">
 				<a class="featured-link-holder" href="#">
 					<div class="brand-image">
 						<img src="https://dh6qdiyp93d9u.cloudfront.net/media/CACHE/images/imageblocks/129-ae/129-ae34/da1eae2293026bca83d202bb767900ac.jpg"/>
@@ -59,7 +63,7 @@
 				</a>
 			</div>
 
-			<div class="each-featured-section">
+			<div class="each-featured-section col-xs-12 col-md-3 clearfix">
 				<a class="featured-link-holder" href="#">
 					<div class="brand-image">
 						<img src="https://dh6qdiyp93d9u.cloudfront.net/media/CACHE/images/imageblocks/130-03/130-0326/12113db3365a235dccacd1408f9906e4.jpg"/>
@@ -87,7 +91,7 @@
 			</div>
 
 
-			<div class="each-featured-section">
+			<div class="each-featured-section col-xs-12 col-md-3 clearfix">
 				<a class="featured-link-holder" href="#">
 					<div class="brand-image">
 						<img src="https://dh6qdiyp93d9u.cloudfront.net/media/CACHE/images/imageblocks/131-bf/131-bfcd/eb4fb787917855c3ca920df16ca18725.jpg"/>

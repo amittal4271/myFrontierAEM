@@ -632,7 +632,7 @@
                               </div>
                          </div>
 
-                         <div class="submit-holder">
+                         <div class="submit-holder checkout-flow">
                               <button class="btn btn-light-green btn-larger btn-cart-checkout">Continue Checkout</button>
                          </div>
 

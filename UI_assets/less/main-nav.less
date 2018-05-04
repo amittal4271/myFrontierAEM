@@ -190,7 +190,7 @@ body.mobile-nav-overflow {
 #mobile-nav-header {
 	float: left;
 	width: 100%;
-	padding: 15px;
+	padding: 15px 15px 10px 15px;
 
 	#mobile-nav-logo {
 		width: 50%;
@@ -213,7 +213,7 @@ body.mobile-nav-overflow {
 		text-align: right;
 
 		#close-mobile-nav {
-
+			color: #189060;
 		}
 	}
 }
@@ -234,6 +234,11 @@ body.mobile-nav-overflow {
 .mobile-top-level-category {
 	float: left;
 	width: 100%;
+	margin-bottom: 10px;
+
+	&.open {
+		background: #effcde;
+	}
 }
 
 .btn.mobile-top-level-btn,
@@ -241,19 +246,101 @@ body.mobile-nav-overflow {
 	float: left;
 	width: 100%;
 	text-align: left;
-	color: #4d4a48;
+	color: #594c41;
 	font-weight: 700;
     font-family: 'Open Sans Condensed',sans-serif;
     letter-spacing: .2px; 
     font-size: 18px;
+    position: relative;
+
+    .glyphicon {
+    	float: right;
+    	font-size: 13px;
+    	top: 7px;
+    	right: 18px;
+    }
+
+    &:hover  {
+    	color: #8bba4a;
+    }
+
+    &:active, &:focus {
+    	outline: none;
+    	color: #594c41;
+    }
+
+    &.open {
+    	background: #effcde;
+    }
 }
+
+.btn.mobile-second-level-btn, .btn.mobile-third-level-btn {
+	background: #effcde;
+	font-size: 15px;
+	font-family: "Open Sans", sans-serif;
+	font-weight: normal;
+	text-transform: none;
+	color: #594c41;
+	letter-spacing: normal;
+	float: left;
+	width: 100%;
+
+	.glyphicon {
+    	float: right;
+    	font-size: 9px;
+    	top: 9px;
+    	right: 18px;
+    }
+
+    &:hover  {
+    	color: #8bba4a;
+    }
+
+    &:active, &:focus {
+    	outline: none;
+    	color: #594c41;
+    }
+
+    .top-level-text {
+    	float: left;
+    }
+}
+
+.btn.mobile-third-level-btn { 
+	padding-left: 18px;
+}
+
 
 .btn.mobile-top-level-btn {
 
 }
+.mobile-first-level-item, .mobile-second-level-item, .mobile-third-level-item {
+	float: left;
+	width: 100%;
+	clear: both;
+} 
+
+.mobile-first-level-link, .mobile-second-level-link, .mobile-third-level-link {
+	float: left;
+	width: 100%;
+	padding: 10px 12px;
+	font-size: 15px;
+	color: #594c41;
+
+	&:hover, &:focus, &:active {
+		color: #8bba4a;
+	}
+}
+
+.mobile-third-level-link {
+	padding-left: 24px;
+}
 
 .sub-nav-mobile {
 	display: none;
+	float: left;
+	width: 100%;
+	clear: both;
 }
 
 

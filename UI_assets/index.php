@@ -14,6 +14,7 @@
                     <h1 class="test-site-map-heading">Front End Page List - Site Map</h1>
                     <ul class="test-site-map-list">
                          <li><a href="./home-page.php">Home</a></li>
+                         <li><a href="./home-page-new.php">Home New</a></li>
                          <li><a href="./top-navigation-example.php">Top Navigation Styling Only</a></li>
                          <li><a href="./top-navigation-example-with-js.php">Top Navigation With Javascript</a></li>
                          <li><a href="./login.php">Login</a></li>
@@ -40,6 +41,8 @@
                          <li><a href="./content-page-all-about-membership.php">Content - All About Membership</a></li>
 
                          <li class="spacer"><a href="./product-detail.php">Product Detail</a></li>
+
+                         <li class="spacer"><a href="./product-list-page.php">Product Listing Page</a></li>
 
                          <li class="spacer"><a href="./shopping-cart.php">Shopping Cart Admin</a></li>
                          <li><a href="./shopping-cart-regular.php">Shopping Cart Regular</a></li>

@@ -102,10 +102,36 @@
 						</button>
 						<ul class="sub-nav-mobile second-level">
 							<li class="mobile-second-level-item">
-								<button class="btn mobile-second-level-btn">Beverages</button>
+								<button class="btn mobile-third-level-btn">
+									<span class="top-level-text">Beverages</span>
+									<span class="glyphicon glyphicon-plus"></span>
+								</button>
+								<ul class="sub-nav-mobile third-level">
+									<li class="mobile-third-level-item"><a class="mobile-third-level-link" href="#">Shop All Beverages</a></li>
+									<li class="mobile-third-level-item"><a class="mobile-third-level-link" href="#">Aloe Vera</a></li>
+									<li class="mobile-third-level-item"><a class="mobile-third-level-link" href="#">Coffee</a></li>
+									<li class="mobile-third-level-item"><a class="mobile-third-level-link" href="#">Hot Cocoa</a></li>
+									<li class="mobile-third-level-item"><a class="mobile-third-level-link" href="#">Powdered Drink Mixes</a></li>
+									<li class="mobile-third-level-item"><a class="mobile-third-level-link" href="#">Tea</a></li>
+									<li class="mobile-third-level-item"><a class="mobile-third-level-link" href="#">Flavors and Syrups</a></li>
+								</ul>
 							</li>
 							<li class="mobile-second-level-item">
-								<button class="btn mobile-second-level-btn">Spices and Seasonings</button>
+								<button class="btn mobile-third-level-btn">
+									<span class="top-level-text">Spices and Seasonings</span>
+									<span class="glyphicon glyphicon-plus"></span>
+								</button>
+								<ul class="sub-nav-mobile third-level">
+									<li class="mobile-third-level-item"><a class="mobile-third-level-link" href="#">Shop All Spices and Seasonings</a></li>
+									<li class="mobile-third-level-item"><a class="mobile-third-level-link" href="#">A-Z</a></li>
+									<li class="mobile-third-level-item"><a class="mobile-third-level-link" href="#">All Purpose</a></li>
+									<li class="mobile-third-level-item"><a class="mobile-third-level-link" href="#">Chilli Peppers</a></li>
+									<li class="mobile-third-level-item"><a class="mobile-third-level-link" href="#">Cinnamon</a></li>
+									<li class="mobile-third-level-item"><a class="mobile-third-level-link" href="#">Extracts and Flavors</a></li>
+									<li class="mobile-third-level-item"><a class="mobile-third-level-link" href="#">Grinders</a></li>
+									<li class="mobile-third-level-item"><a class="mobile-third-level-link" href="#">Peppers and Peppercorns</a></li>
+									<li class="mobile-third-level-item"><a class="mobile-third-level-link" href="#">Salt</a></li>
+								</ul>
 							</li>
 						</ul>
 					</li>

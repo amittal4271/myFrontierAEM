@@ -113,6 +113,82 @@ $(document).ready(function() {
 
 	console.log('main.js doc ready');
 
+	
+
+	$(document).on( "click", "#mobile-nav-overlay", function() {
+		var $this = $(this);
+
+		var $mobileNav = $('#mobile-nav');
+		var $mobileNavOverlay = $('#mobile-nav-overlay');
+
+		$('body').removeClass('mobile-nav-overflow');
+
+		$mobileNavOverlay.hide().removeClass('mobile-overlay-open');
+		$mobileNav.hide().removeClass('mobile-nav-open');
+		
+	});
+
+	
+	//mobile nav click events
+	$(document).on( "click", ".mobile-top-level-btn", function() {
+		var $this = $(this);
+		var $icon = $this.children('.glyphicon');
+		var $liTopLevelCategory = $this.parent('.mobile-top-level-category');
+		var $subNavMobileFirstLevel = $liTopLevelCategory.children('.sub-nav-mobile.first-level');
+
+		if ($this.hasClass('open')) {
+			$this.addClass('closed').removeClass('open');
+			$icon.addClass('rotate').removeClass('glyphicon-minus').addClass('glyphicon-plus');
+			$liTopLevelCategory.removeClass('open');
+			$subNavMobileFirstLevel.slideUp("fast");
+		} else {
+			$this.removeClass('closed').addClass('open');
+			$icon.removeClass('rotate').removeClass('glyphicon-plus').addClass('glyphicon-minus');
+			$liTopLevelCategory.addClass('open');
+			$subNavMobileFirstLevel.slideDown("fast");
+		}
+	});
+
+	$(document).on( "click", ".mobile-second-level-btn", function() {
+		var $this = $(this);
+		var $icon = $this.children('.glyphicon');
+		var $liTopLevelCategory = $this.parent('.mobile-first-level-item');
+		var $subNavMobileSecondLevel = $liTopLevelCategory.children('.sub-nav-mobile.second-level');
+
+		if ($this.hasClass('open')) {
+			$this.addClass('closed').removeClass('open');
+			$icon.addClass('rotate').removeClass('glyphicon-minus').addClass('glyphicon-plus');
+			$liTopLevelCategory.removeClass('open');
+			$subNavMobileSecondLevel.slideUp("fast");
+		} else {
+			$this.removeClass('closed').addClass('open');
+			$icon.removeClass('rotate').removeClass('glyphicon-plus').addClass('glyphicon-minus');
+			$liTopLevelCategory.addClass('open');
+			$subNavMobileSecondLevel.slideDown("fast");
+		}
+	});
+
+	$(document).on( "click", ".mobile-third-level-btn", function() {
+		var $this = $(this);
+		var $icon = $this.children('.glyphicon');
+		var $liTopLevelCategory = $this.parent('.mobile-second-level-item');
+		var $subNavMobileSecondLevel = $liTopLevelCategory.children('.sub-nav-mobile.third-level');
+
+		if ($this.hasClass('open')) {
+			$this.addClass('closed').removeClass('open');
+			$icon.addClass('rotate').removeClass('glyphicon-minus').addClass('glyphicon-plus');
+			$liTopLevelCategory.removeClass('open');
+			$subNavMobileSecondLevel.slideUp("fast");
+		} else {
+			$this.removeClass('closed').addClass('open');
+			$icon.removeClass('rotate').removeClass('glyphicon-plus').addClass('glyphicon-minus');
+			$liTopLevelCategory.addClass('open');
+			$subNavMobileSecondLevel.slideDown("fast");
+		}
+	});
+
+	
+
 	$(document).on( "click", ".account-nav-toggle", function() {
 		var $this = $(this);
 		var $icon = $this.children('.glyphicon');
