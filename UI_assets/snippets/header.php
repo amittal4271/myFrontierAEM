@@ -1,3 +1,4 @@
+<!--<div id="search-overlay"></div>-->
 <header id="header">
      <div id="left-header-icons-mobile">
           <button id="mobile-menu-icon" class="header-mobile-icon" type="button">

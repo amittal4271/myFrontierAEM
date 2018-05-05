@@ -12,7 +12,7 @@ function slideUpDownSection(el) {
 }
 
 function bindPdpAffixEvents() {
-	console.log('in bindPdpAffixEvents');
+	//console.log('in bindPdpAffixEvents');
 
 	var pdpOffsetProductImages = $('#product-images').offset();
 	//console.log(pdpOffsetProductImages);
@@ -111,8 +111,26 @@ $(document).ready(function() {
 		selector: '#cart-holder'
 	});
 
-	console.log('main.js doc ready');
+	//console.log('main.js doc ready');
 
+	
+	$(document).on( "click", "#mobile-search-icon", function(e) {
+		var $this = $(this);
+		var $searchHeaderHolder = $('#search-header-holder');
+		var $searchOverlay = $('#search-overlay');
+		var $icon = $this.children('.glyphicon');
+
+		if ($this.hasClass('open')) {
+			$this.removeClass('open');
+			$searchHeaderHolder.removeClass('open');
+			$icon.removeClass('glyphicon-remove').addClass('glyphicon-search');
+
+		} else {
+			$this.addClass('open');
+			$searchHeaderHolder.addClass('open');
+			$icon.removeClass('glyphicon-search').addClass('glyphicon-remove');
+		}
+	});
 	
 
 	$(document).on( "click", ".btn-filters-plp-search", function(e) {
@@ -287,7 +305,7 @@ $(document).ready(function() {
 	});
 
 	$(document).on( "click", ".btn-heading .btn-faq-section", function() {
-		console.log('click in btn');
+		//console.log('click in btn');
 		var el = $(this);
 		slideUpDownSection(el);
 	});	
@@ -425,7 +443,7 @@ $(document).ready(function() {
 	});
 	
 	$(document).on( "change", ".existing-shipping-address-input", function(e) {
-		console.log('existing shipping radio change');
+		//console.log('existing shipping radio change');
 		var $this = $(this);
 		var $newShippingAddressHolder = $('#shipping-new-address-holder');
 
@@ -437,7 +455,7 @@ $(document).ready(function() {
 	});
 
 	$(document).on( "change", ".existing-billing-address-input", function(e) {
-		console.log('existing billing radio change');
+		//console.log('existing billing radio change');
 		var $this = $(this);
 		var $newShippingAddressHolder = $('#billing-new-address-holder');
 		
