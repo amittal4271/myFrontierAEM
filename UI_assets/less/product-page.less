@@ -31,12 +31,18 @@
         margin-left: 0;
     });
 
+
+
     &.affix {
         position: relative;
 
         .breakpoint_768({
             position: fixed!important;
             top: 20px;
+        });
+
+        .breakpoint_1400({
+            width: 630px;
         });
     }
 
@@ -45,7 +51,12 @@
         .breakpoint_768({
             position: absolute!important;
         });
+
+        .breakpoint_1400({
+            width: 630px;
+        });
     }
+
 }
 #product-thumbnails {
     float: left;
@@ -156,6 +167,10 @@
     color: #7d7671;
     padding-right: 15px;
     text-decoration: line-through;
+
+    &.normal-price {
+        text-decoration: none;
+    }
 }
 .product-save-percent {
     color: #817266;

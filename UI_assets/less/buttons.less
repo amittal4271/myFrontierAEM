@@ -4,7 +4,7 @@
     font-weight: 700;
     text-transform: uppercase;
     padding: 10px 12px;
-
+    background: transparent;
 }
 
 .btn-larger {
@@ -34,6 +34,16 @@
 
     &:hover, &:focus {
         background: darken(#8bba4a, 2%);
+        color: #fff;
+    }
+}
+.btn-black {
+    background: #4d4a48;
+    border: 1px solid #4d4a48;
+    color: #fff;
+
+    &:hover, &:focus {
+        background: darken(#4d4a48, 2%);
         color: #fff;
     }
 }
@@ -227,6 +237,18 @@
         color: #fff;
     }
     
+}
+
+.btn-view-more-filters {
+    font-size: 12px;
+    text-transform: uppercase;
+    padding: 0;
+    background: transparent;
+
+    &:link, &:hover, &:focus, &:active {
+        color: #8bba4a;
+        outline: none;
+    }
 }
 
 .btn-link {

@@ -115,6 +115,54 @@ $(document).ready(function() {
 
 	
 
+	$(document).on( "click", ".btn-filters-plp-search", function(e) {
+		var $mobileFilterHolder = $('#mobile-filters-holder');
+		var $mobileFilterOverlay = $('#mobile-filters-overlay');
+
+		var $htmlFilterToCopy = $('#plp-search-left-nav-filters').html();
+
+		$('body').addClass('mobile-nav-overflow');
+
+		$mobileFilterOverlay.show().addClass('mobile-filter-overlay-open');
+		//append filter html to mobile holder
+		$('#mobile-filters').html($htmlFilterToCopy);
+		//show mobile filter container
+		$mobileFilterHolder.show().addClass('mobile-filter-open');
+	});
+
+	$(document).on( "click", "#close-filters-plp-search", function(e) {
+		var $mobileFilterHolder = $('#mobile-filters-holder');
+		var $mobileFilterOverlay = $('#mobile-filters-overlay');
+
+		$('body').removeClass('mobile-nav-overflow');
+		$('#mobile-filters').html('');
+
+		$mobileFilterOverlay.hide().removeClass('mobile-filter-overlay-open');
+		$mobileFilterHolder.hide().removeClass('mobile-filter-open');
+	});
+
+	
+
+	$(document).on( "click", ".btn-view-more-filters", function() {
+		var $this = $(this);
+		var $buttonText = $this.children('.view-more-text');
+		var $eachFilterList = $this.parents('.each-filters-list');
+		var $initiallyHiddenFilters = $eachFilterList.children('.filter-item.visuallyhidden');
+		var $wasHiddenFilters = $eachFilterList.children('.filter-item.filter-was-hidden');
+
+		if ($this.hasClass('show-additional')) {
+			$this.removeClass('show-additional');
+			$buttonText.html('View More');
+			$wasHiddenFilters.removeClass('filter-was-hidden').addClass('visuallyhidden');
+		} else {
+			$this.addClass('show-additional');
+			$buttonText.html('View Less');
+			$initiallyHiddenFilters.removeClass('visuallyhidden').addClass('filter-was-hidden');
+		}
+	});
+
+	
+
 	$(document).on( "click", "#mobile-nav-overlay", function() {
 		var $this = $(this);
 
