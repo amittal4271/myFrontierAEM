@@ -1,3 +1,36 @@
+
+// setting up defaults for validator plugin for error handling
+$.validator.setDefaults({
+    onfocusout: function (element) {
+        // uncomment for showing error on focus out of input field
+        //$(element).valid();
+    },
+    //focusCleanup: true,
+    errorElement: "span",
+    errorClass: 'validate-error',
+    errorPlacement: function (error, element) {
+        // check for type of radio if so move error message placement
+        if (element.hasClass('error-outside')) {
+            error.appendTo(element.parent().parent());
+        } else {
+            error.insertAfter(element);
+        } 
+    },
+    highlight: function (element, errorClass) {
+        $(element).addClass('input-form-error');
+    },
+    unhighlight: function (element, errorClass) {
+        $(element).removeClass('input-form-error');
+    },
+    invalidHandler: function(event, validator) {
+    	// do other things for a valid form
+    	var errors = validator.numberOfInvalids();
+    	if (errors) {
+        	validator.errorList[0].element.focus();
+        }
+	}
+});
+
 $.validator.addMethod("fullName", function(value, element) {
 
 	var trimedValue = value.trim();
@@ -28,6 +61,8 @@ $.validator.addMethod("url", function(value, element) {
         if( value.trim().length > 0){
             return true;
         }
+    }else{
+        return true;
     }
 });
 
@@ -39,11 +74,142 @@ $.validator.addMethod("expiryMonth",function(value,element){
     }
 });
 
+function buyersClubCheckboxOperations(){
+     $(document).on( "change", "#id_account-buying_club", function(e) {
+                         console.log('buying club radio change');
+                         var $this = $(this);
+
+                         var $buyingClubInvitesHolder = $('#buying-club-additional-invites-holder');
+                         
+                         if ($buyingClubInvitesHolder.hasClass('show-invites-holder')) {
+                              $buyingClubInvitesHolder.removeClass('show-invites-holder').slideUp("fast");
+                              $this.removeClass('buying-club-selected');
+                         } else {
+                              $buyingClubInvitesHolder.addClass('show-invites-holder').slideDown("fast");
+                              $this.addClass('buying-club-selected');
+                              // de-select other business type options if buying club is selected
+                              $('.other-than-buying-club-input').prop('checked', false);
+                         }
+                    });
+
+                    $(document).on( "change", ".other-than-buying-club-input", function(e) {
+                         console.log('other than buying club change');
+                         var $this = $(this);
+
+                         var $buyingClubInvitesHolder = $('#buying-club-additional-invites-holder');
+                         var $buyingClubInput = $('#id_account-buying_club');
+                         
+                         if ($buyingClubInvitesHolder.hasClass('show-invites-holder')) {
+                              $buyingClubInvitesHolder.removeClass('show-invites-holder').slideUp("fast");
+                              $buyingClubInput.removeClass('buying-club-selected');
+                              // de-select buying club and online only if other options chosen
+                              $buyingClubInput.prop('checked', false);
+                         }
+                    });
+
+                    $(document).on( "click", ".btn-add-another-buyer-member", function(e) {
+                         var $this = $(this);
+                         // update current count 
+                         validation.currentCount++;
+                         // log
+                         console.log(validation.currentCount);
+                         // update input count val
+                         validation.buyerMemberCountInput.val(validation.currentCount);
+
+                         validation.addNewRowHtml();
+                    });
+
+                    $(document).on( "click", ".btn-remove-buyer-member", function(e) {
+                         var $this = $(this);
+                         var $btnEl = $this;
+                         // update current count 
+                         validation.currentCount--;
+                         // log
+                         console.log(validation.currentCount);
+                         // update input count val
+                         validation.buyerMemberCountInput.val(validation.currentCount);
+                         // remove row
+                         validation.removeRow($btnEl);
+                    });
+                    
+}
+
 ;(function($) {
 
    console.log('validation part...');
+
+
+   buyersClubCheckboxOperations();
+
+
 	window.validation = {
 		
+             buyerMemberCountInput: $('#buyer-member-count-input'),
+                         groupHolder: $('#buyer-club-group-holder'),
+                         countMin: 4,
+                         countMax: 100,
+                         currentCount: 4,
+             addNewRowHtml: function () {
+                              var $newRowHtml = '';
+
+                              $newRowHtml += '<div id="invite-group-section-'+validation.currentCount+'" class="each-invite-group-section">';
+                                   $newRowHtml += '<div class="form-group name-group width-half first">';
+                                        $newRowHtml += '<label for="id_invite-'+validation.currentCount+'-name">Name</label>';
+                                        $newRowHtml += '<input id="id_invite-'+validation.currentCount+'-name" name="invite-'+validation.currentCount+'-name" placeholder="Name" type="text" class="form-control">';
+                                   $newRowHtml += '</div>';
+                                   $newRowHtml += '<div class="form-group email-group width-half">';
+                                        $newRowHtml += '<label for="id_invite-'+validation.currentCount+'-email">Email</label>';
+                                        $newRowHtml += '<input id="id_invite-'+validation.currentCount+'-email" name="id_invite-'+validation.currentCount+'-email" placeholder="Email" type="text" class="form-control">';
+                                   $newRowHtml += '</div>';
+                                   $newRowHtml += '<div class="form-group remove-buying-club-btn-holder">';
+                                        $newRowHtml += '<button type="button" class="btn btn-link red-link btn-remove-buyer-member">';
+                                             $newRowHtml += '<span class="glyphicon glyphicon-minus"></span>Remove Line Item';
+                                        $newRowHtml += '</button>';
+                                   $newRowHtml += '</div>';
+                              $newRowHtml += '</div>';
+
+                              validation.groupHolder.append($newRowHtml);
+                         },
+
+                         removeRow: function ($btnEl) {
+                              // find parent invite group holder
+                              var $inviteGroupSectionRemoveHolder = $btnEl.parents('.each-invite-group-section');
+                              // remove html
+                              $inviteGroupSectionRemoveHolder.remove();
+                              validation.updateLineItemCountsOnRemove();
+                         },
+
+                         updateLineItemCountsOnRemove: function () {
+                              // we need to update numbering based on line item number that is removed
+                              if (validation.currentCount > 4) {
+                                   $('.each-invite-group-section').each(function (index, value) {
+                                        var $this = $(this);
+                                        var $nameGroup = $this.children('.name-group');
+                                        var $emailGroup = $this.children('.email-group');
+                                        console.log(index+1);
+                                        // set index to match numbers starting at 1
+                                        var $newIndex = index+1;
+                                        // reset html that has numbers according to new index
+                                        $this.attr('id', 'invite-group-section-'+$newIndex);
+
+                                        // set new index values on labels and inputs for name and email
+                                        var $nameLabel = $nameGroup.find('label');
+                                        var $nameInput = $nameGroup.find('input');
+
+                                        $nameLabel.attr('for', 'id_invite-'+$newIndex+'-name');
+                                        $nameInput.attr('id', 'id_invite-'+$newIndex+'-name');
+                                        $nameInput.attr('name', 'invite-'+$newIndex+'-name');
+
+                                        var $emailLabel = $emailGroup.find('label');
+                                        var $emailInput = $emailGroup.find('input');
+
+                                        $emailLabel.attr('for', 'id_invite-'+$newIndex+'-email');
+                                        $emailInput.attr('id', 'id_invite-'+$newIndex+'-email');
+                                        $emailInput.attr('name', 'invite-'+$newIndex+'-email');
+                                   });
+                              }
+                         },
+        
 		registrationLifetimeForm: function($formId) {
 			$($formId).validate({
 		        rules: {

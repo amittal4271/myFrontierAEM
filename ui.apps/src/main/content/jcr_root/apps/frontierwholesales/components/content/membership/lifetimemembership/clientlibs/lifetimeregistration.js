@@ -27,22 +27,24 @@ $(document).ready(function(){
     })
     
     validation.registrationLifetimeForm('#lifetime-membership-form');
-
+showCurrentMonth();
     
     $('#btn-lifetime-registration').on('click',function(e){
         e.preventDefault();
          $validFlag = $("#lifetime-membership-form").valid();
         if($validFlag){
-            showCurrentMonth();
+            
             collectUserDetails(); 
         }else{
             console.log('error...');
+              $('.global-server-side-message-holder').css('display','block');
         }
     });
 
     $('#id_shipping-shipping_same').on('change',function(e){
         e.preventDefault();
-        setTaxAddressToBillingAddress();
+        var $this = $(this);
+        setTaxAddressToBillingAddress($this);
     });
 });
 
@@ -53,8 +55,8 @@ function showCurrentMonth(){
     $('#id_billing-exp_month').val(currentMonth+1);
 }
 
-function setTaxAddressToBillingAddress(){
-    if ($(this).is(':checked')) {
+function setTaxAddressToBillingAddress($this){
+    if ($this.is(':checked')) {
            var stateVal = $('#id_mailing-locality option:selected').val();
             $('#id_shipping-name').val($('#id_mailing-name').val());
             $('#id_shipping-company').val($('#id_account-company_name').val());
@@ -75,6 +77,8 @@ function setTaxAddressToBillingAddress(){
 }
 
 function collectUserDetails(){
+    //hide top level error
+      $('.global-server-side-message-holder').css('display','none');
     var customer={};
      var pwd = $('#id_membership-password').val();
     var memberName = $('#id_membership-name').val();
