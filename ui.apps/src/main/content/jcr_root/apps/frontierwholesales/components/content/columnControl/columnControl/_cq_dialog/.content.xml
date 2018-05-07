@@ -26,12 +26,10 @@
                                 jcr:primaryType="nt:unstructured"
                                 text="1 Columns (100%)"
                                 value="one-100"/>
-                           
                             <two-50-50
                                 jcr:primaryType="nt:unstructured"
                                 text="2 Columns (50%, 50%)"
                                 value="two-50-50"/>
-
                             <two-66-34
                                 jcr:primaryType="nt:unstructured"
                                 text="2 Columns (66%, 34%)"

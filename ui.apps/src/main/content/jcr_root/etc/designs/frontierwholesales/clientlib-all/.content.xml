@@ -2,4 +2,4 @@
 <jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
     jcr:primaryType="cq:ClientLibraryFolder"
     categories="[frontierwholesales.all]"
-    embed="[frontierwholesales.site,frontierwholesales.page,frontierwholesales.topnav,frontierwholesales.colctrl,frontierwholesales.textimage,frontierwholesales.shoppingcart,frontierwholesales.common,jquery, granite.utils, granite.jquery, cq.jquery, cq.wcm.foundation, cq.wcm.foundation-main]"/>
+    embed="[frontierwholesales.site,frontierwholesales.page,frontierwholesales.topnav,frontierwholesales.colctrl,frontierwholesales.textimage,frontierwholesales.shoppingcart,frontierwholesales.common, frontierwholesales.homepage, jquery, granite.utils, granite.jquery, cq.jquery, cq.wcm.foundation, cq.wcm.foundation-main]"/>

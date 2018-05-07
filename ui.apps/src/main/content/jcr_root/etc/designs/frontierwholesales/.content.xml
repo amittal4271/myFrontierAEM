@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
     jcr:primaryType="cq:Page">
+    <clientlib-all/>
+    <clientlib-login/>
+    <clientlib-common/>
+    <desktop.ini/>
     <clientlib-base/>
     <clientlib-communities/>
     <clientlib-product-page/>
@@ -9,7 +13,13 @@
     <jcr:content
         jcr:primaryType="nt:unstructured"
         jcr:title="Frontier Wholesales Design"
-        sling:resourceType="wcm/core/components/designer"/>
+        sling:resourceType="wcm/core/components/designer">
+        <page jcr:primaryType="nt:unstructured">
+            <content
+                jcr:primaryType="nt:unstructured"
+                components="[group:Frontier]"/>
+        </page>
+    </jcr:content>
     <global.less/>
     <common/>
     <clientlib-site/>

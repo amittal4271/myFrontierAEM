@@ -20,7 +20,7 @@
 
 
     <div class="each-special-section" data-sly-test="${properties.alignment == 'top'}">
-			<a href="${properties.linkTo || '#'}" class="special-section-link">
+			<a href="${properties.linkTo @ extension='html' || '#'}" class="special-section-link">
 				<div class="special-image-holder"
                 data-sly-test="${textImage.hasContent}"
                 data-sly-resource="${'image' @ resourceType='wcm/foundation/components/image',  wcmmode='disabled'}"
@@ -47,7 +47,7 @@
 <div class="blog-section" data-sly-test="${properties.alignment == 'left' || properties.alignment == 'right'}"
 data-sly-test.txtAlign="${properties.alignment == 'left' ? 'right' : 'left'}"
 >
-			<a href="${properties.linkTo || '#'}">
+			<a href="${properties.linkTo @ extension='html' || '#'}">
 				<div class="blog-info pull-${txtAlign}">
 					<h4 data-sly-element=${properties.type} class="blog-header">${properties.brandTitle}</h4>
 					<p class="blog-text">${properties.copyText}</p>

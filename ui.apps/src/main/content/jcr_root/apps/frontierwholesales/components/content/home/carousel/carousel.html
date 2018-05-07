@@ -1,0 +1,40 @@
+<!--/*
+    Copyright 2016 Adobe Systems Incorporated
+  
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+  
+        http://www.apache.org/licenses/LICENSE-2.0
+  
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+*/-->
+<!--/* workaround to: Override etc/designs styles */-->
+<sly data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html" />
+<sly data-sly-call="${clientlib.css @ categories='component.carousel'}" />
+
+<div class="swiper-container"    
+     data-ride="carousel"
+     data-sly-use.listComponent="carousel.js"
+     data-sly-use.itemTemplate="listitem.html"
+     id="${listComponent.listId}">
+
+    <!--/* <div data-sly-test="${wcmmode.edit && listComponent.isEmpty && listComponent.isTouch}" class="cq-placeholder" data-emptytext="Carousel"></div> */-->
+
+    <!--/* List Indicators */-->
+    <div data-sly-list="${listComponent.list}" class="swiper-wrapper">
+        <div class="swiper-slide">
+            <!--/* List Slides */-->
+                <sly data-sly-call="${itemTemplate[listComponent.type] @ renderItem=itemList, item=item}"></sly>
+        </div>
+    </div>
+
+    <!--/* Controls */-->
+    <div class="swiper-pagination"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+</div>

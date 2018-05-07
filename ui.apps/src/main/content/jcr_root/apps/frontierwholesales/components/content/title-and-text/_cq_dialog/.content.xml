@@ -46,31 +46,31 @@
                                         jcr:primaryType="nt:unstructured"
                                         features="*"/>
                                     <misctools
-                                            jcr:primaryType="nt:unstructured"
-                                            features="*">
-                                            <specialCharsConfig jcr:primaryType="nt:unstructured">
-                                                <chars jcr:primaryType="nt:unstructured">
-                                                    <copyright
-                                                        jcr:primaryType="nt:unstructured"
-                                                        entity="&amp;#169;"/>
-                                                    <trademark
-                                                        jcr:primaryType="nt:unstructured"
-                                                        entity="&amp;#8482;"/>
-                                                    <registered
-                                                        jcr:primaryType="nt:unstructured"
-                                                        entity="&amp;#174;"/>
-                                                    <emDash
-                                                        jcr:primaryType="nt:unstructured"
-                                                        entity="&amp;#8212;"/>
-                                                    <pound
-                                                        jcr:primaryType="nt:unstructured"
-                                                        entity="&amp;#163;"/>
-                                                    <nbsp
-                                                        jcr:primaryType="nt:unstructured"
-                                                        entity="&amp;#160;"/>
-                                                </chars>
-                                            </specialCharsConfig>
-                                        </misctools>
+                                        jcr:primaryType="nt:unstructured"
+                                        features="*">
+                                        <specialCharsConfig jcr:primaryType="nt:unstructured">
+                                            <chars jcr:primaryType="nt:unstructured">
+                                                <copyright
+                                                    jcr:primaryType="nt:unstructured"
+                                                    entity="&amp;#169;"/>
+                                                <trademark
+                                                    jcr:primaryType="nt:unstructured"
+                                                    entity="&amp;#8482;"/>
+                                                <registered
+                                                    jcr:primaryType="nt:unstructured"
+                                                    entity="&amp;#174;"/>
+                                                <emDash
+                                                    jcr:primaryType="nt:unstructured"
+                                                    entity="&amp;#8212;"/>
+                                                <pound
+                                                    jcr:primaryType="nt:unstructured"
+                                                    entity="&amp;#163;"/>
+                                                <nbsp
+                                                    jcr:primaryType="nt:unstructured"
+                                                    entity="&amp;#160;"/>
+                                            </chars>
+                                        </specialCharsConfig>
+                                    </misctools>
                                     <table
                                         jcr:primaryType="nt:unstructured"
                                         features="-">
@@ -82,20 +82,20 @@
                                     <undo
                                         jcr:primaryType="nt:unstructured"
                                         features="*"/>
-                                         <styles
-                                                                            jcr:primaryType="nt:unstructured"
-                                                                            features="*">
-                                                                            <styles jcr:primaryType="nt:unstructured">
-                                                                                <plainSpan
-                                                                                    jcr:primaryType="nt:unstructured"
-                                                                                    cssName="defaultSpan"
-                                                                                    text="Default (add span tag)"/>
-                                                                                <lead
-                                                                                    jcr:primaryType="nt:unstructured"
-                                                                                    cssName="lead"
-                                                                                    text="Lead"/>
-                                                                            </styles>
-                                                                        </styles>
+                                    <styles
+                                        jcr:primaryType="nt:unstructured"
+                                        features="*">
+                                        <styles jcr:primaryType="nt:unstructured">
+                                            <plainSpan
+                                                jcr:primaryType="nt:unstructured"
+                                                cssName="defaultSpan"
+                                                text="Default (add span tag)"/>
+                                            <lead
+                                                jcr:primaryType="nt:unstructured"
+                                                cssName="lead"
+                                                text="Lead"/>
+                                        </styles>
+                                    </styles>
                                 </rtePlugins>
                                 <uiSettings jcr:primaryType="nt:unstructured">
                                     <cui jcr:primaryType="nt:unstructured">

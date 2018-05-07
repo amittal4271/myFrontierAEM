@@ -4,3 +4,5 @@ jquery.validate.min.js
 additional-methods.min.js
 validations.js
 newsletter.js
+main.js
+swiper.min.js

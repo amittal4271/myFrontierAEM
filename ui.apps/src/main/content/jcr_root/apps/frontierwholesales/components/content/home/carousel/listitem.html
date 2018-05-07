@@ -14,14 +14,21 @@
     limitations under the License.
 */-->
 <template data-sly-template.default="${@ renderItem, item}">
-    <a href="${item.item.path}.html" class="we-Carousel-item item ${renderItem.first && 'active'}" style="background-image: url('${item.item.path @ context='attribute'}.image.940.340.high.jpg')">
-        <div class="carousel-caption">
-            <h3>${item.item.title}</h3>
-            <p>${item.item.description}</p>
+    <a href="${renderItem.path @ extension='html'}"> 
+        <img alt="template 1" src="${item.item.path}"/>
+<!-- <div class="carousel-caption">
+            <h3>${item.item.properties.title}</h3>
+            <h2>${renderItem.path}</h2>
+            <h1>${item.path}</h1>
+            <p>${item.item}</p>
+        
         </div>
+-->
     </a>
 </template>
 
 <template data-sly-template.images="${@ renderItem, item}">
-    <div class="we-Carousel-item item ${renderItem.first && 'active'}" style="background-image: url('${item.item.path @ context='attribute'}')"></div>
+    <!-- /* <div class="we-Carousel-item item ${renderItem.first && 'active'}" style="background-image: url('${item.item.path @ context='attribute'}')"></div> */-->
+    <img alt="template 2" src="${item.item.path}"/>
 </template>
+
