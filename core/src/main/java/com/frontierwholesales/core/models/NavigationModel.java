@@ -20,14 +20,14 @@ import org.slf4j.LoggerFactory;
 		}
 
 		private List<FrontierWholesalePages> getChildren(FrontierWholesalePages parent, int level) {
-			ArrayList pages = new ArrayList();
-			Iterator children = parent.getPage().listChildren();
+			ArrayList<FrontierWholesalePages> pages = new ArrayList<FrontierWholesalePages>();
+			Iterator<Page> children = parent.getPage().listChildren();
 
 			while (children.hasNext()) {
 				Page page = (Page) children.next();
 				FrontierWholesalePages frontierWholesalePage = new FrontierWholesalePages(page);
-				String hidenInNav = frontierWholesalePage.getHideInNav();
-				if (hidenInNav == null) {
+				String showNav = frontierWholesalePage.getHideInNav();				
+				if (showNav != null && showNav.equals("true")) {
 					frontierWholesalePage.setChildList(this.getChildren(frontierWholesalePage, level + 1));
 					pages.add(frontierWholesalePage);
 				}

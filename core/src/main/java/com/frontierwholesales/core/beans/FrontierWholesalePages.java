@@ -46,7 +46,7 @@ public class FrontierWholesalePages
     setName(page.getName().replace(" ", ""));
     setIconClass((String)properties.get("iconClass", String.class));
     setContentPath(page.getPath() + "/_jcr_content/main");
-    setHideInNav((String)properties.get("hidden", String.class));
+    setHideInNav((String)properties.get("showNav", String.class));
     setSideNav((String)properties.get("sideNav",String.class));
     setColumn((String)properties.get("column", String.class));
   }

@@ -169,6 +169,19 @@ function buyersClubCheckboxOperations(){
                               $newRowHtml += '</div>';
 
                               validation.groupHolder.append($newRowHtml);
+                 
+                           $('#id_invite-'+buyingClub.currentCount+'-email').rules( "add", {
+                                  required: true,
+                                  email: true,
+                                  minlength: 2,
+                                  maxlength: 120
+                             });
+
+                             $('#id_invite-'+buyingClub.currentCount+'-name').rules( "add", {
+                                  required: true,
+                                  minlength: 2,
+                                  maxlength: 40
+                             });
                          },
 
                          removeRow: function ($btnEl) {
@@ -213,6 +226,33 @@ function buyersClubCheckboxOperations(){
 		registrationLifetimeForm: function($formId) {
 			$($formId).validate({
 		        rules: {
+                     "invite_1_name": {
+                        required: "#id_account-buying_club:checked"
+                    },
+                    "invite_1_email": {
+                        required: "#id_account-buying_club:checked",
+                        email: true
+                    },"invite_2_name": {
+                        required: "#id_account-buying_club:checked"
+                    },
+                    "invite_2_email": {
+                        required: "#id_account-buying_club:checked",
+                        email: true
+                    },
+                     "invite_3_name": {
+                        required: "#id_account-buying_club:checked"
+                    },
+                    "invite_3_email": {
+                        required: "#id_account-buying_club:checked",
+                        email: true
+                    },
+                     "invite_4_name": {
+                        required: "#id_account-buying_club:checked"
+                    },
+                    "invite_4_email": {
+                        required: "#id_account-buying_club:checked",
+                        email: true
+                    },
 		            "mailing-name": {
 		            	required: true,
 		            	maxlength: 70,
@@ -373,6 +413,33 @@ function buyersClubCheckboxOperations(){
         registrationGeneralForm: function($formId) {
             $($formId).validate({
                 rules: {
+                    "invite_1_name": {
+                        required: "#id_account-buying_club:checked"
+                    },
+                    "invite_1_email": {
+                        required: "#id_account-buying_club:checked",
+                        email: true
+                    },"invite_2_name": {
+                        required: "#id_account-buying_club:checked"
+                    },
+                    "invite_2_email": {
+                        required: "#id_account-buying_club:checked",
+                        email: true
+                    },
+                     "invite_3_name": {
+                        required: "#id_account-buying_club:checked"
+                    },
+                    "invite_3_email": {
+                        required: "#id_account-buying_club:checked",
+                        email: true
+                    },
+                     "invite_4_name": {
+                        required: "#id_account-buying_club:checked"
+                    },
+                    "invite_4_email": {
+                        required: "#id_account-buying_club:checked",
+                        email: true
+                    },
                     "shipping-name":{
                         required: true,
                         maxlength: 70,
