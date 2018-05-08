@@ -4,7 +4,7 @@
      data-sly-use.emptyRenderer="emptybanner.html"
      data-sly-call="${emptyRenderer.emptyBannerTemplate @ banner=banner}" />
 
-
+<div class="content-page-banner">
     <div class="banner-image-section">
 				<div class="banner-image"
                 data-sly-test="${banner.hasContent}"
@@ -20,4 +20,4 @@
                                    <h1 data-sly-element=${properties.type} class="banner-headline">${properties.jcr:title}</h1>
                 </div>    
 		</div>
-
+</div>
