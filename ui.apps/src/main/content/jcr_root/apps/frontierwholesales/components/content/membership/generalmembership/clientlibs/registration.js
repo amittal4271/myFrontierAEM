@@ -159,6 +159,12 @@ function collectUserDetails(){
     extensionAttributes['tax_info']={};
     extensionAttributes['business_type']={};
     extensionAttributes['card_details']={};
+    extensionAttributes['buying_groups']={};
+    
+    
+    extensionAttributes['buying_groups'] = getBuyersClubDetails();
+    
+    
     companyJsonData['extension_attributes']={};
     
     extensionAttributes['tax_info']=taxInfo;
@@ -184,6 +190,35 @@ function collectUserDetails(){
     
     
    
+    
+}
+
+function getBuyersClubDetails(){
+    var jsonData={};
+    jsonData['first_name']=[];
+    jsonData['last_name']=[];
+    jsonData['email']=[];
+    
+    var firstName = new Array();
+    var lastName = new Array();
+    var email = new Array();
+    
+    $('#buyer-club-group-holder').find('input').each(function(i,data) { 
+       var name = data.value;
+       var nameSplit = name.split(' ');
+       
+        firstName.push(nameSplit[0]);
+        lastName.push(nameSplit[1]);
+        if(data.id.endsWith('email')){
+            email.push(data.value);
+        }
+        
+    });
+     jsonData['first_name']=firstName;
+    jsonData['last_name']=lastName;
+    jsonData['email']=email;
+    
+    return jsonData;
     
 }
 

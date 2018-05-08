@@ -35,19 +35,22 @@ public class FrontierWholesalesUserRegistrationServlet  extends SlingAllMethodsS
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	public FrontierWholesalesMagentoCommerceConnector connector = new FrontierWholesalesMagentoCommerceConnector();
+	
 	@Override
 	protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response)
 			throws ServletException, IOException {
 		
 		String object;
 		JsonObject jsonObject = new JsonObject();
-		FrontierWholesalesMagentoCommerceConnector connector = new FrontierWholesalesMagentoCommerceConnector();
+		//FrontierWholesalesMagentoCommerceConnector connector = new FrontierWholesalesMagentoCommerceConnector();
 		try {
-			String adminToken = (String)request.getSession().getAttribute(FrontierWholesalesConstants.MAGENTO_ADMIN_PASSWORD);
+			/*String adminToken = (String)request.getSession().getAttribute(FrontierWholesalesConstants.MAGENTO_ADMIN_PASSWORD);
 			if(null == adminToken) {
 			 adminToken = connector.getAdminToken();
 			request.getSession().setAttribute(FrontierWholesalesConstants.MAGENTO_ADMIN_PASSWORD, adminToken);
-			}
+			}*/
+			String adminToken = (String)getTokenFromSession(request); 
 			object = FrontierWholesalesUserRegistration.getCountriesWithRegions(adminToken);
 			response.getOutputStream().println(object);
 		} catch (Exception e) {
@@ -59,6 +62,16 @@ public class FrontierWholesalesUserRegistrationServlet  extends SlingAllMethodsS
 		}
 		 
 		
+	}
+	
+	private String getTokenFromSession(SlingHttpServletRequest request) throws Exception{
+		
+		String adminToken = (String)request.getSession().getAttribute(FrontierWholesalesConstants.MAGENTO_ADMIN_PASSWORD);
+		if(null == adminToken) {
+			adminToken = connector.getAdminToken();
+			request.getSession().setAttribute(FrontierWholesalesConstants.MAGENTO_ADMIN_PASSWORD, adminToken);
+		}
+		return adminToken;
 	}
 	
 	@Override
@@ -81,8 +94,9 @@ public class FrontierWholesalesUserRegistrationServlet  extends SlingAllMethodsS
 					  //Call customer service to get customer id here
 					  String customerId = FrontierWholesalesUserRegistration.customerRegistration(customerObject);
 					log.info("customer id is "+customerId);
-					  String adminPwd=(String) request.getSession().getAttribute(FrontierWholesalesConstants.MAGENTO_ADMIN_PASSWORD);
-					 log.info("admin token is retrieved from session "+adminPwd);
+					  //String adminPwd=(String) request.getSession().getAttribute(FrontierWholesalesConstants.MAGENTO_ADMIN_PASSWORD);
+					String adminPwd = (String)getTokenFromSession(request); 
+					log.info("admin token is retrieved from session "+adminPwd);
 					 String id = getCustomerId(customerId);
 					 log.info("id is "+id);
 					 JsonObject companyObject = updateCompanyJSONObject(company,"super_user_id",id);
