@@ -67,7 +67,6 @@
                                                 renderReadOnly="{Boolean}true"
                                                 text="Show in Navigation"
                                                 value="true"/>
-                                           
                                             <charset
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/foundation/form/hidden"

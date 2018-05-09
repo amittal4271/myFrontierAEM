@@ -5390,12 +5390,12 @@ legend.each-form-title .form-title-information a {
   clear: both;
 }
 .banner-image-section {
-  float: left;
+/*  float: left;*/
   width: 100%;
   position: relative;
 }
 .banner-image-section .banner-image {
-  float: left;
+/* float: left;*/
   width: 100%;
 }
 .banner-image-section .banner-image img {

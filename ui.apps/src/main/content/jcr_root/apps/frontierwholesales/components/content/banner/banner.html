@@ -1,7 +1,9 @@
 <div class="content-page-banner">
      <div class="banner-image-section">
+         <a data-sly-use.image="image.js" data-sly-unwrap="${!image.linkUrl}"
+         href="${image.linkUrl @ extension='html' || '#'}">
 			<div class="banner-image">
-				<img data-sly-use.image="image.js" src="${image.src}" alt="${image.alt}" class="${image.cssClass} img-responsive ${wcmmode.edit ? 'image-edit-placeholder' : ''}"
+				<img src="${image.src}" alt="${image.alt}" class="${image.cssClass} img-responsive ${wcmmode.edit ? 'image-edit-placeholder' : ''}"
     			data-emptytext="Image"
     			title="${image.title}" />
             </div>        
@@ -9,5 +11,6 @@
             	<p data-sly-element=${properties.type} class="banner-sub-text">${properties.jcr:subtitle}</p>
             	<h1 data-sly-element=${properties.type} class="banner-headline">${properties.jcr:htitle}</h1>
             </div> 
+          </a>  
 	</div>
 </div>
