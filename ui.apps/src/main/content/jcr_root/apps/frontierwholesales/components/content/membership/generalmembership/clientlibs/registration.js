@@ -1,3 +1,7 @@
+var emailWithId={};
+emailWithId['list']=[];
+var $buttonObj;
+var $el;
 $(document).ready(function(){
     
    console.log('user registration...'+$('#serverurl').val()); 
@@ -26,12 +30,18 @@ $(document).ready(function(){
     
     $('#btn-general-registration').on('click',function(e){
         e.preventDefault();
+        $buttonObj = $(this);
+        $el = $('.global-server-side-message-holder');
          $validFlag = $("#general-membership-form").valid();
          if($validFlag){
+              disableAjaxFormButton($buttonObj);            
+             emailWithId['list']=[];
           collectUserDetails(); 
         }else{
           console.log('error in validation');
           $('.global-server-side-message-holder').css('display','block');
+            enableAjaxFormButton($buttonObj);
+            scrollToElement($el);
         }
     });
     
@@ -174,23 +184,58 @@ function collectUserDetails(){
     companyJsonData['extension_attributes']=extensionAttributes;
     company['company']=companyJsonData;
     
-    console.log('company details '+company);
-   
+    console.log('company details '+company);  
     
-  
-    var emailReq = emailValidation();
-    emailReq.done(function(data){
-       console.log("after done is "+data); 
-        if(data == true){
-            userRegistrationService(customer,company,pwd);
+    
+    validateEmailAndRegisterUser(extensionAttributes,customer,company,pwd);  
+    
+}
+
+function validateEmailAndRegisterUser(extensionAttributes,customer,company,pwd){
+      var emailReq = emailValidation(extensionAttributes);
+      emailReq.done(function(data){
+      
+       
+            var bValid = true;
+            // true means email doesn't exists
+            $(data).each(function(i,data){ 
+                if (data.status == false){
+                    bValid = false;
+                    
+                    var id = getEmailInputIdFromObj(data.email);
+                  
+                   $('#'+id).after($('<span/>',{'class':'validate-error','text':'Email address already has an account'}));
+                   
+                   
+                }
+                
+            });
+        
+        if(!bValid){
+            console.log('error ');
+             enableAjaxFormButton($buttonObj);     
+             $('.global-server-side-message-holder').css('display','block');
+            scrollToElement($el);
         }else{
-            console.log("Email is existing...");
+            userRegistrationService(customer,company,pwd);
         }
+           
+            
+       
     });
     
-    
-   
-    
+}
+
+function getEmailInputIdFromObj(email){
+    var emailid='';
+    $(emailWithId.list).each(function(i,obj) {
+    if(obj.value === email){
+         emailid = obj.emailid; 
+        emailWithId.list.splice(i,1);
+        return false;
+    }
+     });
+    return emailid;
 }
 
 function getBuyersClubDetails(){
@@ -202,18 +247,26 @@ function getBuyersClubDetails(){
     var firstName = new Array();
     var lastName = new Array();
     var email = new Array();
-    
+     var checked = $('#id_account-buying_club').is(":checked");
+    if(checked){
     $('#buyer-club-group-holder').find('input').each(function(i,data) { 
-       var name = data.value;
-       var nameSplit = name.split(' ');
-       
-        firstName.push(nameSplit[0]);
-        lastName.push(nameSplit[1]);
+      
         if(data.id.endsWith('email')){
             email.push(data.value);
+            var jsonData={};
+            jsonData['emailid']=data.id;
+            jsonData['value']=data.value;
+            emailWithId['list'].push(jsonData);
+        }else{
+             var name = data.value;
+             var nameSplit = name.split(' ');       
+       
+            firstName.push(nameSplit[0]);
+            lastName.push(nameSplit[1]);
         }
         
     });
+    }
      jsonData['first_name']=firstName;
     jsonData['last_name']=lastName;
     jsonData['email']=email;
@@ -223,6 +276,7 @@ function getBuyersClubDetails(){
 }
 
 function userRegistrationService(customer,company,pwd){
+    
      $.ajax({
         url:"/services/registration",
         data:{customer:JSON.stringify(customer),company:JSON.stringify(company)},
@@ -234,28 +288,45 @@ function userRegistrationService(customer,company,pwd){
             },
         success:function(data){
             
-            var object = JSON.parse(data);
-            window.location.href=getRedirectPath();
+            var object = JSON.parse(data);             
+            
+               window.location.href=getRedirectPath();
+          
         },error:function(error){
             console.log(error);
+             enableAjaxFormButton($buttonObj);              
+            $('.global-server-side-message-holder').css('display','block');
+            scrollToElement($el);
         }
     });
 }
 
-function emailValidation(){
+function emailValidation(jsonBuyersEmailList){
     var serverurl = $('#serverurl').val();
     var validation = false;
     var jsonData={};
-    jsonData['customerEmail']=$('#id_membership-email').val();
+    jsonData['customerEmail']=[]
+      
+   $(jsonBuyersEmailList.buying_groups.email).each(function(i,data){
+      if(undefined !== data && data !== ''){
+        jsonData['customerEmail'].push(data);  
+      } 
+   });
+    
+    jsonData['customerEmail'].push($('#id_membership-email').val());
     jsonData['websiteId']=1;
+    var emailData={};
+    emailData['emailid']='id_membership-email';
+    emailData['value']=$('#id_membership-email').val();
+    emailWithId['list'].push(emailData);
     
     var emailRequest= $.ajax({
-       url:serverurl+"/rest/all/V1/customers/isEmailAvailable",
+       url:serverurl+"/rest/all/V1/buyingroups/areEmailsAvailable",
        method:"POST",
         crossDomain: "true",
         headers:{
             "content-Type":"application/json",
-            "Access-Control-Allow-Origin":"http://frontierb2b.ztech.io/index.jsp",
+            "Access-Control-Allow-Origin":serverurl,
             "Access-Control-Allow-Credentials":"true"
         },
        data:JSON.stringify(jsonData)

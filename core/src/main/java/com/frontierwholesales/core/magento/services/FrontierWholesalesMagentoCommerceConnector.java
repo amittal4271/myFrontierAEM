@@ -181,6 +181,15 @@ public class FrontierWholesalesMagentoCommerceConnector {
             throw new CommerceException(e.getMessage());
         }
     }
+    
+    public String getCategories() throws Exception{
+    	String authToken = getAdminToken();
+    	String categories = Request.Get(server+"/rest/all/V1/categories")
+    			.addHeader("Authorization",authToken)
+    			.addHeader("ContentType","application/json")
+    			.execute().returnContent().asString();
+    	return categories;
+    }
 
 
 }

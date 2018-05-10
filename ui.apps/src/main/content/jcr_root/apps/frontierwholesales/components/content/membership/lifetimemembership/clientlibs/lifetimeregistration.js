@@ -1,3 +1,7 @@
+var emailWithId={};
+emailWithId['list']=[];
+var $buttonObj;
+var $el;
 $(document).ready(function(){
     
    console.log(' lifetime registration...'); 
@@ -27,17 +31,23 @@ $(document).ready(function(){
     })
     
     validation.registrationLifetimeForm('#lifetime-membership-form');
-showCurrentMonth();
+    showCurrentMonth();
+    showExpYear();
     
     $('#btn-lifetime-registration').on('click',function(e){
         e.preventDefault();
+        $buttonObj = $(this);
+        $el = $('.global-server-side-message-holder');
          $validFlag = $("#lifetime-membership-form").valid();
+          emailWithId['list']=[];
         if($validFlag){
-            
+             disableAjaxFormButton($buttonObj); 
             collectUserDetails(); 
         }else{
             console.log('error...');
               $('.global-server-side-message-holder').css('display','block');
+             enableAjaxFormButton($buttonObj);
+             scrollToElement($el);
         }
     });
 
@@ -47,6 +57,14 @@ showCurrentMonth();
         setTaxAddressToBillingAddress($this);
     });
 });
+
+function showExpYear(){
+   var date = new Date().getFullYear();
+    var length = date + 10;
+    for(var i=date;i<length;i++){  
+        $('#id_billing-exp_year').append($('<option/>',{'value':i,'text':i} )); 
+    }
+}
 
 function showCurrentMonth(){
     var date = new Date();
@@ -199,7 +217,45 @@ function collectUserDetails(){
     company['company']=companyJsonData;
     
     console.log('company details '+company);
-    fnCallService(customer,company,pwd);
+   
+    
+    validateEmailAndRegisterUser(extensionAttributes,customer,company,pwd);  
+}
+
+
+function validateEmailAndRegisterUser(extensionAttributes,customer,company,pwd){
+      var emailReq = emailValidation(extensionAttributes);
+      emailReq.done(function(data){
+      
+       
+            var bValid = true;
+            // true means email doesn't exists
+            $(data).each(function(i,data){ 
+                if (data.status == false){
+                    bValid = false;
+                    
+                    var id = getEmailInputIdFromObj(data.email);
+                  
+                   $('#'+id).after($('<span/>',{'class':'validate-error','text':'Email address already has an account'}));
+                   
+                   
+                }
+                
+            });
+        
+        if(!bValid){
+            console.log('error ');
+             enableAjaxFormButton($buttonObj);  
+             $('.global-server-side-message-holder').css('display','block');
+             scrollToElement($el);
+        }else{
+            memberRegistration(customer,company,pwd);
+        }
+           
+            
+       
+    });
+    
 }
 
 function getBuyersClubDetails(){
@@ -211,18 +267,26 @@ function getBuyersClubDetails(){
     var firstName = new Array();
     var lastName = new Array();
     var email = new Array();
-    
+     var checked = $('#id_account-buying_club').is(":checked");
+    if(checked){
     $('#buyer-club-group-holder').find('input').each(function(i,data) { 
-       var name = data.value;
-       var nameSplit = name.split(' ');
-       
-        firstName.push(nameSplit[0]);
-        lastName.push(nameSplit[1]);
+      
         if(data.id.endsWith('email')){
             email.push(data.value);
+            var jsonData={};
+            jsonData['emailid']=data.id;
+            jsonData['value']=data.value;
+            emailWithId['list'].push(jsonData);
+        }else{
+             var name = data.value;
+             var nameSplit = name.split(' ');       
+       
+            firstName.push(nameSplit[0]);
+            lastName.push(nameSplit[1]);
         }
         
     });
+    }
      jsonData['first_name']=firstName;
     jsonData['last_name']=lastName;
     jsonData['email']=email;
@@ -231,7 +295,7 @@ function getBuyersClubDetails(){
     
 }
 
-function fnCallService(customer,company,pwd){
+function memberRegistration(customer,company,pwd){
      $.ajax({
         url:"/services/registration",
         data:{customer:JSON.stringify(customer),company:JSON.stringify(company)},
@@ -247,7 +311,55 @@ function fnCallService(customer,company,pwd){
 
         },error:function(error){
             console.log(error);
+             enableAjaxFormButton($buttonObj);  
+             $('.global-server-side-message-holder').css('display','block');
+             scrollToElement($el);
         }
     });
+}
+
+
+function emailValidation(jsonBuyersEmailList){
+    var serverurl = $('#serverurl').val();
+    var validation = false;
+    var jsonData={};
+    jsonData['customerEmail']=[]
+      
+   $(jsonBuyersEmailList.buying_groups.email).each(function(i,data){
+      if(undefined !== data && data !== ''){
+        jsonData['customerEmail'].push(data);  
+      } 
+   });
+    
+    jsonData['customerEmail'].push($('#id_membership-email').val());
+    jsonData['websiteId']=1;
+    var emailData={};
+    emailData['emailid']='id_membership-email';
+    emailData['value']=$('#id_membership-email').val();
+    emailWithId['list'].push(emailData);
+    
+    var emailRequest= $.ajax({
+       url:serverurl+"/rest/all/V1/buyingroups/areEmailsAvailable",
+       method:"POST",
+        crossDomain: "true",
+        headers:{
+            "content-Type":"application/json",
+            "Access-Control-Allow-Origin":serverurl,
+            "Access-Control-Allow-Credentials":"true"
+        },
+       data:JSON.stringify(jsonData)
+    });
+    
+    var success = function(response){
+        console.log('success '+response);
+        
+    };
+    
+    var failure = function (error){
+      console.log('error '+error);  
+       
+    };
+   return emailRequest;
+  
 }
 
