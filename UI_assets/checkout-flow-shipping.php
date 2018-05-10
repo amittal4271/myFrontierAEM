@@ -132,7 +132,7 @@
                                         <legend class="checkout-sub-header">Delivery Method</legend>
                                         <div id="radio-shipping-rate-options" class="clearfix">
                                              <!--Loader can be shown and hidden for ajax calls / injected to the DOM when waiting for an ajax response-->
-                                             <!--<div class="loader"></div>-->
+                                             <div class="loader"></div>
 
                                              <!--These radio options will be updated via ajax-->
                                              <div class="radio">

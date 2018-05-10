@@ -41,7 +41,46 @@
                          </div>
                          <div class="row additional-brands clearfix">
                               <div class="col-md-12">
-
+                                   <div class="row row-each-brand-filter">
+                                        <div class="col-xs-12">
+                                             <h2 class="shop-brand-letter">A</h2>
+                                        </div>
+                                        <div class="col-xs-12">
+                                             <ul class="brand-list">
+                                                  <li><a href="#">Accessories</a></li>
+                                                  <li><a href="#">Acorelle</a></li>
+                                                  <li><a href="#">Air Scense</a></li>
+                                                  <li><a href="#">Alacer</a></li>
+                                                  <li><a href="#">Alba Botanica</a></li>
+                                                  <li><a href="#">All Terrain</a></li>
+                                             </ul>
+                                             <ul class="brand-list">
+                                                  <li><a href="#">Aloha Bay</a></li>
+                                                  <li><a href="#">Alter Eco</a></li>
+                                                  <li><a href="#">Ambassador Hairbrushes</a></li>
+                                                  <li><a href="#">American Health</a></li>
+                                                  <li><a href="#">American Provenance</a></li>
+                                                  <li><a href="#">Ancient Secrets</a></li>
+                                             </ul>
+                                             <div class="brand-list-break"></div>
+                                             <ul class="brand-list">
+                                                  <li><a href="#">Andalou Naturals</a></li>
+                                                  <li><a href="#">Ark Naturals</a></li>
+                                                  <li><a href="#">Arkopharma</a></li>
+                                                  <li><a href="#">Aroma Naturals</a></li>
+                                                  <li><a href="#">Aromatherapy Accessories</a></li>
+                                                  <li><a href="#">Aura Cacia</a></li>
+                                             </ul>
+                                             <ul class="brand-list">
+                                                  <li><a href="#">Auromere</a></li>
+                                                  <li><a href="#">Aurora Henna</a></li>
+                                                  <li><a href="#">Auroshikha Incense</a></li>
+                                                  <li><a href="#">Avalon Organics</a></li>
+                                                  <li><a href="#">Axel Kraft</a></li>
+                                             </ul>
+                                        </div>
+                                   </div>
+                                   <!--
                                    <div class="row row-of-four-brands">
                                         <div class="col-xs-12 col-sm-6 col-md-3 col-each-letter">
                                              <h2 class="shop-brand-letter">#</h2>
@@ -60,15 +99,7 @@
                                                   <li><a class="shop-by-brand-view-more" href="#">View more brands</a></li>
                                              </ul>
                                         </div>
-                                        <div class="col-xs-12 col-additional-brands-letter">
-                                             <ul class="brands-sub-list">
-                                                  <li><a href="#">Accessories</a></li>
-                                                  <li><a href="#">Acorelle</a></li>
-                                                  <li><a href="#">Air Scense</a></li>
-                                                  <li><a href="#">Alacer</a></li>
-                                                  <li><a href="#">Alba Botanica</a></li>
-                                             </ul>
-                                        </div>
+                                        
                                         <div class="col-xs-12 col-sm-6 col-md-3 col-each-letter">
                                              <h2 class="shop-brand-letter">B</h2>
                                              <ul class="first-five">
@@ -91,6 +122,17 @@
                                                   <li><a class="shop-by-brand-view-more" href="#">View more brands</a></li>
                                              </ul>
                                         </div>
+                                        
+                                        <div class="col-xs-12 col-additional-brands-letter item-a">
+                                             <ul class="brands-sub-list">
+                                                  <li><a href="#">Accessories</a></li>
+                                                  <li><a href="#">Acorelle</a></li>
+                                                  <li><a href="#">Air Scense</a></li>
+                                                  <li><a href="#">Alacer</a></li>
+                                                  <li><a href="#">Alba Botanica</a></li>
+                                             </ul>
+                                        </div>
+                                        
                                    </div>
 
                                    <div class="row row-of-four-brands">
@@ -139,7 +181,7 @@
                                              </ul>
                                         </div>
                                    </div>
-
+                                   -->
                               </div>
                          </div>
                     </div>
