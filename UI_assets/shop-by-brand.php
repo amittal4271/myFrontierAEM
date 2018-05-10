@@ -41,7 +41,7 @@
                          </div>
                          <div class="row additional-brands clearfix">
                               <div class="col-md-12">
-                                   <div class="row row-each-brand-filter">
+                                   <div class="row row-each-brand-filter clearfix">
                                         <div class="col-xs-12">
                                              <h2 class="shop-brand-letter">A</h2>
                                         </div>
@@ -62,7 +62,6 @@
                                                   <li><a href="#">American Provenance</a></li>
                                                   <li><a href="#">Ancient Secrets</a></li>
                                              </ul>
-                                             <div class="brand-list-break"></div>
                                              <ul class="brand-list">
                                                   <li><a href="#">Andalou Naturals</a></li>
                                                   <li><a href="#">Ark Naturals</a></li>
@@ -78,6 +77,50 @@
                                                   <li><a href="#">Avalon Organics</a></li>
                                                   <li><a href="#">Axel Kraft</a></li>
                                              </ul>
+                                        </div>
+                                   </div>
+
+                                   <div class="row row-each-brand-filter clearfix">
+                                        <div class="col-xs-12">
+                                             <h2 class="shop-brand-letter">B</h2>
+                                        </div>
+                                        <div class="col-xs-12">
+                                             <ul class="brand-list">
+                                                  <li><a href="#">Babo Botanicals</a></li>
+                                                  <li><a href="#">Bach Flower Remedies</a></li>
+                                                  <li><a href="#">Bad Air Sponge</a></li>
+                                                  <li><a href="#">Bad Again</a></li>
+                                                  <li><a href="#">Bagito</a></li>
+                                                  <li><a href="#">Baudelaire</a></li>
+                                             </ul>
+
+                                             <ul class="brand-list">
+                                                  <li><a href="#">Beauty Without Cruelty</a></li>
+                                                  <li><a href="#">Bee &amp; Flower Soaps</a></li>
+                                                  <li><a href="#">Bellmira</a></li>
+                                                  <li><a href="#">Bentology</a></li>
+                                                  <li><a href="#">bioAllers</a></li>
+                                                  <li><a href="#">Biokleen</a></li>
+                                             </ul>
+
+                                             <ul class="brand-list">
+                                                  <li><a href="#">Babo Botanicals</a></li>
+                                                  <li><a href="#">Bach Flower Remedies</a></li>
+                                                  <li><a href="#">Bad Air Sponge</a></li>
+                                                  <li><a href="#">Bad Again</a></li>
+                                                  <li><a href="#">Bagito</a></li>
+                                                  <li><a href="#">Baudelaire</a></li>
+                                             </ul>
+
+                                             <ul class="brand-list">
+                                                  <li><a href="#">Beauty Without Cruelty</a></li>
+                                                  <li><a href="#">Bee &amp; Flower Soaps</a></li>
+                                                  <li><a href="#">Bellmira</a></li>
+                                                  <li><a href="#">Bentology</a></li>
+                                                  <li><a href="#">bioAllers</a></li>
+                                                  <li><a href="#">Biokleen</a></li>
+                                             </ul>
+                                             
                                         </div>
                                    </div>
                                    <!--
@@ -120,16 +163,6 @@
                                                   <li><a href="#">ChicoBag</a></li>
                                                   <li><a href="#">Choice Teas</a></li>
                                                   <li><a class="shop-by-brand-view-more" href="#">View more brands</a></li>
-                                             </ul>
-                                        </div>
-                                        
-                                        <div class="col-xs-12 col-additional-brands-letter item-a">
-                                             <ul class="brands-sub-list">
-                                                  <li><a href="#">Accessories</a></li>
-                                                  <li><a href="#">Acorelle</a></li>
-                                                  <li><a href="#">Air Scense</a></li>
-                                                  <li><a href="#">Alacer</a></li>
-                                                  <li><a href="#">Alba Botanica</a></li>
                                              </ul>
                                         </div>
                                         

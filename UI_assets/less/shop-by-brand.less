@@ -41,9 +41,16 @@
 
 .row-each-brand-filter {
 	background: #fcfcfc;
-	border: 1px solid #ececec; 
+	border: 1px solid #ececec;  
 	padding: 20px;
+	margin: 20px 0;
+	float: left;
+	width: 100%; 
 	border-radius: 5px;
+
+	.breakpoint_1200({
+		
+	});
 }
 
 .shop-brand-letter {
@@ -72,9 +79,14 @@
 
 .brand-list {
 	float: left;
-	width: 25%;
+	width: 100%;
 	list-style: none;
-	padding-right: 25px;
+	
+
+	.breakpoint_600({
+    	width: 25%;
+    	padding-right: 25px;
+	});
 
 	li {
 		float: left;
