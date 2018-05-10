@@ -25,7 +25,10 @@ $.validator.setDefaults({
     	// do other things for a valid form
     	var errors = validator.numberOfInvalids();
     	if (errors) {
-        	validator.errorList[0].element.focus();
+        	//validator.errorList[0].element.focus();
+        	var $el = validator.errorList[0].element;
+			scrollToElement($el);
+        	
         }
 	}
 });

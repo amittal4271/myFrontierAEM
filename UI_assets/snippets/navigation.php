@@ -27,7 +27,28 @@
 	    <li class="top-level-category"><a class="top-level-link" href="">Shop Bulk</a></li>
 	    <li class="top-level-category"><a class="top-level-link" href="">Monthly Sales</a></li>
 	    <li class="top-level-category"><a class="top-level-link" href="">New Products</a></li>
-	    <li class="top-level-category drop-left"><a class="top-level-link" href="">Who We Are</a></li>
+	    <li class="top-level-category drop-left"><a class="top-level-link" href="">Who We Are</a>
+	    	<ul class="sub-nav first-level">
+	    		<li class="category-nav-item"><a class="category-nav-link" href="#"><span class="glyphicon glyphicon-menu-left"></span> About Frontier Co-op</a>
+	    			<ul class="sub-nav second-level">
+	    				<li class="category-nav-child-item">
+	    					<a class="category-nav-child-link" href="#">Our History</a>
+	    				</li>
+	    				<li class="category-nav-child-item">
+	    					<a class="category-nav-child-link" href="#"><span class="glyphicon glyphicon-menu-left"></span> Stewardship</a>
+	    					<ul class="sub-nav third-level">
+	    						<li class="category-nav-child-child-item"><a class="category-nav-child-child-link" href="">Our Growers</a></li>
+	    						<li class="category-nav-child-child-item"><a class="category-nav-child-child-link" href="">Our Prairie</a></li>
+	    						<li class="category-nav-child-child-item"><a class="category-nav-child-child-link" href="">Quality</a></li>
+	    						<li class="category-nav-child-child-item"><a class="category-nav-child-child-link" href="">Sustainability</a></li>
+	    					</ul>
+	    				</li>
+	    			</ul>
+	    		</li>
+	    		<li class="category-nav-item"><a class="category-nav-link" href="#"><span class="glyphicon glyphicon-menu-left"></span> Co-op Membership</a></li>
+	    		<li class="category-nav-item"><a class="category-nav-link" href="#">Join</a></li>
+	    	</ul>
+	    </li>
 	</ul>
 </div>
 

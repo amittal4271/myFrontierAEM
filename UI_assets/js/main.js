@@ -125,6 +125,14 @@ function enableAjaxFormButton ($button) {
 	$ajaxFormOverlayHolder.hide();
 }
 
+function scrollToElement ($el) {
+	$('html, body').animate({
+	    scrollTop: ($($el).offset().top-30)
+	},500, function() {
+    	//console.log('scroll complete');
+    });
+}
+
 
 $(document).ready(function() {
 

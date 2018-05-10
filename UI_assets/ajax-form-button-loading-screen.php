@@ -36,5 +36,22 @@
 
 
           <?php include(dirname(__FILE__).'/snippets/footer-files-include.php');?>
+
+          <script>
+               $(document).ready(function() {
+                    
+                    // test re-enable button click after 4 seconds
+
+                    $(document).on( "click", "#test-ajax-button", function(e) {
+                         var $this = $(this);
+                         setTimeout(function(){ 
+                              enableAjaxFormButton($this);
+                         }, 4000);
+                    });
+
+                    
+               });
+          </script>
+          
      </body>
 </html>

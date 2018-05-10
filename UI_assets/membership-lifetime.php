@@ -540,13 +540,13 @@
 
                     $(document).on( "click", "#btn-submit-lifetime-registration", function(e) {
                          e.preventDefault();
-
+                         var $this = $(this);
                          $validFlag = $("#lifetime-membership-form").valid();
 
                          if ($validFlag) {
                               console.log('valid form');
-                              
-                              alert('We can reference our ajax function here, maybe set up another namespace for ajax forms');
+                              disableAjaxFormButton($this);
+                              //alert('We can reference our ajax function here, maybe set up another namespace for ajax forms');
                          } else {
                               console.log('not valid');
                          }

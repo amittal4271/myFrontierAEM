@@ -22,6 +22,24 @@ body.mobile-nav-overflow {
 		text-align: center;
 		width: 100%;
 
+		li.top-level-category.drop-left {
+
+			li.category-nav-item,
+			.category-nav-child-item {
+				text-align: right;
+			}
+
+			a.category-nav-link, 
+			a.category-nav-child-link, 
+			a.category-nav-child-child-link {
+				.glyphicon {
+			    	right: auto;
+			    	left: 0;
+			    	float: left;
+			    }
+			}
+		}
+
 		li.top-level-category {
 			display: inline-block;
 			position: relative;
@@ -101,6 +119,22 @@ body.mobile-nav-overflow {
 		a.category-nav-child-link {
 			&:hover, &:focus {
 		    	background: #e2f1cd;
+		    }
+		}
+	}
+
+	.drop-left {
+		.sub-nav {
+			
+
+			&.first-level {
+				width: 210px;
+				right: 0;
+				left: auto;
+			}
+			&.second-level, &.third-level {
+		    	right: 100%;
+		    	left: auto;
 		    }
 		}
 	}

@@ -1269,6 +1269,17 @@ body.mobile-nav-overflow {
   text-align: center;
   width: 100%;
 }
+#main-nav ul li.top-level-category.drop-left li.category-nav-item,
+#main-nav ul li.top-level-category.drop-left .category-nav-child-item {
+  text-align: right;
+}
+#main-nav ul li.top-level-category.drop-left a.category-nav-link .glyphicon,
+#main-nav ul li.top-level-category.drop-left a.category-nav-child-link .glyphicon,
+#main-nav ul li.top-level-category.drop-left a.category-nav-child-child-link .glyphicon {
+  right: auto;
+  left: 0;
+  float: left;
+}
 #main-nav ul li.top-level-category {
   display: inline-block;
   position: relative;
@@ -1332,6 +1343,16 @@ body.mobile-nav-overflow {
 #main-nav ul a.category-nav-child-link:hover,
 #main-nav ul a.category-nav-child-link:focus {
   background: #e2f1cd;
+}
+#main-nav .drop-left .sub-nav.first-level {
+  width: 210px;
+  right: 0;
+  left: auto;
+}
+#main-nav .drop-left .sub-nav.second-level,
+#main-nav .drop-left .sub-nav.third-level {
+  right: 100%;
+  left: auto;
 }
 #main-nav .sub-nav {
   display: none;
