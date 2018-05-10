@@ -5454,7 +5454,7 @@ legend.each-form-title .form-title-information a {
   }
 }
 .banner-intro-holder {
-  float: left;
+/*  float: left; */
   width: 100%;
   clear: both;
   text-align: center;
@@ -5484,6 +5484,23 @@ legend.each-form-title .form-title-information a {
 }
 @media screen and (min-width: 992px) {
   .banner-intro-holder .banner-intro-heading {
+    font-size: 40px;
+  }
+}
+.banner-intro-holder h2 {
+  color: #5a524b;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  font-size: 26px;
+}
+@media screen and (min-width: 768px) {
+  .banner-intro-holder h2 {
+    font-size: 32px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .banner-intro-holder h2 {
     font-size: 40px;
   }
 }
