@@ -43,18 +43,14 @@ public class FrontierWholesalesUserRegistrationServlet  extends SlingAllMethodsS
 		
 		String object;
 		JsonObject jsonObject = new JsonObject();
-		//FrontierWholesalesMagentoCommerceConnector connector = new FrontierWholesalesMagentoCommerceConnector();
+		
 		try {
-			/*String adminToken = (String)request.getSession().getAttribute(FrontierWholesalesConstants.MAGENTO_ADMIN_PASSWORD);
-			if(null == adminToken) {
-			 adminToken = connector.getAdminToken();
-			request.getSession().setAttribute(FrontierWholesalesConstants.MAGENTO_ADMIN_PASSWORD, adminToken);
-			}*/
+			
 			String adminToken = (String)getTokenFromSession(request); 
 			object = FrontierWholesalesUserRegistration.getCountriesWithRegions(adminToken);
 			response.getOutputStream().println(object);
 		} catch (Exception e) {
-			
+			log.error("Exception occurred in doGet method "+e.getMessage());
 			e.printStackTrace();
 			jsonObject.addProperty("Error", "Error");
 			response.getOutputStream().println(jsonObject.toString());
@@ -65,12 +61,13 @@ public class FrontierWholesalesUserRegistrationServlet  extends SlingAllMethodsS
 	}
 	
 	private String getTokenFromSession(SlingHttpServletRequest request) throws Exception{
-		
+		log.debug("getToken from session start");
 		String adminToken = (String)request.getSession().getAttribute(FrontierWholesalesConstants.MAGENTO_ADMIN_PASSWORD);
 		if(null == adminToken) {
 			adminToken = connector.getAdminToken();
 			request.getSession().setAttribute(FrontierWholesalesConstants.MAGENTO_ADMIN_PASSWORD, adminToken);
 		}
+		log.debug("getToken from session end");
 		return adminToken;
 	}
 	
@@ -78,6 +75,7 @@ public class FrontierWholesalesUserRegistrationServlet  extends SlingAllMethodsS
 	protected void doPost(SlingHttpServletRequest request, SlingHttpServletResponse response)
 			throws ServletException, IOException {
 			JsonObject jsonObject = new JsonObject();
+			log.debug("entered into doPost method of registration");
 			try {
 			  String data = request.getParameter("customer");
 				final String authorization = request.getHeader("Authorization");
@@ -90,27 +88,27 @@ public class FrontierWholesalesUserRegistrationServlet  extends SlingAllMethodsS
 					  String company = request.getParameter("company");
 					 
 					  JsonObject customerObject = updateJSONObject(data,"password",credentials);
-					  log.info("updated customer json "+customerObject.toString());
+					 
 					  //Call customer service to get customer id here
 					  String customerId = FrontierWholesalesUserRegistration.customerRegistration(customerObject);
-					log.info("customer id is "+customerId);
-					  //String adminPwd=(String) request.getSession().getAttribute(FrontierWholesalesConstants.MAGENTO_ADMIN_PASSWORD);
+					
 					String adminPwd = (String)getTokenFromSession(request); 
-					log.info("admin token is retrieved from session "+adminPwd);
+					
 					 String id = getCustomerId(customerId);
-					 log.info("id is "+id);
+					
 					 JsonObject companyObject = updateCompanyJSONObject(company,"super_user_id",id);
-					log.info("company object is "+companyObject.toString());
+					
 					  //call company service here to register
 					  String registredValues = FrontierWholesalesUserRegistration.companyRegistration(adminPwd, companyObject);
-					  
+					  log.debug("Successfully user is registered");
 					  jsonObject.addProperty("Success", registredValues);
 					  response.getOutputStream().println(jsonObject.toString());
 			    }else {
 			    	response.sendError(HttpServletResponse.SC_FORBIDDEN, "Password is not set");
 			    }
 			}catch(Exception anyEx) {
-				log.info("Error is "+anyEx.getMessage());
+				log.error("Error is "+anyEx.getMessage());
+				anyEx.printStackTrace();
 				response.sendError(HttpServletResponse.SC_FORBIDDEN, "Error "+anyEx.getMessage());
 				
 			}

@@ -321,3 +321,34 @@ $(window).scroll(function() {
 		$('#product-images').affix('checkPosition');
 	}
 });
+
+function disableAjaxFormButton ($button) {
+	// set vars
+	var $ajaxFormOverlayHolder = $('#ajax-form-overlay-holder');
+	// change text of button to processing and disable
+	$button.text('Processing...').prop('disabled', true);
+	// add overflow class to body
+	$('body').addClass('mobile-nav-overflow');
+	// show overlay
+	$ajaxFormOverlayHolder.show();
+}
+
+function enableAjaxFormButton ($button) {
+	// set vars
+	var $ajaxFormOverlayHolder = $('#ajax-form-overlay-holder');
+	var $originalButtonText = $button.data('textoriginal');
+	// reset button text to original based off data attribute and re-enable
+	$button.text($originalButtonText).prop('disabled', false);
+	// remove overflow on body
+	$('body').removeClass('mobile-nav-overflow');
+	// hide overlay
+	$ajaxFormOverlayHolder.hide();
+}
+
+function scrollToElement ($el) {
+    $('html, body').animate({
+        scrollTop: ($($el).offset().top-30)
+    },500, function() {
+       //console.log('scroll complete');
+   });
+}

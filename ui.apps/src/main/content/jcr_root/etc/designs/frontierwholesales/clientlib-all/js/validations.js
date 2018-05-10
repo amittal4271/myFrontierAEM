@@ -54,14 +54,32 @@ $.validator.addMethod("ssntaxid", function(value, element) {
 	return this.optional(element) || /^(\d{3})-?\d{2}-?\d{4}$/i.test(value) || /^(\d{2})-?\d{7}$/i.test(value)
 }, "Please enter valid SSN/Tax ID");
 
-$.validator.addMethod("url", function(value, element) {
-
+$.validator.addMethod("urlText", function(value, element) {
+console.log("method is being called here...");
 	var btnRadio = $('.radio-checkbox-section-holder input:radio:checked').attr('id');
-    if(undefined !== btnRadio){
+    var checked = $('#id_account-buying_club').is(':checked');
+    if(undefined !== btnRadio && !checked){
+        
         if( value.trim().length > 0){
             return true;
         }
-    }else{
+    }else if(btnRadio == undefined && !checked){
+        return true;
+    }else if(btnRadio == undefined && checked){
+         return true;
+    }else if(value.trim().length > 0){
+            if(btnRadio === undefined){
+               
+                return false;
+            }
+        
+        
+    }
+});
+
+$.validator.addMethod("emailValidation",function(value,element){
+    var emailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if(value.match(emailFormat)){
         return true;
     }
 });
@@ -172,7 +190,7 @@ function buyersClubCheckboxOperations(){
                  
                            $('#id_invite-'+validation.currentCount+'-email').rules( "add", {
                                   required: true,
-                                  email: true,
+                                  emailValidation: true,
                                   minlength: 2,
                                   maxlength: 120
                              });
@@ -232,14 +250,14 @@ function buyersClubCheckboxOperations(){
                     },
                     "invite_1_email": {
                         required: "#id_account-buying_club:checked",
-                        email: true
+                        emailValidation: true
                     },"invite_2_name": {
                         required: "#id_account-buying_club:checked",
                          fullName: true
                     },
                     "invite_2_email": {
                         required: "#id_account-buying_club:checked",
-                        email: true
+                        emailValidation: true
                     },
                      "invite_3_name": {
                         required: "#id_account-buying_club:checked",
@@ -247,7 +265,7 @@ function buyersClubCheckboxOperations(){
                     },
                     "invite_3_email": {
                         required: "#id_account-buying_club:checked",
-                        email: true
+                        emailValidation: true
                     },
                      "invite_4_name": {
                         required: "#id_account-buying_club:checked",
@@ -255,7 +273,7 @@ function buyersClubCheckboxOperations(){
                     },
                     "invite_4_email": {
                         required: "#id_account-buying_club:checked",
-                        email: true
+                        emailValidation: true
                     },
 		            "mailing-name": {
 		            	required: true,
@@ -323,7 +341,7 @@ function buyersClubCheckboxOperations(){
                     },"membership-email":{
                         required: true,
 		            	maxlength: 150,
-                        email: true
+                        emailValidation: true
                         
                     },"membership-password":{
                         required: true,
@@ -377,21 +395,30 @@ function buyersClubCheckboxOperations(){
                         required: true,
                         maxlength: 70
                     },"account-url":{
+                        urlText: true,
                         url: true
                     }
                 },		        
 		        messages: {
                      "invite_1_name": {
                           fullName: 'Please enter full name'
+                     },"invite_1_email":{
+                          emailValidation:"Please enter a valid email"
                      },
                     "invite_2_name": {
                           fullName: 'Please enter full name'
+                     },"invite_2_email":{
+                          emailValidation:"Please enter a valid email"
                      },
                     "invite_3_name": {
                           fullName: 'Please enter full name'
+                     },"invite_3_email":{
+                          emailValidation:"Please enter a valid email"
                      },
                     "invite_4_name": {
                           fullName: 'Please enter full name'
+                     },"invite_4_email":{
+                          emailValidation:"Please enter a valid email"
                      },
 		            "mailing-name": {
 		                
@@ -418,9 +445,11 @@ function buyersClubCheckboxOperations(){
                        fullName: 'Please enter full name'
                         
                     },"account-url":{
-                        url: "This field is required"
+                        urlText: "This field is required"
                     },"billing-exp_month":{
                         expiryMonth: "Please enter a valid expiration date!"
+                    },"membership-email":{
+                        emailValidation:"Please enter a valid email"
                     }
 		        }
 		    });
@@ -435,14 +464,14 @@ function buyersClubCheckboxOperations(){
                     },
                     "invite_1_email": {
                         required: "#id_account-buying_club:checked",
-                        email: true
+                        emailValidation: true
                     },"invite_2_name": {
                         required: "#id_account-buying_club:checked",
                          fullName: true
                     },
                     "invite_2_email": {
                         required: "#id_account-buying_club:checked",
-                        email: true
+                        emailValidation: true
                     },
                      "invite_3_name": {
                         required: "#id_account-buying_club:checked",
@@ -450,7 +479,7 @@ function buyersClubCheckboxOperations(){
                     },
                     "invite_3_email": {
                         required: "#id_account-buying_club:checked",
-                        email: true
+                        emailValidation: true
                     },
                      "invite_4_name": {
                         required: "#id_account-buying_club:checked",
@@ -458,7 +487,7 @@ function buyersClubCheckboxOperations(){
                     },
                     "invite_4_email": {
                         required: "#id_account-buying_club:checked",
-                        email: true
+                        emailValidation: true
                     },
                     "shipping-name":{
                         required: true,
@@ -496,7 +525,7 @@ function buyersClubCheckboxOperations(){
                     },"membership-email":{
                         required: true,
                         maxlength: 150,
-                        email: true
+                        emailValidation: true
                         
                     },"membership-password":{
                         required: true,
@@ -511,20 +540,30 @@ function buyersClubCheckboxOperations(){
                         equalTo: '#id_membership-password'
                         
                     },"account-url":{
-                        url: true
+                        urlText: true,
+                        url:true
+                       
                     }
                 },messages :{
                      "invite_1_name": {
                           fullName: 'Please enter full name'
+                     },"invite_1_email":{
+                          emailValidation:"Please enter a valid email"
                      },
                     "invite_2_name": {
                           fullName: 'Please enter full name'
+                     },"invite_2_email":{
+                          emailValidation:"Please enter a valid email"
                      },
                     "invite_3_name": {
                           fullName: 'Please enter full name'
+                     },"invite_3_email":{
+                          emailvalidation:"Please enter a valid email"
                      },
                     "invite_4_name": {
                           fullName: 'Please enter full name'
+                     },"invite_4_email":{
+                          emailValidation:"Please enter a valid email"
                      },
                      "shipping-name":{
                        
@@ -543,7 +582,9 @@ function buyersClubCheckboxOperations(){
                         equalTo: 'Password did not match'
                         
                     },"account-url":{
-                        url: "This field is required"
+                        urlText: "This field is required"
+                    },"membership-email":{
+                        emailValidation: "Please enter a valid email"
                     }
                 }
             });
