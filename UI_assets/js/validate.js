@@ -77,7 +77,36 @@ $.validator.addMethod("phoneNumber", function(value, element) {
 		            "account-company_name": {
 		            	required: true,
 		            	maxlength: 240
-		            }
+		            },
+		            invite_1_name: {
+						required: "#id_account-buying_club:checked"
+					},
+					invite_1_email: {
+						required: "#id_account-buying_club:checked",
+						email: true
+					},
+					invite_2_name: {
+						required: "#id_account-buying_club:checked"
+					},
+					invite_2_email: {
+						required: "#id_account-buying_club:checked",
+						email: true
+					},
+					invite_3_name: {
+						required: "#id_account-buying_club:checked"
+					},
+					invite_3_email: {
+						required: "#id_account-buying_club:checked",
+						email: true
+					},
+					invite_4_name: {
+						required: "#id_account-buying_club:checked"
+					},
+					invite_4_email: {
+						required: "#id_account-buying_club:checked",
+						email: true
+					}
+				    
 		        },
 		        messages: {
 		            "mailing-name": {

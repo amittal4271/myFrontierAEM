@@ -164,6 +164,24 @@ legend.each-form-title {
     clear: both;
 }
 
+.each-invite-group-section {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ececec;
+
+    .breakpoint_768({
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border-bottom: 0;
+    });
+
+    &:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+}
+
 #buying-club-additional-invites-holder {
     float: left;
     width: 100%;
@@ -177,6 +195,10 @@ legend.each-form-title {
     width: 100%;
     clear: both;
     margin-top: 20px;
+    
+    .breakpoint_768({
+        
+    });
 }
 
 .form-group {

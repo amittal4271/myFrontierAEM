@@ -5191,6 +5191,23 @@ legend.each-form-title .form-title-information a {
   width: 100%;
   clear: both;
 }
+.each-invite-group-section {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ececec;
+}
+@media screen and (min-width: 768px) {
+  .each-invite-group-section {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
+}
+.each-invite-group-section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
 #buying-club-additional-invites-holder {
   float: left;
   width: 100%;
@@ -6366,6 +6383,7 @@ table.table-order-summary .discounts {
   padding: 0;
   font-weight: 700;
   text-transform: uppercase;
+  margin-bottom: 20px;
 }
 @media screen and (min-width: 992px) {
   .confirmation-header {
@@ -6492,6 +6510,44 @@ table.table-order-summary .discounts {
 }
 .btn-continue-shopping-confirmation {
   margin-top: 20px;
+}
+#shop-by-brand-holder {
+  position: relative;
+  float: left;
+  width: 100%;
+  margin-top: 10px;
+  padding: 40px 0 20px 0;
+  border-top: 4px dotted #ddd;
+}
+.top-three-brands {
+  margin-top: 40px;
+}
+.additional-brands {
+  margin-top: 30px;
+}
+@media screen and (min-width: 768px) {
+  .additional-brands {
+    margin-top: 80px;
+  }
+}
+.row-of-four-brands {
+  margin-bottom: 40px;
+}
+.shop-brand-top-three-link {
+  display: block;
+  width: 100%;
+}
+.shop-brand-top-three-link img.top-three-image {
+  display: block;
+  width: 100%;
+  border-radius: 6px;
+  border: 1px solid #ececec;
+}
+@media screen and (min-width: 768px) {
+  .shop-brand-top-three-link img.top-three-image {
+    width: 70%;
+    margin-left: 15%;
+  }
 }
 /*! HTML5 Boilerplate v4.3.0 | MIT License | http://h5bp.com/ */
 /*

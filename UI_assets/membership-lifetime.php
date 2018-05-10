@@ -33,7 +33,7 @@
                                         <div class="each-form-information">
                                              <div class="checkbox">
                                                   <label for="id_account-buying_club">
-                                                       <input id="id_account-buying_club" name="account-buying_club" type="checkbox">
+                                                       <input id="id_account-buying_club" name="accountBuyingClub" type="checkbox">
                                                        <span class="label-text">Buying Club</span>
                                                   </label>
                                              </div>
@@ -46,44 +46,44 @@
                                                        <div id="invite-group-section-1" class="each-invite-group-section">
                                                             <div class="form-group name-group width-half first">
                                                                  <label for="id_invite-1-name">Name</label>
-                                                                 <input id="id_invite-1-name" name="invite-1-name" placeholder="Name" type="text" class="form-control">
+                                                                 <input id="id_invite-1-name" name="invite_1_name" placeholder="Name" type="text" class="form-control">
                                                             </div>
                                                             <div class="form-group email-group width-half">
                                                                  <label for="id_invite-1-email">Email</label>
-                                                                 <input id="id_invite-1-email" name="id_invite-1-email" placeholder="Email" type="text" class="form-control">
+                                                                 <input id="id_invite-1-email" name="invite_1_email" placeholder="Email" type="text" class="form-control">
                                                             </div>
                                                        </div>
 
                                                        <div id="invite-group-section-2" class="each-invite-group-section">
                                                             <div class="form-group name-group width-half first">
                                                                  <label for="id_invite-2-name">Name</label>
-                                                                 <input id="id_invite-2-name" name="invite-2-name" placeholder="Name" type="text" class="form-control">
+                                                                 <input id="id_invite-2-name" name="invite_2_name" placeholder="Name" type="text" class="form-control">
                                                             </div>
                                                             <div class="form-group email-group width-half">
                                                                  <label for="id_invite-2-email">Email</label>
-                                                                 <input id="id_invite-2-email" name="id_invite-2-email" placeholder="Email" type="text" class="form-control">
+                                                                 <input id="id_invite-2-email" name="invite_2_email" placeholder="Email" type="text" class="form-control">
                                                             </div>
                                                        </div>
 
                                                        <div id="invite-group-section-3" class="each-invite-group-section">
                                                             <div class="form-group name-group width-half first">
                                                                  <label for="id_invite-3-name">Name</label>
-                                                                 <input id="id_invite-3-name" name="invite-3-name" placeholder="Name" type="text" class="form-control">
+                                                                 <input id="id_invite-3-name" name="invite_3_name" placeholder="Name" type="text" class="form-control">
                                                             </div>
                                                             <div class="form-group email-group width-half">
                                                                  <label for="id_invite-3-email">Email</label>
-                                                                 <input id="id_invite-3-email" name="id_invite-3-email" placeholder="Email" type="text" class="form-control">
+                                                                 <input id="id_invite-3-email" name="invite_3_email" placeholder="Email" type="text" class="form-control">
                                                             </div>
                                                        </div>
 
                                                        <div id="invite-group-section-4" class="each-invite-group-section">
                                                             <div class="form-group name-group width-half first">
                                                                  <label for="id_invite-4-name">Name</label>
-                                                                 <input id="id_invite-4-name" name="invite-4-name" placeholder="Name" type="text" class="form-control">
+                                                                 <input id="id_invite-4-name" name="invite_4_name" placeholder="Name" type="text" class="form-control">
                                                             </div>
                                                             <div class="form-group email-group width-half">
                                                                  <label for="id_invite-4-email">Email</label>
-                                                                 <input id="id_invite-4-email" name="id_invite-4-email" placeholder="Email" type="text" class="form-control">
+                                                                 <input id="id_invite-4-email" name="invite_4_email" placeholder="Email" type="text" class="form-control">
                                                             </div>
                                                        </div>
                                                   </div>
@@ -463,11 +463,11 @@
                               $newRowHtml += '<div id="invite-group-section-'+buyingClub.currentCount+'" class="each-invite-group-section">';
                                    $newRowHtml += '<div class="form-group name-group width-half first">';
                                         $newRowHtml += '<label for="id_invite-'+buyingClub.currentCount+'-name">Name</label>';
-                                        $newRowHtml += '<input id="id_invite-'+buyingClub.currentCount+'-name" name="invite-'+buyingClub.currentCount+'-name" placeholder="Name" type="text" class="form-control">';
+                                        $newRowHtml += '<input id="id_invite-'+buyingClub.currentCount+'-name" name="invite_'+buyingClub.currentCount+'_name" placeholder="Name" type="text" class="form-control">';
                                    $newRowHtml += '</div>';
                                    $newRowHtml += '<div class="form-group email-group width-half">';
                                         $newRowHtml += '<label for="id_invite-'+buyingClub.currentCount+'-email">Email</label>';
-                                        $newRowHtml += '<input id="id_invite-'+buyingClub.currentCount+'-email" name="id_invite-'+buyingClub.currentCount+'-email" placeholder="Email" type="text" class="form-control">';
+                                        $newRowHtml += '<input id="id_invite-'+buyingClub.currentCount+'-email" name="invite_'+buyingClub.currentCount+'_email" placeholder="Email" type="text" class="form-control">';
                                    $newRowHtml += '</div>';
                                    $newRowHtml += '<div class="form-group remove-buying-club-btn-holder">';
                                         $newRowHtml += '<button type="button" class="btn btn-link red-link btn-remove-buyer-member">';
@@ -477,6 +477,19 @@
                               $newRowHtml += '</div>';
 
                               buyingClub.groupHolder.append($newRowHtml);
+
+                              $('#id_invite-'+buyingClub.currentCount+'-email').rules( "add", {
+                                   required: true,
+                                   email: true,
+                                   minlength: 2,
+                                   maxlength: 120
+                              });
+
+                              $('#id_invite-'+buyingClub.currentCount+'-name').rules( "add", {
+                                   required: true,
+                                   minlength: 2,
+                                   maxlength: 40
+                              });
                          },
 
                          removeRow: function ($btnEl) {
@@ -506,14 +519,14 @@
 
                                         $nameLabel.attr('for', 'id_invite-'+$newIndex+'-name');
                                         $nameInput.attr('id', 'id_invite-'+$newIndex+'-name');
-                                        $nameInput.attr('name', 'invite-'+$newIndex+'-name');
+                                        $nameInput.attr('name', 'invite_'+$newIndex+'_name');
 
                                         var $emailLabel = $emailGroup.find('label');
                                         var $emailInput = $emailGroup.find('input');
 
                                         $emailLabel.attr('for', 'id_invite-'+$newIndex+'-email');
                                         $emailInput.attr('id', 'id_invite-'+$newIndex+'-email');
-                                        $emailInput.attr('name', 'invite-'+$newIndex+'-email');
+                                        $emailInput.attr('name', 'invite_'+$newIndex+'_email');
                                    });
                               }
                          }
