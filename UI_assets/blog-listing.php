@@ -20,6 +20,16 @@
 
                <section class="blog-list-page">
                     <div class="container">
+
+                         <div class="search-header-holder article-header-holder">
+                              <div id="search-heading">
+                                   <h1 class="plp-search-text-heading">Frontier Blog</h1>
+                                   <span class="showing-number-of-items">
+                                        Showing <span class="number">9</span> of <span class="number">18</span> Posts
+                                   </span>
+                              </div>
+                         </div>
+
                          <div id="article-grid" class="search-results-article-grid">
 
                               <div class="article-grid-row">
