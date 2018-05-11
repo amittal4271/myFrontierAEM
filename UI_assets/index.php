@@ -41,10 +41,12 @@
                          <li><a href="./content-page-coop-membership.php">Content - Co-op Membership</a></li>
                          <li><a href="./content-page-all-about-membership.php">Content - All About Membership</a></li>
 
+                         <li class="spacer"><a href="./blog-listing.php">Blog Listing</a></li>
+
                          <li class="spacer"><a href="./product-detail.php">Product Detail</a></li>
 
                          <li class="spacer"><a href="./product-list-page.php">Product Listing Page</a></li>
-                         <li class="spacer"><a href="./search-list-page.php">Search Listing Page</a></li>
+                         <li><a href="./search-list-page.php">Search Listing Page</a></li>
 
                          <li class="spacer"><a href="./shop-by-brand.php">Shop by Brand</a></li>
 

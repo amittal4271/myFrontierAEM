@@ -4709,6 +4709,17 @@ tr.order-details-table-section-row td.inner-table-td-holder {
   background: none;
   color: inherit;
 }
+.blog-list-page {
+  float: left;
+  width: 100%;
+  clear: both;
+  margin-top: 40px;
+}
+.blog-list-page #search-pagination {
+  margin-top: 40px;
+  padding-top: 40px;
+  border-top: 1px solid #ececec;
+}
 #plp-search-article-grid {
   float: left;
   width: 100%;
@@ -4729,11 +4740,7 @@ tr.order-details-table-section-row td.inner-table-td-holder {
 .article-grid-item {
   float: left;
   width: 100%;
-}
-@media screen and (min-width: 480px) {
-  .article-grid-item {
-    margin-bottom: 40px;
-  }
+  margin-bottom: 40px;
 }
 @media screen and (min-width: 768px) {
   .article-grid-item {
