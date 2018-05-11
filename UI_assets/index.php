@@ -44,6 +44,7 @@
                          <li class="spacer"><a href="./product-detail.php">Product Detail</a></li>
 
                          <li class="spacer"><a href="./product-list-page.php">Product Listing Page</a></li>
+                         <li class="spacer"><a href="./search-list-page.php">Search Listing Page</a></li>
 
                          <li class="spacer"><a href="./shop-by-brand.php">Shop by Brand</a></li>
 

@@ -4651,7 +4651,7 @@ tr.order-details-table-section-row td.inner-table-td-holder {
   width: 70%;
   font-size: 16px;
   text-transform: uppercase;
-  font-family: Lato, sans-serif;
+  font-family: "Lato", sans-serif;
   color: #4d4a48;
   font-weight: 700;
   margin-top: 9px;
@@ -4663,6 +4663,39 @@ tr.order-details-table-section-row td.inner-table-td-holder {
 }
 #mobile-filters-header #mobile-filters-close-holder #close-filters-plp-search {
   color: #189060;
+}
+#search-pagination {
+  float: left;
+  width: 100%;
+}
+#search-pagination nav {
+  text-align: center;
+}
+#search-pagination nav .pagination {
+  margin-top: 0;
+}
+#search-pagination nav .pagination li > a,
+#search-pagination nav .pagination li > span {
+  color: #4d4a48;
+  font-family: "Lato", sans-serif;
+  font-size: 16px;
+}
+#search-pagination nav .pagination li > a:hover,
+#search-pagination nav .pagination li > span:hover {
+  background: #524f4d;
+}
+#search-pagination nav .pagination .pagination-arrow {
+  background: #4d4a48;
+  color: #fff;
+  border: 1px solid #4d4a48;
+}
+#search-pagination nav .pagination .pagination-numbers .pag-number {
+  border: none;
+  margin-left: 0;
+}
+#search-pagination nav .pagination .pagination-numbers .pag-number:hover {
+  background: none;
+  color: inherit;
 }
 .login-section {
   float: left;

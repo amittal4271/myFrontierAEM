@@ -133,7 +133,7 @@
                               
                               <div id="plp-search-header-holder">
                                    <div id="search-heading">
-                                        <h1 class="plp-search-text-heading">Beverages</h1>
+                                        <h1 class="plp-search-text-heading">Search Results for: "Food"</h1>
                                         <span class="showing-number-of-items">
                                              Showing <span class="number">28</span> of <span class="number">180</span> items
                                         </span>
@@ -484,6 +484,7 @@
                                         </ul>
                                    </nav>
                               </div>
+                              
 
                          </section>
                     </div>
