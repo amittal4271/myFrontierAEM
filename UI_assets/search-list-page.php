@@ -131,11 +131,11 @@
                          </aside>
                          <section id="plp-search-product-grid">
                               
-                              <div id="plp-search-header-holder">
+                              <div id="plp-search-header-holder" class="search-header-holder">
                                    <div id="search-heading">
                                         <h1 class="plp-search-text-heading">Search Results for: "Food"</h1>
                                         <span class="showing-number-of-items">
-                                             Showing <span class="number">28</span> of <span class="number">180</span> items
+                                             Showing <span class="number">28</span> of <span class="number">180</span> Products
                                         </span>
                                    </div>
                                    <div id="search-sort-items">
@@ -463,6 +463,108 @@
                                         <div class="every-two-divider"></div>
                                    </div>
 
+                                   <div class="product-grid-row">
+                                        <div class="product-grid-item">
+                                             <span class="badge badge-sale">Sale</span>
+                                             <a href="#" class="grid-item-link">
+                                                  <span class="grid-image-holder">
+                                                       <img src="../frontierwholesales/images/search-result-item-1.jpg" alt="Product Name"/>
+                                                  </span>
+                                                  <span class="grid-item-number">
+                                                       Item # <span class="number">230965</span>
+                                                  </span>
+                                                  <span class="grid-product-name">
+                                                       Black Aerolatte Milk Frother with Stand 
+                                                  </span>
+                                                  <span class="grid-product-price">
+                                                       <span class="product-sale-price">$5.80</span> 
+                                                       <span class="product-now-price">Now $4.93</span>
+                                                  </span>
+                                             </a>
+                                             <div class="grid-add-to-cart">
+                                                  <button type="button" class="btn btn-light-green btn-grid-add-to-cart">Add to Cart</button>
+                                             </div>
+                                        </div>
+
+                                        <div class="product-grid-item">
+                                             <a href="#" class="grid-item-link">
+                                                  <span class="grid-image-holder">
+                                                       <img src="../frontierwholesales/images/search-result-item-6.jpg" alt="Product Name"/>
+                                                  </span>
+                                                  <span class="grid-item-number">
+                                                       Item # <span class="number">232331</span>
+                                                  </span>
+                                                  <span class="grid-product-name">
+                                                       Equal Exchange Bright Day Brew Ground Coffee 12 oz.
+                                                  </span>
+                                                  <span class="grid-product-price">
+                                                       <span class="product-sale-price">$7.35</span> 
+                                                       <span class="product-now-price"> Now $5.88</span>
+                                                  </span>
+                                             </a>
+                                             <div class="grid-alert">
+                                                  <div class="alert alert-danger" role="alert"> 
+                                                       <span class="glyphicon glyphicon-exclamation-sign"></span>
+                                                       <strong>Restricted Shipping</strong>
+                                                  </div>
+                                             </div>
+                                             <div class="grid-add-to-cart">
+                                                  <button type="button" class="btn btn-light-green btn-grid-add-to-cart">Add to Cart</button>
+                                             </div>
+                                        </div>
+
+                                        <div class="every-two-divider"></div>
+
+                                        <div class="product-grid-item">
+                                             <a href="#" class="grid-item-link">
+                                                  <span class="grid-image-holder">
+                                                       <img src="../frontierwholesales/images/search-result-item-8.jpg" alt="Product Name"/>
+                                                  </span>
+                                                  <span class="grid-item-number">
+                                                       Item # <span class="number">232331</span>
+                                                  </span>
+                                                  <span class="grid-product-name">
+                                                       Equal Exchange Organic Breakfast Blend Decaf Whole Bean Coffee 5 lb. 
+                                                  </span>
+                                                  <span class="grid-product-price">
+                                                       <span class="product-sale-price normal-price">$55.35</span> 
+                                                  </span>
+                                             </a>
+
+                                             <div class="grid-add-to-cart">
+                                                  <button type="button" class="btn btn-light-green btn-grid-add-to-cart">Add to Cart</button>
+                                             </div>
+                                        </div>
+
+                                        <div class="product-grid-item">
+                                             <a href="#" class="grid-item-link">
+                                                  <span class="grid-image-holder">
+                                                       <img src="../frontierwholesales/images/search-result-item-2.jpg" alt="Product Name"/>
+                                                  </span>
+                                                  <span class="grid-item-number">
+                                                       Item # <span class="number">2579</span>
+                                                  </span>
+                                                  <span class="grid-product-name">
+                                                       Frontier Co-op Licorice Root, Cut & Sifted, Organic 1 lb 
+                                                  </span>
+                                                  <span class="grid-product-price">
+                                                       <span class="product-sale-price normal-price">$13.35</span> 
+                                                  </span>
+                                             </a>
+                                             <div class="grid-alert">
+                                                  <div class="alert alert-bulk" role="alert">
+                                                       <span class="glyphicon glyphicon-info-sign"></span>
+                                                       <strong>Buy 5 to save 5%:</strong>
+                                                  </div>
+                                             </div>
+                                             <div class="grid-add-to-cart">
+                                                  <button type="button" class="btn btn-light-green btn-grid-add-to-cart">Add to Cart</button>
+                                             </div>
+                                        </div>
+
+                                        <div class="every-two-divider"></div>
+                                   </div>
+
                               </div>
 
                               <div id="search-pagination">
@@ -484,9 +586,121 @@
                                         </ul>
                                    </nav>
                               </div>
+
+                              <div id="plp-search-article-grid">
+                                   <div class="search-header-holder article-header-holder">
+                                        <div id="search-heading">
+                                             <h1 class="plp-search-text-heading">Articles/Posts for: "Food"</h1>
+                                             <span class="showing-number-of-items">
+                                                  Showing <span class="number">6</span> of <span class="number">10</span> Posts
+                                             </span>
+                                        </div>
+                                   </div>
+
+                                   <div id="article-grid" class="search-results-article-grid">
+                                        <div class="article-grid-row">
+                                             <article class="article-grid-item first-in-row">
+                                                  <figure class="figure-article-holder">
+                                                       <a class="article-link-holder" href="#">
+                                                            <div class="article-grid-image">
+                                                                 <img src="../frontierwholesales/images/blog-image-one.jpg" alt="Alt Image Description"/>
+                                                            </div>
+                                                            <figcaption class="figcaption-article-grid-info">
+                                                                 <span class="article-date">March 30, 2018</span>
+                                                                 <span class="article-title">Your Patronage is Coming: What Are Your Options?</span>
+                                                                 <span class="article-description">Your options as a member-owner of the cooperative offer a win-win choice of either accepting your share of...</span>
+                                                                 <span class="btn btn btn-white-green btn-article-read-more">Read More</span>
+                                                            </figcaption>
+                                                       </a>
+                                                  </figure>
+                                             </article>
+                                             <article class="article-grid-item">
+                                                  <figure class="figure-article-holder">
+                                                       <a class="article-link-holder" href="#">
+                                                            <div class="article-grid-image">
+                                                                 <img src="../frontierwholesales/images/blog-image-three.jpg" alt="Alt Image Description"/>
+                                                            </div>
+                                                            <figcaption class="figcaption-article-grid-info">
+                                                                 <span class="article-date">April 01, 2018</span>
+                                                                 <span class="article-title">Celebrating Earth Day, Every Day</span>
+                                                                 <span class="article-description">We’ve found six ways to incorporate love for the Earth into your everyday activities.</span>
+                                                                 <span class="btn btn btn-white-green btn-article-read-more">Read More</span>
+                                                            </figcaption>
+                                                       </a>
+                                                  </figure>
+                                             </article>
+                                             <article class="article-grid-item last-in-row">
+                                                  <figure class="figure-article-holder">
+                                                       <a class="article-link-holder" href="#">
+                                                            <div class="article-grid-image">
+                                                                 <img src="../frontierwholesales/images/blog-image-five.jpg" alt="Alt Image Description"/>
+                                                            </div>
+                                                            <figcaption class="figcaption-article-grid-info">
+                                                                 <span class="article-date">October 23, 2017</span>
+                                                                 <span class="article-title">The Holidays are Coming  – Is Your Store Ready?</span>
+                                                                 <span class="article-description">Be sure to visit to our site on Friday, November 24 and Monday, November 27 for special discounts on your...</span>
+                                                                 <span class="btn btn btn-white-green btn-article-read-more">Read More</span>
+                                                            </figcaption>
+                                                       </a>
+                                                  </figure>
+                                             </article>
+                                        </div>
+
+                                        <div class="article-grid-row">
+                                             <article class="article-grid-item first-in-row">
+                                                  <figure class="figure-article-holder">
+                                                       <a class="article-link-holder" href="#">
+                                                            <div class="article-grid-image">
+                                                                 <img src="../frontierwholesales/images/blog-image-four.jpg" alt="Alt Image Description"/>
+                                                            </div>
+                                                            <figcaption class="figcaption-article-grid-info">
+                                                                 <span class="article-date">March 30, 2018</span>
+                                                                 <span class="article-title">Your Patronage is Coming: What Are Your Options?</span>
+                                                                 <span class="article-description">Your options as a member-owner of the cooperative offer a win-win choice of either accepting your share of...</span>
+                                                                 <span class="btn btn btn-white-green btn-article-read-more">Read More</span>
+                                                            </figcaption>
+                                                       </a>
+                                                  </figure>
+                                             </article>
+                                             <article class="article-grid-item">
+                                                  <figure class="figure-article-holder">
+                                                       <a class="article-link-holder" href="#">
+                                                            <div class="article-grid-image">
+                                                                 <img src="../frontierwholesales/images/blog-image-two.jpg" alt="Alt Image Description"/>
+                                                            </div>
+                                                            <figcaption class="figcaption-article-grid-info">
+                                                                 <span class="article-date">April 01, 2018</span>
+                                                                 <span class="article-title">Celebrating Earth Day, Every Day</span>
+                                                                 <span class="article-description">We’ve found six ways to incorporate love for the Earth into your everyday activities.</span>
+                                                                 <span class="btn btn btn-white-green btn-article-read-more">Read More</span>
+                                                            </figcaption>
+                                                       </a>
+                                                  </figure>
+                                             </article>
+                                             <article class="article-grid-item last-in-row">
+                                                  <figure class="figure-article-holder">
+                                                       <a class="article-link-holder" href="#">
+                                                            <div class="article-grid-image">
+                                                                 <img src="../frontierwholesales/images/blog-image-one.jpg" alt="Alt Image Description"/>
+                                                            </div>
+                                                            <figcaption class="figcaption-article-grid-info">
+                                                                 <span class="article-date">October 23, 2017</span>
+                                                                 <span class="article-title">The Holidays are Coming  – Is Your Store Ready?</span>
+                                                                 <span class="article-description">Be sure to visit to our site on Friday, November 24 and Monday, November 27 for special discounts on your...</span>
+                                                                 <span class="btn btn btn-white-green btn-article-read-more">Read More</span>
+                                                            </figcaption>
+                                                       </a>
+                                                  </figure>
+                                             </article>
+                                        </div>
+                                   </div>
+                              </div>
                               
 
                          </section>
+
+                         
+
                     </div>
                </article>
           </main>

@@ -4309,7 +4309,7 @@ tr.order-details-table-section-row td.inner-table-td-holder {
 .each-filters-list .filter-item a:active {
   color: #8bba4a;
 }
-#plp-search-header-holder {
+.search-header-holder {
   float: left;
   width: 100%;
   padding-bottom: 30px;
@@ -4317,13 +4317,25 @@ tr.order-details-table-section-row td.inner-table-td-holder {
   border-bottom: 1px solid #ececec;
 }
 @media screen and (min-width: 992px) {
-  #plp-search-header-holder {
+  .search-header-holder {
     margin-bottom: 40px;
   }
 }
 @media screen and (min-width: 1200px) {
-  #plp-search-header-holder {
+  .search-header-holder {
     padding-bottom: 20px;
+  }
+}
+.search-header-holder.article-header-holder {
+  margin-bottom: 20px;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+@media screen and (min-width: 1200px) {
+  .search-header-holder.article-header-holder {
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ececec;
   }
 }
 #search-heading {
@@ -4344,7 +4356,7 @@ tr.order-details-table-section-row td.inner-table-td-holder {
 }
 #search-heading .plp-search-text-heading {
   color: #4d4a48;
-  font-size: 24px;
+  font-size: 30px;
   font-weight: 700;
   text-transform: uppercase;
   float: left;
@@ -4511,7 +4523,7 @@ tr.order-details-table-section-row td.inner-table-td-holder {
 .grid-item-link .grid-item-number {
   float: left;
   width: 100%;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   font-size: 13px;
   color: #473f3a;
   font-family: 'Lato', sans-serif;
@@ -4522,7 +4534,7 @@ tr.order-details-table-section-row td.inner-table-td-holder {
 .grid-item-link .grid-product-name {
   float: left;
   width: 100%;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   font-size: 16px;
   color: #473f3a;
   font-family: 'Lato', sans-serif;
@@ -4696,6 +4708,125 @@ tr.order-details-table-section-row td.inner-table-td-holder {
 #search-pagination nav .pagination .pagination-numbers .pag-number:hover {
   background: none;
   color: inherit;
+}
+#plp-search-article-grid {
+  float: left;
+  width: 100%;
+  padding-top: 40px;
+  margin-top: 20px;
+  border-top: 1px solid #ececec;
+}
+#article-grid {
+  float: left;
+  width: 100%;
+}
+.article-grid-row {
+  float: left;
+  width: 100%;
+  clear: both;
+  margin-bottom: 40px;
+}
+.article-grid-item {
+  float: left;
+  width: 100%;
+}
+@media screen and (min-width: 480px) {
+  .article-grid-item {
+    margin-bottom: 40px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .article-grid-item {
+    width: 33.333%;
+    padding: 0 15px;
+    margin-bottom: 0;
+  }
+}
+.figure-article-holder {
+  width: 100%;
+  float: left;
+}
+.article-grid-image {
+  float: left;
+  width: 100%;
+}
+@media screen and (min-width: 480px) {
+  .article-grid-image {
+    width: 40%;
+  }
+}
+@media screen and (min-width: 768px) {
+  .article-grid-image {
+    width: 100%;
+  }
+}
+.article-grid-image img {
+  display: block;
+  width: 100%;
+}
+.article-link-holder {
+  float: left;
+  width: 100%;
+  display: block;
+}
+.figcaption-article-grid-info {
+  float: left;
+  width: 100%;
+  padding: 20px 20px 40px 20px;
+  text-align: center;
+  background-image: url('../../../frontierwholesales/images/bg-blog.png');
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  background-size: cover;
+}
+@media screen and (min-width: 480px) {
+  .figcaption-article-grid-info {
+    width: 60%;
+  }
+}
+@media screen and (min-width: 768px) {
+  .figcaption-article-grid-info {
+    width: 100%;
+  }
+}
+@media screen and (min-width: 992px) {
+  .figcaption-article-grid-info {
+    min-height: 380px;
+  }
+}
+.figcaption-article-grid-info .article-date {
+  display: block;
+  color: #B1927A;
+  font-size: 13px;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: .04em;
+  font-family: 'Open Sans Condensed', sans-serif;
+}
+.figcaption-article-grid-info .article-title {
+  display: block;
+  margin: 15px 0;
+  color: #5a524b;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 20px;
+  text-transform: uppercase;
+  font-weight: 700;
+  line-height: 26px;
+}
+@media screen and (min-width: 768px) {
+  .figcaption-article-grid-info .article-title {
+    font-size: 26px;
+    line-height: 32px;
+  }
+}
+.figcaption-article-grid-info .article-description {
+  color: #817266;
+  font-family: 'Open Sans', sans-serif;
+  line-height: 24px;
+  font-size: 14px;
+  display: block;
+  margin: 10px 0 20px 0;
 }
 .login-section {
   float: left;

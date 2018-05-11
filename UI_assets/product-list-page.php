@@ -131,11 +131,11 @@
                          </aside>
                          <section id="plp-search-product-grid">
                               
-                              <div id="plp-search-header-holder">
+                              <div id="plp-search-header-holder" class="search-header-holder">
                                    <div id="search-heading">
                                         <h1 class="plp-search-text-heading">Beverages</h1>
                                         <span class="showing-number-of-items">
-                                             Showing <span class="number">28</span> of <span class="number">180</span> items
+                                             Showing <span class="number">28</span> of <span class="number">180</span> Products
                                         </span>
                                    </div>
                                    <div id="search-sort-items">
