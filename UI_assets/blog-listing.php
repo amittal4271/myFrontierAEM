@@ -30,151 +30,146 @@
                               </div>
                          </div>
 
-                         <div id="article-grid" class="search-results-article-grid">
+                         <div id="article-grid" class="search-results-article-grid match-height">
 
-                              <div class="article-grid-row">
-                                   <article class="article-grid-item first-in-row">
-                                        <figure class="figure-article-holder">
-                                             <a class="article-link-holder" href="#">
-                                                  <div class="article-grid-image">
-                                                       <img src="../frontierwholesales/images/blog-image-one.jpg" alt="Alt Image Description"/>
-                                                  </div>
-                                                  <figcaption class="figcaption-article-grid-info">
-                                                       <span class="article-date">March 30, 2018</span>
-                                                       <span class="article-title">Your Patronage is Coming: What Are Your Options?</span>
-                                                       <span class="article-description">Your options as a member-owner of the cooperative offer a win-win choice of either accepting your share of...</span>
-                                                       <span class="btn btn btn-white-green btn-article-read-more">Read More</span>
-                                                  </figcaption>
-                                             </a>
-                                        </figure>
-                                   </article>
-                                   <article class="article-grid-item">
-                                        <figure class="figure-article-holder">
-                                             <a class="article-link-holder" href="#">
-                                                  <div class="article-grid-image">
-                                                       <img src="../frontierwholesales/images/blog-image-three.jpg" alt="Alt Image Description"/>
-                                                  </div>
-                                                  <figcaption class="figcaption-article-grid-info">
-                                                       <span class="article-date">April 01, 2018</span>
-                                                       <span class="article-title">Celebrating Earth Day, Every Day</span>
-                                                       <span class="article-description">We’ve found six ways to incorporate love for the Earth into your everyday activities.</span>
-                                                       <span class="btn btn btn-white-green btn-article-read-more">Read More</span>
-                                                  </figcaption>
-                                             </a>
-                                        </figure>
-                                   </article>
-                                   <article class="article-grid-item last-in-row">
-                                        <figure class="figure-article-holder">
-                                             <a class="article-link-holder" href="#">
-                                                  <div class="article-grid-image">
-                                                       <img src="../frontierwholesales/images/blog-image-five.jpg" alt="Alt Image Description"/>
-                                                  </div>
-                                                  <figcaption class="figcaption-article-grid-info">
-                                                       <span class="article-date">October 23, 2017</span>
-                                                       <span class="article-title">The Holidays are Coming  – Is Your Store Ready?</span>
-                                                       <span class="article-description">Be sure to visit to our site on Friday, November 24 and Monday, November 27 for special discounts on your...</span>
-                                                       <span class="btn btn btn-white-green btn-article-read-more">Read More</span>
-                                                  </figcaption>
-                                             </a>
-                                        </figure>
-                                   </article>
-                              </div>
+                              <article class="article-grid-item">
+                                   <figure class="figure-article-holder">
+                                        <a class="article-link-holder" href="#">
+                                             <div class="article-grid-image">
+                                                  <img src="../frontierwholesales/images/blog-image-one.jpg" alt="Alt Image Description"/>
+                                             </div>
+                                             <figcaption class="figcaption-article-grid-info">
+                                                  <span class="article-date">March 30, 2018</span>
+                                                  <span class="article-title">Your Patronage is Coming: What Are Your Options?</span>
+                                                  <span class="article-description">Your options as a member-owner of the cooperative offer a win-win choice of either accepting your share of...</span>
+                                                  <span class="btn btn btn-white-green btn-article-read-more">Read More</span>
+                                             </figcaption>
+                                        </a>
+                                   </figure>
+                              </article>
+                              <article class="article-grid-item">
+                                   <figure class="figure-article-holder">
+                                        <a class="article-link-holder" href="#">
+                                             <div class="article-grid-image">
+                                                  <img src="../frontierwholesales/images/blog-image-three.jpg" alt="Alt Image Description"/>
+                                             </div>
+                                             <figcaption class="figcaption-article-grid-info">
+                                                  <span class="article-date">April 01, 2018</span>
+                                                  <span class="article-title">Celebrating Earth Day, Every Day</span>
+                                                  <span class="article-description">We’ve found six ways to incorporate love for the Earth into your everyday activities.</span>
+                                                  <span class="btn btn btn-white-green btn-article-read-more">Read More</span>
+                                             </figcaption>
+                                        </a>
+                                   </figure>
+                              </article>
+                              <article class="article-grid-item">
+                                   <figure class="figure-article-holder">
+                                        <a class="article-link-holder" href="#">
+                                             <div class="article-grid-image">
+                                                  <img src="../frontierwholesales/images/blog-image-five.jpg" alt="Alt Image Description"/>
+                                             </div>
+                                             <figcaption class="figcaption-article-grid-info">
+                                                  <span class="article-date">October 23, 2017</span>
+                                                  <span class="article-title">The Holidays are Coming  – Is Your Store Ready?</span>
+                                                  <span class="article-description">Be sure to visit to our site on Friday, November 24 and Monday, November 27 for special discounts on your...</span>
+                                                  <span class="btn btn btn-white-green btn-article-read-more">Read More</span>
+                                             </figcaption>
+                                        </a>
+                                   </figure>
+                              </article>
 
-                              <div class="article-grid-row">
-                                   <article class="article-grid-item first-in-row">
-                                        <figure class="figure-article-holder">
-                                             <a class="article-link-holder" href="#">
-                                                  <div class="article-grid-image">
-                                                       <img src="../frontierwholesales/images/blog-image-four.jpg" alt="Alt Image Description"/>
-                                                  </div>
-                                                  <figcaption class="figcaption-article-grid-info">
-                                                       <span class="article-date">March 30, 2018</span>
-                                                       <span class="article-title">Your Patronage is Coming: What Are Your Options?</span>
-                                                       <span class="article-description">Your options as a member-owner of the cooperative offer a win-win choice of either accepting your share of...</span>
-                                                       <span class="btn btn btn-white-green btn-article-read-more">Read More</span>
-                                                  </figcaption>
-                                             </a>
-                                        </figure>
-                                   </article>
-                                   <article class="article-grid-item">
-                                        <figure class="figure-article-holder">
-                                             <a class="article-link-holder" href="#">
-                                                  <div class="article-grid-image">
-                                                       <img src="../frontierwholesales/images/blog-image-two.jpg" alt="Alt Image Description"/>
-                                                  </div>
-                                                  <figcaption class="figcaption-article-grid-info">
-                                                       <span class="article-date">April 01, 2018</span>
-                                                       <span class="article-title">Celebrating Earth Day, Every Day</span>
-                                                       <span class="article-description">We’ve found six ways to incorporate love for the Earth into your everyday activities.</span>
-                                                       <span class="btn btn btn-white-green btn-article-read-more">Read More</span>
-                                                  </figcaption>
-                                             </a>
-                                        </figure>
-                                   </article>
-                                   <article class="article-grid-item last-in-row">
-                                        <figure class="figure-article-holder">
-                                             <a class="article-link-holder" href="#">
-                                                  <div class="article-grid-image">
-                                                       <img src="../frontierwholesales/images/blog-image-one.jpg" alt="Alt Image Description"/>
-                                                  </div>
-                                                  <figcaption class="figcaption-article-grid-info">
-                                                       <span class="article-date">October 23, 2017</span>
-                                                       <span class="article-title">The Holidays are Coming  – Is Your Store Ready?</span>
-                                                       <span class="article-description">Be sure to visit to our site on Friday, November 24 and Monday, November 27 for special discounts on your...</span>
-                                                       <span class="btn btn btn-white-green btn-article-read-more">Read More</span>
-                                                  </figcaption>
-                                             </a>
-                                        </figure>
-                                   </article>
-                              </div>
 
-                              <div class="article-grid-row">
-                                   <article class="article-grid-item first-in-row">
-                                        <figure class="figure-article-holder">
-                                             <a class="article-link-holder" href="#">
-                                                  <div class="article-grid-image">
-                                                       <img src="../frontierwholesales/images/blog-image-one.jpg" alt="Alt Image Description"/>
-                                                  </div>
-                                                  <figcaption class="figcaption-article-grid-info">
-                                                       <span class="article-date">March 30, 2018</span>
-                                                       <span class="article-title">Your Patronage is Coming: What Are Your Options?</span>
-                                                       <span class="article-description">Your options as a member-owner of the cooperative offer a win-win choice of either accepting your share of...</span>
-                                                       <span class="btn btn btn-white-green btn-article-read-more">Read More</span>
-                                                  </figcaption>
-                                             </a>
-                                        </figure>
-                                   </article>
-                                   <article class="article-grid-item">
-                                        <figure class="figure-article-holder">
-                                             <a class="article-link-holder" href="#">
-                                                  <div class="article-grid-image">
-                                                       <img src="../frontierwholesales/images/blog-image-three.jpg" alt="Alt Image Description"/>
-                                                  </div>
-                                                  <figcaption class="figcaption-article-grid-info">
-                                                       <span class="article-date">April 01, 2018</span>
-                                                       <span class="article-title">Celebrating Earth Day, Every Day</span>
-                                                       <span class="article-description">We’ve found six ways to incorporate love for the Earth into your everyday activities.</span>
-                                                       <span class="btn btn btn-white-green btn-article-read-more">Read More</span>
-                                                  </figcaption>
-                                             </a>
-                                        </figure>
-                                   </article>
-                                   <article class="article-grid-item last-in-row">
-                                        <figure class="figure-article-holder">
-                                             <a class="article-link-holder" href="#">
-                                                  <div class="article-grid-image">
-                                                       <img src="../frontierwholesales/images/blog-image-five.jpg" alt="Alt Image Description"/>
-                                                  </div>
-                                                  <figcaption class="figcaption-article-grid-info">
-                                                       <span class="article-date">October 23, 2017</span>
-                                                       <span class="article-title">The Holidays are Coming  – Is Your Store Ready?</span>
-                                                       <span class="article-description">Be sure to visit to our site on Friday, November 24 and Monday, November 27 for special discounts on your...</span>
-                                                       <span class="btn btn btn-white-green btn-article-read-more">Read More</span>
-                                                  </figcaption>
-                                             </a>
-                                        </figure>
-                                   </article>
-                              </div>
+                              <article class="article-grid-item first-in-row">
+                                   <figure class="figure-article-holder">
+                                        <a class="article-link-holder" href="#">
+                                             <div class="article-grid-image">
+                                                  <img src="../frontierwholesales/images/blog-image-four.jpg" alt="Alt Image Description"/>
+                                             </div>
+                                             <figcaption class="figcaption-article-grid-info">
+                                                  <span class="article-date">March 30, 2018</span>
+                                                  <span class="article-title">Your Patronage is Coming: What Are Your Options?</span>
+                                                  <span class="article-description">Your options as a member-owner of the cooperative offer a win-win choice of either accepting your share of...</span>
+                                                  <span class="btn btn btn-white-green btn-article-read-more">Read More</span>
+                                             </figcaption>
+                                        </a>
+                                   </figure>
+                              </article>
+                              <article class="article-grid-item">
+                                   <figure class="figure-article-holder">
+                                        <a class="article-link-holder" href="#">
+                                             <div class="article-grid-image">
+                                                  <img src="../frontierwholesales/images/blog-image-two.jpg" alt="Alt Image Description"/>
+                                             </div>
+                                             <figcaption class="figcaption-article-grid-info">
+                                                  <span class="article-date">April 01, 2018</span>
+                                                  <span class="article-title">Celebrating Earth Day, Every Day</span>
+                                                  <span class="article-description">We’ve found six ways to incorporate love for the Earth into your everyday activities.</span>
+                                                  <span class="btn btn btn-white-green btn-article-read-more">Read More</span>
+                                             </figcaption>
+                                        </a>
+                                   </figure>
+                              </article>
+                              <article class="article-grid-item last-in-row">
+                                   <figure class="figure-article-holder">
+                                        <a class="article-link-holder" href="#">
+                                             <div class="article-grid-image">
+                                                  <img src="../frontierwholesales/images/blog-image-one.jpg" alt="Alt Image Description"/>
+                                             </div>
+                                             <figcaption class="figcaption-article-grid-info">
+                                                  <span class="article-date">October 23, 2017</span>
+                                                  <span class="article-title">The Holidays are Coming  – Is Your Store Ready?</span>
+                                                  <span class="article-description">Be sure to visit to our site on Friday, November 24 and Monday, November 27 for special discounts on your...</span>
+                                                  <span class="btn btn btn-white-green btn-article-read-more">Read More</span>
+                                             </figcaption>
+                                        </a>
+                                   </figure>
+                              </article>
+
+                              <article class="article-grid-item first-in-row">
+                                   <figure class="figure-article-holder">
+                                        <a class="article-link-holder" href="#">
+                                             <div class="article-grid-image">
+                                                  <img src="../frontierwholesales/images/blog-image-one.jpg" alt="Alt Image Description"/>
+                                             </div>
+                                             <figcaption class="figcaption-article-grid-info">
+                                                  <span class="article-date">March 30, 2018</span>
+                                                  <span class="article-title">Your Patronage is Coming: What Are Your Options?</span>
+                                                  <span class="article-description">Your options as a member-owner of the cooperative offer a win-win choice of either accepting your share of...</span>
+                                                  <span class="btn btn btn-white-green btn-article-read-more">Read More</span>
+                                             </figcaption>
+                                        </a>
+                                   </figure>
+                              </article>
+                              <article class="article-grid-item">
+                                   <figure class="figure-article-holder">
+                                        <a class="article-link-holder" href="#">
+                                             <div class="article-grid-image">
+                                                  <img src="../frontierwholesales/images/blog-image-three.jpg" alt="Alt Image Description"/>
+                                             </div>
+                                             <figcaption class="figcaption-article-grid-info">
+                                                  <span class="article-date">April 01, 2018</span>
+                                                  <span class="article-title">Celebrating Earth Day, Every Day</span>
+                                                  <span class="article-description">We’ve found six ways to incorporate love for the Earth into your everyday activities.</span>
+                                                  <span class="btn btn btn-white-green btn-article-read-more">Read More</span>
+                                             </figcaption>
+                                        </a>
+                                   </figure>
+                              </article>
+                              <article class="article-grid-item last-in-row">
+                                   <figure class="figure-article-holder">
+                                        <a class="article-link-holder" href="#">
+                                             <div class="article-grid-image">
+                                                  <img src="../frontierwholesales/images/blog-image-five.jpg" alt="Alt Image Description"/>
+                                             </div>
+                                             <figcaption class="figcaption-article-grid-info">
+                                                  <span class="article-date">October 23, 2017</span>
+                                                  <span class="article-title">The Holidays are Coming  – Is Your Store Ready?</span>
+                                                  <span class="article-description">Be sure to visit to our site on Friday, November 24 and Monday, November 27 for special discounts on your...</span>
+                                                  <span class="btn btn btn-white-green btn-article-read-more">Read More</span>
+                                             </figcaption>
+                                        </a>
+                                   </figure>
+                              </article>
 
                               <div id="search-pagination">
                                    <nav aria-label="Page navigation">

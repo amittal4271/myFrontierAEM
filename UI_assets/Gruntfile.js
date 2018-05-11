@@ -8,7 +8,7 @@ module.exports = function(grunt) {
       },
       my_target: {
         files: [
-          {src: ['js/bootstrap.min.js', 'js/swiper.min.js', 'js/jquery.hoverIntent.min.js', 'js/jquery.form.min.js', 'js/jquery.validate.min.js', 'js/main.js', 'js/validate.js'], dest: 'prod-assets/frontier-minified.js'}
+          {src: ['js/bootstrap.min.js', 'js/swiper.min.js', 'js/jquery.hoverIntent.min.js', 'js/jquery.matchHeight.js', 'js/jquery.form.min.js', 'js/jquery.validate.min.js', 'js/main.js', 'js/validate.js'], dest: 'prod-assets/frontier-minified.js'}
         ]
       }
     },
