@@ -145,27 +145,6 @@
                                                   <button type="button" class="btn btn-black btn-filters-plp-search">View Options</button>
                                              </div>
                                         </div>
-                                        <div class="sort-by-holder">
-                                             <div class="form-group">
-                                                  <label for="sortby-type">Sort By</label>
-                                                  <select name="sortby-type" id="sortby-type" class="form-control">
-                                                       <option value="/shop/grocery/spices-and-seasonings/?sort=featured">Featured</option>
-                                                       <option value="/shop/grocery/spices-and-seasonings/?sort=new">New Arrivals</option>
-                                                       <option value="/shop/grocery/spices-and-seasonings/?sort=low">Lowest Price</option>
-                                                       <option value="/shop/grocery/spices-and-seasonings/?sort=high">Highest Price</option>
-                                                  </select>
-                                             </div>
-                                        </div>
-                                        <div class="items-per-page-holder">
-                                             <div class="form-group">
-                                                  <label for="sortby-items">Items Per Page:</label>
-                                                  <select name="sortby-items" id="sortby-items" class="form-control">
-                                                       <option value="/shop/grocery/spices-and-seasonings/?show=28">28</option>
-                                                       <option value="/shop/grocery/spices-and-seasonings/?show=56">56</option>
-                                                       <option value="/shop/grocery/spices-and-seasonings/?show=100">100</option>
-                                                  </select>
-                                             </div>
-                                        </div>
                                    </div>
                               </div>
 
