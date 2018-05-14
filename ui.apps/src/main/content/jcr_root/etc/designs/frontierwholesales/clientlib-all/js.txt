@@ -2,7 +2,10 @@
 jquery.hoverIntent.min.js
 jquery.validate.min.js
 additional-methods.min.js
+jquery.matchHeight.js
+swiper.min.js
 validations.js
 newsletter.js
 main.js
-swiper.min.js
+
+

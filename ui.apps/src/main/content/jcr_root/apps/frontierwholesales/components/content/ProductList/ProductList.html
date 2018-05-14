@@ -1,0 +1,18 @@
+<section class="plp-search-product-grid">
+<sly data-sly-use.pList="${'com.frontierwholesales.core.models.ProductListModel'}" data-sly-unwrap/>
+<div id="product-grid" class="match-height">
+<div data-sly-list.childNode="${pList.products}" data-sly-unwrap> 
+   <div class="product-grid-item">
+		<a href="#" class="grid-item-link">
+		<span class="grid-image-holder">
+		<image src="${childNode.imagePath}" />
+		</span>
+    	
+        <span class="grid-product-name">${childNode.description}</span>
+        <span class="grid-product-price">${childNode.price}</span>
+            </a>
+	</div>
+	</div>
+</div>
+
+</section>

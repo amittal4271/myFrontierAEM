@@ -352,3 +352,18 @@ function scrollToElement ($el) {
        //console.log('scroll complete');
    });
 }
+
+var byRow = $('#product-grid').hasClass('match-height');
+    $('#product-grid').each(function() {
+        $(this).children('.product-grid-item').matchHeight({
+            byRow: byRow
+        });
+    });
+
+    // match height for blog grid and article listing on search results
+    var byRow = $('#article-grid').hasClass('match-height');
+    $('#article-grid').each(function() {
+        $(this).children('.article-grid-item').matchHeight({
+            byRow: byRow
+        });
+    });
