@@ -44,6 +44,7 @@
 			</a>
 		</div>
 
+<!--/*
 <div class="blog-section" data-sly-test="${properties.alignment == 'left' || properties.alignment == 'right'}"
 data-sly-test.txtAlign="${properties.alignment == 'left' ? 'right' : 'left'}"
 >
@@ -66,3 +67,48 @@ data-sly-test.txtAlign="${properties.alignment == 'left' ? 'right' : 'left'}"
 				</div>
 			</a>
 </div> 
+*/-->
+
+<div class="each-left-right-section bg-light-section" data-sly-test="${properties.alignment == 'left'}">
+                         <div class="container clearfix">
+                              <figure class="each-figure-section">
+                                   <div class="figure-media-left-right"
+                                    data-sly-test="${textImage.hasContent}"
+                                    data-sly-resource="${'image' @ resourceType='wcm/foundation/components/image', wcmmode='disabled'}"    
+                                    >
+                                        <img
+                                        data-sly-use.textImage="textimage.js"
+                                        src="${textImage.src}"
+                                        alt="${textImage.alt}"/>
+                                   </div>
+                                   <figcaption class="information-section-left-right">
+                                        <h3 class="headline-left-right">${properties.brandTitle}</h3>
+                                        <div class="description-holder-left-right">
+                                             ${properties.copyText}
+                                        </div>
+                                   </figcaption>
+                              </figure>
+                         </div>
+ </div>
+
+<div class="each-left-right-section bg-grain-section" data-sly-test="${properties.alignment == 'right'}">
+                         <div class="container clearfix">
+                              <figure class="each-figure-section">
+                                   <figcaption class="information-section-left-right">
+                                        <h3 class="headline-left-right">1980</h3>
+                                        <div class="description-holder-left-right">
+                                             ${properties.copyText}
+                                        </div>
+                                   </figcaption>
+                                   <div class="figure-media-left-right"
+                                    data-sly-test="${textImage.hasContent}"
+                                    data-sly-resource="${'image' @ resourceType='wcm/foundation/components/image', wcmmode='disabled'}"                                        
+                                    >
+                                        <img
+                                        data-sly-use.textImage="textimage.js"
+                                        src="${textImage.src}"
+                                        alt="${textImage.alt}"/>
+                                   </div>
+                              </figure>
+                         </div>
+                    </div>
