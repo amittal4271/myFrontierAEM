@@ -17,8 +17,14 @@
      data-sly-use.emptyRenderer="from-the-blog-empty.html"
      data-sly-call="${emptyRenderer.emptyTextImageTemplate @ textImage=textImage}" />
 
+
+<sly data-sly-test="${properties.alignment == 'left'}"
+data-sly-test.txtAlign="${properties.alignment == 'left' ? 'col-md-push-5' : ''}" />
+<sly data-sly-test="${properties.alignment == 'left'}"
+data-sly-test.imgAlign="${properties.alignment == 'left' ? 'col-md-pull-7' : ''}" />
+     
 <div class="row">
-    <div class="blog-info col-xs-12 col-md-7"> 
+    <div class="blog-info col-xs-12 col-md-7 ${txtAlign}"> 
     <a href="${properties.linkTo @ extension='html' || '#'}">   
         <span class="blog-note">
             From the Blog
@@ -30,7 +36,7 @@
         </div> 
     </a>    
     </div>
-    <div class="blog-image-holder col-md-5"
+    <div class="blog-image-holder col-md-5 ${imgAlign}"
     data-sly-test="${textImage.hasContent}"
     data-sly-resource="${'image' @ resourceType='wcm/foundation/components/image', wcmmode='disabled'}"
     >
