@@ -3487,7 +3487,7 @@ tr.order-details-table-section-row td.inner-table-td-holder {
   margin-bottom: 60px;
 }
 .special-section-link {
-  float: left;
+  /*float: left;*/
   width: 100%;
   background-image: url('../../../frontierwholesales/images/bg-home-items.c9948a3ed034.png');
   background-position: bottom center;
@@ -3505,7 +3505,7 @@ tr.order-details-table-section-row td.inner-table-td-holder {
   }
 }
 .special-image-holder {
-  float: left;
+  /*float: left;*/
   width: 100%;
   clear: both;
 }
@@ -3515,7 +3515,7 @@ tr.order-details-table-section-row td.inner-table-td-holder {
   display: block;
 }
 .special-info {
-  float: left;
+  /*float: left;*/
   width: 100%;
   clear: both;
   padding: 30px 30px 70px 30px;
@@ -3966,7 +3966,8 @@ tr.order-details-table-section-row td.inner-table-td-holder {
   font-weight: 300;
   font-family: 'Open Sans', sans-serif;
 }
-#product-qty-input {
+#product-qty-input,
+.grid-product-qty-input {
   float: left;
   border: none;
   width: 45%;
@@ -3982,9 +3983,13 @@ tr.order-details-table-section-row td.inner-table-td-holder {
   border: 1px solid #e6e6e6;
 }
 @media screen and (min-width: 600px) {
-  #product-qty-input {
+  #product-qty-input,
+  .grid-product-qty-input {
     box-shadow: none;
   }
+}
+.grid-product-qty-input {
+  font-size: 16px;
 }
 .add-to-cart-holder {
   float: left;
@@ -4648,15 +4653,51 @@ tr.order-details-table-section-row td.inner-table-td-holder {
   width: 100%;
   clear: both;
   margin-top: 10px;
+  /*
+
+    .form-group.grid-qty-holder {
+        width: 35%;
+
+        padding-right: 15px; 
+        margin: 0;
+
+        .breakpoint_600({
+            width: 20%;
+        });
+
+        .breakpoint_992({
+            width: 35%;
+        });
+
+        .form-control {
+            padding: 12px 6px 12px 12px;
+        }
+    }
+
+    .btn-grid-add-to-cart {
+        width: 65%;
+        float: left;
+        font-size: 12px;
+        padding-left: 10px;
+        padding-right: 10px;
+
+        .breakpoint_600({
+            width: 80%;
+            font-size: 14px;
+        });
+
+        .breakpoint_992({
+            width: 65%;
+            font-size: 12px;
+        });
+    }
+
+    */
 }
-.grid-add-to-cart .btn-grid-add-to-cart {
+.grid-add-to-cart .qty-holder {
   width: 100%;
-}
-.grid-add-to-cart {
-  float: left;
-  width: 100%;
-  clear: both;
-  margin-top: 10px;
+  padding-right: 0;
+  margin-bottom: 10px;
 }
 .grid-add-to-cart .btn-grid-add-to-cart {
   width: 100%;

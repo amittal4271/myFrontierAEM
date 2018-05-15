@@ -148,400 +148,396 @@
                                    </div>
                               </div>
 
-                              <div id="product-grid">
+                              <div id="product-grid" class="match-height">
 
-                                   <div class="product-grid-row">
-                                        <div class="product-grid-item">
-                                             <span class="badge badge-sale">Sale</span>
-                                             <a href="#" class="grid-item-link">
-                                                  <span class="grid-image-holder">
-                                                       <img src="../frontierwholesales/images/search-result-item-1.jpg" alt="Product Name"/>
-                                                  </span>
-                                                  <span class="grid-item-number">
-                                                       Item # <span class="number">230965</span>
-                                                  </span>
-                                                  <span class="grid-product-name">
-                                                       Black Aerolatte Milk Frother with Stand 
-                                                  </span>
-                                                  <span class="grid-product-price">
-                                                       <span class="product-sale-price">$5.80</span> 
-                                                       <span class="product-now-price">Now $4.93</span>
-                                                  </span>
-                                             </a>
-                                             <div class="grid-add-to-cart">
-                                                  <button type="button" class="btn btn-light-green btn-grid-add-to-cart">Add to Cart</button>
+                                   <div class="product-grid-item">
+                                        <span class="badge badge-sale">Sale</span>
+                                        <a href="#" class="grid-item-link">
+                                             <span class="grid-image-holder">
+                                                  <img src="../frontierwholesales/images/search-result-item-1.jpg" alt="Product Name"/>
+                                             </span>
+                                             <span class="grid-item-number">
+                                                  Item # <span class="number">230965</span>
+                                             </span>
+                                             <span class="grid-product-name">
+                                                  Black Aerolatte Milk Frother with Stand 
+                                             </span>
+                                             <span class="grid-product-price">
+                                                  <span class="product-sale-price">$5.80</span> 
+                                                  <span class="product-now-price">Now $4.93</span>
+                                             </span>
+                                        </a>
+                                        <div class="grid-add-to-cart">
+                                             <!--
+                                             <div class="form-group grid-qty-holder">
+                                                  <input type="hidden" id="" name="" value="000000"/>
+                                                  <input class="form-control grid-qty-input" type="number" value="1"/>
                                              </div>
+                                             -->
+                                             <div class="qty-holder">
+                                                  <button type="button" class="decrease">
+                                                       <span class="decrease-minus">-</span>
+                                                       <span class="visuallyhidden">decrease</span>
+                                                  </button>
+                                                  <input type="text" min="1" max="99" maxlength="2" name="quantity" class="grid-product-qty-input" value="1">
+                                                  <button type="button" class="increase">
+                                                       <span class="increase-plus">+</span>
+                                                       <span class="visuallyhidden">increase</span>
+                                                  </button>
+                                             </div>
+                                             <button type="button" class="btn btn-light-green btn-grid-add-to-cart">Add to Cart</button>
                                         </div>
-
-                                        <div class="product-grid-item">
-                                             <a href="#" class="grid-item-link">
-                                                  <span class="grid-image-holder">
-                                                       <img src="../frontierwholesales/images/search-result-item-6.jpg" alt="Product Name"/>
-                                                  </span>
-                                                  <span class="grid-item-number">
-                                                       Item # <span class="number">232331</span>
-                                                  </span>
-                                                  <span class="grid-product-name">
-                                                       Equal Exchange Bright Day Brew Ground Coffee 12 oz.
-                                                  </span>
-                                                  <span class="grid-product-price">
-                                                       <span class="product-sale-price">$7.35</span> 
-                                                       <span class="product-now-price"> Now $5.88</span>
-                                                  </span>
-                                             </a>
-                                             <div class="grid-alert">
-                                                  <div class="alert alert-danger" role="alert"> 
-                                                       <span class="glyphicon glyphicon-exclamation-sign"></span>
-                                                       <strong>Restricted Shipping</strong>
-                                                  </div>
-                                             </div>
-                                             <div class="grid-add-to-cart">
-                                                  <button type="button" class="btn btn-light-green btn-grid-add-to-cart">Add to Cart</button>
-                                             </div>
-                                        </div>
-
-                                        <div class="every-two-divider"></div>
-
-                                        <div class="product-grid-item">
-                                             <a href="#" class="grid-item-link">
-                                                  <span class="grid-image-holder">
-                                                       <img src="../frontierwholesales/images/search-result-item-8.jpg" alt="Product Name"/>
-                                                  </span>
-                                                  <span class="grid-item-number">
-                                                       Item # <span class="number">232331</span>
-                                                  </span>
-                                                  <span class="grid-product-name">
-                                                       Equal Exchange Organic Breakfast Blend Decaf Whole Bean Coffee 5 lb. 
-                                                  </span>
-                                                  <span class="grid-product-price">
-                                                       <span class="product-sale-price normal-price">$55.35</span> 
-                                                  </span>
-                                             </a>
-
-                                             <div class="grid-add-to-cart">
-                                                  <button type="button" class="btn btn-light-green btn-grid-add-to-cart">Add to Cart</button>
-                                             </div>
-                                        </div>
-
-                                        <div class="product-grid-item">
-                                             <a href="#" class="grid-item-link">
-                                                  <span class="grid-image-holder">
-                                                       <img src="../frontierwholesales/images/search-result-item-2.jpg" alt="Product Name"/>
-                                                  </span>
-                                                  <span class="grid-item-number">
-                                                       Item # <span class="number">2579</span>
-                                                  </span>
-                                                  <span class="grid-product-name">
-                                                       Frontier Co-op Licorice Root, Cut & Sifted, Organic 1 lb 
-                                                  </span>
-                                                  <span class="grid-product-price">
-                                                       <span class="product-sale-price normal-price">$13.35</span> 
-                                                  </span>
-                                             </a>
-                                             <div class="grid-alert">
-                                                  <div class="alert alert-bulk" role="alert">
-                                                       <span class="glyphicon glyphicon-info-sign"></span>
-                                                       <strong>Buy 5 to save 5%:</strong>
-                                                  </div>
-                                             </div>
-                                             <div class="grid-add-to-cart">
-                                                  <button type="button" class="btn btn-light-green btn-grid-add-to-cart">Add to Cart</button>
-                                             </div>
-                                        </div>
-
-                                        <div class="every-two-divider"></div>
                                    </div>
 
-                                   <div class="product-grid-row">
-                                        <div class="product-grid-item">
-                                             <a href="#" class="grid-item-link">
-                                                  <span class="grid-image-holder">
-                                                       <img src="../frontierwholesales/images/search-result-item-3.jpg" alt="Product Name"/>
-                                                  </span>
-                                                  <span class="grid-item-number">
-                                                       Item # <span class="number">230965</span>
-                                                  </span>
-                                                  <span class="grid-product-name">
-                                                       Black Aerolatte Milk Frother with Stand 
-                                                  </span>
-                                                  <span class="grid-product-price">
-                                                       <span class="product-sale-price">$5.80</span> 
-                                                       <span class="product-now-price">Now $4.93</span>
-                                                  </span>
-                                             </a>
-                                             <div class="grid-add-to-cart">
-                                                  <button type="button" class="btn btn-light-green btn-grid-add-to-cart">Add to Cart</button>
+                                   <div class="product-grid-item">
+                                        <a href="#" class="grid-item-link">
+                                             <span class="grid-image-holder">
+                                                  <img src="../frontierwholesales/images/search-result-item-6.jpg" alt="Product Name"/>
+                                             </span>
+                                             <span class="grid-item-number">
+                                                  Item # <span class="number">232331</span>
+                                             </span>
+                                             <span class="grid-product-name">
+                                                  Equal Exchange Bright Day Brew Ground Coffee 12 oz.
+                                             </span>
+                                             <span class="grid-product-price">
+                                                  <span class="product-sale-price">$7.35</span> 
+                                                  <span class="product-now-price"> Now $5.88</span>
+                                             </span>
+                                        </a>
+                                        <div class="grid-alert">
+                                             <div class="alert alert-danger" role="alert"> 
+                                                  <span class="glyphicon glyphicon-exclamation-sign"></span>
+                                                  <strong>Restricted Shipping</strong>
                                              </div>
                                         </div>
-
-                                        <div class="product-grid-item">
-                                             <span class="badge badge-new">New</span>
-                                             <a href="#" class="grid-item-link">
-                                                  <span class="grid-image-holder">
-                                                       <img src="../frontierwholesales/images/search-result-item-4.jpg" alt="Product Name"/>
-                                                  </span>
-                                                  <span class="grid-item-number">
-                                                       Item # <span class="number">232331</span>
-                                                  </span>
-                                                  <span class="grid-product-name">
-                                                       Equal Exchange Bright Day Brew Ground Coffee 12 oz.
-                                                  </span>
-                                                  <span class="grid-product-price">
-                                                       <span class="product-sale-price">$7.35</span> 
-                                                       <span class="product-now-price"> Now $5.88</span>
-                                                  </span>
-                                             </a>
-                                             <div class="grid-add-to-cart">
-                                                  <button type="button" class="btn btn-light-green btn-grid-add-to-cart">Add to Cart</button>
-                                             </div>
+                                        <div class="grid-add-to-cart">
+                                             <button type="button" class="btn btn-light-green btn-grid-add-to-cart">Add to Cart</button>
                                         </div>
-
-                                        <div class="every-two-divider"></div>
-
-                                        <div class="product-grid-item">
-                                             <span class="badge badge-new">New</span>
-                                             <a href="#" class="grid-item-link">
-                                                  <span class="grid-image-holder">
-                                                       <img src="../frontierwholesales/images/search-result-item-5.jpg" alt="Product Name"/>
-                                                  </span>
-                                                  <span class="grid-item-number">
-                                                       Item # <span class="number">232331</span>
-                                                  </span>
-                                                  <span class="grid-product-name">
-                                                       Equal Exchange Organic Breakfast Blend Decaf Whole Bean Coffee 5 lb. 
-                                                  </span>
-                                                  <span class="grid-product-price">
-                                                       <span class="product-sale-price normal-price">$55.35</span> 
-                                                  </span>
-                                             </a>
-                                             <div class="grid-add-to-cart">
-                                                  <button type="button" class="btn btn-light-green btn-grid-add-to-cart">Add to Cart</button>
-                                             </div>
-                                        </div>
-
-                                        <div class="product-grid-item">
-                                             <a href="#" class="grid-item-link">
-                                                  <span class="grid-image-holder">
-                                                       <img src="../frontierwholesales/images/search-result-item-9.jpg" alt="Product Name"/>
-                                                  </span>
-                                                  <span class="grid-item-number">
-                                                       Item # <span class="number">2579</span>
-                                                  </span>
-                                                  <span class="grid-product-name">
-                                                       Frontier Co-op Licorice Root, Cut & Sifted, Organic 1 lb 
-                                                  </span>
-                                                  <span class="grid-product-price">
-                                                       <span class="product-sale-price normal-price">$13.35</span> 
-                                                  </span>
-                                             </a>
-                                             <div class="grid-alert">
-                                                  <div class="alert alert-bulk" role="alert">
-                                                       <span class="glyphicon glyphicon-info-sign"></span>
-                                                       <strong>Buy 5 to save 5%:</strong>
-                                                  </div>
-                                             </div>
-                                             <div class="grid-add-to-cart">
-                                                  <button type="button" class="btn btn-light-green btn-grid-add-to-cart">Add to Cart</button>
-                                             </div>
-                                        </div>
-
-                                        <div class="every-two-divider"></div>
                                    </div>
 
-                                   <div class="product-grid-row">
-                                        <div class="product-grid-item">
-                                             <a href="#" class="grid-item-link">
-                                                  <span class="grid-image-holder">
-                                                       <img src="../frontierwholesales/images/search-result-item-3.jpg" alt="Product Name"/>
-                                                  </span>
-                                                  <span class="grid-item-number">
-                                                       Item # <span class="number">230965</span>
-                                                  </span>
-                                                  <span class="grid-product-name">
-                                                       Black Aerolatte Milk Frother with Stand 
-                                                  </span>
-                                                  <span class="grid-product-price">
-                                                       <span class="product-sale-price">$5.80</span> 
-                                                       <span class="product-now-price">Now $4.93</span>
-                                                  </span>
-                                             </a>
-                                             <div class="grid-add-to-cart">
-                                                  <button type="button" class="btn btn-light-green btn-grid-add-to-cart">Add to Cart</button>
-                                             </div>
-                                        </div>
+                                   <div class="product-grid-item">
+                                        <a href="#" class="grid-item-link">
+                                             <span class="grid-image-holder">
+                                                  <img src="../frontierwholesales/images/search-result-item-8.jpg" alt="Product Name"/>
+                                             </span>
+                                             <span class="grid-item-number">
+                                                  Item # <span class="number">232331</span>
+                                             </span>
+                                             <span class="grid-product-name">
+                                                  Equal Exchange Organic Breakfast Blend Decaf Whole Bean Coffee 5 lb. 
+                                             </span>
+                                             <span class="grid-product-price">
+                                                  <span class="product-sale-price normal-price">$55.35</span> 
+                                             </span>
+                                        </a>
 
-                                        <div class="product-grid-item">
-                                             <a href="#" class="grid-item-link">
-                                                  <span class="grid-image-holder">
-                                                       <img src="../frontierwholesales/images/search-result-item-4.jpg" alt="Product Name"/>
-                                                  </span>
-                                                  <span class="grid-item-number">
-                                                       Item # <span class="number">232331</span>
-                                                  </span>
-                                                  <span class="grid-product-name">
-                                                       Equal Exchange Bright Day Brew Ground Coffee 12 oz.
-                                                  </span>
-                                                  <span class="grid-product-price">
-                                                       <span class="product-sale-price">$7.35</span> 
-                                                       <span class="product-now-price"> Now $5.88</span>
-                                                  </span>
-                                             </a>
-                                             <div class="grid-add-to-cart">
-                                                  <button type="button" class="btn btn-light-green btn-grid-add-to-cart">Add to Cart</button>
-                                             </div>
+                                        <div class="grid-add-to-cart">
+                                             <button type="button" class="btn btn-light-green btn-grid-add-to-cart">Add to Cart</button>
                                         </div>
-
-                                        <div class="every-two-divider"></div>
-
-                                        <div class="product-grid-item">
-                                             <a href="#" class="grid-item-link">
-                                                  <span class="grid-image-holder">
-                                                       <img src="../frontierwholesales/images/search-result-item-5.jpg" alt="Product Name"/>
-                                                  </span>
-                                                  <span class="grid-item-number">
-                                                       Item # <span class="number">232331</span>
-                                                  </span>
-                                                  <span class="grid-product-name">
-                                                       Equal Exchange Organic Breakfast Blend Decaf Whole Bean Coffee 5 lb. 
-                                                  </span>
-                                                  <span class="grid-product-price">
-                                                       <span class="product-sale-price normal-price">$55.35</span> 
-                                                  </span>
-                                             </a>
-                                             <div class="grid-add-to-cart">
-                                                  <button type="button" class="btn btn-light-green btn-grid-add-to-cart">Add to Cart</button>
-                                             </div>
-                                        </div>
-
-                                        <div class="product-grid-item">
-                                             <a href="#" class="grid-item-link">
-                                                  <span class="grid-image-holder">
-                                                       <img src="../frontierwholesales/images/search-result-item-9.jpg" alt="Product Name"/>
-                                                  </span>
-                                                  <span class="grid-item-number">
-                                                       Item # <span class="number">2579</span>
-                                                  </span>
-                                                  <span class="grid-product-name">
-                                                       Frontier Co-op Licorice Root, Cut & Sifted, Organic 1 lb 
-                                                  </span>
-                                                  <span class="grid-product-price">
-                                                       <span class="product-sale-price normal-price">$13.35</span> 
-                                                  </span>
-                                             </a>
-                                             <div class="grid-alert">
-                                                  <div class="alert alert-bulk" role="alert">
-                                                       <span class="glyphicon glyphicon-info-sign"></span>
-                                                       <strong>Buy 5 to save 5%:</strong>
-                                                  </div>
-                                             </div>
-                                             <div class="grid-add-to-cart">
-                                                  <button type="button" class="btn btn-light-green btn-grid-add-to-cart">Add to Cart</button>
-                                             </div>
-                                        </div>
-                                        
-                                        <div class="every-two-divider"></div>
                                    </div>
 
-                                   <div class="product-grid-row">
-                                        <div class="product-grid-item">
-                                             <span class="badge badge-sale">Sale</span>
-                                             <a href="#" class="grid-item-link">
-                                                  <span class="grid-image-holder">
-                                                       <img src="../frontierwholesales/images/search-result-item-1.jpg" alt="Product Name"/>
-                                                  </span>
-                                                  <span class="grid-item-number">
-                                                       Item # <span class="number">230965</span>
-                                                  </span>
-                                                  <span class="grid-product-name">
-                                                       Black Aerolatte Milk Frother with Stand 
-                                                  </span>
-                                                  <span class="grid-product-price">
-                                                       <span class="product-sale-price">$5.80</span> 
-                                                       <span class="product-now-price">Now $4.93</span>
-                                                  </span>
-                                             </a>
-                                             <div class="grid-add-to-cart">
-                                                  <button type="button" class="btn btn-light-green btn-grid-add-to-cart">Add to Cart</button>
+                                   <div class="product-grid-item">
+                                        <a href="#" class="grid-item-link">
+                                             <span class="grid-image-holder">
+                                                  <img src="../frontierwholesales/images/search-result-item-2.jpg" alt="Product Name"/>
+                                             </span>
+                                             <span class="grid-item-number">
+                                                  Item # <span class="number">2579</span>
+                                             </span>
+                                             <span class="grid-product-name">
+                                                  Frontier Co-op Licorice Root, Cut & Sifted, Organic 1 lb 
+                                             </span>
+                                             <span class="grid-product-price">
+                                                  <span class="product-sale-price normal-price">$13.35</span> 
+                                             </span>
+                                        </a>
+                                        <div class="grid-alert">
+                                             <div class="alert alert-bulk" role="alert">
+                                                  <span class="glyphicon glyphicon-info-sign"></span>
+                                                  <strong>Buy 5 to save 5%:</strong>
                                              </div>
                                         </div>
+                                        <div class="grid-add-to-cart">
+                                             <button type="button" class="btn btn-light-green btn-grid-add-to-cart">Add to Cart</button>
+                                        </div>
+                                   </div>
 
-                                        <div class="product-grid-item">
-                                             <a href="#" class="grid-item-link">
-                                                  <span class="grid-image-holder">
-                                                       <img src="../frontierwholesales/images/search-result-item-6.jpg" alt="Product Name"/>
-                                                  </span>
-                                                  <span class="grid-item-number">
-                                                       Item # <span class="number">232331</span>
-                                                  </span>
-                                                  <span class="grid-product-name">
-                                                       Equal Exchange Bright Day Brew Ground Coffee 12 oz.
-                                                  </span>
-                                                  <span class="grid-product-price">
-                                                       <span class="product-sale-price">$7.35</span> 
-                                                       <span class="product-now-price"> Now $5.88</span>
-                                                  </span>
-                                             </a>
-                                             <div class="grid-alert">
-                                                  <div class="alert alert-danger" role="alert"> 
-                                                       <span class="glyphicon glyphicon-exclamation-sign"></span>
-                                                       <strong>Restricted Shipping</strong>
-                                                  </div>
-                                             </div>
-                                             <div class="grid-add-to-cart">
-                                                  <button type="button" class="btn btn-light-green btn-grid-add-to-cart">Add to Cart</button>
+                                   <div class="product-grid-item">
+                                        <a href="#" class="grid-item-link">
+                                             <span class="grid-image-holder">
+                                                  <img src="../frontierwholesales/images/search-result-item-3.jpg" alt="Product Name"/>
+                                             </span>
+                                             <span class="grid-item-number">
+                                                  Item # <span class="number">230965</span>
+                                             </span>
+                                             <span class="grid-product-name">
+                                                  Black Aerolatte Milk Frother with Stand 
+                                             </span>
+                                             <span class="grid-product-price">
+                                                  <span class="product-sale-price">$5.80</span> 
+                                                  <span class="product-now-price">Now $4.93</span>
+                                             </span>
+                                        </a>
+                                        <div class="grid-add-to-cart">
+                                             <button type="button" class="btn btn-light-green btn-grid-add-to-cart">Add to Cart</button>
+                                        </div>
+                                   </div>
+
+                                   <div class="product-grid-item">
+                                        <span class="badge badge-new">New</span>
+                                        <a href="#" class="grid-item-link">
+                                             <span class="grid-image-holder">
+                                                  <img src="../frontierwholesales/images/search-result-item-4.jpg" alt="Product Name"/>
+                                             </span>
+                                             <span class="grid-item-number">
+                                                  Item # <span class="number">232331</span>
+                                             </span>
+                                             <span class="grid-product-name">
+                                                  Equal Exchange Bright Day Brew Ground Coffee 12 oz.
+                                             </span>
+                                             <span class="grid-product-price">
+                                                  <span class="product-sale-price">$7.35</span> 
+                                                  <span class="product-now-price"> Now $5.88</span>
+                                             </span>
+                                        </a>
+                                        <div class="grid-add-to-cart">
+                                             <button type="button" class="btn btn-light-green btn-grid-add-to-cart">Add to Cart</button>
+                                        </div>
+                                   </div>
+
+
+
+                                   <div class="product-grid-item">
+                                        <span class="badge badge-new">New</span>
+                                        <a href="#" class="grid-item-link">
+                                             <span class="grid-image-holder">
+                                                  <img src="../frontierwholesales/images/search-result-item-5.jpg" alt="Product Name"/>
+                                             </span>
+                                             <span class="grid-item-number">
+                                                  Item # <span class="number">232331</span>
+                                             </span>
+                                             <span class="grid-product-name">
+                                                  Equal Exchange Organic Breakfast Blend Decaf Whole Bean Coffee 5 lb. 
+                                             </span>
+                                             <span class="grid-product-price">
+                                                  <span class="product-sale-price normal-price">$55.35</span> 
+                                             </span>
+                                        </a>
+                                        <div class="grid-add-to-cart">
+                                             <button type="button" class="btn btn-light-green btn-grid-add-to-cart">Add to Cart</button>
+                                        </div>
+                                   </div>
+
+                                   <div class="product-grid-item">
+                                        <a href="#" class="grid-item-link">
+                                             <span class="grid-image-holder">
+                                                  <img src="../frontierwholesales/images/search-result-item-9.jpg" alt="Product Name"/>
+                                             </span>
+                                             <span class="grid-item-number">
+                                                  Item # <span class="number">2579</span>
+                                             </span>
+                                             <span class="grid-product-name">
+                                                  Frontier Co-op Licorice Root, Cut & Sifted, Organic 1 lb 
+                                             </span>
+                                             <span class="grid-product-price">
+                                                  <span class="product-sale-price normal-price">$13.35</span> 
+                                             </span>
+                                        </a>
+                                        <div class="grid-alert">
+                                             <div class="alert alert-bulk" role="alert">
+                                                  <span class="glyphicon glyphicon-info-sign"></span>
+                                                  <strong>Buy 5 to save 5%:</strong>
                                              </div>
                                         </div>
+                                        <div class="grid-add-to-cart">
+                                             <button type="button" class="btn btn-light-green btn-grid-add-to-cart">Add to Cart</button>
+                                        </div>
+                                   </div>
 
-                                        <div class="every-two-divider"></div>
 
-                                        <div class="product-grid-item">
-                                             <a href="#" class="grid-item-link">
-                                                  <span class="grid-image-holder">
-                                                       <img src="../frontierwholesales/images/search-result-item-8.jpg" alt="Product Name"/>
-                                                  </span>
-                                                  <span class="grid-item-number">
-                                                       Item # <span class="number">232331</span>
-                                                  </span>
-                                                  <span class="grid-product-name">
-                                                       Equal Exchange Organic Breakfast Blend Decaf Whole Bean Coffee 5 lb. 
-                                                  </span>
-                                                  <span class="grid-product-price">
-                                                       <span class="product-sale-price normal-price">$55.35</span> 
-                                                  </span>
-                                             </a>
+                                   <div class="product-grid-item">
+                                        <a href="#" class="grid-item-link">
+                                             <span class="grid-image-holder">
+                                                  <img src="../frontierwholesales/images/search-result-item-3.jpg" alt="Product Name"/>
+                                             </span>
+                                             <span class="grid-item-number">
+                                                  Item # <span class="number">230965</span>
+                                             </span>
+                                             <span class="grid-product-name">
+                                                  Black Aerolatte Milk Frother with Stand 
+                                             </span>
+                                             <span class="grid-product-price">
+                                                  <span class="product-sale-price">$5.80</span> 
+                                                  <span class="product-now-price">Now $4.93</span>
+                                             </span>
+                                        </a>
+                                        <div class="grid-add-to-cart">
+                                             <button type="button" class="btn btn-light-green btn-grid-add-to-cart">Add to Cart</button>
+                                        </div>
+                                   </div>
 
-                                             <div class="grid-add-to-cart">
-                                                  <button type="button" class="btn btn-light-green btn-grid-add-to-cart">Add to Cart</button>
+                                   <div class="product-grid-item">
+                                        <a href="#" class="grid-item-link">
+                                             <span class="grid-image-holder">
+                                                  <img src="../frontierwholesales/images/search-result-item-4.jpg" alt="Product Name"/>
+                                             </span>
+                                             <span class="grid-item-number">
+                                                  Item # <span class="number">232331</span>
+                                             </span>
+                                             <span class="grid-product-name">
+                                                  Equal Exchange Bright Day Brew Ground Coffee 12 oz.
+                                             </span>
+                                             <span class="grid-product-price">
+                                                  <span class="product-sale-price">$7.35</span> 
+                                                  <span class="product-now-price"> Now $5.88</span>
+                                             </span>
+                                        </a>
+                                        <div class="grid-add-to-cart">
+                                             <button type="button" class="btn btn-light-green btn-grid-add-to-cart">Add to Cart</button>
+                                        </div>
+                                   </div>
+
+                                   <div class="product-grid-item">
+                                        <a href="#" class="grid-item-link">
+                                             <span class="grid-image-holder">
+                                                  <img src="../frontierwholesales/images/search-result-item-5.jpg" alt="Product Name"/>
+                                             </span>
+                                             <span class="grid-item-number">
+                                                  Item # <span class="number">232331</span>
+                                             </span>
+                                             <span class="grid-product-name">
+                                                  Equal Exchange Organic Breakfast Blend Decaf Whole Bean Coffee 5 lb. 
+                                             </span>
+                                             <span class="grid-product-price">
+                                                  <span class="product-sale-price normal-price">$55.35</span> 
+                                             </span>
+                                        </a>
+                                        <div class="grid-add-to-cart">
+                                             <button type="button" class="btn btn-light-green btn-grid-add-to-cart">Add to Cart</button>
+                                        </div>
+                                   </div>
+
+                                   <div class="product-grid-item">
+                                        <a href="#" class="grid-item-link">
+                                             <span class="grid-image-holder">
+                                                  <img src="../frontierwholesales/images/search-result-item-9.jpg" alt="Product Name"/>
+                                             </span>
+                                             <span class="grid-item-number">
+                                                  Item # <span class="number">2579</span>
+                                             </span>
+                                             <span class="grid-product-name">
+                                                  Frontier Co-op Licorice Root, Cut & Sifted, Organic 1 lb 
+                                             </span>
+                                             <span class="grid-product-price">
+                                                  <span class="product-sale-price normal-price">$13.35</span> 
+                                             </span>
+                                        </a>
+                                        <div class="grid-alert">
+                                             <div class="alert alert-bulk" role="alert">
+                                                  <span class="glyphicon glyphicon-info-sign"></span>
+                                                  <strong>Buy 5 to save 5%:</strong>
                                              </div>
                                         </div>
+                                        <div class="grid-add-to-cart">
+                                             <button type="button" class="btn btn-light-green btn-grid-add-to-cart">Add to Cart</button>
+                                        </div>
+                                   </div>
 
-                                        <div class="product-grid-item">
-                                             <a href="#" class="grid-item-link">
-                                                  <span class="grid-image-holder">
-                                                       <img src="../frontierwholesales/images/search-result-item-2.jpg" alt="Product Name"/>
-                                                  </span>
-                                                  <span class="grid-item-number">
-                                                       Item # <span class="number">2579</span>
-                                                  </span>
-                                                  <span class="grid-product-name">
-                                                       Frontier Co-op Licorice Root, Cut & Sifted, Organic 1 lb 
-                                                  </span>
-                                                  <span class="grid-product-price">
-                                                       <span class="product-sale-price normal-price">$13.35</span> 
-                                                  </span>
-                                             </a>
-                                             <div class="grid-alert">
-                                                  <div class="alert alert-bulk" role="alert">
-                                                       <span class="glyphicon glyphicon-info-sign"></span>
-                                                       <strong>Buy 5 to save 5%:</strong>
-                                                  </div>
-                                             </div>
-                                             <div class="grid-add-to-cart">
-                                                  <button type="button" class="btn btn-light-green btn-grid-add-to-cart">Add to Cart</button>
+                                   <div class="product-grid-item">
+                                        <span class="badge badge-sale">Sale</span>
+                                        <a href="#" class="grid-item-link">
+                                             <span class="grid-image-holder">
+                                                  <img src="../frontierwholesales/images/search-result-item-1.jpg" alt="Product Name"/>
+                                             </span>
+                                             <span class="grid-item-number">
+                                                  Item # <span class="number">230965</span>
+                                             </span>
+                                             <span class="grid-product-name">
+                                                  Black Aerolatte Milk Frother with Stand 
+                                             </span>
+                                             <span class="grid-product-price">
+                                                  <span class="product-sale-price">$5.80</span> 
+                                                  <span class="product-now-price">Now $4.93</span>
+                                             </span>
+                                        </a>
+                                        <div class="grid-add-to-cart">
+                                             <button type="button" class="btn btn-light-green btn-grid-add-to-cart">Add to Cart</button>
+                                        </div>
+                                   </div>
+
+                                   <div class="product-grid-item">
+                                        <a href="#" class="grid-item-link">
+                                             <span class="grid-image-holder">
+                                                  <img src="../frontierwholesales/images/search-result-item-6.jpg" alt="Product Name"/>
+                                             </span>
+                                             <span class="grid-item-number">
+                                                  Item # <span class="number">232331</span>
+                                             </span>
+                                             <span class="grid-product-name">
+                                                  Equal Exchange Bright Day Brew Ground Coffee 12 oz.
+                                             </span>
+                                             <span class="grid-product-price">
+                                                  <span class="product-sale-price">$7.35</span> 
+                                                  <span class="product-now-price"> Now $5.88</span>
+                                             </span>
+                                        </a>
+                                        <div class="grid-alert">
+                                             <div class="alert alert-danger" role="alert"> 
+                                                  <span class="glyphicon glyphicon-exclamation-sign"></span>
+                                                  <strong>Restricted Shipping</strong>
                                              </div>
                                         </div>
+                                        <div class="grid-add-to-cart">
+                                             <button type="button" class="btn btn-light-green btn-grid-add-to-cart">Add to Cart</button>
+                                        </div>
+                                   </div>
 
-                                        <div class="every-two-divider"></div>
+                                   <div class="product-grid-item">
+                                        <a href="#" class="grid-item-link">
+                                             <span class="grid-image-holder">
+                                                  <img src="../frontierwholesales/images/search-result-item-8.jpg" alt="Product Name"/>
+                                             </span>
+                                             <span class="grid-item-number">
+                                                  Item # <span class="number">232331</span>
+                                             </span>
+                                             <span class="grid-product-name">
+                                                  Equal Exchange Organic Breakfast Blend Decaf Whole Bean Coffee 5 lb. 
+                                             </span>
+                                             <span class="grid-product-price">
+                                                  <span class="product-sale-price normal-price">$55.35</span> 
+                                             </span>
+                                        </a>
+
+                                        <div class="grid-add-to-cart">
+                                             <button type="button" class="btn btn-light-green btn-grid-add-to-cart">Add to Cart</button>
+                                        </div>
+                                   </div>
+
+                                   <div class="product-grid-item">
+                                        <a href="#" class="grid-item-link">
+                                             <span class="grid-image-holder">
+                                                  <img src="../frontierwholesales/images/search-result-item-2.jpg" alt="Product Name"/>
+                                             </span>
+                                             <span class="grid-item-number">
+                                                  Item # <span class="number">2579</span>
+                                             </span>
+                                             <span class="grid-product-name">
+                                                  Frontier Co-op Licorice Root, Cut & Sifted, Organic 1 lb 
+                                             </span>
+                                             <span class="grid-product-price">
+                                                  <span class="product-sale-price normal-price">$13.35</span> 
+                                             </span>
+                                        </a>
+                                        <div class="grid-alert">
+                                             <div class="alert alert-bulk" role="alert">
+                                                  <span class="glyphicon glyphicon-info-sign"></span>
+                                                  <strong>Buy 5 to save 5%:</strong>
+                                             </div>
+                                        </div>
+                                        <div class="grid-add-to-cart">
+                                             <button type="button" class="btn btn-light-green btn-grid-add-to-cart">Add to Cart</button>
+                                        </div>
                                    </div>
 
                               </div>
