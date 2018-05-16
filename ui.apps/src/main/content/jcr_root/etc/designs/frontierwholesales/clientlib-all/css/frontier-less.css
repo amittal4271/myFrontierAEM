@@ -3488,6 +3488,7 @@ tr.order-details-table-section-row td.inner-table-td-holder {
 }
 .special-section-link {
   /*float: left;*/
+  display: block;    
   width: 100%;
   background-image: url('../../../frontierwholesales/images/bg-home-items.c9948a3ed034.png');
   background-position: bottom center;
@@ -5900,7 +5901,7 @@ legend.each-form-title .form-title-information a {
 }
 .each-left-right-section,
 .each-standard-section {
-  float: left;
+/*float: left;*/
   width: 100%;
 }
 .each-left-right-section.bg-light-section,

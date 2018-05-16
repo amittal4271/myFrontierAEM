@@ -17,58 +17,6 @@
      data-sly-use.emptyRenderer="emptytextimage.html"
      data-sly-call="${emptyRenderer.emptyTextImageTemplate @ textImage=textImage}" />
 
-
-
-    <div class="each-special-section" data-sly-test="${properties.alignment == 'top'}">
-			<a href="${properties.linkTo @ extension='html' || '#'}" class="special-section-link">
-				<div class="special-image-holder"
-                data-sly-test="${textImage.hasContent}"
-                data-sly-resource="${'image' @ resourceType='wcm/foundation/components/image',  wcmmode='disabled'}"
-                >
-					<img
-            		data-sly-use.textImage="textimage.js"
-                    src="${textImage.src}"
-                    alt="${textImage.alt}"/>
-				</div>
-				<div class="special-info"
-                data-sly-test="${textImage.hasContent}"
-                >
-                    <h3 data-sly-element=${properties.type} class="special-heading">${properties.brandTitle}</h3>
-					<span class="special-text">                   
-						${properties.copyText}
-					</span>
-					<div class="special-button-holder">
-						<span class="btn btn-white-green btn-special-section">${properties.label}</span>
-					</div>
-				</div>
-			</a>
-		</div>
-
-<!--/*
-<div class="blog-section" data-sly-test="${properties.alignment == 'left' || properties.alignment == 'right'}"
-data-sly-test.txtAlign="${properties.alignment == 'left' ? 'right' : 'left'}"
->
-			<a href="${properties.linkTo @ extension='html' || '#'}">
-				<div class="blog-info pull-${txtAlign}">
-					<h4 data-sly-element=${properties.type} class="blog-header">${properties.brandTitle}</h4>
-					<p class="blog-text">${properties.copyText}</p>
-					<div class="special-button-holder">
-						<span class="btn btn-white-green btn-special-section">${properties.label}</span>
-					</div>
-				</div>
-				<div class="blog-image-holder"
-				data-sly-test="${textImage.hasContent}"
-                data-sly-resource="${'image' @ resourceType='wcm/foundation/components/image', wcmmode='disabled'}"
-                >
-					<img
-            		data-sly-use.textImage="textimage.js"
-                    src="${textImage.src}"
-                    alt="${textImage.alt}"/>
-				</div>
-			</a>
-</div> 
-*/-->
-
 <div class="each-left-right-section bg-light-section" data-sly-test="${properties.alignment == 'left'}">
                          <div class="container clearfix">
                               <figure class="each-figure-section">
