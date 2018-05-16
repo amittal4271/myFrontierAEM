@@ -35,6 +35,7 @@
                          <li><a href="./account-pending-orders.php">Account Pending Orders</a></li>
 
                          <li class="spacer"><a href="./help-faq.php">Help - FAQ</a></li>
+                         <li><a href="./glossary.php">Content - Glossary</a></li>
                          <li><a href="./content-page-shipping.php">Content - Shipping Policy</a></li>
                          <li><a href="./content-page-our-history.php">Content - Our History</a></li>
                          <li><a href="./content-page-about-frontier.php">Content - About Frontier</a></li>

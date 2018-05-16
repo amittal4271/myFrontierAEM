@@ -3489,6 +3489,7 @@ tr.order-details-table-section-row td.inner-table-td-holder {
 .special-section-link {
   /*float: left;*/
   width: 100%;
+  display: block;
   background-image: url('../../../frontierwholesales/images/bg-home-items.c9948a3ed034.png');
   background-position: bottom center;
   background-repeat: no-repeat;
@@ -5628,6 +5629,35 @@ legend.each-form-title .form-title-information a {
   margin: -30px 0 0 0;
   padding: 0;
   font-family: 'Open Sans Condensed', sans-serif;
+}
+.content-page-glossary-header {
+  float: left;
+  width: 100%;
+  clear: both;
+  margin: 0 0 30px 0;
+}
+#glossary-filter-list {
+  list-style: none;
+  text-align: center;
+  display: block;
+  margin: 10px 0;
+  padding: 0;
+}
+#glossary-filter-list li {
+  display: inline-block;
+  text-align: center;
+  margin: 0 5px;
+}
+#glossary-filter-list li a {
+  color: #a09892;
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 0 5px;
+}
+#glossary-filter-list li a:hover,
+#glossary-filter-list li a:focus {
+  color: #8bba4a;
 }
 .content-page-information {
   float: left;

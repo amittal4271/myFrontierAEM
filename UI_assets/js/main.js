@@ -145,6 +145,14 @@ $(document).ready(function() {
 
 	//console.log('main.js doc ready');
 
+	$(document).on( "click", "#glossary-filter-list li a", function(e) {
+		e.preventDefault();
+		var $this = $(this);
+		var $dataScrollToId = $this.data('scrolltoid');
+		var $el = $('#'+$dataScrollToId);
+		scrollToElement($el);
+	});
+
 	
 	$(document).on( "click", "#test-ajax-button", function(e) {
 		var $this = $(this);
