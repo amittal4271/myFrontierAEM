@@ -3977,7 +3977,7 @@ tr.order-details-table-section-row td.inner-table-td-holder {
   color: #4d4a48;
   display: inline-block;
   font-family: 'Open Sans', sans-serif;
-  font-size: 22px;
+  font-size: 18px;
   height: 44px;
   padding: 0;
   text-align: center;
@@ -6930,12 +6930,6 @@ table.table-order-summary .discounts {
   width: 100%;
   border-radius: 6px;
   border: 1px solid #ececec;
-}
-@media screen and (min-width: 768px) {
-  .shop-brand-top-three-link img.top-three-image {
-    width: 70%;
-    margin-left: 15%;
-  }
 }
 .row-each-brand-filter {
   background: #fcfcfc;

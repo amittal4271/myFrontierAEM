@@ -168,19 +168,13 @@
                                              </span>
                                         </a>
                                         <div class="grid-add-to-cart">
-                                             <!--
-                                             <div class="form-group grid-qty-holder">
-                                                  <input type="hidden" id="" name="" value="000000"/>
-                                                  <input class="form-control grid-qty-input" type="number" value="1"/>
-                                             </div>
-                                             -->
                                              <div class="qty-holder">
-                                                  <button type="button" class="decrease">
+                                                  <button type="button" class="decrease qty-button qty-down">
                                                        <span class="decrease-minus">-</span>
                                                        <span class="visuallyhidden">decrease</span>
                                                   </button>
-                                                  <input type="text" min="1" max="99" maxlength="2" name="quantity" class="grid-product-qty-input" value="1">
-                                                  <button type="button" class="increase">
+                                                  <input type="text" min="1" max="99" maxlength="2" name="quantity" class="grid-product-qty-input qty-input-field" value="1">
+                                                  <button type="button" class="increase qty-button qty-up">
                                                        <span class="increase-plus">+</span>
                                                        <span class="visuallyhidden">increase</span>
                                                   </button>
@@ -212,6 +206,17 @@
                                              </div>
                                         </div>
                                         <div class="grid-add-to-cart">
+                                             <div class="qty-holder">
+                                                  <button type="button" class="decrease qty-button qty-down">
+                                                       <span class="decrease-minus">-</span>
+                                                       <span class="visuallyhidden">decrease</span>
+                                                  </button>
+                                                  <input type="text" min="1" max="99" maxlength="2" name="quantity" class="grid-product-qty-input qty-input-field" value="1">
+                                                  <button type="button" class="increase qty-button qty-up">
+                                                       <span class="increase-plus">+</span>
+                                                       <span class="visuallyhidden">increase</span>
+                                                  </button>
+                                             </div>
                                              <button type="button" class="btn btn-light-green btn-grid-add-to-cart">Add to Cart</button>
                                         </div>
                                    </div>
@@ -233,6 +238,17 @@
                                         </a>
 
                                         <div class="grid-add-to-cart">
+                                             <div class="qty-holder">
+                                                  <button type="button" class="decrease qty-button qty-down">
+                                                       <span class="decrease-minus">-</span>
+                                                       <span class="visuallyhidden">decrease</span>
+                                                  </button>
+                                                  <input type="text" min="1" max="99" maxlength="2" name="quantity" class="grid-product-qty-input qty-input-field" value="1">
+                                                  <button type="button" class="increase qty-button qty-up">
+                                                       <span class="increase-plus">+</span>
+                                                       <span class="visuallyhidden">increase</span>
+                                                  </button>
+                                             </div>
                                              <button type="button" class="btn btn-light-green btn-grid-add-to-cart">Add to Cart</button>
                                         </div>
                                    </div>
@@ -259,6 +275,17 @@
                                              </div>
                                         </div>
                                         <div class="grid-add-to-cart">
+                                             <div class="qty-holder">
+                                                  <button type="button" class="decrease qty-button qty-down">
+                                                       <span class="decrease-minus">-</span>
+                                                       <span class="visuallyhidden">decrease</span>
+                                                  </button>
+                                                  <input type="text" min="1" max="99" maxlength="2" name="quantity" class="grid-product-qty-input qty-input-field" value="1">
+                                                  <button type="button" class="increase qty-button qty-up">
+                                                       <span class="increase-plus">+</span>
+                                                       <span class="visuallyhidden">increase</span>
+                                                  </button>
+                                             </div>
                                              <button type="button" class="btn btn-light-green btn-grid-add-to-cart">Add to Cart</button>
                                         </div>
                                    </div>
@@ -280,6 +307,17 @@
                                              </span>
                                         </a>
                                         <div class="grid-add-to-cart">
+                                             <div class="qty-holder">
+                                                  <button type="button" class="decrease qty-button qty-down">
+                                                       <span class="decrease-minus">-</span>
+                                                       <span class="visuallyhidden">decrease</span>
+                                                  </button>
+                                                  <input type="text" min="1" max="99" maxlength="2" name="quantity" class="grid-product-qty-input qty-input-field" value="1">
+                                                  <button type="button" class="increase qty-button qty-up">
+                                                       <span class="increase-plus">+</span>
+                                                       <span class="visuallyhidden">increase</span>
+                                                  </button>
+                                             </div>
                                              <button type="button" class="btn btn-light-green btn-grid-add-to-cart">Add to Cart</button>
                                         </div>
                                    </div>
@@ -302,6 +340,17 @@
                                              </span>
                                         </a>
                                         <div class="grid-add-to-cart">
+                                             <div class="qty-holder">
+                                                  <button type="button" class="decrease qty-button qty-down">
+                                                       <span class="decrease-minus">-</span>
+                                                       <span class="visuallyhidden">decrease</span>
+                                                  </button>
+                                                  <input type="text" min="1" max="99" maxlength="2" name="quantity" class="grid-product-qty-input qty-input-field" value="1">
+                                                  <button type="button" class="increase qty-button qty-up">
+                                                       <span class="increase-plus">+</span>
+                                                       <span class="visuallyhidden">increase</span>
+                                                  </button>
+                                             </div>
                                              <button type="button" class="btn btn-light-green btn-grid-add-to-cart">Add to Cart</button>
                                         </div>
                                    </div>
@@ -325,6 +374,17 @@
                                              </span>
                                         </a>
                                         <div class="grid-add-to-cart">
+                                             <div class="qty-holder">
+                                                  <button type="button" class="decrease qty-button qty-down">
+                                                       <span class="decrease-minus">-</span>
+                                                       <span class="visuallyhidden">decrease</span>
+                                                  </button>
+                                                  <input type="text" min="1" max="99" maxlength="2" name="quantity" class="grid-product-qty-input qty-input-field" value="1">
+                                                  <button type="button" class="increase qty-button qty-up">
+                                                       <span class="increase-plus">+</span>
+                                                       <span class="visuallyhidden">increase</span>
+                                                  </button>
+                                             </div>
                                              <button type="button" class="btn btn-light-green btn-grid-add-to-cart">Add to Cart</button>
                                         </div>
                                    </div>
@@ -351,6 +411,17 @@
                                              </div>
                                         </div>
                                         <div class="grid-add-to-cart">
+                                             <div class="qty-holder">
+                                                  <button type="button" class="decrease qty-button qty-down">
+                                                       <span class="decrease-minus">-</span>
+                                                       <span class="visuallyhidden">decrease</span>
+                                                  </button>
+                                                  <input type="text" min="1" max="99" maxlength="2" name="quantity" class="grid-product-qty-input qty-input-field" value="1">
+                                                  <button type="button" class="increase qty-button qty-up">
+                                                       <span class="increase-plus">+</span>
+                                                       <span class="visuallyhidden">increase</span>
+                                                  </button>
+                                             </div>
                                              <button type="button" class="btn btn-light-green btn-grid-add-to-cart">Add to Cart</button>
                                         </div>
                                    </div>
@@ -373,6 +444,17 @@
                                              </span>
                                         </a>
                                         <div class="grid-add-to-cart">
+                                             <div class="qty-holder">
+                                                  <button type="button" class="decrease qty-button qty-down">
+                                                       <span class="decrease-minus">-</span>
+                                                       <span class="visuallyhidden">decrease</span>
+                                                  </button>
+                                                  <input type="text" min="1" max="99" maxlength="2" name="quantity" class="grid-product-qty-input qty-input-field" value="1">
+                                                  <button type="button" class="increase qty-button qty-up">
+                                                       <span class="increase-plus">+</span>
+                                                       <span class="visuallyhidden">increase</span>
+                                                  </button>
+                                             </div>
                                              <button type="button" class="btn btn-light-green btn-grid-add-to-cart">Add to Cart</button>
                                         </div>
                                    </div>
@@ -394,6 +476,17 @@
                                              </span>
                                         </a>
                                         <div class="grid-add-to-cart">
+                                             <div class="qty-holder">
+                                                  <button type="button" class="decrease qty-button qty-down">
+                                                       <span class="decrease-minus">-</span>
+                                                       <span class="visuallyhidden">decrease</span>
+                                                  </button>
+                                                  <input type="text" min="1" max="99" maxlength="2" name="quantity" class="grid-product-qty-input qty-input-field" value="1">
+                                                  <button type="button" class="increase qty-button qty-up">
+                                                       <span class="increase-plus">+</span>
+                                                       <span class="visuallyhidden">increase</span>
+                                                  </button>
+                                             </div>
                                              <button type="button" class="btn btn-light-green btn-grid-add-to-cart">Add to Cart</button>
                                         </div>
                                    </div>
@@ -414,6 +507,17 @@
                                              </span>
                                         </a>
                                         <div class="grid-add-to-cart">
+                                             <div class="qty-holder">
+                                                  <button type="button" class="decrease qty-button qty-down">
+                                                       <span class="decrease-minus">-</span>
+                                                       <span class="visuallyhidden">decrease</span>
+                                                  </button>
+                                                  <input type="text" min="1" max="99" maxlength="2" name="quantity" class="grid-product-qty-input qty-input-field" value="1">
+                                                  <button type="button" class="increase qty-button qty-up">
+                                                       <span class="increase-plus">+</span>
+                                                       <span class="visuallyhidden">increase</span>
+                                                  </button>
+                                             </div>
                                              <button type="button" class="btn btn-light-green btn-grid-add-to-cart">Add to Cart</button>
                                         </div>
                                    </div>
@@ -440,6 +544,17 @@
                                              </div>
                                         </div>
                                         <div class="grid-add-to-cart">
+                                             <div class="qty-holder">
+                                                  <button type="button" class="decrease qty-button qty-down">
+                                                       <span class="decrease-minus">-</span>
+                                                       <span class="visuallyhidden">decrease</span>
+                                                  </button>
+                                                  <input type="text" min="1" max="99" maxlength="2" name="quantity" class="grid-product-qty-input qty-input-field" value="1">
+                                                  <button type="button" class="increase qty-button qty-up">
+                                                       <span class="increase-plus">+</span>
+                                                       <span class="visuallyhidden">increase</span>
+                                                  </button>
+                                             </div>
                                              <button type="button" class="btn btn-light-green btn-grid-add-to-cart">Add to Cart</button>
                                         </div>
                                    </div>
@@ -462,6 +577,17 @@
                                              </span>
                                         </a>
                                         <div class="grid-add-to-cart">
+                                             <div class="qty-holder">
+                                                  <button type="button" class="decrease qty-button qty-down">
+                                                       <span class="decrease-minus">-</span>
+                                                       <span class="visuallyhidden">decrease</span>
+                                                  </button>
+                                                  <input type="text" min="1" max="99" maxlength="2" name="quantity" class="grid-product-qty-input qty-input-field" value="1">
+                                                  <button type="button" class="increase qty-button qty-up">
+                                                       <span class="increase-plus">+</span>
+                                                       <span class="visuallyhidden">increase</span>
+                                                  </button>
+                                             </div>
                                              <button type="button" class="btn btn-light-green btn-grid-add-to-cart">Add to Cart</button>
                                         </div>
                                    </div>
@@ -489,6 +615,17 @@
                                              </div>
                                         </div>
                                         <div class="grid-add-to-cart">
+                                             <div class="qty-holder">
+                                                  <button type="button" class="decrease qty-button qty-down">
+                                                       <span class="decrease-minus">-</span>
+                                                       <span class="visuallyhidden">decrease</span>
+                                                  </button>
+                                                  <input type="text" min="1" max="99" maxlength="2" name="quantity" class="grid-product-qty-input qty-input-field" value="1">
+                                                  <button type="button" class="increase qty-button qty-up">
+                                                       <span class="increase-plus">+</span>
+                                                       <span class="visuallyhidden">increase</span>
+                                                  </button>
+                                             </div>
                                              <button type="button" class="btn btn-light-green btn-grid-add-to-cart">Add to Cart</button>
                                         </div>
                                    </div>
@@ -510,6 +647,17 @@
                                         </a>
 
                                         <div class="grid-add-to-cart">
+                                             <div class="qty-holder">
+                                                  <button type="button" class="decrease qty-button qty-down">
+                                                       <span class="decrease-minus">-</span>
+                                                       <span class="visuallyhidden">decrease</span>
+                                                  </button>
+                                                  <input type="text" min="1" max="99" maxlength="2" name="quantity" class="grid-product-qty-input qty-input-field" value="1">
+                                                  <button type="button" class="increase qty-button qty-up">
+                                                       <span class="increase-plus">+</span>
+                                                       <span class="visuallyhidden">increase</span>
+                                                  </button>
+                                             </div>
                                              <button type="button" class="btn btn-light-green btn-grid-add-to-cart">Add to Cart</button>
                                         </div>
                                    </div>
@@ -536,6 +684,17 @@
                                              </div>
                                         </div>
                                         <div class="grid-add-to-cart">
+                                             <div class="qty-holder">
+                                                  <button type="button" class="decrease qty-button qty-down">
+                                                       <span class="decrease-minus">-</span>
+                                                       <span class="visuallyhidden">decrease</span>
+                                                  </button>
+                                                  <input type="text" min="1" max="99" maxlength="2" name="quantity" class="grid-product-qty-input qty-input-field" value="1">
+                                                  <button type="button" class="increase qty-button qty-up">
+                                                       <span class="increase-plus">+</span>
+                                                       <span class="visuallyhidden">increase</span>
+                                                  </button>
+                                             </div>
                                              <button type="button" class="btn btn-light-green btn-grid-add-to-cart">Add to Cart</button>
                                         </div>
                                    </div>

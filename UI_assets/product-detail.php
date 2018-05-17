@@ -77,12 +77,12 @@
                               <form action="" method="post" class="product-detail-form-add">
                                    <div class="product-add-options">
                                         <div class="qty-holder">
-                                             <button type="button" class="decrease">
+                                             <button type="button" class="decrease qty-button qty-down">
                                                   <span class="decrease-minus">-</span>
                                                   <span class="visuallyhidden">decrease</span>
                                              </button>
-                                             <input type="text" min="1" name="quantity" id="product-qty-input" value="1">
-                                             <button type="button" class="increase">
+                                             <input type="text" min="1" name="quantity" id="product-qty-input" class="qty-input-field" value="1">
+                                             <button type="button" class="increase qty-button qty-up">
                                                   <span class="increase-plus">+</span>
                                                   <span class="visuallyhidden">increase</span>
                                              </button>
