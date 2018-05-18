@@ -1,4 +1,5 @@
 
+
 <header id="header">
   <div id="left-header-icons-mobile">
           <button id="mobile-menu-icon" class="header-mobile-icon" type="button">
@@ -30,7 +31,7 @@
           <ul class="user-menu">
                <li><a href="#">Quick Order</a></li>
                <li><a href="#">Help</a>
-                <ul id="header-help-flyout" class="header-flyout-list" style="display: none;">
+                <ul id="header-help-flyout" class="header-flyout-list">
                          <li><a href="#">Contact</a></li>
                          <li><a href="#">FAQ</a></li>
                          <li><a href="#">Glossary</a></li>
@@ -42,14 +43,14 @@
                   
                    <sly data-sly-test="${currentSession.userID == 'anonymous'}">
                     <a href="/content/frontierwholesales/en/login.html">My Account</a>
-                    <ul id="header-account-flyout" class="header-flyout-list" style="display: none;">
+                    <ul id="header-account-flyout" class="header-flyout-list">
                       <li><a href="#">Join</a></li>
                          </ul>
                    </sly>
                    
                    <sly data-sly-test="${currentSession.userID != 'anonymous'}">
                        <a href="#">My Account</a>
-                       <ul id="header-account-flyout" class="header-flyout-list" style="display: none;">
+                       <ul id="header-account-flyout" class="header-flyout-list">
                          
                          <li><a href="#">Address Book</a></li>
                          <li><a href="#">Orders</a></li>
@@ -64,13 +65,21 @@
      </div>
 
      
-     <div id="cart-holder">
+     <div id="cart-holder" class="owner-account-cart-holder">
           <a href="#" class="btn btn-cart-display cart-display" title="Cart">
                <span class="icon-cart">
                     <span class="glyphicon glyphicon-shopping-cart"></span>
                     <span class="cart-count quantity">0</span>
                </span>
-               <span class="cart-amount">My Total: <span class="amount">$0.00</span></span>
+               
+               <span class="cart-amount">My Total: <span id="shopping-cart-total" class="amount">$0.00</span></span>
+          </a>
+         
+         <a href="#" class="btn btn-cart-display cart-display-owner-total" title="Cart">
+               <span class="icon-cart">
+                    <span class="glyphicon glyphicon-shopping-cart"></span>
+               </span>
+               <span class="cart-amount">Our Total: <span class="amount">$0.00</span></span>
           </a>
      </div>
         <div id="right-header-icons-mobile">

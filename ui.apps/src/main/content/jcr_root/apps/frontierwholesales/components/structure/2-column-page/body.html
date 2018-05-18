@@ -6,20 +6,7 @@
 
 <article class="article-help-section">
 <div class="container">
-	<nav class="help-side-nav">
-		<sly data-sly-use.sideNav="${'com.frontierwholesales.core.models.SideNavigationModel'}" data-sly-unwrap/>
-
-						<ol class="side-nav" data-sly-list.pages="${sideNav.frontierWholesalePages}">
-                                   <li class="side-nav-item">
-                                   
-                                        <a href="${pages.link}" class="${currentPage.title == pages.title?'side-nav-link side-nav-link-active':'side-nav-link'}">${pages.title}</a>
-                                   
-                                   	
-                                   </li>
-                                 
-                              </ol>
-
-	</nav>
+	<sly data-sly-resource="${'sidenavigation' @ resourceType='frontierwholesales/components/content/navigation/sidenavigation'}" data-sly-unwrap></sly>
 	<section class="help-main-content">
 
 	<div class="content-page-information with-form-aside">

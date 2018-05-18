@@ -1,0 +1,140 @@
+<sly
+    data-sly-use.clientLib="${'/libs/granite/sightly/templates/clientlib.html'}"/>
+<sly data-sly-call="${clientlib.js @ categories='shoppingcart'}" data-sly-unwrap/>
+<div class="container">
+                    <div id="cart-message-holder" class="global-server-side-message-holder">
+                         <div class="alert alert-success" role="alert">${properties.shippingtext @context='html'} <!--<strong>Free shipping</strong> on orders over $250 ($400 for Alaska and Hawaii)--> </div>
+                    </div>
+                    <section class="cart-holder cart-actions">
+                         <div class="cart-header-holder no-border">
+                              <h1 class="cart-heading">Cart Actions</h1>
+                         </div>
+                         <div id="cart-actions-grid">
+                              <div class="each-action-holder cart-action-status">
+                                   
+                                   <p class="action-title">
+                                        <span class="text-label">Cart Status:</span> <span class="text-value">Draft</span>
+                                   </p>
+                                   
+                                   <div class="action-holder">
+                                        <a href="#" class="btn btn-dark-orange btn-approve-cart">Approve</a>
+                                   </div>
+
+                                   <div class="toggle-action-holder">
+                                        <button type="button" class="btn btn-link btn-toggle-cart-actions">
+                                             <span class="text">More Cart Actions</span>
+                                             <span class="glyphicon glyphicon-menu-up"></span>
+                                        </button>
+                                   </div>
+                              </div>
+                              
+                              <div class="each-action-holder cart-action-cart-name toggle-holder">
+                                   <p class="action-title">
+                                        <span class="text-label">Your Cart Name</span>
+                                   </p>
+                                   <div class="action-holder">
+                                        <a href="#" class="btn btn-dark-orange btn-rename-cart" data-toggle="modal" data-target="#modalRenameCart">Rename Cart</a>
+                                   </div>
+                              </div>
+
+                              <div class="each-action-holder cart-action-new-cart last toggle-holder">
+                                   <p class="action-title">
+                                        <span class="text-label">New Cart</span>
+                                   </p>
+                                   <div class="action-holder">
+                                        <a href="#" class="btn btn-white-green btn-new-order">Create a New Cart</a>
+                                   </div>
+                              </div>
+                         </div>
+                    </section>
+   <div id='templateTest'></div>
+<script id="cartTemplate" type="text/template">
+              <section class="cart-holder">
+                         <div class="cart-header-holder table-below">
+                             <h1 class="cart-heading"> Cart <span class="normal">- {{items_qty}} Items</span></h1>
+                         </div>
+                          
+                         {{#items}}
+                        
+                           <div class="cart-grid" id="{{item_id}}">
+                                <div class="row-cart-item"  >
+                                   <div class="cart-product-section">
+                                        <div class="cart-item-holder">
+                                             <a href="#" class="cart-item-link">
+                                                 <img src="{{imgPath}}" class="cart-item-image" alt="{{name}}">
+                                             </a>
+                                             <div class="cart-item-details">
+                                                 <a href="#" class="cart-item-product-name">{{name}}</a>
+                                                  
+                                                  <span class="cart-item-number">Item #{{item_id}}</span>
+                                                  <a href="#" class="cart-item-wishlist-link">Move to Wishlist</a>
+                                             </div>
+                                        </div>
+                                   </div>
+                                   <div class="cart-notification-section">
+                                        <!--<span class="cart-message cart-savings-bulk">Your Bulk buy saved you 5%</span>-->
+                                  </div>
+                                   <div class="cart-qty-section">
+                                        <span class="cart-qty-label">Qty.</span>
+                                        <input type="number" min="1" id="{{item_id}}" name="{{item_id}}" value="{{qty}}" class="cart-qty-input form-control" onchange="javascript:updateCart(this)">
+                                   </div>
+                                   <div class="cart-item-break-section"></div>
+                                   <div class="cart-price-section">
+                                        <span class="cart-price-total-text unit-price">Unit Price:{{price}}</span>
+                                        <!--<span class="cart-grid-sale">
+                                            <span class="price-sale">$${items.convertedPrice}</span>
+                                            <span class="price-sale-now">$${items.price}</span>
+                                        </span>-->
+                                   </div>
+                                   <div class="cart-price-total-section">
+                                        <span class="cart-price-total-text">Total:</span> 
+                                        <span class="cart-price-number-total">{{rowTotal}}</span>
+                                   </div>
+                                   <div class="cart-remove-section" data-itemid="{{item_id}}">
+                                        <button data-textoriginal="Remove" class="btn btn-only-green-icon" title="Remove" onclick="javascript:cartItemRemove(this)">
+                                             <span class="action-link-text">Remove</span>
+                                             <span class="glyphicon glyphicon-remove"></span>
+                                        </button>
+                                   </div>
+                              </div>
+                           </div>
+     
+                         {{/items}}
+                   <div class="cart-subtotal-holder">
+                              <div class="cart-subtotal-text">
+                                   {{items_qty}} Item(s) Subtotal: {{grandTotal}}
+                              </div>
+
+                  </div> 
+                   <div class="submit-holder">
+                              <button class="btn btn-light-green btn-larger btn-cart-checkout">Checkout</button>
+                         </div>
+
+         </section>
+    </script>
+<div class="modal fade" id="modalRenameCart" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+               <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                         <div class="modal-header clearfix">
+                              <h4 class="modal-title" id="myModalLabel">Rename Shopping Cart</h4>
+                         </div>
+                         <div class="modal-body clearfix">
+                              <form class="form-cart-order-rename">
+                                   <div class="form-group">
+                                        <label for="cart_name_change">New Cart Name</label>
+                                        <input type="text" id="cart_name_change" class="form-control" placeholder="New Cart Title" name="cart_name_change">
+                                   </div>
+                              </form>
+                         </div>
+                         <div class="modal-footer clearfix">
+                              <div class="modal-footer-btn-left-holder">
+                                   <button type="button" class="btn btn-dark-orange btn-rename-cart-submit">Submit</button>
+                              </div>
+                              <div class="modal-footer-btn-right-holder">
+                                   <button type="button" class="btn btn-link btn-link-close-modal" data-dismiss="modal">Cancel</button>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+          </div>
+   

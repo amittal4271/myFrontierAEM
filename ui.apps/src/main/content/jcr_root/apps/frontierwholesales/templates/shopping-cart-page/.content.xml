@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
-    jcr:description="My Account template"
+    jcr:description="Shopping Cart template"
     jcr:primaryType="cq:Template"
-    jcr:title="My Account Page"
+    jcr:title="Shopping Cart Page"
     allowedPaths="[/content(/.*)?]"
     ranking="{Long}1">
     <jcr:content
         jcr:primaryType="cq:PageContent"
-        sling:resourceType="frontierwholesales/components/structure/1-column-page"
+        sling:resourceType="frontierwholesales/components/structure/shopping-cart-page"
         components="[group:Frontier]">
         <par
             jcr:primaryType="nt:unstructured"
             sling:resourceType="wcm/foundation/components/parsys">
-            <myaccount
+            <cart
                 jcr:createdBy="admin"
                 jcr:lastModifiedBy="admin"
                 jcr:primaryType="nt:unstructured"
-                sling:resourceType="frontierwholesales/components/content/myaccount"/>
+                sling:resourceType="frontierwholesales/components/content/shoppingcart"/>
         </par>
     </jcr:content>
 </jcr:root>

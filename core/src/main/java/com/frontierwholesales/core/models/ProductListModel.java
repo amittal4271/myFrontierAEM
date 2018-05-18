@@ -38,7 +38,7 @@ public class ProductListModel {
 	
 	 @PostConstruct
 	    protected void init() {
-		 System.out.println("Init method starts here");
+		 
 		
 		 try {
 			Resource resc = slingHttpServletRequest.getResourceResolver().getResource("/etc/commerce/products/we-retail/24/24-M");
@@ -47,7 +47,7 @@ public class ProductListModel {
 		    {
 		    node = resc.adaptTo(Node.class);
 		    NodeIterator nodeItr = node.getNodes();
-		    int i =1;
+		   
 		        while(nodeItr.hasNext())
 		                 {
 		        		
@@ -78,7 +78,7 @@ public class ProductListModel {
 		    }
 		 }catch(Exception anyEx) {
 			 anyEx.printStackTrace();
-			 System.out.println("Error "+anyEx.getMessage());
+			
 		 }
 		
 	    }

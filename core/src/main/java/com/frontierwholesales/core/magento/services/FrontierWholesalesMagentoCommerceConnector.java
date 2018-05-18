@@ -2,6 +2,7 @@ package com.frontierwholesales.core.magento.services;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.felix.scr.annotations.Activate;
@@ -17,9 +18,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.adobe.cq.commerce.api.CommerceException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.frontierwholesales.core.utils.AuthCredentials;
+import com.infield.magento.core.connector.MagentoCommerceConnector;
 
 
 @Component(
@@ -105,7 +108,7 @@ public class FrontierWholesalesMagentoCommerceConnector {
     
 
     public String getAdminUser() {
-    	log.info("get method "+adminUser);
+    	log.debug("get method "+adminUser);
 		return adminUser;
 	}
 
@@ -132,7 +135,7 @@ public class FrontierWholesalesMagentoCommerceConnector {
 	public String getToken(String username, String password)throws Exception{
         AuthCredentials authCredentials = new AuthCredentials(username, password);
 
-        log.info(" AUTHENTICATING " + username + " Against server:" + server);
+        log.debug(" AUTHENTICATING " + username + " Against server:" + server);
         String token = Request.Post(server + "/rest/V1/integration/customer/token")
                 .bodyString(mapper.writeValueAsString(authCredentials), ContentType.APPLICATION_JSON)
                 .execute().returnContent().asString();
@@ -143,7 +146,7 @@ public class FrontierWholesalesMagentoCommerceConnector {
     public String getAdminToken()throws Exception{
         AuthCredentials authCredentials = new AuthCredentials(adminUser, adminPassword);
 
-        log.info(" AUTHENTICATING " +adminUser + " Against server:" + server);
+        log.debug(" AUTHENTICATING " +adminUser + " Against server:" + server);
         String token = Request.Post(server + "/rest/all/V1/integration/admin/token")
                 .bodyString(mapper.writeValueAsString(authCredentials), ContentType.APPLICATION_JSON)
                 .execute().returnContent().asString();
@@ -182,13 +185,52 @@ public class FrontierWholesalesMagentoCommerceConnector {
         }
     }
     
-    public String getCategories() throws Exception{
-    	String authToken = getAdminToken();
+    public String getCategories(String adminToken) throws Exception{
+    	
     	String categories = Request.Get(server+"/rest/all/V1/categories")
-    			.addHeader("Authorization",authToken)
+    			.addHeader("Authorization",adminToken)
     			.addHeader("ContentType","application/json")
     			.execute().returnContent().asString();
     	return categories;
+    }
+    
+    public String getCartTotal(String token) throws Exception{
+    	log.debug("server name is "+server);
+    	
+    	String total = Request.Get(server+"/rest/V1/carts/mine/totals")
+    			.addHeader("Authorization",token)
+    			.addHeader("ContentType","application/json")
+    			.execute().returnContent().asString();
+    	return total;
+    }
+    
+    public String getShoppingCartList(String token) throws Exception {
+    	 
+		String cartList = Request.Get(server+"/rest/V1/carts/mine/items")
+				.addHeader("Authorization",token)
+				
+				.execute().returnContent().asString();
+		
+		return cartList;
+				
+	}
+    
+    public String removeCartItem(String token,String itemId) throws Exception{
+    	String isItemRemoved = Request.Delete(server+"/rest/V1/carts/mine/items/"+itemId)
+				.addHeader("Authorization",token)
+				
+				.execute().returnContent().asString();
+		
+		return isItemRemoved;
+    }
+    
+    public String updateCartItem(String token,String itemId,String jsonData) throws Exception{
+    	String updatedItem = Request.Put(server+"/rest/V1/carts/mine/items/"+itemId)
+				.addHeader("Authorization",token)
+				.bodyString(jsonData, ContentType.APPLICATION_JSON)
+				.execute().returnContent().asString();
+		
+		return updatedItem;
     }
 
 

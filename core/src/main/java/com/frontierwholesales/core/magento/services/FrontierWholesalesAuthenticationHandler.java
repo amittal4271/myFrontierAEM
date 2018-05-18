@@ -3,6 +3,7 @@ package com.frontierwholesales.core.magento.services;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.Base64;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,6 +24,9 @@ import org.osgi.framework.Constants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.frontierwholesales.core.services.constants.FrontierWholesalesConstants;
+import com.infield.magento.core.connector.MagentoCommerceConnector;
+
 
 @Component(metatype = true, immediate = true, label = "Frontier Wholesales Authentication Handelr",
 description="Authenticates User ")
@@ -35,6 +39,8 @@ description="Authenticates User ")
 
 public class FrontierWholesalesAuthenticationHandler extends DefaultAuthenticationFeedbackHandler implements AuthenticationHandler,AuthenticationFeedbackHandler {
 	 private static final Logger log = LoggerFactory.getLogger(FrontierWholesalesAuthenticationHandler.class);
+	
+	 private MagentoCommerceConnector connector = new MagentoCommerceConnector();
 	
 	
 	 @Reference(target = "(service.pid=com.day.crx.security.token.impl.impl.TokenAuthenticationHandler)")
@@ -108,8 +114,15 @@ public class FrontierWholesalesAuthenticationHandler extends DefaultAuthenticati
 			
 			String password = values[1];
 			
-			FrontierWholesalesMagentoCommerceConnector commerceConnector = new FrontierWholesalesMagentoCommerceConnector();
-			String token = commerceConnector.getToken(username, password);
+			String token = (String)httpServletRequest.getSession().getAttribute(FrontierWholesalesConstants.MAGENTO_USER_TOKEN);
+			
+			if(token == null) {
+			token = connector.getToken(username, password);
+			
+			httpServletRequest.getSession().setAttribute(FrontierWholesalesConstants.MAGENTO_USER_TOKEN, token);
+			}
+			
+			
 			
 			/*
 			MongoClientURI connStr = new MongoClientURI("mongodb://"+user +":"+password + "@localhost:27017/aem-author");
