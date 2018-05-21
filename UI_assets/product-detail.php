@@ -32,17 +32,25 @@
                               <div class="product-sku-number">Item #: 23002</div>
 
                               <h1 class="product-title-name">Frontier Almond Flavor 4 fl. oz.</h1>
-
+                              <!--
+                              <div class="product-icons">
+                                   <span class="each-product-icon-holder gluten-free">
+                                        <img src="../frontierwholesales/images/gluten-free-icon.png" alt="Gluten Free Product"/>
+                                   </span>
+                                   <span class="each-product-icon-holder organic">
+                                        <img src="../frontierwholesales/images/organic-icon.png" alt="Oranic Product"/>
+                                   </span>
+                                   <span class="each-product-icon-holder most-popular">
+                                        <img src="../frontierwholesales/images/most-popular-icon.png" alt="Popular Product"/>
+                                   </span>
+                              </div>
+                              -->
                               <div class="product-detail-attributes">
                                    
                                    <span class="dt-label">Brand: </span>
                                    <span class="dd-value brand">
-                                        <a href="/shop/frontier/" class="dd-value-link">Frontier</a>
+                                        <a href="#" class="dd-value-link">Frontier</a>
                                    </span>
-                              
-                                   <!--<span class="dt-label">Size: </span>
-                                   <span class="dd-value">4.0 Fluid Ounce</span>
-                                   -->
                               
                                    <span class="dt-label">UPC: </span>
                                    <span class="dd-value upc">089836230027</span>
@@ -96,8 +104,8 @@
                               <div class="product-overview">
                                    <h2 class="heading-product-overview">Product Overview</h2>
                                    <p class="description-product-overview">
-                                        Simply Organic&reg;'s extra rich and creamy non-alcoholic organic Vanilla Flavor   contains vanilla derived exclusively from Madagascar beans. From baking to   enhancing savory fare, this rich, floral and fruity vanilla flavor captures   of all the complex aroma and flavor essences of fully cured vanilla beans...
-                                        <a class="description-read-more" href="#">Read More</a>
+                                        Simply Organic&reg;'s extra rich and creamy non-alcoholic organic Vanilla Flavor   contains vanilla derived exclusively from Madagascar beans. From baking to   enhancing savory fare, this rich, floral and fruity vanilla flavor captures   of all the complex aroma and flavor essences of fully cured vanilla beans.
+                                        <!--<a class="description-read-more" href="#">Read More</a>-->
                                    </p>
                                    <ul class="overview-stat-list">
                                         <li class="each-stat icon-check">

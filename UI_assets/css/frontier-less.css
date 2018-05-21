@@ -3815,6 +3815,21 @@ tr.order-details-table-section-row td.inner-table-td-holder {
   margin-bottom: 2px;
   font-weight: bold;
 }
+.product-icons {
+  float: left;
+  width: 100%;
+  clear: both;
+  margin: 10px 0;
+}
+.product-icons .each-product-icon-holder {
+  float: left;
+  width: 60px;
+  margin-right: 20px;
+}
+.product-icons .each-product-icon-holder img {
+  display: block;
+  width: 100%;
+}
 .product-detail-attributes {
   float: left;
   width: 100%;
@@ -6369,7 +6384,6 @@ legend.each-form-title .form-title-information a {
 .cart-qty-input {
   background: #ffffff;
   border: 1px solid #dddddd;
-  height: 35px;
   text-align: center;
   vertical-align: middle;
   width: 70px;
@@ -6987,6 +7001,11 @@ table.table-order-summary .discounts {
 .brand-list li a:focus,
 .brand-list li a:active {
   color: #8bba4a;
+}
+#quick-order-form-holder {
+  float: left;
+  width: 100%;
+  clear: both;
 }
 /*! HTML5 Boilerplate v4.3.0 | MIT License | http://h5bp.com/ */
 /*

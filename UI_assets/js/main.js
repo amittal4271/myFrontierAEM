@@ -126,6 +126,20 @@ function enableAjaxFormButton ($button) {
 	$ajaxFormOverlayHolder.hide();
 }
 
+function showLoadingScreen () {
+	var $ajaxFormOverlayHolder = $('#ajax-form-overlay-holder');
+	// add overflow class to body
+	$('body').addClass('mobile-nav-overflow');
+	$ajaxFormOverlayHolder.show();
+}
+
+function hideLoadingScreen () {
+	var $ajaxFormOverlayHolder = $('#ajax-form-overlay-holder');
+	// add overflow class to body
+	$('body').removeClass('mobile-nav-overflow');
+	$ajaxFormOverlayHolder.hide();
+}
+
 function scrollToElement ($el) {
 	$('html, body').animate({
 	    scrollTop: ($($el).offset().top-30)

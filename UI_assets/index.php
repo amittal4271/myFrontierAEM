@@ -54,6 +54,8 @@
                          <li class="spacer"><a href="./shopping-cart.php">Shopping Cart Admin</a></li>
                          <li><a href="./shopping-cart-regular.php">Shopping Cart Regular</a></li>
 
+                         <li class="spacer"><a href="./quick-order.php">Quick Order</a></li>
+
                          <li class="spacer"><a href="./checkout-flow-approval.php">Checkout Flow - Approval</a></li>
                          <li><a href="./checkout-flow-shipping.php">Checkout Flow - Shipping</a></li>
                          <li><a href="./checkout-flow-billing-payment-review.php">Checkout Flow - Payment / Review</a></li>
