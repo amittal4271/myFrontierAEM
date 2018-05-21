@@ -2,7 +2,6 @@ package com.frontierwholesales.core.beans;
 
 import com.day.cq.wcm.api.Page;
 import com.frontierwholesales.core.utils.LinkUtils;
-
 import java.util.List;
 import org.apache.sling.api.resource.ValueMap;
 
@@ -14,7 +13,7 @@ public class FrontierWholesalePages
   private String contentPath;
   private List<FrontierWholesalePages> childList;
   private Page page;
-  private String hideInNav;
+  private String showInNav;
   private String hideInMobileNav;
   private String column;
   private List<List<FrontierWholesalePages>> columns;
@@ -46,7 +45,7 @@ public class FrontierWholesalePages
     setName(page.getName().replace(" ", ""));
     setIconClass((String)properties.get("iconClass", String.class));
     setContentPath(page.getPath() + "/_jcr_content/main");
-    setHideInNav((String)properties.get("showNav", String.class));
+    setShowInNav((String)properties.get("showNav", String.class));
     setSideNav((String)properties.get("sideNav",String.class));
     setColumn((String)properties.get("column", String.class));
   }
@@ -81,9 +80,9 @@ public class FrontierWholesalePages
     return this.contentPath;
   }
   
-  public String getHideInNav()
+  public String getShowInNav()
   {
-    return this.hideInNav;
+    return this.showInNav;
   }
   
   public String getHideInMobileNav()
@@ -131,9 +130,9 @@ public class FrontierWholesalePages
     this.contentPath = contentPath;
   }
   
-  public void setHideInNav(String hideInNav)
+  public void setShowInNav(String showInNav)
   {
-    this.hideInNav = hideInNav;
+    this.showInNav = showInNav;
   }
   
   public String getTitle()
@@ -170,12 +169,12 @@ public class FrontierWholesalePages
   {
     this.columns = columns;
   }
+  
+  public String getSideNav() {
+		return sideNav;
+	}
 
-public String getSideNav() {
-	return sideNav;
-}
-
-public void setSideNav(String sideNav) {
-	this.sideNav = sideNav;
-}
+	public void setSideNav(String sideNav) {
+		this.sideNav = sideNav;
+	}
 }

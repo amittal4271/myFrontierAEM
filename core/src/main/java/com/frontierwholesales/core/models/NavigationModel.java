@@ -26,7 +26,7 @@ import org.slf4j.LoggerFactory;
 			while (children.hasNext()) {
 				Page page = (Page) children.next();
 				FrontierWholesalePages frontierWholesalePage = new FrontierWholesalePages(page);
-				String showNav = frontierWholesalePage.getHideInNav();				
+				String showNav = frontierWholesalePage.getShowInNav();				
 				if (showNav != null && showNav.equals("true")) {
 					frontierWholesalePage.setChildList(this.getChildren(frontierWholesalePage, level + 1));
 					pages.add(frontierWholesalePage);

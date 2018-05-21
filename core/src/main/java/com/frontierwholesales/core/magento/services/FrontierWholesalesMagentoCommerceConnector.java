@@ -2,7 +2,6 @@ package com.frontierwholesales.core.magento.services;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.apache.felix.scr.annotations.Activate;
@@ -18,11 +17,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.adobe.cq.commerce.api.CommerceException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.frontierwholesales.core.utils.AuthCredentials;
-import com.infield.magento.core.connector.MagentoCommerceConnector;
+
 
 
 @Component(
@@ -185,14 +183,7 @@ public class FrontierWholesalesMagentoCommerceConnector {
         }
     }
     
-    public String getCategories(String adminToken) throws Exception{
-    	
-    	String categories = Request.Get(server+"/rest/all/V1/categories")
-    			.addHeader("Authorization",adminToken)
-    			.addHeader("ContentType","application/json")
-    			.execute().returnContent().asString();
-    	return categories;
-    }
+   
     
     public String getCartTotal(String token) throws Exception{
     	log.debug("server name is "+server);

@@ -40,7 +40,7 @@ function getCartItem(){
         cart = JSON.parse(cart);
         var template = $("#cartTemplate").html();
         var html = Mustache.to_html(template, cart);
-        $('#templateTest').html(html);
+        $('#carttemplate').html(html);
     });
 }
 
@@ -62,7 +62,7 @@ function cartItemRemove(obj){
         cart = JSON.parse(cart);
         var template = $("#cartTemplate").html();
         var html = Mustache.to_html(template, cart);
-        $('#templateTest').html(html);
+        $('#carttemplate').html(html);
     });
    
 }
