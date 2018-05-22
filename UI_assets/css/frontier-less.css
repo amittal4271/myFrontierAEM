@@ -19,6 +19,9 @@
   color: #fff;
   padding: 10px;
   margin-bottom: 10px;
+  float: left;
+  clear: both;
+  width: 100%;
 }
 .btn-link-close-modal {
   float: right;
