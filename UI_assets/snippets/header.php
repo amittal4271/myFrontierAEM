@@ -106,6 +106,10 @@
                               <span class="remove-text">Remove Item</span>
                          </button>
                     </div>
+                    <div class="mini-cart-item-remove-confirmation">
+                         <button type="button" class="btn btn-smaller btn-confirm-remove-mini-cart-item">Remove</button>
+                         <button type="button" class="btn btn-smaller btn-white-green btn-cancel-remove-mini-cart-item">Cancel</button>
+                    </div>
                </div>
 
                <div class="mini-cart-subtotal-holder">

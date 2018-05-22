@@ -90,6 +90,10 @@
   padding: 10px 12px;
   background: transparent;
 }
+.btn-smaller {
+  font-size: 10px;
+  padding: 4px 4px;
+}
 .btn-larger {
   font-size: 14px;
   padding: 15px 12px;
@@ -99,6 +103,16 @@
     font-size: 18px;
     padding: 15px 45px;
   }
+}
+.btn-confirm-remove-mini-cart-item {
+  background: #f4a21c;
+  border: 2px solid #f4901c;
+  color: #fff;
+}
+.btn-confirm-remove-mini-cart-item:hover,
+.btn-confirm-remove-mini-cart-item:focus {
+  background: #f49e12;
+  color: #fff;
 }
 .btn-green-dark {
   background: #189060;
@@ -330,6 +344,7 @@
   border: none;
   background: none;
   text-transform: none;
+  color: #8bba4a;
 }
 .btn-link.green-link {
   color: #8bba4a;
@@ -2108,6 +2123,21 @@ body.mobile-nav-overflow {
 }
 .mini-cart-remove-holder .btn-mini-cart-remove .remove-text {
   display: none;
+}
+.mini-cart-item-remove-confirmation {
+  float: left;
+  width: 100%;
+  clear: both;
+  padding: 10px 0;
+  margin: 10px 0;
+  border-top: 1px solid #ececec;
+}
+.mini-cart-item-remove-confirmation .btn-confirm-remove-mini-cart-item {
+  float: right;
+  margin-left: 15px;
+}
+.mini-cart-item-remove-confirmation .btn-cancel-remove-mini-cart-item {
+  float: right;
 }
 .btn-mini-cart-go-to-cart {
   width: 100%;

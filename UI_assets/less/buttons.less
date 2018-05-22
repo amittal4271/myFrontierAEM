@@ -7,6 +7,11 @@
     background: transparent;
 }
 
+.btn-smaller {
+    font-size: 10px;
+    padding: 4px 4px;
+}
+
 .btn-larger {
     font-size: 14px;
     padding: 15px 12px;
@@ -15,6 +20,17 @@
         font-size: 18px;
         padding: 15px 45px;
     });
+}
+
+.btn-confirm-remove-mini-cart-item {
+    background: #f4a21c;
+    border: 2px solid #f4901c;
+    color: #fff;
+
+    &:hover, &:focus {
+        background: darken(#f4a21c, 2%);
+        color: #fff;
+    }
 }
 
 .btn-green-dark {
@@ -258,6 +274,7 @@
     border: none;
     background: none;
     text-transform: none;
+    color: #8bba4a;
 
     &.green-link {
         color: #8bba4a;
