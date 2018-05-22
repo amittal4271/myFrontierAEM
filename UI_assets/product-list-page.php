@@ -227,6 +227,7 @@
                                              </div>
                                         </div>
                                         <div class="grid-add-to-cart">
+                                             <div class="alert alert-add-to-cart" role="alert">Added to your cart!</div>
                                              <div class="qty-holder">
                                                   <button type="button" class="decrease qty-button qty-down">
                                                        <span class="decrease-minus">-</span>
