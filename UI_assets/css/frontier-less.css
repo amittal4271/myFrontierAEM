@@ -6970,14 +6970,6 @@ table.table-order-summary .discounts {
 .top-three-brands {
   margin-top: 40px;
 }
-.additional-brands {
-  margin-top: 30px;
-}
-@media screen and (min-width: 768px) {
-  .additional-brands {
-    margin-top: 80px;
-  }
-}
 .row-of-four-brands {
   margin-bottom: 40px;
 }
@@ -6999,6 +6991,14 @@ table.table-order-summary .discounts {
   float: left;
   width: 100%;
   border-radius: 5px;
+}
+.brands-letter-filter {
+  margin-top: 30px;
+}
+@media screen and (min-width: 768px) {
+  .brands-letter-filter {
+    margin-top: 40px;
+  }
 }
 .shop-brand-letter {
   font-size: 30px;

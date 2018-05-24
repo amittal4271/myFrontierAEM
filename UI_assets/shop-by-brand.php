@@ -39,11 +39,21 @@
                                    </a>
                               </div>
                          </div>
+                         <div class="row brands-letter-filter">
+                              <div class="content-page-glossary-header">
+                                   <ul id="glossary-filter-list">
+                                        <li><a data-scrolltoid="start-of-a" href="#">A</a></li>
+                                        <li><a data-scrolltoid="start-of-b" href="#">B</a></li>
+                                        <li><a data-scrolltoid="start-of-c" href="#">C</a></li>
+                                        <li><a data-scrolltoid="start-of-d" href="#">D</a></li>
+                                   </ul>
+                              </div>
+                         </div>
                          <div class="row additional-brands clearfix">
                               <div class="col-md-12">
                                    <div class="row row-each-brand-filter clearfix">
                                         <div class="col-xs-12">
-                                             <h2 class="shop-brand-letter">A</h2>
+                                             <h2 class="shop-brand-letter" id="start-of-a">A</h2>
                                         </div>
                                         <div class="col-xs-12">
                                              <ul class="brand-list">
@@ -82,7 +92,7 @@
 
                                    <div class="row row-each-brand-filter clearfix">
                                         <div class="col-xs-12">
-                                             <h2 class="shop-brand-letter">B</h2>
+                                             <h2 class="shop-brand-letter" id="start-of-b">B</h2>
                                         </div>
                                         <div class="col-xs-12">
                                              <ul class="brand-list">
