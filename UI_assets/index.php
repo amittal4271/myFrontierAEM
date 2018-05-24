@@ -33,6 +33,7 @@
                          <li><a href="./account-authorized-users.php">Account Authorized Users</a></li>
                          <li><a href="./account-landing.php">Account Landing</a></li>
                          <li><a href="./account-pending-orders.php">Account Pending Orders</a></li>
+                         <li><a href="./account-subscriptions.php">Account Subscriptions</a></li>
 
                          <li class="spacer"><a href="./help-faq.php">Help - FAQ</a></li>
                          <li><a href="./glossary.php">Content - Glossary</a></li>
