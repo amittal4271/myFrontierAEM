@@ -7047,6 +7047,76 @@ table.table-order-summary .discounts {
   width: 100%;
   clear: both;
 }
+@media screen and (min-width: 1200px) {
+  #quick-order-form-holder {
+    width: 75%;
+  }
+}
+.each-quick-order-section {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ececec;
+  float: left;
+  width: 100%;
+  clear: both;
+}
+@media screen and (min-width: 768px) {
+  .each-quick-order-section {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
+}
+.each-quick-order-section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+.form-group.item-group {
+  width: 100%;
+}
+@media screen and (min-width: 768px) {
+  .form-group.item-group {
+    width: 40%;
+    clear: none;
+    padding-right: 35px;
+  }
+}
+.form-group.qty-group {
+  width: 40%;
+}
+@media screen and (min-width: 768px) {
+  .form-group.qty-group {
+    width: 20%;
+    clear: none;
+    padding-right: 35px;
+  }
+}
+.form-group.price-group {
+  width: 40%;
+}
+@media screen and (min-width: 768px) {
+  .form-group.price-group {
+    width: 20%;
+    clear: none;
+    padding-right: 35px;
+  }
+}
+.form-group.remove-group {
+  width: 20%;
+}
+@media screen and (min-width: 768px) {
+  .form-group.remove-group {
+    width: 20%;
+    clear: none;
+  }
+}
+.quick-order-actions {
+  float: left;
+  width: 100%;
+  clear: both;
+  margin-top: 20px;
+}
 /*! HTML5 Boilerplate v4.3.0 | MIT License | http://h5bp.com/ */
 /*
  * What follows is the result of much research on cross-browser styling.

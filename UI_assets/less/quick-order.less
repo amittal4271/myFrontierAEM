@@ -2,4 +2,79 @@
 	float: left;
 	width: 100%;
 	clear: both;
+	.breakpoint_1200({
+		width: 75%;
+	});
+}
+
+.each-quick-order-section {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ececec;
+    float: left;
+    width: 100%;
+    clear: both;
+
+    .breakpoint_768({
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border-bottom: 0;
+    });
+
+    &:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+}
+
+.form-group {
+	&.item-group {
+		width: 100%;
+		.breakpoint_768({
+			width: 40%;
+			clear: none;
+			padding-right: 35px;
+		});
+	}
+
+	&.qty-group {
+		width: 40%;
+		.breakpoint_768({
+			width: 20%;
+			clear: none;
+			padding-right: 35px;
+		});
+	}
+
+	&.price-group {
+		width: 40%;
+		.breakpoint_768({
+			width: 20%;
+			clear: none;
+			padding-right: 35px;
+		});
+	}
+
+	&.remove-group {
+		width: 20%;
+		.breakpoint_768({
+			width: 20%;
+			clear: none;
+		});
+	}
+}
+
+.quick-order-actions {
+    float: left;
+    width: 100%;
+    clear: both;
+    margin-top: 20px;
+    
+    .breakpoint_768({
+        
+    });
+}
+
+.btn-add-all-line-items-to-cart {
 }
