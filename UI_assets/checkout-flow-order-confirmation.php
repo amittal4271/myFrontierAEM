@@ -16,11 +16,15 @@
                               <h1 class="confirmation-header">Order Successful!</h1>
                               <p class="confirmation-text">An order confirmation email has been sent to <span class="confirmation-email">jprahst32@gmail.com</span>.</p>
                               <p class="confirmation-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
-                              <a href="#" class="btn btn-light-green btn-continue-shopping-confirmation">Continue Shopping</a>
+                              <a href="./index.php" class="btn btn-light-green btn-continue-shopping-confirmation">Continue Shopping</a>
                          </div>
                          <div id="order-confirmation-items-holder">
                               <div id="order-confirmation-items-header">
-                                   <p class="confirmation-order-id">For future reference, your Order ID is listed below:<br/><span class="confirmation-order-number">Order ID: #123456-67</span>
+                                   <p class="confirmation-order-id">
+                                        For future reference, your Order ID is listed below:<br/>
+                                        <span class="confirmation-order-number">Order ID: #123456-67</span>
+                                   </p>
+                                   <a href="javascript: window.print();" class="btn btn-white-green btn-print-confirmation">Print Order Details</a>
                               </div>
                               <div id="order-confirmation-items-section">
                                    <div class="each-confirmation-item first">
