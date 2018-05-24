@@ -55,6 +55,70 @@
 				padding-right: 0;
 			}
 
+			/*pending invite headers*/
+			&.invites-header-first {
+				width: 20%;
+				padding-left: 0;
+			}
+			&.invites-header-last {
+				width: 20%;
+			}
+			&.invites-header-email {
+				width: 30%;
+			}
+			&.invites-header-status {
+				width: 15%;
+			}
+			&.invites-header-actions {
+				width: 15%;
+				padding-right: 0;
+			}
+
+			/*members invite headers*/
+			&.members-header-first {
+				width: 14%;
+				padding-left: 0;
+			}
+			&.members-header-last {
+				width: 14%;
+			}
+			&.members-header-email {
+				width: 23%;
+			}
+			&.members-header-role {
+				width: 17%;
+			}
+			&.members-header-status {
+				width: 12%;
+			}
+			&.members-header-actions {
+				width: 20%;
+				padding-right: 0;
+			}
+
+			/*account landing pending orders headers*/
+
+			&.landing-pending-header-shopper {
+				width: 15%;
+				padding-left: 0;
+			}
+			&.landing-pending-header-ordername {
+				width: 25%;
+			}
+			&.landing-pending-header-lines {
+				width: 10%;
+			}
+			&.landing-pending-header-subtotal {
+				width: 20%;
+			}
+			&.landing-pending-header-status {
+				width: 15%;
+			}
+			&.landing-pending-header-actions {
+				width: 15%;
+				padding-right: 0;
+			}
+
 		}
 	}
 
@@ -240,6 +304,136 @@
 			});
 		}
 
+
+		/*pending invites data tables width*/
+		&.invites-first-section {
+			width: 100%;
+			.breakpoint_992({
+				width: 20%;
+				padding-left: 0;
+			});
+		}
+		&.invites-last-section {
+			width: 100%;
+			.breakpoint_992({
+				width: 20%;
+			});
+		}
+		&.invites-email-section {
+			width: 100%;
+			.breakpoint_992({
+				width: 30%;
+			});
+		}
+		&.invites-status-section {
+			width: 100%;
+			.breakpoint_992({
+				width: 15%;
+			});
+		}
+		&.invites-action-section {
+			width: 100%;
+			.breakpoint_992({
+				width: 15%;
+				padding-top: 0;
+				padding-right: 0;
+			});
+			.btn {
+				margin-top: 15px;
+				.breakpoint_992({
+					margin-top: 0;
+				});
+			}
+		}
+
+		/*members invites data tables width*/
+		&.members-first-section {
+			width: 100%;
+			.breakpoint_992({
+				width: 14%;
+				padding-left: 0;
+			});
+		}
+		&.members-last-section {
+			width: 100%;
+			.breakpoint_992({
+				width: 14%;
+			});
+		}
+		&.members-email-section {
+			width: 100%;
+			.breakpoint_992({
+				width: 23%;
+			});
+		}
+		&.members-role-section {
+			width: 100%;
+			.breakpoint_992({
+				width: 17%;
+			});
+		}
+		&.members-status-section {
+			width: 100%;
+			.breakpoint_992({
+				width: 12%;
+			});
+		}
+		&.members-action-section {
+			width: 100%;
+			.breakpoint_992({
+				width: 20%;
+				padding-top: 0;
+				padding-right: 0;
+			});
+			.btn {
+				margin-top: 15px;
+				.breakpoint_992({
+					margin-top: 0;
+				});
+			}
+		}
+
+		/*pending account landing data tables width*/
+		&.landing-pending-shopper-section {
+			width: 100%;
+			.breakpoint_992({
+				width: 15%;
+				padding-left: 0;
+			});
+		}
+		&.landing-pending-ordername-section {
+			width: 100%;
+			.breakpoint_992({
+				width: 25%;
+			});
+		}
+		&.landing-pending-lines-section {
+			width: 100%;
+			.breakpoint_992({
+				width: 10%;
+			});
+		}
+		&.landing-pending-subtotal-section {
+			width: 100%;
+			.breakpoint_992({
+				width: 20%;
+			});
+		}
+		&.landing-pending-status-section {
+			width: 100%;
+			.breakpoint_992({
+				width: 15%;
+			});
+		}
+		&.landing-pending-actions-section {
+			width: 100%;
+			.breakpoint_992({
+				width: 15%;
+			});
+		}
+		
+
+
 		.checkbox {
 			margin: 0;
 		}
@@ -393,4 +587,21 @@
 
 		}
 	}
+}
+
+.action-button-section-account {
+	float: left;
+	margin-right: 30px;
+	.breakpoint_992({
+        margin-right: 15px;
+    });
+}
+
+.mobile-button-text-description {
+	display: block;
+	float: left;
+	margin-right: 4px;
+	.breakpoint_992({
+        display: none;
+    });
 }

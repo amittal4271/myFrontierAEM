@@ -177,6 +177,11 @@ function checkQuantity($el) {
 
 $(document).ready(function() {
 
+	$(document).on('click', '.btn-account-invite-new-users', function() {
+		var $el = $('#new-users-section');
+		scrollToElement($el);
+	});
+
 	// qty button click
 	$(document).on('click', '.qty-button', function() {
 		console.log('click qty up or down');

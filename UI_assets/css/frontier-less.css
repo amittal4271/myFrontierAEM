@@ -2786,6 +2786,9 @@ tr.order-details-table-section-row td.inner-table-td-holder {
 .grid-table-header.order-information-header .each-order-header {
   font-size: 16px;
   padding: 15px 15px;
+  /*pending invite headers*/
+  /*members invite headers*/
+  /*account landing pending orders headers*/
 }
 .grid-table-header.order-information-header .each-order-header.order-header-select {
   width: 10%;
@@ -2808,6 +2811,63 @@ tr.order-details-table-section-row td.inner-table-td-holder {
 }
 .grid-table-header.order-information-header .each-order-header.order-header-detail {
   width: 10%;
+  padding-right: 0;
+}
+.grid-table-header.order-information-header .each-order-header.invites-header-first {
+  width: 20%;
+  padding-left: 0;
+}
+.grid-table-header.order-information-header .each-order-header.invites-header-last {
+  width: 20%;
+}
+.grid-table-header.order-information-header .each-order-header.invites-header-email {
+  width: 30%;
+}
+.grid-table-header.order-information-header .each-order-header.invites-header-status {
+  width: 15%;
+}
+.grid-table-header.order-information-header .each-order-header.invites-header-actions {
+  width: 15%;
+  padding-right: 0;
+}
+.grid-table-header.order-information-header .each-order-header.members-header-first {
+  width: 14%;
+  padding-left: 0;
+}
+.grid-table-header.order-information-header .each-order-header.members-header-last {
+  width: 14%;
+}
+.grid-table-header.order-information-header .each-order-header.members-header-email {
+  width: 23%;
+}
+.grid-table-header.order-information-header .each-order-header.members-header-role {
+  width: 17%;
+}
+.grid-table-header.order-information-header .each-order-header.members-header-status {
+  width: 12%;
+}
+.grid-table-header.order-information-header .each-order-header.members-header-actions {
+  width: 20%;
+  padding-right: 0;
+}
+.grid-table-header.order-information-header .each-order-header.landing-pending-header-shopper {
+  width: 15%;
+  padding-left: 0;
+}
+.grid-table-header.order-information-header .each-order-header.landing-pending-header-ordername {
+  width: 25%;
+}
+.grid-table-header.order-information-header .each-order-header.landing-pending-header-lines {
+  width: 10%;
+}
+.grid-table-header.order-information-header .each-order-header.landing-pending-header-subtotal {
+  width: 20%;
+}
+.grid-table-header.order-information-header .each-order-header.landing-pending-header-status {
+  width: 15%;
+}
+.grid-table-header.order-information-header .each-order-header.landing-pending-header-actions {
+  width: 15%;
   padding-right: 0;
 }
 .grid-table-header.order-detail-header {
@@ -2907,6 +2967,9 @@ tr.order-details-table-section-row td.inner-table-td-holder {
   padding: 5px 10px;
   color: #817266;
   font-size: 14px;
+  /*pending invites data tables width*/
+  /*members invites data tables width*/
+  /*pending account landing data tables width*/
 }
 @media screen and (min-width: 480px) {
   .order-information-holder .each-order-section {
@@ -3009,6 +3072,165 @@ tr.order-details-table-section-row td.inner-table-td-holder {
   .order-information-holder .each-order-section.order-detail-section {
     width: 10%;
     padding-right: 0;
+  }
+}
+.order-information-holder .each-order-section.invites-first-section {
+  width: 100%;
+}
+@media screen and (min-width: 992px) {
+  .order-information-holder .each-order-section.invites-first-section {
+    width: 20%;
+    padding-left: 0;
+  }
+}
+.order-information-holder .each-order-section.invites-last-section {
+  width: 100%;
+}
+@media screen and (min-width: 992px) {
+  .order-information-holder .each-order-section.invites-last-section {
+    width: 20%;
+  }
+}
+.order-information-holder .each-order-section.invites-email-section {
+  width: 100%;
+}
+@media screen and (min-width: 992px) {
+  .order-information-holder .each-order-section.invites-email-section {
+    width: 30%;
+  }
+}
+.order-information-holder .each-order-section.invites-status-section {
+  width: 100%;
+}
+@media screen and (min-width: 992px) {
+  .order-information-holder .each-order-section.invites-status-section {
+    width: 15%;
+  }
+}
+.order-information-holder .each-order-section.invites-action-section {
+  width: 100%;
+}
+@media screen and (min-width: 992px) {
+  .order-information-holder .each-order-section.invites-action-section {
+    width: 15%;
+    padding-top: 0;
+    padding-right: 0;
+  }
+}
+.order-information-holder .each-order-section.invites-action-section .btn {
+  margin-top: 15px;
+}
+@media screen and (min-width: 992px) {
+  .order-information-holder .each-order-section.invites-action-section .btn {
+    margin-top: 0;
+  }
+}
+.order-information-holder .each-order-section.members-first-section {
+  width: 100%;
+}
+@media screen and (min-width: 992px) {
+  .order-information-holder .each-order-section.members-first-section {
+    width: 14%;
+    padding-left: 0;
+  }
+}
+.order-information-holder .each-order-section.members-last-section {
+  width: 100%;
+}
+@media screen and (min-width: 992px) {
+  .order-information-holder .each-order-section.members-last-section {
+    width: 14%;
+  }
+}
+.order-information-holder .each-order-section.members-email-section {
+  width: 100%;
+}
+@media screen and (min-width: 992px) {
+  .order-information-holder .each-order-section.members-email-section {
+    width: 23%;
+  }
+}
+.order-information-holder .each-order-section.members-role-section {
+  width: 100%;
+}
+@media screen and (min-width: 992px) {
+  .order-information-holder .each-order-section.members-role-section {
+    width: 17%;
+  }
+}
+.order-information-holder .each-order-section.members-status-section {
+  width: 100%;
+}
+@media screen and (min-width: 992px) {
+  .order-information-holder .each-order-section.members-status-section {
+    width: 12%;
+  }
+}
+.order-information-holder .each-order-section.members-action-section {
+  width: 100%;
+}
+@media screen and (min-width: 992px) {
+  .order-information-holder .each-order-section.members-action-section {
+    width: 20%;
+    padding-top: 0;
+    padding-right: 0;
+  }
+}
+.order-information-holder .each-order-section.members-action-section .btn {
+  margin-top: 15px;
+}
+@media screen and (min-width: 992px) {
+  .order-information-holder .each-order-section.members-action-section .btn {
+    margin-top: 0;
+  }
+}
+.order-information-holder .each-order-section.landing-pending-shopper-section {
+  width: 100%;
+}
+@media screen and (min-width: 992px) {
+  .order-information-holder .each-order-section.landing-pending-shopper-section {
+    width: 15%;
+    padding-left: 0;
+  }
+}
+.order-information-holder .each-order-section.landing-pending-ordername-section {
+  width: 100%;
+}
+@media screen and (min-width: 992px) {
+  .order-information-holder .each-order-section.landing-pending-ordername-section {
+    width: 25%;
+  }
+}
+.order-information-holder .each-order-section.landing-pending-lines-section {
+  width: 100%;
+}
+@media screen and (min-width: 992px) {
+  .order-information-holder .each-order-section.landing-pending-lines-section {
+    width: 10%;
+  }
+}
+.order-information-holder .each-order-section.landing-pending-subtotal-section {
+  width: 100%;
+}
+@media screen and (min-width: 992px) {
+  .order-information-holder .each-order-section.landing-pending-subtotal-section {
+    width: 20%;
+  }
+}
+.order-information-holder .each-order-section.landing-pending-status-section {
+  width: 100%;
+}
+@media screen and (min-width: 992px) {
+  .order-information-holder .each-order-section.landing-pending-status-section {
+    width: 15%;
+  }
+}
+.order-information-holder .each-order-section.landing-pending-actions-section {
+  width: 100%;
+}
+@media screen and (min-width: 992px) {
+  .order-information-holder .each-order-section.landing-pending-actions-section {
+    width: 15%;
   }
 }
 .order-information-holder .each-order-section .checkbox {
@@ -3167,6 +3389,25 @@ tr.order-details-table-section-row td.inner-table-td-holder {
 }
 @media screen and (min-width: 768px) {
   .row-each-order-detail .order-detail-holder .order-detail-section .tablet-below-col-detail-heading {
+    display: none;
+  }
+}
+.action-button-section-account {
+  float: left;
+  margin-right: 30px;
+}
+@media screen and (min-width: 992px) {
+  .action-button-section-account {
+    margin-right: 15px;
+  }
+}
+.mobile-button-text-description {
+  display: block;
+  float: left;
+  margin-right: 4px;
+}
+@media screen and (min-width: 992px) {
+  .mobile-button-text-description {
     display: none;
   }
 }

@@ -2,9 +2,7 @@
 <html lang="en">
      <head>
           <?php include(dirname(__FILE__).'/snippets/header-files-include.php');?>
-          <style>
-          #sub-nav-holder-desktop {display: none;}
-          </style>
+          
      </head>
 
      <body>
