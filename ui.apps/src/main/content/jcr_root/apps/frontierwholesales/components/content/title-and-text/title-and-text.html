@@ -15,7 +15,7 @@
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/-->
 
 <sly data-sly-use.titletext="title-and-text.js" data-sly-unwrap></sly>
-<div class="banner-intro-holder">
-    <h2 data-sly-element=${properties.type} data-sly-test="${titletext.hasValue}">${titletext.title}</h2>
-    <p class="banner-intro-text">${titletext.text @context='html'}</p>
+<div class="each-standard-information-section">
+    <h2 data-sly-element=${properties.type} data-sly-test="${titletext.hasValue}" class="standard-heading">${titletext.title}</h2>
+    <div class="standard-text">${titletext.text @context='html'}</div>
 </div>
