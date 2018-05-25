@@ -22,6 +22,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.frontierwholesales.core.magento.services.FrontierWholesalesMagentoCommerceConnector;
 import com.frontierwholesales.core.services.constants.FrontierWholesalesConstants;
+import com.frontierwholesales.core.utils.FrontierWholesalesUtils;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -54,6 +55,7 @@ public class FrontierWholesalesShoppingCartServlet  extends SlingAllMethodsServl
 		
 		try {
 			String action = request.getParameter("action");
+			log.debug(" action is "+action);
 			
 			MagentoCommerceConnector.setServer(FrontierWholesalesMagentoCommerceConnector.getServer());
 			
@@ -71,15 +73,27 @@ public class FrontierWholesalesShoppingCartServlet  extends SlingAllMethodsServl
 				 commerceConnector.removeCartItem(token, itemId);
 				
 				
+			}else if(action.equals("add")){
+				String jsonData = request.getParameter("items");
+				// create cart
+				String cartId = commerceConnector.initCart(token);
+				//update json structure with cartid
+				String updatedData = FrontierWholesalesUtils.updateJsonObject(jsonData, "cartItem", "quote_id", cartId);
+				//add item into the cart
+				String cartItems = commerceConnector.addItemToCart(token, updatedData);
+				
+				
 			}
-			
 			String cartObject = commerceConnector.getCartTotal(token);
 			
 			String object = getValueFromJson(cartObject,request);
 			response.getOutputStream().println(object);
+			
 		}catch(Exception anyEx) {
 			
 			log.error("Error "+anyEx.getMessage());
+			String errorJson="Error in Cart";
+			response.getOutputStream().println(errorJson.toString());
 			
 		}
 		log.debug("FrontierWholesalesShoppingCartServlet doGet method End");
@@ -180,6 +194,12 @@ public class FrontierWholesalesShoppingCartServlet  extends SlingAllMethodsServl
 			JsonElement price = itemObject.get("price_incl_tax");
 			JsonElement rowTotal = itemObject.get("row_total_incl_tax");
 			
+			JsonElement qtyObject = itemObject.get("qty");
+			boolean bReturn = false;
+			if(qtyObject.getAsInt() > 1) {
+				bReturn = true;
+			}
+			itemObject.addProperty("quantities", bReturn);
 			itemObject.addProperty("price", "$"+priceFormat.format(price.getAsDouble()));
 			itemObject.addProperty("rowTotal", "$"+priceFormat.format(rowTotal.getAsDouble()));
 			
@@ -187,6 +207,7 @@ public class FrontierWholesalesShoppingCartServlet  extends SlingAllMethodsServl
 			updatedArray.add(updatedElement);
 			
 		}
+		
 			JsonElement arrayElement = json.fromJson(updatedArray, JsonElement.class);
 		
 			JsonElement grandTotal = object.get("grand_total");

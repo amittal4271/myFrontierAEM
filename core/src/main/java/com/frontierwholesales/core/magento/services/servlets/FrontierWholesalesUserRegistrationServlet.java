@@ -62,10 +62,10 @@ public class FrontierWholesalesUserRegistrationServlet  extends SlingAllMethodsS
 	
 	private String getTokenFromSession(SlingHttpServletRequest request) throws Exception{
 		log.debug("getToken from session start");
-		String adminToken = (String)request.getSession().getAttribute(FrontierWholesalesConstants.MAGENTO_ADMIN_PASSWORD);
+		String adminToken = (String)request.getSession().getAttribute(FrontierWholesalesConstants.MAGENTO_ADMIN_TOKEN);
 		if(null == adminToken) {
 			adminToken = connector.getAdminToken();
-			request.getSession().setAttribute(FrontierWholesalesConstants.MAGENTO_ADMIN_PASSWORD, adminToken);
+			request.getSession().setAttribute(FrontierWholesalesConstants.MAGENTO_ADMIN_TOKEN, adminToken);
 		}
 		log.debug("getToken from session end");
 		return adminToken;

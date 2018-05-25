@@ -13,6 +13,16 @@
   border: 1px solid #ececec;
   color: #5a524b;
 }
+.alert.alert-add-to-cart {
+  background: #f69b31;
+  border: 1px solid #f69b31;
+  color: #fff;
+  padding: 10px;
+  margin-bottom: 10px;
+  float: left;
+  clear: both;
+  width: 100%;
+}
 .btn-link-close-modal {
   float: right;
   color: #4d4a48;
@@ -83,6 +93,10 @@
   padding: 10px 12px;
   background: transparent;
 }
+.btn-smaller {
+  font-size: 10px;
+  padding: 4px 4px;
+}
 .btn-larger {
   font-size: 14px;
   padding: 15px 12px;
@@ -92,6 +106,16 @@
     font-size: 18px;
     padding: 15px 45px;
   }
+}
+.btn-confirm-remove-mini-cart-item {
+  background: #f4a21c;
+  border: 2px solid #f4901c;
+  color: #fff;
+}
+.btn-confirm-remove-mini-cart-item:hover,
+.btn-confirm-remove-mini-cart-item:focus {
+  background: #f49e12;
+  color: #fff;
 }
 .btn-green-dark {
   background: #189060;
@@ -323,6 +347,7 @@
   border: none;
   background: none;
   text-transform: none;
+  color: #8bba4a;
 }
 .btn-link.green-link {
   color: #8bba4a;
@@ -2102,6 +2127,21 @@ body.mobile-nav-overflow {
 .mini-cart-remove-holder .btn-mini-cart-remove .remove-text {
   display: none;
 }
+.mini-cart-item-remove-confirmation {
+  float: left;
+  width: 100%;
+  clear: both;
+  padding: 10px 0;
+  margin: 10px 0;
+  border-top: 1px solid #ececec;
+}
+.mini-cart-item-remove-confirmation .btn-confirm-remove-mini-cart-item {
+  float: right;
+  margin-left: 15px;
+}
+.mini-cart-item-remove-confirmation .btn-cancel-remove-mini-cart-item {
+  float: right;
+}
 .btn-mini-cart-go-to-cart {
   width: 100%;
 }
@@ -3488,8 +3528,8 @@ tr.order-details-table-section-row td.inner-table-td-holder {
 }
 .special-section-link {
   /*float: left;*/
-  display: block;    
   width: 100%;
+  display: block;
   background-image: url('../../../frontierwholesales/images/bg-home-items.c9948a3ed034.png');
   background-position: bottom center;
   background-repeat: no-repeat;
@@ -3815,6 +3855,21 @@ tr.order-details-table-section-row td.inner-table-td-holder {
   margin-bottom: 2px;
   font-weight: bold;
 }
+.product-icons {
+  float: left;
+  width: 100%;
+  clear: both;
+  margin: 10px 0;
+}
+.product-icons .each-product-icon-holder {
+  float: left;
+  width: 60px;
+  margin-right: 20px;
+}
+.product-icons .each-product-icon-holder img {
+  display: block;
+  width: 100%;
+}
 .product-detail-attributes {
   float: left;
   width: 100%;
@@ -3977,7 +4032,7 @@ tr.order-details-table-section-row td.inner-table-td-holder {
   color: #4d4a48;
   display: inline-block;
   font-family: 'Open Sans', sans-serif;
-  font-size: 22px;
+  font-size: 18px;
   height: 44px;
   padding: 0;
   text-align: center;
@@ -5630,6 +5685,35 @@ legend.each-form-title .form-title-information a {
   padding: 0;
   font-family: 'Open Sans Condensed', sans-serif;
 }
+.content-page-glossary-header {
+  float: left;
+  width: 100%;
+  clear: both;
+  margin: 0 0 30px 0;
+}
+#glossary-filter-list {
+  list-style: none;
+  text-align: center;
+  display: block;
+  margin: 10px 0;
+  padding: 0;
+}
+#glossary-filter-list li {
+  display: inline-block;
+  text-align: center;
+  margin: 0 5px;
+}
+#glossary-filter-list li a {
+  color: #a09892;
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 0 5px;
+}
+#glossary-filter-list li a:hover,
+#glossary-filter-list li a:focus {
+  color: #8bba4a;
+}
 .content-page-information {
   float: left;
   width: 100%;
@@ -5901,7 +5985,7 @@ legend.each-form-title .form-title-information a {
 }
 .each-left-right-section,
 .each-standard-section {
-/*float: left;*/
+  float: left;
   width: 100%;
 }
 .each-left-right-section.bg-light-section,
@@ -6340,7 +6424,6 @@ legend.each-form-title .form-title-information a {
 .cart-qty-input {
   background: #ffffff;
   border: 1px solid #dddddd;
-  height: 35px;
   text-align: center;
   vertical-align: middle;
   width: 70px;
@@ -6902,12 +6985,6 @@ table.table-order-summary .discounts {
   border-radius: 6px;
   border: 1px solid #ececec;
 }
-@media screen and (min-width: 768px) {
-  .shop-brand-top-three-link img.top-three-image {
-    width: 70%;
-    margin-left: 15%;
-  }
-}
 .row-each-brand-filter {
   background: #fcfcfc;
   border: 1px solid #ececec;
@@ -6964,6 +7041,11 @@ table.table-order-summary .discounts {
 .brand-list li a:focus,
 .brand-list li a:active {
   color: #8bba4a;
+}
+#quick-order-form-holder {
+  float: left;
+  width: 100%;
+  clear: both;
 }
 /*! HTML5 Boilerplate v4.3.0 | MIT License | http://h5bp.com/ */
 /*

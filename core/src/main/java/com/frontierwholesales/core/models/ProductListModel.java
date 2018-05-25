@@ -48,7 +48,7 @@ public class ProductListModel {
 
 
 	 public void getProductList(String productName) {
-		 System.out.println("Inside getProductList "+productName);
+		
 		 try {
 				Resource resc = slingHttpServletRequest.getResourceResolver().getResource("/etc/commerce/products/we-retail/"+productName);
 			 
@@ -61,39 +61,42 @@ public class ProductListModel {
 		                 {
 		        		
 		                 Node cNode = nodeItr.nextNode();
-		                 System.out.println("while loop "+cNode.getName());
+		                 
 		                 if(!cNode.getName().equals("jcr:content")) {
 		                	
 		                	String nodeName = cNode.getName();
 		                	String nodeType = cNode.getPrimaryNodeType().getName();
-		                	System.out.println("node type "+nodeType);
+		                	
 		                	if(nodeType.equals("sling:Folder")) {
 		                		String productPath = cNode.getParent().getName()+"/"+nodeName;
 		                		getProductList(productPath);
 		                	}else {
+		                	String sku="";
 		                   FrontierWholesalesProducts product = new FrontierWholesalesProducts();
 			               String title = cNode.getProperty("jcr:title").getValue().getString();
-			                System.out.println("title is "+title);
+			                
 			                product.setDescription(title);
 			                product.setPrice(cNode.getProperty("price").getDouble());
-			               
+			              
 			                product.setChildNode(cNode);
 			                
 			               NodeIterator childIterator = cNode.getNodes();
 			                while(childIterator.hasNext()) {
 			                	Node imgNode = childIterator.nextNode();
-			                	System.out.println("child node is "+imgNode.getName());
+			                	
 			                	if(imgNode.getName().equals("image")){
 			                		
 				                	String path = imgNode.getProperty("fileReference").getValue().getString();
-				                	System.out.println("path is "+path);
+				                	
 				                	product.setImagePath(path);
+			                	}else {
+			                		sku="-M-"+imgNode.getName();
 			                	}
-			                	/**/
+			                	
 			                }
-			                System.out.println("before adding product ");
+			                product.setProductSKU(cNode.getProperty("baseSku").getString()+sku);
 			                this.products.add(product);
-			                System.out.println("product size is "+this.products.size());
+			               
 		                 }
 		                 }
 		
