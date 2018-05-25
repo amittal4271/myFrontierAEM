@@ -1,0 +1,33 @@
+<!DOCTYPE html!>
+<!--/* A simple sightly script */-->
+<html>
+<!--
+  Debug information; 
+  1 column page rendering component; 
+
+	Page Title: ${properties.jcr:title};
+	Page Details -
+    currentPage Title: ${currentPage.Title};
+    currentPage Name: ${currentPage.Name};
+    currentPage Path: ${currentPage.Path};
+    currentPage Depth: ${currentPage.Depth};
+    
+    Node Details -
+    currentNode Name: ${currentNode.Name};
+    currentNode Path: ${currentNode.Path};
+    currentNode Depth: ${currentNode.Depth};
+-->
+ <head>
+   <title>${properties.jcr:title}</title>
+	<sly data-sly-include="header.html" />
+  </head>
+  <!-- Site Navigation -->
+  <sly data-sly-resource="${'navigation' @ resourceType='frontierwholesales/components/content/navigation'}" data-sly-unwrap></sly>   
+  <sly data-sly-resource="${'mobile-menu' @ resourceType='frontierwholesales/components/content/navigation/mobile-menu'}" data-sly-unwrap></sly>
+  <body> 
+    <sly data-sly-include="body.html" />
+  </body>
+  <footer>
+	<sly data-sly-include="footer.html" />
+  </footer>
+</html>

@@ -13,170 +13,253 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 */-->
-<div class="we-Product cq-dd-product-data-reference"
-     data-sly-use.product="product.js"
-     sku="${ product.baseProduct.SKU }"
-     page-path="${ product.baseProduct.pagePath }">
+<sly data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html" />
+<sly data-sly-call="${clientlib.css @ categories='frontier.structure.product-page'}" />
+<section id="product-detail">
+<div class="container"
+     data-sly-use.productModel="we.retail.core.model.ProductModel"
+     data-sly-use.hapiProduct="${'org.apache.sling.hapi.sightly.HApiUse' @ type='/apps/public/weretail/hapi_types/product'}"
+     data-sly-attribute="${hapiProduct.itemtype}">
 
-    <div data-sly-test="${ wcmmode.edit && !product.variants && !product.base }" class="cq-placeholder" data-emptytext="Product Component"></div>
-
+    <div data-sly-test="${wcmmode.edit && !model.hasVariants}" class="cq-placeholder"
+         data-emptytext="Product Component"></div>
     <we-product-variant
-        data-sly-repeat.item="${product.variants}"
-        is-base="${itemList.first ? 1 : 0}"
-        path="${item.path}"
-        page-path="${item.pagePath}"
-        variants="${item.variants}"
-        sku="${item.sku}"
-        title="${item.title}"
-        description="${item.description}"
-        color="${item.color}"
-        color-class="${item.colorClass}"
-        size="${item.size}"
-        price="${item.price}"
-        summary="${item.summary}"
-        features="${item.features}"
-        image="${item.image}"></we-product-variant>
+        data-sly-repeat.productItem="${productModel.productItem.variants}"
+        is-base="${productItemList.first ? 1 : 0}"
+        path="${productItem.path}"
+        page-path="${productItem.pagePath}"
+        variants="${productItem.variants}"
+        sku="${productItem.sku}"
+        title="${productItem.title}"
+        description="${productItem.description}"
+        price="${productItem.price}"
+        summary="${productItem.summary}"
+        features="${productItem.features}"
+        image="${productItem.imageUrl}"
+        thumbnail="${productItem.thumbnailUrl}"
+        variant-axes="${productItem.variantAxesMapJson}"></we-product-variant>
     
-    <div class="row" data-sly-test="${ product.variants && product.base }">
 
-        <!--/*
-        <div class="col-md-1">
-            <ul class="we-Product-photos">
-                <li class="active"><img src="${product.base.image}" class="img-responsive" v-bind:src="product.image"/></li>
-            </ul>
+		<div id="product-images">
+			  <div id="product-thumbnails">
+				   <button type="button" class="each-thumbnail">
+						<img src="https://dh6qdiyp93d9u.cloudfront.net/media/CACHE/images/products/simply/simply-organic-spicy-guacamole-mix-sauce-40-oz-one-19639-19639-default-1-5d19/c56d62d0dac6add6b54132a116b9ccbc.jpg"/>
+				   </button>
+				   <button type="button" class="each-thumbnail">
+						<img src="https://dh6qdiyp93d9u.cloudfront.net/media/CACHE/images/products/simply/simply-organic-spicy-guacamole-mix-sauce-40-oz-one-19639-19639-default-0-672e/9d65335a71660e67e539d8b8a4b48fc5.jpg"/>
+				   </button>
+			  </div>
+			  <div id="product-main-image">
+				   <span class="badge badge-sale">Sale</span>
+				   <div class="product-main-image-holder"
+						data-sly-use.hapiProductAsset="${'org.apache.sling.hapi.sightly.HApiUse' @ type=hapiProduct.proptype.assets}"
+						data-sly-attribute="${hapiProduct.itemprop.assets}">
+						<img src="${productModel.productItem.imageUrl}" class="img-responsive" v-bind:src="product.image" data-sly-attribute="${hapiProductAsset.itemprop.path}" />
+				   </div>
+			  </div>
         </div>
-        */-->
-        
-        <div class="col-md-5 col-md-offset-1">
-            <div class="we-Product-visual"> <!-- TODO: add zoom and slider -->
-                <img src="${product.base.image}" class="img-responsive" v-bind:src="product.image"/>
-                
-                <!--/*
-                <a href="#" class="we-Product-visual-zoom"><i class="we-Icon we-Icon--zoom-plus"></i> View larger</a>
-                */-->
+    
+    
+        <div id="product-information">
+			<div class="product-sku-number">
+				<span class="we-Product-code">${ 'SKU:' @ i18n } <span v-text="product.sku"
+					data-sly-attribute="${hapiProduct.itemprop.sku}">
+                    ${productModel.productItem.sku}</span></span>
+			</div>
+			<h1 class="product-title-name" v-html="product.title" data-sly-attribute="${hapiProduct.itemprop.name}">${productModel.productItem.title}</h1>
+			<div class="product-detail-attributes">
+                                   
+                                   <span class="dt-label">Brand: </span>
+                                   <span class="dd-value brand">
+                                        <a href="#" class="dd-value-link">Frontier</a>
+                                   </span>
+                              
+                                   <span class="dt-label">UPC: </span>
+                                   <span class="dd-value upc">089836230027</span>
+                                   
             </div>
-        </div>
-
-        <div class="col-md-5 col-md-offset-1">
-            <div class="row">
-                <div class="col-xs-6">
-                    <strong class="we-Product-brand h4" v-html="product.description">${product.base.description @context='html'}</strong>
-                </div>
-                <div class="col-xs-6 text-right">
-                    <span class="we-Product-code">SKU: <span v-text="product.sku">${product.base.sku}</span></span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <h1 class="we-Product-name" v-html="product.title">${product.base.title @context='html'}</h1>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <strong class="we-Product-price h2" v-html="product.price">${product.base.price}</strong>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="we-Rating">
-                        <div data-sly-resource="${'rating' @ resourceType='we-retail/components/hbs/rating', wcmmode='disabled'}"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="we-Product-description separator" v-html="product.summary">${product.base.summary @context='html'}</div>
-                </div>
+			<div class="product-price-summary"> 
+                                   <span class="product-sale-price"v-html="product.price" data-sly-attribute="${hapiProduct.itemprop.price}">${productModel.productItem.price}</span> 
+                                   <span class="product-now-price">Now $4.93</span>
+                                   <span class="product-save-percent">Save 25%</span>
             </div>
 
-            <form class="we-Product-form"
-                  action="${ product.addToCartUrl }"
-                  method="POST">
-                <input type="hidden" name="redirect" value="${product.redirect}.html">
-                <input type="hidden" name="redirect-product-not-found" value="${product.errorRedirect}.html"/>
-                <input type="hidden" name="product-quantity" value="1">
-                <input type="hidden" name="product-path" value="${product.path}">
+            <div class="product-detail-message">Availability: In Stock</div>
 
-                <div class="form-group" data-sly-test="${product.variations.type == 'color'}">
-                    <label>Colors</label>
+			  <div class="pdp-message-holder">
+				   <div class="alert alert-danger" role="alert"> 
+						<span class="glyphicon glyphicon-exclamation-sign"></span>
+						<strong>Restricted Shipping Item:</strong> Some type of message that explains the situation.
+				   </div>
+				   <div class="alert alert-bulk" role="alert">
+						<span class="glyphicon glyphicon-info-sign"></span>
+						<strong>Buy 5 to save 5%:</strong> Discount price will display in cart.
+				   </div>
+			  </div>
+
+			  <div class="product-wishlist">
+				   <button class="btn btn-add-wishlist btn-wishlist">Add to Wishlist +</button>
+				   <button class="btn btn-add-wishlist btn-shelve">Add to Shelves +</button>
+			  </div>
+			  
+			<form action="" method="post" class="product-detail-form-add" v-el:weProductForm action="${productModel.addToCartUrl}" method="POST"
+                  data-sly-use.hapiProductForm="${'org.apache.sling.hapi.sightly.HApiUse' @ type='/apps/public/weretail/hapi_types/addcartentryform'}"
+                  data-sly-attribute="${hapiProductForm.itemtype}"
+                  data-rel="addCartEntryForm">
+                <input type="hidden" name="redirect" v-model="product.pagePath" data-sly-attribute="${hapiProductForm.itemprop.redirectPath}" />
+                <input type="hidden" name="redirect-product-not-found" v-model="product.pagePath" data-sly-attribute="${hapiProductForm.itemprop.redirectErrorPath}" />
+                <input type="hidden" name="product-quantity" value="1" data-sly-attribute="${hapiProductForm.itemprop.quantity}" />
+                <input type="hidden" name="product-path" v-model="product.path" data-sly-attribute="${hapiProductForm.itemprop.productPath}" />
+                <input type="hidden" name=":operation" value="addToSmartList" />
+				
+				<!--/*
+				<sly data-sly-list.axisName="${productModel.productItem.variantsAxesValues}">
+                <div class="form-group fg-title">
+                    <label>${axisName @ i18n}</label>
                 </div>
-                <div class="form-group"
-                     data-sly-test="${product.variations.type == 'color'}">
-                    <div class="we-Product-radio marker radio-inline"
-                         data-sly-repeat.color="${product.variations.colors}">
+                <div class="form-group fg-content">
+                    <div class="we-Product-radio marker radio-inline" data-sly-repeat.axisValue="${productModel.productItem.variantsAxesValues[axisName]}">
                         <label>
-                            <input type="radio" name="product.color"
-                                   value="${color}" title="${color}"
-                                   style="background-color:${color @context='styleString'};"
-                                   checked="${product.base.colorClass == color}"
-                                   data-sku="${product.variations.colors[color][0].sku}"
-                                   v-on:click="setProduct"/>
+                            <input data-sly-test="${axisName != 'color'}" type="radio" name="${axisName}" value="${axisValue}" title="${axisValue}"
+                                   v-bind:checked="isChecked('${axisName}','${axisValue}')" v-on:click="setProduct"
+                                   data-sly-attribute="${hapiProductForm.itemprop[axisName]}" />
+                            <input data-sly-test="${axisName == 'color'}" type="radio" name="${axisName}" value="${axisValue}" title="${axisValue}"
+                                   v-bind:checked="isChecked('${axisName}','${axisValue}')" v-on:click="setProduct" 
+                                   style="background-color:${axisValue @context='styleString'};"
+                                   data-sly-attribute="${hapiProductForm.itemprop[axisName]}" />
+                            <div data-sly-test="${axisName != 'color'}">${axisValue}</div>
+                            <div data-sly-test="${axisName == 'color'}" style="background-color:${axisValue @context='styleString'};"></div>
                         </label>
                     </div>
                 </div>
-                <div class="form-group" data-sly-test="${product.variations.type}"
-                     v-show="showSizes()" v-cloak>
-                    <label>Sizes</label>
-                </div>
-                <sly data-sly-test="${product.variations.type == 'color'}"
-                     data-sly-list.color="${product.variations.colors}">
-                    <div class="form-group separator" v-if="product && product.colorClass == '${color}'"
-                         v-show="showSizes()" v-cloak>
-                        <sly data-sly-list.item="${product.variations.colors[color]}">
-                            <div class="we-Product-radio radio-inline">
-                                <label>
-                                    <input type="radio" name="product.sku" value="${item.sku}"
-                                           data-sku="${item.sku}"
-                                           v-bind:checked="isChecked('${item.sku}')"
-                                           v-on:click="setProduct">
-                                    <span>${item.size}</span>
-                                </label>
-                            </div>
-                        </sly>
-                    </div>
                 </sly>
-                <sly data-sly-test="${product.variations.type == 'size'}">
-                    <div class="form-group separator" v-cloak>
-                        <sly data-sly-list.item="${product.variations.sizes}">
-                            <div class="we-Product-radio radio-inline">
-                                <label>
-                                    <input type="radio" name="product.sku" value="${item.sku}"
-                                           data-sku="${item.sku}"
-                                           v-bind:checked="isChecked('${item.sku}')"
-                                           v-on:click="setProduct">
-                                    <span>${item.size}</span>
-                                </label>
-                            </div>
-                        </sly>
-                    </div>
-                </sly>
-                <div class="form-group">
+				<div class="form-group">
                     <div class="row">
                         <div class="col-md-4">
-                            <!--/*
-                            <span class="we-Product-status text-success">In stock</span>
-                            */-->
                         </div>
                         <div class="col-md-8 text-right">
-                            <button type="submit" class="btn btn-action btn-primary">Add to cart</button>
-                            <a href="#" class="btn btn-icon btn-primary"><i class="we-Icon we-Icon--heart"></i></a>
+                            <div class="we-Product-actions">
+                                <button type="submit" class="btn btn-action btn-primary" v-on:click="trackCartAdd"
+                                        data-sly-attribute="${hapiProductForm.itemprop.addToCartButton}">${ 'Add to cart' @ i18n }</button>
+                                <a data-sly-test="${!productModel.isAnonymous}" v-on:click.prevent="addToWishlist"
+                                   href="#" data-smartlist-url="${productModel.addToSmartListUrl}"
+                                   class="btn btn-icon btn-primary we-retail-not-anonymous" data-sly-attribute="${hapiProductForm.itemprop.addToSmartlistButton}">
+                                    <i class="fa fa-heart-o"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </form>
-        </div>
-    </div>
+				*/-->
+				 
+				   <div class="product-add-options">
+						<div class="qty-holder">
+							 <button type="button" class="decrease qty-button qty-down">
+								  <span class="decrease-minus">-</span>
+								  <span class="visuallyhidden">decrease</span>
+							 </button>
+							 <input type="text" min="1" name="quantity" id="product-qty-input" class="qty-input-field" value="1">
+							 <button type="button" class="increase qty-button qty-up">
+								  <span class="increase-plus">+</span>
+								  <span class="visuallyhidden">increase</span>
+							 </button>
+						</div>
+						<div class="add-to-cart-holder">
+							 <button class="btn btn-light-green btn-add-to-cart">Add To Cart</button>
+						</div>
+				   </div>
+			</form>
+			
+			  <div class="product-overview">
+			   <h2 class="heading-product-overview">Product Overview</h2>
+			   <p class="description-product-overview" v-html="product.description" data-sly-attribute="${hapiProduct.itemprop.description}">
+					Product description text
+					${productModel.productItem.description}
+					<!--<a class="description-read-more" href="#">Read More</a>-->
+			   </p>
+			   <ul class="overview-stat-list">
+					<li class="each-stat icon-check">
+						 <span class="each-stat-icon">
+							  <span class="glyphicon glyphicon-ok"></span>
+						 </span>
+						 <span class="each-stat-name-text">Organic</span>
+					</li>
+			   
+					<li class="each-stat icon-check">
+						 <span class="each-stat-icon">
+							  <span class="glyphicon glyphicon-ok"></span>
+						 </span>
+						 <span class="each-stat-name-text">Not Tested On Animals</span>
+					</li>
+			   
+					<li class="each-stat icon-check">
+						 <span class="each-stat-icon">
+							  <span class="glyphicon glyphicon-ok"></span>
+						 </span>
+						 <span class="each-stat-name-text">Non Irradiated</span>
+					</li>
+			   
+					<li class="each-stat icon-check">
+						 <span class="each-stat-icon">
+							  <span class="glyphicon glyphicon-ok"></span>
+						 </span>
+						 <span class="each-stat-name-text">Vegan</span>
+					</li>
+			   
+					<li class="each-stat icon-check">
+						 <span class="each-stat-icon">
+							  <span class="glyphicon glyphicon-ok"></span>
+						 </span>
+						 <span class="each-stat-name-text">Alcohol Free</span>
+					</li>
+			   </ul>
+		  </div>
+			
+			<div class="product-detail-additional-details">
+				   <span class="product-detail-overview-item-detail">
+						<span class="product-detail-overview-label">Flavor</span>
+						<span class="product-detail-overview-value">Crunchy Lentil Fest</span>
+				   </span>
+			  
+				   <span class="product-detail-overview-item-detail">
+						<span class="product-detail-overview-label">Size</span>
+						<span class="product-detail-overview-value">8 oz.</span>
+				   </span>
 
-    <!--/*
-    <div class="row">
-        <div class="col-md-6">
-            <h2 class="we-Product-subtitle">Features</h2>
-            <div class="we-Product-features" v-html="product.features">
-                ${product.base.features @context='html'}
+				   <span class="product-detail-overview-item-detail">
+						<span class="product-detail-overview-label">Count</span>
+						<span class="product-detail-overview-value">1 Item</span>
+				   </span>
+			  </div>
+
+			  <div class="product-more-details">
+				   <h3 class="heading-product-overview">Additional Product Details</h3>
+				   <div class="each-additional-section">
+						<h4 class="additional-heading">Directions</h4>
+						<p class="additional-description">Soak 6 to 8 hrs. in 4 parts warm water, 1 part seeds, rinse and spread evenly in sprouter. sprouts must be rinsed and drained 2 to 3 times per day and kept from light until the 3 or 4th day. taste test as you grow, warm room temp increases growth. some white fuzz is natural capillary roots, rinse the hulls away by immersing in large bowl of cool water, seperate clumps, let hulls float to top and skim off. process helps revent fermentation. refrigerate in plastic bag after sprouting, use within 2 to 3 days</p>
+				   </div>
+				   <div class="each-additional-section">
+						<h4 class="additional-heading">Ingredients</h4>
+						<p class="additional-description">blue french lentils, red and green lentils</p>
+				   </div>
+				   <div class="each-additional-section">
+						<h4 class="additional-heading">Package Content (Summary)</h4>
+						<p class="additional-description" v-html="product.summary" data-sly-attribute="${hapiProduct.itemprop.summary}">Contents summary
+						${productModel.productItem.summary}</p>
+				   </div>
             </div>
+			
+			<!--
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="we-Rating">
+                        <div data-sly-resource="${'rating' @ resourceType='weretail/components/hbs/rating', wcmmode='disabled'}"></div>
+                    </div>
+                </div>
+            </div>
+			-->
+           
         </div>
-    </div>
-    */-->
 
 </div>
-<!-- /.we-Product -->
+</section>
