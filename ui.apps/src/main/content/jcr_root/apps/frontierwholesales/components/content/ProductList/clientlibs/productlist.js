@@ -1,7 +1,7 @@
 $(document).ready(function(){
 console.log("product list page...");
     
-    getProductListByCategory(1,28,'');
+    getProductListByCategory(1,28,'featured');
     
   $(document).on('click','.btn.btn-light-green.btn-grid-add-to-cart',function(){
        console.log("cart has been added");
@@ -21,8 +21,8 @@ console.log("product list page...");
     $(document).on('change','#itemPerPageSelect',function(){
         var recsPerPage = $(this).val();
           var currentPage = 1;
-        var sortByPrice = $('#sortByPrice').val();
-        getProductListByCategory(currentPage,recsPerPage,sortByPrice);
+        var sortBy = $('#sortBy').val();
+        getProductListByCategory(currentPage,recsPerPage,sortBy);
        
     });
     
@@ -31,48 +31,56 @@ console.log("product list page...");
         var currentPage = parseInt($('#currentPage').val());
        
         var pageTotal = parseInt($('#totalPage').val());
-        var sortByPrice = $('#sortByPrice').val();
+        var sortBy = $('#sortBy').val();
         if(currentPage < pageTotal){
              currentPage = currentPage + 1;
             var recsPerPage = $('#itemPerPageSelect').val();
-            getProductListByCategory(currentPage,recsPerPage,sortByPrice);
+            getProductListByCategory(currentPage,recsPerPage,sortBy);
         }
        
        
     });
     
      $(document).on('click','.pagination-previous.pagination-arrow',function(){
+         e.preventDefault();
         var currentPage = parseInt($('#currentPage').val());
          if(currentPage > 1){
          var prevPage = currentPage - 1;
               
               var pageTotal = parseInt($('#totalPage').val());
              var recsPerPage = $('#itemPerPageSelect').val();
-              var sortByPrice = $('#sortByPrice').val();
-            getProductListByCategory(prevPage,recsPerPage,sortByPrice);
+              var sortBy = $('#sortBy').val();
+            getProductListByCategory(prevPage,recsPerPage,sortBy);
              
          }
        
        
     });
     
-    $(document).on('change','#sortByPrice',function(){
-        var sortByPrice = $(this).val();
-        var currentPage = parseInt($('#currentPage').val());
+    $(document).on('change','#sortBy',function(){
+        var sortBy = $(this).val();
+       // var currentPage = parseInt($('#currentPage').val());
+        var currentPage=1;
         var recsPerPage = $('#itemPerPageSelect').val();
-        getProductListByCategory(currentPage,recsPerPage,sortByPrice);
+        getProductListByCategory(currentPage,recsPerPage,sortBy);
     });
    
 });
 
-function getProductListByCategory(currentPage,recsPerPage,sortByPrice){
+function getProductListByCategory(currentPage,recsPerPage,sortBy){
     var jsonData={};
     showLoadingScreen();
     jsonData['currentPage']=currentPage;
     jsonData['categoryId']=$('#categoryId').val();
     jsonData['noOfRecsPerPage']=recsPerPage;
-   if(sortByPrice !== undefined && sortByPrice !== ''){
-       jsonData['sortByPrice']=sortByPrice;
+   if(sortBy !== undefined && sortBy !== ''){
+       if(sortBy == "featured"){
+           jsonData['sortByFeatured']="DESC";
+       }else if(sortBy == "newproduct" ){
+           jsonData['newProduct']="DESC";
+       }else{
+       jsonData['sortByPrice']=sortBy;
+       }
    }
     $.ajax({
         url: "/services/productlist",
@@ -83,8 +91,7 @@ function getProductListByCategory(currentPage,recsPerPage,sortByPrice){
         var productList = JSON.parse(results);
        
         var template = $("#productlistTemplate").html();
-      var categoryTemplate = $('#categoriesTemplate').html();
-       
+     
         Handlebars.registerHelper("recordsPerPage",function(recsPerPage,page,totalRecs){
             var recordsPerPage = recsPerPage * page;
             if( recordsPerPage > totalRecs){
@@ -95,17 +102,15 @@ function getProductListByCategory(currentPage,recsPerPage,sortByPrice){
         });
         
        var html = Handlebars.compile(template);
-        var categoryHTML = Handlebars.compile(categoryTemplate);
-        
-       var catProcessedHTML = categoryHTML(productList);
+      
         var processedHTML = html(productList)
        
-        $('#categorytemplate').html(catProcessedHTML);
+       
         $('#plp-search-product-grid').empty();
         $('#plp-search-product-grid').html(processedHTML); 
         $('#itemPerPageSelect option[value='+recsPerPage +']').prop('selected',true);
-         if(sortByPrice !== undefined && sortByPrice !== ''){
-            $('#sortByPrice option[value='+ sortByPrice+']').prop('selected',true);
+         if(sortBy !== undefined && sortBy !== ''){
+            $('#sortBy option[value='+ sortBy+']').prop('selected',true);
          }
         
          var $el = $('#plp-search-header-holder');

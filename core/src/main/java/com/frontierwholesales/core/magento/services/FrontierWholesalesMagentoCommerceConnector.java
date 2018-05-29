@@ -19,6 +19,7 @@ import org.slf4j.LoggerFactory;
 import com.adobe.cq.commerce.api.CommerceException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.frontierwholesales.core.beans.FrontierWholesalesProductSearch;
 import com.frontierwholesales.core.utils.AuthCredentials;
 
 
@@ -245,19 +246,29 @@ public class FrontierWholesalesMagentoCommerceConnector {
     	return newItem;
     }
     
-    public String getProducts(String adminToken,int currentPage,int categoryId,int noOfRecsPerPage,String sortByPrice) {
+    public String getProducts(String adminToken,FrontierWholesalesProductSearch search) {
     	
         String response=null;
         String orderByPrice= "";
-        
-        String searchCriteria = "searchCriteria[currentPage]="+currentPage+"&searchCriteria[pageSize]="+noOfRecsPerPage+"&"+
-        						 "searchCriteria[filterGroups][0][filters][0][value]="+categoryId+"&"+
+        String featured ="";
+        String newProduct="";
+        String searchCriteria = "searchCriteria[currentPage]="+search.getCurrentPage()+"&searchCriteria[pageSize]="+search.getNoOfRecsPerPage()+"&"+
+        						 "searchCriteria[filterGroups][0][filters][0][value]="+search.getCategoryId()+"&"+
         						 "searchCriteria[filterGroups][0][filters][0][field]=category_id";
-        if(sortByPrice != null) {
-         orderByPrice = "&searchCriteria[sortOrders][0][field]=price&searchCriteria[sortOrders][0][direction]="+sortByPrice;
+        if(search.getSortByPrice() != null) {
+         orderByPrice = "&searchCriteria[sortOrders][0][field]=price&searchCriteria[sortOrders][0][direction]="+search.getSortByPrice();
          searchCriteria = searchCriteria + orderByPrice;
         }
         
+        if(search.getSortByFeatured() != null) {
+        	featured ="&searchCriteria[sortOrders][0][field]=featured&searchCriteria[sortOrders][0][direction]=DESC";
+        	 searchCriteria = searchCriteria + featured;
+        }
+        
+        if(search.getSortByNewProduct() != null) {
+        	newProduct="&searchCriteria[sortOrders][0][field]=created_at&searchCriteria[sortOrders][0][direction]=DESC";
+        	 searchCriteria = searchCriteria + newProduct;
+        }
         
         try {
             

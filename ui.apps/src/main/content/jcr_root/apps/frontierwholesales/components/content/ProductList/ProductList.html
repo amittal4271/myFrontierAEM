@@ -5,43 +5,31 @@
 <article class="product-list-page">
                     <div class="container">
                          <aside id="plp-search-left-nav-filters">
-                              <div id="categorytemplate" ></div>
-                                    <script id="categoriesTemplate" type="text/x-handlebars-template">
-                                  
-                                  {{#if categories.children_data.length includedZero=false}}
-                                    <div  class="each-filter-section categories" class="each-filter-section categories">
+                           
+                                
+                             <sly data-sly-test="${currentPage.listChildren}">
+                                        <div  class="each-filter-section categories">
                                    <h2 class="filter-heading">Categories</h2>
-                                   {{#categories.children_data}}
-                                   <ul class="each-filters-list">
-                                        <li class="filter-item">
-                                             <a href="#" class="filter-link"><span class="text">{{name}}</span></a>
+                                      <sly data-sly-list.child="${currentPage.listChildren}">
+                                      <ul class="each-filters-list">
+                                        <li class="filter-item ${childList.count > 1?'visuallyhidden':''}">
+                                             <a href="${child.path}.html" class="filter-link"><span class="text">${child.title}</span></a>
                                         </li>
-                                        <!--<li class="filter-item">
-                                             <a href="#" class="filter-link"><span class="text">Coffee</span></a>
-                                        </li>
-                                        <li class="filter-item">
-                                             <a href="#" class="filter-link"><span class="text">Hot Cocoa</span></a>
-                                        </li>
-                                        <li class="filter-item">
-                                             <a href="#" class="filter-link"><span class="text">Powdered Drink Mixes</span></a>
-                                        </li>
-                                        <li class="filter-item">
-                                             <a href="#" class="filter-link"><span class="text">Tea</span></a>
-                                        </li>
-                                       
-                                        <li class="filter-item visuallyhidden">
-                                             <a href="#" class="filter-link"><span class="text">Flavors and Syrups</span></a>
-                                        </li>
-                                        <li class="filter-item filter-item-expand">
+                                          <sly data-sly-test="${childList.count > 1}">
+                                          <li class="filter-item filter-item-expand">
                                              <button type="button" class="btn btn-view-more-filters">
                                                   <span class="view-more-text">View More</span>
                                              </button>
-                                        </li>-->
-                                   </ul>
-                                   {{/categories.children_data}}
-                                      </div>
-                                   {{/if}}
-                                  </script>
+                                          </li>
+                                        </sly>
+                                     </ul>
+                                     </sly>
+                                            </div>
+                                 </sly>
+                                                 
+                                
+                             
+                            
                               
 
                               <div class="each-filter-section brand">
@@ -126,18 +114,18 @@
                                         <div class="sort-by-holder">
                                              <div class="form-group">
                                                   <label for="sortby-type">Sort By</label>
-                                                  <select id="sortByPrice" name="sortby-type" id="sortby-type" class="form-control">
-                                                       <option value="">Featured</option>
-                                                       <option value="">New Arrivals</option>
-                                                       <option value="ASC">Lowest Price</option>
-                                                       <option value="DESC">Highest Price</option>
+                                                  <select id="sortBy" name="sortby-type" class="form-control">
+                                                       <option value="featured">Featured</option>
+                                                       <option value="newproduct">New Arrivals</option>
+                                                       <option value="asc">Lowest Price</option>
+                                                       <option value="desc">Highest Price</option>
                                                   </select>
                                              </div>
                                         </div>
                                         <div class="items-per-page-holder">
                                              <div class="form-group">
                                                   <label for="sortby-items">Items Per Page:</label>
-                                                  <select id="itemPerPageSelect" name="sortby-items" id="sortby-items" class="form-control">
+                                                  <select id="itemPerPageSelect" name="sortby-items"  class="form-control">
                                                        <option value="28">28</option>
                                                        <option value="56">56</option>
                                                        <option value="100">100</option>
@@ -170,6 +158,7 @@
                                                   <span class="product-now-price">Now {{ formattedPrice}}</span>
                                              </span>
                                         </a>
+                                        <sly data-sly-test="${currentSession.userID == anonymous}">
                                        <div class="grid-add-to-cart">
                                              <div class="qty-holder">
                                                   <button type="button" class="decrease qty-button qty-down">
@@ -185,6 +174,7 @@
                                            <div id="cartMessage-{{sku}}" class="alert alert-add-to-cart" style="display: none;">Added to your Cart!</div>
                                              <button id="{{sku}}"type="button" class="btn btn-light-green btn-grid-add-to-cart">Add to Cart</button>
                                         </div>
+                                 </sly>
                                         </div>
                                         {{/items}}
                                        
@@ -204,7 +194,11 @@
                                                   </a>
                                              </li>
                                              <li class="pagination-numbers">
+                                                 {{#if search_criteria.current_page includedZero=false}}
                                                   <span class="pag-number">{{search_criteria.current_page}} of {{pageTotal}}</span>
+                                                 {{else}}
+                                                 <span class="pag-number">0 of 0</span>
+                                                 {{/if}}
                                              </li>
                                              <li><input id="currentPage" type=hidden value="{{search_criteria.current_page}}">
                                                  <input id="totalPage" type=hidden value="{{pageTotal}}">

@@ -18,6 +18,7 @@ import com.adobe.cq.commerce.api.Product;
 import com.adobe.cq.commerce.common.CommerceHelper;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
+import com.frontierwholesales.core.beans.FrontierWholesalesProductSearch;
 import com.frontierwholesales.core.magento.services.FrontierWholesalesMagentoCommerceConnector;
 import com.frontierwholesales.core.services.constants.FrontierWholesalesConstants;
 import com.google.gson.Gson;
@@ -40,15 +41,24 @@ public class FrontierWholesalesProductListServlet extends SlingAllMethodsServlet
 			throws ServletException, IOException {
 		
 		log.debug("doGet FrontierWholesalesProductListServlet Start here");
-		try {			
+		try {
+			FrontierWholesalesProductSearch search = new FrontierWholesalesProductSearch();
 			int currentPage = Integer.parseInt(request.getParameter("currentPage"));
+			search.setCurrentPage(currentPage);
 			int categoryId = Integer.parseInt(request.getParameter("categoryId"));
+			search.setCategoryId(categoryId);
 			int noOfRecsPerPage = Integer.parseInt(request.getParameter("noOfRecsPerPage"));
+			search.setNoOfRecsPerPage(noOfRecsPerPage);
 			String sortByPrice = request.getParameter("sortByPrice");
+			search.setSortByPrice(sortByPrice);
+			String sortByFeatured = request.getParameter("sortByFeatured");
+			search.setSortByFeatured(sortByFeatured);
+			String sortByNewProduct = request.getParameter("newProduct");
+			search.setSortByNewProduct(sortByNewProduct);
 			
 			String adminToken = getTokenFromSession(request);
 			String categories = commerceConnector.getCategories(adminToken, categoryId);
-			String productList = commerceConnector.getProducts(adminToken, currentPage, categoryId,noOfRecsPerPage,sortByPrice);
+			String productList = commerceConnector.getProducts(adminToken, search);
 			
 			response.getOutputStream().println(parseJsonObject(productList,noOfRecsPerPage,currentPage,categories));
 		}catch(Exception anyEx) {
