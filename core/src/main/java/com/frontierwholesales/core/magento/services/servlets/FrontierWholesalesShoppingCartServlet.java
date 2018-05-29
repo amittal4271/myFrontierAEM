@@ -27,7 +27,6 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.infield.magento.core.connector.MagentoCommerceConnector;
 
 @SuppressWarnings("serial")
 @SlingServlet(label="FrontierWholesalesUserRegistration - Sling All Methods Servlet", 
@@ -36,7 +35,7 @@ paths={"/services/cart"}, methods={"GET","POST","DELETE","PUT"})
 public class FrontierWholesalesShoppingCartServlet  extends SlingAllMethodsServlet{
 
 	private static final Logger log = LoggerFactory.getLogger(FrontierWholesalesShoppingCartServlet.class);
-	private MagentoCommerceConnector connector = new MagentoCommerceConnector();
+	
 	private FrontierWholesalesMagentoCommerceConnector commerceConnector = new FrontierWholesalesMagentoCommerceConnector();
 	private ObjectMapper mapper = new ObjectMapper();
 	
@@ -56,8 +55,6 @@ public class FrontierWholesalesShoppingCartServlet  extends SlingAllMethodsServl
 		try {
 			String action = request.getParameter("action");
 			log.debug(" action is "+action);
-			
-			MagentoCommerceConnector.setServer(FrontierWholesalesMagentoCommerceConnector.getServer());
 			
 			String token = (String)request.getSession().getAttribute(FrontierWholesalesConstants.MAGENTO_USER_TOKEN);
 			

@@ -92,6 +92,22 @@ $.validator.addMethod("expiryMonth",function(value,element){
     }
 });
 
+$.validator.addMethod("creditcardValidate",function(value,element){
+   // first, sanitize the number by removing all non-digit characters.
+var num = value.replace(/[^\d]/g, '');
+// now test the number against some regexes to figure out the card type.
+if (num.match(/^5[1-5]\d{14}$/)) {
+ return true;
+} else if (num.match(/^4\d{15}/) || num.match(/^4\d{12}/)) {
+ return true;
+} else if (num.match(/^3[47]\d{13}/)) {
+ return true;
+} else if (num.match(/^6011\d{12}/)) {
+ return true;
+}
+
+});
+
 function buyersClubCheckboxOperations(){
      $(document).on( "change", "#id_account-buying_club", function(e) {
                          console.log('buying club radio change');
@@ -376,7 +392,7 @@ function buyersClubCheckboxOperations(){
                     },"billing-number":{
                         required: true,
 		            	maxlength: 16,
-                        creditcard: true
+                        creditcardValidate: true
                         
                     },"billing-cvv":{
                         required: true,
@@ -450,6 +466,8 @@ function buyersClubCheckboxOperations(){
                         expiryMonth: "Please enter a valid expiration date!"
                     },"membership-email":{
                         emailValidation:"Please enter a valid email"
+                    },"billing-number":{
+                        creditcardValidate: "Enter a valid card number!"
                     }
 		        }
 		    });
@@ -558,7 +576,7 @@ function buyersClubCheckboxOperations(){
                     "invite_3_name": {
                           fullName: 'Please enter full name'
                      },"invite_3_email":{
-                          emailvalidation:"Please enter a valid email"
+                          emailValidation:"Please enter a valid email"
                      },
                     "invite_4_name": {
                           fullName: 'Please enter full name'

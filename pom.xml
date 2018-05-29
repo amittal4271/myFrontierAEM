@@ -593,12 +593,13 @@
 			    <artifactId>httpclient</artifactId>
 			    <version>4.5.5</version>
 			</dependency>
-			<dependency>
+			<!--  <dependency>
 			   <groupId>com.infield.aem</groupId>
 			   <artifactId>magento2</artifactId>
 			   <version>1.0.1-SNAPSHOT</version>
 			   <scope>provided</scope>
-			</dependency>
+			</dependency>-->
+			
         </dependencies>
     </dependencyManagement>
 

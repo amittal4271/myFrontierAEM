@@ -1,15 +1,15 @@
 <sly
     data-sly-use.clientLib="${'/libs/granite/sightly/templates/clientlib.html'}"/>
 <sly data-sly-call="${clientlib.js @ categories='productlist'}" data-sly-unwrap/>
-
+<input id="categoryId" type=hidden value='${currentPage.properties.categoryId}'>
 <article class="product-list-page">
                     <div class="container">
                          <aside id="plp-search-left-nav-filters">
-                              <div id="categorytemplate" class="each-filter-section categories"></div>
+                              <div id="categorytemplate" ></div>
                                     <script id="categoriesTemplate" type="text/x-handlebars-template">
                                   
-                                  {{#if categories.children_data.length}}
-                                    <div  class="each-filter-section categories">
+                                  {{#if categories.children_data.length includedZero=false}}
+                                    <div  class="each-filter-section categories" class="each-filter-section categories">
                                    <h2 class="filter-heading">Categories</h2>
                                    {{#categories.children_data}}
                                    <ul class="each-filters-list">
@@ -112,7 +112,7 @@
                                    <div id="search-heading">
                                         <h1 class="plp-search-text-heading">{{categories.name}}</h1>
                                         <span class="showing-number-of-items">
-                                             Showing <span class="number">{{recordsPerPage recsPerPage search_criteria.current_page}}</span> of <span class="number">{{total_count}}</span> Products
+                                             Showing <span class="number">{{recordsPerPage recsPerPage search_criteria.current_page total_count}}</span> of <span class="number">{{total_count}}</span> Products
                                         </span>
                                    </div>
                              

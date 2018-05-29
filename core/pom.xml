@@ -234,11 +234,11 @@
 			    <artifactId>httpclient</artifactId>
 			   
 			</dependency>
-			<dependency>
+			<!--  <dependency>
 			   <groupId>com.infield.aem</groupId>
-			   <artifactId>magento2</artifactId>
-			   <scope>provided</scope>
-			</dependency>
+			   <artifactId>magento2.core</artifactId>
+			 
+			</dependency>-->
   </dependencies>
         
     

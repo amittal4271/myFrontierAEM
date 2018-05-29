@@ -20,7 +20,6 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.infield.magento.core.connector.MagentoCommerceConnector;
 
 /**
  * Getting cart list for logged or guest users
@@ -29,7 +28,6 @@ import com.infield.magento.core.connector.MagentoCommerceConnector;
  */
 public class ShoppingCartModels extends WCMUsePojo{
 
-	public MagentoCommerceConnector connector = new MagentoCommerceConnector();
 	
 	public FrontierWholesalesMagentoCommerceConnector commerceConnector = new FrontierWholesalesMagentoCommerceConnector();
 	
@@ -56,7 +54,7 @@ public class ShoppingCartModels extends WCMUsePojo{
 		 mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
 		
 		
-		MagentoCommerceConnector.setServer(FrontierWholesalesMagentoCommerceConnector.getServer());
+		
 		
 		String token = (String)getRequest().getSession().getAttribute(FrontierWholesalesConstants.MAGENTO_USER_TOKEN);
 		

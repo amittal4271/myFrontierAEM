@@ -8,10 +8,16 @@ import javax.servlet.ServletException;
 import org.apache.felix.scr.annotations.sling.SlingServlet;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.adobe.cq.commerce.api.Product;
+import com.adobe.cq.commerce.common.CommerceHelper;
+import com.day.cq.wcm.api.Page;
+import com.day.cq.wcm.api.PageManager;
 import com.frontierwholesales.core.magento.services.FrontierWholesalesMagentoCommerceConnector;
 import com.frontierwholesales.core.services.constants.FrontierWholesalesConstants;
 import com.google.gson.Gson;
@@ -34,7 +40,7 @@ public class FrontierWholesalesProductListServlet extends SlingAllMethodsServlet
 			throws ServletException, IOException {
 		
 		log.debug("doGet FrontierWholesalesProductListServlet Start here");
-		try {
+		try {			
 			int currentPage = Integer.parseInt(request.getParameter("currentPage"));
 			int categoryId = Integer.parseInt(request.getParameter("categoryId"));
 			int noOfRecsPerPage = Integer.parseInt(request.getParameter("noOfRecsPerPage"));

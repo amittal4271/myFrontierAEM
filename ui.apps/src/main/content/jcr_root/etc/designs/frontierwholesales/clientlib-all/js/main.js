@@ -399,13 +399,13 @@ function checkQuantity($el) {
 	}
 }
 
-var byRow = $('#product-grid').hasClass('match-height');
+/*var byRow = $('#product-grid').hasClass('match-height');
     $('#product-grid').each(function() {
         $(this).children('.product-grid-item').matchHeight({
             byRow: byRow
         });
     });
-
+*/
     // match height for blog grid and article listing on search results
     var byRow = $('#article-grid').hasClass('match-height');
     $('#article-grid').each(function() {

@@ -20,7 +20,6 @@ import com.adobe.cq.commerce.api.CommerceException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.frontierwholesales.core.utils.AuthCredentials;
-import com.infield.magento.catalog.connector.models.MagentoProductList;
 
 
 

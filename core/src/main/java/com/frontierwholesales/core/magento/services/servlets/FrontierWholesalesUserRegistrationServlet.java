@@ -101,8 +101,13 @@ public class FrontierWholesalesUserRegistrationServlet  extends SlingAllMethodsS
 					  //call company service here to register
 					  String registredValues = FrontierWholesalesUserRegistration.companyRegistration(adminPwd, companyObject);
 					  log.debug("Successfully user is registered");
-					  jsonObject.addProperty("Success", registredValues);
-					  response.getOutputStream().println(jsonObject.toString());
+					  if(registredValues != null) {
+						  jsonObject.addProperty("Success", registredValues);
+						  response.getOutputStream().println(jsonObject.toString());
+					  }else {
+						  log.error("Returned object is null ");
+						  response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Service object is null");
+					  }
 			    }else {
 			    	response.sendError(HttpServletResponse.SC_FORBIDDEN, "Password is not set");
 			    }

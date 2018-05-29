@@ -26,7 +26,8 @@ console.log("product list page...");
        
     });
     
-    $(document).on('click','.pagination-next.pagination-arrow',function(){
+    $(document).on('click','.pagination-next.pagination-arrow',function(e){
+        e.preventDefault();
         var currentPage = parseInt($('#currentPage').val());
        
         var pageTotal = parseInt($('#totalPage').val());
@@ -36,6 +37,7 @@ console.log("product list page...");
             var recsPerPage = $('#itemPerPageSelect').val();
             getProductListByCategory(currentPage,recsPerPage,sortByPrice);
         }
+       
        
     });
     
@@ -67,7 +69,7 @@ function getProductListByCategory(currentPage,recsPerPage,sortByPrice){
     var jsonData={};
     showLoadingScreen();
     jsonData['currentPage']=currentPage;
-    jsonData['categoryId']=15;
+    jsonData['categoryId']=$('#categoryId').val();
     jsonData['noOfRecsPerPage']=recsPerPage;
    if(sortByPrice !== undefined && sortByPrice !== ''){
        jsonData['sortByPrice']=sortByPrice;
@@ -83,9 +85,13 @@ function getProductListByCategory(currentPage,recsPerPage,sortByPrice){
         var template = $("#productlistTemplate").html();
       var categoryTemplate = $('#categoriesTemplate').html();
        
-        Handlebars.registerHelper("recordsPerPage",function(recsPerPage,page){
+        Handlebars.registerHelper("recordsPerPage",function(recsPerPage,page,totalRecs){
             var recordsPerPage = recsPerPage * page;
-            return recordsPerPage;
+            if( recordsPerPage > totalRecs){
+                return totalRecs;
+            }else{
+              return recordsPerPage;
+            }
         });
         
        var html = Handlebars.compile(template);
@@ -95,13 +101,33 @@ function getProductListByCategory(currentPage,recsPerPage,sortByPrice){
         var processedHTML = html(productList)
        
         $('#categorytemplate').html(catProcessedHTML);
+        $('#plp-search-product-grid').empty();
         $('#plp-search-product-grid').html(processedHTML); 
         $('#itemPerPageSelect option[value='+recsPerPage +']').prop('selected',true);
          if(sortByPrice !== undefined && sortByPrice !== ''){
             $('#sortByPrice option[value='+ sortByPrice+']').prop('selected',true);
          }
+        
+         var $el = $('#plp-search-header-holder');
+        scrollToElement($el);
+        
+        
+        setTimeout(function() {
+                   adjustHeight();
+               }, 500);
        
     });
+}
+
+
+
+function adjustHeight(){
+    var byRow = $('#product-grid').hasClass('match-height');
+   $('#product-grid').each(function() {
+       $(this).children('.product-grid-item').matchHeight({
+           byRow: byRow
+       });
+   });
 }
 
 function addItemToCart(sku,qty){

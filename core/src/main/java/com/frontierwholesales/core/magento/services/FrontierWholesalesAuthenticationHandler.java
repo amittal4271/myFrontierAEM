@@ -25,7 +25,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.frontierwholesales.core.services.constants.FrontierWholesalesConstants;
-import com.infield.magento.core.connector.MagentoCommerceConnector;
+
 
 
 @Component(metatype = true, immediate = true, label = "Frontier Wholesales Authentication Handelr",
@@ -40,7 +40,7 @@ description="Authenticates User ")
 public class FrontierWholesalesAuthenticationHandler extends DefaultAuthenticationFeedbackHandler implements AuthenticationHandler,AuthenticationFeedbackHandler {
 	 private static final Logger log = LoggerFactory.getLogger(FrontierWholesalesAuthenticationHandler.class);
 	
-	 private MagentoCommerceConnector connector = new MagentoCommerceConnector();
+	 private FrontierWholesalesMagentoCommerceConnector connector = new FrontierWholesalesMagentoCommerceConnector();
 	
 	
 	 @Reference(target = "(service.pid=com.day.crx.security.token.impl.impl.TokenAuthenticationHandler)")
