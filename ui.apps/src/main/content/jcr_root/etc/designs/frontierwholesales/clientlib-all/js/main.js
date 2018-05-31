@@ -159,6 +159,9 @@ $(document).ready(function() {
 			nextEl: '#homepage-scroller .swiper-button-next',
 			prevEl: '#homepage-scroller .swiper-button-prev',
 		},
+        autoplay: {
+			delay: 3000, 
+		}
     });
 
 
