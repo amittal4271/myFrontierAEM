@@ -1,0 +1,70 @@
+<h4 data-sly-test="${wcmmode.edit}">edit...</h4>
+<section id="my-account-message-area"
+		 data-sly-use.dashboard="com.frontierwholesales.core.models.myaccount.Dashboard"
+	     data-sly-use.myaccount="com.frontierwholesales.core.models.myaccount.MyAccount">
+     <div class="account-message-holder">
+          <div class="account-message-title">${dashboard.messageHeader}</div>
+          <div data-sly-resource="${'message-parsys' @ resourceType='foundation/components/parsys'}"/>
+     </div>
+</section>
+<!-- 
+<section class="account-main-holder">
+
+     <div class="account-heading-holder table-below">
+          <h2 class="account-heading">Pending Orders</h2>
+          <a href="#" class="btn btn-white-green btn-account-heading btn-account-form">View All Orders</a>
+     </div>
+
+     <table class="simple-responsive">
+          <thead>
+               <tr>
+                    <th scope="col" class="orders-placed-by-th">Shopper</th>
+                    <th scope="col" class="orders-order-name-th">Order Name</th>
+                    <th scope="col">Lines</th>
+                    <th scope="col">Subtotal</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Actions</th>
+               </tr>
+          </thead>
+          <tbody>
+               <tr>
+                    <td scope="row" class="orders-placed-by-td" data-label="Shopper">Brittany Miller</td>
+                    <td  class="orders-order-name-td" data-label="Order Name">Brittany's Cart created on 02/22/18</td>
+                    <td data-label="Lines">6</td>
+                    <td data-label="Subtotal">$513.78</td>
+                    <td data-label="Status">Draft</td>
+                    <td data-label="Actions">
+                         <form id="form-order-switch">
+                              <button class="btn btn-light-green btn-view-order">View Order</button>
+                         </form>
+                    </td>
+               </tr>
+               <tr>
+                    <td scope="row" class="orders-placed-by-td" data-label="Shopper">Brittany Miller</td>
+                    <td  class="orders-order-name-td" data-label="Order Name">Brittany's Cart created on 02/22/18</td>
+                    <td data-label="Lines">6</td>
+                    <td data-label="Subtotal">$513.78</td>
+                    <td data-label="Status">Draft</td>
+                    <td data-label="Actions">
+                         <form id="form-order-switch">
+                              <button class="btn btn-light-green btn-view-order">View Order</button>
+                         </form>
+                    </td>
+               </tr>
+               <tr>
+                    <td scope="row" class="orders-placed-by-td" data-label="Shopper">Brittany Miller</td>
+                    <td  class="orders-order-name-td" data-label="Order Name">Brittany's Cart created on 02/22/18</td>
+                    <td data-label="Lines">6</td>
+                    <td data-label="Subtotal">$513.78</td>
+                    <td data-label="Status">Draft</td>
+                    <td data-label="Actions">
+                         <form id="form-order-switch">
+                              <button class="btn btn-light-green btn-view-order">View Order</button>
+                         </form>
+                    </td>
+               </tr>
+          </tbody>
+     </table>
+     
+</section>
+ -->

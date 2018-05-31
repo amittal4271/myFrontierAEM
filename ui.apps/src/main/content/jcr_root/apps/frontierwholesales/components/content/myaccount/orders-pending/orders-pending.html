@@ -1,0 +1,697 @@
+<h4 data-sly-test="${wcmmode.edit}">edit...</h4>
+<section class="account-main-holder"
+		 data-sly-use.pendingorders="com.frontierwholesales.core.models.myaccount.PendingOrders" 
+		 data-sly-use.myaccount="com.frontierwholesales.core.models.myaccount.MyAccount"
+		 data-sly-list.user="${myaccount.getUsersWithPendingOrders}">
+     
+     <!-- initial testing, to demonstrate simple double loop over map of lists
+     <ul data-sly-list.user="${pendingorders.users}">
+     	<li>Name: ${user.fullName}
+     		<ul data-sly-list.order="${user.pendingOrders}">
+     		<li>Order Name: ${order.name}</li>
+     	
+     	</li>
+     </ul>
+      -->
+      
+      
+	<div class="each-order-by-user-holder" >
+		<div class="account-heading-holder table-below">
+			<h2 class="account-heading">${user.fullName}'s Orders</h2>
+		</div>
+		<div class="orders-holder">
+	        <div class="grid-table-header order-information-header">
+	             <div class="each-order-header order-header-select grid-header">${pendingorders.selectColumnHeader}</div>
+	             <div class="each-order-header order-header-name grid-header">${pendingorders.orderNameColumnHeader}</div>
+	             <div class="each-order-header order-header-status grid-header">${pendingorders.statusColumnHeader}</div>
+	             <div class="each-order-header order-header-lines grid-header">${pendingorders.linesColumnHeader}</div>
+	             <div class="each-order-header order-header-subtotal grid-header">${pendingorders.subtotalColumnHeader}</div>
+	             <div class="each-order-header order-header-activity grid-header">${pendingorders.activityColumnHeader}</div>
+	             <div class="each-order-header order-header-detail grid-header">${pendingorders.detailColumnHeader}</div>
+	        </div>
+        </div>
+        <div class="order-grid" data-sly-list.order="${user.pendingOrders}">
+
+                    <div class="row-each-order">
+                         <div class="order-information-holder">
+							<div class="order-information-holder">
+                              <div class="each-order-section order-select-section">
+                                   <span class="tablet-below-col-heading">${pendingorders.selectColumnHeader}</span>
+                                   <div class="checkbox">
+                                        <label for="order_id_0000">
+                                             <input type="checkbox" name="order_id_number_0000">
+                                             <span class="label-text">${pendingorders.selectCheckboxLabel}</span>
+                                        </label>
+                                   </div>
+                              </div>
+                              <div class="each-order-section order-name-section">
+                                   <span class="tablet-below-col-heading">${pendingorders.orderNameColumnHeader}</span>
+                                   <a class="link-switch-to-cart-orders" href="#">${order.name}</a>
+                              </div>
+                              <div class="each-order-section order-status-section">
+                                   <span class="tablet-below-col-heading">${pendingorders.statusColumnHeader}</span>
+                                   <span class="order-text order-approved-text">${order.status}</span>
+                              </div>
+                              <div class="order-information-break-section"></div>
+                              <div class="each-order-section order-lines-section">
+                                   <span class="tablet-below-col-heading">${pendingorders.linesColumnHeader}</span>
+                                   <span class="order-text lines-text">${order.lines}</span>
+                              </div>
+                              <div class="each-order-section order-subtotal-section">
+                                   <span class="tablet-below-col-heading">${pendingorders.subtotalColumnHeader}</span>
+                                   <span class="order-text subtotal-text">${order.subtotal}</span>
+                              </div>
+                              <div class="each-order-section order-activity-section">
+                                   <span class="tablet-below-col-heading">${pendingorders.activityColumnHeader}</span>
+                                   <span class="order-text activity-text">${order.activity}</span>
+                              </div>
+                              <div class="each-order-section order-detail-section">
+                                   <span class="tablet-below-col-heading">${pendingorders.detailColumnHeader}</span>
+                                   <button class="btn btn-only-green-icon btn-toggle-order-details">
+                                        <span class="address-link-text visuallyhidden">Show</span>
+                                        <span class="glyphicon glyphicon-plus"></span>
+                                   </button>
+                              </div>
+                         </div>
+                         <div class="order-details-holder">
+                              <div class="grid-table-header order-detail-header">
+                                   <div class="each-order-header detail-header-image grid-header">&nbsp;</div>
+                                   <div class="each-order-header detail-header-item grid-header">${pendingorders.itemNumColumnHeader}</div>
+                                   <div class="each-order-header detail-header-description grid-header">${pendingorders.descriptionColumnHeader}</div>
+                                   <div class="each-order-header detail-header-sku grid-header">${pendingorders.skuStatusColumnHeader}</div>
+                                   <div class="each-order-header detail-header-price grid-header">${pendingorders.priceColumnHeader}</div>
+                                   <div class="each-order-header detail-header-qty grid-header">${pendingorders.qtyColumnHeader}</div>
+                              </div>
+                              <div class="order-detail-grid" data-sly-list.orderItem="${order.orderItems}">
+
+                                   <div class="row-each-order-detail">
+                                        <div class="order-detail-holder">
+                                             <div class="order-detail-section detail-image-section">
+                                                  <a href="#">
+                                                       <img src="https://dh6qdiyp93d9u.cloudfront.net/media/CACHE/images/products/simply/simply-organic-adobo-seasoning-441-oz-one-18034-18034-default-0-485e/f047845f6adc28a926b6c5c6c8d6d49b.jpg" class="image-pending-orders" alt="Simply Organic Adobo Seasoning 4.41 oz., One, Size 4.41 Ounce">
+                                                  </a>
+                                             </div>
+                                             <div class="order-detail-section detail-item-section">
+                                                  <span class="tablet-below-col-detail-heading">${pendingorders.itemNumColumnHeader}</span>
+                                                  <span class="order-detail-text item-number-text">${orderItem.itemNum}</span>
+                                             </div>
+                                             <div class="order-detail-section detail-description-section">
+                                                  <span class="tablet-below-col-detail-heading">${pendingorders.descriptionColumnHeader}</span>
+                                                  <span class="order-detail-text description-text">${orderItem.description}</span>
+                                             </div>
+                                             <div class="order-detail-section detail-sku-section">
+                                                  <span class="tablet-below-col-detail-heading">${pendingorders.statusColumnHeader}</span>
+                                                  <span class="order-detail-text sku-status-text">${orderItem.skuStatus}</span>
+                                             </div>
+                                             <div class="order-detail-section detail-price-section">
+                                                  <span class="tablet-below-col-detail-heading">${pendingorders.priceColumnHeader}</span>
+                                                  <span class="order-detail-text price-text">${orderItem.price}</span>
+                                             </div>
+                                             <div class="order-detail-section detail-qty-section">
+                                                  <span class="tablet-below-col-detail-heading">${pendingorders.qtyColumnHeader}</span>
+                                                  <span class="order-detail-text qty-text">${orderItem.quantity}</span>
+                                             </div>
+                                        </div>
+                                   </div>
+
+                              </div>
+                         </div>
+                    </div>
+			</div>
+	        
+	     </div>
+	</div>
+     
+     <!--  the rest of the original example html can be deleted eventually...
+     
+     <div class="each-order-by-user-holder">
+          <div class="account-heading-holder table-below">
+               <h2 class="account-heading">Justin Prahst's Orders</h2>
+          </div>
+
+          <div class="orders-holder">
+               <div class="grid-table-header order-information-header">
+                    <div class="each-order-header order-header-select grid-header">${pendingorders.selectColumnHeader}</div>
+                    <div class="each-order-header order-header-name grid-header">${pendingorders.orderNameColumnHeader}</div>
+                    <div class="each-order-header order-header-status grid-header">${pendingorders.statusColumnHeader}</div>
+                    <div class="each-order-header order-header-lines grid-header">${pendingorders.linesColumnHeader}</div>
+                    <div class="each-order-header order-header-subtotal grid-header">${pendingorders.subtotalColumnHeader}</div>
+                    <div class="each-order-header order-header-activity grid-header">${pendingorders.activityColumnHeader}</div>
+                    <div class="each-order-header order-header-detail grid-header">${pendingorders.detailColumnHeader}</div>
+               </div>
+
+               <div class="order-grid">
+
+                    <div class="row-each-order">
+                         <div class="order-information-holder">
+                              <div class="each-order-section order-select-section">
+                                   <span class="tablet-below-col-heading">${pendingorders.selectColumnHeader}</span>
+                                   <div class="checkbox">
+                                        <label for="order_id_0000">
+                                             <input type="checkbox" name="order_id_number_0000">
+                                             <span class="label-text">${pendingorders.selectCheckboxLabel}</span>
+                                        </label>
+                                   </div>
+                              </div>
+                              <div class="each-order-section order-name-section">
+                                   <span class="tablet-below-col-heading">${pendingorders.orderNameColumnHeader}</span>
+                                   <a class="link-switch-to-cart-orders" href="#">A Very New Order</a>
+                              </div>
+                              <div class="each-order-section order-status-section">
+                                   <span class="tablet-below-col-heading">${pendingorders.statusColumnHeader}</span>
+                                   <span class="order-text order-approved-text">Approved</span>
+                              </div>
+                              <div class="order-information-break-section"></div>
+                              <div class="each-order-section order-lines-section">
+                                   <span class="tablet-below-col-heading">${pendingorders.linesColumnHeader}</span>
+                                   <span class="order-text lines-text">2</span>
+                              </div>
+                              <div class="each-order-section order-subtotal-section">
+                                   <span class="tablet-below-col-heading">${pendingorders.subtotalColumnHeader}</span>
+                                   <span class="order-text subtotal-text">$45.94</span>
+                              </div>
+                              <div class="each-order-section order-activity-section">
+                                   <span class="tablet-below-col-heading">${pendingorders.activityColumnHeader}</span>
+                                   <span class="order-text activity-text">03/25/2018</span>
+                              </div>
+                              <div class="each-order-section order-detail-section">
+                                   <span class="tablet-below-col-heading">${pendingorders.detailColumnHeader}</span>
+                                   <button class="btn btn-only-green-icon btn-toggle-order-details">
+                                        <span class="address-link-text visuallyhidden">Show</span>
+                                        <span class="glyphicon glyphicon-plus"></span>
+                                   </button>
+                              </div>
+                         </div>
+                         <div class="order-details-holder">
+                              <div class="grid-table-header order-detail-header">
+                                   <div class="each-order-header detail-header-image grid-header">&nbsp;</div>
+                                   <div class="each-order-header detail-header-item grid-header">${pendingorders.itemNumColumnHeader}</div>
+                                   <div class="each-order-header detail-header-description grid-header">${pendingorders.descriptionColumnHeader}</div>
+                                   <div class="each-order-header detail-header-sku grid-header">${pendingorders.skuStatusColumnHeader}</div>
+                                   <div class="each-order-header detail-header-price grid-header">${pendingorders.priceColumnHeader}</div>
+                                   <div class="each-order-header detail-header-qty grid-header">${pendingorders.qtyColumnHeader}</div>
+                              </div>
+                              <div class="order-detail-grid">
+
+                                   <div class="row-each-order-detail">
+                                        <div class="order-detail-holder">
+                                             <div class="order-detail-section detail-image-section">
+                                                  <a href="#">
+                                                       <img src="https://dh6qdiyp93d9u.cloudfront.net/media/CACHE/images/products/simply/simply-organic-adobo-seasoning-441-oz-one-18034-18034-default-0-485e/f047845f6adc28a926b6c5c6c8d6d49b.jpg" class="image-pending-orders" alt="Simply Organic Adobo Seasoning 4.41 oz., One, Size 4.41 Ounce">
+                                                  </a>
+                                             </div>
+                                             <div class="order-detail-section detail-item-section">
+                                                  <span class="tablet-below-col-detail-heading">${pendingorders.itemNumColumnHeader}</span>
+                                                  <span class="order-detail-text item-number-text">18034</span>
+                                             </div>
+                                             <div class="order-detail-section detail-description-section">
+                                                  <span class="tablet-below-col-detail-heading">${pendingorders.descriptionColumnHeader}</span>
+                                                  <span class="order-detail-text description-text">Simply Organic Adobo Seasoning 4.41 oz.</span>
+                                             </div>
+                                             <div class="order-detail-section detail-sku-section">
+                                                  <span class="tablet-below-col-detail-heading">${pendingorders.statusColumnHeader}</span>
+                                                  <span class="order-detail-text sku-status-text">In Stock</span>
+                                             </div>
+                                             <div class="order-detail-section detail-price-section">
+                                                  <span class="tablet-below-col-detail-heading">${pendingorders.priceColumnHeader}</span>
+                                                  <span class="order-detail-text price-text">$4.48</span>
+                                             </div>
+                                             <div class="order-detail-section detail-qty-section">
+                                                  <span class="tablet-below-col-detail-heading">${pendingorders.qtyColumnHeader}</span>
+                                                  <span class="order-detail-text qty-text">1</span>
+                                             </div>
+                                        </div>
+                                   </div>
+
+                                   <div class="row-each-order-detail">
+                                        <div class="order-detail-holder">
+                                             <div class="order-detail-section detail-image-section">
+                                                  <a href="#">
+                                                       <img src="https://dh6qdiyp93d9u.cloudfront.net/media/CACHE/images/products/simply/simply-organic-non-alcoholic-vanilla-flavoring-2-f-one-19492-19492-default-0-f79a/b81a24eabf5d61a2c98769cbf9795c42.jpg" class="image-pending-orders" alt="">
+                                                  </a>
+                                             </div>
+                                             <div class="order-detail-section detail-item-section">
+                                                  <span class="tablet-below-col-detail-heading">${pendingorders.itemNumColumnHeader}</span>
+                                                  <span class="order-detail-text item-number-text">32525</span>
+                                             </div>
+                                             <div class="order-detail-section detail-description-section">
+                                                  <span class="tablet-below-col-detail-heading">${pendingorders.descriptionColumnHeader}</span>
+                                                  <span class="order-detail-text description-text">Simply Organic Non-Alcoholic Vanilla Flavoring 2 fl. oz.</span>
+                                             </div>
+                                             <div class="order-detail-section detail-sku-section">
+                                                  <span class="tablet-below-col-detail-heading">${pendingorders.statusColumnHeader}</span>
+                                                  <span class="order-detail-text sku-status-text">In Stock</span>
+                                             </div>
+                                             <div class="order-detail-section detail-price-section">
+                                                  <span class="tablet-below-col-detail-heading">${pendingorders.priceColumnHeader}</span>
+                                                  <span class="order-detail-text price-text">$6.48</span>
+                                             </div>
+                                             <div class="order-detail-section detail-qty-section">
+                                                  <span class="tablet-below-col-detail-heading">${pendingorders.qtyColumnHeader}</span>
+                                                  <span class="order-detail-text qty-text">3</span>
+                                             </div>
+                                        </div>
+                                   </div>
+
+                              </div>
+                         </div>
+                    </div>
+
+
+                    <div class="row-each-order">
+                         <div class="order-information-holder">
+                              <div class="each-order-section order-select-section">
+                                   <span class="tablet-below-col-heading">${pendingorders.selectColumnHeader}</span>
+                                   <div class="checkbox">
+                                        <label for="order_id_1111">
+                                             <input type="checkbox" name="order_id_number_1111" value="1111">
+                                             <span class="label-text">${pendingorders.selectCheckboxLabel}</span>
+                                        </label>
+                                   </div>
+                              </div>
+                              <div class="each-order-section order-name-section">
+                                   <span class="tablet-below-col-heading">${pendingorders.orderNameColumnHeader}</span>
+                                   <a class="link-switch-to-cart-orders" href="#">Justin's Renamed Cart</a>
+                              </div>
+                              <div class="each-order-section order-status-section">
+                                   <span class="tablet-below-col-heading">${pendingorders.statusColumnHeader}</span>
+                                   <span class="order-text order-approved-text">Approved</span>
+                              </div>
+                              <div class="order-information-break-section"></div>
+                              <div class="each-order-section order-lines-section">
+                                   <span class="tablet-below-col-heading">${pendingorders.linesColumnHeader}</span>
+                                   <span class="order-text lines-text">3</span>
+                              </div>
+                              <div class="each-order-section order-subtotal-section">
+                                   <span class="tablet-below-col-heading">${pendingorders.subtotalColumnHeader}</span>
+                                   <span class="order-text subtotal-text">$29.94</span>
+                              </div>
+                              <div class="each-order-section order-activity-section">
+                                   <span class="tablet-below-col-heading">${pendingorders.activityColumnHeader}</span>
+                                   <span class="order-text activity-text">03/24/2018</span>
+                              </div>
+                              <div class="each-order-section order-detail-section">
+                                   <span class="tablet-below-col-heading">${pendingorders.detailColumnHeader}</span>
+                                   <button class="btn btn-only-green-icon btn-toggle-order-details">
+                                        <span class="address-link-text visuallyhidden">Show</span>
+                                        <span class="glyphicon glyphicon-plus"></span>
+                                   </button>
+                              </div>
+                         </div>
+                         <div class="order-details-holder">
+                              <div class="grid-table-header order-detail-header">
+                                   <div class="each-order-header detail-header-image grid-header">&nbsp;</div>
+                                   <div class="each-order-header detail-header-item grid-header">${pendingorders.itemNumColumnHeader}</div>
+                                   <div class="each-order-header detail-header-description grid-header">${pendingorders.descriptionColumnHeader}</div>
+                                   <div class="each-order-header detail-header-sku grid-header">${pendingorders.skuStatusColumnHeader}</div>
+                                   <div class="each-order-header detail-header-price grid-header">${pendingorders.priceColumnHeader}</div>
+                                   <div class="each-order-header detail-header-qty grid-header">${pendingorders.qtyColumnHeader}</div>
+                              </div>
+                              <div class="order-detail-grid">
+
+                                   <div class="row-each-order-detail">
+                                        <div class="order-detail-holder">
+                                             <div class="order-detail-section detail-image-section">
+                                                  <a href="#">
+                                                       <img src="https://dh6qdiyp93d9u.cloudfront.net/media/CACHE/images/products/simply/simply-organic-adobo-seasoning-441-oz-one-18034-18034-default-0-485e/f047845f6adc28a926b6c5c6c8d6d49b.jpg" class="image-pending-orders" alt="Simply Organic Adobo Seasoning 4.41 oz., One, Size 4.41 Ounce">
+                                                  </a>
+                                             </div>
+                                             <div class="order-detail-section detail-item-section">
+                                                  <span class="tablet-below-col-detail-heading">${pendingorders.itemNumColumnHeader}</span>
+                                                  <span class="order-detail-text item-number-text">18034</span>
+                                             </div>
+                                             <div class="order-detail-section detail-description-section">
+                                                  <span class="tablet-below-col-detail-heading">${pendingorders.descriptionColumnHeader}</span>
+                                                  <span class="order-detail-text description-text">Simply Organic Adobo Seasoning 4.41 oz.</span>
+                                             </div>
+                                             <div class="order-detail-section detail-sku-section">
+                                                  <span class="tablet-below-col-detail-heading">${pendingorders.statusColumnHeader}</span>
+                                                  <span class="order-detail-text sku-status-text">In Stock</span>
+                                             </div>
+                                             <div class="order-detail-section detail-price-section">
+                                                  <span class="tablet-below-col-detail-heading">${pendingorders.priceColumnHeader}</span>
+                                                  <span class="order-detail-text price-text">$4.48</span>
+                                             </div>
+                                             <div class="order-detail-section detail-qty-section">
+                                                  <span class="tablet-below-col-detail-heading">${pendingorders.qtyColumnHeader}</span>
+                                                  <span class="order-detail-text qty-text">1</span>
+                                             </div>
+                                        </div>
+                                   </div>
+
+                                   <div class="row-each-order-detail">
+                                        <div class="order-detail-holder">
+                                             <div class="order-detail-section detail-image-section">
+                                                  <a href="#">
+                                                       <img src="https://dh6qdiyp93d9u.cloudfront.net/media/CACHE/images/products/simply/simply-organic-non-alcoholic-vanilla-flavoring-2-f-one-19492-19492-default-0-f79a/b81a24eabf5d61a2c98769cbf9795c42.jpg" class="image-pending-orders" alt="">
+                                                  </a>
+                                             </div>
+                                             <div class="order-detail-section detail-item-section">
+                                                  <span class="tablet-below-col-detail-heading">${pendingorders.itemNumColumnHeader}</span>
+                                                  <span class="order-detail-text item-number-text">32525</span>
+                                             </div>
+                                             <div class="order-detail-section detail-description-section">
+                                                  <span class="tablet-below-col-detail-heading">${pendingorders.descriptionColumnHeader}</span>
+                                                  <span class="order-detail-text description-text">Simply Organic Non-Alcoholic Vanilla Flavoring 2 fl. oz.</span>
+                                             </div>
+                                             <div class="order-detail-section detail-sku-section">
+                                                  <span class="tablet-below-col-detail-heading">${pendingorders.statusColumnHeader}</span>
+                                                  <span class="order-detail-text sku-status-text">In Stock</span>
+                                             </div>
+                                             <div class="order-detail-section detail-price-section">
+                                                  <span class="tablet-below-col-detail-heading">${pendingorders.priceColumnHeader}</span>
+                                                  <span class="order-detail-text price-text">$6.48</span>
+                                             </div>
+                                             <div class="order-detail-section detail-qty-section">
+                                                  <span class="tablet-below-col-detail-heading">${pendingorders.qtyColumnHeader}</span>
+                                                  <span class="order-detail-text qty-text">3</span>
+                                             </div>
+                                        </div>
+                                   </div>
+
+                                   <div class="row-each-order-detail">
+                                        <div class="order-detail-holder">
+                                             <div class="order-detail-section detail-image-section">
+                                                  <a href="#">
+                                                       <img src="https://dh6qdiyp93d9u.cloudfront.net/media/CACHE/images/products/fronti/frontier-co-op-almond-flavor-16-fl-oz-one-23003-23003-default-0-5adf/9149829ed5728ad31a4ea89fe98df471.jpg" class="image-pending-orders" alt="">
+                                                  </a>
+                                             </div>
+                                             <div class="order-detail-section detail-item-section">
+                                                  <span class="tablet-below-col-detail-heading">${pendingorders.itemNumColumnHeader}</span>
+                                                  <span class="order-detail-text item-number-text">47744</span>
+                                             </div>
+                                             <div class="order-detail-section detail-description-section">
+                                                  <span class="tablet-below-col-detail-heading">${pendingorders.descriptionColumnHeader}</span>
+                                                  <span class="order-detail-text description-text">Frontier Co-op Almond Flavor 16 fl. oz.</span>
+                                             </div>
+                                             <div class="order-detail-section detail-sku-section">
+                                                  <span class="tablet-below-col-detail-heading">${pendingorders.statusColumnHeader}</span>
+                                                  <span class="order-detail-text sku-status-text">In Stock</span>
+                                             </div>
+                                             <div class="order-detail-section detail-price-section">
+                                                  <span class="tablet-below-col-detail-heading">${pendingorders.priceColumnHeader}</span>
+                                                  <span class="order-detail-text price-text">$8.20</span>
+                                             </div>
+                                             <div class="order-detail-section detail-qty-section">
+                                                  <span class="tablet-below-col-detail-heading">${pendingorders.qtyColumnHeader}</span>
+                                                  <span class="order-detail-text qty-text">2</span>
+                                             </div>
+                                        </div>
+                                   </div>
+
+                              </div>
+                         </div>
+                    </div>
+
+
+               </div>
+          </div>
+     </div>
+
+
+
+     <div class="each-order-by-user-holder">
+          <div class="account-heading-holder table-above table-below">
+               <h2 class="account-heading">Austin Power's Orders</h2>
+          </div>
+
+          <div class="orders-holder">
+               <div class="grid-table-header order-information-header">
+                    <div class="each-order-header order-header-select grid-header">Select</div>
+                    <div class="each-order-header order-header-name grid-header">${pendingorders.orderNameColumnHeader}</div>
+                    <div class="each-order-header order-header-status grid-header">${pendingorders.statusColumnHeader}</div>
+                    <div class="each-order-header order-header-lines grid-header">${pendingorders.linesColumnHeader}</div>
+                    <div class="each-order-header order-header-subtotal grid-header">${pendingorders.subtotalColumnHeader}</div>
+                    <div class="each-order-header order-header-activity grid-header">${pendingorders.activityColumnHeader}</div>
+                    <div class="each-order-header order-header-detail grid-header">${pendingorders.detailColumnHeader}</div>
+               </div>
+
+               <div class="order-grid">
+
+                    <div class="row-each-order">
+                         <div class="order-information-holder">
+                              <div class="each-order-section order-select-section">
+                                   <span class="tablet-below-col-heading">${pendingorders.selectColumnHeader}</span>
+                                   <div class="checkbox">
+                                        <label for="order_id_2222">
+                                             <input type="checkbox" name="order_id" value="2222" id="order_id_2222">
+                                             <span class="label-text">${pendingorders.selectCheckboxLabel}</span>
+                                        </label>
+                                   </div>
+                              </div>
+                              <div class="each-order-section order-name-section">
+                                   <span class="tablet-below-col-heading">${pendingorders.orderNameColumnHeader}</span>
+                                   <a class="link-switch-to-cart-orders" href="#">I Also Like to Live Dangerously Cart</a>
+                              </div>
+                              <div class="each-order-section order-status-section">
+                                   <span class="tablet-below-col-heading">${pendingorders.statusColumnHeader}</span>
+                                   <span class="order-text order-approved-text">Approved</span>
+                              </div>
+                              <div class="order-information-break-section"></div>
+                              <div class="each-order-section order-lines-section">
+                                   <span class="tablet-below-col-heading">${pendingorders.linesColumnHeader}</span>
+                                   <span class="order-text lines-text">2</span>
+                              </div>
+                              <div class="each-order-section order-subtotal-section">
+                                   <span class="tablet-below-col-heading">${pendingorders.subtotalColumnHeader}</span>
+                                   <span class="order-text subtotal-text">$45.94</span>
+                              </div>
+                              <div class="each-order-section order-activity-section">
+                                   <span class="tablet-below-col-heading">${pendingorders.activityColumnHeader}</span>
+                                   <span class="order-text activity-text">03/25/2018</span>
+                              </div>
+                              <div class="each-order-section order-detail-section">
+                                   <span class="tablet-below-col-heading">${pendingorders.detailColumnHeader}</span>
+                                   <button class="btn btn-only-green-icon btn-toggle-order-details">
+                                        <span class="address-link-text visuallyhidden">Show</span>
+                                        <span class="glyphicon glyphicon-plus"></span>
+                                   </button>
+                              </div>
+                         </div>
+                         <div class="order-details-holder">
+                              <div class="grid-table-header order-detail-header">
+                                   <div class="each-order-header detail-header-image grid-header">&nbsp;</div>
+                                   <div class="each-order-header detail-header-item grid-header">${pendingorders.itemNumColumnHeader}</div>
+                                   <div class="each-order-header detail-header-description grid-header">${pendingorders.descriptionColumnHeader}</div>
+                                   <div class="each-order-header detail-header-sku grid-header">${pendingorders.skuStatusColumnHeader}</div>
+                                   <div class="each-order-header detail-header-price grid-header">${pendingorders.priceColumnHeader}</div>
+                                   <div class="each-order-header detail-header-qty grid-header">${pendingorders.qtyColumnHeader}</div>
+                              </div>
+                              <div class="order-detail-grid">
+
+                                   <div class="row-each-order-detail">
+                                        <div class="order-detail-holder">
+                                             <div class="order-detail-section detail-image-section">
+                                                  <a href="#">
+                                                       <img src="https://dh6qdiyp93d9u.cloudfront.net/media/CACHE/images/products/simply/simply-organic-adobo-seasoning-441-oz-one-18034-18034-default-0-485e/f047845f6adc28a926b6c5c6c8d6d49b.jpg" class="image-pending-orders" alt="Simply Organic Adobo Seasoning 4.41 oz., One, Size 4.41 Ounce">
+                                                  </a>
+                                             </div>
+                                             <div class="order-detail-section detail-item-section">
+                                                  <span class="tablet-below-col-detail-heading">${pendingorders.itemNumColumnHeader}</span>
+                                                  <span class="order-detail-text item-number-text">18034</span>
+                                             </div>
+                                             <div class="order-detail-section detail-description-section">
+                                                  <span class="tablet-below-col-detail-heading">${pendingorders.descriptionColumnHeader}</span>
+                                                  <span class="order-detail-text description-text">Simply Organic Adobo Seasoning 4.41 oz.</span>
+                                             </div>
+                                             <div class="order-detail-section detail-sku-section">
+                                                  <span class="tablet-below-col-detail-heading">${pendingorders.statusColumnHeader}</span>
+                                                  <span class="order-detail-text sku-status-text">In Stock</span>
+                                             </div>
+                                             <div class="order-detail-section detail-price-section">
+                                                  <span class="tablet-below-col-detail-heading">${pendingorders.priceColumnHeader}</span>
+                                                  <span class="order-detail-text price-text">$4.48</span>
+                                             </div>
+                                             <div class="order-detail-section detail-qty-section">
+                                                  <span class="tablet-below-col-detail-heading">${pendingorders.qtyColumnHeader}</span>
+                                                  <span class="order-detail-text qty-text">1</span>
+                                             </div>
+                                        </div>
+                                   </div>
+
+                                   <div class="row-each-order-detail">
+                                        <div class="order-detail-holder">
+                                             <div class="order-detail-section detail-image-section">
+                                                  <a href="#">
+                                                       <img src="https://dh6qdiyp93d9u.cloudfront.net/media/CACHE/images/products/simply/simply-organic-non-alcoholic-vanilla-flavoring-2-f-one-19492-19492-default-0-f79a/b81a24eabf5d61a2c98769cbf9795c42.jpg" class="image-pending-orders" alt="">
+                                                  </a>
+                                             </div>
+                                             <div class="order-detail-section detail-item-section">
+                                                  <span class="tablet-below-col-detail-heading">${pendingorders.itemNumColumnHeader}</span>
+                                                  <span class="order-detail-text item-number-text">32525</span>
+                                             </div>
+                                             <div class="order-detail-section detail-description-section">
+                                                  <span class="tablet-below-col-detail-heading">${pendingorders.descriptionColumnHeader}</span>
+                                                  <span class="order-detail-text description-text">Simply Organic Non-Alcoholic Vanilla Flavoring 2 fl. oz.</span>
+                                             </div>
+                                             <div class="order-detail-section detail-sku-section">
+                                                  <span class="tablet-below-col-detail-heading">${pendingorders.statusColumnHeader}</span>
+                                                  <span class="order-detail-text sku-status-text">In Stock</span>
+                                             </div>
+                                             <div class="order-detail-section detail-price-section">
+                                                  <span class="tablet-below-col-detail-heading">${pendingorders.priceColumnHeader}</span>
+                                                  <span class="order-detail-text price-text">$6.48</span>
+                                             </div>
+                                             <div class="order-detail-section detail-qty-section">
+                                                  <span class="tablet-below-col-detail-heading">${pendingorders.qtyColumnHeader}</span>
+                                                  <span class="order-detail-text qty-text">3</span>
+                                             </div>
+                                        </div>
+                                   </div>
+
+                              </div>
+                         </div>
+                    </div>
+
+
+                    <div class="row-each-order">
+                         <div class="order-information-holder">
+                              <div class="each-order-section order-select-section">
+                                   <span class="tablet-below-col-heading">${pendingorders.selectColumnHeader}</span>
+                                   <div class="checkbox">
+                                        <label for="order_id_3333">
+                                             <input type="checkbox" name="order_id_number_3333" value="3333">
+                                             <span class="label-text">${pendingorders.selectCheckboxLabel}</span>
+                                        </label>
+                                   </div>
+                              </div>
+                              <div class="each-order-section order-name-section">
+                                   <span class="tablet-below-col-heading">${pendingorders.orderNameColumnHeader}</span>
+                                   <a class="link-switch-to-cart-orders" href="#">Dr. Evil's Cart</a>
+                              </div>
+                              <div class="each-order-section order-status-section">
+                                   <span class="tablet-below-col-heading">${pendingorders.statusColumnHeader}</span>
+                                   <span class="order-text order-approved-text">Approved</span>
+                              </div>
+                              <div class="order-information-break-section"></div>
+                              <div class="each-order-section order-lines-section">
+                                   <span class="tablet-below-col-heading">${pendingorders.linesColumnHeader}</span>
+                                   <span class="order-text lines-text">3</span>
+                              </div>
+                              <div class="each-order-section order-subtotal-section">
+                                   <span class="tablet-below-col-heading">${pendingorders.subtotalColumnHeader}</span>
+                                   <span class="order-text subtotal-text">$29.94</span>
+                              </div>
+                              <div class="each-order-section order-activity-section">
+                                   <span class="tablet-below-col-heading">${pendingorders.activityColumnHeader}</span>
+                                   <span class="order-text activity-text">03/24/2018</span>
+                              </div>
+                              <div class="each-order-section order-detail-section">
+                                   <span class="tablet-below-col-heading">${pendingorders.detailColumnHeader}</span>
+                                   <button class="btn btn-only-green-icon btn-toggle-order-details">
+                                        <span class="address-link-text visuallyhidden">Show</span>
+                                        <span class="glyphicon glyphicon-plus"></span>
+                                   </button>
+                              </div>
+                         </div>
+                         <div class="order-details-holder">
+                              <div class="grid-table-header order-detail-header">
+                                   <div class="each-order-header detail-header-image grid-header">&nbsp;</div>
+                                   <div class="each-order-header detail-header-item grid-header">${pendingorders.itemNumColumnHeader}</div>
+                                   <div class="each-order-header detail-header-description grid-header">${pendingorders.descriptionColumnHeader}</div>
+                                   <div class="each-order-header detail-header-sku grid-header">${pendingorders.skuStatusColumnHeader}</div>
+                                   <div class="each-order-header detail-header-price grid-header">${pendingorders.priceColumnHeader}</div>
+                                   <div class="each-order-header detail-header-qty grid-header">${pendingorders.qtyColumnHeader}</div>
+                              </div>
+                              <div class="order-detail-grid">
+
+                                   <div class="row-each-order-detail">
+                                        <div class="order-detail-holder">
+                                             <div class="order-detail-section detail-image-section">
+                                                  <a href="#">
+                                                       <img src="https://dh6qdiyp93d9u.cloudfront.net/media/CACHE/images/products/simply/simply-organic-adobo-seasoning-441-oz-one-18034-18034-default-0-485e/f047845f6adc28a926b6c5c6c8d6d49b.jpg" class="image-pending-orders" alt="Simply Organic Adobo Seasoning 4.41 oz., One, Size 4.41 Ounce">
+                                                  </a>
+                                             </div>
+                                             <div class="order-detail-section detail-item-section">
+                                                  <span class="tablet-below-col-detail-heading">${pendingorders.itemNumColumnHeader}</span>
+                                                  <span class="order-detail-text item-number-text">18034</span>
+                                             </div>
+                                             <div class="order-detail-section detail-description-section">
+                                                  <span class="tablet-below-col-detail-heading">${pendingorders.descriptionColumnHeader}</span>
+                                                  <span class="order-detail-text description-text">Simply Organic Adobo Seasoning 4.41 oz.</span>
+                                             </div>
+                                             <div class="order-detail-section detail-sku-section">
+                                                  <span class="tablet-below-col-detail-heading">${pendingorders.statusColumnHeader}</span>
+                                                  <span class="order-detail-text sku-status-text">In Stock</span>
+                                             </div>
+                                             <div class="order-detail-section detail-price-section">
+                                                  <span class="tablet-below-col-detail-heading">${pendingorders.priceColumnHeader}</span>
+                                                  <span class="order-detail-text price-text">$4.48</span>
+                                             </div>
+                                             <div class="order-detail-section detail-qty-section">
+                                                  <span class="tablet-below-col-detail-heading">${pendingorders.qtyColumnHeader}</span>
+                                                  <span class="order-detail-text qty-text">1</span>
+                                             </div>
+                                        </div>
+                                   </div>
+
+                                   <div class="row-each-order-detail">
+                                        <div class="order-detail-holder">
+                                             <div class="order-detail-section detail-image-section">
+                                                  <a href="#">
+                                                       <img src="https://dh6qdiyp93d9u.cloudfront.net/media/CACHE/images/products/simply/simply-organic-non-alcoholic-vanilla-flavoring-2-f-one-19492-19492-default-0-f79a/b81a24eabf5d61a2c98769cbf9795c42.jpg" class="image-pending-orders" alt="">
+                                                  </a>
+                                             </div>
+                                             <div class="order-detail-section detail-item-section">
+                                                  <span class="tablet-below-col-detail-heading">${pendingorders.itemNumColumnHeader}</span>
+                                                  <span class="order-detail-text item-number-text">32525</span>
+                                             </div>
+                                             <div class="order-detail-section detail-description-section">
+                                                  <span class="tablet-below-col-detail-heading">${pendingorders.descriptionColumnHeader}</span>
+                                                  <span class="order-detail-text description-text">Simply Organic Non-Alcoholic Vanilla Flavoring 2 fl. oz.</span>
+                                             </div>
+                                             <div class="order-detail-section detail-sku-section">
+                                                  <span class="tablet-below-col-detail-heading">${pendingorders.statusColumnHeader}</span>
+                                                  <span class="order-detail-text sku-status-text">In Stock</span>
+                                             </div>
+                                             <div class="order-detail-section detail-price-section">
+                                                  <span class="tablet-below-col-detail-heading">${pendingorders.priceColumnHeader}</span>
+                                                  <span class="order-detail-text price-text">$6.48</span>
+                                             </div>
+                                             <div class="order-detail-section detail-qty-section">
+                                                  <span class="tablet-below-col-detail-heading">${pendingorders.qtyColumnHeader}</span>
+                                                  <span class="order-detail-text qty-text">3</span>
+                                             </div>
+                                        </div>
+                                   </div>
+
+                                   <div class="row-each-order-detail">
+                                        <div class="order-detail-holder">
+                                             <div class="order-detail-section detail-image-section">
+                                                  <a href="#">
+                                                       <img src="https://dh6qdiyp93d9u.cloudfront.net/media/CACHE/images/products/fronti/frontier-co-op-almond-flavor-16-fl-oz-one-23003-23003-default-0-5adf/9149829ed5728ad31a4ea89fe98df471.jpg" class="image-pending-orders" alt="">
+                                                  </a>
+                                             </div>
+                                             <div class="order-detail-section detail-item-section">
+                                                  <span class="tablet-below-col-detail-heading">${pendingorders.itemNumColumnHeader}</span>
+                                                  <span class="order-detail-text item-number-text">47744</span>
+                                             </div>
+                                             <div class="order-detail-section detail-description-section">
+                                                  <span class="tablet-below-col-detail-heading">${pendingorders.descriptionColumnHeader}</span>
+                                                  <span class="order-detail-text description-text">Frontier Co-op Almond Flavor 16 fl. oz.</span>
+                                             </div>
+                                             <div class="order-detail-section detail-sku-section">
+                                                  <span class="tablet-below-col-detail-heading">${pendingorders.statusColumnHeader}</span>
+                                                  <span class="order-detail-text sku-status-text">In Stock</span>
+                                             </div>
+                                             <div class="order-detail-section detail-price-section">
+                                                  <span class="tablet-below-col-detail-heading">${pendingorders.priceColumnHeader}</span>
+                                                  <span class="order-detail-text price-text">$8.20</span>
+                                             </div>
+                                             <div class="order-detail-section detail-qty-section">
+                                                  <span class="tablet-below-col-detail-heading">${pendingorders.qtyColumnHeader}</span>
+                                                  <span class="order-detail-text qty-text">2</span>
+                                             </div>
+                                        </div>
+                                   </div>
+
+                              </div>
+                         </div>
+                    </div>
+
+
+               </div>
+          </div>
+     </div> -->
+     
+</section>
