@@ -1,0 +1,47 @@
+<h4 data-sly-test="${wcmmode.edit}">edit...</h4>
+<section class="account-main-holder">
+	<div class="account-heading-holder">
+	     <h2 class="account-heading">Recent Orders</h2>
+	</div>
+	<div class="account-information-holder">
+		<select class="recent-orders__sort" data-recent-orders-sort="">
+			<option value="">Sort by</option>
+			
+			<option value="?sort=-id">Web Order</option>
+		
+			<option value="?sort=-placed">Date</option>
+		
+			<option value="?sort=-code">Order</option>
+		
+			<option value="?sort=shipments__carrier__name">Ship</option>
+		
+			<option value="?sort=purchase_order_number">PO Number</option>
+		
+			<option value="?sort=status">Status</option>
+		
+			<option value="?sort=invoice">Invoice</option>
+		
+		</select>
+
+		<table class="recent-orders">
+			<thead>
+				<tr>
+					<th class="recent-orders__header-web-order">Web Order</th>
+					<th class="recent-orders__header-date">Date</th>
+					<th class="recent-orders__header-order">Order</th>
+					<th class="recent-orders__header-ship">Ship</th>
+					<th class="recent-orders__header-po-number">PO Number</th>
+					<th class="recent-orders__header-status">Status</th>
+					<th class="recent-orders__header-invoice">Invoice</th>
+					<th class="recent-orders__header-btn">&nbsp;</th>
+				</tr>
+			</thead>
+			<tbody>
+				
+			</tbody>
+		</table>
+
+		<br>
+	</div>
+</section>
+
