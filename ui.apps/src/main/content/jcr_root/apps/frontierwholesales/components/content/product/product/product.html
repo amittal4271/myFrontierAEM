@@ -15,6 +15,7 @@
 */-->
 <sly data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html" />
 <sly data-sly-call="${clientlib.css @ categories='frontier.structure.product-page'}" />
+<sly data-sly-use.clientLib="/libs/granite/sightly/templates/clientlib.html" data-sly-call="${clientLib.js @ categories='frontier.structure.product-page'}"/>   
 <section id="product-detail">
 <div class="container"
 	 data-sly-use.productModel="${'com.frontierwholesales.core.models.ProductDetailsModel' @ sku=request.requestParameterMap['sku'][0].toString}"
@@ -102,11 +103,11 @@
 				   <button class="btn btn-add-wishlist btn-shelve">Add to Shelves +</button>
 			  </div>
 			 
-			<!--/* TODO: Build valid form action and items*/-->			 
+			<!--/* TODO: Build valid form action and items		 
 			<form action="" method="post" class="product-detail-form-add" v-el:weProductForm action="${productModel.addToCartUrl}" method="POST"
                   data-sly-use.hapiProductForm="${'org.apache.sling.hapi.sightly.HApiUse' @ type='/apps/public/weretail/hapi_types/addcartentryform'}"
                   data-sly-attribute="${hapiProductForm.itemtype}"
-                  data-rel="addCartEntryForm">
+                  data-rel="addCartEntryForm">*/-->	
                 <input type="hidden" name="redirect" v-model="product.pagePath" data-sly-attribute="${hapiProductForm.itemprop.redirectPath}" />
                 <input type="hidden" name="redirect-product-not-found" v-model="product.pagePath" data-sly-attribute="${hapiProductForm.itemprop.redirectErrorPath}" />
                 <input type="hidden" name="product-quantity" value="1" data-sly-attribute="${hapiProductForm.itemprop.quantity}" />
@@ -159,17 +160,18 @@
 								  <span class="decrease-minus">-</span>
 								  <span class="visuallyhidden">decrease</span>
 							 </button>
-							 <input type="text" min="1" name="quantity" id="product-qty-input" class="qty-input-field" value="1">
+							 <input type="text" min="1" max="99" name="quantity" id="product-qty-input" class="grid-product-qty-input qty-input-field" value="1">
 							 <button type="button" class="increase qty-button qty-up">
 								  <span class="increase-plus">+</span>
 								  <span class="visuallyhidden">increase</span>
 							 </button>
 						</div>
 						<div class="add-to-cart-holder">
-							 <button class="btn btn-light-green btn-add-to-cart">Add To Cart</button>
+                            <div id="cartMessage-${productModel.product.productSKU}" class="alert alert-add-to-cart" style="display: none;">Added to your Cart!</div>
+							 <button id="${productModel.product.productSKU}" class="btn btn-light-green btn-add-to-cart">Add To Cart</button>
 						</div>
 				   </div>
-			</form>
+			<!-- /* </form> */-->
 			
 			  <div class="product-overview">
 			   <h2 class="heading-product-overview">Product Summary</h2>
