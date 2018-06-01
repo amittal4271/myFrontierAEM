@@ -26,13 +26,14 @@ use(["/libs/wcm/foundation/components/utils/AuthoringUtils.js",
 
     var CONST = {
         PROP_ALIGNMENT: "alignment",
-        PROP_TEXT: "text"
+        PROP_TEXT: "./text"
     };
     
     // The container CSS class name is what defines the alignment
     textimage.alignment = granite.resource.properties[CONST.PROP_ALIGNMENT]
             || currentStyle.get(CONST.PROP_ALIGNMENT, "");
-    
+    textimage.text = properties.get(CONST.PROP_TEXT);
+
     var hasContentDeferred = Q.defer();
     if (granite.resource.properties[CONST.PROP_TEXT]) {
         hasContentDeferred.resolve(true);
