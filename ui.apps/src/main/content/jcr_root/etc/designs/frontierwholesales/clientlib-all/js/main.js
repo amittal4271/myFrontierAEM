@@ -159,9 +159,10 @@ $(document).ready(function() {
 			nextEl: '#homepage-scroller .swiper-button-next',
 			prevEl: '#homepage-scroller .swiper-button-prev',
 		},
+        
         autoplay: {
-			delay: 3000, 
-		}
+               delay: 3000,
+        }
     });
 
 
@@ -307,7 +308,8 @@ $(document).ready(function() {
 		}
 	});
     
-    // qty button click
+    // qty button click - duplicated in frontier-minified.js
+    /*
 	$(document).on('click', '.qty-button', function() {
 		console.log('click qty up or down');
 		var $this = $(this);
@@ -320,6 +322,7 @@ $(document).ready(function() {
 			modifyInputQty($el, -1);
 		}
 	});
+    */
     
     $("#header").hoverIntent({
 		over: showMiniCart,

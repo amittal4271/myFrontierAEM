@@ -4,17 +4,17 @@ console.log("product details page...");
   //getProductListByCategory(1,28,'featured');
     
   $(document).on('click','.btn.btn-light-green.btn-add-to-cart',function(){
-       console.log("cart has been added");
+       console.log("Add to card invoked");
        var sku = $(this).attr('id');
-       var qty='';
-       $(this).parent().find(":input").each(function(i,data) { 
-           var className=data.getAttribute('class');
-           if(className == 'grid-product-qty-input qty-input-field'){
-               qty = data.value;
-           }
-
-       });
-       addItemToCart(sku,qty);
+       var qty=''; 
+       qty = $('#product-qty-input').val();
+       if(qty > 0){
+           addItemToCart(sku,qty);
+			console.log("cart has been added");
+       }
+       else {
+			console.log("quantity is 0");
+       }
 
     });
 
@@ -22,15 +22,17 @@ console.log("product details page...");
 
 
 function addItemToCart(sku,qty){
+   console.log("in addItemToCart("+sku+", "+qty+")");
    var jsonData={};
-    var cartItems={};
-    var cartData={};
+   var cartItems={};
+   var cartData={};
    showLoadingScreen();
     cartItems['sku']=sku;
     cartItems['qty']=qty;
    
     cartData['cartItem']=cartItems;
     jsonData['items']=JSON.stringify(cartData);
+    console.log(jsonData);
     jsonData['action']='add';
     
 

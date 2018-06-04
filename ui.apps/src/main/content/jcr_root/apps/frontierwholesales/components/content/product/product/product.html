@@ -13,15 +13,17 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 */-->
-<sly data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html" />
-<sly data-sly-call="${clientlib.css @ categories='frontier.structure.product-page'}" />
+<sly data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html" data-sly-call="${clientlib.css @ categories='frontier.structure.product-page'}" />
 <sly data-sly-use.clientLib="/libs/granite/sightly/templates/clientlib.html" data-sly-call="${clientLib.js @ categories='frontier.structure.product-page'}"/>   
 <section id="product-detail">
-<div class="container"
+<div class="container" data-sly-test="${!request.requestParameterMap['sku'][0].toString}">No product SKU provided in request</div>
+<div class="container" data-sly-test="${request.requestParameterMap['sku'][0].toString}"
 	 data-sly-use.productModel="${'com.frontierwholesales.core.models.ProductDetailsModel' @ sku=request.requestParameterMap['sku'][0].toString}"
      data-sly-use.hapiProduct="${'org.apache.sling.hapi.sightly.HApiUse' @ type='/apps/public/weretail/hapi_types/product'}"
      data-sly-attribute="${hapiProduct.itemtype}">
 
+<div data-sly-test="${!productModel.product}">No product found for SKU: ${request.requestParameterMap['sku'][0].toString}</div>
+<div data-sly-test="${productModel.product}">
     <div data-sly-test="${wcmmode.edit && !model.hasVariants}" class="cq-placeholder"
          data-emptytext="Product Component"></div>
     <we-product-variant
@@ -253,6 +255,6 @@
 			-->
            
         </div>
-
+</div>
 </div>
 </section>
