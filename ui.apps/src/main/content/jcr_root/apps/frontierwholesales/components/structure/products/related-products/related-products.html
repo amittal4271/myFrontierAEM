@@ -1,0 +1,53 @@
+<!--/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  ~ Copyright 2018 Adobe Systems Incorporated
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/-->
+<div style="clear:both;" data-sly-test="${wcmmode.edit}">&nbsp;</div>
+<sly data-sly-use.products="com.frontierwholesales.core.models.RelatedProducts"
+     data-sly-use.template="core/wcm/components/commons/v1/templates.html" />
+<section class="related-products-holder" id="related-products-holder-pdp">
+    <div class="container">
+        <div class="related-products-heading-holder">
+            <h4 class="related-products-heading">${products.heading @ i18n}</h4>
+        </div>
+        <div id="pdp-scroller">
+            <div class="swiper-container" data-sly-test="${products.relatedProductsList.size > 0}">
+                <div class="swiper-wrapper" data-sly-list.oneProduct="${products.relatedProductsList}">
+                    <div class="swiper-slide">
+                        <a class="each-slider-related-link-holder" href="${oneProduct.path @ extension = 'html'}">
+                            <span class="image-holder">
+                                <img src="${oneProduct.imagePath}"/>
+                            </span>
+                            <span class="title-holder">
+                                <span class="product-tile-sku">${'Item #: {0}' @ i18n, format=[oneProduct.productSKU]}</span>
+                                <span class="product-tile-name">${oneProduct.title @ i18n}</span>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+
+                <sly data-sly-test="${products.relatedProductsList.size > products.maxItems}">
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+                </sly>
+            </div>
+            <sly data-sly-test="${products.relatedProductsList.size == 0}">
+                ${products.defaultText @ i18n}
+            </sly>
+        </div>
+    </div>
+</section>
+<sly data-sly-call="${template.placeholder @ isEmpty=!products.heading}"></sly>
+
