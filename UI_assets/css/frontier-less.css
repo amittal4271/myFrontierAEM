@@ -2784,11 +2784,17 @@ tr.order-details-table-section-row td.inner-table-td-holder {
   }
 }
 .grid-table-header.order-information-header .each-order-header {
-  font-size: 16px;
+  font-size: 14px;
   padding: 15px 15px;
   /*pending invite headers*/
   /*members invite headers*/
   /*account landing pending orders headers*/
+  /* recent orders headings*/
+}
+@media screen and (min-width: 992px) {
+  .grid-table-header.order-information-header .each-order-header {
+    font-size: 14px;
+  }
 }
 .grid-table-header.order-information-header .each-order-header.order-header-select {
   width: 10%;
@@ -2870,6 +2876,31 @@ tr.order-details-table-section-row td.inner-table-td-holder {
   width: 15%;
   padding-right: 0;
 }
+.grid-table-header.order-information-header .each-order-header.recent-orders-header-web-order {
+  width: 12%;
+  padding-left: 0;
+}
+.grid-table-header.order-information-header .each-order-header.recent-orders-header-date {
+  width: 12%;
+}
+.grid-table-header.order-information-header .each-order-header.recent-orders-header-order {
+  width: 11%;
+}
+.grid-table-header.order-information-header .each-order-header.recent-orders-header-ship {
+  width: 11%;
+}
+.grid-table-header.order-information-header .each-order-header.recent-orders-header-ponumber {
+  width: 12%;
+}
+.grid-table-header.order-information-header .each-order-header.recent-orders-header-status {
+  width: 11%;
+}
+.grid-table-header.order-information-header .each-order-header.recent-orders-header-invoice {
+  width: 12%;
+}
+.grid-table-header.order-information-header .each-order-header.recent-orders-header-action {
+  width: 18%;
+}
 .grid-table-header.order-detail-header {
   display: none;
 }
@@ -2881,6 +2912,7 @@ tr.order-details-table-section-row td.inner-table-td-holder {
 .grid-table-header.order-detail-header .each-order-header {
   font-size: 13px;
   padding: 10px 10px;
+  /*recent orders detail headings*/
 }
 @media screen and (min-width: 768px) {
   .grid-table-header.order-detail-header .each-order-header {
@@ -2911,6 +2943,30 @@ tr.order-details-table-section-row td.inner-table-td-holder {
 }
 .grid-table-header.order-detail-header .each-order-header.detail-header-qty {
   width: 10%;
+}
+.grid-table-header.order-detail-header .each-order-header.recent-detail-header-image {
+  width: 13%;
+}
+.grid-table-header.order-detail-header .each-order-header.recent-detail-header-item {
+  width: 9%;
+}
+.grid-table-header.order-detail-header .each-order-header.recent-detail-header-description {
+  width: 18%;
+}
+.grid-table-header.order-detail-header .each-order-header.recent-detail-header-sku {
+  width: 10%;
+}
+.grid-table-header.order-detail-header .each-order-header.recent-detail-header-price {
+  width: 13%;
+}
+.grid-table-header.order-detail-header .each-order-header.recent-detail-header-past-qty {
+  width: 10%;
+}
+.grid-table-header.order-detail-header .each-order-header.recent-detail-header-new-qty {
+  width: 10%;
+}
+.grid-table-header.order-detail-header .each-order-header.recent-detail-header-actions {
+  width: 17%;
 }
 .order-grid {
   float: left;
@@ -2970,15 +3026,24 @@ tr.order-details-table-section-row td.inner-table-td-holder {
   /*pending invites data tables width*/
   /*members invites data tables width*/
   /*pending account landing data tables width*/
+  /*recent orders data widths*/
 }
 @media screen and (min-width: 480px) {
   .order-information-holder .each-order-section {
     padding: 10px 15px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .order-information-holder .each-order-section {
     font-size: 16px;
   }
 }
-.order-information-holder .each-order-section .link-switch-to-cart-orders {
+.order-information-holder .each-order-section a.link-switch-to-cart-orders {
   color: #817266;
+  text-decoration: underline;
+}
+.order-information-holder .each-order-section a.table-link {
+  color: #8bba4a;
   text-decoration: underline;
 }
 .order-information-holder .each-order-section.order-select-section {
@@ -3233,19 +3298,128 @@ tr.order-details-table-section-row td.inner-table-td-holder {
     width: 15%;
   }
 }
-.order-information-holder .each-order-section .checkbox {
-  margin: 0;
-}
-.order-information-holder .each-order-section .tablet-below-col-heading {
-  float: left;
+.order-information-holder .each-order-section.recent-orders-web-order-section {
   width: 100%;
-  font-weight: 700;
-  color: #594c41;
+}
+@media screen and (min-width: 600px) {
+  .order-information-holder .each-order-section.recent-orders-web-order-section {
+    width: 33%;
+    padding-left: 0;
+  }
 }
 @media screen and (min-width: 992px) {
-  .order-information-holder .each-order-section .tablet-below-col-heading {
-    display: none;
+  .order-information-holder .each-order-section.recent-orders-web-order-section {
+    width: 12%;
   }
+}
+.order-information-holder .each-order-section.recent-orders-date-section {
+  width: 100%;
+}
+@media screen and (min-width: 600px) {
+  .order-information-holder .each-order-section.recent-orders-date-section {
+    width: 33%;
+  }
+}
+@media screen and (min-width: 992px) {
+  .order-information-holder .each-order-section.recent-orders-date-section {
+    width: 12%;
+  }
+}
+.order-information-holder .each-order-section.recent-orders-order-section {
+  width: 100%;
+}
+@media screen and (min-width: 600px) {
+  .order-information-holder .each-order-section.recent-orders-order-section {
+    width: 33%;
+  }
+}
+@media screen and (min-width: 992px) {
+  .order-information-holder .each-order-section.recent-orders-order-section {
+    width: 11%;
+  }
+}
+.order-information-holder .each-order-section.recent-orders-ship-section {
+  width: 100%;
+}
+@media screen and (min-width: 600px) {
+  .order-information-holder .each-order-section.recent-orders-ship-section {
+    width: 33%;
+    padding-left: 0;
+  }
+}
+@media screen and (min-width: 992px) {
+  .order-information-holder .each-order-section.recent-orders-ship-section {
+    width: 11%;
+    padding-left: 15px;
+  }
+}
+.order-information-holder .each-order-section.recent-orders-ponumber-section {
+  width: 100%;
+}
+@media screen and (min-width: 600px) {
+  .order-information-holder .each-order-section.recent-orders-ponumber-section {
+    width: 33%;
+  }
+}
+@media screen and (min-width: 992px) {
+  .order-information-holder .each-order-section.recent-orders-ponumber-section {
+    width: 12%;
+  }
+}
+.order-information-holder .each-order-section.recent-orders-status-section {
+  width: 100%;
+}
+@media screen and (min-width: 600px) {
+  .order-information-holder .each-order-section.recent-orders-status-section {
+    width: 33%;
+  }
+}
+@media screen and (min-width: 992px) {
+  .order-information-holder .each-order-section.recent-orders-status-section {
+    width: 11%;
+  }
+}
+.order-information-holder .each-order-section.recent-orders-invoice-section {
+  width: 100%;
+}
+@media screen and (min-width: 600px) {
+  .order-information-holder .each-order-section.recent-orders-invoice-section {
+    width: 33%;
+    padding-left: 0;
+  }
+}
+@media screen and (min-width: 992px) {
+  .order-information-holder .each-order-section.recent-orders-invoice-section {
+    width: 12%;
+    padding-left: 15px;
+  }
+}
+.order-information-holder .each-order-section.recent-orders-action-section {
+  width: 100%;
+}
+@media screen and (min-width: 600px) {
+  .order-information-holder .each-order-section.recent-orders-action-section {
+    padding-left: 0;
+  }
+}
+@media screen and (min-width: 992px) {
+  .order-information-holder .each-order-section.recent-orders-action-section {
+    width: 19%;
+    padding-right: 0;
+    padding-top: 0;
+    padding-left: 15px;
+  }
+}
+.order-information-holder .each-order-section.recent-orders-action-section .btn {
+  margin-top: 15px;
+}
+@media screen and (min-width: 992px) {
+  .order-information-holder .each-order-section.recent-orders-action-section .btn {
+    margin-top: 0;
+  }
+}
+.order-information-holder .each-order-section .checkbox {
+  margin: 0;
 }
 .order-information-holder .order-information-break-section {
   float: left;
@@ -3308,6 +3482,7 @@ tr.order-details-table-section-row td.inner-table-td-holder {
   padding: 5px 10px;
   color: #817266;
   font-size: 12px;
+  /* recent orders detail section */
 }
 @media screen and (min-width: 480px) {
   .row-each-order-detail .order-detail-holder .order-detail-section {
@@ -3320,23 +3495,27 @@ tr.order-details-table-section-row td.inner-table-td-holder {
     padding: 20px 10px;
   }
 }
-.row-each-order-detail .order-detail-holder .order-detail-section.detail-image-section {
+.row-each-order-detail .order-detail-holder .order-detail-section.detail-image-section,
+.row-each-order-detail .order-detail-holder .order-detail-section.recent-detail-image-section {
   width: 30%;
   height: 100%;
   position: absolute;
 }
 @media screen and (min-width: 768px) {
-  .row-each-order-detail .order-detail-holder .order-detail-section.detail-image-section {
+  .row-each-order-detail .order-detail-holder .order-detail-section.detail-image-section,
+  .row-each-order-detail .order-detail-holder .order-detail-section.recent-detail-image-section {
     width: 15%;
     position: relative;
     height: auto;
   }
 }
-.row-each-order-detail .order-detail-holder .order-detail-section.detail-image-section a {
+.row-each-order-detail .order-detail-holder .order-detail-section.detail-image-section a,
+.row-each-order-detail .order-detail-holder .order-detail-section.recent-detail-image-section a {
   float: left;
   width: 100%;
 }
-.row-each-order-detail .order-detail-holder .order-detail-section.detail-image-section a img {
+.row-each-order-detail .order-detail-holder .order-detail-section.detail-image-section a img,
+.row-each-order-detail .order-detail-holder .order-detail-section.recent-detail-image-section a img {
   display: block;
   width: 100%;
 }
@@ -3392,6 +3571,85 @@ tr.order-details-table-section-row td.inner-table-td-holder {
     display: none;
   }
 }
+.row-each-order-detail .order-detail-holder .order-detail-section.recent-detail-image-section {
+  width: 30%;
+  height: 100%;
+  position: absolute;
+}
+@media screen and (min-width: 992px) {
+  .row-each-order-detail .order-detail-holder .order-detail-section.recent-detail-image-section {
+    width: 13%;
+    position: relative;
+    height: auto;
+  }
+}
+.row-each-order-detail .order-detail-holder .order-detail-section.recent-detail-item-section {
+  width: 70%;
+}
+@media screen and (min-width: 992px) {
+  .row-each-order-detail .order-detail-holder .order-detail-section.recent-detail-item-section {
+    width: 9%;
+  }
+}
+.row-each-order-detail .order-detail-holder .order-detail-section.recent-detail-description-section {
+  width: 70%;
+}
+@media screen and (min-width: 992px) {
+  .row-each-order-detail .order-detail-holder .order-detail-section.recent-detail-description-section {
+    width: 18%;
+  }
+}
+.row-each-order-detail .order-detail-holder .order-detail-section.recent-detail-sku-section {
+  width: 70%;
+}
+@media screen and (min-width: 992px) {
+  .row-each-order-detail .order-detail-holder .order-detail-section.recent-detail-sku-section {
+    width: 10%;
+  }
+}
+.row-each-order-detail .order-detail-holder .order-detail-section.recent-detail-price-section {
+  width: 70%;
+}
+@media screen and (min-width: 992px) {
+  .row-each-order-detail .order-detail-holder .order-detail-section.recent-detail-price-section {
+    width: 13%;
+  }
+}
+.row-each-order-detail .order-detail-holder .order-detail-section.recent-detail-past-qty-section {
+  width: 70%;
+}
+@media screen and (min-width: 992px) {
+  .row-each-order-detail .order-detail-holder .order-detail-section.recent-detail-past-qty-section {
+    width: 10%;
+  }
+}
+.row-each-order-detail .order-detail-holder .order-detail-section.recent-detail-new-qty-section {
+  width: 70%;
+}
+@media screen and (min-width: 992px) {
+  .row-each-order-detail .order-detail-holder .order-detail-section.recent-detail-new-qty-section {
+    width: 10%;
+  }
+}
+.row-each-order-detail .order-detail-holder .order-detail-section.recent-detail-actions-section {
+  width: 70%;
+}
+@media screen and (min-width: 992px) {
+  .row-each-order-detail .order-detail-holder .order-detail-section.recent-detail-actions-section {
+    width: 17%;
+  }
+}
+.tablet-below-col-heading {
+  float: left;
+  width: 100%;
+  font-weight: 700;
+  color: #594c41;
+}
+@media screen and (min-width: 992px) {
+  .tablet-below-col-heading {
+    display: none;
+  }
+}
 .action-button-section-account {
   float: left;
   margin-right: 30px;
@@ -3399,6 +3657,15 @@ tr.order-details-table-section-row td.inner-table-td-holder {
 @media screen and (min-width: 992px) {
   .action-button-section-account {
     margin-right: 15px;
+  }
+}
+.action-button-section-account.last {
+  margin-right: 0;
+}
+@media screen and (min-width: 992px) {
+  .action-button-section-account.clear-desktop {
+    clear: both;
+    margin-top: 15px;
   }
 }
 .mobile-button-text-description {
@@ -6195,7 +6462,6 @@ legend.each-form-title .form-title-information a {
 }
 .content-left-right-sections,
 .content-standard {
-  float: left;
   width: 100%;
   position: relative;
 }
@@ -6273,7 +6539,6 @@ legend.each-form-title .form-title-information a {
   }
 }
 .each-standard-information-section {
-  float: left;
   width: 100%;
   padding: 20px 0;
   text-align: center;

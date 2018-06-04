@@ -90,7 +90,7 @@
                                                                  <div class="order-detail-holder">
                                                                       <div class="order-detail-section detail-image-section">
                                                                            <a href="#">
-                                                                                <img src="https://dh6qdiyp93d9u.cloudfront.net/media/CACHE/images/products/simply/simply-organic-adobo-seasoning-441-oz-one-18034-18034-default-0-485e/f047845f6adc28a926b6c5c6c8d6d49b.jpg" class="image-pending-orders" alt="Simply Organic Adobo Seasoning 4.41 oz., One, Size 4.41 Ounce">
+                                                                                <img src="../frontierwholesales/images/pdp-related-two.jpg" class="image-pending-orders" alt="Simply Organic Adobo Seasoning 4.41 oz., One, Size 4.41 Ounce">
                                                                            </a>
                                                                       </div>
                                                                       <div class="order-detail-section detail-item-section">
@@ -120,7 +120,7 @@
                                                                  <div class="order-detail-holder">
                                                                       <div class="order-detail-section detail-image-section">
                                                                            <a href="#">
-                                                                                <img src="https://dh6qdiyp93d9u.cloudfront.net/media/CACHE/images/products/simply/simply-organic-non-alcoholic-vanilla-flavoring-2-f-one-19492-19492-default-0-f79a/b81a24eabf5d61a2c98769cbf9795c42.jpg" class="image-pending-orders" alt="">
+                                                                                <img src="../frontierwholesales/images/pdp-related-two.jpg" class="image-pending-orders" alt="">
                                                                            </a>
                                                                       </div>
                                                                       <div class="order-detail-section detail-item-section">
@@ -206,7 +206,7 @@
                                                                  <div class="order-detail-holder">
                                                                       <div class="order-detail-section detail-image-section">
                                                                            <a href="#">
-                                                                                <img src="https://dh6qdiyp93d9u.cloudfront.net/media/CACHE/images/products/simply/simply-organic-adobo-seasoning-441-oz-one-18034-18034-default-0-485e/f047845f6adc28a926b6c5c6c8d6d49b.jpg" class="image-pending-orders" alt="Simply Organic Adobo Seasoning 4.41 oz., One, Size 4.41 Ounce">
+                                                                                <img src="../frontierwholesales/images/pdp-related-two.jpg" class="image-pending-orders" alt="Simply Organic Adobo Seasoning 4.41 oz., One, Size 4.41 Ounce">
                                                                            </a>
                                                                       </div>
                                                                       <div class="order-detail-section detail-item-section">
@@ -236,7 +236,7 @@
                                                                  <div class="order-detail-holder">
                                                                       <div class="order-detail-section detail-image-section">
                                                                            <a href="#">
-                                                                                <img src="https://dh6qdiyp93d9u.cloudfront.net/media/CACHE/images/products/simply/simply-organic-non-alcoholic-vanilla-flavoring-2-f-one-19492-19492-default-0-f79a/b81a24eabf5d61a2c98769cbf9795c42.jpg" class="image-pending-orders" alt="">
+                                                                                <img src="../frontierwholesales/images/pdp-related-two.jpg" class="image-pending-orders" alt="">
                                                                            </a>
                                                                       </div>
                                                                       <div class="order-detail-section detail-item-section">
@@ -266,7 +266,7 @@
                                                                  <div class="order-detail-holder">
                                                                       <div class="order-detail-section detail-image-section">
                                                                            <a href="#">
-                                                                                <img src="https://dh6qdiyp93d9u.cloudfront.net/media/CACHE/images/products/fronti/frontier-co-op-almond-flavor-16-fl-oz-one-23003-23003-default-0-5adf/9149829ed5728ad31a4ea89fe98df471.jpg" class="image-pending-orders" alt="">
+                                                                                <img src="../frontierwholesales/images/pdp-related-two.jpg" class="image-pending-orders" alt="">
                                                                            </a>
                                                                       </div>
                                                                       <div class="order-detail-section detail-item-section">
@@ -376,7 +376,7 @@
                                                                  <div class="order-detail-holder">
                                                                       <div class="order-detail-section detail-image-section">
                                                                            <a href="#">
-                                                                                <img src="https://dh6qdiyp93d9u.cloudfront.net/media/CACHE/images/products/simply/simply-organic-adobo-seasoning-441-oz-one-18034-18034-default-0-485e/f047845f6adc28a926b6c5c6c8d6d49b.jpg" class="image-pending-orders" alt="Simply Organic Adobo Seasoning 4.41 oz., One, Size 4.41 Ounce">
+                                                                                <img src="../frontierwholesales/images/pdp-related-two.jpg" class="image-pending-orders" alt="Simply Organic Adobo Seasoning 4.41 oz., One, Size 4.41 Ounce">
                                                                            </a>
                                                                       </div>
                                                                       <div class="order-detail-section detail-item-section">
@@ -406,7 +406,7 @@
                                                                  <div class="order-detail-holder">
                                                                       <div class="order-detail-section detail-image-section">
                                                                            <a href="#">
-                                                                                <img src="https://dh6qdiyp93d9u.cloudfront.net/media/CACHE/images/products/simply/simply-organic-non-alcoholic-vanilla-flavoring-2-f-one-19492-19492-default-0-f79a/b81a24eabf5d61a2c98769cbf9795c42.jpg" class="image-pending-orders" alt="">
+                                                                                <img src="../frontierwholesales/images/pdp-related-two.jpg" class="image-pending-orders" alt="">
                                                                            </a>
                                                                       </div>
                                                                       <div class="order-detail-section detail-item-section">
@@ -492,7 +492,7 @@
                                                                  <div class="order-detail-holder">
                                                                       <div class="order-detail-section detail-image-section">
                                                                            <a href="#">
-                                                                                <img src="https://dh6qdiyp93d9u.cloudfront.net/media/CACHE/images/products/simply/simply-organic-adobo-seasoning-441-oz-one-18034-18034-default-0-485e/f047845f6adc28a926b6c5c6c8d6d49b.jpg" class="image-pending-orders" alt="Simply Organic Adobo Seasoning 4.41 oz., One, Size 4.41 Ounce">
+                                                                                <img src="../frontierwholesales/images/pdp-related-two.jpg" class="image-pending-orders" alt="Simply Organic Adobo Seasoning 4.41 oz., One, Size 4.41 Ounce">
                                                                            </a>
                                                                       </div>
                                                                       <div class="order-detail-section detail-item-section">
@@ -522,7 +522,7 @@
                                                                  <div class="order-detail-holder">
                                                                       <div class="order-detail-section detail-image-section">
                                                                            <a href="#">
-                                                                                <img src="https://dh6qdiyp93d9u.cloudfront.net/media/CACHE/images/products/simply/simply-organic-non-alcoholic-vanilla-flavoring-2-f-one-19492-19492-default-0-f79a/b81a24eabf5d61a2c98769cbf9795c42.jpg" class="image-pending-orders" alt="">
+                                                                                <img src="../frontierwholesales/images/pdp-related-two.jpg" class="image-pending-orders" alt="">
                                                                            </a>
                                                                       </div>
                                                                       <div class="order-detail-section detail-item-section">
@@ -552,7 +552,7 @@
                                                                  <div class="order-detail-holder">
                                                                       <div class="order-detail-section detail-image-section">
                                                                            <a href="#">
-                                                                                <img src="https://dh6qdiyp93d9u.cloudfront.net/media/CACHE/images/products/fronti/frontier-co-op-almond-flavor-16-fl-oz-one-23003-23003-default-0-5adf/9149829ed5728ad31a4ea89fe98df471.jpg" class="image-pending-orders" alt="">
+                                                                                <img src="../frontierwholesales/images/pdp-related-two.jpg" class="image-pending-orders" alt="">
                                                                            </a>
                                                                       </div>
                                                                       <div class="order-detail-section detail-item-section">

@@ -28,7 +28,7 @@
                                         <div class="each-order-header invites-header-last grid-header">Last</div>
                                         <div class="each-order-header invites-header-email grid-header">Email</div>
                                         <div class="each-order-header invites-header-status grid-header">Status</div>
-                                        <div class="each-order-header invites-header-actions grid-header">Actions</div>
+                                        <div class="each-order-header invites-header-actions grid-header">Cancel Invite</div>
                                    </div>
                                    <div class="order-grid grid-table-data invites-data">
                                         <div class="row-each-order">
@@ -137,7 +137,7 @@
                                         <div class="each-order-header members-header-email grid-header">Email</div>
                                         <div class="each-order-header members-header-role grid-header">User Role</div>
                                         <div class="each-order-header members-header-status grid-header">Status</div>
-                                        <div class="each-order-header members-header-actions grid-header">Deactive / Edit</div>
+                                        <div class="each-order-header members-header-actions grid-header">Deactivate / Edit</div>
                                    </div>
 
                                    <div class="order-grid grid-table-data invites-data">
