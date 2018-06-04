@@ -34,10 +34,19 @@
                     </div>
                </article>
 
+               <div class="content-page-glossary-header secondary-styling">
+                    <ul id="glossary-filter-list">
+                         <li><a data-scrolltoid="start-of-membership-basics" href="#">Membership Basics</a></li>
+                         <li><a data-scrolltoid="start-of-membership-second" href="#">Membership Second</a></li>
+                    </ul>
+               </div>
+
                <section class="content-left-right-sections border-top no-intro-above">
                     <div class="featured-icon-center"></div>
 
-                    <div class="each-left-right-section square-sections">
+                    
+
+                    <div class="each-left-right-section square-sections" id="start-of-membership-basics">
                          <div class="container clearfix">
                               <figure class="each-figure-section">
                                    <div class="figure-media-left-right">
@@ -52,6 +61,23 @@
                               </figure>
                          </div>
                     </div>                   
+
+                    <div class="each-left-right-section square-sections" id="start-of-membership-second">
+                         <div class="container clearfix">
+                              <figure class="each-figure-section">
+                                   <figcaption class="information-section-left-right">
+                                        <h3 class="headline-left-right">Membership Second</h3>
+                                        <div class="description-holder-left-right">
+                                             <p>The "member economic participation" at the core of a cooperative is that the members using the co-op provide the capital for its growth. This is done at Frontier by setting aside share money to be used by the cooperative. When you become a member of Frontier, you pay a small membership fee, and a share account is opened in your name.</p>
+                                        </div>
+                                   </figcaption>
+                                   <div class="figure-media-left-right">
+                                        <img src="../frontierwholesales/images/all-about-membership-first-image.jpg">
+                                   </div>
+                                   
+                              </figure>
+                         </div>
+                    </div>        
 
                </section>
                

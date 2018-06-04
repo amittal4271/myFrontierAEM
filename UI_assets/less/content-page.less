@@ -62,6 +62,27 @@
 	width: 100%;
 	clear: both;
 	margin: 0 0 30px 0;
+
+	&.secondary-styling {
+		margin: 25px 0 30px 0;
+		padding-bottom: 30px;
+		border-bottom: 1px solid #ececec;
+		#glossary-filter-list {
+			li {
+				a {
+					color: #4d4a48;
+					font-size: 13px;
+					text-transform: uppercase;
+					font-weight: 700;
+					padding: 0 20px;
+
+					&:hover, &:focus {
+						color: #8bba4a;
+					}
+				}
+			}
+		}
+	}
 }
 
 #glossary-filter-list {
@@ -228,8 +249,9 @@
 
 
 .article-full-width-banner {
-	float: left;
+	display: inline-block;
 	width: 100%;
+	clear: both;
 }
 
 .banner-holder-full-width {
@@ -343,6 +365,7 @@
 .content-standard {
 	width: 100%;
 	position: relative;
+	display: inline-block;
 
 	&.border-top {
 		border-top: 4px dotted #ddd;
