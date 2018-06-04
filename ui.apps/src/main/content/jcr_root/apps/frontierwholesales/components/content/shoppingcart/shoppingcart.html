@@ -3,7 +3,7 @@
 <sly data-sly-call="${clientlib.js @ categories='shoppingcart'}" data-sly-unwrap/>
 <div class="container">
                     <div id="cart-message-holder" class="global-server-side-message-holder">
-                         <div class="alert alert-success" role="alert">${properties.shippingtext @context='html'} <!--<strong>Free shipping</strong> on orders over $250 ($400 for Alaska and Hawaii)--> </div>
+                         <div class="alert alert-success" role="alert">${properties.shippingtext @context='html'}  </div>
                     </div>
                     <section class="cart-holder cart-actions">
                          <div class="cart-header-holder no-border">
@@ -21,7 +21,7 @@
                                    </div>
 
                                    <div class="toggle-action-holder">
-                                        <button type="button" class="btn btn-link btn-toggle-cart-actions">
+                                        <button type="button" class="btn btn-link btn-toggle-cart-actions btn-toggle-open">
                                              <span class="text">More Cart Actions</span>
                                              <span class="glyphicon glyphicon-menu-up"></span>
                                         </button>
@@ -90,8 +90,8 @@
                                         <span class="cart-price-total-text">Total:</span> 
                                         <span class="cart-price-number-total">{{rowTotal}}</span>
                                    </div>
-                                   <div class="cart-remove-section" data-itemid="{{item_id}}">
-                                        <button data-textoriginal="Remove" class="btn btn-only-green-icon" title="Remove" onclick="javascript:cartItemRemove(this)">
+                                   <div class="cart-remove-section" >
+                                        <button data-itemid="{{item_id}}" data-textoriginal="Remove" class="btn btn-only-green-icon" title="Remove" data-toggle="modal" data-target="#modalDeleteCartItem">
                                              <span class="action-link-text">Remove</span>
                                              <span class="glyphicon glyphicon-remove"></span>
                                         </button>
@@ -129,6 +129,28 @@
                          <div class="modal-footer clearfix">
                               <div class="modal-footer-btn-left-holder">
                                    <button type="button" class="btn btn-dark-orange btn-rename-cart-submit">Submit</button>
+                              </div>
+                              <div class="modal-footer-btn-right-holder">
+                                   <button type="button" class="btn btn-link btn-link-close-modal" data-dismiss="modal">Cancel</button>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+          </div>
+    
+    <!-- Delete Confirmation -->
+    <div class="modal fade" id="modalDeleteCartItem" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+               <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                         <div class="modal-header clearfix">
+                              <h4 class="modal-title" id="myModalLabel">Cart Item Remove Confirmation</h4>
+                         </div>
+                         <div class="modal-body clearfix">
+                              <p>This item will be removed from your cart</p>
+                         </div>
+                         <div class="modal-footer clearfix">
+                              <div class="modal-footer-btn-left-holder">
+                                   <button type="button" class="btn btn-dark-orange btn-cart-remove-item">Remove Item</button>
                               </div>
                               <div class="modal-footer-btn-right-holder">
                                    <button type="button" class="btn btn-link btn-link-close-modal" data-dismiss="modal">Cancel</button>

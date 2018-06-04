@@ -1,0 +1,258 @@
+<!--/*
+    Copyright 2016 Adobe Systems Incorporated
+  
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+  
+        http://www.apache.org/licenses/LICENSE-2.0
+  
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+*/-->
+<sly data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html" />
+<sly data-sly-call="${clientlib.css @ categories='frontier.structure.product-page'}" />
+<sly data-sly-use.clientLib="/libs/granite/sightly/templates/clientlib.html" data-sly-call="${clientLib.js @ categories='frontier.structure.product-page'}"/>   
+<section id="product-detail">
+<div class="container"
+	 data-sly-use.productModel="${'com.frontierwholesales.core.models.ProductDetailsModel' @ sku=request.requestParameterMap['sku'][0].toString}"
+     data-sly-use.hapiProduct="${'org.apache.sling.hapi.sightly.HApiUse' @ type='/apps/public/weretail/hapi_types/product'}"
+     data-sly-attribute="${hapiProduct.itemtype}">
+
+    <div data-sly-test="${wcmmode.edit && !model.hasVariants}" class="cq-placeholder"
+         data-emptytext="Product Component"></div>
+    <we-product-variant
+        data-sly-repeat.productItem="${productModel.productItem.variants}"
+        is-base="${productItemList.first ? 1 : 0}"
+        path="${productItem.path}"
+        page-path="${productItem.pagePath}"
+        variants="${productItem.variants}"
+        sku="${productItem.sku}"
+        title="${productItem.title}"
+        description="${productItem.description}"
+        price="${productItem.price}"
+        summary="${productItem.summary}"
+        features="${productItem.features}"
+        image="${productItem.imageUrl}"
+        thumbnail="${productItem.thumbnailUrl}"
+        variant-axes="${productItem.variantAxesMapJson}"></we-product-variant>
+    
+
+		<div id="product-images">
+			  <div id="product-thumbnails">
+				   <button type="button" class="each-thumbnail">
+						<img src="https://dh6qdiyp93d9u.cloudfront.net/media/CACHE/images/products/simply/simply-organic-spicy-guacamole-mix-sauce-40-oz-one-19639-19639-default-1-5d19/c56d62d0dac6add6b54132a116b9ccbc.jpg"/>
+				   </button>
+				   <button type="button" class="each-thumbnail">
+						<img src="https://dh6qdiyp93d9u.cloudfront.net/media/CACHE/images/products/simply/simply-organic-spicy-guacamole-mix-sauce-40-oz-one-19639-19639-default-0-672e/9d65335a71660e67e539d8b8a4b48fc5.jpg"/>
+				   </button>
+			  </div>
+			  <div id="product-main-image">
+				   <span class="badge badge-sale">Sale</span>
+				   <div class="product-main-image-holder"
+						data-sly-use.hapiProductAsset="${'org.apache.sling.hapi.sightly.HApiUse' @ type=hapiProduct.proptype.assets}"
+						data-sly-attribute="${hapiProduct.itemprop.assets}">
+						<img src="${productModel.product.imagePath}" class="img-responsive" v-bind:src="product.image" data-sly-attribute="${hapiProductAsset.itemprop.path}" />
+				   </div>
+			  </div>
+        </div>
+    
+    
+        <div id="product-information">
+			<div class="product-sku-number">
+				<span class="we-Product-code">${ 'SKU:'} <span v-text="product.sku"
+					data-sly-attribute="${hapiProduct.itemprop.sku}">
+                    ${productModel.product.productSKU}</span></span>
+			</div>
+			<h1 class="product-title-name" v-html="product.title" data-sly-attribute="${hapiProduct.itemprop.name}">${productModel.product.title}</h1>
+			<div class="product-detail-attributes">
+                                   
+                                   <span class="dt-label">Brand: </span>
+                                   <span class="dd-value brand">
+                                        <a href="#" class="dd-value-link">Frontier</a>
+                                   </span>
+                              
+                                   <span class="dt-label">UPC: </span>
+                                   <span class="dd-value upc">089836230027</span>
+                                   
+            </div>
+			<div class="product-price-summary"> 
+                                   <span class="product-sale-price"v-html="product.price" data-sly-attribute="${hapiProduct.itemprop.price}">${productModel.product.price}</span> 
+                                   <span class="product-now-price">Now $4.93</span>
+                                   <span class="product-save-percent">Save 25%</span>
+            </div>
+
+            <div class="product-detail-message">Availability: In Stock</div>
+
+			  <div class="pdp-message-holder">
+				   <div class="alert alert-danger" role="alert"> 
+						<span class="glyphicon glyphicon-exclamation-sign"></span>
+						<strong>Restricted Shipping Item:</strong> Some type of message that explains the situation.
+				   </div>
+				   <div class="alert alert-bulk" role="alert">
+						<span class="glyphicon glyphicon-info-sign"></span>
+						<strong>Buy 5 to save 5%:</strong> Discount price will display in cart.
+				   </div>
+			  </div>
+
+			  <div class="product-wishlist">
+				   <button class="btn btn-add-wishlist btn-wishlist">Add to Wishlist +</button>
+				   <button class="btn btn-add-wishlist btn-shelve">Add to Shelves +</button>
+			  </div>
+			 
+			<!--/* TODO: Build valid form action and items		 
+			<form action="" method="post" class="product-detail-form-add" v-el:weProductForm action="${productModel.addToCartUrl}" method="POST"
+                  data-sly-use.hapiProductForm="${'org.apache.sling.hapi.sightly.HApiUse' @ type='/apps/public/weretail/hapi_types/addcartentryform'}"
+                  data-sly-attribute="${hapiProductForm.itemtype}"
+                  data-rel="addCartEntryForm">*/-->	
+                <input type="hidden" name="redirect" v-model="product.pagePath" data-sly-attribute="${hapiProductForm.itemprop.redirectPath}" />
+                <input type="hidden" name="redirect-product-not-found" v-model="product.pagePath" data-sly-attribute="${hapiProductForm.itemprop.redirectErrorPath}" />
+                <input type="hidden" name="product-quantity" value="1" data-sly-attribute="${hapiProductForm.itemprop.quantity}" />
+                <input type="hidden" name="product-path" v-model="product.path" data-sly-attribute="${hapiProductForm.itemprop.productPath}" />
+                <input type="hidden" name=":operation" value="addToSmartList" />
+				
+				<!--/*
+				<sly data-sly-list.axisName="${productModel.productItem.variantsAxesValues}">
+                <div class="form-group fg-title">
+                    <label>${axisName @ i18n}</label>
+                </div>
+                <div class="form-group fg-content">
+                    <div class="we-Product-radio marker radio-inline" data-sly-repeat.axisValue="${productModel.productItem.variantsAxesValues[axisName]}">
+                        <label>
+                            <input data-sly-test="${axisName != 'color'}" type="radio" name="${axisName}" value="${axisValue}" title="${axisValue}"
+                                   v-bind:checked="isChecked('${axisName}','${axisValue}')" v-on:click="setProduct"
+                                   data-sly-attribute="${hapiProductForm.itemprop[axisName]}" />
+                            <input data-sly-test="${axisName == 'color'}" type="radio" name="${axisName}" value="${axisValue}" title="${axisValue}"
+                                   v-bind:checked="isChecked('${axisName}','${axisValue}')" v-on:click="setProduct" 
+                                   style="background-color:${axisValue @context='styleString'};"
+                                   data-sly-attribute="${hapiProductForm.itemprop[axisName]}" />
+                            <div data-sly-test="${axisName != 'color'}">${axisValue}</div>
+                            <div data-sly-test="${axisName == 'color'}" style="background-color:${axisValue @context='styleString'};"></div>
+                        </label>
+                    </div>
+                </div>
+                </sly>
+				<div class="form-group">
+                    <div class="row">
+                        <div class="col-md-4">
+                        </div>
+                        <div class="col-md-8 text-right">
+                            <div class="we-Product-actions">
+                                <button type="submit" class="btn btn-action btn-primary" v-on:click="trackCartAdd"
+                                        data-sly-attribute="${hapiProductForm.itemprop.addToCartButton}">${ 'Add to cart' @ i18n }</button>
+                                <a data-sly-test="${!productModel.isAnonymous}" v-on:click.prevent="addToWishlist"
+                                   href="#" data-smartlist-url="${productModel.addToSmartListUrl}"
+                                   class="btn btn-icon btn-primary we-retail-not-anonymous" data-sly-attribute="${hapiProductForm.itemprop.addToSmartlistButton}">
+                                    <i class="fa fa-heart-o"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+				*/-->
+				 
+				   <div class="product-add-options">
+						<div class="qty-holder">
+							 <button type="button" class="decrease qty-button qty-down">
+								  <span class="decrease-minus">-</span>
+								  <span class="visuallyhidden">decrease</span>
+							 </button>
+							 <input type="text" min="1" max="99" name="quantity" id="product-qty-input" class="grid-product-qty-input qty-input-field" value="1">
+							 <button type="button" class="increase qty-button qty-up">
+								  <span class="increase-plus">+</span>
+								  <span class="visuallyhidden">increase</span>
+							 </button>
+						</div>
+						<div class="add-to-cart-holder">
+                            <div id="cartMessage-${productModel.product.productSKU}" class="alert alert-add-to-cart" style="display: none;">Added to your Cart!</div>
+							 <button id="${productModel.product.productSKU}" class="btn btn-light-green btn-add-to-cart">Add To Cart</button>
+						</div>
+				   </div>
+			<!-- /* </form> */-->
+			
+			  <div class="product-overview">
+			   <h2 class="heading-product-overview">Product Summary</h2>
+			   <p class="description-product-overview" v-html="product.description" data-sly-attribute="${hapiProduct.itemprop.description}">
+					${productModel.product.summary @context='html'}
+					<!--<a class="description-read-more" href="#">Read More</a>-->
+			   </p>
+			   <ul class="overview-stat-list">
+					<li class="each-stat icon-check">
+						 <span class="each-stat-icon">
+							  <span class="glyphicon glyphicon-ok"></span>
+						 </span>
+						 <span class="each-stat-name-text">Organic</span>
+					</li>
+			   
+					<li class="each-stat icon-check">
+						 <span class="each-stat-icon">
+							  <span class="glyphicon glyphicon-ok"></span>
+						 </span>
+						 <span class="each-stat-name-text">Not Tested On Animals</span>
+					</li>
+			   
+					<li class="each-stat icon-check">
+						 <span class="each-stat-icon">
+							  <span class="glyphicon glyphicon-ok"></span>
+						 </span>
+						 <span class="each-stat-name-text">Non Irradiated</span>
+					</li>
+			   
+					<li class="each-stat icon-check">
+						 <span class="each-stat-icon">
+							  <span class="glyphicon glyphicon-ok"></span>
+						 </span>
+						 <span class="each-stat-name-text">Vegan</span>
+					</li>
+			   
+					<li class="each-stat icon-check">
+						 <span class="each-stat-icon">
+							  <span class="glyphicon glyphicon-ok"></span>
+						 </span>
+						 <span class="each-stat-name-text">Alcohol Free</span>
+					</li>
+			   </ul>
+		  </div>
+			
+			<div class="product-detail-additional-details">
+				   <span class="product-detail-overview-item-detail">
+						<span class="product-detail-overview-label">Flavor</span>
+						<span class="product-detail-overview-value">Crunchy Lentil Fest</span>
+				   </span>
+			  
+				   <span class="product-detail-overview-item-detail">
+						<span class="product-detail-overview-label">Size</span>
+						<span class="product-detail-overview-value">8 oz.</span>
+				   </span>
+
+				   <span class="product-detail-overview-item-detail">
+						<span class="product-detail-overview-label">Count</span>
+						<span class="product-detail-overview-value">1 Item</span>
+				   </span>
+			  </div>
+
+			  <div class="product-more-details">
+				   <h3 class="heading-product-overview">Additional Product Details</h3>
+				   <div class="each-additional-section">
+						<h4 class="additional-heading">Description</h4>
+						<p class="additional-description">${productModel.product.description @context='html'}</p>
+				   </div>
+            </div>
+			
+			<!--
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="we-Rating">
+                        <div data-sly-resource="${'rating' @ resourceType='weretail/components/hbs/rating', wcmmode='disabled'}"></div>
+                    </div>
+                </div>
+            </div>
+			-->
+           
+        </div>
+
+</div>
+</section>

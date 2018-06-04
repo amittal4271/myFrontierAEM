@@ -19,6 +19,7 @@ import org.slf4j.LoggerFactory;
 import com.adobe.cq.commerce.api.CommerceException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.frontierwholesales.core.beans.FrontierWholesalesProductSearch;
 import com.frontierwholesales.core.utils.AuthCredentials;
 
 
@@ -157,13 +158,18 @@ public class FrontierWholesalesMagentoCommerceConnector {
 
 
     public String initCart(String authToken) throws Exception {
-        String predicate = (authToken == null) ?  "guest-carts/" : "carts/mine";
-
-        String cartId = Request.Post(server + "/rest/V1/" + predicate)
+        
+    	String cartId = null;
+    	try {
+         cartId = Request.Post(server + "/rest/V1/carts/mine")
                 .addHeader("Authorization", authToken)
-                .bodyString("{}", ContentType.APPLICATION_JSON)
+               
                 .execute().returnContent().asString();
-        return cartId.replace("\"", "");
+    	}catch(Exception ioEx) {
+    		log.error("Error in cart initialization: ERROR" + ioEx.getMessage());
+    		System.out.println("Error "+ioEx.getMessage());
+    	}
+        return (cartId != null)?cartId.replace("\"", ""):null;
     }
 
 
@@ -223,6 +229,76 @@ public class FrontierWholesalesMagentoCommerceConnector {
 		
 		return updatedItem;
     }
+    
+   
+    
+    public String addItemToCart(String token,String jsonData) throws Exception{
+    	String newItem= null;
+    	try {
+    	 newItem = Request.Post(server+"/rest/V1/carts/mine/items")
+    			.addHeader("Authorization",token)
+    			.addHeader("ContentType","application/json")
+    			.bodyString(jsonData,ContentType.APPLICATION_JSON)
+    			.execute().returnContent().asString();
+    	}catch(IOException ioEx) {
+    		log.error(" addItemToCart: ERROR: " + ioEx.getMessage());
+    	}
+    	return newItem;
+    }
+    
+    public String getProducts(String adminToken,FrontierWholesalesProductSearch search) {
+    	
+        String response=null;
+        String orderByPrice= "";
+        String featured ="";
+        String newProduct="";
+        String searchCriteria = "searchCriteria[currentPage]="+search.getCurrentPage()+"&searchCriteria[pageSize]="+search.getNoOfRecsPerPage()+"&"+
+        						 "searchCriteria[filterGroups][0][filters][0][value]="+search.getCategoryId()+"&"+
+        						 "searchCriteria[filterGroups][0][filters][0][field]=category_id";
+        if(search.getSortByPrice() != null) {
+         orderByPrice = "&searchCriteria[sortOrders][0][field]=price&searchCriteria[sortOrders][0][direction]="+search.getSortByPrice();
+         searchCriteria = searchCriteria + orderByPrice;
+        }
+        
+        if(search.getSortByFeatured() != null) {
+        	featured ="&searchCriteria[sortOrders][0][field]=featured&searchCriteria[sortOrders][0][direction]=DESC";
+        	 searchCriteria = searchCriteria + featured;
+        }
+        
+        if(search.getSortByNewProduct() != null) {
+        	newProduct="&searchCriteria[sortOrders][0][field]=created_at&searchCriteria[sortOrders][0][direction]=DESC";
+        	 searchCriteria = searchCriteria + newProduct;
+        }
+        
+        try {
+            
+            response = Request.Get(server+"/rest/V1/products?"+searchCriteria)
+                    .addHeader("Authorization", adminToken)
+                    .execute().returnContent().asString();
+         
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+            log.error("Error getting Product List: ERROR: " + e.getMessage());
+        }
+        return response;
+    }
+    
+    public String getCategories(String adminToken,int categoryId){
+       String predicate=(categoryId > 0)?"?rootCategoryId="+categoryId:"";
+        String response=null;
+        try {
+            response = Request.Get(server+"/rest/V1/categories"+predicate)
+                    .addHeader("Authorization", adminToken)
+                    .execute().returnContent().asString();
+           
+        } catch (IOException e) {
+            e.printStackTrace();
+            log.error("Error Getting Categories from Server: ERROR" + e.getMessage());
+        }
+        return response;
+    }
+
 
 
 }

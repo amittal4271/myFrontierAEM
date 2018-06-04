@@ -159,6 +159,9 @@ $(document).ready(function() {
 			nextEl: '#homepage-scroller .swiper-button-next',
 			prevEl: '#homepage-scroller .swiper-button-prev',
 		},
+        autoplay: {
+			delay: 3000, 
+		}
     });
 
 
@@ -303,6 +306,26 @@ $(document).ready(function() {
 			$newShippingAddressHolder.slideUp("fast");
 		}
 	});
+    
+    // qty button click
+	$(document).on('click', '.qty-button', function() {
+		console.log('click qty up or down');
+		var $this = $(this);
+		// get closest quantity input element to change the value up or down 1
+		var $el = $this.parent('.qty-holder').children('.qty-input-field');
+
+		if ( $this.hasClass('qty-up') ) {
+			modifyInputQty($el, 1);
+		} else {
+			modifyInputQty($el, -1);
+		}
+	});
+    
+    $("#header").hoverIntent({
+		over: showMiniCart,
+		out: hideMiniCart,
+		selector: '#cart-holder'
+	});
 
 
 });
@@ -353,13 +376,39 @@ function scrollToElement ($el) {
    });
 }
 
-var byRow = $('#product-grid').hasClass('match-height');
+function modifyInputQty($el, $val) {
+    var $qty = $el.val();
+    var $new_qty = parseInt($qty,10) + $val;
+
+    if ($new_qty < 1) {
+        $new_qty = 1;
+    }
+    if($new_qty < 100) {
+    	$el.val($new_qty);
+    } else {
+ 		$new_qty = $qty;
+    }
+    return $new_qty;
+}
+
+function checkQuantity($el) {
+	
+	var $quantity = Math.round($el.val());
+	if (isNaN($quantity) || $quantity == null || $quantity == '' || $quantity < 0) {
+		$el.val(0);
+	}
+	else {
+		$el.val($quantity);
+	}
+}
+
+/*var byRow = $('#product-grid').hasClass('match-height');
     $('#product-grid').each(function() {
         $(this).children('.product-grid-item').matchHeight({
             byRow: byRow
         });
     });
-
+*/
     // match height for blog grid and article listing on search results
     var byRow = $('#article-grid').hasClass('match-height');
     $('#article-grid').each(function() {

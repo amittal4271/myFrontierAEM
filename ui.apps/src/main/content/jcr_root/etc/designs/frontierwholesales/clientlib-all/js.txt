@@ -4,7 +4,8 @@ jquery.validate.min.js
 additional-methods.min.js
 jquery.matchHeight.js
 frontier-minified.js
-mustache.min.js
+#mustache.min.js
+handlebars.min-latest.js
 swiper.min.js
 validations.js
 newsletter.js

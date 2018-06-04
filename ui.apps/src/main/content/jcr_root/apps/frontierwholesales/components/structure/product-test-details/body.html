@@ -1,0 +1,19 @@
+<body>
+<div id="ajax-form-overlay-holder">
+     <div class="loader"></div>
+</div>
+<!-- Body text here -->
+<main id="test-home" class="main-content-container">
+<!-- bread crumb start-->
+ <sly data-sly-resource="${'breadcrumb' @ resourceType='frontierwholesales/components/content/breadcrumb'}" data-sly-unwrap></sly> 
+<!-- bread crum end -->
+<article class="article-full-width-banner article-community">
+<div class="banner-holder-full-width">
+<div class="container clearfix intro-container">	
+    <!--/* <div class="page__par" data-sly-resource="${'product_details_control' @ resourceType='frontierwholesales/components/content/product-details'}"> */-->
+	<div class="page__par" data-sly-resource="${'product_details_control' @ resourceType='frontierwholesales/components/content/product/product'}">
+</div>
+</div>
+</article>
+</main>
+</body>

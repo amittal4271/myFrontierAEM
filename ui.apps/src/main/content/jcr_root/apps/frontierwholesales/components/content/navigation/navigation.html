@@ -1,7 +1,8 @@
 <div data-sly-use.topNav="${'com.frontierwholesales.core.models.NavigationModel'}" id="main-nav">
     <ul id="main-navigtaion-list">
         <sly data-sly-list.pages="${topNav.frontierWholesalePages}">
-		<li class="top-level-category">
+		<li class="${pagesList.last ?'top-level-category drop-left':'top-level-category'}">
+            
             <div data-sly-test="${pages.childList.size > 0}" data-sly-unwrap>
                 <a class="top-level-link"   data-attr-name='${pages.name}'>${pages.title}</a>
             </div>

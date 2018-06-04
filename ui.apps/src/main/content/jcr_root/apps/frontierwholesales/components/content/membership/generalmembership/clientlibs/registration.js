@@ -138,8 +138,8 @@ function collectUserDetails(){
     
     companyJsonData['postcode']=$('#id_shipping-postal_code').val();
     companyJsonData['telephone']=$('#id_shipping-phone').val();
-    // 8 is for non member
-    companyJsonData['customer_group_id']='8';
+    // 11 is for non member
+    companyJsonData['customer_group_id']='11';
     
    
     companyJsonData['street']=[];

@@ -174,8 +174,8 @@ function collectUserDetails(){
     
     companyJsonData['postcode']=$('#id_mailing-postal_code').val();
     companyJsonData['telephone']=$('#id_shipping-phone').val();
-    // 6 is for lifetime member
-    companyJsonData['customer_group_id']='6';
+    // 10 is for lifetime member
+    companyJsonData['customer_group_id']='10';
     
    
     companyJsonData['street']=[];

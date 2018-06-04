@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="MyAccount Pending Orders"
+    sling:resourceType="cq/gui/components/authoring/dialog"
+    helpPath="https://todo.frontier.com/a/future/help/path/for/authors.html">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/foundation/container">
+        <layout
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/foundation/layouts/tabs"
+            type="nav"/>
+        <items jcr:primaryType="nt:unstructured">
+            <column
+                jcr:primaryType="nt:unstructured"
+                jcr:title="Order Row Labels"
+                sling:resourceType="granite/ui/components/foundation/container">
+                <layout
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns"/>
+                <items jcr:primaryType="nt:unstructured">
+                    <columns
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+		                    <selectColumnHeader
+							    jcr:primaryType="nt:unstructured"
+							    sling:resourceType="granite/ui/components/foundation/form/textfield"
+							    fieldDescription="if left empty defaults to 'Select'"
+							    fieldLabel="Select Column Header"
+							    name="./selectColumnHeader"/>
+							<selectCheckboxLabel
+							    jcr:primaryType="nt:unstructured"
+							    sling:resourceType="granite/ui/components/foundation/form/textfield"
+							    fieldDescription="if left empty defaults to 'Select'"
+							    fieldLabel="Select Checkbox Label"
+							    name="./selectCheckboxLabel"/>
+							<orderNameColumnHeader
+							    jcr:primaryType="nt:unstructured"
+							    sling:resourceType="granite/ui/components/foundation/form/textfield"
+							    fieldDescription="if left empty defaults to 'Order Name'"
+							    fieldLabel="Order Name Column Header"
+							    name="./orderNameColumnHeader"/>
+							<statusColumnHeader
+							    jcr:primaryType="nt:unstructured"
+							    sling:resourceType="granite/ui/components/foundation/form/textfield"
+							    fieldDescription="if left empty defaults to 'Status'"
+							    fieldLabel="Status Column Header"
+							    name="./statusColumnHeader"/>
+							<linesColumnHeader
+							    jcr:primaryType="nt:unstructured"
+							    sling:resourceType="granite/ui/components/foundation/form/textfield"
+							    fieldDescription="if left empty defaults to 'Lines'"
+							    fieldLabel="Lines Column Header"
+							    name="./linesColumnHeader"/>
+							<subtotalColumnHeader
+							    jcr:primaryType="nt:unstructured"
+							    sling:resourceType="granite/ui/components/foundation/form/textfield"
+							    fieldDescription="if left empty defaults to 'Subtotal'"
+							    fieldLabel="Subtotal Column Header"
+							    name="./subtotalColumnHeader"/>
+							<activityColumnHeader
+							    jcr:primaryType="nt:unstructured"
+							    sling:resourceType="granite/ui/components/foundation/form/textfield"
+							    fieldDescription="if left empty defaults to 'Activity'"
+							    fieldLabel="Activity Column Header"
+							    name="./activityColumnHeader"/>
+							<detailColumnHeader
+							    jcr:primaryType="nt:unstructured"
+							    sling:resourceType="granite/ui/components/foundation/form/textfield"
+							    fieldDescription="if left empty defaults to 'Detail'"
+							    fieldLabel="Detail Column Header"
+							    name="./detailColumnHeader"/>
+                        </items>
+                   	</columns>
+                </items>
+            </column>
+            <column2
+                jcr:primaryType="nt:unstructured"
+                jcr:title="Order Item Row Labels"
+                sling:resourceType="granite/ui/components/foundation/container">
+                <layout
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns"/>
+                <items jcr:primaryType="nt:unstructured">
+                    <columns
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+		                    <itemNumColumnHeader
+							    jcr:primaryType="nt:unstructured"
+							    sling:resourceType="granite/ui/components/foundation/form/textfield"
+							    fieldDescription="if left empty defaults to 'Item #'"
+							    fieldLabel="Item Num Column Header"
+							    name="./itemNumColumnHeader"/>
+							<descriptionColumnHeader
+							    jcr:primaryType="nt:unstructured"
+							    sling:resourceType="granite/ui/components/foundation/form/textfield"
+							    fieldDescription="if left empty defaults to 'Description'"
+							    fieldLabel="Description Column Header"
+							    name="./descriptionColumnHeader"/>
+							<skuStatusColumnHeader
+							    jcr:primaryType="nt:unstructured"
+							    sling:resourceType="granite/ui/components/foundation/form/textfield"
+							    fieldDescription="if left empty defaults to 'SKU Status'"
+							    fieldLabel="SKU Status Column Header"
+							    name="./skuStatusColumnHeader"/>
+							<priceColumnHeader
+							    jcr:primaryType="nt:unstructured"
+							    sling:resourceType="granite/ui/components/foundation/form/textfield"
+							    fieldDescription="if left empty defaults to 'Price'"
+							    fieldLabel="Price Column Header"
+							    name="./priceColumnHeader"/>
+							<qtyColumnHeader
+							    jcr:primaryType="nt:unstructured"
+							    sling:resourceType="granite/ui/components/foundation/form/textfield"
+							    fieldDescription="if left empty defaults to 'Qty'"
+							    fieldLabel="Qty Column Header"
+							    name="./qtyColumnHeader"/>
+                        </items>
+                   	</columns>
+                </items>
+            </column2>
+        </items>
+    </content>
+</jcr:root>

@@ -22,11 +22,11 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.frontierwholesales.core.magento.services.FrontierWholesalesMagentoCommerceConnector;
 import com.frontierwholesales.core.services.constants.FrontierWholesalesConstants;
+import com.frontierwholesales.core.utils.FrontierWholesalesUtils;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.infield.magento.core.connector.MagentoCommerceConnector;
 
 @SuppressWarnings("serial")
 @SlingServlet(label="FrontierWholesalesUserRegistration - Sling All Methods Servlet", 
@@ -35,7 +35,7 @@ paths={"/services/cart"}, methods={"GET","POST","DELETE","PUT"})
 public class FrontierWholesalesShoppingCartServlet  extends SlingAllMethodsServlet{
 
 	private static final Logger log = LoggerFactory.getLogger(FrontierWholesalesShoppingCartServlet.class);
-	private MagentoCommerceConnector connector = new MagentoCommerceConnector();
+	
 	private FrontierWholesalesMagentoCommerceConnector commerceConnector = new FrontierWholesalesMagentoCommerceConnector();
 	private ObjectMapper mapper = new ObjectMapper();
 	
@@ -54,8 +54,7 @@ public class FrontierWholesalesShoppingCartServlet  extends SlingAllMethodsServl
 		
 		try {
 			String action = request.getParameter("action");
-			
-			MagentoCommerceConnector.setServer(FrontierWholesalesMagentoCommerceConnector.getServer());
+			log.debug(" action is "+action);
 			
 			String token = (String)request.getSession().getAttribute(FrontierWholesalesConstants.MAGENTO_USER_TOKEN);
 			
@@ -71,15 +70,27 @@ public class FrontierWholesalesShoppingCartServlet  extends SlingAllMethodsServl
 				 commerceConnector.removeCartItem(token, itemId);
 				
 				
+			}else if(action.equals("add")){
+				String jsonData = request.getParameter("items");
+				// create cart
+				String cartId = commerceConnector.initCart(token);
+				//update json structure with cartid
+				String updatedData = FrontierWholesalesUtils.updateJsonObject(jsonData, "cartItem", "quote_id", cartId);
+				//add item into the cart
+				String cartItems = commerceConnector.addItemToCart(token, updatedData);
+				
+				
 			}
-			
 			String cartObject = commerceConnector.getCartTotal(token);
 			
 			String object = getValueFromJson(cartObject,request);
 			response.getOutputStream().println(object);
+			
 		}catch(Exception anyEx) {
 			
 			log.error("Error "+anyEx.getMessage());
+			String errorJson="Error in Cart";
+			response.getOutputStream().println(errorJson.toString());
 			
 		}
 		log.debug("FrontierWholesalesShoppingCartServlet doGet method End");
@@ -180,6 +191,12 @@ public class FrontierWholesalesShoppingCartServlet  extends SlingAllMethodsServl
 			JsonElement price = itemObject.get("price_incl_tax");
 			JsonElement rowTotal = itemObject.get("row_total_incl_tax");
 			
+			JsonElement qtyObject = itemObject.get("qty");
+			boolean bReturn = false;
+			if(qtyObject.getAsInt() > 1) {
+				bReturn = true;
+			}
+			itemObject.addProperty("quantities", bReturn);
 			itemObject.addProperty("price", "$"+priceFormat.format(price.getAsDouble()));
 			itemObject.addProperty("rowTotal", "$"+priceFormat.format(rowTotal.getAsDouble()));
 			
@@ -187,6 +204,7 @@ public class FrontierWholesalesShoppingCartServlet  extends SlingAllMethodsServl
 			updatedArray.add(updatedElement);
 			
 		}
+		
 			JsonElement arrayElement = json.fromJson(updatedArray, JsonElement.class);
 		
 			JsonElement grandTotal = object.get("grand_total");
