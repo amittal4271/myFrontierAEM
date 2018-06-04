@@ -11,6 +11,7 @@ public class FrontierWholesalesProducts {
 	private String productSKU;
 	private double price;
 	private Node childNode;
+	private String path;
 	
 	
 	public String getImagePath() {
@@ -56,7 +57,12 @@ public class FrontierWholesalesProducts {
 		this.summary = summary;
 	}
 	
+	public String getPath() {
+		return this.path;
+	}
 	
-	
+	public void setPath( String path ) {
+		this.path = path;
+	}
 	
 }
