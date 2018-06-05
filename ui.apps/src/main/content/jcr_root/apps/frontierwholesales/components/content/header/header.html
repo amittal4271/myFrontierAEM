@@ -81,7 +81,7 @@
                    {{/if}}
                </span>
                {{#if items_qty includedZero=false}}
-               <span class="cart-amount">My Total: <span id="shopping-cart-total" class="amount">{{grandTotal}}</span></span>
+               <span class="cart-amount">My Total: <span id="shopping-cart-total" class="amount">{{subTotal}}</span></span>
               {{else}}
               <span class="cart-amount">My Total: <span id="shopping-cart-total" class="amount">$0.00</span></span>
               {{/if}}
@@ -126,8 +126,8 @@
 
                <div class="mini-cart-subtotal-holder">
                     <div class="subtotal-text">Subtotal</div>
-                   {{#if grandTotal}}
-                    <div class="subtotal-amount">{{grandTotal}}</div>
+                   {{#if subTotal}}
+                    <div class="subtotal-amount">{{subTotal}}</div>
                    {{else}}
                     <div class="subtotal-amount">$0.00</div>
                    {{/if}}

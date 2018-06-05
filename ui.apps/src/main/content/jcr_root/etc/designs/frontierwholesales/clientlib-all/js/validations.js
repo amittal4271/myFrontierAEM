@@ -257,6 +257,43 @@ function buyersClubCheckboxOperations(){
                               }
                          },
         
+        
+        shippingAddressForm: function($formId) {
+            $($formId).validate({
+                rules: {
+                   
+                    "shipping-name":{
+                        required: true,
+                        maxlength: 70,
+                        fullName: true
+                    },"shipping-address":{
+                        required: true,
+                        maxlength: 150
+                    },"shipping-city":{
+                        required: true,
+                        maxlength: 70
+                        
+                    },"shipping-postal_code":{
+                        required: true,
+                        minlength: 5,
+                        maxlength: 12
+                        
+                    }
+                },messages :{
+                    
+                     "shipping-name":{
+                       
+                         fullName: 'Please enter full name'
+                        
+                    },"shipping-phone":{
+                        
+                          phoneno: 'Enter a valid phone number'
+                        
+                    }
+                }
+            });
+        },
+        
 		registrationLifetimeForm: function($formId) {
 			$($formId).validate({
 		        rules: {
@@ -606,7 +643,7 @@ function buyersClubCheckboxOperations(){
                     }
                 }
             });
-        }
+        }        
 
 	};
 

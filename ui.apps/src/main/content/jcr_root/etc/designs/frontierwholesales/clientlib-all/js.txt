@@ -9,6 +9,6 @@ handlebars.min-latest.js
 swiper.min.js
 validations.js
 newsletter.js
-main.js
+#main.js
 
 

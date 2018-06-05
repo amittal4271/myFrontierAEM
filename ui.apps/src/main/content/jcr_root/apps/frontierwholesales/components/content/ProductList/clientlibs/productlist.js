@@ -29,7 +29,7 @@ console.log("product list page...");
     $(document).on('click','.pagination-next.pagination-arrow',function(e){
         e.preventDefault();
         var currentPage = parseInt($('#currentPage').val());
-       
+      
         var pageTotal = parseInt($('#totalPage').val());
         var sortBy = $('#sortBy').val();
         if(currentPage < pageTotal){
@@ -41,17 +41,20 @@ console.log("product list page...");
        
     });
     
-     $(document).on('click','.pagination-previous.pagination-arrow',function(){
+     $(document).on('click','.pagination-previous.pagination-arrow',function(e){
          e.preventDefault();
-        var currentPage = parseInt($('#currentPage').val());
-         if(currentPage > 1){
-         var prevPage = currentPage - 1;
-              
-              var pageTotal = parseInt($('#totalPage').val());
-             var recsPerPage = $('#itemPerPageSelect').val();
-              var sortBy = $('#sortBy').val();
-            getProductListByCategory(prevPage,recsPerPage,sortBy);
-             
+        var disabled = $(this).hasClass('disabled');
+         if(!disabled){
+            var currentPage = parseInt($('#currentPage').val());
+             if(currentPage > 1){
+             var prevPage = currentPage - 1;
+
+                  var pageTotal = parseInt($('#totalPage').val());
+                 var recsPerPage = $('#itemPerPageSelect').val();
+                  var sortBy = $('#sortBy').val();
+                getProductListByCategory(prevPage,recsPerPage,sortBy);
+
+             }
          }
        
        
@@ -59,7 +62,7 @@ console.log("product list page...");
     
     $(document).on('change','#sortBy',function(){
         var sortBy = $(this).val();
-       // var currentPage = parseInt($('#currentPage').val());
+       
         var currentPage=1;
         var recsPerPage = $('#itemPerPageSelect').val();
         getProductListByCategory(currentPage,recsPerPage,sortBy);
@@ -70,6 +73,8 @@ console.log("product list page...");
 function getProductListByCategory(currentPage,recsPerPage,sortBy){
     var jsonData={};
     showLoadingScreen();
+    
+    
     jsonData['currentPage']=currentPage;
     jsonData['categoryId']=$('#categoryId').val();
     jsonData['noOfRecsPerPage']=recsPerPage;
@@ -120,6 +125,13 @@ function getProductListByCategory(currentPage,recsPerPage,sortBy){
         setTimeout(function() {
                    adjustHeight();
                }, 500);
+        
+    //enable/disable previous button - Pagination
+     if(currentPage > 1){
+           $('#previous').removeClass('disabled');
+       }else{
+           $('#previous').addClass('disabled');
+       }
        
     });
 }

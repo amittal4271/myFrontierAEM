@@ -24,6 +24,7 @@ import org.osgi.framework.Constants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.day.cq.commons.Externalizer;
 import com.frontierwholesales.core.services.constants.FrontierWholesalesConstants;
 
 
@@ -54,7 +55,7 @@ public class FrontierWholesalesAuthenticationHandler extends DefaultAuthenticati
 	        // manner later.
 	        final DeferredRedirectHttpServletResponse deferredRedirectResponse =
 	                new DeferredRedirectHttpServletResponse(httpServletRequest, httpServletResponse);
-	        log.info("extract credentials...");
+	        log.debug("extract credentials...");
 	        return wrappedAuthHandler.extractCredentials(httpServletRequest, deferredRedirectResponse);
 	    }
 
@@ -73,7 +74,7 @@ public class FrontierWholesalesAuthenticationHandler extends DefaultAuthenticati
 	        // Wrap the response so we can release any previously deferred redirects
 	        final DeferredRedirectHttpServletResponse deferredRedirectResponse =
 	                new DeferredRedirectHttpServletResponse(httpServletRequest, httpServletResponse);
-	        log.info("authenticationFailed...");
+	        log.debug("authenticationFailed...");
 	        if (this.wrappedIsAuthFeedbackHandler) {
 	            ((AuthenticationFeedbackHandler) wrappedAuthHandler).authenticationFailed(httpServletRequest, deferredRedirectResponse, authenticationInfo);
 	        }
@@ -81,7 +82,7 @@ public class FrontierWholesalesAuthenticationHandler extends DefaultAuthenticati
 		try {
 	            deferredRedirectResponse.releaseRedirect();
 	        } catch (IOException e) {
-	            log.info("Could not release redirect", e);
+	            log.error("Could not release redirect", e,e.getMessage());
 	            httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 	        }
 	    }
@@ -89,7 +90,7 @@ public class FrontierWholesalesAuthenticationHandler extends DefaultAuthenticati
 	    @Override
 	    public boolean authenticationSucceeded(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationInfo authenticationInfo) {
 	        boolean result = false;
-	        log.info("authenticationSucceeded...");
+	        log.debug("authenticationSucceeded...");
 	        // Wrap the response so we can release any previously deferred redirects
 	        final DeferredRedirectHttpServletResponse deferredRedirectResponse =
 	                new DeferredRedirectHttpServletResponse(httpServletRequest, httpServletResponse);
@@ -122,20 +123,20 @@ public class FrontierWholesalesAuthenticationHandler extends DefaultAuthenticati
 			httpServletRequest.getSession().setAttribute(FrontierWholesalesConstants.MAGENTO_USER_TOKEN, token);
 			}
 			
-			
-			
-			/*
-			MongoClientURI connStr = new MongoClientURI("mongodb://"+user +":"+password + "@localhost:27017/aem-author");
-			 mongoClient = new MongoClient(connStr);
-			MongoDatabase db = mongoClient.getDatabase("aem-author");
-			String name = db.getName();
-			log.info("After mongodb is connected..."+name);*/
-			
 		
 				if(token != null) {
 					
-					deferredRedirectResponse.sendRedirect("/content/frontierwholesales/en/myaccount.html");
+					String scheme = httpServletRequest.getScheme();
+					String url = "";
+					if(scheme.equals("http")) {
+						url = scheme+"://"+httpServletRequest.getServerName()+":"+httpServletRequest.getServerPort();
+					}else {
+						url = scheme+"://"+httpServletRequest.getServerName();
+					}
+					
+					deferredRedirectResponse.sendRedirect(url+"/content/frontierwholesales/en/myaccount.html");
 					deferredRedirectResponse.setStatus(HttpServletResponse.SC_OK);
+					
 				     deferredRedirectResponse.releaseRedirect();
 					} else {
 						log.error("Invalid Credentials");
@@ -149,6 +150,7 @@ public class FrontierWholesalesAuthenticationHandler extends DefaultAuthenticati
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
+					log.error("Error in login ",e,e.getMessage());
 					
 				}
 	           
@@ -162,9 +164,9 @@ public class FrontierWholesalesAuthenticationHandler extends DefaultAuthenticati
 	    @Activate
 	    protected void activate(final Map<String, String> config) {
 	        this.wrappedIsAuthFeedbackHandler = false;
-	        log.info("activated...");
+	        log.debug("activated...");
 	        if (wrappedAuthHandler != null) {
-	            log.info("Registered wrapped authentication feedback handler");
+	            log.debug("Registered wrapped authentication feedback handler");
 	            this.wrappedIsAuthFeedbackHandler = wrappedAuthHandler instanceof AuthenticationFeedbackHandler;
 	        }
 	    }
