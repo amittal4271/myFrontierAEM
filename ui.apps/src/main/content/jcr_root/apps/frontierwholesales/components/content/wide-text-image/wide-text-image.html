@@ -17,7 +17,13 @@
      data-sly-use.emptyRenderer="emptytextimage.html"
      data-sly-call="${emptyRenderer.emptyTextImageTemplate @ textImage=textImage}" />
 
-<div class="each-left-right-section bg-light-section" data-sly-test="${properties.alignment == 'left'}">
+<!--/* Display correct css styles based on left-right alingement and style selection */-->
+<sly data-sly-test="${properties.alignment == 'left'}"
+<sly data-sly-test.pstyle="${properties.style == 'square-sections' ? 'square-sections' : 'bg-light-section'}" />
+<sly data-sly-test="${properties.alignment == 'right'}"
+<sly data-sly-test.pstyle="${properties.style == 'square-sections' ? 'square-sections' : 'bg-grain-section'}" />
+
+<div class="each-left-right-section ${pstyle}" data-sly-test="${properties.alignment == 'left'}">
                          <div class="container clearfix">
                               <figure class="each-figure-section">
                                    <div class="figure-media-left-right"
@@ -39,7 +45,7 @@
                          </div>
  </div>
 
-<div class="each-left-right-section bg-grain-section" data-sly-test="${properties.alignment == 'right'}">
+<div class="each-left-right-section ${pstyle}" data-sly-test="${properties.alignment == 'right'}">
                          <div class="container clearfix">
                               <figure class="each-figure-section">
                                    <figcaption class="information-section-left-right">

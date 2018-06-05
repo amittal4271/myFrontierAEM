@@ -304,6 +304,46 @@
                     </column>
                 </items>
             </button>
+            <style
+                jcr:primaryType="nt:unstructured"
+                jcr:title="Style"
+                sling:resourceType="granite/ui/components/foundation/section">
+                <layout
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns"
+                    margin="{Boolean}false"/>
+                <items jcr:primaryType="nt:unstructured">
+                    <column
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+                            <column
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/foundation/container">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <style
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/select"
+                                        fieldDescription="Select preferred style"
+                                        fieldLabel="Page style"
+                                        name="./style">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <def
+                                                jcr:primaryType="nt:unstructured"
+                                                text="History (default)"
+                                                value=""/>
+                                            <stewardship
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Stewardship"
+                                                value="square-sections"/>
+                                        </items>
+                                    </style>
+                                </items>
+                            </column>
+                        </items>
+                    </column>
+                </items>
+            </style>
         </items>
     </content>
 </jcr:root>
