@@ -167,7 +167,7 @@ public class FrontierWholesalesMagentoCommerceConnector {
                 .execute().returnContent().asString();
     	}catch(Exception ioEx) {
     		log.error("Error in cart initialization: ERROR" + ioEx.getMessage());
-    		System.out.println("Error "+ioEx.getMessage());
+    		
     	}
         return (cartId != null)?cartId.replace("\"", ""):null;
     }
@@ -298,7 +298,107 @@ public class FrontierWholesalesMagentoCommerceConnector {
         }
         return response;
     }
+    
+    public String getCustomerShippingAddress(String adminToken,String customerId) {
+    	
+    	String response = null;
+    	 try {
+             response = Request.Get(server+"/rest/V1/customers/"+ customerId+"/shippingAddress")
+                     .addHeader("Authorization", adminToken)
+                     .execute().returnContent().asString();
+           
+         } catch (IOException e) {
+             e.printStackTrace();
+             log.error("Error Getting Shipping address from Server: ERROR" + e.getMessage());
+         }
+         return response;
+    }
+    
+    public String cartShippingAddress(String userToken,String billingAddress) throws Exception{
+    	String response = Request.Post(server+"/rest/V1/carts/mine/shipping-address")
+    					.addHeader("Authorization",userToken)
+    					.addHeader("ContentType","application/json")
+    					.bodyString(billingAddress,ContentType.APPLICATION_JSON)
+    					.execute().returnContent().asString();
+    	return response;
+    }
+    
+    public String getCustomerBillingAddress(String adminToken,String customerId) {
+    	
+    	String response = null;
+    	 try {
+             response = Request.Get(server+"/rest/V1/customers/"+ customerId+"/billingAddress")
+                     .addHeader("Authorization", adminToken)
+                     .execute().returnContent().asString();
+           
+         } catch (IOException e) {
+             e.printStackTrace();
+             log.error("Error Getting billing address from Server: ERROR" + e.getMessage());
+         }
+         return response;
+    }
+    
+    public String cartBillingAddress(String userToken,String billingAddress) throws Exception{
+    	String response = Request.Post(server+"/rest/V1/carts/mine/billing-address")
+    					.addHeader("Authorization",userToken)
+    					.addHeader("ContentType","application/json")
+    					.bodyString(billingAddress,ContentType.APPLICATION_JSON)
+    					.execute().returnContent().asString();
+    	return response;
+    }
+    
+    public String shippingMethods(String userToken) throws Exception{
+    	String response = Request.Get(server+"/rest/V1/carts/mine/shipping-methods")
+    					.addHeader("Authorization",userToken)
+    					.addHeader("ContentType","application/json")
+    					.execute().returnContent().asString();
+    	return response;
+    }
+    
+    public String getCustomer(String userToken) throws Exception{
+    	
+    	String response = Request.Get(server+"/rest/V1/customers/me")
+			.addHeader("Authorization",userToken)
+			.addHeader("ContentType","application/json")
+			.execute().returnContent().asString();
+    	return response;
+    }
+    
+    public String getShippingInfo(String userToken,String address) throws Exception{
+    	String response = Request.Post(server+"/rest/V1/carts/mine/shipping-information")
+    			.addHeader("Authorization",userToken)
+    			.addHeader("ContentType","application/json")
+    			.bodyString(address,ContentType.APPLICATION_JSON)
+    			.execute().returnContent().asString();
+    	return response;
+    }
 
+    public String getCustomerOrders(String adminToken,String customerId) throws Exception{
+    	String orders="/rest/V1/orders?searchCriteria[pageSize]=50"
+    			+ "&searchCriteria[currentPage]=1&searchCriteria[filterGroups][0][filters][0][value]="+customerId
+    			+ "&searchCriteria[filterGroups][0][filters][0][field]=customer_id";
+    	String response = Request.Get(server+orders)
+    			         .addHeader("Authorization",adminToken)
+    			         .execute().returnContent().asString();
+    	return response;
+    }
+    
+    public String submitPayment(String userToken,String paymentInfo) throws Exception{
+    	String response=null;
+    	
+    	try {
+    	response = Request.Post(server+"/rest/V1/carts/mine/payment-information")
+    			.addHeader("Authorization",userToken)
+    			.addHeader("ContentType","application/json")
+    			.bodyString(paymentInfo,ContentType.APPLICATION_JSON)
+    			.execute().returnContent().asString();
+    	
+    	}catch(Exception anyEx) {
+    		log.error("Exception during the payment submission ",anyEx,anyEx.getMessage());
+    		
+    	}
+    	return response;
+    }
 
 
 }

@@ -159,9 +159,10 @@ $(document).ready(function() {
 			nextEl: '#homepage-scroller .swiper-button-next',
 			prevEl: '#homepage-scroller .swiper-button-prev',
 		},
+        
         autoplay: {
-			delay: 3000, 
-		}
+               delay: 3000,
+        }
     });
 
 
@@ -270,12 +271,14 @@ $(document).ready(function() {
 		var $this = $(this);
 		var $icon = $this.children('.glyphicon');
 		var $closestDetailSection = $this.parents('.row-each-order').find('.order-details-holder');
-
+        
 		if ($this.hasClass('btn-toggle-detail-open')) {
+            console.log("button is opened condition is true");
 			$this.removeClass('btn-toggle-detail-open');
 			$closestDetailSection.slideUp("fast");
 			$icon.removeClass('rotate').addClass('glyphicon-plus').removeClass('glyphicon-minus');
 		} else {
+           
 			$this.addClass('btn-toggle-detail-open');
 			$closestDetailSection.slideDown("fast");
 			$icon.addClass('rotate').removeClass('glyphicon-plus').addClass('glyphicon-minus');
@@ -307,7 +310,8 @@ $(document).ready(function() {
 		}
 	});
     
-    // qty button click
+    // qty button click - duplicated in frontier-minified.js
+    /*
 	$(document).on('click', '.qty-button', function() {
 		console.log('click qty up or down');
 		var $this = $(this);
@@ -320,6 +324,7 @@ $(document).ready(function() {
 			modifyInputQty($el, -1);
 		}
 	});
+    */
     
     $("#header").hoverIntent({
 		over: showMiniCart,

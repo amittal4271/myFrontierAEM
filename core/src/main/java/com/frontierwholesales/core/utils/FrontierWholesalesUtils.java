@@ -29,4 +29,12 @@ public class FrontierWholesalesUtils {
 		
 		return jsonObject.toString();
 	}
+	
+	 public static JsonObject convertStringToJSONObject(String jsonObject)throws Exception {
+		 Gson gson = new Gson();
+		 JsonElement element = gson.fromJson(jsonObject, JsonElement.class);
+			JsonObject object = element.getAsJsonObject();
+			
+			return object;
+	 }
 }

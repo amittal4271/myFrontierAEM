@@ -73,7 +73,7 @@ function removeCartItem(itemId){
              cart = JSON.parse(cart);
              var template = $("#minicartTemplate").html();
              var processedHTML =  Handlebars.compile(template);
-             var html = processedHTML( cart);
+             var html = processedHTML( cart,cart.items.reverse());
              $('#minicarttemplate').html(html);
              $('.mini-cart-holder').show();
             

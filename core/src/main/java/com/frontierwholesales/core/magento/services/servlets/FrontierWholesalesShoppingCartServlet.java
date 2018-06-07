@@ -207,8 +207,9 @@ public class FrontierWholesalesShoppingCartServlet  extends SlingAllMethodsServl
 		
 			JsonElement arrayElement = json.fromJson(updatedArray, JsonElement.class);
 		
-			JsonElement grandTotal = object.get("grand_total");
-			object.addProperty("grandTotal", "$"+priceFormat.format(grandTotal.getAsDouble()));
+			JsonElement subTotal = object.get("subtotal");
+			
+			object.addProperty("subTotal", "$"+priceFormat.format(subTotal.getAsDouble()));
 			
 			object.add("items", arrayElement);
 			log.debug("FrontierWholesalesShoppingCartServlet getValueFromJson method End");

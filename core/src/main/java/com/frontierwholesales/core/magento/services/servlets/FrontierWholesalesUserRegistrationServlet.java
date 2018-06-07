@@ -91,15 +91,15 @@ public class FrontierWholesalesUserRegistrationServlet  extends SlingAllMethodsS
 					 
 					  //Call customer service to get customer id here
 					  String customerId = FrontierWholesalesUserRegistration.customerRegistration(customerObject);
-					
-					String adminPwd = (String)getTokenFromSession(request); 
+					 
+					String adminToken = (String)getTokenFromSession(request); 
 					
 					 String id = getCustomerId(customerId);
-					
+					 request.getSession().setAttribute(FrontierWholesalesConstants.CUSTOMER_ID, id);
 					 JsonObject companyObject = updateCompanyJSONObject(company,"super_user_id",id);
 					
 					  //call company service here to register
-					  String registredValues = FrontierWholesalesUserRegistration.companyRegistration(adminPwd, companyObject);
+					  String registredValues = FrontierWholesalesUserRegistration.companyRegistration(adminToken, companyObject);
 					  log.debug("Successfully user is registered");
 					  if(registredValues != null) {
 						  jsonObject.addProperty("Success", registredValues);
