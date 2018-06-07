@@ -66,9 +66,9 @@
                                                   </div>
                                                   <div class="each-order-section recent-orders-action-section">
                                                        <div class="action-button-section-account">
-                                                            <span class="tablet-below-col-heading">Re-Order</span>
-                                                            <a href="#" class="btn btn-only-green-icon" title="Re-Order">
-                                                                 <span class="address-link-text">Re-Order</span>
+                                                            <span class="tablet-below-col-heading">Reorder</span>
+                                                            <a href="#" class="btn btn-light-green" title="Reorder">
+                                                                 <span class="address-link-text">Reorder</span>
                                                             </a>
                                                        </div>
                                                        
@@ -128,13 +128,13 @@
                                                                  <div class="order-detail-recent-section recent-detail-actions-section">
                                                                       <div class="action-button-section-account">
                                                                            <span class="tablet-below-col-heading">Add to Cart</span>
-                                                                           <a href="#" class="btn btn-only-green-icon" title="Add to Cart">
+                                                                           <a href="#" class="btn btn-light-green" title="Add to Cart">
                                                                                 <span class="address-link-text">Add to Cart</span>
                                                                            </a>
                                                                       </div>
                                                                       <div class="action-button-section-account last clear-desktop">
                                                                            <span class="tablet-below-col-heading">Add to Shelves</span>
-                                                                           <a href="#" class="btn btn-only-green-icon" title="Add to Shelves">
+                                                                           <a href="#" class="btn btn-green-dark" data-toggle="modal" data-target="#modalAddToShelf" title="Add to Shelves">
                                                                                 <span class="address-link-text">Add to Shelves</span>
                                                                            </a>
                                                                       </div>
@@ -177,9 +177,9 @@
                                                   </div>
                                                   <div class="each-order-section recent-orders-action-section">
                                                        <div class="action-button-section-account">
-                                                            <span class="tablet-below-col-heading">Re-Order</span>
-                                                            <a href="#" class="btn btn-only-green-icon" title="Re-Order">
-                                                                 <span class="address-link-text">Re-Order</span>
+                                                            <span class="tablet-below-col-heading">Reorder</span>
+                                                            <a href="#" class="btn btn-light-green" title="Reorder">
+                                                                 <span class="address-link-text">Reorder</span>
                                                             </a>
                                                        </div>
                                                        
@@ -239,13 +239,13 @@
                                                                  <div class="order-detail-recent-section recent-detail-actions-section">
                                                                       <div class="action-button-section-account">
                                                                            <span class="tablet-below-col-heading">Add to Cart</span>
-                                                                           <a href="#" class="btn btn-only-green-icon" title="Add to Cart">
+                                                                           <a href="#" class="btn btn-light-green" title="Add to Cart">
                                                                                 <span class="address-link-text">Add to Cart</span>
                                                                            </a>
                                                                       </div>
                                                                       <div class="action-button-section-account last clear-desktop">
                                                                            <span class="tablet-below-col-heading">Add to Shelves</span>
-                                                                           <a href="#" class="btn btn-only-green-icon" title="Add to Shelves">
+                                                                           <a href="#" class="btn btn-green-dark" data-toggle="modal" data-target="#modalAddToShelf" title="Add to Shelves">
                                                                                 <span class="address-link-text">Add to Shelves</span>
                                                                            </a>
                                                                       </div>
@@ -263,6 +263,36 @@
                     </div>
                </section>
           </main>
+
+          <!-- Add to Shelf Modal Modal -->
+          <div class="modal fade" id="modalAddToShelf" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+               <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                         <div class="modal-header clearfix">
+                              <h4 class="modal-title" id="myModalLabel">Add To Shelf</h4>
+                         </div>
+                         <div class="modal-body clearfix">
+                              <form class="form-cart-order-rename">
+                                   <div class="form-group">
+                                        <label for="cart_name_change">Select Shelf</label>
+                                        <select id="wishlist-add-to-shelf" class="form-control">
+                                             <option value="1">Shelf 1</option>
+                                             <option value="2">Shelf 2</option>
+                                        </select>
+                                   </div>
+                              </form>
+                         </div>
+                         <div class="modal-footer clearfix">
+                              <div class="modal-footer-btn-left-holder">
+                                   <button type="button" class="btn btn-dark-orange btn-rename-cart-submit">Submit</button>
+                              </div>
+                              <div class="modal-footer-btn-right-holder">
+                                   <button type="button" class="btn btn-link btn-link-close-modal" data-dismiss="modal">Cancel</button>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+          </div>
 
           <?php include(dirname(__FILE__).'/snippets/footer.php');?>
 
