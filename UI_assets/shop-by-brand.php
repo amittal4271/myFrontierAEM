@@ -63,24 +63,18 @@
                                                   <li><a href="#">Alacer</a></li>
                                                   <li><a href="#">Alba Botanica</a></li>
                                                   <li><a href="#">All Terrain</a></li>
-                                             </ul>
-                                             <ul class="brand-list">
                                                   <li><a href="#">Aloha Bay</a></li>
                                                   <li><a href="#">Alter Eco</a></li>
                                                   <li><a href="#">Ambassador Hairbrushes</a></li>
                                                   <li><a href="#">American Health</a></li>
                                                   <li><a href="#">American Provenance</a></li>
                                                   <li><a href="#">Ancient Secrets</a></li>
-                                             </ul>
-                                             <ul class="brand-list">
                                                   <li><a href="#">Andalou Naturals</a></li>
                                                   <li><a href="#">Ark Naturals</a></li>
                                                   <li><a href="#">Arkopharma</a></li>
                                                   <li><a href="#">Aroma Naturals</a></li>
                                                   <li><a href="#">Aromatherapy Accessories</a></li>
                                                   <li><a href="#">Aura Cacia</a></li>
-                                             </ul>
-                                             <ul class="brand-list">
                                                   <li><a href="#">Auromere</a></li>
                                                   <li><a href="#">Aurora Henna</a></li>
                                                   <li><a href="#">Auroshikha Incense</a></li>
@@ -102,27 +96,18 @@
                                                   <li><a href="#">Bad Again</a></li>
                                                   <li><a href="#">Bagito</a></li>
                                                   <li><a href="#">Baudelaire</a></li>
-                                             </ul>
-
-                                             <ul class="brand-list">
                                                   <li><a href="#">Beauty Without Cruelty</a></li>
                                                   <li><a href="#">Bee &amp; Flower Soaps</a></li>
                                                   <li><a href="#">Bellmira</a></li>
                                                   <li><a href="#">Bentology</a></li>
                                                   <li><a href="#">bioAllers</a></li>
                                                   <li><a href="#">Biokleen</a></li>
-                                             </ul>
-
-                                             <ul class="brand-list">
                                                   <li><a href="#">Babo Botanicals</a></li>
                                                   <li><a href="#">Bach Flower Remedies</a></li>
                                                   <li><a href="#">Bad Air Sponge</a></li>
                                                   <li><a href="#">Bad Again</a></li>
                                                   <li><a href="#">Bagito</a></li>
                                                   <li><a href="#">Baudelaire</a></li>
-                                             </ul>
-
-                                             <ul class="brand-list">
                                                   <li><a href="#">Beauty Without Cruelty</a></li>
                                                   <li><a href="#">Bee &amp; Flower Soaps</a></li>
                                                   <li><a href="#">Bellmira</a></li>
