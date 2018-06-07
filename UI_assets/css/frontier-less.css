@@ -2968,6 +2968,55 @@ tr.order-details-table-section-row td.inner-table-td-holder {
 .grid-table-header.order-detail-header .each-order-header.recent-detail-header-actions {
   width: 17%;
 }
+.grid-table-header.order-detail-recent-header {
+  display: none;
+}
+@media screen and (min-width: 992px) {
+  .grid-table-header.order-detail-recent-header {
+    display: block;
+  }
+}
+.grid-table-header.order-detail-recent-header .each-order-header {
+  font-size: 13px;
+  padding: 10px 10px;
+  /*recent orders detail headings*/
+}
+@media screen and (min-width: 768px) {
+  .grid-table-header.order-detail-recent-header .each-order-header {
+    /*background: #fcfcfc;*/
+    padding: 10px 10px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .grid-table-header.order-detail-recent-header .each-order-header {
+    /*background: none;*/
+    padding: 20px 10px;
+  }
+}
+.grid-table-header.order-detail-recent-header .each-order-header.recent-detail-header-image {
+  width: 13%;
+}
+.grid-table-header.order-detail-recent-header .each-order-header.recent-detail-header-item {
+  width: 9%;
+}
+.grid-table-header.order-detail-recent-header .each-order-header.recent-detail-header-description {
+  width: 18%;
+}
+.grid-table-header.order-detail-recent-header .each-order-header.recent-detail-header-sku {
+  width: 10%;
+}
+.grid-table-header.order-detail-recent-header .each-order-header.recent-detail-header-price {
+  width: 13%;
+}
+.grid-table-header.order-detail-recent-header .each-order-header.recent-detail-header-past-qty {
+  width: 10%;
+}
+.grid-table-header.order-detail-recent-header .each-order-header.recent-detail-header-new-qty {
+  width: 10%;
+}
+.grid-table-header.order-detail-recent-header .each-order-header.recent-detail-header-actions {
+  width: 17%;
+}
 .order-grid {
   float: left;
   width: 100%;
@@ -3472,6 +3521,13 @@ tr.order-details-table-section-row td.inner-table-td-holder {
     padding: 0;
   }
 }
+.row-each-order-detail .tablet-below-col-detail-heading {
+  float: left;
+  width: 100%;
+  font-weight: 700;
+  color: #594c41;
+  font-size: 14px;
+}
 .row-each-order-detail .order-detail-holder {
   float: left;
   width: 100%;
@@ -3482,7 +3538,6 @@ tr.order-details-table-section-row td.inner-table-td-holder {
   padding: 5px 10px;
   color: #817266;
   font-size: 12px;
-  /* recent orders detail section */
 }
 @media screen and (min-width: 480px) {
   .row-each-order-detail .order-detail-holder .order-detail-section {
@@ -3495,27 +3550,23 @@ tr.order-details-table-section-row td.inner-table-td-holder {
     padding: 20px 10px;
   }
 }
-.row-each-order-detail .order-detail-holder .order-detail-section.detail-image-section,
-.row-each-order-detail .order-detail-holder .order-detail-section.recent-detail-image-section {
+.row-each-order-detail .order-detail-holder .order-detail-section.detail-image-section {
   width: 30%;
   height: 100%;
   position: absolute;
 }
 @media screen and (min-width: 768px) {
-  .row-each-order-detail .order-detail-holder .order-detail-section.detail-image-section,
-  .row-each-order-detail .order-detail-holder .order-detail-section.recent-detail-image-section {
+  .row-each-order-detail .order-detail-holder .order-detail-section.detail-image-section {
     width: 15%;
     position: relative;
     height: auto;
   }
 }
-.row-each-order-detail .order-detail-holder .order-detail-section.detail-image-section a,
-.row-each-order-detail .order-detail-holder .order-detail-section.recent-detail-image-section a {
+.row-each-order-detail .order-detail-holder .order-detail-section.detail-image-section a {
   float: left;
   width: 100%;
 }
-.row-each-order-detail .order-detail-holder .order-detail-section.detail-image-section a img,
-.row-each-order-detail .order-detail-holder .order-detail-section.recent-detail-image-section a img {
+.row-each-order-detail .order-detail-holder .order-detail-section.detail-image-section a img {
   display: block;
   width: 100%;
 }
@@ -3559,84 +3610,121 @@ tr.order-details-table-section-row td.inner-table-td-holder {
     width: 10%;
   }
 }
-.row-each-order-detail .order-detail-holder .order-detail-section .tablet-below-col-detail-heading {
-  float: left;
-  width: 100%;
-  font-weight: 700;
-  color: #594c41;
-  font-size: 14px;
-}
 @media screen and (min-width: 768px) {
   .row-each-order-detail .order-detail-holder .order-detail-section .tablet-below-col-detail-heading {
     display: none;
   }
 }
-.row-each-order-detail .order-detail-holder .order-detail-section.recent-detail-image-section {
+.row-each-order-detail .order-detail-holder .order-detail-recent-section {
+  float: right;
+  padding: 5px 10px;
+  color: #817266;
+  font-size: 12px;
+  /* recent orders detail section */
+}
+@media screen and (min-width: 480px) {
+  .row-each-order-detail .order-detail-holder .order-detail-recent-section {
+    font-size: 14px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .row-each-order-detail .order-detail-holder .order-detail-recent-section {
+    float: left;
+    padding: 20px 10px;
+  }
+}
+.row-each-order-detail .order-detail-holder .order-detail-recent-section.recent-detail-image-section {
   width: 30%;
   height: 100%;
   position: absolute;
 }
 @media screen and (min-width: 992px) {
-  .row-each-order-detail .order-detail-holder .order-detail-section.recent-detail-image-section {
+  .row-each-order-detail .order-detail-holder .order-detail-recent-section.recent-detail-image-section {
+    width: 15%;
+    position: relative;
+    height: auto;
+  }
+}
+.row-each-order-detail .order-detail-holder .order-detail-recent-section.recent-detail-image-section a {
+  float: left;
+  width: 100%;
+}
+.row-each-order-detail .order-detail-holder .order-detail-recent-section.recent-detail-image-section a img {
+  display: block;
+  width: 100%;
+}
+.row-each-order-detail .order-detail-holder .order-detail-recent-section.recent-detail-image-section {
+  width: 30%;
+  height: 100%;
+  position: absolute;
+}
+@media screen and (min-width: 992px) {
+  .row-each-order-detail .order-detail-holder .order-detail-recent-section.recent-detail-image-section {
     width: 13%;
     position: relative;
     height: auto;
   }
 }
-.row-each-order-detail .order-detail-holder .order-detail-section.recent-detail-item-section {
+.row-each-order-detail .order-detail-holder .order-detail-recent-section.recent-detail-item-section {
   width: 70%;
 }
 @media screen and (min-width: 992px) {
-  .row-each-order-detail .order-detail-holder .order-detail-section.recent-detail-item-section {
+  .row-each-order-detail .order-detail-holder .order-detail-recent-section.recent-detail-item-section {
     width: 9%;
   }
 }
-.row-each-order-detail .order-detail-holder .order-detail-section.recent-detail-description-section {
+.row-each-order-detail .order-detail-holder .order-detail-recent-section.recent-detail-description-section {
   width: 70%;
 }
 @media screen and (min-width: 992px) {
-  .row-each-order-detail .order-detail-holder .order-detail-section.recent-detail-description-section {
+  .row-each-order-detail .order-detail-holder .order-detail-recent-section.recent-detail-description-section {
     width: 18%;
   }
 }
-.row-each-order-detail .order-detail-holder .order-detail-section.recent-detail-sku-section {
+.row-each-order-detail .order-detail-holder .order-detail-recent-section.recent-detail-sku-section {
   width: 70%;
 }
 @media screen and (min-width: 992px) {
-  .row-each-order-detail .order-detail-holder .order-detail-section.recent-detail-sku-section {
+  .row-each-order-detail .order-detail-holder .order-detail-recent-section.recent-detail-sku-section {
     width: 10%;
   }
 }
-.row-each-order-detail .order-detail-holder .order-detail-section.recent-detail-price-section {
+.row-each-order-detail .order-detail-holder .order-detail-recent-section.recent-detail-price-section {
   width: 70%;
 }
 @media screen and (min-width: 992px) {
-  .row-each-order-detail .order-detail-holder .order-detail-section.recent-detail-price-section {
+  .row-each-order-detail .order-detail-holder .order-detail-recent-section.recent-detail-price-section {
     width: 13%;
   }
 }
-.row-each-order-detail .order-detail-holder .order-detail-section.recent-detail-past-qty-section {
+.row-each-order-detail .order-detail-holder .order-detail-recent-section.recent-detail-past-qty-section {
   width: 70%;
 }
 @media screen and (min-width: 992px) {
-  .row-each-order-detail .order-detail-holder .order-detail-section.recent-detail-past-qty-section {
+  .row-each-order-detail .order-detail-holder .order-detail-recent-section.recent-detail-past-qty-section {
     width: 10%;
   }
 }
-.row-each-order-detail .order-detail-holder .order-detail-section.recent-detail-new-qty-section {
+.row-each-order-detail .order-detail-holder .order-detail-recent-section.recent-detail-new-qty-section {
   width: 70%;
 }
 @media screen and (min-width: 992px) {
-  .row-each-order-detail .order-detail-holder .order-detail-section.recent-detail-new-qty-section {
+  .row-each-order-detail .order-detail-holder .order-detail-recent-section.recent-detail-new-qty-section {
     width: 10%;
   }
 }
-.row-each-order-detail .order-detail-holder .order-detail-section.recent-detail-actions-section {
+.row-each-order-detail .order-detail-holder .order-detail-recent-section.recent-detail-actions-section {
   width: 70%;
+  padding-bottom: 25px;
 }
 @media screen and (min-width: 992px) {
-  .row-each-order-detail .order-detail-holder .order-detail-section.recent-detail-actions-section {
+  .row-each-order-detail .order-detail-holder .order-detail-recent-section.recent-detail-actions-section {
     width: 17%;
+  }
+}
+@media screen and (min-width: 992px) {
+  .row-each-order-detail .order-detail-holder .order-detail-recent-section .tablet-below-col-detail-heading {
+    display: none;
   }
 }
 .tablet-below-col-heading {
@@ -3666,6 +3754,26 @@ tr.order-details-table-section-row td.inner-table-td-holder {
   .action-button-section-account.clear-desktop {
     clear: both;
     margin-top: 15px;
+  }
+}
+.action-button-section-account .btn {
+  margin-top: 10px;
+}
+@media screen and (min-width: 992px) {
+  .action-button-section-account .btn {
+    margin-top: 0;
+  }
+}
+.recent-orders-qty {
+  margin-top: 10px;
+  width: auto;
+  float: left;
+  clear: both;
+}
+@media screen and (min-width: 992px) {
+  .recent-orders-qty {
+    margin-top: 0;
+    width: 100%;
   }
 }
 .mobile-button-text-description {

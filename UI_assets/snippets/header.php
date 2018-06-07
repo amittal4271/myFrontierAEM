@@ -70,6 +70,7 @@
           </a>
 
           <div class="mini-cart-holder">
+               <h4 class="cart-empty-heading">Your Cart is Empty</h4>
                <div class="each-mini-cart-item">
                     <div class="mini-cart-image-holder">
                          <img src="../frontierwholesales/images/mini-cart-item-one.jpg"/>
