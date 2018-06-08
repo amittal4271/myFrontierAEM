@@ -14,8 +14,12 @@
   ~ limitations under the License.
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/-->
 
-<sly data-sly-use.titletext="title-and-text.js" data-sly-unwrap></sly>
-<div class="each-standard-information-section">
+<sly data-sly-use.titletext="title-and-text.js" data-sly-unwrap /> 
+
+<p data-sly-test="${!titletext.hasValue}" data-emptytext="Title and Text" class="cq-placeholder"></p>
+
+<div data-sly-test="${titletext.hasValue}" class="each-standard-information-section">
     <h2 data-sly-element=${properties.type} data-sly-test="${titletext.hasValue}" class="standard-heading">${titletext.title}</h2>
     <div class="standard-text">${titletext.text @context='html'}</div>
 </div>
+

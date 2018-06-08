@@ -50,7 +50,7 @@ use(function () {
     
     // Initialise hasValue function
     var hasValue = false;
-    if ((titletext.title != null) && (titletext.title.length()!=0)) {
+    if ((titletext.text != null) && (titletext.text.length()!=0)) {
             hasValue = true;
     } 
     titletext.hasValue = hasValue;
