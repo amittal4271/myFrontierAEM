@@ -6914,7 +6914,7 @@ legend.each-form-title .form-title-information a {
 }
 .each-left-right-section,
 .each-standard-section {
-  float: left;
+  /*float: left;*/
   width: 100%;
 }
 .each-left-right-section.bg-light-section,
@@ -7056,7 +7056,7 @@ legend.each-form-title .form-title-information a {
 }
 .description-holder-left-right,
 .each-standard-information-section {
-  float: left;
+  /*float: left;*/
   width: 100%;
   clear: both;
 }
