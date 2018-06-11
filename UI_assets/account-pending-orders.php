@@ -42,7 +42,7 @@
                                                             <div class="checkbox">
                                                                  <label for="order_id_0000">
                                                                       <input type="checkbox" name="order_id_number_0000">
-                                                                      <span class="label-text">Select</span>
+                                                                      <span class="label-text hidden">Select</span>
                                                                  </label>
                                                             </div>
                                                        </div>
@@ -158,7 +158,7 @@
                                                             <div class="checkbox">
                                                                  <label for="order_id_1111">
                                                                       <input type="checkbox" name="order_id_number_1111" value="1111">
-                                                                      <span class="label-text">Select</span>
+                                                                      <span class="label-text hidden">Select</span>
                                                                  </label>
                                                             </div>
                                                        </div>
@@ -328,7 +328,7 @@
                                                             <div class="checkbox">
                                                                  <label for="order_id_2222">
                                                                       <input type="checkbox" name="order_id" value="2222" id="order_id_2222">
-                                                                      <span class="label-text">Select</span>
+                                                                      <span class="label-text hidden">Select</span>
                                                                  </label>
                                                             </div>
                                                        </div>
@@ -444,7 +444,7 @@
                                                             <div class="checkbox">
                                                                  <label for="order_id_3333">
                                                                       <input type="checkbox" name="order_id_number_3333" value="3333">
-                                                                      <span class="label-text">Select</span>
+                                                                      <span class="label-text hidden">Select</span>
                                                                  </label>
                                                             </div>
                                                        </div>

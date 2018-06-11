@@ -177,6 +177,30 @@ function checkQuantity($el) {
 
 $(document).ready(function() {
 
+	$(document).on('click', '#product-thumbnails .each-thumbnail', function() {
+		var $this = $(this);
+		var $allThumbnails = $('#product-thumbnails .each-thumbnail');
+		var $productMainImageHolder = $('#product-main-image .product-main-image-holder');
+		var $dataMainSwitchImageUrl = $this.data('mainimageswitch');
+		var $loadingIconHtml = '<div class="loader"></div>';
+		var $altImageTitle = $productMainImageHolder.find('img').attr('alt');
+
+		if (!$this.hasClass('active')) {
+			// remove all active classes
+			$allThumbnails.removeClass('active');
+			// re-add active class to button thumb that was clicked
+			$this.addClass('active');
+			// empty main image holder then append loading icon until we add the new main image
+			$productMainImageHolder.empty().html($loadingIconHtml);
+			// create new image tag
+			$switchedMainImage = '<img src="'+$dataMainSwitchImageUrl+'" alt="'+$altImageTitle+'"/>';
+			// append new image to dom
+			$productMainImageHolder.html($switchedMainImage); 
+		}
+		
+
+	});
+
 	$(document).on('click', '.btn-account-invite-new-users', function() {
 		var $el = $('#new-users-section');
 		scrollToElement($el);

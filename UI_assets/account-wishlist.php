@@ -37,7 +37,7 @@
                                                        <div class="checkbox">
                                                             <label for="order_id_0000">
                                                                  <input type="checkbox" name="order_id_number_0000">
-                                                                 <span class="label-text">Select</span>
+                                                                 <span class="label-text hidden">Select</span>
                                                             </label>
                                                        </div>
                                                   </div>
@@ -82,7 +82,7 @@
                                                        <div class="checkbox">
                                                             <label for="order_id_0000">
                                                                  <input type="checkbox" name="order_id_number_0000">
-                                                                 <span class="label-text">Select</span>
+                                                                 <span class="label-text hidden">Select</span>
                                                             </label>
                                                        </div>
                                                   </div>

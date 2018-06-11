@@ -14,17 +14,20 @@
                     <div class="container">
                          <div id="product-images">
                               <div id="product-thumbnails">
-                                   <button type="button" class="each-thumbnail">
-                                        <img src="https://dh6qdiyp93d9u.cloudfront.net/media/CACHE/images/products/simply/simply-organic-spicy-guacamole-mix-sauce-40-oz-one-19639-19639-default-1-5d19/c56d62d0dac6add6b54132a116b9ccbc.jpg"/>
+                                   <button type="button" class="each-thumbnail active" data-mainimageswitch="../frontierwholesales/images/pdp-image-1-main.jpg">
+                                        <img src="../frontierwholesales/images/pdp-image-1-thumb.jpg"/>
                                    </button>
-                                   <button type="button" class="each-thumbnail">
-                                        <img src="https://dh6qdiyp93d9u.cloudfront.net/media/CACHE/images/products/simply/simply-organic-spicy-guacamole-mix-sauce-40-oz-one-19639-19639-default-0-672e/9d65335a71660e67e539d8b8a4b48fc5.jpg"/>
+                                   <button type="button" class="each-thumbnail" data-mainimageswitch="../frontierwholesales/images/pdp-image-2-main.jpg">
+                                        <img src="../frontierwholesales/images/pdp-image-2-thumb.jpg"/>
+                                   </button>
+                                   <button type="button" class="each-thumbnail" data-mainimageswitch="../frontierwholesales/images/pdp-image-3-main.jpg">
+                                        <img src="../frontierwholesales/images/pdp-image-3-thumb.jpg"/>
                                    </button>
                               </div>
                               <div id="product-main-image">
                                    <span class="badge badge-sale">Sale</span>
                                    <div class="product-main-image-holder">
-                                        <img src="https://dh6qdiyp93d9u.cloudfront.net/media/CACHE/images/products/simply/simply-organic-spicy-guacamole-mix-sauce-40-oz-one-19639-19639-default-1-5d19/d5e0f7544fe8f8fd6e8dc7d9294e31b6.jpg"/>
+                                        <img alt="Image Title" src="../frontierwholesales/images/pdp-image-1-main.jpg"/>
                                    </div>
                               </div>
                          </div>
