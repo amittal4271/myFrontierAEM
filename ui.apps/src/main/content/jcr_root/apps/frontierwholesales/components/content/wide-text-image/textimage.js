@@ -21,7 +21,7 @@
  */
 use(["/libs/wcm/foundation/components/utils/AuthoringUtils.js",
      "/libs/sightly/js/3rd-party/q.js"], function (AuthoringUtils, Q) {
-    
+
     var textimage = {};
 
     var CONST = {
