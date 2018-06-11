@@ -15,7 +15,7 @@
                     <div class="container">
                          <?php include(dirname(__FILE__).'/snippets/account-nav.php');?>
 
-                         <section class="account-main-holder">
+                         <section class="account-main-holder clearfix">
 
                               <div class="each-order-by-user-holder">
                                    <div class="account-heading-holder table-below">
