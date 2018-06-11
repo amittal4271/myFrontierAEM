@@ -449,9 +449,14 @@
                                                   <span class="pag-number">1 of 27</span>
                                              </li>
                                              <li>
+                                                  <!--
                                                   <a class="pagination-next pagination-arrow" href="#" aria-label="Next">
                                                        <span class="glyphicon glyphicon-triangle-right"></span>
                                                   </a>
+                                                  -->
+                                                  <button class="pagination-next pagination-arrow" aria-label="Next">
+                                                       <span class="glyphicon glyphicon-triangle-right"></span>
+                                                  </button>
                                              </li>
                                         </ul>
                                    </nav>

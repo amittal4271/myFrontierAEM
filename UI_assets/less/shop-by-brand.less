@@ -80,17 +80,24 @@
 	float: left;
 	width: 100%;
 	list-style: none;
-	
-
-	.breakpoint_600({
-    	width: 25%;
-    	padding-right: 25px;
-	});
 
 	li {
 		float: left;
 		width: 100%;
 		padding: 3px 0;
+
+		.breakpoint_768({
+			width: 50%;
+			padding: 3px 20px 3px 0;
+		});
+
+		.breakpoint_992({
+			width: 33.333%;
+		});
+
+		.breakpoint_1200({
+			width: 25%;
+		});
 
 		a {
 			color: #817266;
