@@ -25,6 +25,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.frontierwholesales.core.beans.FrontierWholesalesProductSearch;
 import com.frontierwholesales.core.beans.MagentoCategory;
 import com.frontierwholesales.core.magento.models.MagentoRelatedProduct;
+import com.frontierwholesales.core.magento.models.MagentoBrand;
 import com.frontierwholesales.core.utils.AuthCredentials;
 
 @Component(
@@ -459,6 +460,33 @@ public class FrontierWholesalesMagentoCommerceConnector {
             log.error("IOException trying to retrieve related products for sku: {}\n{}", sku, e);
         }
         return productList;
+    }
+    
+    public List<MagentoBrand> getBrands( String authToken ) {
+    	log.info("Getting brands/manufacturers");
+    	List<MagentoBrand> brandList = new ArrayList<>();
+    	String response;
+        try {
+            response = Request.Get(server + "/rest/V1/products/attributes/manufacturer/options")
+                    .addHeader("Authorization", authToken)
+                    .execute().returnContent().asString();
+            log.debug("Brand/manufacturer response from endpoint:\n {}", response);
+            // TODO REMOVE once actual data gets returned
+            response = "[{\"label\":\"test-label-d\",\"value\":\"Dandelion Fluff\"},{\"label\":\"test-label-24\",\"value\":\"24 Karite Gold\"},"+
+            "{\"label\":\"test-label-a\",\"value\":\"Apple Orchard\"},{\"label\":\"test-label-a1\",\"value\":\"Accessories\"},"+
+            		"{\"label\":\"test-label-b6\",\"value\":\"Bagito\"}, {\"label\":\"test-label-c1\",\"value\":\"Caveman Foods\"},"+
+            "{\"label\":\"test-label-a2 \",\"value\":\"Acorelle\"}, {\"label\":\"test-label-b5\",\"value\":\"Bag Again\"},"+
+            		"{\"label\":\"test-label-c2 \",\"value\":\"Celestial Seasonings\"}, {\"label\":\"test-label-a3 \",\"value\":\"Air Scense\"},"+
+            "{\"label\":\"test-label-b4 \",\"value\":\"Bad Air Sponge\"}, {\"label\":\"test-label-c3 \",\"value\":\"Chandrika\"},"+
+            		"{\"label\":\"test-label-a4 \",\"value\":\"Alacer\"}, {\"label\":\"test-label-b3\",\"value\":\"Bach Flower Remedies\"},"+
+            "{\"label\":\"test-label-c4\",\"value\":\"ChicoBag\"}, {\"label\":\"test-label-a5 \",\"value\":\"Alba Botanica\"},"+
+            		"{\"label\":\"test-label-b2\",\"value\":\"Babo Botanicals\"}, {\"label\":\"test-label-c5 \",\"value\":\"Choice Teas\"}]";
+            brandList = mapper.readValue(response, new TypeReference<List<MagentoBrand>>() {});
+        } catch( IOException e ) {
+        	e.printStackTrace();
+            log.error("IOException trying to retrieve brands/manufacturers: ", e);
+        }
+        return brandList;
     }
 
 }
