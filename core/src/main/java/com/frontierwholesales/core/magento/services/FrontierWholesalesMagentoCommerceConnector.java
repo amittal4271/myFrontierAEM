@@ -20,6 +20,7 @@ import com.adobe.cq.commerce.api.CommerceException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.frontierwholesales.core.beans.FrontierWholesalesProductSearch;
+import com.frontierwholesales.core.beans.MagentoCategory;
 import com.frontierwholesales.core.utils.AuthCredentials;
 
 
@@ -91,7 +92,7 @@ public class FrontierWholesalesMagentoCommerceConnector {
         adminUser = cfg.getConfigValue(ADMIN_USER, "admin");
         
         adminPassword = cfg.getConfigValue(ADMIN_PASSWORD, "admin");
-        log.info("user "+adminUser+" pwd "+adminPassword);
+        
        
     }
 
@@ -213,6 +214,8 @@ public class FrontierWholesalesMagentoCommerceConnector {
 	}
     
     public String removeCartItem(String token,String itemId) throws Exception{
+    	log.debug("user token is"+token+" itemId "+itemId);
+    	log.debug("url is "+server+"/rest/V1/carts/mine/items/"+itemId);
     	String isItemRemoved = Request.Delete(server+"/rest/V1/carts/mine/items/"+itemId)
 				.addHeader("Authorization",token)
 				
@@ -234,6 +237,8 @@ public class FrontierWholesalesMagentoCommerceConnector {
     
     public String addItemToCart(String token,String jsonData) throws Exception{
     	String newItem= null;
+    	log.debug("api url for add to cart "+server+"/rest/V1/carts/mine/items");
+    	log.debug("json item is "+jsonData);
     	try {
     	 newItem = Request.Post(server+"/rest/V1/carts/mine/items")
     			.addHeader("Authorization",token)
@@ -284,19 +289,20 @@ public class FrontierWholesalesMagentoCommerceConnector {
         return response;
     }
     
-    public String getCategories(String adminToken,int categoryId){
+    public MagentoCategory getCategories(String adminToken,int categoryId){
        String predicate=(categoryId > 0)?"?rootCategoryId="+categoryId:"";
-        String response=null;
+       MagentoCategory category=null;
         try {
-            response = Request.Get(server+"/rest/V1/categories"+predicate)
+            String response = Request.Get(server+"/rest/V1/categories"+predicate)
                     .addHeader("Authorization", adminToken)
                     .execute().returnContent().asString();
-           
+          
+           category = mapper.readValue(response,MagentoCategory.class);
         } catch (IOException e) {
             e.printStackTrace();
             log.error("Error Getting Categories from Server: ERROR" + e.getMessage());
         }
-        return response;
+        return category;
     }
     
     public String getCustomerShippingAddress(String adminToken,String customerId) {

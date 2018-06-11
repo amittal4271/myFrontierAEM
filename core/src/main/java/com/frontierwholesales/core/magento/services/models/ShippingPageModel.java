@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.frontierwholesales.core.beans.FrontierWholesalesCartItems;
 import com.frontierwholesales.core.beans.FrontierWholesalesShippingMethods;
 import com.frontierwholesales.core.magento.services.FrontierWholesalesMagentoCommerceConnector;
 import com.google.gson.Gson;
@@ -27,7 +28,7 @@ public class ShippingPageModel extends BaseModel{
 	private String cartObject;
 	
 	private String emailId;
-
+	private FrontierWholesalesCartItems items;
 	private FrontierWholesalesMagentoCommerceConnector connector = new FrontierWholesalesMagentoCommerceConnector();
 	
 	/**
@@ -69,6 +70,9 @@ public class ShippingPageModel extends BaseModel{
 			this.shippingMethods = mapper.readValue(shippingMethodsResponse, typeReference);
 			
 			this.cartObject = connector.getCartTotal(userToken);
+			
+			LOGGER.debug("items "+this.cartObject);
+			this.items = jsonToObject(cartObject);
 			slingHttpServletRequest.setAttribute("CartObject", cartObject);
 		 }catch(Exception anyEx) {
 			LOGGER.error("Error in Shipping page model "+anyEx.getMessage());
@@ -81,6 +85,19 @@ public class ShippingPageModel extends BaseModel{
 			JsonObject customerObject = element.getAsJsonObject();
 			
 			return customerObject;
+	 }
+	 
+	 private FrontierWholesalesCartItems jsonToObject(String response) {
+		 FrontierWholesalesCartItems items = new FrontierWholesalesCartItems();
+		 Gson gson = new Gson();
+			JsonElement element = gson.fromJson(response, JsonElement.class);
+			JsonObject cartObject = element.getAsJsonObject();
+			items.setGrand_total(cartObject.get("subtotal").getAsString());
+			items.setDiscount_amount(cartObject.get("discount_amount").getAsString());
+			items.setItems_qty(cartObject.get("items_qty").getAsString());
+			items.setTax_amount(cartObject.get("tax_amount").getAsString());
+			items.setBase_grand_total(cartObject.get("base_grand_total").getAsString());
+			return items;
 	 }
 	
 	private String createJSONObjectForBillingAddress(String jsonObject,String emailAddress) throws Exception{
@@ -121,6 +138,11 @@ public class ShippingPageModel extends BaseModel{
 	public String getEmailId() {
 		return emailId;
 	}
-	 
+	
+	public FrontierWholesalesCartItems items() {
+		return items;
+	}
+	
+	
 	 
 }

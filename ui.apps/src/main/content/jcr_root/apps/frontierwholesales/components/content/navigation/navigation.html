@@ -1,51 +1,67 @@
-<div data-sly-use.topNav="${'com.frontierwholesales.core.models.NavigationModel'}" id="main-nav">
-    <ul id="main-navigtaion-list">
-        <sly data-sly-list.pages="${topNav.frontierWholesalePages}">
-		<li class="${pagesList.last ?'top-level-category drop-left':'top-level-category'}">
-            
-            <div data-sly-test="${pages.childList.size > 0}" data-sly-unwrap>
-                <a class="top-level-link"   data-attr-name='${pages.name}'>${pages.title}</a>
-            </div>
-            
-             <div data-sly-test="${pages.childList.size == 0}" data-sly-unwrap>
-                <a class="top-level-link"  href="${pages.link}" data-attr-name='${pages.title}'>${pages.title}</a>
-            </div>
+<div data-sly-use.topNav="${'com.frontierwholesales.core.models.NavigationModel'}" id="main-nav"> 
+     <ul id="main-navigtaion-list">
+         <!-- AEM Page as first -->
+     <sly data-sly-list.aemPageFirst="${topNav.frontierWholesalePages}">
+        <sly data-sly-test="${aemPageFirstList.first}">
+         <li class="top-level-category">
+
+            <a class="top-level-link" href="${aemPageFirst.link}">${aemPageFirst.name}</a>
+         </li>
+         </sly>
+     </sly>
+         <!-- Magento Category pages here -->
+        <sly data-sly-list.pages="${topNav.categories.children_data}">
+
+                 <sly data-sly-test="${pages.is_active}">
+		<li class="top-level-category">
           
-                    <!-- level 1 navigation -->
-                         <ul id='${pages.uniqueId}child' class="sub-nav first-level" data-sly-list.grandChild="${pages.childList}">
-                                                <li class="category-nav-item">
+            
+            <a class="top-level-link" href="#">${pages.name}</a>
+                  <ul class="sub-nav first-level" data-sly-list.childLevel1="${pages.children_data}">
+                     
+                      <li class="category-nav-item">
                                                  
-                                                    <a class="category-nav-link" href="${grandChild.link}" data-attr-name='${grandChild.name}'>${grandChild.title}
+                                                    <a id="${childLevel1.id}" class="category-nav-link" href="/content/frontierwholesales/en/productlist.html?id=${childLevel1.id}" data-attr-name='${childLevel1.name}'>${childLevel1.name}
                                                     <span class="glyphicon glyphicon-menu-right">
                                                         </span></a>
-                                                    
-                                                    <ul id="${grandChild.uniqueId}child" class="sub-nav second-level" data-sly-list.child2="${grandChild.childList}">
+                 <ul  class="sub-nav second-level" data-sly-list.child2="${childLevel1.children_data}">
                                                         <li class="category-nav-child-item">
-                                                            <a class="category-nav-child-link" href="${child2.link}" data-attr-name='${child2.name}'>${child2.title}
+                                                            <a class="category-nav-child-link"  href="/content/frontierwholesales/en/productlist.html?id=${child2.id}" data-attr-name='${child2.name}'>${child2.name}
                                                                  <span class="glyphicon glyphicon-menu-right">
                                                         </span>
                                                             </a>
-                                                            
-                                                              <ul id="${child2.uniqueId}child" class="sub-nav third-level" data-sly-list.child3="${child2.childList}">
+                                                              <ul  class="sub-nav third-level" data-sly-list.child3="${child2.children_data}">
                                                             <li class="category-nav-child-child-item">
-                                                                <a class="category-nav-child-child-link" href="${child3.link}" data-attr-name='${child3.name}'>${child3.title}
+                                                                <a class="category-nav-child-child-link"  href="/content/frontierwholesales/en/productlist.html?id=${child3.id}" data-attr-name='${child3.name}'>${child3.name}
                                                                  </a>
                                                              </li>
                                                    
-                                                        
+
                                                         </ul>  
                                                         </li>
-                                                   
-                                                          
-                                                    </ul>
-                                                </li>
-                                            </ul>        
+                          </ul>
+                      </li>
+                 </ul>
             
                    
              
             </li>
-            
         </sly>
+
+
+
+     </sly>
+       
+<!-- Display AEM Page as last -->
+         <sly data-sly-list.aemPageFirst="${topNav.frontierWholesalePages}">
+        <sly data-sly-test="${aemPageFirstList.last}">
+         <li class="top-level-category">
+
+            <a class="top-level-link" href="${aemPageFirst.link}">${aemPageFirst.name}</a>
+         </li>
+         </sly>
 	</ul>
    
 </div>
+
+

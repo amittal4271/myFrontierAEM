@@ -2,6 +2,7 @@
     data-sly-use.clientLib="${'/libs/granite/sightly/templates/clientlib.html'}"/>
 <sly data-sly-call="${clientlib.js @ categories='shoppingcart'}" data-sly-unwrap/>
 <div class="container">
+    <div id="pageURL" data-pageurl="${properties.pageURL @context='html'}"></div>
                     <div id="cart-message-holder" class="global-server-side-message-holder">
                          <div class="alert alert-success" role="alert">${properties.shippingtext @context='html'}  </div>
                     </div>
@@ -102,7 +103,7 @@
                          {{/items}}
                    <div class="cart-subtotal-holder">
                               <div class="cart-subtotal-text">
-                                   {{items_qty}} Item(s) Subtotal: {{grandTotal}}
+                                   {{items_qty}} Item(s) Subtotal: {{subTotal}}
                               </div>
 
                   </div> 
