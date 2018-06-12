@@ -257,7 +257,46 @@ function buyersClubCheckboxOperations(){
                               }
                          },
         
-        
+        billingAddressForm: function($formId){
+             $($formId).validate({
+                rules: {
+                   
+                    "billing-name":{
+                        required: true,
+                        maxlength: 70,
+                        fullName: true
+                    },"billing-address":{
+                        required: true,
+                        maxlength: 150
+                    },"billing-city":{
+                        required: true,
+                        maxlength: 70
+                        
+                    },"billing-postal_code":{
+                        required: true,
+                        minlength: 5,
+                        maxlength: 12
+                        
+                    },"billing-phone":{
+                        required: true,
+		            	maxlength: 10,
+                        phoneno: true
+                        
+                    },
+                },messages :{
+                    
+                     "billing-name":{
+                       
+                         fullName: 'Please enter full name'
+                        
+                    },"billing-phone":{
+                        
+                          phoneno: 'Enter a valid phone number'
+                        
+                    }
+                }
+            });
+        },
         shippingAddressForm: function($formId) {
             $($formId).validate({
                 rules: {
@@ -278,7 +317,13 @@ function buyersClubCheckboxOperations(){
                         minlength: 5,
                         maxlength: 12
                         
+                    },"shipping-phone":{
+                        required: true,
+		            	maxlength: 10,
+                        phoneno: true
+                        
                     }
+                    
                 },messages :{
                     
                      "shipping-name":{

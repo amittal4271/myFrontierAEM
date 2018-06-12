@@ -1,32 +1,34 @@
 <sly
     data-sly-use.clientLib="${'/libs/granite/sightly/templates/clientlib.html'}"/>
 <sly data-sly-call="${clientlib.js @ categories='productlist'}" data-sly-unwrap/>
-<input id="categoryId" type=hidden value='${currentPage.properties.categoryId}'>
+<input id="categoryId" type=hidden value="${request.requestParameterMap['id'][0].toString}">
 <article class="product-list-page">
                     <div class="container">
                          <aside id="plp-search-left-nav-filters">
-                           
-                                
-                             <sly data-sly-test="${currentPage.listChildren}">
-                                        <div  class="each-filter-section categories">
+                            <sly data-sly-use.categories="${'com.frontierwholesales.core.magento.services.models.CategoriesModel' @ id=request.requestParameterMap['id'][0].toString}"></sly>  
+                              <sly data-sly-test="${categories.categories.children_data}">
+                                <div class="each-filter-section categories">
+                                     
                                    <h2 class="filter-heading">Categories</h2>
-                                      <sly data-sly-list.child="${currentPage.listChildren}">
-                                      <ul class="each-filters-list">
-                                        <li class="filter-item ${childList.count > 1?'visuallyhidden':''}">
-                                             <a href="${child.path}.html" class="filter-link"><span class="text">${child.title}</span></a>
+                                   <ul class="each-filters-list">
+                                       <sly data-sly-list.child="${categories.categories.children_data}">
+                                        <li class="filter-item ${childList.count > 3?'visuallyhidden':''}">
+                                             <a href="#" class="filter-link"><span class="text">${child.name}</span></a>
                                         </li>
-                                          <sly data-sly-test="${childList.count > 1}">
-                                          <li class="filter-item filter-item-expand">
+                                       
+                                       
+                                            <sly data-sly-test="${childList.count > 3}">
+                                        <li class="filter-item filter-item-expand">
                                              <button type="button" class="btn btn-view-more-filters">
                                                   <span class="view-more-text">View More</span>
                                              </button>
-                                          </li>
-                                        </sly>
-                                     </ul>
-                                     </sly>
-                                            </div>
-                                 </sly>
-                                                 
+                                        </li>
+                                           </sly>
+                                       </sly>
+                                   </ul>
+                                    
+                              </div>
+                                  </sly>    
                                 
                              
                             
@@ -99,7 +101,7 @@
                                   
                                  
                                    <div id="search-heading">
-                                        <h1 class="plp-search-text-heading">{{categories.name}}</h1>
+                                        <h1 class="plp-search-text-heading">${categories.categories.name @context='scriptString' }</h1>
                                         <span class="showing-number-of-items">
                                              Showing <span class="number">{{recordsPerPage recsPerPage search_criteria.current_page total_count}}</span> of <span class="number">{{total_count}}</span> Products
                                         </span>
@@ -195,7 +197,7 @@
                                                   </a>
                                              </li>
                                              <li class="pagination-numbers">
-                                                 {{#if search_criteria.current_page includedZero=false}}
+                                                 {{#if pageTotal includedZero=false}}
                                                   <span class="pag-number">{{search_criteria.current_page}} of {{pageTotal}}</span>
                                                  {{else}}
                                                  <span class="pag-number">0 of 0</span>

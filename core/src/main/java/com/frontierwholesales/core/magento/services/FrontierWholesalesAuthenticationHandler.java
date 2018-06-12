@@ -1,11 +1,12 @@
 package com.frontierwholesales.core.magento.services;
 
 import java.io.IOException;
+import java.net.HttpCookie;
 import java.nio.charset.Charset;
 import java.util.Base64;
-import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServletResponseWrapper;
@@ -24,8 +25,8 @@ import org.osgi.framework.Constants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.day.cq.commons.Externalizer;
 import com.frontierwholesales.core.services.constants.FrontierWholesalesConstants;
+import com.frontierwholesales.core.utils.FrontierWholesalesUtils;
 
 
 
@@ -114,12 +115,21 @@ public class FrontierWholesalesAuthenticationHandler extends DefaultAuthenticati
 			String username= values[0];
 			
 			String password = values[1];
-			
+			Cookie userTokenCookie = FrontierWholesalesUtils.getCookie(httpServletRequest, FrontierWholesalesConstants.MAGENTO_USER_TOKEN);
+			if(userTokenCookie != null) {
+			String userToken = userTokenCookie.getValue();
+			log.debug("user token is "+userToken);
+			}
 			String token = (String)httpServletRequest.getSession().getAttribute(FrontierWholesalesConstants.MAGENTO_USER_TOKEN);
 			
 			if(token == null) {
 			token = connector.getToken(username, password);
 			
+			HttpCookie cookie = new HttpCookie(FrontierWholesalesConstants.MAGENTO_USER_TOKEN, token);
+			
+			cookie.setSecure(true);
+			//Cookie cookie = new Cookie(FrontierWholesalesConstants.MAGENTO_USER_TOKEN, token);
+			//httpServletResponse.addCookie(cookie);
 			httpServletRequest.getSession().setAttribute(FrontierWholesalesConstants.MAGENTO_USER_TOKEN, token);
 			}
 			
@@ -135,9 +145,11 @@ public class FrontierWholesalesAuthenticationHandler extends DefaultAuthenticati
 					}
 					
 					deferredRedirectResponse.sendRedirect(url+"/content/frontierwholesales/en/myaccount.html");
-					deferredRedirectResponse.setStatus(HttpServletResponse.SC_OK);
+					deferredRedirectResponse.setStatus(HttpServletResponse.SC_OK);					
+				    deferredRedirectResponse.releaseRedirect();
 					
-				     deferredRedirectResponse.releaseRedirect();
+					log.debug("boolean value is "+result);
+					
 					} else {
 						log.error("Invalid Credentials");
 						deferredRedirectResponse.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,"Error");

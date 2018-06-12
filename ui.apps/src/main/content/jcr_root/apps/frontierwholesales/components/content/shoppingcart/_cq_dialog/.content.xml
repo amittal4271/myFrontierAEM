@@ -16,6 +16,13 @@
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="granite/ui/components/foundation/container">
                 <items jcr:primaryType="nt:unstructured">
+                    <pageURL
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/foundation/form/textfield"
+                        fieldDescription="Order URLTitle"
+                        fieldLabel="Order Page URL"
+                        name="./pageURL"
+                        required="true"/>
                     <shippingtext
                         jcr:primaryType="nt:unstructured"
                         sling:resourceType="cq/gui/components/authoring/dialog/richtext"

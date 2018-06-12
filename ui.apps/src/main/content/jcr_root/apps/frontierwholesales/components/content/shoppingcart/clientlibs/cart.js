@@ -23,6 +23,9 @@ $(document).ready(function(){
         cartItemRemove(itemId);
     });
     
+    $(document).on('click','.btn-cart-checkout',function(){
+       window.location=Granite.HTTP.externalize($('#pageURL').data('pageurl')); 
+    });
     
 });
 

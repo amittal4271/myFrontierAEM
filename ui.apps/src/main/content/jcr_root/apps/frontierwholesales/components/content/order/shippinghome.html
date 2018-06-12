@@ -1,13 +1,11 @@
 <div class="container">
-    <sly
-    data-sly-use.clientLib="${'/libs/granite/sightly/templates/clientlib.html'}"/>
-<sly data-sly-call="${clientlib.js @ categories='shipping'}" data-sly-unwrap/>
-<sly data-sly-use.shippingPage="${'com.frontierwholesales.core.magento.services.models.ShippingPageModel'}"></sly>
-   <input type=hidden id="emailId" value="${shippingPage.emailId}">
+
+
+   <input type=hidden id="emailId" value="">
                     <nav class="checkout-nav">
                          <ol class="checkout-nav-list">
                               <li class="checkout-nav-item completed">
-                                   <a href="/content/frontierwholesales/en/order.html">
+                                   <a href="#!/orderhome">
                                         <div class="checkout-nav-step">
                                              <span class="checkout-nav-step-icon">1</span>
                                         </div>
@@ -86,8 +84,8 @@
                                              </div>
                                              <div class="form-group width-half">
                                                   <label for="id_shipping-locality">State</label>
-                                                  <select id="id_shipping-locality" class="form-control" name="shipping-locality">
-                                                      
+                                                   <select id="id_shipping-locality" class="form-control"  ng-model="selectedRegions" name="shipping-locality" >
+                                                                                 <option ng-repeat="region in JsonData.regions" data-id="{{region.id}}" value="{{region.code}}">{{region.name}}</option>
                                                   </select>
                                              </div>
                                              <div class="form-group width-half first">
@@ -97,7 +95,7 @@
                                              <div class="form-group width-half">
                                                   <label for="id_shipping-country">Country</label>
                                                   <select id="id_shipping-country" class="form-control" name="shipping-country">
-                                                       <option value="840" selected="selected">United States of America</option>
+                                                       <option value="US" selected="selected">United States of America</option>
                                                   </select>
                                              </div>
                                              <div class="form-group width-half first">
@@ -119,22 +117,22 @@
                                    <fieldset id="shipping-rate-holder" class="shipping-section below-section">
                                         <legend class="checkout-sub-header">Delivery Method</legend>
                                         <div id="radio-shipping-rate-options" class="clearfix">
-                                             <sly data-sly-list.methods="${shippingPage.shippingMethods}">
+
                                             
-                                             <div class="radio">
-                                                  <label for="shipping_rate_${methodsList.index}">
-                                                       <input id="shipping_rate_${methodsList.index}" class="delivery-methods" 
-                                                            data-carriercode="${methods.carrier_code}" data-methodcode="${methods.method_code}" name="shipping_rate" type="radio" value="">
-                                                       <span class="label-text">${methods.carrier_title} ${methods.method_title} - <span class="bold">$${methods.price_incl_tax}</span></span>
+                                             <div ng-repeat="methods in JsonData.paymentMethods" class="radio">
+                                                                                 <label for="shipping_rate_{{$index}}">
+                                                                                 <input id="shipping_rate_{{$index}}" class="delivery-methods" 
+                                                                                 data-carriercode="{{methods.carrier_code}}" data-methodcode="{{methods.method_code}}" name="shipping_rate" type="radio" value="">
+                                                                                 <span class="label-text">{{methods.carrier_title}} {{methods.method_title}} - <span class="bold">{{methods.price_incl_tax | currency}}</span></span>
                                                   </label>
                                              </div>
-                                            </sly>
+
                                            
                                         </div>
                                    </fieldset>
 
                                    <div class="submit-holder checkout-flow">
-                                        <button class="btn btn-light-green btn-larger btn-cart-checkout">Continue to Next Step</button>
+                                        <button  class="btn btn-light-green btn-larger btn-cart-checkout btn-shipping" ng-click="submitForm()">Continue to Next Step</button>
                                    </div>
 
                                    <div class="account-heading-holder checkout-next-steps">
@@ -143,13 +141,11 @@
 
                               </form>
                          </div>
-                       
-                         <sly data-sly-test.carts="${shippingPage.cartObject}">
-                            </sly>
-                        
-                         <sly data-sly-use.cart="shipping.js"></sly>
+
+
+
                              
-                         <aside id="cart-order-summary-holder">
+                         <aside  id="cart-order-summary-holder">
                               <h3 class="checkout-sub-header">Your Cart</h3>
                               <div class="order-summary-holder">
                                    <table class="table-order-summary">
@@ -165,8 +161,8 @@
                                         </thead>
                                         <tbody>
                                              <tr class="subtotal">
-                                                  <td>${cart.qty} Item Subtotal</td>
-                                                  <td id="id_subtotal-price" class="amount">$${cart.subtotal}</td>
+                                                                                 <td>{{JsonData.items_qty}} Item Subtotal</td>
+                                                                                 <td id="id_subtotal-price" class="amount">{{JsonData.grand_total | currency}}</td>
                                              </tr>
                                              <tr class="shipping">
                                                   <td class="method">Shipping</td>
@@ -175,12 +171,12 @@
 
                                              <tr class="tax">
                                                   <td>Tax</td>
-                                                  <td class="amount">$0.00</td>
+                                                                                 <td id="id_tax-amount" class="amount">{{JsonData.tax_amount | currency}}</td>
                                              </tr>
 
                                              <tr class="discounts">
                                                   <td>Discounts</td>
-                                                  <td class="amount">$0.00</td>
+                                                                                 <td id="id_discount-amount" class="amount">{{JsonData.discount_amount | currency}}</td>
                                              </tr>
                                         </tbody>
                                         <tfoot>
@@ -189,13 +185,13 @@
                                                        <strong>Total</strong>
                                                   </td>
                                                   <td class="amount">
-                                                       <strong id="id_grand-total" class="total-amount">$${cart.grand_total}</strong>
+                                                                                 <strong id="id_grand-total" class="total-amount">{{JsonData.base_grand_total | currency}}</strong>
                                                   </td>
                                              </tr>
                                         </tfoot>
                                    </table>
                               </div>
-                         </aside>
+                             </aside>
                     </section>
 
                </div>

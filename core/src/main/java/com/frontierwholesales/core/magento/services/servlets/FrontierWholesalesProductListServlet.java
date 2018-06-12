@@ -57,10 +57,10 @@ public class FrontierWholesalesProductListServlet extends SlingAllMethodsServlet
 			search.setSortByNewProduct(sortByNewProduct);
 			
 			String adminToken = getTokenFromSession(request);
-			String categories = commerceConnector.getCategories(adminToken, categoryId);
+			//String categories = commerceConnector.getCategories(adminToken, categoryId);
 			String productList = commerceConnector.getProducts(adminToken, search);
 			
-			response.getOutputStream().println(parseJsonObject(productList,noOfRecsPerPage,currentPage,categories));
+			response.getOutputStream().println(parseJsonObject(productList,noOfRecsPerPage,currentPage));
 		}catch(Exception anyEx) {
 			log.error("Error in productList "+anyEx.getMessage());
 			response.getOutputStream().println("Error");
@@ -80,12 +80,12 @@ public class FrontierWholesalesProductListServlet extends SlingAllMethodsServlet
 		return adminToken;
 	}
 	
-	private String parseJsonObject(String productList,int recsPerPage,int currentPage,
-			String categories) throws Exception{
+	private String parseJsonObject(String productList,int recsPerPage,int currentPage
+			) throws Exception{
 		
 		Gson json = new Gson();
 		JsonElement element = json.fromJson(productList, JsonElement.class);
-		JsonElement catElement = json.fromJson(categories, JsonElement.class);
+		//JsonElement catElement = json.fromJson(categories, JsonElement.class);
 		
 		JsonObject object = element.getAsJsonObject();
 		JsonArray itemArray = object.getAsJsonArray("items");
@@ -121,7 +121,7 @@ public class FrontierWholesalesProductListServlet extends SlingAllMethodsServlet
 		dPage = Math.ceil(dPage);
 		
 		object.addProperty("pageTotal", (int)dPage);
-		object.add("categories", catElement.getAsJsonObject());
+		//object.add("categories", catElement.getAsJsonObject());
 		return object.toString();
 	}
 	

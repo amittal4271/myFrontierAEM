@@ -1,14 +1,9 @@
 <div class="container">
-    <sly
-    data-sly-use.clientLib="${'/libs/granite/sightly/templates/clientlib.html'}"/>
-<sly data-sly-call="${clientlib.js @ categories='payment'}" data-sly-unwrap/>
-<sly data-sly-use.payment="${'com.frontierwholesales.core.magento.services.models.PaymentModel'}"></sly>
-     <sly data-sly-use.shippingInfo="${'payment.js' @ shippingParam=payment.shippingInfoResponse}"></sly>
-   <input type='hidden' id="EmailId" value="${payment.emailId}"/>
+
                     <nav class="checkout-nav">
                          <ol class="checkout-nav-list">
                               <li class="checkout-nav-item completed">
-                                   <a href="/content/frontierwholesales/en/order.html">
+                                   <a href="/orderhome">
                                         <div class="checkout-nav-step">
                                              <span class="checkout-nav-step-icon">1</span>
                                         </div>
@@ -16,7 +11,7 @@
                                    </a>
                               </li>
                               <li class="checkout-nav-item completed">
-                                   <a href="/content/frontierwholesales/en/shipping.html">
+                                   <a href="/shippinghome">
                                         <div class="checkout-nav-step">
                                              <span class="checkout-nav-step-icon">2</span>
                                         </div>
@@ -40,7 +35,7 @@
 
                     <section class="account-main-holder checkout-holder shipping-page billing-page">
                          <div id="checkout-steps-holder">
-                              <form>
+                              <form id="billing-address-form">
                                    <div class="account-heading-holder completed-steps">
                                         <h2 class="account-heading"><span class="glyphicon glyphicon-ok"></span> 1. Shipping</h2>
                                    </div>
@@ -121,6 +116,7 @@
                                                   </label>
                                              </div>
                                         </div>
+                                       
                                         <div id="billing-new-address-holder">
                                              <div class="form-group width-half first">
                                                   <label for="id_billing-company">Company</label>
@@ -144,8 +140,8 @@
                                              </div>
                                              <div class="form-group width-half">
                                                   <label for="id_billing-locality">State</label>
-                                                  <select id="id_billing-locality" class="form-control" name="billing-locality">
-                                                      
+                                                  <select id="id_billing-locality" class="form-control" ng-model="selectedUSRegions" name="billing-locality">
+                                                                                 <option ng-repeat="region in usRegions" data-id="{{region.id}}" value="{{region.code}}">{{region.name}}</option>
                                                   </select>
                                              </div>
                                              <div class="form-group width-half first">
@@ -170,7 +166,8 @@
                                                   </select>
                                              </div>
 
-                                        </div>
+                                           </div>
+                                       
                                    </fieldset>
 
                                    <fieldset id="billing-address-holder" class="billing-section below-section">
@@ -192,7 +189,7 @@
                                    </fieldset>
 
                                    <div class="submit-holder checkout-flow">
-                                        <button class="btn btn-light-green btn-larger btn-cart-checkout">Place Order</button>
+                                        <button class="btn btn-light-green btn-larger btn-cart-checkout btn-payment-checkout" ng-click="submitForm()">Place Order</button>
                                    </div>
 
                               </form>
@@ -213,21 +210,21 @@
                                         </thead>
                                         <tbody>
                                              <tr class="subtotal">
-                                                  <td>${shippingInfo.totals.items_qty} Item Subtotal</td>
-                                                  <td class="amount"> $${ '#.00' @ format=shippingInfo.totals.subtotal}</td>
+                                                                                 <td>{{shippingInfoData.totals.items_qty}} Item Subtotal</td>
+                                                                                 <td class="amount"> {{shippingInfoData.totals.subtotal | currency}}</td>
                                              </tr>
                                              <tr class="shipping">
                                                   <td class="method">Shipping</td>
-                                                  <td class="amount"> $${ '#.00' @ format=shippingInfo.totals.shipping_amount}</td>
+                                                                                 <td class="amount"> {{shippingInfoData.totals.shipping_amount | currency}}</td>
                                              </tr>
 
                                              <tr class="tax">
                                                   <td>Tax</td>
-                                                  <td class="amount"> $${ '#.00' @ format=shippingInfo.totals.tax_amount}</td>
+                                                                                 <td class="amount"> {{shippingInfoData.totals.tax_amount | currency}}</td>
                                              </tr>
                                              <tr class="discounts">
                                                   <td>Discounts</td>
-                                                  <td class="amount"> $${ '#.00' @ format=shippingInfo.totals.discount_amount}</td>
+                                                                                 <td class="amount"> {{shippingInfoData.totals.discount_amount | currency}}</td>
                                              </tr>
                                         </tbody>
                                         <tfoot>
@@ -236,16 +233,17 @@
                                                        <strong>Total</strong>
                                                   </td>
                                                   <td class="amount">
-                                                       <strong class="total-amount"> $${ '#.00' @ format=shippingInfo.totals.grand_total}</strong>
+                                                                                 <strong class="total-amount"> {{shippingInfoData.totals.grand_total | currency}}</strong>
                                                   </td>
                                              </tr>
                                         </tfoot>
                                    </table>
                               </div>
                               <div class="submit-holder checkout-flow">
-                                   <button class="btn btn-light-green btn-larger btn-cart-checkout">Place Order</button>
+                                   <button class="btn btn-light-green btn-larger btn-cart-checkout btn-payment-checkout" ng-click="submitForm()">Place Order</button>
                               </div>
                          </aside>
                     </section>
 
                </div>
+  </div>

@@ -1,6 +1,9 @@
 package com.frontierwholesales.core.magento.services.servlets;
 
 import java.io.IOException;
+import java.net.CookieManager;
+import java.net.CookieStore;
+import java.net.HttpCookie;
 import java.text.DecimalFormat;
 
 import javax.jcr.Node;
@@ -10,6 +13,7 @@ import javax.jcr.query.Query;
 import javax.jcr.query.QueryManager;
 import javax.jcr.query.QueryResult;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 
 import org.apache.felix.scr.annotations.sling.SlingServlet;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -58,6 +62,12 @@ public class FrontierWholesalesShoppingCartServlet  extends SlingAllMethodsServl
 			
 			String token = (String)request.getSession().getAttribute(FrontierWholesalesConstants.MAGENTO_USER_TOKEN);
 			
+			/*Cookie cookie = FrontierWholesalesUtils.getCookie(request, FrontierWholesalesConstants.MAGENTO_USER_TOKEN);
+			String token = cookie.getValue();
+			CookieManager manager = new CookieManager();
+			CookieStore store = manager.getCookieStore();*/
+			
+			//log.debug("User token is from cookie..."+store.getCookies().size());
 			if(token == null) {
 			
 				throw new Exception("token is null");
@@ -188,8 +198,8 @@ public class FrontierWholesalesShoppingCartServlet  extends SlingAllMethodsServl
 			String path = getImagePath(name.getAsString(),request);
 			itemObject.addProperty("imgPath", path);
 			
-			JsonElement price = itemObject.get("price_incl_tax");
-			JsonElement rowTotal = itemObject.get("row_total_incl_tax");
+			JsonElement price = itemObject.get("base_price");
+			JsonElement rowTotal = itemObject.get("base_row_total");
 			
 			JsonElement qtyObject = itemObject.get("qty");
 			boolean bReturn = false;

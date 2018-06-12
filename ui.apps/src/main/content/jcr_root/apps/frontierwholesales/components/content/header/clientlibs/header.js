@@ -41,7 +41,7 @@ function getCartItems(){
     }).done(function(results){
         var cart='';
           if(results.trim() !== 'Error in Cart'){
-            var cart = JSON.parse(results);
+             cart = JSON.parse(results);
           }
            var template = $("#minicartTemplate").html();
             var processedHTML =  Handlebars.compile(template);
