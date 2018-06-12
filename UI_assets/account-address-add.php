@@ -14,7 +14,7 @@
                     <div class="container">
                          <?php include(dirname(__FILE__).'/snippets/account-nav.php');?>
 
-                         <section class="account-main-holder">
+                         <section class="account-main-holder clearfix">
                               <div class="account-heading-holder">
                                    <h2 class="account-heading">Create a New Address</h2>
                               </div>

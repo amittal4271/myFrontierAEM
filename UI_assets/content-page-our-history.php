@@ -44,7 +44,7 @@
                <section class="content-left-right-sections border-top">
                     <div class="featured-icon-center"></div>
 
-                    <div class="each-left-right-section bg-light-section">
+                    <div class="each-left-right-section bg-light-section clearfix">
                          <div class="container clearfix">
                               <figure class="each-figure-section">
                                    <div class="figure-media-left-right">
@@ -67,7 +67,7 @@
                          </div>
                     </div>
 
-                    <div class="each-left-right-section bg-grain-section">
+                    <div class="each-left-right-section bg-grain-section clearfix">
                          <div class="container clearfix">
                               <figure class="each-figure-section">
                                    <figcaption class="information-section-left-right">
@@ -90,7 +90,7 @@
                          </div>
                     </div>
 
-                    <div class="each-left-right-section bg-light-section">
+                    <div class="each-left-right-section bg-light-section clearfix">
                          <div class="container clearfix">
                               <figure class="each-figure-section">
                                    <div class="figure-media-left-right">

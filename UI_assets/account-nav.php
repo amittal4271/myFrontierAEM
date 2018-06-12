@@ -14,7 +14,7 @@
                     <div class="container">
                          <?php include(dirname(__FILE__).'/snippets/account-nav.php');?>
 
-                         <section class="account-main-holder">
+                         <section class="account-main-holder clearfix">
                               <p class="pending-orders-message">Please approve all carts you would like to checkout with. The "Our Total" displays totals for Draft and Approved carts.</p>
                          </section>
                     </div>

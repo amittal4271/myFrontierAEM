@@ -46,7 +46,7 @@
 
                     
 
-                    <div class="each-left-right-section square-sections" id="start-of-membership-basics">
+                    <div class="each-left-right-section square-sections clearfix" id="start-of-membership-basics">
                          <div class="container clearfix">
                               <figure class="each-figure-section">
                                    <div class="figure-media-left-right">
@@ -62,7 +62,7 @@
                          </div>
                     </div>                   
 
-                    <div class="each-left-right-section square-sections" id="start-of-membership-second">
+                    <div class="each-left-right-section square-sections clearfix" id="start-of-membership-second">
                          <div class="container clearfix">
                               <figure class="each-figure-section">
                                    <figcaption class="information-section-left-right">

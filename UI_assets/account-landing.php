@@ -29,7 +29,7 @@
                               </div>
                          </section>
 
-                         <section class="account-main-holder">
+                         <section class="account-main-holder clearfix">
 
                               <div class="account-heading-holder table-below">
                                    <h2 class="account-heading">Pending Orders</h2>
