@@ -1,6 +1,6 @@
 /* Frontier Colors */
 .global-server-side-message-holder {
-  float: left;
+  display: block;
   width: 100%;
   clear: both;
 }
@@ -7576,7 +7576,7 @@ legend.each-form-title .form-title-information a {
   }
 }
 .checkout-nav {
-  float: left;
+  display: block;
   width: 100%;
   clear: both;
   margin-bottom: 40px;

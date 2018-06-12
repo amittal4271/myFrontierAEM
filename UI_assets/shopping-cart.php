@@ -10,7 +10,7 @@
 
           <main class="main-content-container account-section-max-1200">
                <div class="container">
-                    <div id="cart-message-holder" class="global-server-side-message-holder">
+                    <div id="cart-message-holder" class="global-server-side-message-holder clearfix">
                          <div class="alert alert-success" role="alert"> <strong>Free shipping</strong> on orders over $250 ($400 for Alaska and Hawaii) </div>
                     </div>
                     <section class="cart-holder cart-actions">

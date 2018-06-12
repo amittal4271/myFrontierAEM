@@ -11,7 +11,7 @@
           <main class="main-content-container account-section-max-1200">
                <div class="container">
 
-                    <nav class="checkout-nav">
+                    <nav class="checkout-nav clearfix">
                          <ol class="checkout-nav-list">
                               <li class="checkout-nav-item active">
                                    <div class="checkout-nav-step">
@@ -34,11 +34,11 @@
                          </ol>
                     </nav>
 
-                    <div id="checkout-message-holder" class="global-server-side-message-holder">
+                    <div id="checkout-message-holder" class="global-server-side-message-holder clearfix">
                          <div class="alert alert-danger" role="alert"> <strong>Message Alert:</strong> Some type of message that shows errors </div>
                     </div>
 
-                    <section class="account-main-holder checkout-holder">
+                    <section class="account-main-holder clearfix checkout-holder">
                          <div class="each-order-by-user-holder">
                               <div class="account-heading-holder table-below">
                                    <h2 class="account-heading">Justin Prahst's Orders</h2>

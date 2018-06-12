@@ -11,7 +11,7 @@
           <main class="main-content-container account-section-max-1200">
                <div class="container">
 
-                    <section class="account-main-holder checkout-holder order-confirmation-page">
+                    <section class="account-main-holder clearfix checkout-holder order-confirmation-page">
                          <div id="order-confirmation-header">
                               <h1 class="confirmation-header">Order Successful!</h1>
                               <p class="confirmation-text">An order confirmation email has been sent to <span class="confirmation-email">jprahst32@gmail.com</span>.</p>
