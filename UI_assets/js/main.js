@@ -177,6 +177,22 @@ function checkQuantity($el) {
 
 $(document).ready(function() {
 
+	
+	$(document).on('click', '.btn-view-shipping-info', function() {
+		var $this = $(this);
+		var $shippingInfoEnteredHolder = $('#shipping-address-holder-on-billing-page');
+
+		if ($this.hasClass('show-shipping')) {
+			$this.removeClass('show-shipping');
+			$this.html('View');
+			$shippingInfoEnteredHolder.slideUp("fast");
+		} else {
+			$this.addClass('show-shipping');
+			$this.html('Hide');
+			$shippingInfoEnteredHolder.slideDown("fast");
+		}
+	});
+
 	$(document).on('click', '#product-thumbnails .each-thumbnail', function() {
 		var $this = $(this);
 		var $allThumbnails = $('#product-thumbnails .each-thumbnail');
