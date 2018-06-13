@@ -1510,6 +1510,7 @@ body.mobile-nav-overflow {
   position: absolute;
   top: 0;
   left: 100%;
+  height: 100%;
 }
 #main-nav .sub-nav.second-level {
   background: #effcde;
@@ -4769,7 +4770,7 @@ tr.order-details-table-section-row td.inner-table-td-holder {
   position: absolute;
   top: 0;
   left: 50px;
-  z-index: 99;
+  z-index: 19;
 }
 #product-information {
   float: right;

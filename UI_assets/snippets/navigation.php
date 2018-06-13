@@ -19,7 +19,21 @@
 	    			</ul>
 	    		</li>
 	    		<li class="category-nav-item"><a class="category-nav-link" href="#">Bulk <span class="glyphicon glyphicon-menu-right"></span></a></li>
-	    		<li class="category-nav-item"><a class="category-nav-link" href="#">Home and Pet <span class="glyphicon glyphicon-menu-right"></span></a></li>
+	    		<li class="category-nav-item"><a class="category-nav-link" href="#">Home and Pet <span class="glyphicon glyphicon-menu-right"></span></a>
+	    			<ul class="sub-nav second-level">
+	    				<li class="category-nav-child-item"><a class="category-nav-child-link" href="#">Test<span class="glyphicon glyphicon-menu-right"></span></a>
+	    					<ul class="sub-nav third-level">
+	    						<li class="category-nav-child-child-item"><a class="category-nav-child-child-link" href="">Aloe Vera</a></li>
+	    						<li class="category-nav-child-child-item"><a class="category-nav-child-child-link" href="">Coffee</a></li>
+	    						<li class="category-nav-child-child-item"><a class="category-nav-child-child-link" href="">Hot Cocoa</a></li>
+	    						<li class="category-nav-child-child-item"><a class="category-nav-child-child-link" href="">Powered Drink Mixes</a></li>
+	    						<li class="category-nav-child-child-item"><a class="category-nav-child-child-link" href="">Tea</a></li>
+	    					</ul>
+	    				</li>
+	    				<li class="category-nav-child-item"><a class="category-nav-child-link" href="#">Test 2</a>
+	    				</li>
+	    			</ul>
+	    		</li>
 	    		<li class="category-nav-item"><a class="category-nav-link" href="#">Health and Wellness</a></li>
 	    		<li class="category-nav-item"><a class="category-nav-link" href="#">Essential Oils <span class="glyphicon glyphicon-menu-right"></span></a></li>
 	    	</ul>
