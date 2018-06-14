@@ -14,6 +14,7 @@ import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Exporter;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.InjectionStrategy;
+import org.apache.sling.models.annotations.injectorspecific.RequestAttribute;
 import org.apache.sling.models.annotations.injectorspecific.ScriptVariable;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
@@ -48,6 +49,10 @@ public class RelatedProductsImpl implements RelatedProducts {
 	@ScriptVariable
 	private Page currentPage;
 	
+	@RequestAttribute 
+	@Default(values=" ")
+	private String mainProductSku;
+	
 	@ValueMapValue(name = JcrConstants.JCR_TITLE, injectionStrategy = InjectionStrategy.OPTIONAL)
 	@Default(values = "Related Products")
     private String heading;
@@ -64,18 +69,22 @@ public class RelatedProductsImpl implements RelatedProducts {
 	
 	@PostConstruct
 	protected void initModel() {
-		// get sku from product page
-		ValueMap pageProps = currentPage != null ? currentPage.getProperties() : ValueMap.EMPTY;
-		// TODO get correct sku from page
-		String productMaster = pageProps.get("cq:productMaster", String.class);
-		if( StringUtils.isBlank(productMaster) ) {
-			Resource productResource = currentPage != null ? currentPage.getContentResource("root/product") : null;
-			ValueMap productProps = productResource != null ? ResourceUtil.getValueMap(productResource) : ValueMap.EMPTY;
-			productMaster = productProps.get(CommerceConstants.PN_PRODUCT_DATA, String.class);
+		// get sku, current page = product page
+		log.debug("Product SKU passed in from request attribute: {}", mainProductSku);
+		String productSku = mainProductSku;	// passed in via request attribute from page
+		if( StringUtils.isBlank(productSku) ) {
+			ValueMap pageProps = currentPage != null ? currentPage.getProperties() : ValueMap.EMPTY;
+			// TODO get correct sku from page if not passed in via request attribute
+			String productMaster = pageProps.get("cq:productMaster", String.class);
+			if( StringUtils.isBlank(productMaster) ) {
+				Resource productResource = currentPage != null ? currentPage.getContentResource("par/productDetails") : null;
+				ValueMap productProps = productResource != null ? ResourceUtil.getValueMap(productResource) : ValueMap.EMPTY;
+				productMaster = productProps.get(CommerceConstants.PN_PRODUCT_DATA, String.class);
+			}
+			Resource commerceResource = StringUtils.isNotBlank(productMaster) && resourceResolver != null ? resourceResolver.getResource(productMaster) : null;
+			ValueMap commerceProps = commerceResource != null ? ResourceUtil.getValueMap(commerceResource) : ValueMap.EMPTY;
+			productSku = commerceProps.get("baseSku", String.class);
 		}
-		Resource commerceResource = StringUtils.isNotBlank(productMaster) && resourceResolver != null ? resourceResolver.getResource(productMaster) : null;
-		ValueMap commerceProps = commerceResource != null ? ResourceUtil.getValueMap(commerceResource) : ValueMap.EMPTY;
-		String productSku = commerceProps.get("baseSku", String.class);
 		log.debug("Product SKU from which to get related products: {}", productSku);
 		// call service GET /V1/products/{sku}/links/{type} where type = related, cross_sell or up_sell
 		this.relatedProductsList = productsService != null && StringUtils.isNotBlank(productSku) ? productsService.getRelatedProducts(resourceResolver, productSku) : new ArrayList<FrontierWholesalesProducts>();
