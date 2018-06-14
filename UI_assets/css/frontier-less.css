@@ -4506,7 +4506,7 @@ tr.order-details-table-section-row td.inner-table-td-holder {
   font-size: 14px;
 }
 .special-button-holder {
-  float: left;
+  /*float: left;*/
   clear: both;
   width: 100%;
   margin-top: 20px;
@@ -7105,6 +7105,18 @@ legend.each-form-title .form-title-information a {
 .each-standard-information-section a {
   color: #f69b31;
   text-decoration: underline;
+}
+.description-holder-left-right .btn,
+.each-standard-information-section .btn {
+  text-decoration: none;
+}
+.description-holder-left-right .btn-read-more,
+.each-standard-information-section .btn-read-more {
+  margin-top: 10px;
+}
+.description-holder-left-right .btn-white-green,
+.each-standard-information-section .btn-white-green {
+  color: #8bba4a;
 }
 .cart-holder {
   float: left;
