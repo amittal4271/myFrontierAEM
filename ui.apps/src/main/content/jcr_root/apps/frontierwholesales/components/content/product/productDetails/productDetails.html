@@ -6,29 +6,29 @@
 <sly data-sly-test="${request.requestParameterMap['sku'][0].toString}">
 <div data-sly-test="${wcmmode.edit && !model.hasVariants}" class="cq-placeholder"
          data-emptytext="Product Component"></div>
-<div id="product-images">
-</div>         
+<div id="product-images"></div>         
 <section id="product-detail">      
 </section>                             
 <script id="productDetailsTemplate" type="text/x-handlebars-template" >
     <div class="container" >
 		<div id="product-images">
-			  <div id="product-thumbnails">
-				   <button type="button" class="each-thumbnail">
-						<img src="/content/dam/magento2/product{{thumbnail}}"/>
-				   </button>
-				   <button type="button" class="each-thumbnail">
-						<img src="/content/dam/magento2/product{{thumbnail}}"/>
-				   </button>
-			  </div>
-			  <div id="product-main-image">
-				   <span class="badge badge-sale">Sale</span>
-				   <div class="product-main-image-holder"
-						data-sly-use.hapiProductAsset="${'org.apache.sling.hapi.sightly.HApiUse' @ type=hapiProduct.proptype.assets}"
-						data-sly-attribute="${hapiProduct.itemprop.assets}">
-						<img src="/content/dam/magento2/product{{imgPath}}" class="img-responsive" />
-				   </div>
-			  </div>
+              <div id="product-thumbnails">
+                                   <button type="button" class="each-thumbnail active" data-mainimageswitch="/content/dam/magento2/product{{imgPath}}">
+                                        <img src="/content/dam/magento2/product{{thumbnail}}"/>
+                                   </button>
+                                   <button type="button" class="each-thumbnail" data-mainimageswitch="/content/dam/magento2/product{{imgPath}}">
+                                        <img src="/content/dam/magento2/product{{thumbnail}}"/>
+                                   </button>
+                                   <button type="button" class="each-thumbnail" data-mainimageswitch="/content/dam/magento2/product/m/t/mt01-gray_main.jpg">
+                                        <img src="/content/dam/magento2/product/m/t/mt01-gray_main.jpg"/>
+                                   </button>
+              </div>
+              <div id="product-main-image">
+                                   <span class="badge badge-sale">Sale</span>
+                                   <div class="product-main-image-holder">
+                                        <img alt="Image Title" src="/content/dam/magento2/product{{imgPath}}" class="img-responsive" />
+                                   </div>
+              </div>
         </div>
         <div id="product-information">
 			<div class="product-sku-number">
@@ -105,7 +105,7 @@
             <div class="product-overview">
 			   <h2 class="heading-product-overview">Product Summary</h2>
 			   <p class="description-product-overview">
-					description
+					{{{description}}}
 					<!--<a class="description-read-more" href="#">Read More</a>-->
 			   </p>
 			   <ul class="overview-stat-list">
