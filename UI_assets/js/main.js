@@ -235,6 +235,7 @@ $(document).ready(function() {
 			modifyInputQty($el, -1);
 		}
 	});
+	
 
 	$("#header").hoverIntent({
 		over: showMiniCart,

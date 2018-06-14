@@ -8,7 +8,7 @@
 							<span class="blog-note">From the Blog</span>
 							<h4 class="blog-header">Frontier Co-op's Commitment to Sustainability</h4>
 							<p class="blog-text">We look forward to learning from our Iowa neighbors and working together with them through the Iowa...</p>
-							<div class="special-button-holder">
+							<div class="special-button-holder clearfix">
 								<span class="btn btn-white-green btn-special-section">Read</span>
 							</div>
 						</a>

@@ -56,6 +56,7 @@
                                         <h3 class="headline-left-right">Membership Basics</h3>
                                         <div class="description-holder-left-right">
                                              <p>The "member economic participation" at the core of a cooperative is that the members using the co-op provide the capital for its growth. This is done at Frontier by setting aside share money to be used by the cooperative. When you become a member of Frontier, you pay a small membership fee, and a share account is opened in your name.</p>
+                                             <a class="btn btn-white-green btn-read-more" href="#">Read More</a>
                                         </div>
                                    </figcaption>
                               </figure>
@@ -69,6 +70,7 @@
                                         <h3 class="headline-left-right">Membership Second</h3>
                                         <div class="description-holder-left-right">
                                              <p>The "member economic participation" at the core of a cooperative is that the members using the co-op provide the capital for its growth. This is done at Frontier by setting aside share money to be used by the cooperative. When you become a member of Frontier, you pay a small membership fee, and a share account is opened in your name.</p>
+                                             <a class="btn btn-white-green btn-read-more" href="#">Read More</a>
                                         </div>
                                    </figcaption>
                                    <div class="figure-media-left-right">
