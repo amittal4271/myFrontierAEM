@@ -60,14 +60,11 @@ public class FrontierWholesalesShoppingCartServlet  extends SlingAllMethodsServl
 			String action = request.getParameter("action");
 			log.debug(" action is "+action);
 			
-			String token = (String)request.getSession().getAttribute(FrontierWholesalesConstants.MAGENTO_USER_TOKEN);
+			//String token = (String)request.getSession().getAttribute(FrontierWholesalesConstants.MAGENTO_USER_TOKEN);
 			
-			/*Cookie cookie = FrontierWholesalesUtils.getCookie(request, FrontierWholesalesConstants.MAGENTO_USER_TOKEN);
+			Cookie cookie = FrontierWholesalesUtils.getCookie(request, FrontierWholesalesConstants.MAGENTO_USER_TOKEN);
 			String token = cookie.getValue();
-			CookieManager manager = new CookieManager();
-			CookieStore store = manager.getCookieStore();*/
 			
-			//log.debug("User token is from cookie..."+store.getCookies().size());
 			if(token == null) {
 			
 				throw new Exception("token is null");

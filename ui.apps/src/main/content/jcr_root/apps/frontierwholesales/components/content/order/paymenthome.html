@@ -1,9 +1,9 @@
 <div class="container">
 
-                    <nav class="checkout-nav">
+                    <nav class="checkout-nav clearfix">
                          <ol class="checkout-nav-list">
                               <li class="checkout-nav-item completed">
-                                   <a href="/orderhome">
+                                   <a href="orderhome">
                                         <div class="checkout-nav-step">
                                              <span class="checkout-nav-step-icon">1</span>
                                         </div>
@@ -11,7 +11,7 @@
                                    </a>
                               </li>
                               <li class="checkout-nav-item completed">
-                                   <a href="/shippinghome">
+                                   <a href="shippinghome">
                                         <div class="checkout-nav-step">
                                              <span class="checkout-nav-step-icon">2</span>
                                         </div>
@@ -28,17 +28,42 @@
                     </nav>
 
                     
-                    <div id="checkout-message-holder" class="global-server-side-message-holder" style="display: none;">
+                    <div id="checkout-message-holder" class="global-server-side-message-holder clearfix" style="display: none;">
                          <div class="alert alert-danger" role="alert"> <strong>Message Alert:</strong> Some type of message that shows errors </div>
                     </div>
                     
 
-                    <section class="account-main-holder checkout-holder shipping-page billing-page">
+                    <section class="account-main-holder checkout-holder shipping-page billing-page clearfix">
                          <div id="checkout-steps-holder">
                               <form id="billing-address-form">
                                    <div class="account-heading-holder completed-steps">
-                                        <h2 class="account-heading"><span class="glyphicon glyphicon-ok"></span> 1. Shipping</h2>
+                                        <h2 class="account-heading">
+                                        <span class="glyphicon glyphicon-ok"></span> 1. Shipping
+                                        <button type="button" class="btn btn-link btn-view-shipping-info">View</button>
+                                       </h2>
                                    </div>
+                                  
+                                   <fieldset id="shipping-address-holder-on-billing-page" class="billing-section">
+                                        <legend class="checkout-sub-header">Shipping Information</legend>
+                                        <div id="payment-method-shipping-options-entered" class="clearfix">
+                                             <ul class="entered-info-list">
+                                                  <li class="entered-heading">Shipping Address</li>
+                                                 
+                                                  <li>{{shippingAddress.addressInformation.shipping_address.firstname}} {{shippingAddress.addressInformation.shipping_address.lastname}}</li>
+                                                 
+                                                  <li>{{shippingAddress.addressInformation.shipping_address.street}}</li>
+                                                  <li>{{shippingAddress.addressInformation.shipping_address.city}}, {{shippingAddress.addressInformation.shipping_address.region_code}} {{shippingAddress.addressInformation.shipping_address.postalcode}}</li>
+                                                  <li>United States of America</li>
+                                                  <li>{{shippingAddress.addressInformation.shipping_address.email}}</li>
+                                                  <li class="edit-link"><a href="#">Edit</a></li>
+                                             </ul>
+                                             <ul class="entered-info-list">
+                                                  <li class="entered-heading">Shipping Method</li>
+                                                  <li> - {{shippingInfoData.totals.shipping_amount | currency}}</li>
+                                                  <li class="edit-link"><a href="#">Edit</a></li>
+                                             </ul>
+                                        </div>
+                                   </fieldset>
                                    
                                    <div class="account-heading-holder">
                                         <h2 class="account-heading">2. Billing / Payment / Review</h2>

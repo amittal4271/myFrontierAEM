@@ -46,7 +46,7 @@
                    <sly data-sly-test="${currentSession.userID == 'anonymous'}">
                     <a href="/content/frontierwholesales/en/login.html">My Account</a>
                     <ul id="header-account-flyout" class="header-flyout-list">
-                      <li><a href="#">Join</a></li>
+                      <li><a href="/content/frontierwholesales/en/login.html">Log In</a></li>
                          </ul>
                    </sly>
                    
@@ -57,7 +57,7 @@
                          <li><a href="#">Address Book</a></li>
                          <li><a href="#">Orders</a></li>
                          <li><a href="#">Wish List</a></li>
-                         <li><a href="#">Sign Out</a></li>
+                         <li><a id="signOut" href="#">Sign Out</a></li>
                     </ul>
                    </sly>
               
@@ -134,7 +134,7 @@
                </div>
 
                <div class="mini-cart-go-to-cart-holder">
-                    <a href="#" class="btn btn-light-green btn-mini-cart-go-to-cart">Go to Cart</a>
+                    <a href="/content/frontierwholesales/en/cart.html" class="btn btn-light-green btn-mini-cart-go-to-cart">Go to Cart</a>
                </div>
 
           </div>

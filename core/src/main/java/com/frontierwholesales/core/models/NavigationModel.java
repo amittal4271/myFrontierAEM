@@ -28,20 +28,11 @@ import org.slf4j.LoggerFactory;
 			Page root = this.getCurrentPage().getAbsoluteParent(2);
 			FrontierWholesalePages frontierRoot = new FrontierWholesalePages(root);
 			this.frontierWholesalePages = this.getChildren(frontierRoot, 0);
-			Cookie cookie = getRequest().getCookie(FrontierWholesalesConstants.MAGENTO_ADMIN_TOKEN);
-			//String adminToken = cookie.getValue();
-			//String adminToken = (String)getRequest().getSession().getAttribute(FrontierWholesalesConstants.MAGENTO_ADMIN_TOKEN);
-			String adminToken = "";
-			if(null == cookie) {
-				
-				adminToken = connector.getAdminToken();
-				Cookie token = new Cookie(FrontierWholesalesConstants.MAGENTO_ADMIN_TOKEN,adminToken);
-				FrontierWholesalesUtils.addCookie(token,getResponse());
-				//getRequest().getSession().setAttribute(FrontierWholesalesConstants.MAGENTO_ADMIN_TOKEN, adminToken);
-			}else {
-				adminToken = cookie.getValue();
-			}
+			
+			String adminToken =  connector.getAdminToken();
+			
 			this.categories = getAllCategories(adminToken,2);
+			
 			LOGGER.debug("activate method of navigation End");
 		}
 
@@ -51,9 +42,11 @@ import org.slf4j.LoggerFactory;
 
 			while (children.hasNext()) {
 				Page page = (Page) children.next();
+				
 				FrontierWholesalePages frontierWholesalePage = new FrontierWholesalePages(page);
 				String showNav = frontierWholesalePage.getShowInNav();				
 				if (showNav != null && showNav.equals("true")) {
+					
 					frontierWholesalePage.setChildList(this.getChildren(frontierWholesalePage, level + 1));
 					pages.add(frontierWholesalePage);
 				}

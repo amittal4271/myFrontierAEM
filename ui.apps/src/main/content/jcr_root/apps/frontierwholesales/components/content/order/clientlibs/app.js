@@ -31,13 +31,6 @@ app.config(function($routeProvider,$locationProvider) {
       }
   })
 
-  .when('/confirmation', {
-    templateUrl : '/confirmation.html',
-	controller  : 'ConfirmationController'
-
-
-  })
-
 
   .otherwise({redirectTo: '/order'});
     

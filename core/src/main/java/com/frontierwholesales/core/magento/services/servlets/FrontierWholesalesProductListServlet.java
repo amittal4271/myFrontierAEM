@@ -56,7 +56,7 @@ public class FrontierWholesalesProductListServlet extends SlingAllMethodsServlet
 			String sortByNewProduct = request.getParameter("newProduct");
 			search.setSortByNewProduct(sortByNewProduct);
 			
-			String adminToken = getTokenFromSession(request);
+			String adminToken = commerceConnector.getAdminToken();
 			//String categories = commerceConnector.getCategories(adminToken, categoryId);
 			String productList = commerceConnector.getProducts(adminToken, search);
 			
