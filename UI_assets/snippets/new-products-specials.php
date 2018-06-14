@@ -11,7 +11,7 @@
 						<span class="special-text">
 							Spring is in the air! We've brought in some exciting new products to stock your shelves with - out with the old, in with the new!  We're bringing in more every month, so be sure to check out our selection!
 						</span>
-						<div class="special-button-holder">
+						<div class="special-button-holder clearfix">
 							<span class="btn btn-white-green btn-special-section">Shop</span>
 						</div>
 					</div>
@@ -28,7 +28,7 @@
 						<span class="special-text">
 							Happy March! We’re excited to welcome some fresh, new products to our offering. Check out our collection of spring-must haves like personal care, green cleaning, fresheners and mists. March is the perfect time to clean house - out with the old, in with the new. Stock up and save today!
 						</span>
-						<div class="special-button-holder">
+						<div class="special-button-holder clearfix">
 							<span class="btn btn-white-green btn-special-section">Save</span>
 						</div>
 					</div>
