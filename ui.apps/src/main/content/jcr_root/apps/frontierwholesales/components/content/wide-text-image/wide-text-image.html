@@ -40,6 +40,9 @@
                                         <div class="description-holder-left-right">
                                             ${properties.text @context='html'}
                                         </div>
+                                        <div class="special-button-holder">
+                                            <a href="${properties.linkTo @ extension='html' || '#'}" class="btn btn-white-green btn-special-section">${properties.label}</a>
+								   		</div>
                                    </figcaption>
                               </figure>
                          </div>
@@ -53,6 +56,9 @@
                                         <div class="description-holder-left-right">
                                              ${properties.text @context='html'}
                                         </div>
+                                   <div class="special-button-holder">
+										<a href="${properties.linkTo @ extension='html' || '#'}" class="btn btn-white-green btn-special-section">${properties.label}</a>
+								   </div>
                                    </figcaption>
                                    <div class="figure-media-left-right"
                                     data-sly-test="${textImage.hasContent}"
