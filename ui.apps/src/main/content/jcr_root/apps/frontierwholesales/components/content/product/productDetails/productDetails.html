@@ -1,0 +1,178 @@
+<sly data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html" data-sly-call="${clientlib.css @ categories='frontier.structure.productdetails'}" />
+<sly data-sly-use.clientLib="${'/libs/granite/sightly/templates/clientlib.html'}" data-sly-call="${clientlib.js @ categories='frontier.structure.productdetails'}" />   
+<input id="productId" type=hidden value="${request.requestParameterMap['sku'][0].toString}"/>
+<!-- /*<sly data-sly-test.user="${currentSession.userID}" />  */-->
+<div data-sly-test="${!request.requestParameterMap['sku'][0].toString}">No product SKU provided in request</div>
+<sly data-sly-test="${request.requestParameterMap['sku'][0].toString}">
+<div data-sly-test="${wcmmode.edit && !model.hasVariants}" class="cq-placeholder"
+         data-emptytext="Product Component"></div>
+<div id="product-images"></div>         
+<section id="product-detail">      
+</section>                             
+<script id="productDetailsTemplate" type="text/x-handlebars-template" >
+    <div class="container" >
+		<div id="product-images">
+              <div id="product-thumbnails">
+                                   <button type="button" class="each-thumbnail active" data-mainimageswitch="/content/dam/magento2/product{{imgPath}}">
+                                        <img src="/content/dam/magento2/product{{thumbnail}}"/>
+                                   </button>
+                                   <button type="button" class="each-thumbnail" data-mainimageswitch="/content/dam/magento2/product{{imgPath}}">
+                                        <img src="/content/dam/magento2/product{{thumbnail}}"/>
+                                   </button>
+                                   <button type="button" class="each-thumbnail" data-mainimageswitch="/content/dam/magento2/product/m/t/mt01-gray_main.jpg">
+                                        <img src="/content/dam/magento2/product/m/t/mt01-gray_main.jpg"/>
+                                   </button>
+              </div>
+              <div id="product-main-image">
+                                   <span class="badge badge-sale">Sale</span>
+                                   <div class="product-main-image-holder">
+                                        <img alt="Image Title" src="/content/dam/magento2/product{{imgPath}}" class="img-responsive" />
+                                   </div>
+              </div>
+        </div>
+        <div id="product-information">
+			<div class="product-sku-number">
+				<span class="we-Product-code">Item #: <span>{{id}}</span>
+                </span>
+			</div>
+            <h1 class="product-title-name">{{name}}</h1>
+			<div class="product-detail-attributes">
+                                   
+                                   <span class="dt-label">Brand: </span>
+                                   <span class="dd-value brand">
+                                        <a href="#" class="dd-value-link">Frontier</a>
+                                   </span>
+                              
+                                   <span class="dt-label">UPC: </span>
+                                   <span class="dd-value upc">089836230027</span>
+                                   
+            </div>
+			<div class="product-price-summary"> 
+                                   <span class="product-sale-price">{{ formattedPrice}}</span> 
+                                   <span class="product-now-price">Now {{ formattedPrice}}</span>
+                                   <span class="product-save-percent">Save 25%</span>
+            </div>
+            <div class="product-detail-message">Availability: In Stock</div>
+
+            <div class="pdp-message-holder">
+                <div class="alert alert-danger" role="alert"> 
+                    <span class="glyphicon glyphicon-exclamation-sign"></span>
+                    <strong>Restricted Shipping Item:</strong> Some type of message that explains the situation.
+                </div>
+                <div class="alert alert-bulk" role="alert">
+                    <span class="glyphicon glyphicon-info-sign"></span>
+                    <strong>Buy 5 to save 5%:</strong> Discount price will display in cart.
+                </div>
+            </div>
+            
+            <div class="product-wishlist">
+                <button class="btn btn-add-wishlist btn-wishlist">Add to Wishlist +</button>
+                <button class="btn btn-add-wishlist btn-shelve">Add to Shelves +</button>
+            </div>
+
+			<!--/* TODO: Build valid form action and items */-->
+			<div>
+                <input type="hidden" name="redirect" v-model="product.pagePath" data-sly-attribute="${hapiProductForm.itemprop.redirectPath}" />
+                <input type="hidden" name="redirect-product-not-found" v-model="product.pagePath" data-sly-attribute="${hapiProductForm.itemprop.redirectErrorPath}" />
+                <input type="hidden" name="product-quantity" value="1" data-sly-attribute="${hapiProductForm.itemprop.quantity}" />
+                <input type="hidden" name="product-path" v-model="product.path" data-sly-attribute="${hapiProductForm.itemprop.productPath}" />
+                <input type="hidden" name=":operation" value="addToSmartList" />
+				
+
+				   {{#if ${user != 'anonymous' @context='scriptString' }}}
+				   <div class="product-add-options">
+						<div class="qty-holder">
+							 <button type="button" class="decrease qty-button qty-down">
+								  <span class="decrease-minus">-</span>
+								  <span class="visuallyhidden">decrease</span>
+							 </button>
+							 <input type="text" min="1" max="99" name="quantity" id="product-qty-input" class="grid-product-qty-input qty-input-field" value="1">
+							 <button type="button" class="increase qty-button qty-up">
+								  <span class="increase-plus">+</span>
+								  <span class="visuallyhidden">increase</span>
+							 </button>
+						</div>
+						<div class="add-to-cart-holder">
+                            <div id="cartMessage-{{sku}}" class="alert alert-add-to-cart" style="display: none;">Added to your Cart!</div>
+							<button id="{{sku}}" class="btn btn-light-green btn-add-to-cart">Add To Cart</button>
+						</div>
+					</div>
+					{{/if}}
+			</div>		
+			<!-- /* form end */-->
+
+			<!-- /* TODO: complete description section */-->
+            <div class="product-overview">
+			   <h2 class="heading-product-overview">Product Summary</h2>
+			   <p class="description-product-overview">
+					{{{description}}}
+					<!--<a class="description-read-more" href="#">Read More</a>-->
+			   </p>
+			   <ul class="overview-stat-list">
+					<li class="each-stat icon-check">
+						 <span class="each-stat-icon">
+							  <span class="glyphicon glyphicon-ok"></span>
+						 </span>
+						 <span class="each-stat-name-text">Organic</span>
+					</li>
+			   
+					<li class="each-stat icon-check">
+						 <span class="each-stat-icon">
+							  <span class="glyphicon glyphicon-ok"></span>
+						 </span>
+						 <span class="each-stat-name-text">Not Tested On Animals</span>
+					</li>
+			   
+					<li class="each-stat icon-check">
+						 <span class="each-stat-icon">
+							  <span class="glyphicon glyphicon-ok"></span>
+						 </span>
+						 <span class="each-stat-name-text">Non Irradiated</span>
+					</li>
+			   
+					<li class="each-stat icon-check">
+						 <span class="each-stat-icon">
+							  <span class="glyphicon glyphicon-ok"></span>
+						 </span>
+						 <span class="each-stat-name-text">Vegan</span>
+					</li>
+			   
+					<li class="each-stat icon-check">
+						 <span class="each-stat-icon">
+							  <span class="glyphicon glyphicon-ok"></span>
+						 </span>
+						 <span class="each-stat-name-text">Alcohol Free</span>
+					</li>
+			   </ul>
+		  	</div>
+			
+			<div class="product-detail-additional-details">
+				   <span class="product-detail-overview-item-detail">
+						<span class="product-detail-overview-label">Flavor</span>
+						<span class="product-detail-overview-value">Crunchy Lentil Fest</span>
+				   </span>
+			  
+				   <span class="product-detail-overview-item-detail">
+						<span class="product-detail-overview-label">Size</span>
+						<span class="product-detail-overview-value">8 oz.</span>
+				   </span>
+
+				   <span class="product-detail-overview-item-detail">
+						<span class="product-detail-overview-label">Count</span>
+						<span class="product-detail-overview-value">1 Item</span>
+				   </span>
+			</div>
+
+			<div class="product-more-details">
+				   <h3 class="heading-product-overview">Additional Product Details</h3>
+				   <div class="each-additional-section">
+						<h4 class="additional-heading">Description</h4>
+						<p class="additional-description">${productModel.product.description @context='html'}</p>
+				   </div>
+            </div>
+
+
+    </div>
+</div>
+</script>
+</sly>

@@ -289,6 +289,21 @@ public class FrontierWholesalesMagentoCommerceConnector {
         return response;
     }
     
+    public String getProductDetails(String adminToken,String  productID) {
+    	
+        String response=new String();       
+        try {
+            response = Request.Get(server+"/rest/V1/products/"+productID)
+                    .addHeader("Authorization", adminToken)
+                    .execute().returnContent().asString();         
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+            log.error("Error getting Product Details. ERROR: " + e.getMessage());
+        }
+        return response;
+    }
+    
     public MagentoCategory getCategories(String adminToken,int categoryId){
        String predicate=(categoryId > 0)?"?rootCategoryId="+categoryId:"";
        MagentoCategory category=null;
