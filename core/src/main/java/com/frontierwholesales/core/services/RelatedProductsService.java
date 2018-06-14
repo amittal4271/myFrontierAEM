@@ -14,9 +14,9 @@ public interface RelatedProductsService {
 	
 	public static final String PRODUCT_PAGES_START_PATH = "/content/frontierwholesales";
 	public static final String PROPERTY_PRODUCT_MASTER = "jcr:content/@cq:productMaster";
-	public static final String PRODUCT_PAGE_RESOURCE_TYPE = "frontierwholesales/components/structure/page"; 	// TODO
-	public static final String PRODUCT_PAGE_OTHER_RESOURCE_TYPE = "frontierwholesales/components/structure/1-column-page";	// TODO
-	public static final String PRODUCT_COMPONENT_RESOURCE_TYPE = "weretail/components/structure/product";	// TODO
+	public static final String PRODUCT_PAGE_RESOURCE_TYPE = "frontierwholesales/components/structure/1-column-page"; 	// TODO
+	public static final String PRODUCT_PAGE_OTHER_RESOURCE_TYPE = "frontierwholesales/components/structure/page";	// TODO
+	public static final String PRODUCT_COMPONENT_RESOURCE_TYPE = "frontierwholesales/components/content/product/product";	// TODO
 	public static final String PROPERTY_PRODUCT_DATA = "jcr:content/root/product/@productData";	
 	public static final String PROPERTY_VALUE_PRODUCT = "product";
 	

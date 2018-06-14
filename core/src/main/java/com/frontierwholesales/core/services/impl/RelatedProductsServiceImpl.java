@@ -26,6 +26,7 @@ import org.osgi.service.component.annotations.ReferencePolicy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.adobe.cq.commerce.api.CommerceConstants;
 import com.day.cq.commons.jcr.JcrConstants;
 import com.day.cq.search.PredicateGroup;
 import com.day.cq.search.Query;
@@ -119,6 +120,8 @@ public class RelatedProductsServiceImpl implements RelatedProductsService {
 		productPredicates.put("1_property.value", sku);
 		productPredicates.put("2_property", JcrResourceConstants.SLING_RESOURCE_TYPE_PROPERTY);
 		productPredicates.put("2_property.value", RelatedProductsService.COMMERCE_PRODUCT_RESOURCE_TYPE);
+		productPredicates.put("3_property", CommerceConstants.PN_COMMERCE_TYPE);
+		productPredicates.put("3_property.value", "product");
 		
 		Session session = resourceResolver.adaptTo(Session.class);
 		Query query = queryBuilder.createQuery(PredicateGroup.create(productPredicates), session);
@@ -159,8 +162,7 @@ public class RelatedProductsServiceImpl implements RelatedProductsService {
 		productPredicates.put("1_property", RelatedProductsService.PROPERTY_PRODUCT_MASTER);
 		productPredicates.put("1_property.value", productMasterPath);
 		productPredicates.put("2_property", new StringBuilder(JcrConstants.JCR_CONTENT).append("/@").append(JcrResourceConstants.SLING_RESOURCE_TYPE_PROPERTY).toString());
-		productPredicates.put("2_property.1_value", RelatedProductsService.PRODUCT_PAGE_RESOURCE_TYPE);
-		productPredicates.put("2_property.2_value", RelatedProductsService.PRODUCT_PAGE_OTHER_RESOURCE_TYPE);
+		productPredicates.put("2_property.value", RelatedProductsService.PRODUCT_PAGE_RESOURCE_TYPE);
 		
 		Session session = resourceResolver.adaptTo(Session.class);
 		Query query = queryBuilder.createQuery(PredicateGroup.create(productPredicates), session);
