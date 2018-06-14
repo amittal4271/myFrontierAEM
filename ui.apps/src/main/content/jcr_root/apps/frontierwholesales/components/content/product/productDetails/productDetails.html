@@ -1,6 +1,7 @@
 <sly data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html" data-sly-call="${clientlib.css @ categories='frontier.structure.productdetails'}" />
 <sly data-sly-use.clientLib="${'/libs/granite/sightly/templates/clientlib.html'}" data-sly-call="${clientlib.js @ categories='frontier.structure.productdetails'}" />   
 <input id="productId" type=hidden value="${request.requestParameterMap['sku'][0].toString}"/>
+<input id="currentPagePath" type=hidden value="${currentPage.path}"/>
 <!-- /*<sly data-sly-test.user="${currentSession.userID}" />  */-->
 <div data-sly-test="${!request.requestParameterMap['sku'][0].toString}">No product SKU provided in request</div>
 <sly data-sly-test="${request.requestParameterMap['sku'][0].toString}">
