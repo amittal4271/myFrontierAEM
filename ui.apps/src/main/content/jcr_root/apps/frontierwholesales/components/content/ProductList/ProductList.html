@@ -13,18 +13,16 @@
                                    <ul class="each-filters-list">
                                        <sly data-sly-list.child="${categories.categories.children_data}">
                                         <li class="filter-item ${childList.count > 3?'visuallyhidden':''}">
-                                             <a href="#" class="filter-link"><span class="text">${child.name}</span></a>
+                                             <a href="/content/frontierwholesales/en/productlist?${child.id}" class="filter-link"><span class="text">${child.name}</span></a>
                                         </li>
                                        
                                        
-                                            <sly data-sly-test="${childList.count > 3}">
-                                        <li class="filter-item filter-item-expand">
+                                       </sly>
+                                       <li class="filter-item filter-item-expand">
                                              <button type="button" class="btn btn-view-more-filters">
                                                   <span class="view-more-text">View More</span>
                                              </button>
                                         </li>
-                                           </sly>
-                                       </sly>
                                    </ul>
                                     
                               </div>

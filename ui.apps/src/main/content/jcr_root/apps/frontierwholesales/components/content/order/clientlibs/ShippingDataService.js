@@ -38,8 +38,8 @@ app.service('ShippingDataService', function($q,$http,$window,FactoryJsonData) {
     getCustomerShippingAddress = function(customerId){
 		var deferred = $q.defer();
 
-		var adminToken = getAdminToken();
-
+        getAdminToken().then(function(response){
+            var adminToken = response;
             $http({
                 url: $window.serverURL+"/rest/V1/customers/"+customerId+"/shippingAddress",
                 method: "get",
@@ -61,6 +61,7 @@ app.service('ShippingDataService', function($q,$http,$window,FactoryJsonData) {
                 hideLoadingScreen();
 
             });
+        });
 		return deferred.promise;
      }
 
@@ -149,7 +150,8 @@ app.service('ShippingDataService', function($q,$http,$window,FactoryJsonData) {
 
     getRegions = function(paymentMethods){
 		var deferred = $q.defer();
-		var adminToken = getAdminToken();
+		 getAdminToken().then(function(response){
+             var adminToken = response;
         	$http({
                  url: $window.serverURL+"/rest/all/V1/directory/countries",
                  method: "get",
@@ -177,6 +179,7 @@ app.service('ShippingDataService', function($q,$http,$window,FactoryJsonData) {
               hideLoadingScreen();
 
           });
+         });
 		return deferred.promise;
     }
 

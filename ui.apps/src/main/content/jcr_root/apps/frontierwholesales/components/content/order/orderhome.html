@@ -1,7 +1,7 @@
 <div class="container">
 
 
-                    <nav class="checkout-nav">
+                    <nav class="checkout-nav clearfix">
                          <ol class="checkout-nav-list">
                               <li class="checkout-nav-item active">
                                    <div class="checkout-nav-step">
@@ -24,11 +24,11 @@
                          </ol>
                     </nav>
 
-                    <div id="checkout-message-holder" class="global-server-side-message-holder" style="display: none;">
+                    <div id="checkout-message-holder" class="global-server-side-message-holder clearfix" style="display: none;">
                          <div class="alert alert-danger" role="alert"> <strong>Message Alert:</strong> Some type of message that shows errors </div>
                     </div>
 
-                    <section class="account-main-holder checkout-holder">
+                    <section class="account-main-holder checkout-holder clearfix">
                          <div class="each-order-by-user-holder">
                               <div class="account-heading-holder table-below">
                                    <h2 class="account-heading">Justin Prahst's Orders</h2>
@@ -179,3 +179,69 @@
                     </section>
 
                </div>
+
+<!-- Delete Order Modal -->
+          <div class="modal fade" id="modalDeleteOrders" tabindex="-1" role="dialog" aria-labelledby="modalDeleteOrderLabel">
+               <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                         <div class="modal-header clearfix">
+                              <h4 class="modal-title" id="modalDeleteOrderLabel">Delete Confirmation</h4>
+                         </div>
+                         <div class="modal-body clearfix">
+                              <p>Messaging explaining delete action. This order will be removed from the users cart along with this cart.</p>
+                         </div>
+                         <div class="modal-footer clearfix">
+                              <div class="modal-footer-btn-left-holder">
+                                   <button type="button" class="btn btn-red btn-delete-order">Yes, Delete Orders</button>
+                              </div>
+                              <div class="modal-footer-btn-right-holder">
+                                   <button type="button" class="btn btn-link btn-link-close-modal" data-dismiss="modal">Cancel</button>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+          </div>
+
+          <!-- Approve Order Modal -->
+          <div class="modal fade" id="modalApproveOrders" tabindex="-1" role="dialog" aria-labelledby="modalApproveOrderLabel">
+               <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                         <div class="modal-header clearfix">
+                              <h4 class="modal-title" id="modalApproveOrderLabel">Approval Confirmation</h4>
+                         </div>
+                         <div class="modal-body clearfix">
+                              <p>You are approving these orders for purchase. This is another explanation for the approval modal.</p>
+                         </div>
+                         <div class="modal-footer clearfix">
+                              <div class="modal-footer-btn-left-holder">
+                                   <button type="button" class="btn btn-dark-orange btn-delete-order">Yes, Approve Orders</button>
+                              </div>
+                              <div class="modal-footer-btn-right-holder">
+                                   <button type="button" class="btn btn-link btn-link-close-modal" data-dismiss="modal">Cancel</button>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+          </div>
+
+          <!-- Mark Draft Order Modal -->
+          <div class="modal fade" id="modalMarkDraftOrders" tabindex="-1" role="dialog" aria-labelledby="modalMarkDraftOrdersLabel">
+               <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                         <div class="modal-header clearfix">
+                              <h4 class="modal-title" id="modalMarkDraftOrdersLabel">Mark as Draft</h4>
+                         </div>
+                         <div class="modal-body clearfix">
+                              <p>You are marking these orders as a draft. These will not be included in checkout cost.</p>
+                         </div>
+                         <div class="modal-footer clearfix">
+                              <div class="modal-footer-btn-left-holder">
+                                   <button type="button" class="btn btn-dark-orange btn-delete-order">Mark as Draft</button>
+                              </div>
+                              <div class="modal-footer-btn-right-holder">
+                                   <button type="button" class="btn btn-link btn-link-close-modal" data-dismiss="modal">Cancel</button>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+          </div>

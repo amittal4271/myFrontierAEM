@@ -15,21 +15,7 @@ app.service('OrderDataService', function($q,$http,$window) {
         return userToken;
     }
 
-    getAdminToken = function(){
-		 var cookieValue = document.cookie;
-            var cookieSplit=cookieValue.split(";");
-            var adminToken='';
-            for(var i=0;i<cookieSplit.length;i++){
-                var token = cookieSplit[i].trim().split("=");
-                if(token[0].startsWith("MagentoAdminToken")){
-                    adminToken = token[1];
-                }
-            }
-            var regx=new RegExp("\"","g");
-            adminToken=adminToken.replace(regx,"");
-        return adminToken;
-    }
-
+ 
 
      this.getCustomer = function(){
 	showLoadingScreen();
@@ -60,31 +46,33 @@ app.service('OrderDataService', function($q,$http,$window) {
 
     getCustomerOrders = function(customerId){
 		var deferred = $q.defer();
+        getAdminToken().then(function(response){
+			adminToken = response;
 
-
-            adminToken=getAdminToken();
             var orders="/rest/V1/orders?searchCriteria[pageSize]=50"
             + "&searchCriteria[currentPage]=1&searchCriteria[filterGroups][0][filters][0][value]="+customerId
             + "&searchCriteria[filterGroups][0][filters][0][field]=customer_id";
 
-            $http({
-                url: $window.serverURL+orders,
-                method: "get",
-                headers:{
-                
-                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-                'Authorization':adminToken
-                   }
-                  }).then(function successCallback(response) {
-				hideLoadingScreen();
-                console.log(JSON.stringify(response.data)); 
-                deferred.resolve(response.data);
+                $http({
+                    url: $window.serverURL+orders,
+                    method: "get",
+                    headers:{
+
+                    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+                    'Authorization':adminToken
+                       }
+                      }).then(function successCallback(response) {
+                    hideLoadingScreen();
+                    console.log(JSON.stringify(response.data)); 
+                    deferred.resolve(response.data);
 
 
-            }, function errorCallback(response) {
-                console.log('error'+response);
-                hideLoadingScreen();
-            });
+                }, function errorCallback(response) {
+                    console.log('error'+response);
+                    hideLoadingScreen();
+                });
+
+             });
 		return deferred.promise;
      }
 });

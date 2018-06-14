@@ -115,26 +115,21 @@ public class FrontierWholesalesAuthenticationHandler extends DefaultAuthenticati
 			String username= values[0];
 			
 			String password = values[1];
-			Cookie userTokenCookie = FrontierWholesalesUtils.getCookie(httpServletRequest, FrontierWholesalesConstants.MAGENTO_USER_TOKEN);
-			if(userTokenCookie != null) {
-			String userToken = userTokenCookie.getValue();
-			log.debug("user token is "+userToken);
-			}
-			String token = (String)httpServletRequest.getSession().getAttribute(FrontierWholesalesConstants.MAGENTO_USER_TOKEN);
 			
-			if(token == null) {
-			token = connector.getToken(username, password);
 			
-			HttpCookie cookie = new HttpCookie(FrontierWholesalesConstants.MAGENTO_USER_TOKEN, token);
+			String userToken = connector.getToken(username, password);
 			
-			cookie.setSecure(true);
-			//Cookie cookie = new Cookie(FrontierWholesalesConstants.MAGENTO_USER_TOKEN, token);
-			//httpServletResponse.addCookie(cookie);
-			httpServletRequest.getSession().setAttribute(FrontierWholesalesConstants.MAGENTO_USER_TOKEN, token);
-			}
+			
+			httpServletRequest.getSession().setAttribute(FrontierWholesalesConstants.MAGENTO_USER_TOKEN, userToken);
+			
+			Cookie cookie = new Cookie(FrontierWholesalesConstants.MAGENTO_USER_TOKEN,userToken);
+			// set cookie for max 30 mins
+			cookie.setMaxAge(30 * 60);
+			
+			FrontierWholesalesUtils.addCookie(cookie,httpServletResponse);
 			
 		
-				if(token != null) {
+				if(userToken != null) {
 					
 					String scheme = httpServletRequest.getScheme();
 					String url = "";

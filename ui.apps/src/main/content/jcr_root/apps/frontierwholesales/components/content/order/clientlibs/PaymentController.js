@@ -1,6 +1,7 @@
 app.controller('PaymentController', function($scope,$location,$http,$window,$q,paymentData,FactoryJsonData) {
     $scope.shippingInfoData = paymentData;
     $scope.usRegions = FactoryJsonData.usRegions;
+    $scope.shippingAddress = FactoryJsonData.shippingInfoData;
 console.log("payment controller ");
  validation.billingAddressForm('#billing-address-form');
 
@@ -83,8 +84,9 @@ $scope.submitPayment = function(paymentJson){
             }
     }).then(function successCallback(response) {
         console.log(response.data); 
-
-       $scope.getConfirmation(response.data);
+            localStorage.setItem("ConfirmationNr",response.data);
+         $window.location.href="/content/frontierwholesales/en/confirmation.html";
+      // $scope.getConfirmation(response.data);
   }, function errorCallback(response) {
     console.log('error'+response);
       hideLoadingScreen();
@@ -106,7 +108,8 @@ $scope.submitPayment = function(paymentJson){
         console.log(response.data); 
         FactoryJsonData.confirmationJsonData=response.data;
 		hideLoadingScreen();
-        $location.path("/confirmation");
+       // $location.path("/confirmation");
+        $window.location.href="/content/frontierwholesales/en/confirmation.html";
   }, function errorCallback(response) {
     console.log('error'+response);
       hideLoadingScreen();
