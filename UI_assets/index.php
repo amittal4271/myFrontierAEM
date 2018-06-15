@@ -22,7 +22,8 @@
                          <li class="spacer"><a href="/membership-landing.php">Membership Landing</a></li>
                          <li><a href="./membership-lifetime.php">Membership Lifetime</a></li>
                          <li><a href="./membership-general.php">Membership General</a></li>
-
+                         <li><a href="./membership-buyingclub.php">Membership Buying Club</a></li>
+                         
                          <li class="spacer"><a href="/account-nav.php">Account Navigation Example</a></li>
                          <li><a href="./account-address-book.php">Account Address Book</a></li>
                          <li><a href="./account-address-add.php">Account Address Add</a></li>
