@@ -1,21 +1,11 @@
-<h4 data-sly-test="${wcmmode.edit}">edit...</h4>
 <sly data-sly-use.authorableNavigation="com.frontierwholesales.core.models.myaccount.AuthorableNavigation">
-<!--/* good simple example loop of menu data structure...
-	<div data-sly-list.head="${authorableNavigation.getNavigationItems}">
-		<p><b>Page Name:</b> ${head.title}</p>
-		<p><b>Page Path:</b> ${head.link}</p>
-		<div data-sly-list.subItem="${head.subMenuItems}">
-			<p><b>Nested Sub Title:</b> ${subItem.title}: <b>Nested Sub Link:</b> ${subItem.link}</p>
-		</div>
-	</div>
-*/-->
-	<nav class="account-nav-wrap cmp-navigation"
+	<nav class="account-nav-wrap cmp-navigation clearfix"
 	     data-sly-use.template="core/wcm/components/commons/v1/templates.html"
 	     data-sly-test.hasContent="${authorableNavigation.getNavigationItems.size > 0}"
 	     data-sly-use.groupTemplate="group.html"
 	     data-sly-call="${groupTemplate.group @ items=authorableNavigation.getNavigationItems, groupClass='account-nav'}">
 	</nav>
-	<ul data-sly-list="${authorableNavigation.getNavigationItems}" id="sub-nav-holder-desktop">
+	<ul data-sly-list="${authorableNavigation.getNavigationItems}" class="clearfix" id="sub-nav-holder-desktop">
 		<sly data-sly-test="${item.link == currentPage.path || item.link == currentPage.parent.path}" data-sly-list="${item.subMenuItems}">
 			<li class="sub-nav-holder-item ${ item.link == currentPage.path ? 'active-item' : ''}">
 				<a href="${item.link}.html">${item.title}</a>
