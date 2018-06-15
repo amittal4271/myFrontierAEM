@@ -35,7 +35,7 @@ import com.frontierwholesales.core.services.RelatedProductsService;
 		defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 @Exporter(name = ExporterConstants.SLING_MODEL_EXPORTER_NAME, extensions = ExporterConstants.SLING_MODEL_EXTENSION)
 public class RelatedProductsImpl implements RelatedProducts {
-	protected static final String RESOURCE_TYPE = "frontierwholesales/components/structure/products/related-products";
+	protected static final String RESOURCE_TYPE = "frontierwholesales/components/content/product/related-products";
 
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 	

@@ -9,7 +9,7 @@ import org.osgi.annotation.versioning.ConsumerType;
 import com.frontierwholesales.core.beans.FrontierWholesalesProducts;
 
 /**
- * Defines the {@code List} Sling Model used for the {@code /apps/frontierwholesales/components/structure/products/related-products} component. 
+ * Defines the {@code List} Sling Model used for the {@code /apps/frontierwholesales/components/content/product/related-products} component. 
  *
  * @since 
  */
