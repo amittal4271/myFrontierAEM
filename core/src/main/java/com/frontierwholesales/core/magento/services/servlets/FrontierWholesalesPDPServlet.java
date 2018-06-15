@@ -5,6 +5,7 @@ import java.text.DecimalFormat;
 
 import javax.jcr.Node;
 import javax.jcr.NodeIterator;
+import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import javax.jcr.query.Query;
 import javax.jcr.query.QueryManager;
@@ -12,9 +13,12 @@ import javax.jcr.query.QueryResult;
 //import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.felix.scr.annotations.sling.SlingServlet;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
+import org.apache.sling.api.resource.ModifiableValueMap;
+import org.apache.sling.api.resource.PersistenceException;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
@@ -22,13 +26,9 @@ import org.apache.sling.api.servlets.SlingAllMethodsServlet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.frontierwholesales.core.beans.FrontierWholesalesProductSearch;
-import com.frontierwholesales.core.beans.FrontierWholesalesProducts;
+import com.day.cq.commons.jcr.JcrConstants;
 import com.frontierwholesales.core.magento.services.FrontierWholesalesMagentoCommerceConnector;
 import com.frontierwholesales.core.services.constants.FrontierWholesalesConstants;
-import com.frontierwholesales.core.utils.FrontierWholesalesUtils;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -58,6 +58,8 @@ public class FrontierWholesalesPDPServlet  extends SlingAllMethodsServlet{
 				System.out.println("DEBUG: "+adminToken);
 				String productDetails = commerceConnector.getProductDetails(adminToken, productSku);		
 				response.getOutputStream().println(parseJsonObject(productDetails));
+				// TODO this may not be needed depending on how the final design of PDP looks
+				setProductMasterProperty(request, productSku);
 			}
 			else {
 				response.getOutputStream().println("Empty SKU provided");
@@ -160,6 +162,52 @@ public class FrontierWholesalesPDPServlet  extends SlingAllMethodsServlet{
 		}
 
 		return object.toString();
+	}
+	
+	private void setProductMasterProperty( SlingHttpServletRequest slingRequest, String sku ) {
+		String currentPagePath = slingRequest.getParameter("currentPagePath");
+		if( StringUtils.isNotBlank(currentPagePath) ) {
+			// TODO change to use service user
+			ResourceResolver resourceResolver = slingRequest.getResourceResolver();
+			Resource currentProductPageResource = resourceResolver != null ? resourceResolver.getResource(currentPagePath) : null;
+			Resource contentResource = currentProductPageResource != null ? currentProductPageResource.getChild(JcrConstants.JCR_CONTENT) : null;
+			ModifiableValueMap currentProductPageProps = contentResource != null ? contentResource.adaptTo(ModifiableValueMap.class) : null; 
+			String productMaster = currentProductPageProps != null ? currentProductPageProps.get("cq:productMaster", String.class) : StringUtils.EMPTY;
+			// if there is not already the property on the page, find and set it
+			if( StringUtils.isBlank(productMaster) ) {
+				String productMasterPath = getCommerceProductPath(resourceResolver, sku);
+				if( StringUtils.isNotBlank(productMasterPath) ) {
+					currentProductPageProps.put("cq:productMaster", productMasterPath);
+					try {
+						resourceResolver.commit();
+					} catch( PersistenceException persistEx ) {
+						log.error("PersistenceException trying to save property to page:\n", persistEx);
+					}
+				}
+			}
+		}
+	}
+	
+	private String getCommerceProductPath( ResourceResolver resourceResolver, String sku ) {
+		String sqlStatement = new StringBuilder().append("SELECT * FROM [nt:unstructured] AS products")
+								.append(" WHERE ISDESCENDANTNODE(products, '/etc/commerce/products')")
+								.append(" AND [baseSku] = '").append(sku).append("' AND [cq:commerceType] = 'product'").toString();
+		Session session = resourceResolver != null ? resourceResolver.adaptTo(Session.class) : null;
+		try {
+			QueryManager queryManager = session != null ? session.getWorkspace().getQueryManager() : null;
+			Query commerceQuery = queryManager != null ? queryManager.createQuery(sqlStatement, Query.JCR_SQL2) : null;
+			QueryResult queryResult = commerceQuery != null ? commerceQuery.execute() : null;
+			NodeIterator commerceIterator = queryResult != null ? queryResult.getNodes() : null;
+			if( commerceIterator != null && commerceIterator.hasNext() ) {
+				Node commerceNode = commerceIterator.nextNode();
+				String commerceProductPath = commerceNode.getPath();
+				log.debug("cq:productMaster should be set to: {} for sku: {}", commerceProductPath, sku);
+				return commerceProductPath;
+			}
+		} catch( RepositoryException repoEx ) {
+			log.error("RepositoryException trying to execute search query for commerce product path:\n", repoEx);
+		}
+		return null;
 	}
 }	
 	
