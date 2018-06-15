@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="MyAccount Auhorized Users"
+    sling:resourceType="cq/gui/components/authoring/dialog"
+    helpPath="https://todo.frontier.com/a/future/help/path/for/authors.html">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/foundation/container">
+        <layout jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/foundation/layouts/tabs"
+            type="nav"/>
+        <items jcr:primaryType="nt:unstructured">
+            <column jcr:primaryType="nt:unstructured"
+				jcr:title="Pending Invites Labels"
+				sling:resourceType="granite/ui/components/foundation/container">
+				<layout jcr:primaryType="nt:unstructured"
+					sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns" />
+				<items jcr:primaryType="nt:unstructured">
+					<columns jcr:primaryType="nt:unstructured"
+						sling:resourceType="granite/ui/components/foundation/container">
+						<items jcr:primaryType="nt:unstructured">
+							<pendingInvitesTableHeader
+								jcr:primaryType="nt:unstructured"
+								sling:resourceType="granite/ui/components/foundation/form/textfield"
+								fieldDescription="if left empty defaults to 'Pending Invites'"
+								fieldLabel="Pending Invites Table Header"
+								name="./pendingInvitesTableHeader" />
+							<pendingInvitesTopButtonText
+							    jcr:primaryType="nt:unstructured"
+							    sling:resourceType="granite/ui/components/foundation/form/textfield"
+							    fieldDescription="if left empty defaults to 'Invite New Users'"
+							    fieldLabel="Pending Invites Top Button Text"
+							    name="./pendingInvitesTopButtonText"/>
+							<pendingInvitesFirstNameColumnHeader
+								jcr:primaryType="nt:unstructured"
+								sling:resourceType="granite/ui/components/foundation/form/textfield"
+								fieldDescription="if left empty defaults to 'First'"
+								fieldLabel="Pending Invites First Name Column Header"
+								name="./pendingInvitesFirstNameColumnHeader" />
+							<pendingInvitesLastNameColumnHeader
+								jcr:primaryType="nt:unstructured"
+								sling:resourceType="granite/ui/components/foundation/form/textfield"
+								fieldDescription="if left empty defaults to 'Last'"
+								fieldLabel="Pending Invites Last Name Column Header"
+								name="./pendingInvitesLastNameColumnHeader" />
+							<pendingInvitesEmailColumnHeader
+								jcr:primaryType="nt:unstructured"
+								sling:resourceType="granite/ui/components/foundation/form/textfield"
+								fieldDescription="if left empty defaults to 'Email'"
+								fieldLabel="Pending Invites Email Column Header"
+								name="./pendingInvitesEmailColumnHeader" />
+							<pendingInvitesStatusColumnHeader
+								jcr:primaryType="nt:unstructured"
+								sling:resourceType="granite/ui/components/foundation/form/textfield"
+								fieldDescription="if left empty defaults to 'Status'"
+								fieldLabel="Pending Invites Status Column Header"
+								name="./pendingInvitesStatusColumnHeader" />
+							<pendingInvitesActionsColumnHeader
+								jcr:primaryType="nt:unstructured"
+								sling:resourceType="granite/ui/components/foundation/form/textfield"
+								fieldDescription="if left empty defaults to 'Actions'"
+								fieldLabel="Pending Invites Actions Column Header"
+								name="./pendingInvitesActionsColumnHeader" />
+						</items>
+					</columns>
+				</items>
+			</column>
+			<column2 jcr:primaryType="nt:unstructured"
+				jcr:title="My Club Members Labels"
+				sling:resourceType="granite/ui/components/foundation/container">
+				<layout jcr:primaryType="nt:unstructured"
+					sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns" />
+				<items jcr:primaryType="nt:unstructured">
+					<columns jcr:primaryType="nt:unstructured"
+						sling:resourceType="granite/ui/components/foundation/container">
+						<items jcr:primaryType="nt:unstructured">
+							<myClubMembersTableHeader
+								jcr:primaryType="nt:unstructured"
+								sling:resourceType="granite/ui/components/foundation/form/textfield"
+								fieldDescription="if left empty defaults to 'My Club Members'"
+								fieldLabel="My Club Members Table Header"
+								name="./myClubMembersTableHeader" />
+							<myClubMembersFirstNameColumnHeader
+								jcr:primaryType="nt:unstructured"
+								sling:resourceType="granite/ui/components/foundation/form/textfield"
+								fieldDescription="if left empty defaults to 'First'"
+								fieldLabel="My Club Members First Name Column Header"
+								name="./myClubMembersFirstNameColumnHeader" />
+							<myClubMembersLastNameColumnHeader
+								jcr:primaryType="nt:unstructured"
+								sling:resourceType="granite/ui/components/foundation/form/textfield"
+								fieldDescription="if left empty defaults to 'Last'"
+								fieldLabel="My Club Members Last Name Column Header"
+								name="./myClubMembersLastNameColumnHeader" />
+							<myClubMembersEmailColumnHeader
+								jcr:primaryType="nt:unstructured"
+								sling:resourceType="granite/ui/components/foundation/form/textfield"
+								fieldDescription="if left empty defaults to 'Email'"
+								fieldLabel="My Club Members Email Column Header"
+								name="./myClubMembersEmailColumnHeader" />
+							<myClubMembersUserRoleColumnHeader
+								jcr:primaryType="nt:unstructured"
+								sling:resourceType="granite/ui/components/foundation/form/textfield"
+								fieldDescription="if left empty defaults to 'User Role'"
+								fieldLabel="My Club Members User Role Column Header"
+								name="./myClubMembersUserRoleColumnHeader" />
+							<myClubMembersStatusColumnHeader
+								jcr:primaryType="nt:unstructured"
+								sling:resourceType="granite/ui/components/foundation/form/textfield"
+								fieldDescription="if left empty defaults to 'Status'"
+								fieldLabel="My Club Members Status Column Header"
+								name="./myClubMembersStatusColumnHeader" />
+							<myClubMembersActionsColumnHeader
+								jcr:primaryType="nt:unstructured"
+								sling:resourceType="granite/ui/components/foundation/form/textfield"
+								fieldDescription="if left empty defaults to 'Actions'"
+								fieldLabel="My Club Members Actions Column Header"
+								name="./myClubMembersActionsColumnHeader" />
+							<myClubMembersEditButtonText
+								jcr:primaryType="nt:unstructured"
+								sling:resourceType="granite/ui/components/foundation/form/textfield"
+								fieldDescription="if left empty defaults to 'Edit'"
+								fieldLabel="My Club Members Edit Button Text"
+								name="./myClubMembersEditButtonText" />
+						</items>
+					</columns>
+				</items>
+			</column2>
+			<column3 jcr:primaryType="nt:unstructured"
+				jcr:title="Invite New User Labels"
+				sling:resourceType="granite/ui/components/foundation/container">
+				<layout jcr:primaryType="nt:unstructured"
+					sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns" />
+				<items jcr:primaryType="nt:unstructured">
+					<columns jcr:primaryType="nt:unstructured"
+						sling:resourceType="granite/ui/components/foundation/container">
+						<items jcr:primaryType="nt:unstructured">
+							<inviteNewUsersFormHeader
+								jcr:primaryType="nt:unstructured"
+								sling:resourceType="granite/ui/components/foundation/form/textfield"
+								fieldDescription="if left empty defaults to 'Invite New Users'"
+								fieldLabel="Invite New Users Form Header"
+								name="./inviteNewUsersFormHeader" />
+							<inviteNewUsersNameFieldLabel
+								jcr:primaryType="nt:unstructured"
+								sling:resourceType="granite/ui/components/foundation/form/textfield"
+								fieldDescription="if left empty defaults to 'Name'"
+								fieldLabel="Invite New Users Name Field Label"
+								name="./inviteNewUsersNameFieldLabel" />
+							<inviteNewUsersNameFieldHint
+								jcr:primaryType="nt:unstructured"
+								sling:resourceType="granite/ui/components/foundation/form/textfield"
+								fieldDescription="if left empty defaults to 'Name'"
+								fieldLabel="Invite New Users Name Field Hint"
+								name="./inviteNewUsersNameFieldHint" />
+							<inviteNewUsersEmailLabel
+								jcr:primaryType="nt:unstructured"
+								sling:resourceType="granite/ui/components/foundation/form/textfield"
+								fieldDescription="if left empty defaults to 'Email'"
+								fieldLabel="Invite New Users Email Label"
+								name="./inviteNewUsersEmailLabel" />
+							<inviteNewUsersEmailFieldHint
+								jcr:primaryType="nt:unstructured"
+								sling:resourceType="granite/ui/components/foundation/form/textfield"
+								fieldDescription="if left empty defaults to 'Email'"
+								fieldLabel="Invite New Users Email Field Hint"
+								name="./inviteNewUsersEmailFieldHint" />
+							<inviteNewUsersButtonText
+								jcr:primaryType="nt:unstructured"
+								sling:resourceType="granite/ui/components/foundation/form/textfield"
+								fieldDescription="if left empty defaults to 'Invite'"
+								fieldLabel="Invite New Users Button Text"
+								name="./inviteNewUsersButtonText" />
+						</items>
+					</columns>
+				</items>
+			</column3>
+        </items>
+    </content>
+</jcr:root>

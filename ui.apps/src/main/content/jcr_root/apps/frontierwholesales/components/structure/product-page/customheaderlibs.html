@@ -1,0 +1,14 @@
+<sly data-sly-use.wcmInit="/libs/wcm/foundation/components/page/initwcm.js"
+     data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html">
+<!--/* Include the site client libraries (loading only the CSS in the header, JS will be loaded in the footer) */-->
+<sly data-sly-use.clientLib="/libs/granite/sightly/templates/clientlib.html" data-sly-call="${clientLib.css @ categories='frontierwholesales.all'}" />
+    
+    <!--/* Initializes the Experience Manager authoring UI */-->
+<sly data-sly-include="/libs/wcm/core/components/init/init.jsp" data-sly-unwrap> </sly>
+
+<!--/* Include Adobe Dynamic Tag Management libraries for the header */-->
+<sly data-sly-include="/libs/cq/cloudserviceconfigs/components/servicelibs/servicelibs.jsp" data-sly-unwrap/>
+    <sly data-sly-use.clientLib="/libs/granite/sightly/templates/clientlib.html" data-sly-call="${clientLib.js @ categories='cq.widgets'}"/>
+</sly>
+
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700|Open+Sans+Condensed:300,700|Open+Sans:300,400,700" rel="stylesheet">

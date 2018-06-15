@@ -1,5 +1,14 @@
 #base=js
-jquery.hoverIntent.min.js
-jquery.validate.min.js
+#jquery.hoverIntent.min.js
+#jquery.validate.min.js
+#jquery.matchHeight.js
+frontier-minified.js
 additional-methods.min.js
+handlebars.min-latest.js
+handlebars-intl.min.js
+#swiper.min.js
 validations.js
+newsletter.js
+#main.js
+
+

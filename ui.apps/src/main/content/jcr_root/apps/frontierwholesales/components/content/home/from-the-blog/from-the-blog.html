@@ -1,0 +1,51 @@
+<!--/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  ~ Copyright 2016 Adobe Systems Incorporated
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/-->
+<sly data-sly-use.textImage="from-the-blog.js"
+     data-sly-use.emptyRenderer="from-the-blog-empty.html"
+     data-sly-call="${emptyRenderer.emptyTextImageTemplate @ textImage=textImage}" />
+
+
+<sly data-sly-test="${properties.alignment == 'left'}"
+data-sly-test.txtAlign="${properties.alignment == 'left' ? 'col-md-push-5' : ''}" />
+<sly data-sly-test="${properties.alignment == 'left'}"
+data-sly-test.imgAlign="${properties.alignment == 'left' ? 'col-md-pull-7' : ''}" />
+     
+<div class="row">
+    <div class="blog-info col-xs-12 col-md-7 ${txtAlign}"> 
+    <a href="${properties.linkTo @ extension='html' || '#'}">   
+        <span class="blog-note">
+            From the Blog
+        </span>
+        <h4 data-sly-element=${properties.type} class="blog-header">${properties.brandTitle}</h4>
+        <p class="blog-text">${properties.copyText}</p>
+        <div class="special-button-holder">
+            <span class="btn btn-white-green btn-special-section">${properties.label}</span>
+        </div> 
+    </a>    
+    </div>
+    <div class="blog-image-holder col-md-5 ${imgAlign}"
+    data-sly-test="${textImage.hasContent}"
+    data-sly-resource="${'image' @ resourceType='wcm/foundation/components/image', wcmmode='disabled'}"
+    >
+        <img
+        data-sly-use.textImage="from-the-blog.js"
+        src="${textImage.src}"
+        alt="${textImage.alt}"/>
+    </div>
+</div>
+
+
+

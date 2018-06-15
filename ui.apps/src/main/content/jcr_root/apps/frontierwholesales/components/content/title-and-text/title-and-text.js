@@ -24,8 +24,8 @@ use(function () {
     // TODO: change currentStyle to wcm.currentStyle
 
     var CONST = {
-        PROP_TITLE: "jcr:titletext",
-        PROP_PAGE_TITLE: "pageTitle",
+        PROP_TITLE: "./title",
+        PROP_TEXT: "./text",
         PROP_TYPE: "type",
         PROP_DEFAULT_TYPE: "defaultType"
     }
@@ -33,14 +33,13 @@ use(function () {
     var titletext = {};
 
     // The actual titletext content
-    //titletext.text = granite.resource.properties[CONST.PROP_TITLE]
-    titletext.text = properties.get(CONST.PROP_TITLE)
-            || resourcePage.getProperties().get(CONST.PROP_TITLE)
-            || resourcePage.getProperties().get(CONST.PROP_PAGE_TITLE)
-            || granite.resource.properties["fieldDescription"]
-            || "Insert text here";
+    //titletext.text = granite.resource.properties[CONST.PROP_TEXT]
+    titletext.text = properties.get(CONST.PROP_TEXT)
+            || granite.resource.properties["fieldDescription"];
 
 
+    titletext.title = properties.get(CONST.PROP_TITLE)
+            || granite.resource.properties["fieldDescription"];
 
     // The HTML element name
     titletext.element = granite.resource.properties[CONST.PROP_TYPE]
@@ -48,8 +47,14 @@ use(function () {
 
     // Adding the constants to the exposed API
     titletext.CONST = CONST;
+    
+    // Initialise hasValue function
+    var hasValue = false;
+    if ((titletext.text != null) && (titletext.text.length()!=0)) {
+            hasValue = true;
+    } 
+    titletext.hasValue = hasValue;
 
     return titletext;
 
 });
-

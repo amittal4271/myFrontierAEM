@@ -32,7 +32,7 @@ public class FrontierWholesalesUserRegistration {
 	}
 	
 	public static String companyRegistration(String pwd,JsonObject params) throws Exception{
-		
+		try {
 		String server = FrontierWholesalesMagentoCommerceConnector.getServer();
 		String userDetails = Request.Post(server + "/rest/all/V1/company")
 				.addHeader("Authorization",pwd)
@@ -40,6 +40,11 @@ public class FrontierWholesalesUserRegistration {
                 .execute().returnContent().asString();
 		log.info("customer id is "+userDetails);
 		return userDetails;
+		}catch(Exception anyEx) {
+			log.error("Exception in during the company registration :"+anyEx.getMessage());
+			anyEx.printStackTrace();
+		}
+		return null;
 	}
 	
 	public static String getCountriesWithRegions(String adminToken) throws Exception{

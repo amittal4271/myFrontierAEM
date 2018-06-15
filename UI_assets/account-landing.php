@@ -29,12 +29,113 @@
                               </div>
                          </section>
 
-                         <section class="account-main-holder">
+                         <section class="account-main-holder clearfix">
 
                               <div class="account-heading-holder table-below">
                                    <h2 class="account-heading">Pending Orders</h2>
                                    <a href="#" class="btn btn-white-green btn-account-heading btn-account-form">View All Orders</a>
                               </div>
+
+                              <div class="grid-table-header order-information-header">
+                                   <div class="each-order-header landing-pending-header-shopper grid-header">Shopper</div>
+                                   <div class="each-order-header landing-pending-header-ordername grid-header">Order Name</div>
+                                   <div class="each-order-header landing-pending-header-lines grid-header">Lines</div>
+                                   <div class="each-order-header landing-pending-header-subtotal grid-header">Subtotal</div>
+                                   <div class="each-order-header landing-pending-header-status grid-header">Status</div>
+                                   <div class="each-order-header landing-pending-header-actions grid-header">Actions</div>
+                              </div>
+
+                              <div class="order-grid grid-table-data invites-data">
+                                   <div class="row-each-order">
+                                        <div class="information-holder order-information-holder">
+                                             <div class="each-order-section landing-pending-shopper-section">
+                                                  <span class="tablet-below-col-heading">Shopper</span>
+                                                  Justin Prahst
+                                             </div>
+                                             <div class="each-order-section landing-pending-ordername-section">
+                                                  <span class="tablet-below-col-heading">Order Name</span>
+                                                  Justin's created on 02/22/1
+                                             </div>
+                                             <div class="each-order-section landing-pending-lines-section">
+                                                  <span class="tablet-below-col-heading">Lines</span>
+                                                  3
+                                             </div>
+                                             <div class="each-order-section landing-pending-subtotal-section">
+                                                  <span class="tablet-below-col-heading">Subtotal</span>
+                                                  $123.33
+                                             </div>
+                                             <div class="each-order-section landing-pending-status-section">
+                                                  <span class="tablet-below-col-heading">Status</span>
+                                                  Draft
+                                             </div>
+                                             <div class="each-order-section landing-pending-actions-section">
+                                                  <form id="form-order-switch">
+                                                       <button class="btn btn-light-green btn-view-order">View Order</button>
+                                                  </form>
+                                             </div>
+                                        </div>
+                                   </div>
+                                   <div class="row-each-order">
+                                        <div class="information-holder order-information-holder">
+                                             <div class="each-order-section landing-pending-shopper-section">
+                                                  <span class="tablet-below-col-heading">Shopper</span>
+                                                  Brittany Miller
+                                             </div>
+                                             <div class="each-order-section landing-pending-ordername-section">
+                                                  <span class="tablet-below-col-heading">Order Name</span>
+                                                  Brittany's Cart created on 02/22/1
+                                             </div>
+                                             <div class="each-order-section landing-pending-lines-section">
+                                                  <span class="tablet-below-col-heading">Lines</span>
+                                                  4
+                                             </div>
+                                             <div class="each-order-section landing-pending-subtotal-section">
+                                                  <span class="tablet-below-col-heading">Subtotal</span>
+                                                  $523.33
+                                             </div>
+                                             <div class="each-order-section landing-pending-status-section">
+                                                  <span class="tablet-below-col-heading">Status</span>
+                                                  Draft
+                                             </div>
+                                             <div class="each-order-section landing-pending-actions-section">
+                                                  <form id="form-order-switch">
+                                                       <button class="btn btn-light-green btn-view-order">View Order</button>
+                                                  </form>
+                                             </div>
+                                        </div>
+                                   </div>
+                                   <div class="row-each-order">
+                                        <div class="information-holder order-information-holder">
+                                             <div class="each-order-section landing-pending-shopper-section">
+                                                  <span class="tablet-below-col-heading">Shopper</span>
+                                                  Brittany Miller
+                                             </div>
+                                             <div class="each-order-section landing-pending-ordername-section">
+                                                  <span class="tablet-below-col-heading">Order Name</span>
+                                                  Brittany's Cart created on 02/22/1
+                                             </div>
+                                             <div class="each-order-section landing-pending-lines-section">
+                                                  <span class="tablet-below-col-heading">Lines</span>
+                                                  4
+                                             </div>
+                                             <div class="each-order-section landing-pending-subtotal-section">
+                                                  <span class="tablet-below-col-heading">Subtotal</span>
+                                                  $523.33
+                                             </div>
+                                             <div class="each-order-section landing-pending-status-section">
+                                                  <span class="tablet-below-col-heading">Status</span>
+                                                  Draft
+                                             </div>
+                                             <div class="each-order-section landing-pending-actions-section">
+                                                  <form id="form-order-switch">
+                                                       <button class="btn btn-light-green btn-view-order">View Order</button>
+                                                  </form>
+                                             </div>
+                                        </div>
+                                   </div>
+                              </div>
+
+                              <!--
 
                               <table class="simple-responsive">
                                    <thead>
@@ -86,6 +187,8 @@
                                         </tr>
                                    </tbody>
                               </table>
+
+                              -->
                               
                          </section>
                     </div>

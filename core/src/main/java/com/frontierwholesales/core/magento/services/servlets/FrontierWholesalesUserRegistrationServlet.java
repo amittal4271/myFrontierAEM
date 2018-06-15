@@ -35,23 +35,22 @@ public class FrontierWholesalesUserRegistrationServlet  extends SlingAllMethodsS
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	public FrontierWholesalesMagentoCommerceConnector connector = new FrontierWholesalesMagentoCommerceConnector();
+	
 	@Override
 	protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response)
 			throws ServletException, IOException {
-		//String adminToken="Bearer 0w5q8qyucriykjaiwke22ludd8nqtixk";
+		
 		String object;
 		JsonObject jsonObject = new JsonObject();
-		FrontierWholesalesMagentoCommerceConnector connector = new FrontierWholesalesMagentoCommerceConnector();
+		
 		try {
-			String adminToken = (String)request.getSession().getAttribute(FrontierWholesalesConstants.MAGENTO_ADMIN_PASSWORD);
-			if(null == adminToken) {
-			 adminToken = connector.getAdminToken();
-			request.getSession().setAttribute(FrontierWholesalesConstants.MAGENTO_ADMIN_PASSWORD, adminToken);
-			}
+			
+			String adminToken = (String)getTokenFromSession(request); 
 			object = FrontierWholesalesUserRegistration.getCountriesWithRegions(adminToken);
 			response.getOutputStream().println(object);
 		} catch (Exception e) {
-			
+			log.error("Exception occurred in doGet method "+e.getMessage());
 			e.printStackTrace();
 			jsonObject.addProperty("Error", "Error");
 			response.getOutputStream().println(jsonObject.toString());
@@ -61,10 +60,22 @@ public class FrontierWholesalesUserRegistrationServlet  extends SlingAllMethodsS
 		
 	}
 	
+	private String getTokenFromSession(SlingHttpServletRequest request) throws Exception{
+		log.debug("getToken from session start");
+		String adminToken = (String)request.getSession().getAttribute(FrontierWholesalesConstants.MAGENTO_ADMIN_TOKEN);
+		if(null == adminToken) {
+			adminToken = connector.getAdminToken();
+			request.getSession().setAttribute(FrontierWholesalesConstants.MAGENTO_ADMIN_TOKEN, adminToken);
+		}
+		log.debug("getToken from session end");
+		return adminToken;
+	}
+	
 	@Override
 	protected void doPost(SlingHttpServletRequest request, SlingHttpServletResponse response)
 			throws ServletException, IOException {
 			JsonObject jsonObject = new JsonObject();
+			log.debug("entered into doPost method of registration");
 			try {
 			  String data = request.getParameter("customer");
 				final String authorization = request.getHeader("Authorization");
@@ -77,26 +88,32 @@ public class FrontierWholesalesUserRegistrationServlet  extends SlingAllMethodsS
 					  String company = request.getParameter("company");
 					 
 					  JsonObject customerObject = updateJSONObject(data,"password",credentials);
-					  log.info("updated customer json "+customerObject.toString());
+					 
 					  //Call customer service to get customer id here
 					  String customerId = FrontierWholesalesUserRegistration.customerRegistration(customerObject);
-					log.info("customer id is "+customerId);
-					  String adminPwd=(String) request.getSession().getAttribute(FrontierWholesalesConstants.MAGENTO_ADMIN_PASSWORD);
-					 log.info("admin token is retrieved from session "+adminPwd);
+					 
+					String adminToken = (String)getTokenFromSession(request); 
+					
 					 String id = getCustomerId(customerId);
-					 log.info("id is "+id);
+					 request.getSession().setAttribute(FrontierWholesalesConstants.CUSTOMER_ID, id);
 					 JsonObject companyObject = updateCompanyJSONObject(company,"super_user_id",id);
-					log.info("company object is "+companyObject.toString());
+					
 					  //call company service here to register
-					  String registredValues = FrontierWholesalesUserRegistration.companyRegistration(adminPwd, companyObject);
-					  
-					  jsonObject.addProperty("Success", registredValues);
-					  response.getOutputStream().println(jsonObject.toString());
+					  String registredValues = FrontierWholesalesUserRegistration.companyRegistration(adminToken, companyObject);
+					  log.debug("Successfully user is registered");
+					  if(registredValues != null) {
+						  jsonObject.addProperty("Success", registredValues);
+						  response.getOutputStream().println(jsonObject.toString());
+					  }else {
+						  log.error("Returned object is null ");
+						  response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Service object is null");
+					  }
 			    }else {
 			    	response.sendError(HttpServletResponse.SC_FORBIDDEN, "Password is not set");
 			    }
 			}catch(Exception anyEx) {
-				log.info("Error is "+anyEx.getMessage());
+				log.error("Error is "+anyEx.getMessage());
+				anyEx.printStackTrace();
 				response.sendError(HttpServletResponse.SC_FORBIDDEN, "Error "+anyEx.getMessage());
 				
 			}

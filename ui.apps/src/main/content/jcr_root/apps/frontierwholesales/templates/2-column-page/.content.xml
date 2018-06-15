@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:description="2 column page template"
+    jcr:primaryType="cq:Template"
+    jcr:title="2 Column Page"
+    allowedPaths="[/content(/.*)?]"
+    ranking="{Long}2">
+    <jcr:content
+        jcr:primaryType="cq:PageContent"
+        sling:resourceType="frontierwholesales/components/structure/2-column-page">
+        <par
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="wcm/foundation/components/parsys">
+            <banner-image
+                jcr:created="{Date}2016-10-03T13:49:13.021-07:00"
+                jcr:createdBy="admin"
+                jcr:lastModified="{Date}2016-10-03T21:04:40.313-07:00"
+                jcr:lastModifiedBy="admin"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="frontierwholesales/components/content/image"/>
+            <columncontrol
+                jcr:created="{Date}2016-10-03T10:29:48.458-07:00"
+                jcr:createdBy="admin"
+                jcr:lastModified="{Date}2016-10-03T10:29:57.684-07:00"
+                jcr:lastModifiedBy="admin"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="frontierwholesales/components/content/columnControl/columnControl"
+                layout="two-50-50">
+                <col-cntrl-1
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="wcm/foundation/components/parsys">
+                    <titledescription
+                        jcr:created="{Date}2016-10-03T13:49:13.021-07:00"
+                        jcr:createdBy="admin"
+                        jcr:lastModified="{Date}2016-10-03T21:04:40.313-07:00"
+                        jcr:lastModifiedBy="admin"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="frontierwholesales/components/content/faq/title-description"/>
+                    <accordion-text
+                        jcr:created="{Date}2016-10-03T13:49:13.021-07:00"
+                        jcr:createdBy="admin"
+                        jcr:lastModified="{Date}2016-10-03T21:04:40.313-07:00"
+                        jcr:lastModifiedBy="admin"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="frontierwholesales/components/content/multitext"/>
+                </col-cntrl-1>
+                <col-cntrl-2
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="wcm/foundation/components/parsys">
+                    <questionform
+                        jcr:created="{Date}2016-10-03T13:49:13.021-07:00"
+                        jcr:createdBy="admin"
+                        jcr:lastModified="{Date}2016-10-03T21:04:40.313-07:00"
+                        jcr:lastModifiedBy="admin"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="frontierwholesales/components/content/questionform"/>
+                </col-cntrl-2>
+            </columncontrol>
+        </par>
+    </jcr:content>
+</jcr:root>

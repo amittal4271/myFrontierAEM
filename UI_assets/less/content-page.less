@@ -14,7 +14,7 @@
 
 	.breakpoint_768({
 		width: 16%;
-        padding-right: 10px;
+        padding-right: 10px; 
     });
 	
 }
@@ -33,9 +33,7 @@
 }
 
 .content-page-banner {
-	float: left;
 	width: 100%;
-	clear: both;
 	position: relative;
 	margin-bottom: 40px;
 
@@ -59,6 +57,59 @@
 	}
 }
 
+.content-page-glossary-header {
+	float: left;
+	width: 100%;
+	clear: both;
+	margin: 0 0 30px 0;
+
+	&.secondary-styling {
+		margin: 25px 0 30px 0;
+		padding-bottom: 30px;
+		border-bottom: 1px solid #ececec;
+		#glossary-filter-list {
+			li {
+				a {
+					color: #4d4a48;
+					font-size: 13px;
+					text-transform: uppercase;
+					font-weight: 700;
+					padding: 0 20px;
+
+					&:hover, &:focus {
+						color: #8bba4a;
+					}
+				}
+			}
+		}
+	}
+}
+
+#glossary-filter-list {
+	list-style: none;
+	text-align: center;
+	display: block;
+	margin: 10px 0;
+	padding: 0;
+
+	li {
+		display: inline-block;
+		text-align: center;
+		margin: 0 5px;
+
+		a {
+			color: #a09892;
+			font-size: 16px;
+			font-weight: 700;
+			text-decoration: none;
+			padding: 0 5px;
+
+			&:hover, &:focus {
+				color: #8bba4a;
+			}
+		}
+	}
+}
 
 .content-page-information {
 	float: left;
@@ -81,13 +132,9 @@
 		float: left;
 
 		p {
-			color: #817266;
-		    display: block;
-		    font-family: 'Open Sans',sans-serif;
 		    font-size: 14px;
 		    margin: 0 auto 15px 0;
 		    clear: both;
-		    line-height: 26px;
 
 		    a {
 		    	color: #f4901c;
@@ -95,7 +142,7 @@
 		}
 	}
 	.content-page-form {
-		width: 100%;
+		/*width: 100%;*/
 		float: left;
 		background-color: #fcfcfc;
 		border: 1px solid #ebebeb;
@@ -104,7 +151,7 @@
 		margin-top: 25px;
 
 		.breakpoint_992({
-			width: 30%;
+			/*width: 30%;*/
 			margin-top: 0;
 	    });
 	}
@@ -130,13 +177,8 @@
 }
 
 .content-paragraph {
-	color: #817266;
-    display: block;
-    font-family: 'Open Sans',sans-serif;
-    font-size: 14px;
     margin: 0 auto 15px 0;
     clear: both;
-    line-height: 26px;
 
     a {
     	color: #f4901c;
@@ -154,21 +196,16 @@
 }
 
 .inquiry-copy {
-	color: #817266;
-    font-family: 'Open Sans',sans-serif;
     font-size: 14px;
-    line-height: 22px;
 }
 
 .btn-heading {
-	float: left;
 	width: 100%;
 	clear: both;
 	margin: 0;
 	padding: 0;
 
 	.btn-faq-section {
-		float: left;
 		width: 100%; 
 		text-align: left;
 		color: #817266;
@@ -179,6 +216,7 @@
 	    text-transform: none;
 	    border-top: 1px solid #e5e5e5;
 	    padding: 25px 15px;
+	    background: #fff;
 
 	    &:hover {
 	    }
@@ -211,8 +249,9 @@
 
 
 .article-full-width-banner {
-	float: left;
+	display: inline-block;
 	width: 100%;
+	clear: both;
 }
 
 .banner-holder-full-width {
@@ -225,12 +264,10 @@
 }
 
 .banner-image-section {
-	float: left;
 	width: 100%;
 	position: relative;
 
 	.banner-image {
-		float: left;
 		width: 100%;
 
 		img {
@@ -291,7 +328,6 @@
 }
 
 .banner-intro-holder {
-	float: left;
 	width: 100%;
 	clear: both;
 	text-align: center;
@@ -305,7 +341,7 @@
     	padding: 60px 80px 80px 80px;
     });
 
-	.banner-intro-heading {
+	.banner-intro-heading, h1, h2, h3, h4 {
 		color: #5a524b;
 	    font-weight: 700;
 	    text-transform: uppercase;
@@ -320,21 +356,16 @@
 	    });
 	}
 	.banner-intro-text {
-		color: #817266;
-	    display: block;
-	    font-family: 'Open Sans',sans-serif;
-	    line-height: 24px;
 
-	    font-size: 16px;
 	}
 
 }
 
 .content-left-right-sections, 
 .content-standard {
-	float: left;
 	width: 100%;
 	position: relative;
+	display: inline-block;
 
 	&.border-top {
 		border-top: 4px dotted #ddd;
@@ -362,7 +393,7 @@
 
 .each-left-right-section,
 .each-standard-section {
-	float: left;
+	display: block;
 	width: 100%;
 
 	&.bg-light-section {
@@ -405,7 +436,6 @@
 }
 
 .each-standard-information-section {
-	float: left;
 	width: 100%;
 	padding: 20px 0;
 	text-align: center;
@@ -509,25 +539,11 @@
 
 .description-holder-left-right,
 .each-standard-information-section {
-	float: left;
+	display: block;
 	width: 100%;
 	clear: both;
 
 	ul, p {
-		color: #817266;
-	    display: block;
-	    font-family: 'Open Sans',sans-serif;
-	    line-height: 24px;
-
-		font-size: 14px;
-
-		.breakpoint_768({
-	    	
-	    });
-
-	    .breakpoint_992({
-	    	font-size: 16px;
-	    });
 	}
 
 	ul {
@@ -540,20 +556,15 @@
 		color: @orange;
 		text-decoration: underline;
 	}
-}
-
-.standard-text {
-	width: 100%;
-
-	.breakpoint_768({
-	    width: 80%;
-	    margin-left: 10%;
-    });
-
-    .breakpoint_1200({
-    	width: 66%;
-    	margin-left: 17%;
-    });
+	.btn {
+		text-decoration: none;
+	}
+	.btn-read-more {
+		margin-top: 10px;
+	}
+	.btn-white-green {
+		color: @lightgreen; 
+	}
 }
 
 

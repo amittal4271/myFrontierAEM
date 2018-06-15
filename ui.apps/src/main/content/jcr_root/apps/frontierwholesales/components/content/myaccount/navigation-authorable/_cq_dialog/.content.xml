@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="MyAccount Navigation Menu"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/foundation/container">
+        <layout
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/foundation/layouts/tabs"
+            type="nav"/>
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                jcr:title="General"
+                sling:resourceType="granite/ui/components/foundation/container">
+                <items jcr:primaryType="nt:unstructured">
+                    <usersubmenu
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="My Account Menu"
+                        sling:resourceType="granite/ui/components/foundation/section">
+                        <layout
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns"/>
+                        <items jcr:primaryType="nt:unstructured">
+                            <tab
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/foundation/container">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <link
+	                                    jcr:primaryType="nt:unstructured"
+	                                    sling:resourceType="granite/ui/components/foundation/form/pathbrowser"
+	                                    fieldDescription="Enter Menu Nav Root Link"
+	                                    fieldLabel="Menu Nav Root Link"
+	                                    name="./navRoot"
+	                                    rootPath="/content"/>
+                                    <menudetails
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/multifield"
+                                        class="full-width"
+                                        fieldDescription="Click 'Add field' to add a new Menu title and links"
+                                        fieldLabel="Menu Items">
+                                        <field
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/foundation/form/fieldset"
+                                            acs-commons-nested=""
+                                            name="./authorableNavigationItems">
+                                            <layout
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns"
+                                                method="absolute"/>
+                                            <items jcr:primaryType="nt:unstructured">
+                                                <column
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/foundation/container">
+                                                    <items jcr:primaryType="nt:unstructured">
+                                                        <title
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                                            fieldDescription="Enter Menu title"
+                                                            fieldLabel="Menu Title"
+                                                            name="./title"/>
+                                                        <link
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/foundation/form/pathbrowser"
+                                                            fieldDescription="Enter Menu Link"
+                                                            fieldLabel="Menu Link"
+                                                            name="./link"
+                                                            rootPath="/content"/>
+						                                     <nestedsubmenudetails
+						                                        jcr:primaryType="nt:unstructured"
+						                                        sling:resourceType="granite/ui/components/foundation/form/multifield"
+						                                        class="full-width"
+						                                        fieldDescription="Click 'Add field' to add a new Nested Menu Item title and links"
+						                                        fieldLabel="Nested Menu Items">
+						                                        <field
+						                                            jcr:primaryType="nt:unstructured"
+						                                            sling:resourceType="granite/ui/components/foundation/form/fieldset"
+						                                            acs-commons-nested=""
+						                                            name="./authorableNavigationSubItems">
+						                                            <layout
+						                                                jcr:primaryType="nt:unstructured"
+						                                                sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns"
+						                                                method="absolute"/>
+						                                            <items jcr:primaryType="nt:unstructured">
+						                                                <column
+						                                                    jcr:primaryType="nt:unstructured"
+						                                                    sling:resourceType="granite/ui/components/foundation/container">
+						                                                    <items jcr:primaryType="nt:unstructured">
+						                                                        <title
+						                                                            jcr:primaryType="nt:unstructured"
+						                                                            sling:resourceType="granite/ui/components/foundation/form/textfield"
+						                                                            fieldDescription="Enter Nested Menu Item Title"
+						                                                            fieldLabel="Nested Menu Item Title"
+						                                                            name="./title"/>
+						                                                        <link
+						                                                            jcr:primaryType="nt:unstructured"
+						                                                            sling:resourceType="granite/ui/components/foundation/form/pathbrowser"
+						                                                            fieldDescription="Enter Nested Menu Item Link"
+						                                                            fieldLabel="Nested Menu Item Link"
+						                                                            name="./link"
+						                                                            rootPath="/content"/>
+						                                                    </items>
+						                                                </column>
+						                                            </items>
+						                                        </field>
+						                                    </nestedsubmenudetails>
+                                                    </items>
+                                                </column>
+                                            </items>
+                                        </field>
+                                    </menudetails>
+                                </items>
+                            </tab>
+                        </items>
+                    </usersubmenu>
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

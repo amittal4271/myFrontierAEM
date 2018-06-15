@@ -11,7 +11,7 @@
           <main class="main-content-container account-section-max-1200">
                <div class="container">
 
-                    <nav class="checkout-nav">
+                    <nav class="checkout-nav clearfix">
                          <ol class="checkout-nav-list">
                               <li class="checkout-nav-item completed">
                                    <a href="#">
@@ -38,30 +38,55 @@
                          </ol>
                     </nav>
 
-                    <!--
-                    <div id="checkout-message-holder" class="global-server-side-message-holder">
+                    
+                    <div id="checkout-message-holder" class="global-server-side-message-holder clearfix">
                          <div class="alert alert-danger" role="alert"> <strong>Message Alert:</strong> Some type of message that shows errors </div>
                     </div>
-                    -->
+                    
 
-                    <section class="account-main-holder checkout-holder shipping-page billing-page">
+                    <section class="account-main-holder clearfix checkout-holder shipping-page billing-page">
                          <div id="checkout-steps-holder">
                               <form>
                                    <div class="account-heading-holder completed-steps">
-                                        <h2 class="account-heading"><span class="glyphicon glyphicon-ok"></span> 1. Shipping</h2>
+                                        <h2 class="account-heading">
+                                             <span class="glyphicon glyphicon-ok"></span> 1. Shipping
+                                             <button type="button" class="btn btn-link btn-view-shipping-info">View</button>
+                                        </h2>
                                    </div>
+                                   <fieldset id="shipping-address-holder-on-billing-page" class="billing-section">
+                                        <legend class="checkout-sub-header">Shipping Information</legend>
+                                        <div id="payment-method-shipping-options-entered" class="clearfix">
+                                             <ul class="entered-info-list">
+                                                  <li class="entered-heading">Shipping Address</li>
+                                                  <li>Justin Prahst</li>
+                                                  <li>Justin Company</li>
+                                                  <li>1485 W 6th Ave</li>
+                                                  <li>Columbus, OH 43212-2429</li>
+                                                  <li>United States of America</li>
+                                                  <li>justin@enabl.net</li>
+                                                  <li class="edit-link"><a href="#">Edit</a></li>
+                                             </ul>
+                                             <ul class="entered-info-list">
+                                                  <li class="entered-heading">Shipping Method</li>
+                                                  <li>FedEx Ground Residential - $30.42</li>
+                                                  <li class="edit-link"><a href="#">Edit</a></li>
+                                             </ul>
+                                        </div>
+                                   </fieldset>
                                    
                                    <div class="account-heading-holder">
                                         <h2 class="account-heading">2. Billing / Payment / Review</h2>
                                    </div>
 
-                                   <fieldset id="billing-address-holder" class="billing-section">
+                                   <fieldset id="payment-method-holder" class="billing-section">
                                         <legend class="checkout-sub-header">Payment Method</legend>
                                         <div id="payment-method-options" class="clearfix">
                                              <div class="radio">
                                                   <label for="payment_method_0">
                                                        <input id="payment_method_0" name="payment_method" type="radio" value="">
-                                                       <span class="label-text">Visa, Mastercard, American Express, Discover (image here)</span>
+                                                       <span class="label-text label-image credit-card-image">
+                                                            <img src="../frontierwholesales/images/credit-cards.png" alt="Accepted Credit Cards"/>
+                                                       </span>
                                                   </label>
                                              </div>
 
@@ -114,7 +139,7 @@
                                         
                                    </fieldset>
 
-                                   <fieldset id="billing-address-holder" class="billing-section">
+                                   <fieldset id="billing-address-holder" class="billing-section below-section">
                                         <legend class="checkout-sub-header">Billing Address</legend>
                                         <div id="radio-billing-address-options" class="clearfix">
                                              <div class="radio">
@@ -193,6 +218,25 @@
                                         </div>
                                    </fieldset>
 
+                                   <fieldset id="sales-rep-holder" class="billing-section below-section">
+                                        <legend class="checkout-sub-header">Sales Rep Assistance</legend>
+
+                                        <div class="checkbox">
+                                             <label for="id_sales-rep_assistance">
+                                                  <input id="id_sales-rep_assistance" name="sales-rep_assistance" type="checkbox">
+                                                  <span class="label-text">Click here if you'd like assistance from an Inside Sales Representative for merchandising aids such as displays, jars, labels, testers, etc. Your order will be delayed up to 24 hours.</span>
+                                             </label>
+                                        </div>
+
+                                        <div id="sales-rep-textarea-holder">
+                                             <div class="form-group">
+                                                  <label for="id_sales-rep_message">Message</label>
+                                                  <textarea id="id_sales-rep_message" class="form-control" name="sales-rep_message">
+                                                  </textarea>
+                                             </div>
+                                        </div>
+                                   </fieldset>
+
                                    <div class="submit-holder checkout-flow">
                                         <button class="btn btn-light-green btn-larger btn-cart-checkout">Place Order</button>
                                    </div>
@@ -227,6 +271,10 @@
                                                   <td>Tax</td>
                                                   <td class="amount">$0.00</td>
                                              </tr>
+                                             <tr class="discounts">
+                                                  <td>Discounts</td>
+                                                  <td class="amount">-$10.00</td>
+                                             </tr>
                                         </tbody>
                                         <tfoot>
                                              <tr class="total">
@@ -258,6 +306,22 @@
           <script>
           $(document).ready(function() {
                console.log('checkout doc ready');
+
+               $(document).on( "change", "#id_sales-rep_assistance", function(e) {
+                    console.log('sales rep radio change');
+                    var $this = $(this);
+
+                    var $salesRepMessageHolder = $('#sales-rep-textarea-holder');
+                    
+                    if ($salesRepMessageHolder.hasClass('show-holder')) {
+                         $salesRepMessageHolder.removeClass('show-holder').slideUp("fast");
+                         $this.removeClass('sales-rep-selected');
+                    } else {
+                         $salesRepMessageHolder.addClass('show-holder').slideDown("fast");
+                         $this.addClass('sales-rep-selected');
+                    }
+               });
+
           });
           </script>
      </body>

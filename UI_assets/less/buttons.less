@@ -4,6 +4,12 @@
     font-weight: 700;
     text-transform: uppercase;
     padding: 10px 12px;
+    background: transparent;
+}
+
+.btn-smaller {
+    font-size: 10px;
+    padding: 4px 4px;
 }
 
 .btn-larger {
@@ -16,46 +22,122 @@
     });
 }
 
+.btn-confirm-remove-mini-cart-item {
+    background: #f4a21c;
+    border: 2px solid #f4901c;
+    color: #fff;
+
+    &:hover, &:focus {
+        background: darken(#f4a21c, 2%);
+        color: #fff;
+    }
+}
+
 .btn-green-dark {
     background: #189060;
     border: #189060;
     color: #fff;
+
+    &:hover, &:focus {
+        background: darken(#189060, 2%);
+        color: #fff;
+    }
 }
 .btn-light-green {
     background: #8bba4a;
     border: 1px solid #8bba4a;
     color: #fff;
+
+    &:hover, &:focus {
+        background: darken(#8bba4a, 2%);
+        color: #fff;
+    }
+}
+.btn-black {
+    background: #4d4a48;
+    border: 1px solid #4d4a48;
+    color: #fff;
+
+    &:hover, &:focus {
+        background: darken(#4d4a48, 2%);
+        color: #fff;
+    }
 }
 .btn-purple {
     background: #b192ce;
     border: 1px solid #b192ce;
     color: #fff;
+
+    &:hover, &:focus {
+        background: darken(#b192ce, 2%);
+        color: #fff;
+    }
 }
 .btn-blue {
     background: #206cb2;
     border: 1px solid #206cb2;
     color: #fff;
+
+    &:hover, &:focus {
+        background: darken(#206cb2, 2%);
+        color: #fff;
+    }
 }
 .btn-cart-display {
     background: #8bba4a;
     border: 1px solid #83b144;
     color: #fff;
     padding: 6px 12px;
+    width: 100%;
+    letter-spacing: .2px;
+    text-transform: none;
+
+    &:hover, &:focus {
+        background: darken(#83b144, 2%);
+        color: #fff;
+    }
+
+    &.cart-display-owner-total {
+        margin-top: 6px;
+        background: #fff;
+        border: 1px solid #bebebe;
+        color: #6a6a6a;
+
+        &:hover, &:focus {
+            color: #6a6a6a;
+        }
+    }
+
+    
 }
 .btn-white-green {
     background: #fff;
     border: 2px solid #8bba4a;
     color: #8bba4a;
+
+    &:hover, &:focus {
+        color: #8bba4a;
+    }
 } 
 .btn-dark-orange {
     background: #f4a21c;
     border: 2px solid #f4901c;
     color: #fff;
+
+    &:hover, &:focus {
+        background: darken(#f4a21c, 2%);
+        color: #fff;
+    }
 }
 .btn-red {
     background: #d83644;
     border: 2px solid #b72430;
     color: #fff;
+
+    &:hover, &:focus {
+        background: darken(#d83644, 2%);
+        color: #fff;
+    }
 }
 .btn-special-section {
     padding-left: 40px;
@@ -125,6 +207,23 @@
         border-radius: 10px;
         top: 0;
     }
+
+    &:hover, &:focus {
+        color: #8bba4a;
+    }
+}
+
+.btn-mini-cart-remove {
+    padding: 0;
+    
+    .glyphicon {
+        font-size: 9px;
+        color: #fff;
+        background: #94c750;
+        padding: 4px 3px 4px 4px;
+        border-radius: 10px;
+        top: 0;
+    }
 }
 
 .btn-green-edit-icon {
@@ -148,7 +247,24 @@
             float: right;
         });
     }
+
+    &:hover, &:focus {
+        background: darken(#8bba4a, 2%);
+        color: #fff;
+    }
     
+}
+
+.btn-view-more-filters {
+    font-size: 12px;
+    text-transform: uppercase;
+    padding: 0;
+    background: transparent;
+
+    &:link, &:hover, &:focus, &:active {
+        color: #8bba4a;
+        outline: none;
+    }
 }
 
 .btn-link {
@@ -158,11 +274,39 @@
     border: none;
     background: none;
     text-transform: none;
+    color: #8bba4a;
+
+    &.green-link {
+        color: #8bba4a;
+        font-weight: normal;
+
+        &:link, &:hover, &:focus, &:active {
+            color: #8bba4a;
+            outline: none;
+        }
+    }
+
+    &.red-link {
+        color: #d83644;
+        font-weight: normal;
+
+        &:link, &:hover, &:focus, &:active {
+            color: #d83644;
+            outline: none;
+        }
+    }
 
     &:link, &:hover, &:focus, &:active {
         color: inherit;
         outline: none;
     }
+
+    .glyphicon {
+        font-size: 10px;
+        top: -1px;
+        padding-right: 2px;
+    }
+
 }
 
 .btn-switch-to-cart-orders {

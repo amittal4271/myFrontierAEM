@@ -34,7 +34,7 @@ $("#btn-login").click(function(e){
             },
             success:function(data,textStatus,jqXHR ){
                console.log(textStatus);
-                window.location.href=getRedirectPath();
+                window.location.href=Granite.HTTP.externalize(getRedirectPath());
                 
             }, error: function(XMLHttpRequest, textStatus, errorThrown) { 
                 $('.login-text').css('display','block');

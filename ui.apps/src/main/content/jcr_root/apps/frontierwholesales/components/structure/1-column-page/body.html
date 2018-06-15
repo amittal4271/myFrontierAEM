@@ -1,43 +1,19 @@
 <body>
-
-
+<div id="ajax-form-overlay-holder">
+     <div class="loader"></div>
+</div>
 <!-- Body text here -->
 <main id="test-home" class="main-content-container">
-<section id="breadcrumbs">
-<div class="container">
-<ol class="breadcrumb">
-<li><a href="#">Home</a></li>
-<li><a href="#">Community</a></li>
-<li class="active">About Frontier Co-op</li>
-</ol>
-</div>
-</section>
+<!-- bread crumb start-->
+ <sly data-sly-resource="${'breadcrumb' @ resourceType='frontierwholesales/components/content/breadcrumb'}" data-sly-unwrap></sly> 
+<!-- bread crum end -->
 <article class="article-full-width-banner article-community">
-                    <div class="banner-holder-full-width">
-
-<div class="content-page-banner" data-sly-resource="${'banner-image' @ resourceType='foundation/components/parsys'}"></div> 
-<!--<div class="page__par" data-sly-resource="par"></div> 
-                        <div class="banner-image-section">
-                              <div class="banner-image">
-                                   <img src="/etc/designs/frontierwholesales/images/banner-our-community.jpg">
-                              </div>
-                              <div class="banner-headline-holder">
-                                   <p class="banner-sub-text">Community</p>
-                                   <h1 class="banner-headline">Our History</h1>
-                              </div>
-                         </div>
--->
-                         <div class="container clearfix intro-container">
-                              <div class="banner-intro-holder">
-							   <!-- <h2 class="banner-intro-heading">Intro Heading If Needed!</h2> -->   	
-                                   <sly data-sly-resource="${'banner-text' @ resourceType='foundation/components/parsys'}"></sly>
-                              </div>
-                         </div>
-                    </div>
-               </article>
-<section>
-<div class="container">
+<div class="banner-holder-full-width">
+<div class="container clearfix intro-container">
+	<div class="page__par" data-sly-resource="${ @path='par-page-header',resourceType='/libs/foundation/components/iparsys'}"></div>
+	<div class="page__par" data-sly-resource="par">
 </div>
-</section>
+</div>
+</article>
 </main>
 </body>

@@ -11,7 +11,7 @@
           <main class="main-content-container account-section-max-1200">
                <div class="container">
 
-                    <nav class="checkout-nav">
+                    <nav class="checkout-nav clearfix">
                          <ol class="checkout-nav-list">
                               <li class="checkout-nav-item completed">
                                    <a href="#">
@@ -36,13 +36,13 @@
                          </ol>
                     </nav>
 
-                    <!--
-                    <div id="checkout-message-holder" class="global-server-side-message-holder">
+                    
+                    <div id="checkout-message-holder" class="global-server-side-message-holder clearfix">
                          <div class="alert alert-danger" role="alert"> <strong>Message Alert:</strong> Some type of message that shows errors </div>
                     </div>
-                    -->
+                    
 
-                    <section class="account-main-holder checkout-holder shipping-page">
+                    <section class="account-main-holder clearfix checkout-holder shipping-page">
                          <div id="checkout-steps-holder">
                               <form>
                                    <div class="account-heading-holder">
@@ -132,7 +132,7 @@
                                         <legend class="checkout-sub-header">Delivery Method</legend>
                                         <div id="radio-shipping-rate-options" class="clearfix">
                                              <!--Loader can be shown and hidden for ajax calls / injected to the DOM when waiting for an ajax response-->
-                                             <!--<div class="loader"></div>-->
+                                             <div class="loader"></div>
 
                                              <!--These radio options will be updated via ajax-->
                                              <div class="radio">
@@ -193,6 +193,11 @@
                                              <tr class="tax">
                                                   <td>Tax</td>
                                                   <td class="amount">$0.00</td>
+                                             </tr>
+
+                                             <tr class="discounts">
+                                                  <td>Discounts</td>
+                                                  <td class="amount">-$10.00</td>
                                              </tr>
                                         </tbody>
                                         <tfoot>

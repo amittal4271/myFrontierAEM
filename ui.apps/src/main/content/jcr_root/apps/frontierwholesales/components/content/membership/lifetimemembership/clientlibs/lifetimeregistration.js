@@ -1,3 +1,7 @@
+var emailWithId={};
+emailWithId['list']=[];
+var $buttonObj;
+var $el;
 $(document).ready(function(){
     
    console.log(' lifetime registration...'); 
@@ -27,20 +31,72 @@ $(document).ready(function(){
     })
     
     validation.registrationLifetimeForm('#lifetime-membership-form');
-
+    showCurrentMonth();
+    showExpYear();
     
     $('#btn-lifetime-registration').on('click',function(e){
         e.preventDefault();
+        $buttonObj = $(this);
+        $el = $('.global-server-side-message-holder');
          $validFlag = $("#lifetime-membership-form").valid();
+          emailWithId['list']=[];
         if($validFlag){
+             disableAjaxFormButton($buttonObj); 
             collectUserDetails(); 
         }else{
             console.log('error...');
+              $('.global-server-side-message-holder').css('display','block');
+             enableAjaxFormButton($buttonObj);
+             scrollToElement($el);
         }
+    });
+
+    $('#id_shipping-shipping_same').on('change',function(e){
+        e.preventDefault();
+        var $this = $(this);
+        setTaxAddressToBillingAddress($this);
     });
 });
 
+function showExpYear(){
+   var date = new Date().getFullYear();
+    var length = date + 10;
+    for(var i=date;i<length;i++){  
+        $('#id_billing-exp_year').append($('<option/>',{'value':i,'text':i} )); 
+    }
+}
+
+function showCurrentMonth(){
+    var date = new Date();
+    var currentMonth = date.getMonth();
+
+    $('#id_billing-exp_month').val(currentMonth+1);
+}
+
+function setTaxAddressToBillingAddress($this){
+    if ($this.is(':checked')) {
+           var stateVal = $('#id_mailing-locality option:selected').val();
+            $('#id_shipping-name').val($('#id_mailing-name').val());
+            $('#id_shipping-company').val($('#id_account-company_name').val());
+            $('#id_shipping-address').val($('#id_mailing-address').val());
+            $('#id_shipping-address2').val($('#id_mailing-address2').val());
+            $('#id_shipping-city').val($('#id_mailing-city').val());
+            $('#id_shipping-locality option[value='+stateVal+']').prop('selected',true);
+            $('#id_shipping-postal_code').val($('#id_mailing-postal_code').val());
+        }else{
+            $('#id_shipping-name').val('');
+            $('#id_shipping-company').val('');
+            $('#id_shipping-address').val('');
+            $('#id_shipping-address2').val('');
+            $('#id_shipping-city').val('');
+            $('#id_shipping-locality').prop('selectedIndex',0);
+            $('#id_shipping-postal_code').val('');
+        }
+}
+
 function collectUserDetails(){
+    //hide top level error
+      $('.global-server-side-message-holder').css('display','none');
     var customer={};
      var pwd = $('#id_membership-password').val();
     var memberName = $('#id_membership-name').val();
@@ -52,7 +108,7 @@ function collectUserDetails(){
     var web_retail = $('.radio-checkbox-section-holder input:radio:checked').attr('id');
     var url=$('#id_account-url').val();
     if(undefined !== web_retail){
-        web_retail = web_retailer.substr(web_retail.length-1,web_retil.length);
+        web_retail = web_retail.substr(web_retail.length-1,web_retail.length);
        
     }else{
         web_retail='';
@@ -73,8 +129,8 @@ function collectUserDetails(){
     address['region']={};
     address['street']=[];
     
-    address['defaultShipping']='';
-    address['defaultBilling']='';
+    address['defaultShipping']='false';
+    address['defaultBilling']='true';
     address['firstname']=shippingNameSplit[0];
     address['lastname']=shippingNameSplit[1];
     address['postcode']=$('#id_shipping-postal_code').val();
@@ -108,9 +164,9 @@ function collectUserDetails(){
     companyJsonData['status']=1;
     companyJsonData['company_name']=$('#id_account-company_name').val();
     companyJsonData['legal_name']=$('#id_mailing-name').val();
-    companyJsonData['company_email']=''
+    companyJsonData['company_email']=$('#id_membership-email').val();
     // customer id will be passed after customer service call. This will happen in servlet class side.
-    companyJsonData['super_user_id']=''
+    companyJsonData['super_user_id']='';
     companyJsonData['city']=$('#id_mailing-city').val();
     companyJsonData['country_id']='US';
     companyJsonData['region']=$('#id_mailing-locality option:selected').text();
@@ -118,8 +174,8 @@ function collectUserDetails(){
     
     companyJsonData['postcode']=$('#id_mailing-postal_code').val();
     companyJsonData['telephone']=$('#id_shipping-phone').val();
-    // 6 is for lifetime member
-    companyJsonData['customer_group_id']='6';
+    // 10 is for lifetime member
+    companyJsonData['customer_group_id']='10';
     
    
     companyJsonData['street']=[];
@@ -155,14 +211,91 @@ function collectUserDetails(){
     extensionAttributes['business_type']=businessType;
     extensionAttributes['card_details']=card_details;
     
+    extensionAttributes['buying_groups'] = getBuyersClubDetails();
+    
     companyJsonData['extension_attributes']=extensionAttributes;
     company['company']=companyJsonData;
     
     console.log('company details '+company);
-    fnCallService(customer,company,pwd);
+   
+    
+    validateEmailAndRegisterUser(extensionAttributes,customer,company,pwd);  
 }
 
-function fnCallService(customer,company,pwd){
+
+function validateEmailAndRegisterUser(extensionAttributes,customer,company,pwd){
+      var emailReq = emailValidation(extensionAttributes);
+      emailReq.done(function(data){
+      
+       
+            var bValid = true;
+            // true means email doesn't exists
+            $(data).each(function(i,data){ 
+                if (data.status == false){
+                    bValid = false;
+                    
+                    var id = getEmailInputIdFromObj(data.email);
+                  
+                   $('#'+id).after($('<span/>',{'class':'validate-error','text':'Email address already has an account'}));
+                   
+                   
+                }
+                
+            });
+        
+        if(!bValid){
+            console.log('error ');
+             enableAjaxFormButton($buttonObj);  
+             $('.global-server-side-message-holder').css('display','block');
+             scrollToElement($el);
+        }else{
+            memberRegistration(customer,company,pwd);
+        }
+           
+            
+       
+    });
+    
+}
+
+function getBuyersClubDetails(){
+    var jsonData={};
+    jsonData['first_name']=[];
+    jsonData['last_name']=[];
+    jsonData['email']=[];
+    
+    var firstName = new Array();
+    var lastName = new Array();
+    var email = new Array();
+     var checked = $('#id_account-buying_club').is(":checked");
+    if(checked){
+    $('#buyer-club-group-holder').find('input').each(function(i,data) { 
+      
+        if(data.id.endsWith('email')){
+            email.push(data.value);
+            var jsonData={};
+            jsonData['emailid']=data.id;
+            jsonData['value']=data.value;
+            emailWithId['list'].push(jsonData);
+        }else{
+             var name = data.value;
+             var nameSplit = name.split(' ');       
+       
+            firstName.push(nameSplit[0]);
+            lastName.push(nameSplit[1]);
+        }
+        
+    });
+    }
+     jsonData['first_name']=firstName;
+    jsonData['last_name']=lastName;
+    jsonData['email']=email;
+    
+    return jsonData;
+    
+}
+
+function memberRegistration(customer,company,pwd){
      $.ajax({
         url:"/services/registration",
         data:{customer:JSON.stringify(customer),company:JSON.stringify(company)},
@@ -174,8 +307,59 @@ function fnCallService(customer,company,pwd){
             },
         success:function(data){
             console.log(data);
+            window.location.href=getRedirectPath();
+
         },error:function(error){
             console.log(error);
+             enableAjaxFormButton($buttonObj);  
+             $('.global-server-side-message-holder').css('display','block');
+             scrollToElement($el);
         }
     });
 }
+
+
+function emailValidation(jsonBuyersEmailList){
+    var serverurl = $('#serverurl').val();
+    var validation = false;
+    var jsonData={};
+    jsonData['customerEmail']=[]
+      
+   $(jsonBuyersEmailList.buying_groups.email).each(function(i,data){
+      if(undefined !== data && data !== ''){
+        jsonData['customerEmail'].push(data);  
+      } 
+   });
+    
+    jsonData['customerEmail'].push($('#id_membership-email').val());
+    jsonData['websiteId']=1;
+    var emailData={};
+    emailData['emailid']='id_membership-email';
+    emailData['value']=$('#id_membership-email').val();
+    emailWithId['list'].push(emailData);
+    
+    var emailRequest= $.ajax({
+       url:serverurl+"/rest/all/V1/buyingroups/areEmailsAvailable",
+       method:"POST",
+        crossDomain: "true",
+        headers:{
+            "content-Type":"application/json",
+            "Access-Control-Allow-Origin":serverurl,
+            "Access-Control-Allow-Credentials":"true"
+        },
+       data:JSON.stringify(jsonData)
+    });
+    
+    var success = function(response){
+        console.log('success '+response);
+        
+    };
+    
+    var failure = function (error){
+      console.log('error '+error);  
+       
+    };
+   return emailRequest;
+  
+}
+

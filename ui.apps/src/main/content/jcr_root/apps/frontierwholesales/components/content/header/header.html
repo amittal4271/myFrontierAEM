@@ -1,4 +1,18 @@
+<sly
+    data-sly-use.clientLib="${'/libs/granite/sightly/templates/clientlib.html'}"/>
+<sly data-sly-call="${clientlib.js @ categories='header'}" data-sly-unwrap/>
+
 <header id="header">
+  <div id="left-header-icons-mobile">
+          <button id="mobile-menu-icon" class="header-mobile-icon" type="button">
+               <span class="menu-icon"><span class="glyphicon glyphicon-menu-hamburger"></span></span>
+               <span class="menu-text">Menu</span>
+          </button>
+          <button id="mobile-search-icon" class="header-mobile-icon" type="button">
+               <span class="glyphicon glyphicon-search"></span>
+               <span class="search-text visuallyhidden">Search</span>
+          </button>
+     </div>
         <div id="logo-header">
           <a href="/" class="logo-link" title="Frontier Co-op Wholesale">
                <span class="logo-icon-header">
@@ -13,33 +27,113 @@
      <div id="secondary-nav-holder">
           <ul class="user-menu">
                <li><a href="#">Quick Order</a></li>
-               <li><a href="#">Help</a></li>
+               <li><a href="#">Help</a>
+                <ul id="header-help-flyout" class="header-flyout-list">
+                         <li><a href="#">Contact</a></li>
+                         <li><a href="#">FAQ</a></li>
+                         <li><a href="#">Glossary</a></li>
+                    </ul>
+               </li>
                <li><a href="/content/frontierwholesales/en/membership.html">Join</a></li>
               
                <li>
                   
                    <sly data-sly-test="${currentSession.userID == 'anonymous'}">
                     <a href="/content/frontierwholesales/en/login.html">My Account</a>
+                    <ul id="header-account-flyout" class="header-flyout-list">
+                      <li><a href="/content/frontierwholesales/en/login.html">Log In</a></li>
+                         </ul>
                    </sly>
                    
                    <sly data-sly-test="${currentSession.userID != 'anonymous'}">
                        <a href="#">My Account</a>
+                       <ul id="header-account-flyout" class="header-flyout-list">
+                         
+                         <li><a href="#">Address Book</a></li>
+                         <li><a href="#">Orders</a></li>
+                         <li><a href="#">Wish List</a></li>
+                         <li><a id="signOut" href="#">Sign Out</a></li>
+                    </ul>
                    </sly>
               
               </li>
           </ul>
 
      </div>
-
-     
-     <div id="cart-holder">
+<div id="pageTitle" data-pagetitle="${currentPage.title}"></div>
+    <!-- min cart -->
+          <div id='minicarttemplate' ></div>
+      <script id="minicartTemplate" type="text/x-handlebars-template">
+     <div id="cart-holder" class="owner-account-cart-holder">
+        
           <a href="#" class="btn btn-cart-display cart-display" title="Cart">
                <span class="icon-cart">
                     <span class="glyphicon glyphicon-shopping-cart"></span>
-                    <span class="cart-count quantity">0</span>
+                   {{#if items_qty includedZero=false}}
+                    <span class="cart-count quantity">{{items_qty}}</span>
+                   {{else}}
+                   <span class="cart-count quantity">0</span>
+                   {{/if}}
                </span>
-               <span class="cart-amount">My Total: <span class="amount">$0.00</span></span>
+               {{#if items_qty includedZero=false}}
+               <span class="cart-amount">My Total: <span id="shopping-cart-total" class="amount">{{subTotal}}</span></span>
+              {{else}}
+              <span class="cart-amount">My Total: <span id="shopping-cart-total" class="amount">$0.00</span></span>
+              {{/if}}
+              
           </a>
+         
+         <a href="#" class="btn btn-cart-display cart-display-owner-total" title="Cart">
+               <span class="icon-cart">
+                    <span class="glyphicon glyphicon-shopping-cart"></span>
+               </span>
+               <span class="cart-amount">Our Total: <span class="amount">$0.00</span></span>
+          </a>
+         
+
+         <div class="mini-cart-holder">
+        {{#items}}
+               <div class="each-mini-cart-item">
+                    <div class="mini-cart-image-holder">
+                         <img src="{{imgPath}}">
+                    </div>
+                    <div class="mini-cart-info-holder">
+                         <div class="mini-cart-name">{{name}}</div>
+                         <div class="mini-cart-price">
+                              <!--<span class="original-price strike-through-price">{{price}}</span>-->
+                              <span class="sale-now-price">Now {{price}} {{#quantities}}* {{qty}} {{/quantities}}</span>
+                         </div>
+                    </div>
+                    <div class="mini-cart-remove-holder">
+                         <button data-itemid="{{item_id}}" class="btn btn-mini-cart-remove">
+                              <span class="glyphicon glyphicon-remove"></span>
+                              <span  class="remove-text" >Remove Item</span>
+                         </button>
+                    </div>
+               </div>
+
+              {{/items}}
+              
+              {{^items.length}}
+              
+              <h4 class="cart-empty-heading">Nothing in your cart yet.</h4>
+              {{/items.length}}
+
+               <div class="mini-cart-subtotal-holder">
+                    <div class="subtotal-text">Subtotal</div>
+                   {{#if subTotal}}
+                    <div class="subtotal-amount">{{subTotal}}</div>
+                   {{else}}
+                    <div class="subtotal-amount">$0.00</div>
+                   {{/if}}
+               </div>
+
+               <div class="mini-cart-go-to-cart-holder">
+                    <a href="/content/frontierwholesales/en/cart.html" class="btn btn-light-green btn-mini-cart-go-to-cart">Go to Cart</a>
+               </div>
+
+          </div>
+         
      </div>
         <div id="right-header-icons-mobile">
           <a href="#" id="mobile-account-icon" class="header-mobile-icon">
@@ -49,9 +143,12 @@
           <a id="mobile-cart-icon" href="#" class="header-mobile-icon">
                <span class="icon-cart">
                     <span class="glyphicon glyphicon-shopping-cart"></span>
-                    <span class="cart-count quantity">0</span>
+                    <span class="cart-count quantity">{{items_qty}}</span>
                </span>
                <span class="visuallyhidden">Cart</span>
           </a>
      </div>
+     </script>
+     <!-- Delete Confirmation -->
+    
     </header>

@@ -2,9 +2,7 @@
 <html lang="en">
      <head>
           <?php include(dirname(__FILE__).'/snippets/header-files-include.php');?>
-          <style>
-          #sub-nav-holder-desktop {display: none;}
-          </style>
+          
      </head>
 
      <body>
@@ -17,7 +15,7 @@
                     <div class="container">
                          <?php include(dirname(__FILE__).'/snippets/account-nav.php');?>
 
-                         <section class="account-main-holder">
+                         <section class="account-main-holder clearfix">
 
                               <div class="each-order-by-user-holder">
                                    <div class="account-heading-holder table-below">
@@ -42,9 +40,9 @@
                                                        <div class="each-order-section order-select-section">
                                                             <span class="tablet-below-col-heading">Select</span>
                                                             <div class="checkbox">
-                                                                 <label for="order_id_621322">
-                                                                      <input type="checkbox" name="order_id" value="621322" id="order_id_621322">
-                                                                      <span class="label-text hidden">Select Order #621322</span>
+                                                                 <label for="order_id_0000">
+                                                                      <input type="checkbox" name="order_id_number_0000">
+                                                                      <span class="label-text hidden">Select</span>
                                                                  </label>
                                                             </div>
                                                        </div>
@@ -92,7 +90,7 @@
                                                                  <div class="order-detail-holder">
                                                                       <div class="order-detail-section detail-image-section">
                                                                            <a href="#">
-                                                                                <img src="https://dh6qdiyp93d9u.cloudfront.net/media/CACHE/images/products/simply/simply-organic-adobo-seasoning-441-oz-one-18034-18034-default-0-485e/f047845f6adc28a926b6c5c6c8d6d49b.jpg" class="image-pending-orders" alt="Simply Organic Adobo Seasoning 4.41 oz., One, Size 4.41 Ounce">
+                                                                                <img src="../frontierwholesales/images/pdp-related-two.jpg" class="image-pending-orders" alt="Simply Organic Adobo Seasoning 4.41 oz., One, Size 4.41 Ounce">
                                                                            </a>
                                                                       </div>
                                                                       <div class="order-detail-section detail-item-section">
@@ -122,7 +120,7 @@
                                                                  <div class="order-detail-holder">
                                                                       <div class="order-detail-section detail-image-section">
                                                                            <a href="#">
-                                                                                <img src="https://dh6qdiyp93d9u.cloudfront.net/media/CACHE/images/products/simply/simply-organic-non-alcoholic-vanilla-flavoring-2-f-one-19492-19492-default-0-f79a/b81a24eabf5d61a2c98769cbf9795c42.jpg" class="image-pending-orders" alt="">
+                                                                                <img src="../frontierwholesales/images/pdp-related-two.jpg" class="image-pending-orders" alt="">
                                                                            </a>
                                                                       </div>
                                                                       <div class="order-detail-section detail-item-section">
@@ -158,9 +156,9 @@
                                                        <div class="each-order-section order-select-section">
                                                             <span class="tablet-below-col-heading">Select</span>
                                                             <div class="checkbox">
-                                                                 <label for="order_id_621322">
-                                                                      <input type="checkbox" name="order_id" value="621322" id="order_id_621322">
-                                                                      <span class="label-text hidden">Select Order #621322</span>
+                                                                 <label for="order_id_1111">
+                                                                      <input type="checkbox" name="order_id_number_1111" value="1111">
+                                                                      <span class="label-text hidden">Select</span>
                                                                  </label>
                                                             </div>
                                                        </div>
@@ -208,7 +206,7 @@
                                                                  <div class="order-detail-holder">
                                                                       <div class="order-detail-section detail-image-section">
                                                                            <a href="#">
-                                                                                <img src="https://dh6qdiyp93d9u.cloudfront.net/media/CACHE/images/products/simply/simply-organic-adobo-seasoning-441-oz-one-18034-18034-default-0-485e/f047845f6adc28a926b6c5c6c8d6d49b.jpg" class="image-pending-orders" alt="Simply Organic Adobo Seasoning 4.41 oz., One, Size 4.41 Ounce">
+                                                                                <img src="../frontierwholesales/images/pdp-related-two.jpg" class="image-pending-orders" alt="Simply Organic Adobo Seasoning 4.41 oz., One, Size 4.41 Ounce">
                                                                            </a>
                                                                       </div>
                                                                       <div class="order-detail-section detail-item-section">
@@ -238,7 +236,7 @@
                                                                  <div class="order-detail-holder">
                                                                       <div class="order-detail-section detail-image-section">
                                                                            <a href="#">
-                                                                                <img src="https://dh6qdiyp93d9u.cloudfront.net/media/CACHE/images/products/simply/simply-organic-non-alcoholic-vanilla-flavoring-2-f-one-19492-19492-default-0-f79a/b81a24eabf5d61a2c98769cbf9795c42.jpg" class="image-pending-orders" alt="">
+                                                                                <img src="../frontierwholesales/images/pdp-related-two.jpg" class="image-pending-orders" alt="">
                                                                            </a>
                                                                       </div>
                                                                       <div class="order-detail-section detail-item-section">
@@ -268,7 +266,7 @@
                                                                  <div class="order-detail-holder">
                                                                       <div class="order-detail-section detail-image-section">
                                                                            <a href="#">
-                                                                                <img src="https://dh6qdiyp93d9u.cloudfront.net/media/CACHE/images/products/fronti/frontier-co-op-almond-flavor-16-fl-oz-one-23003-23003-default-0-5adf/9149829ed5728ad31a4ea89fe98df471.jpg" class="image-pending-orders" alt="">
+                                                                                <img src="../frontierwholesales/images/pdp-related-two.jpg" class="image-pending-orders" alt="">
                                                                            </a>
                                                                       </div>
                                                                       <div class="order-detail-section detail-item-section">
@@ -328,9 +326,9 @@
                                                        <div class="each-order-section order-select-section">
                                                             <span class="tablet-below-col-heading">Select</span>
                                                             <div class="checkbox">
-                                                                 <label for="order_id_621322">
-                                                                      <input type="checkbox" name="order_id" value="621322" id="order_id_621322">
-                                                                      <span class="label-text hidden">Select Order #621322</span>
+                                                                 <label for="order_id_2222">
+                                                                      <input type="checkbox" name="order_id" value="2222" id="order_id_2222">
+                                                                      <span class="label-text hidden">Select</span>
                                                                  </label>
                                                             </div>
                                                        </div>
@@ -378,7 +376,7 @@
                                                                  <div class="order-detail-holder">
                                                                       <div class="order-detail-section detail-image-section">
                                                                            <a href="#">
-                                                                                <img src="https://dh6qdiyp93d9u.cloudfront.net/media/CACHE/images/products/simply/simply-organic-adobo-seasoning-441-oz-one-18034-18034-default-0-485e/f047845f6adc28a926b6c5c6c8d6d49b.jpg" class="image-pending-orders" alt="Simply Organic Adobo Seasoning 4.41 oz., One, Size 4.41 Ounce">
+                                                                                <img src="../frontierwholesales/images/pdp-related-two.jpg" class="image-pending-orders" alt="Simply Organic Adobo Seasoning 4.41 oz., One, Size 4.41 Ounce">
                                                                            </a>
                                                                       </div>
                                                                       <div class="order-detail-section detail-item-section">
@@ -408,7 +406,7 @@
                                                                  <div class="order-detail-holder">
                                                                       <div class="order-detail-section detail-image-section">
                                                                            <a href="#">
-                                                                                <img src="https://dh6qdiyp93d9u.cloudfront.net/media/CACHE/images/products/simply/simply-organic-non-alcoholic-vanilla-flavoring-2-f-one-19492-19492-default-0-f79a/b81a24eabf5d61a2c98769cbf9795c42.jpg" class="image-pending-orders" alt="">
+                                                                                <img src="../frontierwholesales/images/pdp-related-two.jpg" class="image-pending-orders" alt="">
                                                                            </a>
                                                                       </div>
                                                                       <div class="order-detail-section detail-item-section">
@@ -444,9 +442,9 @@
                                                        <div class="each-order-section order-select-section">
                                                             <span class="tablet-below-col-heading">Select</span>
                                                             <div class="checkbox">
-                                                                 <label for="order_id_621322">
-                                                                      <input type="checkbox" name="order_id" value="621322" id="order_id_621322">
-                                                                      <span class="label-text hidden">Select Order #621322</span>
+                                                                 <label for="order_id_3333">
+                                                                      <input type="checkbox" name="order_id_number_3333" value="3333">
+                                                                      <span class="label-text hidden">Select</span>
                                                                  </label>
                                                             </div>
                                                        </div>
@@ -494,7 +492,7 @@
                                                                  <div class="order-detail-holder">
                                                                       <div class="order-detail-section detail-image-section">
                                                                            <a href="#">
-                                                                                <img src="https://dh6qdiyp93d9u.cloudfront.net/media/CACHE/images/products/simply/simply-organic-adobo-seasoning-441-oz-one-18034-18034-default-0-485e/f047845f6adc28a926b6c5c6c8d6d49b.jpg" class="image-pending-orders" alt="Simply Organic Adobo Seasoning 4.41 oz., One, Size 4.41 Ounce">
+                                                                                <img src="../frontierwholesales/images/pdp-related-two.jpg" class="image-pending-orders" alt="Simply Organic Adobo Seasoning 4.41 oz., One, Size 4.41 Ounce">
                                                                            </a>
                                                                       </div>
                                                                       <div class="order-detail-section detail-item-section">
@@ -524,7 +522,7 @@
                                                                  <div class="order-detail-holder">
                                                                       <div class="order-detail-section detail-image-section">
                                                                            <a href="#">
-                                                                                <img src="https://dh6qdiyp93d9u.cloudfront.net/media/CACHE/images/products/simply/simply-organic-non-alcoholic-vanilla-flavoring-2-f-one-19492-19492-default-0-f79a/b81a24eabf5d61a2c98769cbf9795c42.jpg" class="image-pending-orders" alt="">
+                                                                                <img src="../frontierwholesales/images/pdp-related-two.jpg" class="image-pending-orders" alt="">
                                                                            </a>
                                                                       </div>
                                                                       <div class="order-detail-section detail-item-section">
@@ -554,7 +552,7 @@
                                                                  <div class="order-detail-holder">
                                                                       <div class="order-detail-section detail-image-section">
                                                                            <a href="#">
-                                                                                <img src="https://dh6qdiyp93d9u.cloudfront.net/media/CACHE/images/products/fronti/frontier-co-op-almond-flavor-16-fl-oz-one-23003-23003-default-0-5adf/9149829ed5728ad31a4ea89fe98df471.jpg" class="image-pending-orders" alt="">
+                                                                                <img src="../frontierwholesales/images/pdp-related-two.jpg" class="image-pending-orders" alt="">
                                                                            </a>
                                                                       </div>
                                                                       <div class="order-detail-section detail-item-section">
@@ -590,10 +588,104 @@
                               </div>
                               
                          </section>
+
+                         <section class="cart-holder cart-actions">
+                              <div class="cart-header-holder no-border">
+                                   <h1 class="cart-heading">Approval Actions</h1>
+                              </div>
+                              <div id="cart-actions-grid">
+                                   <div class="each-action-holder cart-action-status">
+                                        <div class="action-holder">
+                                             <a href="#" class="btn btn-dark-orange btn-checkout-approve-orders" data-toggle="modal" data-target="#modalApproveOrders">Approve Orders</a>
+                                        </div>
+                                   </div>
+                                   <div class="each-action-holder cart-action-status">
+                                        <div class="action-holder">
+                                             <a href="#" class="btn btn-dark-orange btn-checkout-mark-draft" data-toggle="modal" data-target="#modalMarkDraftOrders">Mark as Draft</a>
+                                        </div>
+                                   </div>
+                                   <div class="each-action-holder cart-action-status last">
+                                        <div class="action-holder">
+                                             <a href="#" class="btn btn-red btn-checkout-delete-orders" data-toggle="modal" data-target="#modalDeleteOrders">Delete Orders</a>
+                                        </div>
+                                   </div>
+                              </div>
+
+                              <div class="submit-holder checkout-flow">
+                                   <button class="btn btn-light-green btn-larger btn-cart-checkout">Checkout</button>
+                              </div>
+
+                         </section>
                     </div>
                </section>
 
           </main>
+
+          <!-- Delete Order Modal -->
+          <div class="modal fade" id="modalDeleteOrders" tabindex="-1" role="dialog" aria-labelledby="modalDeleteOrderLabel">
+               <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                         <div class="modal-header clearfix">
+                              <h4 class="modal-title" id="modalDeleteOrderLabel">Delete Confirmation</h4>
+                         </div>
+                         <div class="modal-body clearfix">
+                              <p>Messaging explaining delete action. This order will be removed from the users cart along with this cart.</p>
+                         </div>
+                         <div class="modal-footer clearfix">
+                              <div class="modal-footer-btn-left-holder">
+                                   <button type="button" class="btn btn-red btn-delete-order">Yes, Delete Orders</button>
+                              </div>
+                              <div class="modal-footer-btn-right-holder">
+                                   <button type="button" class="btn btn-link btn-link-close-modal" data-dismiss="modal">Cancel</button>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+          </div>
+
+          <!-- Approve Order Modal -->
+          <div class="modal fade" id="modalApproveOrders" tabindex="-1" role="dialog" aria-labelledby="modalApproveOrderLabel">
+               <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                         <div class="modal-header clearfix">
+                              <h4 class="modal-title" id="modalApproveOrderLabel">Approval Confirmation</h4>
+                         </div>
+                         <div class="modal-body clearfix">
+                              <p>You are approving these orders for purchase. This is another explanation for the approval modal.</p>
+                         </div>
+                         <div class="modal-footer clearfix">
+                              <div class="modal-footer-btn-left-holder">
+                                   <button type="button" class="btn btn-dark-orange btn-delete-order">Yes, Approve Orders</button>
+                              </div>
+                              <div class="modal-footer-btn-right-holder">
+                                   <button type="button" class="btn btn-link btn-link-close-modal" data-dismiss="modal">Cancel</button>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+          </div>
+
+          <!-- Mark Draft Order Modal -->
+          <div class="modal fade" id="modalMarkDraftOrders" tabindex="-1" role="dialog" aria-labelledby="modalMarkDraftOrdersLabel">
+               <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                         <div class="modal-header clearfix">
+                              <h4 class="modal-title" id="modalMarkDraftOrdersLabel">Mark as Draft</h4>
+                         </div>
+                         <div class="modal-body clearfix">
+                              <p>You are marking these orders as a draft. These will not be included in checkout cost.</p>
+                         </div>
+                         <div class="modal-footer clearfix">
+                              <div class="modal-footer-btn-left-holder">
+                                   <button type="button" class="btn btn-dark-orange btn-delete-order">Mark as Draft</button>
+                              </div>
+                              <div class="modal-footer-btn-right-holder">
+                                   <button type="button" class="btn btn-link btn-link-close-modal" data-dismiss="modal">Cancel</button>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+          </div>
 
           <?php include(dirname(__FILE__).'/snippets/footer.php');?>
 

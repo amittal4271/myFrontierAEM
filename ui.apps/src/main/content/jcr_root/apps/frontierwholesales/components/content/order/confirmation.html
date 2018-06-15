@@ -1,0 +1,41 @@
+ <div class="container">
+
+                    <section class="account-main-holder checkout-holder order-confirmation-page">
+                         <div id="order-confirmation-header">
+                              <h1 class="confirmation-header">Order Successful!</h1>
+                              <p class="confirmation-text">An order confirmation email has been sent to <span class="confirmation-email">{{JsonData.customer_email}}</span>.</p>
+                              <p class="confirmation-text">Thank you for placing your order with us here at Frontier Co-op wholesale. We appreciate your business. If you any questions or concerns, please feel free to contact us at customercare@frontiercoop.com or 1-800-669-3275.</p>
+                              <a href="./index.php" class="btn btn-light-green btn-continue-shopping-confirmation">Continue Shopping</a>
+                         </div>
+                            <div id="order-confirmation-items-holder">
+                              <div id="order-confirmation-items-header">
+                                   <p class="confirmation-order-id">
+                                        For future reference, your Order ID is listed below:<br>
+                                        <span class="confirmation-order-number">Order ID: {{JsonData.increment_id}}</span>
+                                   </p>
+                                   <a href="javascript: window.print();" class="btn btn-white-green btn-print-confirmation">Print Order Details</a>
+                              </div>
+
+                                <div id="order-confirmation-items-section">
+                                  <div ng-repeat="orderItem in JsonData.items" class="each-confirmation-item">
+                                        <div class="item-info">
+
+                                             <div class="confirmation-item-details">
+                                                                                 <a href="#" class="confirmation-item-product-name">{{orderItem.name }}</a>
+                                                                                 <span class="confirmation-item-number">Item #{{orderItem.product_id}}</span>
+                                                                                 <span class="confirmation-price">{{orderItem.base_price | currency}}</span>
+                                             </div>
+                                        </div>
+                                        <div class="qty-info">
+                                                                                 <span class="confirmation-qty-text">Qty: <span class="confirmation-qty">{{orderItem.qty_ordered}}</span></span>
+                                        </div>
+                                   </div>
+                                 </div>
+                         </div>
+                       </section>
+                   </div>
+
+
+
+
+

@@ -1,3 +1,7 @@
+<!--<div id="search-overlay"></div>-->
+<div id="ajax-form-overlay-holder">
+     <div class="loader"></div>
+</div>
 <header id="header">
      <div id="left-header-icons-mobile">
           <button id="mobile-menu-icon" class="header-mobile-icon" type="button">
@@ -10,7 +14,7 @@
           </button>
      </div>
      <div id="logo-header">
-          <a href="/" class="logo-link" title="Frontier Co-op Wholesale">
+          <a href="./" class="logo-link" title="Frontier Co-op Wholesale">
                <span class="logo-icon-header">
                     <img src="https://dh6qdiyp93d9u.cloudfront.net/static/frontierwholesale/images/logo.6694741e49f1.svg"/>
                     <span class="visuallyhidden">Frontier Co-op Wholesale</span>
@@ -47,14 +51,79 @@
                </li>
           </ul>
      </div>
-     <div id="cart-holder">
+     <!-- the class owner-account-cart-holder should only be added when the owner is logged in -->
+     <div id="cart-holder" class="owner-account-cart-holder">
           <a href="#" class="btn btn-cart-display cart-display" title="Cart">
                <span class="icon-cart">
                     <span class="glyphicon glyphicon-shopping-cart"></span>
                     <span class="cart-count quantity">0</span>
                </span>
-               <span class="cart-amount">My Total: <span class="amount">$0.00</span></span>
+               <span class="cart-amount">My Total: <span class="amount">$130.00</span></span>
           </a>
+
+          <!-- this link should only be shown when owner is logged in -->
+          <a href="#" class="btn btn-cart-display cart-display-owner-total" title="Cart">
+               <span class="icon-cart">
+                    <span class="glyphicon glyphicon-shopping-cart"></span>
+               </span>
+               <span class="cart-amount">Our Total: <span class="amount">$1,230.00</span></span>
+          </a>
+
+          <div class="mini-cart-holder">
+               <h4 class="cart-empty-heading">Your Cart is Empty</h4>
+               <div class="each-mini-cart-item">
+                    <div class="mini-cart-image-holder">
+                         <img src="../frontierwholesales/images/mini-cart-item-one.jpg"/>
+                    </div>
+                    <div class="mini-cart-info-holder">
+                         <div class="mini-cart-name">Handy Pantry Arugula Microgreen Kit</div>
+                         <div class="mini-cart-price">
+                              <span class="original-price strike-through-price">$3.20</span>
+                              <span class="sale-now-price">Now $2.99</span>
+                         </div>
+                    </div>
+                    <div class="mini-cart-remove-holder">
+                         <button class="btn btn-mini-cart-remove">
+                              <span class="glyphicon glyphicon-remove"></span>
+                              <span class="remove-text">Remove Item</span>
+                         </button>
+                    </div>
+               </div>
+
+               <div class="each-mini-cart-item">
+                    <div class="mini-cart-image-holder">
+                         <img src="../frontierwholesales/images/mini-cart-item-two.jpg"/>
+                    </div>
+                    <div class="mini-cart-info-holder">
+                         <div class="mini-cart-name">Handy Pantry Arugula Microgreen Kit</div>
+                         <div class="mini-cart-price">
+                              <span class="original-price strike-through-price">$3.20</span>
+                              <span class="sale-now-price">Now $2.99</span>
+                         </div>
+                    </div>
+                    <div class="mini-cart-remove-holder">
+                         <button class="btn btn-mini-cart-remove">
+                              <span class="glyphicon glyphicon-remove"></span>
+                              <span class="remove-text">Remove Item</span>
+                         </button>
+                    </div>
+                    <div class="mini-cart-item-remove-confirmation">
+                         <button type="button" class="btn btn-smaller btn-confirm-remove-mini-cart-item">Remove</button>
+                         <button type="button" class="btn btn-smaller btn-white-green btn-cancel-remove-mini-cart-item">Cancel</button>
+                    </div>
+               </div>
+
+               <div class="mini-cart-subtotal-holder">
+                    <div class="subtotal-text">Subtotal</div>
+                    <div class="subtotal-amount">$44.50</div>
+               </div>
+
+               <div class="mini-cart-go-to-cart-holder">
+                    <a href="#" class="btn btn-light-green btn-mini-cart-go-to-cart">Go to Cart</a>
+               </div>
+
+          </div>
+          
      </div>
      <div id="right-header-icons-mobile">
           <a href="#" id="mobile-account-icon" class="header-mobile-icon">

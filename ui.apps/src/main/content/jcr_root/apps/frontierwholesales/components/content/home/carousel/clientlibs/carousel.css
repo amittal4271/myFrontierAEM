@@ -1,0 +1,7 @@
+.swiper-wrapper   {
+    height: auto;
+}
+
+.swiper-slide a {
+    display: block;
+}

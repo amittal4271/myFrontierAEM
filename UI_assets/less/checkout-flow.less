@@ -1,21 +1,30 @@
 .account-main-holder {
-	&.shipping-page {
-		background: none;
+	&.shipping-page, &.order-confirmation-page {
+		background: none; 
 		border: none;
 		border-radius: 0;
 		padding: 0;
+	}
 
+	&.shipping-page {
 		.breakpoint_600({
 			padding: 40px 40px 0 40px;
+		});
+	}
+
+	&.order-confirmation-page {
+		.breakpoint_600({
+			margin-top: 20px;
 		});
 	}
 }
 
 .checkout-nav {
-	float: left;
+	display: block;
 	width: 100%;
 	clear: both;
 	margin-bottom: 40px;
+	margin-top: 20px;
 }
 
 .checkout-nav-list {
@@ -179,6 +188,9 @@ table.table-order-summary {
 			text-align: right;
 		}
 	}
+	.discounts {
+		color: #a94442; 
+	}
 }
 
 .shipping-section, .billing-section {
@@ -205,4 +217,230 @@ table.table-order-summary {
 	*/
 }
 
+#sales-rep-textarea-holder {
+	float: left;
+	width: 100%;
+	display: none;
+}
 
+#order-confirmation-header {
+	float: left;
+	width: 100%;
+	text-align: center;
+	margin-bottom: 30px;
+
+	.breakpoint_768({
+		width: 70%;
+		margin-left: 15%;
+		margin-bottom: 50px;
+	});
+}
+
+.confirmation-header {
+	color: @darkgray;
+	font-size: 24px;
+    padding: 0;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 20px; 
+
+    .breakpoint_992({
+        font-size: 30px;
+    });
+
+    .normal {
+        font-weight: 300;
+    }
+}
+
+.confirmation-text {
+	.confirmation-email {
+		font-weight: 700;
+	}
+}
+
+#order-confirmation-items-holder {
+	float: left;
+	width: 100%;
+	border: 1px solid #ececec;
+}
+
+#order-confirmation-items-header {
+	float: left;
+	width: 100%;
+	padding: 20px;
+	border-bottom: 1px solid #ececec;
+	text-align: center;
+}
+
+.confirmation-order-id {
+	.confirmation-order-number {
+		font-weight: 700;
+		color: #4d4a48;
+		font-size: 16px;
+		padding-top: 10px;
+		display: block;
+
+		.breakpoint_768({
+	        font-size: 20px;
+	    });
+	}
+}
+
+#order-confirmation-items-section {
+	float: left;
+	width: 100%;
+	clear: both;
+}
+
+.each-confirmation-item {
+	float: left;
+	width: 100%;
+	border-top: 1px solid #ececec;
+	padding: 20px 10px;
+
+	.item-info {
+		float: left;
+		width: 100%;
+
+		.breakpoint_480({
+	        width: 70%;
+	        padding-right: 20px;
+	    });
+
+		.confirmation-image-holder {
+			float: left;
+			width: 25%;
+			padding-right: 15px;
+
+			.breakpoint_600({
+		        width: 15%;
+		    });
+
+			img {
+				display: block;
+				width: 100%;
+			}
+		}
+		.confirmation-item-details {
+			float: left;
+			width: 75%;
+			padding-left: 20px;
+
+			.breakpoint_600({
+		        width: 85%;
+		    });
+
+
+			.confirmation-item-product-name {
+				font-weight: 700;
+			    float: left;
+			    width: 100%;
+			    margin-bottom: 5px;
+			    color: #817266;
+			    font-size: 16px;
+			}
+			.confirmation-item-number, .confirmation-price {
+				font-size: 16px;
+			    font-family: "Lato" ,sans-serif;
+			    color: #817266;
+			    float: left;
+			    width: 100%;
+			    margin-bottom: 5px;
+			}
+			.confirmation-price {
+			    font-weight: 700;
+			}
+		}
+	}
+	.qty-info {
+		float: left;
+		width: 100%;
+
+		.breakpoint_480({
+	        width: 30%;
+	    });
+
+		.confirmation-qty-text {
+			float: left;
+			padding: 10px; 
+			color: #4d4a48;
+			font-size: 14px;
+			background: #fcfcfc;
+			border: 1px solid #ececec;
+
+			.confirmation-qty {
+				font-weight: 700;
+			}
+		}
+	}
+
+	&.first {
+		border-top: none;
+	}
+}
+
+.btn-continue-shopping-confirmation {
+	margin-top: 20px;
+}
+
+.btn-print-confirmation {
+	margin: 10px 0 20px 0;
+}
+
+#shipping-address-holder-on-billing-page {
+	float: left;
+	width: 100%;
+	clear: both;
+	margin: 0 0 30px 0;
+	display: none;
+}
+
+#payment-method-shipping-options-entered {
+	float: left;
+	width: 100%;
+	clear: both;
+}
+
+.entered-info-list {
+	float: left;
+	width: 100%;
+	margin-bottom: 20px;
+
+	.breakpoint_992({
+        width: 45%;
+		margin-right: 5%;
+		padding-right: 20px;
+		margin-bottom: 0;
+    });
+
+	li {
+		font-size: 13px;
+		float: left;
+		width: 100%;
+		clear: both;
+		margin: 0;
+		&.entered-heading {
+			color: #414141;
+			margin-bottom: 8px;
+			font-weight: 700;
+		}
+		&.edit-link {
+			margin: 10px 0;
+		}
+
+		a {
+			color: #8bba4a;
+			font-weight: 700;
+		}
+	}
+}
+.btn-view-shipping-info {
+	color: #d3d3d3;
+	font-weight: normal;
+	float: right;
+	&:hover, &:focus {
+		text-decoration: none;
+		color: inherit;
+	}
+}

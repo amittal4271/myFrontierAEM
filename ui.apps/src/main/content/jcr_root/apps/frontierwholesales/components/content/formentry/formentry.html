@@ -1,39 +1,23 @@
-<!--/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  ~ Copyright 2016 Adobe Systems Incorporated
-  ~
-  ~ Licensed under the Apache License, Version 2.0 (the "License");
-  ~ you may not use this file except in compliance with the License.
-  ~ You may obtain a copy of the License at
-  ~
-  ~     http://www.apache.org/licenses/LICENSE-2.0
-  ~
-  ~ Unless required by applicable law or agreed to in writing, software
-  ~ distributed under the License is distributed on an "AS IS" BASIS,
-  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  ~ See the License for the specific language governing permissions and
-  ~ limitations under the License.
-  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/-->
+<!--/**/-->
+<div class="row">
+    <div class="col-md-12">
+        <h4 class="subscribe-header">${properties.formTitle}</h4>
+        <p class="subscribe-text"> ${properties.formText}</p>
+        <form id="newsletter-form" autocomplete="off">
+            <input name="email" class="form-control email-input" id="email-input" placeholder="Enter Your Email" required="required" type="email">
+            <input class="btn btn-submit-email" id="submit-email" value="${properties.label}" type="submit">
+        </form>
+        <div class="badge-container">			
+            <a href="https://www.instagram.com/frontiercoop/" target="_blank" class="badge badge--social badge--instagram" title="Frontier Co-op Wholesale on Instagram">Instagram</a>
+            <a href="https://www.facebook.com/frontiercoop/" target="_blank" class="badge badge--social badge--facebook" title="Frontier Co-op Wholesale on Facebook">Facebook</a>
+            <a href="https://twitter.com/FrontierCoop" target="_blank" class="badge badge--social badge--twitter" title="Frontier Co-op Wholesale on Twitter">Twitter</a>
+            <a href="https://www.pinterest.com/frontiercoop/" target="_blank" class="badge badge--social badge--pinterest" title="Frontier Co-op Wholesale on Pinterest">Pinterest</a>
+        </div>
+    </div>
+</div>
 
-<div class="each-featured-section">
-        <a class="featured-link-holder" href="${properties.linkTo || '#'}">
-            <div class="brand-image">
-                <img
-            	data-sly-use.image="image.js"
-            	src="${image.src}"
-            	alt="${image.alt}"/>
-            </div>
-            <div class="featured-info">
-                <p class="brand-name">
-                    ${properties.brandTitle}
-                </p>
-            <div class="brand-copy">
-                <p class="featured-description">
-                            ${properties.copyText}
-                </p>
-            </div>
-            <div class="brand-button-holder">
-                <span class="btn btn-light-green btn-view-all">${properties.label}</span>
-            </div>
-            </div>
-        </a>
-</div>        
+
+<!-- ${properties.label} 
+-->
+
+

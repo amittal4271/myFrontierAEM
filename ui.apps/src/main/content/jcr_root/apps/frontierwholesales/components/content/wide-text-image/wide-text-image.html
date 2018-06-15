@@ -1,0 +1,74 @@
+<!--/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  ~ Copyright 2016 Adobe Systems Incorporated
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/-->
+<sly data-sly-use.textImage="textimage.js"
+     data-sly-use.emptyRenderer="emptytextimage.html"
+     data-sly-call="${emptyRenderer.emptyTextImageTemplate @ textImage=textImage}" />
+
+<!--/* Display correct css styles based on left-right alingement and style selection */-->
+<sly data-sly-test="${properties.alignment == 'left'}"
+<sly data-sly-test.pstyle="${properties.style == 'square-sections' ? 'square-sections' : 'bg-light-section'}" />
+<sly data-sly-test="${properties.alignment == 'right'}"
+<sly data-sly-test.pstyle="${properties.style == 'square-sections' ? 'square-sections' : 'bg-grain-section'}" />
+
+<div class="each-left-right-section ${pstyle}" data-sly-test="${properties.alignment == 'left'}">
+                         <div class="container clearfix">
+                              <figure class="each-figure-section">
+                                   <div class="figure-media-left-right"
+                                    data-sly-test="${textImage.hasContent}"
+                                    data-sly-resource="${'image' @ resourceType='wcm/foundation/components/image', wcmmode='disabled'}"    
+                                    >
+                                        <img
+                                        data-sly-use.textImage="textimage.js"
+                                        src="${textImage.src}"
+                                        alt="${textImage.alt}"/>
+                                   </div>
+                                   <figcaption class="information-section-left-right">
+                                        <h3 class="headline-left-right text-center">${properties.brandTitle}</h3>
+                                        <div class="description-holder-left-right">
+                                            ${properties.text @context='html'}
+                                        </div>
+                                        <div class="special-button-holder text-center" data-sly-test="${properties.label}">
+                                            <a href="${properties.linkTo @ extension='html' || '#'}" class="btn btn-white-green btn-special-section">${properties.label}</a>
+								   		</div>
+                                   </figcaption>
+                              </figure>
+                         </div>
+ </div>
+
+<div class="each-left-right-section ${pstyle}" data-sly-test="${properties.alignment == 'right'}">
+                         <div class="container clearfix">
+                              <figure class="each-figure-section">
+                                   <figcaption class="information-section-left-right">
+                                        <h3 class="headline-left-right text-center">${properties.brandTitle}</h3>
+                                        <div class="description-holder-left-right">
+                                             ${properties.text @context='html'}
+                                        </div>
+                                   <div class="special-button-holder text-center" data-sly-test="${properties.label}">
+										<a href="${properties.linkTo @ extension='html' || '#'}" class="btn btn-white-green btn-special-section">${properties.label}</a>
+								   </div>
+                                   </figcaption>
+                                   <div class="figure-media-left-right"
+                                    data-sly-test="${textImage.hasContent}"
+                                    data-sly-resource="${'image' @ resourceType='wcm/foundation/components/image', wcmmode='disabled'}"                                        
+                                    >
+                                        <img
+                                        data-sly-use.textImage="textimage.js"
+                                        src="${textImage.src}"
+                                        alt="${textImage.alt}"/>
+                                   </div>
+                              </figure>
+                         </div>
+                    </div>

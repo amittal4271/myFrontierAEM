@@ -31,12 +31,18 @@
         margin-left: 0;
     });
 
+
+
     &.affix {
         position: relative;
 
         .breakpoint_768({
             position: fixed!important;
             top: 20px;
+        });
+
+        .breakpoint_1400({
+            width: 630px;
         });
     }
 
@@ -45,7 +51,12 @@
         .breakpoint_768({
             position: absolute!important;
         });
+
+        .breakpoint_1400({
+            width: 630px;
+        });
     }
+
 }
 #product-thumbnails {
     float: left;
@@ -56,11 +67,20 @@
     border: 1px solid #979797;
     padding: 2px;
     margin-bottom: 15px;
+    &.active {
+        border: 2px solid #000;
+
+        img {
+            border: none;
+        }
+    }
+    img {
+        display: block;
+        max-width: 100%;
+        border: 1px solid #fff;
+    }
 }
-#product-thumbnails .each-thumbnail img {
-    display: block;
-    max-width: 100%;
-}
+
 
 #product-main-image {
     float: left;
@@ -71,6 +91,19 @@
 .product-main-image-holder {
     float: left;
     width: 100%;
+    position: relative;
+    min-height: 200px;
+
+    .loader {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -35px;
+        margin-left: -35px;
+        float: none;
+        border-top-color: #8bba4a;
+        border-bottom-color: #8bba4a;
+    }
 }
 .product-main-image-holder img {
     display: block;
@@ -81,6 +114,7 @@
     position: absolute;
     top: 0;
     left: 50px;
+    z-index: 19;
 }
 
 #product-information {
@@ -111,6 +145,23 @@
     width: 100%;
     margin-bottom: 2px;
     font-weight: bold;
+}
+.product-icons {
+    float: left;
+    width: 100%;
+    clear: both;
+    margin: 10px 0;
+
+    .each-product-icon-holder {
+        float: left;
+        width: 60px;
+        margin-right: 20px;
+
+        img {
+            display: block;
+            width: 100%;
+        }
+    }
 }
 .product-detail-attributes {
     float: left;
@@ -156,6 +207,10 @@
     color: #7d7671;
     padding-right: 15px;
     text-decoration: line-through;
+
+    &.normal-price {
+        text-decoration: none;
+    }
 }
 .product-save-percent {
     color: #817266;
@@ -190,7 +245,6 @@
     width: 100%;
     clear: both;
     padding: 20px 0;
-    margin: 20px 0 0 0;
     border-top: 1px solid #e6e6e6;
     border-bottom: 1px solid #e6e6e6;
 }
@@ -203,9 +257,20 @@
     float: left;
     width: 100%;
     clear: both;
-    border-bottom: 1px solid #e6e6e6;
+    border-top: 1px solid #e6e6e6;
     text-align: center;
     padding: 10px 0;
+
+    .btn-add-wishlist {
+        float: left;
+        width: 100%;
+        text-align: left;
+
+        .breakpoint_400({
+            width: 50%;
+            text-align: center;
+        });
+    }
 }
 .qty-holder {
     float: left;
@@ -252,7 +317,7 @@
     font-weight: 300;
     font-family: 'Open Sans', sans-serif;
 }
-#product-qty-input {
+#product-qty-input, .grid-product-qty-input {
     float: left;
     border: none;
     width: 45%;
@@ -261,7 +326,7 @@
     color: #4d4a48;
     display: inline-block;
     font-family: 'Open Sans', sans-serif;
-    font-size: 22px;
+    font-size: 18px;
     height: 44px;
     padding: 0;
     text-align: center;
@@ -271,6 +336,11 @@
         box-shadow: none;
     });
 }
+
+.grid-product-qty-input {
+    font-size: 16px;
+}
+
 .add-to-cart-holder {
     float: left;
     width: 100%;
@@ -333,20 +403,24 @@
 
     .each-stat {
         float: left;
-        width: 100%;
+        width: 50%;
         text-align: center;
         margin-bottom: 15px;
+        min-height: 110px;
 
         .breakpoint_600({
             width: 33.333%;
+            min-height: auto;
         });
 
         .breakpoint_768({
             width: 50%;
+            min-height: 110px;
         });
 
         .breakpoint_1200({
             width: 20%;
+            min-height: auto;
         });
 
         .each-stat-icon {
@@ -385,7 +459,7 @@
     .product-detail-overview-item-detail {
         display: block;
         position: relative; 
-        margin: 10px 0;
+        margin: 10px 0; 
     }
 
     .product-detail-overview-item-detail:before {
@@ -447,10 +521,6 @@
     border-bottom: 1px solid #e6e6e6;
 
     .additional-description {
-        color: #817266;
-        display: block;
-        font-family: 'Open Sans',sans-serif;
-        font-size: 14px;
         margin: 0 auto 15px 0;
         clear: both;
     }
@@ -577,6 +647,19 @@
     .breakpoint_992({
         font-size: 30px;
     });
+}
+
+.pdp-message-holder {
+    float: left;
+    width: 100%;
+    clear: both;
+    margin: 20px 0 0 0;
+
+    .alert {
+        text-align: left;
+        width: auto;
+        float: left;
+    }
 }
 
 

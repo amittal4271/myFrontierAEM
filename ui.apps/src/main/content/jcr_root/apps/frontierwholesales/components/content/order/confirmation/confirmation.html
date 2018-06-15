@@ -1,0 +1,56 @@
+<sly
+    data-sly-use.clientLib="${'/libs/granite/sightly/templates/clientlib.html'}"/>
+<sly data-sly-call="${clientlib.js @ categories='confirmation'}" data-sly-unwrap/>
+    <sly data-sly-use.url="../../../global-useapi/serverurl.js"></sly>
+<script>
+  var serverURL = "${url.server @ context='html'}";
+</script>
+
+
+ <div class="container" id="confirmationpage"> </div>
+ <script id="confirmationTemplate" type="text/x-handlebars-template"  >
+
+
+
+                    <section class="account-main-holder checkout-holder order-confirmation-page">
+                         <div id="order-confirmation-header">
+                              <h1 class="confirmation-header">Order Successful!</h1>
+                              <p class="confirmation-text">An order confirmation email has been sent to <span class="confirmation-email">{{customer_email}}</span>.</p>
+                              <p class="confirmation-text">Thank you for placing your order with us here at Frontier Co-op wholesale. We appreciate your business. If you any questions or concerns, please feel free to contact us at <a href="mailto:customercare@frontiercoop.com">customercare@frontiercoop.com</a> or 1-800-669-3275.</p>
+                              <a href="/content/frontierwholesales/en/home.html" class="btn btn-light-green btn-continue-shopping-confirmation">Continue Shopping</a>
+                         </div>
+                            <div id="order-confirmation-items-holder">
+                              <div id="order-confirmation-items-header">
+                                   <p class="confirmation-order-id">
+                                        For future reference, your Order ID is listed below:<br>
+                                        <span class="confirmation-order-number">Order ID: {{increment_id}}</span>
+                                   </p>
+                                   <a href="javascript: window.print();" class="btn btn-white-green btn-print-confirmation">Print Order Details</a>
+                              </div>
+
+                                <div id="order-confirmation-items-section">
+                                    {{#items}}
+                                  <div  class="each-confirmation-item">
+                                        <div class="item-info">
+
+                                             <div class="confirmation-item-details">
+                                                                                 <a href="#" class="confirmation-item-product-name">{{name }}</a>
+                                                                                 <span class="confirmation-item-number">Item #{{product_id}}</span>
+                                                                                 <span class="confirmation-price">{{formatNumber base_price style="currency" currency="USD"}}</span>
+                                             </div>
+                                        </div>
+                                        <div class="qty-info">
+                                                                                 <span class="confirmation-qty-text">Qty: <span class="confirmation-qty">{{qty_ordered}}</span></span>
+                                        </div>
+                                   </div>
+                                   {{/items}}
+                                 </div>
+                         </div>
+                       </section>
+                       </script>
+
+
+
+
+
+
