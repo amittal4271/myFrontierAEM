@@ -19,7 +19,7 @@
 <p data-sly-test="${!titletext.hasValue}" data-emptytext="Title and Text" class="cq-placeholder"></p>
 
 <div data-sly-test="${titletext.hasValue}" class="each-standard-information-section">
-    <h2 data-sly-element=${properties.type} data-sly-test="${titletext.hasValue}" class="standard-heading">${titletext.title}</h2>
+    <h2 data-sly-element=${properties.type} data-sly-test="${titletext.hasValue}" class="standard-heading" id="${properties.anchortag}">${titletext.title}</h2>
     <div class="standard-text">${titletext.text @context='html'}</div>
 </div>
 

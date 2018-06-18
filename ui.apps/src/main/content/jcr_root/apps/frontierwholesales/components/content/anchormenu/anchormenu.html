@@ -1,0 +1,13 @@
+<sly data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html" data-sly-call="${clientlib.css @ categories='frontierwholesales.component.anchormenu'}" /> 
+
+<div class="content-page-glossary-header secondary-styling" data-sly-use.menu="anchormenu.js">
+
+<ul data-sly-list.links="${menu.linksList}" id="glossary-filter-list">
+	<li>
+		<a data-scrolltoid="${links.path}" href="#" title="${links.title}">${links.title}</a>
+	</li>   
+</ul>
+</div>
+
+
+
