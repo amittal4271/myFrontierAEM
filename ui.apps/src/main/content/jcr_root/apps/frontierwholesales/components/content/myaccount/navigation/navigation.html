@@ -13,15 +13,14 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/-->
-<h4 data-sly-test="${wcmmode.edit}">edit...</h4>
-<nav class="account-nav-wrap cmp-navigation"
+<nav class="account-nav-wrap cmp-navigation clearfix"
      data-sly-use.template="core/wcm/components/commons/v1/templates.html"
      data-sly-use.navigation="com.adobe.cq.wcm.core.components.models.Navigation"
      data-sly-test.hasContent="${navigation.items.size > 0}"
      data-sly-use.groupTemplate="group.html"
      data-sly-call="${groupTemplate.group @ items=navigation.items, groupClass='account-nav'}">
 </nav>
-<ul data-sly-list="${navigation.items}" id="sub-nav-holder-desktop">
+<ul data-sly-list="${navigation.items}" class="clearfix" id="sub-nav-holder-desktop">
 	<sly data-sly-test="${item.path == currentPage.path || item.path == currentPage.parent.path}" data-sly-list="${item.children}">
 		<li class="sub-nav-holder-item ${ item.path == currentPage.path ? 'active-item' : ''}">
 			<a href="${item.path}.html">${item.title}</a>

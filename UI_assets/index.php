@@ -23,6 +23,7 @@
                          <li class="spacer"><a href="/membership-landing.php">Membership Landing</a></li>
                          <li><a href="./membership-lifetime.php">Membership Lifetime</a></li>
                          <li><a href="./membership-general.php">Membership General</a></li>
+                         <li><a href="./membership-buyingclub.php">Membership Buyers Club</a></li>
                          <li><a href="./ajax-form-button-loading-screen.php">Ajax Form Button Loading</a></li>
 
                          <li class="spacer"><a href="/account-nav.php">Account Navigation Example</a></li>
