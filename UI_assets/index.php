@@ -19,6 +19,7 @@
                          <li><a href="./top-navigation-example-with-js.php">Top Navigation With Javascript</a></li>
                          <li><a href="./login.php">Login</a></li>
                          <li><a href="./forgot-password.php">Forgot Password</a></li>
+                         <li><a href="./reset-password.php">Reset Password</a></li>
 
                          <li class="spacer"><a href="/membership-landing.php">Membership Landing</a></li>
                          <li><a href="./membership-lifetime.php">Membership Lifetime</a></li>
