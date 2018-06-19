@@ -62,19 +62,19 @@
                                         </legend>
                                         <div class="each-form-information">
                                              
-                                             <div class="form-group">
+                                             <div class="form-group width-half first">
                                                   <label for="id_shipping-name">Full Name</label>
                                                   <input id="id_shipping-name" class="form-control" maxlength="150" name="shipping-name" type="text">
                                              </div>
-                                             <div class="form-group width-half first">
+                                             <div class="form-group width-half">
                                                   <label for="id_shipping-address">Address Line 1</label>
                                                   <input id="id_shipping-address" maxlength="150" class="form-control" name="shipping-address" placeholder="123 Example Street" type="text">
                                              </div>
-                                             <div class="form-group width-half">
+                                             <div class="form-group width-half first">
                                                   <label for="id_shipping-address2">Address Line 2</label>
                                                   <input id="id_shipping-address2" class="form-control" maxlength="75" name="shipping-address2" placeholder="Suite 55C" type="text">
                                              </div>
-                                             <div class="form-group">
+                                             <div class="form-group width-half">
                                                   <label for="id_shipping-city">City</label>
                                                   <input id="id_shipping-city" class="form-control" maxlength="70" name="shipping-city" type="text">
                                              </div>
@@ -108,8 +108,6 @@
                                              </div>
                                         </div>
                                    </fieldset>
-
-                                   
 
                               </form>
                          </div>
