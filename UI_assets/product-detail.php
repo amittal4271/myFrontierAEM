@@ -81,7 +81,14 @@
 
                               <div class="product-wishlist">
                                    <button class="btn btn-add-wishlist btn-wishlist">Add to Wishlist +</button>
-                                   <button class="btn btn-add-wishlist btn-shelve">Add to Shelves +</button>
+                                   <div class="add-to-shelf btn">
+                                        <select>
+                                             <option>Add to Shelves +</option>
+                                             <option value="shelf1">Shelf 1</option>
+                                             <option value="shelf2">Shelf 2</option>
+                                             <option value="shelf3">Shelf 3</option>
+                                        </select>
+                                   </div>
                               </div>
 
 
