@@ -27,6 +27,7 @@ function getProductDetails(){
     
 
     jsonData['sku']=$('#productId').val();
+    jsonData['currentPagePath'] = $('#currentPagePath').val();
 
     $.ajax({
         url: "/services/pdp",

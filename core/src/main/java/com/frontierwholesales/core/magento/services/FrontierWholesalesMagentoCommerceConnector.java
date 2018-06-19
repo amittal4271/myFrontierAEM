@@ -1,7 +1,9 @@
 package com.frontierwholesales.core.magento.services;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.felix.scr.annotations.Activate;
@@ -17,13 +19,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.adobe.cq.commerce.api.CommerceException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.frontierwholesales.core.beans.FrontierWholesalesProductSearch;
 import com.frontierwholesales.core.beans.MagentoCategory;
+import com.frontierwholesales.core.magento.models.MagentoRelatedProduct;
 import com.frontierwholesales.core.utils.AuthCredentials;
-
-
 
 @Component(
 		immediate = true,
@@ -421,5 +423,24 @@ public class FrontierWholesalesMagentoCommerceConnector {
     	return response;
     }
 
+
+    public List<MagentoRelatedProduct> getRelatedProductsForSku( String authToken, String sku ) {
+        log.info("Getting related products for SKU: {}", sku);
+        List<MagentoRelatedProduct> productList = new ArrayList<>();
+        String response;
+        try {
+        	// products
+        	response = Request.Get(server + "/rest/V1/products/" + sku + "/links/related")
+                    .addHeader("Authorization", authToken)
+                    .execute().returnContent().asString();
+            log.debug("Related products for SKU response from endpoint:\n {}", response);
+
+            productList = mapper.readValue(response, new TypeReference<List<MagentoRelatedProduct>>(){});
+        } catch( IOException e ) {
+        	e.printStackTrace();
+            log.error("IOException trying to retrieve related products for sku: {}\n{}", sku, e);
+        }
+        return productList;
+    }
 
 }
