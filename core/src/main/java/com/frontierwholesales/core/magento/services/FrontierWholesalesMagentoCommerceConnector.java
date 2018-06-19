@@ -442,25 +442,6 @@ public class FrontierWholesalesMagentoCommerceConnector {
         }
         return productList;
     }
-
-    public List<MagentoRelatedProduct> getRelatedProductsForSku( String authToken, String sku ) {
-        log.info("Getting related products for SKU: {}", sku);
-        List<MagentoRelatedProduct> productList = new ArrayList<>();
-        String response;
-        try {
-        	// products
-        	response = Request.Get(server + "/rest/V1/products/" + sku + "/links/related")
-                    .addHeader("Authorization", authToken)
-                    .execute().returnContent().asString();
-            log.debug("Related products for SKU response from endpoint:\n {}", response);
-
-            productList = mapper.readValue(response, new TypeReference<List<MagentoRelatedProduct>>(){});
-        } catch( IOException e ) {
-        	e.printStackTrace();
-            log.error("IOException trying to retrieve related products for sku: {}\n{}", sku, e);
-        }
-        return productList;
-    }
     
     public List<MagentoBrand> getBrands( String authToken ) {
     	log.info("Getting brands/manufacturers");
