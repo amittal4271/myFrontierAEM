@@ -202,6 +202,17 @@
                                              </div>
                                              <button type="button" class="btn btn-light-green btn-grid-add-to-cart">Add to Cart</button>
                                         </div>
+                                        <div class="product-wishlist">
+                                             <button class="btn btn-add-wishlist btn-wishlist">Add to Wishlist +</button>
+                                             <div class="add-to-shelf btn">
+                                                  <select>
+                                                       <option>Add to Shelves +</option>
+                                                       <option value="shelf1">Shelf 1</option>
+                                                       <option value="shelf2">Shelf 2</option>
+                                                       <option value="shelf3">Shelf 3</option>
+                                                  </select>
+                                             </div>
+                                        </div>
                                    </div>
 
                                    <div class="product-grid-item">
@@ -241,6 +252,17 @@
                                              </div>
                                              <button type="button" class="btn btn-light-green btn-grid-add-to-cart">Add to Cart</button>
                                         </div>
+                                        <div class="product-wishlist">
+                                             <button class="btn btn-add-wishlist btn-wishlist">Add to Wishlist +</button>
+                                             <div class="add-to-shelf btn">
+                                                  <select>
+                                                       <option>Add to Shelves +</option>
+                                                       <option value="shelf1">Shelf 1</option>
+                                                       <option value="shelf2">Shelf 2</option>
+                                                       <option value="shelf3">Shelf 3</option>
+                                                  </select>
+                                             </div>
+                                        </div>
                                    </div>
 
                                    <div class="product-grid-item">
@@ -261,6 +283,17 @@
 
                                         <div class="grid-add-to-cart">
                                              <button type="button" class="btn btn-light-green btn-grid-add-to-cart">Add to Cart</button>
+                                        </div>
+                                        <div class="product-wishlist">
+                                             <button class="btn btn-add-wishlist btn-wishlist">Add to Wishlist +</button>
+                                             <div class="add-to-shelf btn">
+                                                  <select>
+                                                       <option>Add to Shelves +</option>
+                                                       <option value="shelf1">Shelf 1</option>
+                                                       <option value="shelf2">Shelf 2</option>
+                                                       <option value="shelf3">Shelf 3</option>
+                                                  </select>
+                                             </div>
                                         </div>
                                    </div>
 
@@ -299,6 +332,17 @@
                                              </div>
                                              <button type="button" class="btn btn-light-green btn-grid-add-to-cart">Add to Cart</button>
                                         </div>
+                                        <div class="product-wishlist">
+                                             <button class="btn btn-add-wishlist btn-wishlist">Add to Wishlist +</button>
+                                             <div class="add-to-shelf btn">
+                                                  <select>
+                                                       <option>Add to Shelves +</option>
+                                                       <option value="shelf1">Shelf 1</option>
+                                                       <option value="shelf2">Shelf 2</option>
+                                                       <option value="shelf3">Shelf 3</option>
+                                                  </select>
+                                             </div>
+                                        </div>
                                    </div>
 
                                    <div class="product-grid-item">
@@ -330,6 +374,17 @@
                                                   </button>
                                              </div>
                                              <button type="button" class="btn btn-light-green btn-grid-add-to-cart">Add to Cart</button>
+                                        </div>
+                                        <div class="product-wishlist">
+                                             <button class="btn btn-add-wishlist btn-wishlist">Add to Wishlist +</button>
+                                             <div class="add-to-shelf btn">
+                                                  <select>
+                                                       <option>Add to Shelves +</option>
+                                                       <option value="shelf1">Shelf 1</option>
+                                                       <option value="shelf2">Shelf 2</option>
+                                                       <option value="shelf3">Shelf 3</option>
+                                                  </select>
+                                             </div>
                                         </div>
                                    </div>
 
@@ -364,6 +419,17 @@
                                              </div>
                                              <button type="button" class="btn btn-light-green btn-grid-add-to-cart">Add to Cart</button>
                                         </div>
+                                        <div class="product-wishlist">
+                                             <button class="btn btn-add-wishlist btn-wishlist">Add to Wishlist +</button>
+                                             <div class="add-to-shelf btn">
+                                                  <select>
+                                                       <option>Add to Shelves +</option>
+                                                       <option value="shelf1">Shelf 1</option>
+                                                       <option value="shelf2">Shelf 2</option>
+                                                       <option value="shelf3">Shelf 3</option>
+                                                  </select>
+                                             </div>
+                                        </div>
                                    </div>
 
                                    <div class="product-grid-item">
@@ -395,6 +461,17 @@
                                                   </button>
                                              </div>
                                              <button type="button" class="btn btn-light-green btn-grid-add-to-cart">Add to Cart</button>
+                                        </div>
+                                        <div class="product-wishlist">
+                                             <button class="btn btn-add-wishlist btn-wishlist">Add to Wishlist +</button>
+                                             <div class="add-to-shelf btn">
+                                                  <select>
+                                                       <option>Add to Shelves +</option>
+                                                       <option value="shelf1">Shelf 1</option>
+                                                       <option value="shelf2">Shelf 2</option>
+                                                       <option value="shelf3">Shelf 3</option>
+                                                  </select>
+                                             </div>
                                         </div>
                                    </div>
 
@@ -432,6 +509,17 @@
                                                   </button>
                                              </div>
                                              <button type="button" class="btn btn-light-green btn-grid-add-to-cart">Add to Cart</button>
+                                        </div>
+                                        <div class="product-wishlist">
+                                             <button class="btn btn-add-wishlist btn-wishlist">Add to Wishlist +</button>
+                                             <div class="add-to-shelf btn">
+                                                  <select>
+                                                       <option>Add to Shelves +</option>
+                                                       <option value="shelf1">Shelf 1</option>
+                                                       <option value="shelf2">Shelf 2</option>
+                                                       <option value="shelf3">Shelf 3</option>
+                                                  </select>
+                                             </div>
                                         </div>
                                    </div>
 

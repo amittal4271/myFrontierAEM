@@ -5595,6 +5595,9 @@ tr.order-details-table-section-row td.inner-table-td-holder {
   left: 0;
   z-index: 8;
 }
+.product-grid-item .product-wishlist .btn {
+  width: 100%;
+}
 .grid-item-link {
   float: left;
   width: 100%;
@@ -5975,6 +5978,30 @@ tr.order-details-table-section-row td.inner-table-td-holder {
   font-size: 14px;
   display: block;
   margin: 10px 0 20px 0;
+}
+.add-to-shelf {
+  width: 100%;
+}
+.add-to-shelf select {
+  border: none;
+  position: relative;
+  font-family: Lato, sans-serif;
+  font-weight: 400;
+  color: #7d7671;
+  font-size: 13px;
+  background: 0 0;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  -moz-appearance: none;
+  /* Firefox */
+  -webkit-appearance: none;
+  /* Safari and Chrome */
+  appearance: none;
+  cursor: pointer;
+  padding: 10px 12px;
+}
+.add-to-shelf select option {
+  width: 100%;
 }
 .login-section {
   float: left;
