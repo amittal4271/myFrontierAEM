@@ -62,11 +62,7 @@
                                         </legend>
                                         <div class="each-form-information">
                                              
-                                             <div class="form-group width-half first">
-                                                  <label for="id_shipping-company">Company</label>
-                                                  <input id="id_shipping-company" class="form-control" maxlength="30" name="shipping-company" type="text">
-                                             </div>
-                                             <div class="form-group width-half">
+                                             <div class="form-group">
                                                   <label for="id_shipping-name">Full Name</label>
                                                   <input id="id_shipping-name" class="form-control" maxlength="150" name="shipping-name" type="text">
                                              </div>
@@ -104,19 +100,8 @@
                                                   </select>
                                              </div>
                                              <div class="form-group width-half">
-                                                  <label for="id_building-type">State</label>
-                                                  <select id="id_building-type" class="form-control" name="building-type">
-                                                       <option value="1">Commercial</option>
-                                                       <option value="2">Residential</option>
-                                                  </select>
-                                             </div>
-                                             <div class="form-group width-half first">
                                                   <label for="id_shipping-phone">Phone</label>
                                                   <input id="id_shipping-phone" class="form-control" name="shipping-phone" type="text">
-                                             </div>
-                                             <div class="form-group width-half">
-                                                  <label for="id_shipping-fax">Fax</label>
-                                                  <input id="id_shipping-fax" class="form-control" name="shipping-fax" type="text">
                                              </div>
                                              <div class="submit-holder">
                                                   <button class="btn btn-white-green btn-account-form">Register</button>
