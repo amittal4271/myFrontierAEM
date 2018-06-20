@@ -29,7 +29,7 @@ public class OrderModel extends BaseModel{
 			
 			this.customerId = customerObject.get("id").getAsString();
 			LOGGER.debug("customer id "+this.customerId);
-			String token = getAdminToken(slingHttpServletRequest);
+			String token = getAdminToken();
 			
 			 this.customerOrders = connector.getCustomerOrders(token, this.customerId);
 			

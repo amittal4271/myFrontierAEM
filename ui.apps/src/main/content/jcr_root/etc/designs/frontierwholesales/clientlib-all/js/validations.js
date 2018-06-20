@@ -257,6 +257,77 @@ function buyersClubCheckboxOperations(){
                               }
                          },
         
+        
+         buyersClubRegistrationForm: function($formId) {
+            $($formId).validate({
+                rules: {
+                   
+                    "membership-email":{
+                        required: true,
+		            	maxlength: 150,
+                        emailValidation: true
+                        
+                    },"membership-password":{
+                        required: true,
+                        minlength: 8,
+		            	maxlength: 50
+                        
+                        
+                    },"membership-password_confirm":{
+                        required: true,
+                        minlength: 8,
+                        maxlength: 50,
+                        equalTo: '#id_membership-password'
+                        
+                    },
+                    "shipping-name":{
+                        required: true,
+                        maxlength: 70,
+                        fullName: true
+                    },"shipping-address":{
+                        required: true,
+                        maxlength: 150
+                    },"shipping-city":{
+                        required: true,
+                        maxlength: 70
+                        
+                    },"shipping-postal_code":{
+                        required: true,
+                        minlength: 5,
+                        maxlength: 12
+                        
+                    },"shipping-phone":{
+                        required: true,
+		            	maxlength: 10,
+                        phoneno: true
+                        
+                    }
+                    
+                },messages :{
+                    "membership-email":{
+                         emailValidation:"Please enter a valid email"
+                    },
+                     "shipping-name":{
+                       
+                         fullName: 'Please enter full name'
+                        
+                    },"shipping-phone":{
+                        
+                          phoneno: 'Enter a valid phone number'
+                        
+                    },"membership-name":{
+                       
+                        fullName: 'Please enter full name'
+                        
+                    },"membership-password_confirm":{
+                        
+                        equalTo: 'Password did not match'
+                        
+                    }
+                }
+            });
+        },
+        
         billingAddressForm: function($formId){
              $($formId).validate({
                 rules: {

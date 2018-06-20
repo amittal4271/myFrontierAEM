@@ -58,4 +58,25 @@ public class FrontierWholesalesUserRegistration {
 		return countryAndRegions;
 	}
 	
+	public static String resetPassword(String adminToken,String jsonData) throws Exception{
+
+		String server = FrontierWholesalesMagentoCommerceConnector.getServer();
+		String response = Request.Get(server + "/rest/V1/customers/resetPassword")
+				.addHeader("Authorization", adminToken)
+				 .bodyString(jsonData,ContentType.APPLICATION_JSON)
+                .execute().returnContent().asString();
+		
+		return response;
+	}
+	
+	public static String updateCustomers(String adminToken,String jsonData,String id) throws Exception{
+		String server = FrontierWholesalesMagentoCommerceConnector.getServer();
+		String response = Request.Put(server + "/rest/V1/customers/"+id)
+				.addHeader("Authorization", adminToken)
+				 .bodyString(jsonData,ContentType.APPLICATION_JSON)
+                .execute().returnContent().asString();
+		
+		return response;
+	}
+	
 }

@@ -279,7 +279,7 @@ function userRegistrationService(customer,company,pwd){
     
      $.ajax({
         url:"/services/registration",
-        data:{customer:JSON.stringify(customer),company:JSON.stringify(company)},
+        data:{customer:JSON.stringify(customer),company:JSON.stringify(company),action:'registration'},
         method: "POST",
          headers:{
 
@@ -294,8 +294,12 @@ function userRegistrationService(customer,company,pwd){
           
         },error:function(error){
             console.log(error);
-             enableAjaxFormButton($buttonObj);              
+             enableAjaxFormButton($buttonObj); 
+           
+            var errorText="The site is currently unavailable and unable to process your request.  Please check back later.";
+            
             $('.global-server-side-message-holder').css('display','block');
+            $('.global-server-side-message-holder').children().text(errorText);
             scrollToElement($el);
         }
     });

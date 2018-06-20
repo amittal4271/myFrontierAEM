@@ -12,8 +12,8 @@
                                    <h2 class="filter-heading">Categories</h2>
                                    <ul class="each-filters-list">
                                        <sly data-sly-list.child="${categories.categories.children_data}">
-                                        <li class="filter-item ${childList.count > 3?'visuallyhidden':''}">
-                                             <a href="/content/frontierwholesales/en/productlist?${child.id}" class="filter-link"><span class="text">${child.name}</span></a>
+                                        <li class="filter-item ${childList.count > 5?'visuallyhidden':''}">
+                                             <a href="/content/frontierwholesales/en/productlist.html?id=${child.id}" class="filter-link"><span class="text">${child.name}</span></a>
                                         </li>
                                        
                                        

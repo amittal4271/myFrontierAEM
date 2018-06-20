@@ -5,7 +5,7 @@
         <sly data-sly-test="${aemPageFirstList.first}">
          <li class="top-level-category">
 
-            <a class="top-level-link" href="${aemPageFirst.link}">${aemPageFirst.name}</a>
+            <a class="top-level-link" href="${aemPageFirst.link}">${aemPageFirst.title}</a>
          </li>
          </sly>
      </sly>
@@ -57,23 +57,23 @@
         <sly data-sly-test="${aemPageFirstList.last}">
          <li class="top-level-category drop-left">
 
-            <a class="top-level-link" href="${aemPageFirst.link}">${aemPageFirst.name}</a>
+            <a class="top-level-link" href="${aemPageFirst.link}">${aemPageFirst.title}</a>
              <ul class="sub-nav first-level" data-sly-list.lastChildLevel1="${aemPageFirst.childList}">
                    <li class="category-nav-item">
-                       <a  class="category-nav-link" href="${lastChildLevel1.link}" data-attr-name='${lastChildLevel1.name}'>${lastChildLevel1.name}
+                       <a  class="category-nav-link" href="${lastChildLevel1.link}" data-attr-name='${lastChildLevel1.name}'>${lastChildLevel1.title}
                                                     <span class="glyphicon glyphicon-menu-right">
                                                         </span>
                        </a>
                         <ul  class="sub-nav second-level" data-sly-list.lastChildLevel2="${lastChildLevel1.childList}">
                              <li class="category-nav-child-item">
-                                                            <a class="category-nav-child-link"  href="${lastChildLevel2.link}" >${lastChildLevel2.name}
+                                                            <a class="category-nav-child-link"  href="${lastChildLevel2.link}" >${lastChildLevel2.title}
                                                                  <span class="glyphicon glyphicon-menu-right">
                                                         </span>
                                                             </a>
                                  
                                  <ul  class="sub-nav third-level" data-sly-list.lastChildLevel3="${lastChildLevel2.childList}">
                                                             <li class="category-nav-child-child-item">
-                                                                <a class="category-nav-child-child-link"  href="${lastChildLevel3.link}" >${lastChildLevel3.name}
+                                                                <a class="category-nav-child-child-link"  href="${lastChildLevel3.link}" >${lastChildLevel3.title}
                                                                  </a>
                                                              </li>
                                                    

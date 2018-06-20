@@ -30,14 +30,11 @@ public abstract class BaseModel {
 	 
 	 
 	 
-	 protected String getAdminToken(SlingHttpServletRequest request) throws Exception{
-		 String adminToken = (String)slingHttpServletRequest.getSession().getAttribute(FrontierWholesalesConstants.MAGENTO_ADMIN_TOKEN);
-		 if(null == adminToken) {
-		  adminToken = connector.getAdminToken();
+	 protected String getAdminToken() throws Exception{
+		
+		  return connector.getAdminToken();
 			
-		request.getSession().setAttribute(FrontierWholesalesConstants.MAGENTO_ADMIN_TOKEN, adminToken);
-		 }
-		 return adminToken;
+		
 	 }
 	 
 	 public String getUserToken() {

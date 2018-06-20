@@ -298,7 +298,7 @@ function getBuyersClubDetails(){
 function memberRegistration(customer,company,pwd){
      $.ajax({
         url:"/services/registration",
-        data:{customer:JSON.stringify(customer),company:JSON.stringify(company)},
+        data:{customer:JSON.stringify(customer),company:JSON.stringify(company),action:'registration'},
         method: "POST",
          headers:{
 

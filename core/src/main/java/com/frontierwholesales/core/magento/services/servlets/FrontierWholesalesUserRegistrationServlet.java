@@ -8,7 +8,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.felix.scr.annotations.sling.SlingServlet;
-import org.apache.http.entity.StringEntity;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
@@ -46,7 +45,7 @@ public class FrontierWholesalesUserRegistrationServlet  extends SlingAllMethodsS
 		
 		try {
 			
-			String adminToken = (String)getTokenFromSession(request); 
+			String adminToken = connector.getAdminToken();
 			object = FrontierWholesalesUserRegistration.getCountriesWithRegions(adminToken);
 			response.getOutputStream().println(object);
 		} catch (Exception e) {
@@ -60,16 +59,6 @@ public class FrontierWholesalesUserRegistrationServlet  extends SlingAllMethodsS
 		
 	}
 	
-	private String getTokenFromSession(SlingHttpServletRequest request) throws Exception{
-		log.debug("getToken from session start");
-		String adminToken = (String)request.getSession().getAttribute(FrontierWholesalesConstants.MAGENTO_ADMIN_TOKEN);
-		if(null == adminToken) {
-			adminToken = connector.getAdminToken();
-			request.getSession().setAttribute(FrontierWholesalesConstants.MAGENTO_ADMIN_TOKEN, adminToken);
-		}
-		log.debug("getToken from session end");
-		return adminToken;
-	}
 	
 	@Override
 	protected void doPost(SlingHttpServletRequest request, SlingHttpServletResponse response)
@@ -77,7 +66,7 @@ public class FrontierWholesalesUserRegistrationServlet  extends SlingAllMethodsS
 			JsonObject jsonObject = new JsonObject();
 			log.debug("entered into doPost method of registration");
 			try {
-			  String data = request.getParameter("customer");
+			 
 				final String authorization = request.getHeader("Authorization");
 			    if (authorization != null && authorization.startsWith("Basic")) {
 			        // Authorization: Basic base64credentials
@@ -85,29 +74,48 @@ public class FrontierWholesalesUserRegistrationServlet  extends SlingAllMethodsS
 			        String credentials = new String(Base64.getDecoder().decode(base64Credentials),
 			                Charset.forName("UTF-8"));
 					
-					  String company = request.getParameter("company");
+			        String action = request.getParameter("action");
+			        // buyers club registration
+			        if(action.equals("buyersClub")) {
+			        	String resetPwdData = request.getParameter("resetPwd");
+			        	String adminToken = connector.getAdminToken();
+			        	log.debug("resetPwd data is "+resetPwdData);
+			        	JsonObject resetPwdObject = updateJSONObject(resetPwdData, "resetPassword", credentials);
+			        	//get customer id here
+			        	String customerResponse = FrontierWholesalesUserRegistration.resetPassword(adminToken, resetPwdObject.toString());
+			        	//update first and lastname with customer id
+			        	log.debug("customer response is "+customerResponse);
+			        	String customerData = request.getParameter("customer");
+			        	//FrontierWholesalesUserRegistration.updateCustomers(adminToken, customerData, id)
+			        	
+			        	
+			        }else {
+			        
+			        	String data = request.getParameter("customer");
+			        	String company = request.getParameter("company");
 					 
-					  JsonObject customerObject = updateJSONObject(data,"password",credentials);
+			        	JsonObject customerObject = updateJSONObject(data,"password",credentials);
 					 
-					  //Call customer service to get customer id here
-					  String customerId = FrontierWholesalesUserRegistration.customerRegistration(customerObject);
+			        	//Call customer service to get customer id here
+			        	String customerId = FrontierWholesalesUserRegistration.customerRegistration(customerObject);
 					 
-					String adminToken = (String)getTokenFromSession(request); 
-					
-					 String id = getCustomerId(customerId);
-					 request.getSession().setAttribute(FrontierWholesalesConstants.CUSTOMER_ID, id);
-					 JsonObject companyObject = updateCompanyJSONObject(company,"super_user_id",id);
-					
-					  //call company service here to register
-					  String registredValues = FrontierWholesalesUserRegistration.companyRegistration(adminToken, companyObject);
-					  log.debug("Successfully user is registered");
-					  if(registredValues != null) {
-						  jsonObject.addProperty("Success", registredValues);
-						  response.getOutputStream().println(jsonObject.toString());
-					  }else {
-						  log.error("Returned object is null ");
-						  response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Service object is null");
-					  }
+						String adminToken = connector.getAdminToken();
+						
+						 String id = getCustomerId(customerId);
+						 request.getSession().setAttribute(FrontierWholesalesConstants.CUSTOMER_ID, id);
+						 JsonObject companyObject = updateCompanyJSONObject(company,"super_user_id",id);
+						
+						  //call company service here to register
+						  String registredValues = FrontierWholesalesUserRegistration.companyRegistration(adminToken, companyObject);
+						  log.debug("Successfully user is registered");
+						  if(registredValues != null) {
+							  jsonObject.addProperty("Success", registredValues);
+							  response.getOutputStream().println(jsonObject.toString());
+						  }else {
+							  log.error("Returned object is null ");
+							  response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Service object is null");
+						  }
+			        }
 			    }else {
 			    	response.sendError(HttpServletResponse.SC_FORBIDDEN, "Password is not set");
 			    }

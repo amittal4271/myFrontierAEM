@@ -44,7 +44,7 @@ public class ShippingPageModel extends BaseModel{
 		 try {
 			 mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
 				
-			 String adminToken = getAdminToken(slingHttpServletRequest);
+			 String adminToken = getAdminToken();
 			 
 			 String userToken = getUserToken();
 			
