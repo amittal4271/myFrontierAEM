@@ -31,7 +31,8 @@ public class FrontierWholesaleUser {
 		this.userRole = exampleUserRole[randomIndex];
 		
 		for(int i=0;i<2+randomIndex;i++) {
-			FrontierWholesaleOrder order = new FrontierWholesaleOrder(this);
+			FrontierWholesaleOrder order = new FrontierWholesaleOrder();
+			order.setUserName(this.getFullName());
 			pendingOrders.add(order);
 		}
 		

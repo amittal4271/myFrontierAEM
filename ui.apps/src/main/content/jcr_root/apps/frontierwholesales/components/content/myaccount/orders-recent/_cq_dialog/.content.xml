@@ -11,28 +11,153 @@
             jcr:primaryType="nt:unstructured"
             sling:resourceType="granite/ui/components/foundation/layouts/tabs"
             type="nav"/>
-        <items jcr:primaryType="nt:unstructured">
-            <componentstyles
-                jcr:primaryType="nt:unstructured"
-                jcr:title="Component Styles"
-                sling:resourceType="granite/ui/components/foundation/section">
-                <layout
-                    jcr:primaryType="nt:unstructured"
-                    sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns"
-                    margin="{Boolean}false"/>
-                <items jcr:primaryType="nt:unstructured">
-                    <column
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="granite/ui/components/foundation/container">
-                        <items jcr:primaryType="nt:unstructured">
-                            <componentstyles
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="cq/gui/components/authoring/dialog/componentstyles"
-                                name="./cq:cssClass"/>
-                        </items>
-                    </column>
-                </items>
-            </componentstyles>
-        </items>
-    </content>
+       	<items jcr:primaryType="nt:unstructured">
+            <column
+				jcr:primaryType="nt:unstructured"
+				jcr:title="Recent Order Row Labels"
+				sling:resourceType="granite/ui/components/foundation/container">
+				<layout 
+				jcr:primaryType="nt:unstructured" 
+				sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns"/> 
+				<items jcr:primaryType="nt:unstructured"> 
+					<columns 
+						jcr:primaryType="nt:unstructured" 
+						sling:resourceType="granite/ui/components/foundation/container"> 
+						<items jcr:primaryType="nt:unstructured">
+							<recentOrdersListHeader
+							    jcr:primaryType="nt:unstructured"
+							    sling:resourceType="granite/ui/components/foundation/form/textfield"
+							    fieldDescription="if left empty defaults to 'Recent Orders'"
+							    fieldLabel="Recent Orders List Header"
+							    name="./recentOrdersListHeader"/>
+							<webOrderColumnHeader
+							    jcr:primaryType="nt:unstructured"
+							    sling:resourceType="granite/ui/components/foundation/form/textfield"
+							    fieldDescription="if left empty defaults to 'Web Order'"
+							    fieldLabel="Web Order Column Header"
+							    name="./webOrderColumnHeader"/>
+							<dateColumnHeader
+							    jcr:primaryType="nt:unstructured"
+							    sling:resourceType="granite/ui/components/foundation/form/textfield"
+							    fieldDescription="if left empty defaults to 'Date'"
+							    fieldLabel="Date Column Header"
+							    name="./dateColumnHeader"/>
+							<orderColumnHeader
+							    jcr:primaryType="nt:unstructured"
+							    sling:resourceType="granite/ui/components/foundation/form/textfield"
+							    fieldDescription="if left empty defaults to 'Order'"
+							    fieldLabel="Order Column Header"
+							    name="./orderColumnHeader"/>
+							<shipColumnHeader
+							    jcr:primaryType="nt:unstructured"
+							    sling:resourceType="granite/ui/components/foundation/form/textfield"
+							    fieldDescription="if left empty defaults to 'Ship'"
+							    fieldLabel="Ship Column Header"
+							    name="./shipColumnHeader"/>
+							<poNumberColumnHeader
+							    jcr:primaryType="nt:unstructured"
+							    sling:resourceType="granite/ui/components/foundation/form/textfield"
+							    fieldDescription="if left empty defaults to 'PO Number'"
+							    fieldLabel="PO Number Column Header"
+							    name="./poNumberColumnHeader"/>
+							<statusColumnHeader
+							    jcr:primaryType="nt:unstructured"
+							    sling:resourceType="granite/ui/components/foundation/form/textfield"
+							    fieldDescription="if left empty defaults to 'Status'"
+							    fieldLabel="Status Column Header"
+							    name="./statusColumnHeader"/>
+							<invoiceColumnHeader
+							    jcr:primaryType="nt:unstructured"
+							    sling:resourceType="granite/ui/components/foundation/form/textfield"
+							    fieldDescription="if left empty defaults to 'Invoice'"
+							    fieldLabel="Invoice Column Header"
+							    name="./invoiceColumnHeader"/>
+							<actionColumnHeader
+							    jcr:primaryType="nt:unstructured"
+							    sling:resourceType="granite/ui/components/foundation/form/textfield"
+							    fieldDescription="if left empty defaults to 'Actions'"
+							    fieldLabel="Action Column Header"
+							    name="./actionColumnHeader"/>
+							<reorderButtonText
+							    jcr:primaryType="nt:unstructured"
+							    sling:resourceType="granite/ui/components/foundation/form/textfield"
+							    fieldDescription="if left empty defaults to 'Reorder'"
+							    fieldLabel="Reorder Button Text"
+							    name="./reorderButtonText"/>
+						</items>
+					</columns>
+				</items>
+			</column>
+            <column2
+				jcr:primaryType="nt:unstructured"
+				jcr:title="Recent Order Item Row Labels"
+				sling:resourceType="granite/ui/components/foundation/container">
+				<layout 
+				jcr:primaryType="nt:unstructured" 
+				sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns"/> 
+				<items jcr:primaryType="nt:unstructured"> 
+					<columns 
+						jcr:primaryType="nt:unstructured" 
+						sling:resourceType="granite/ui/components/foundation/container"> 
+						<items jcr:primaryType="nt:unstructured">
+							<itemNumColumnHeader
+							    jcr:primaryType="nt:unstructured"
+							    sling:resourceType="granite/ui/components/foundation/form/textfield"
+							    fieldDescription="if left empty defaults to 'Item #'"
+							    fieldLabel="Item Num Column Header"
+							    name="./itemNumColumnHeader"/>
+							<descriptionColumnHeader
+							    jcr:primaryType="nt:unstructured"
+							    sling:resourceType="granite/ui/components/foundation/form/textfield"
+							    fieldDescription="if left empty defaults to 'Description'"
+							    fieldLabel="Description Column Header"
+							    name="./descriptionColumnHeader"/>
+							<skuStatusColumnHeader
+							    jcr:primaryType="nt:unstructured"
+							    sling:resourceType="granite/ui/components/foundation/form/textfield"
+							    fieldDescription="if left empty defaults to 'SKU Status'"
+							    fieldLabel="SKU Status Column Header"
+							    name="./skuStatusColumnHeader"/>
+							<priceColumnHeader
+							    jcr:primaryType="nt:unstructured"
+							    sling:resourceType="granite/ui/components/foundation/form/textfield"
+							    fieldDescription="if left empty defaults to 'Price'"
+							    fieldLabel="Price Column Header"
+							    name="./priceColumnHeader"/>
+							<pastQtyColumnHeader
+							    jcr:primaryType="nt:unstructured"
+							    sling:resourceType="granite/ui/components/foundation/form/textfield"
+							    fieldDescription="if left empty defaults to 'Past Qty'"
+							    fieldLabel="Past Qty Column Header"
+							    name="./pastQtyColumnHeader"/>
+							<newQtyColumnHeader
+							    jcr:primaryType="nt:unstructured"
+							    sling:resourceType="granite/ui/components/foundation/form/textfield"
+							    fieldDescription="if left empty defaults to 'New Qty'"
+							    fieldLabel="New Qty Column Header"
+							    name="./newQtyColumnHeader"/>
+							<actionsColumnHeader
+							    jcr:primaryType="nt:unstructured"
+							    sling:resourceType="granite/ui/components/foundation/form/textfield"
+							    fieldDescription="if left empty defaults to 'Actions'"
+							    fieldLabel="Actions Column Header"
+							    name="./actionsColumnHeader"/>
+							<addToCartButtonText
+							    jcr:primaryType="nt:unstructured"
+							    sling:resourceType="granite/ui/components/foundation/form/textfield"
+							    fieldDescription="if left empty defaults to 'Add to Cart'"
+							    fieldLabel="Add to Cart Button Text"
+							    name="./addToCartButtonText"/>
+							<addToShelvesButtonText
+							    jcr:primaryType="nt:unstructured"
+							    sling:resourceType="granite/ui/components/foundation/form/textfield"
+							    fieldDescription="if left empty defaults to 'Add to Shelves'"
+							    fieldLabel="Add to Shelves Button Text"
+							    name="./addToShelvesButtonText"/>
+						</items>
+					</columns>
+				</items>
+			</column2>
+       	</items>
+   	</content>
 </jcr:root>

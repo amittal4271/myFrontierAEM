@@ -1,46 +1,136 @@
-<section class="account-main-holder clearfix">
-	<div class="account-heading-holder">
-	     <h2 class="account-heading">Recent Orders</h2>
-	</div>
-	<div class="account-information-holder">
-		<select class="recent-orders__sort" data-recent-orders-sort="">
-			<option value="">Sort by</option>
-			
-			<option value="?sort=-id">Web Order</option>
-		
-			<option value="?sort=-placed">Date</option>
-		
-			<option value="?sort=-code">Order</option>
-		
-			<option value="?sort=shipments__carrier__name">Ship</option>
-		
-			<option value="?sort=purchase_order_number">PO Number</option>
-		
-			<option value="?sort=status">Status</option>
-		
-			<option value="?sort=invoice">Invoice</option>
-		
-		</select>
+<section class="account-main-holder clearfix"
+		 data-sly-use.recentorders="com.frontierwholesales.core.models.myaccount.RecentOrders" 
+		 data-sly-use.myaccount="com.frontierwholesales.core.models.myaccount.MyAccount">
+                              
+     <div class="account-heading-holder table-below">
+          <h2 class="account-heading">${recentorders.recentOrdersListHeader}</h2>
+     </div>
 
-		<table class="recent-orders">
-			<thead>
-				<tr>
-					<th class="recent-orders__header-web-order">Web Order</th>
-					<th class="recent-orders__header-date">Date</th>
-					<th class="recent-orders__header-order">Order</th>
-					<th class="recent-orders__header-ship">Ship</th>
-					<th class="recent-orders__header-po-number">PO Number</th>
-					<th class="recent-orders__header-status">Status</th>
-					<th class="recent-orders__header-invoice">Invoice</th>
-					<th class="recent-orders__header-btn">&nbsp;</th>
-				</tr>
-			</thead>
-			<tbody>
-				
-			</tbody>
-		</table>
+     <div class="account-information-holder">
 
-		<br>
-	</div>
+          <div class="grid-table-header order-information-header">
+               <div class="each-order-header recent-orders-header-web-order grid-header">${recentorders.webOrderColumnHeader}</div>
+               <div class="each-order-header recent-orders-header-date grid-header">${recentorders.dateColumnHeader}</div>
+               <div class="each-order-header recent-orders-header-order grid-header">${recentorders.orderColumnHeader}</div>
+               <div class="each-order-header recent-orders-header-ship grid-header">${recentorders.shipColumnHeader}</div>
+               <div class="each-order-header recent-orders-header-ponumber grid-header">${recentorders.poNumberColumnHeader}</div>
+
+               <div class="each-order-header recent-orders-header-status grid-header">${recentorders.statusColumnHeader}</div>
+               <div class="each-order-header recent-orders-header-invoice grid-header">${recentorders.invoiceColumnHeader}</div>
+               <div class="each-order-header recent-orders-header-action grid-header">${recentorders.actionColumnHeader}</div>
+          </div>
+          <div class="order-grid grid-table-data invites-data" data-sly-list.order="${myaccount.recentOrders}">
+               <div class="row-each-order">
+                    <div class="information-holder order-information-holder">
+                         <div class="each-order-section recent-orders-web-order-section">
+                              <span class="tablet-below-col-heading">${recentorders.webOrderColumnHeader}</span>
+                              <a class="table-link" href="#">${order.webOrderNum}</a>
+                         </div>
+                         <div class="each-order-section recent-orders-date-section">
+                              <span class="tablet-below-col-heading">${recentorders.dateColumnHeader}</span>
+                              ${order.orderDate}
+                         </div>
+                         <div class="each-order-section recent-orders-order-section">
+                              <span class="tablet-below-col-heading">${recentorders.orderColumnHeader}</span>
+                              ${order.orderNum}
+                         </div>
+                         <div class="each-order-section recent-orders-ship-section">
+                              <span class="tablet-below-col-heading">${recentorders.shipColumnHeader}</span>
+                              ${order.shipType}
+                         </div>
+                         <div class="each-order-section recent-orders-ponumber-section">
+                              <span class="tablet-below-col-heading">${recentorders.poNumberColumnHeader}</span>
+                              ${order.poNumber}
+                         </div>
+                         <div class="each-order-section recent-orders-status-section">
+                              <span class="tablet-below-col-heading">${recentorders.statusColumnHeader}</span>
+                              ${order.status}
+                         </div>
+                         <div class="each-order-section recent-orders-invoice-section">
+                              <span class="tablet-below-col-heading">${recentorders.invoiceColumnHeader}</span>
+                              <a class="table-link" href="#">${order.invoiceNum}</a>
+                         </div>
+                         <div class="each-order-section recent-orders-action-section">
+                              <div class="action-button-section-account">
+                                   <span class="tablet-below-col-heading">${recentorders.reorderButtonText}</span>
+                                   <a href="#" class="btn btn-light-green" title="Reorder">
+                                        <span class="address-link-text">${recentorders.reorderButtonText}</span>
+                                   </a>
+                              </div>
+                              
+                              <div class="action-button-section-account last">
+                                   <span class="tablet-below-col-heading">View</span>
+                                   <button class="btn btn-only-green-icon btn-toggle-order-details">
+                                        <span class="address-link-text visuallyhidden">Show</span>
+                                        <span class="glyphicon rotate glyphicon-plus"></span>
+                                   </button>
+                              </div>
+                              
+                         </div>
+                    </div>
+                    <div class="order-details-holder">
+                         <div class="grid-table-header order-detail-recent-header">
+                              <div class="each-order-header recent-detail-header-image grid-header">&nbsp;</div>
+                              <div class="each-order-header recent-detail-header-item grid-header">${recentorders.itemNumColumnHeader}</div>
+                              <div class="each-order-header recent-detail-header-description grid-header">${recentorders.descriptionColumnHeader}</div>
+                              <div class="each-order-header recent-detail-header-sku grid-header">${recentorders.skuStatusColumnHeader}</div>
+                              <div class="each-order-header recent-detail-header-price grid-header">${recentorders.priceColumnHeader}</div>
+                              <div class="each-order-header recent-detail-header-past-qty grid-header">${recentorders.pastQtyColumnHeader}</div>
+                              <div class="each-order-header recent-detail-header-new-qty grid-header">${recentorders.newQtyColumnHeader}</div>
+                              <div class="each-order-header recent-detail-header-actions grid-header">${recentorders.actionsColumnHeader}</div>
+                         </div>
+                         <div class="order-detail-grid" data-sly-list.orderItem="${order.orderItems}">
+                              <div class="row-each-order-detail">
+                                   <div class="order-detail-holder">
+                                        <div class="order-detail-recent-section recent-detail-image-section">
+                                             <a href="#">
+                                                  <img src="../frontierwholesales/images/pdp-related-two.jpg" class="image-pending-orders" alt="${orderItem.description}">
+                                             </a>
+                                        </div>
+                                        <div class="order-detail-recent-section recent-detail-item-section">
+                                             <span class="tablet-below-col-detail-heading">${recentorders.itemNumColumnHeader}</span>
+                                             <span class="order-detail-text item-number-text">${orderItem.itemNum}</span>
+                                        </div>
+                                        <div class="order-detail-recent-section recent-detail-description-section">
+                                             <span class="tablet-below-col-detail-heading">${recentorders.descriptionColumnHeader}</span>
+                                             <span class="order-detail-text description-text">${orderItem.description}</span>
+                                        </div>
+                                        <div class="order-detail-recent-section recent-detail-sku-section">
+                                             <span class="tablet-below-col-detail-heading">${recentorders.skuStatusColumnHeader}</span>
+                                             <span class="order-detail-text sku-status-text">${orderItem.skuStatus}</span>
+                                        </div>
+                                        <div class="order-detail-recent-section recent-detail-price-section">
+                                             <span class="tablet-below-col-detail-heading">${recentorders.priceColumnHeader}</span>
+                                             <span class="order-detail-text price-text">${orderItem.price}</span>
+                                        </div>
+                                        <div class="order-detail-recent-section recent-detail-past-qty-section">
+                                             <span class="tablet-below-col-detail-heading">${recentorders.pastQtyColumnHeader}</span>
+                                             <span class="order-detail-text qty-text">${orderItem.quantity}</span>
+                                        </div>
+                                        <div class="order-detail-recent-section recent-detail-new-qty-section">
+                                             <span class="tablet-below-col-detail-heading">${recentorders.newQtyColumnHeader}</span>
+                                             <input type="number" min="1" name="" value="1" class="recent-orders-qty form-control">
+                                        </div>
+                                        <div class="order-detail-recent-section recent-detail-actions-section">
+                                             <div class="action-button-section-account">
+                                                  <span class="tablet-below-col-heading">${recentorders.addToCartButtonText}</span>
+                                                  <a href="#" class="btn btn-light-green" title="${recentorders.addToCartButtonText}">
+                                                       <span class="address-link-text">${recentorders.addToCartButtonText}</span>
+                                                  </a>
+                                             </div>
+                                             <div class="action-button-section-account last clear-desktop">
+                                                  <span class="tablet-below-col-heading">${recentorders.addToShelvesButtonText}</span>
+                                                  <a href="#" class="btn btn-green-dark" data-toggle="modal" data-target="#modalAddToShelf" title="${recentorders.addToShelvesButtonText}">
+                                                       <span class="address-link-text">${recentorders.addToShelvesButtonText}</span>
+                                                  </a>
+                                             </div>
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+          </div>
+     </div>
+     
 </section>
-

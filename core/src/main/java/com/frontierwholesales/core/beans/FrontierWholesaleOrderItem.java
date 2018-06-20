@@ -11,11 +11,11 @@ public class FrontierWholesaleOrderItem {
 	private String price;
 	private String quantity;
 
-	public FrontierWholesaleOrderItem(FrontierWholesaleOrder order) {
-		fillWithExampleData(order);
+	public FrontierWholesaleOrderItem() {
+		fillWithExampleData();
 	}
 	
-	public void fillWithExampleData(FrontierWholesaleOrder order) {
+	public void fillWithExampleData() {
 		Random rn = new Random();
 		int randomIndex = rn.nextInt(2);
 
@@ -24,7 +24,6 @@ public class FrontierWholesaleOrderItem {
 		this.skuStatus = exampleSkuStatus[randomIndex];
 		this.price = examplePrice[randomIndex];
 		this.quantity = exampleQuantity[randomIndex];
-		this.order = order;
 	}
 	
 	private String[] exampleItemNum = {"18034","32525","47744"};
