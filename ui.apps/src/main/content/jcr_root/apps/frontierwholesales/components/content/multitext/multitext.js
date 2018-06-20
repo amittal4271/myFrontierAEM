@@ -15,6 +15,10 @@ use(function () {
    
    
     multiContent.title = properties.get('./title');
+    multiContent.id = properties.get('./title').replace(" ", "-").toLowerCase();
+    multiContent.id = multiContent.id.replace("(","");
+    multiContent.id = multiContent.id.replace(")","");
+
 
     // The HTML element name
 
