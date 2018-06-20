@@ -15,8 +15,12 @@
                  <sly data-sly-test="${pages.is_active}">
 		<li class="top-level-category">
           
-            
+            <sly data-sly-test="${pages.children_data == 0}">
+            <a class="top-level-link" href="/content/frontierwholesales/en/productlist.html?id=${pages.id}">${pages.name}</a>
+                </sly>
+              <sly data-sly-test="${pages.children_data > 0}">
             <a class="top-level-link" href="#">${pages.name}</a>
+                </sly>
                   <ul class="sub-nav first-level" data-sly-list.childLevel1="${pages.children_data}">
                      
                       <li class="category-nav-item">

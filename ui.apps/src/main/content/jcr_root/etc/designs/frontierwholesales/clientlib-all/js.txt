@@ -10,5 +10,5 @@ handlebars-intl.min.js
 validations.js
 newsletter.js
 #main.js
-
+chat.js
 
