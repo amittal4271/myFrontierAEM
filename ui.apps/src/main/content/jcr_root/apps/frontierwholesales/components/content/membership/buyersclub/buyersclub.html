@@ -1,7 +1,7 @@
 <sly
     data-sly-use.clientLib="${'/libs/granite/sightly/templates/clientlib.html'}"/>
 <sly data-sly-call="${clientlib.js @ categories='buyersclub'}" data-sly-unwrap/>
-
+<input type="hidden" id="customer-id" value="${request.requestParameterMap['token'][0].toString}">
 <section id="membership-holder">
                     <div class="container">
                          <div class="lifetime-leaf"></div>

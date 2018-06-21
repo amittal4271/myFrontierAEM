@@ -86,8 +86,10 @@ public class FrontierWholesalesUserRegistrationServlet  extends SlingAllMethodsS
 			        	//update first and lastname with customer id
 			        	log.debug("customer response is "+customerResponse);
 			        	String customerData = request.getParameter("customer");
-			        	//FrontierWholesalesUserRegistration.updateCustomers(adminToken, customerData, id)
-			        	
+			        	String addressData= request.getParameter("address");
+			        	FrontierWholesalesUserRegistration.updateCustomers(adminToken, customerData, customerResponse);
+			        	FrontierWholesalesUserRegistration.addAddress(adminToken, addressData);
+			        	log.debug("buyersclub is registered successfully");
 			        	
 			        }else {
 			        

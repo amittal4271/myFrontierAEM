@@ -73,53 +73,60 @@ function callResetPassword(){
     var customer={};
      var pwd = $('#id_membership-password').val();
      customer['customer']={};
-    // customer json data
+    
     var customerJsonData={};
-    customerJsonData['addresses']=[];
-    customerJsonData['email'] = $('#id_membership-email').val();
+    customerJsonData['email']=$('#current-email-id').val();
     customerJsonData['firstname'] = memberNameSplit[0];
     customerJsonData['lastname']=memberNameSplit[1];
-    customerJsonData['website_id']='1';
-   
-    var addressData=[];
+    customerJsonData['website_id']=1;
+    customer['customer']=customerJsonData;
     
     var address={};
-    address['region']={};
-    address['street']=[];
+    address['address']={};
+    var addressJsonData={};
+    addressJsonData['id']=0;
+    addressJsonData['customer_id']=$('#customer-id').val();
     
     
-    address['defaultShipping']='false';
-    address['defaultBilling']='true';
-    address['firstname']=shippingNameSplit[0];
-    address['lastname']=shippingNameSplit[1];
-    address['postcode']=$('#id_shipping-postal_code').val();
-    address['city']=$('#id_shipping-city').val();
-    address['telephone']=$('#id_shipping-phone').val();
-    address['countryId']="US";
-   
-    var regionData={};
-    regionData['regionCode']=$('#id_shipping-locality option:selected').val();
-    regionData['regionId']=$('#id_shipping-locality option:selected').attr('data-attr-id');
-    regionData['region']=$('#id_shipping-locality option:selected').text();
-    address['region']=regionData;
     var streetData=[];
     
     streetData.push($('#id_shipping-address').val());
     streetData.push($('#id_shipping-address2').val());
-    address['street']=streetData;
     
-    addressData.push(address);
+    addressJsonData['street']=streetData;
     
-    customerJsonData['addresses']=addressData;
+     var region={};
+    region['region_code']=$('#id_shipping-locality option:selected').val();
+    region['region']=$('#id_shipping-locality option:selected').text();
+    region['region_id']=$('#id_shipping-locality option:selected').attr('data-attr-id');
+    region['extension_attributes']={};
+    var extnAtt = {};
     
-    customer['customer']=customerJsonData;
+    addressJsonData['region']=region;
+    addressJsonData['region_id']=$('#id_shipping-locality option:selected').attr('data-attr-id');    
+    addressJsonData['country_id']="US";    
+    addressJsonData['defaultShipping']='true';
+    addressJsonData['defaultBilling']='true';
+    addressJsonData['firstname']=shippingNameSplit[0];
+    addressJsonData['lastname']=shippingNameSplit[1];
+    addressJsonData['postcode']=$('#id_shipping-postal_code').val();
+    addressJsonData['city']=$('#id_shipping-city').val();
+    addressJsonData['telephone']=$('#id_shipping-phone').val();
+    addressJsonData['company']='';
+    addressJsonData['fax']='';
+    addressJsonData['prefix']='';
+    addressJsonData['suffic']='';
+    addressJsonData['vat_id']=''
+    
+    address['address']=addressJsonData;
+    
     
    
     var pwd = $('#id_membership-password').val();
     $.ajax({
         url: "/services/registration",
         method: "POST",
-        data: {resetPwd:JSON.stringify(jsonData),action:'buyersClub',customer:JSON.stringify(customer)},
+        data: {resetPwd:JSON.stringify(jsonData),action:'buyersClub',customer:JSON.stringify(customer),address:JSON.stringify(address)},
          headers:{
 
                 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',

@@ -79,4 +79,14 @@ public class FrontierWholesalesUserRegistration {
 		return response;
 	}
 	
+	public static String addAddress(String adminToken,String jsonData) throws Exception{
+		String server = FrontierWholesalesMagentoCommerceConnector.getServer();
+		String response = Request.Put(server + "/rest/all/V1/addNewAddress/")
+				.addHeader("Authorization", adminToken)
+				 .bodyString(jsonData,ContentType.APPLICATION_JSON)
+                .execute().returnContent().asString();
+		
+		return response;
+	}
+	
 }

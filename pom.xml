@@ -30,14 +30,14 @@
     </modules>
 
     <properties>
-        <aem.host>localhost</aem.host>
-        <aem.port>4502</aem.port>
-        <aem.publish.host>localhost</aem.publish.host>
-        <aem.publish.port>4503</aem.publish.port>
-        <sling.user>admin</sling.user>
-        <sling.password>admin</sling.password>
-        <vault.user>admin</vault.user>
-        <vault.password>admin</vault.password>
+        <aem.host>${aemhost}</aem.host>
+        <aem.port>${aemport}</aem.port>
+        <aem.publish.host>${publish.host}</aem.publish.host>
+        <aem.publish.port>${publish.port}</aem.publish.port>
+        <sling.user>${user}</sling.user>
+        <sling.password>${pwd}</sling.password>
+        <vault.user>${user}</vault.user>
+        <vault.password>${pwd}</vault.password>
     </properties>
     <build>
         <plugins>
