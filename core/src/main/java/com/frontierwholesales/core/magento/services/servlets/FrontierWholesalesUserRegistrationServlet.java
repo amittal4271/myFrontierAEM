@@ -47,6 +47,7 @@ public class FrontierWholesalesUserRegistrationServlet  extends SlingAllMethodsS
 			
 			String adminToken = connector.getAdminToken();
 			object = FrontierWholesalesUserRegistration.getCountriesWithRegions(adminToken);
+			
 			response.getOutputStream().println(object);
 		} catch (Exception e) {
 			log.error("Exception occurred in doGet method "+e.getMessage());

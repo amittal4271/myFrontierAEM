@@ -16,13 +16,14 @@ function getRegions(){
      $.ajax({
         url:"/services/registration",
         method:"GET",
+        dataType: "json",
         success:function(results){
-            if(results !== "Error"){
-                var usRegions = JSON.parse(results);
-              usRegions.forEach(function(key,val){ 
-                  if(usRegions[val].id == "US"){ 
+            if(results !== "Error"){                
+              
+              results.forEach(function(key,val){ 
+                  if(results[val].id == "US"){ 
 
-                      var regions = usRegions[val].available_regions; 
+                      var regions = results[val].available_regions; 
                       regions.forEach(function(key,val){ 
                           $('#id_shipping-locality').append($('<option/>',
                                                               {'data-attr-id':regions[val].id,'value':regions[val].code,'text':regions[val].name})); 

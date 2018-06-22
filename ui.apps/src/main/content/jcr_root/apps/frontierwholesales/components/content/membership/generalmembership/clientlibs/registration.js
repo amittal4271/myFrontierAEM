@@ -9,8 +9,9 @@ $(document).ready(function(){
     $.ajax({
         url:"/services/registration",
         method:"GET",
-        success:function(results){
-            var usRegions = JSON.parse(results);
+       dataType: "json",
+        success:function(usRegions){
+           
           usRegions.forEach(function(key,val){ 
               if(usRegions[val].id == "US"){ 
                   
@@ -23,6 +24,9 @@ $(document).ready(function(){
           });
         },error:function(error){
             console.log(error);
+             var errorText="The site is currently unavailable and unable to process your request.  Please check back later.";
+             $('.global-server-side-message-holder').css('display','block');
+            $('.global-server-side-message-holder').children().text(errorText);
         }
     });
 

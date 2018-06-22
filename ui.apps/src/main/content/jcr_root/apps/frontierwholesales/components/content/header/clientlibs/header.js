@@ -42,26 +42,32 @@ $(document).ready(function(){
 function getCartItems(){
     var jsonData={};
     jsonData['action']='getCart';
-    $.get("/services/cart",jsonData,function(){
-        
-    }).done(function(results){
-        var cart='';
-          if(results.trim() !== 'Error in Cart'){
-             cart = JSON.parse(results);
-          }
+  $.ajax({
+        url:"/services/cart",
+        data:jsonData,
+        dataType:"json",
+        success:function(cart){
+            
            var template = $("#minicartTemplate").html();
             var processedHTML =  Handlebars.compile(template);
         var html = '';
-        if(cart != ''){
+        if(!$.isEmptyObject(cart)){
           html  = processedHTML(cart,cart.items.reverse());
         }else{
             html = processedHTML(cart);
         }
            $('#minicarttemplate').html(html); 
-          
-    });
-}
+        },error:function(error){
+			console.log("error");
+             var template = $("#minicartTemplate").html();
+            var processedHTML =  Handlebars.compile(template);
+			var html = processedHTML('');
+            $('#minicarttemplate').html(html); 
+        }
 
+    });
+
+}
 function removeCartItem(itemId){
     
     var jsonData={};
