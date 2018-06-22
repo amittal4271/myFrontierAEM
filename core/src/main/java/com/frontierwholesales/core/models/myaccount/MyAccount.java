@@ -13,6 +13,7 @@ import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.frontierwholesales.core.beans.FrontierWholesaleOrder;
 import com.frontierwholesales.core.beans.FrontierWholesaleUser;
 import com.frontierwholesales.core.beans.FrontierWholesaleUserAddress;
 
@@ -44,6 +45,18 @@ public class MyAccount {
 		users.add(new FrontierWholesaleUser());
 		users.add(new FrontierWholesaleUser());
 		return users;
+	}
+	
+	public ArrayList<FrontierWholesaleOrder> getRecentOrders() {
+		ArrayList<FrontierWholesaleOrder> recentOrders = new ArrayList<FrontierWholesaleOrder>();
+
+		for(int i=0;i<4;i++) {
+			FrontierWholesaleOrder order = new FrontierWholesaleOrder();
+			recentOrders.add(order);
+		}
+		
+		return recentOrders;
+		
 	}
 	
 	public ArrayList<FrontierWholesaleUser> getMyClubMembers() {
