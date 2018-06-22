@@ -33,7 +33,6 @@ function getProductDetails(){
         url: "/services/pdp",
         data:jsonData
     }).done(function(results){
-        console.log(results); 
         hideLoadingScreen();
         var productDetails = JSON.parse(results);
        
@@ -47,7 +46,9 @@ function getProductDetails(){
 
         $('#product-detail').empty();
         $('#product-detail').html(processedHTML);
-        bindPdpAffixEvents();
+        if ($('#product-detail').length > 0) {
+    		bindPdpAffixEvents();
+    	}
     });
 }
 
