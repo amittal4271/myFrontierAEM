@@ -223,7 +223,7 @@ $(document).ready(function() {
 	});
 
 	// qty button click
-	/*$(document).on('click', '.qty-button', function() {
+	$(document).on('click', '.qty-button', function() {
 		console.log('click qty up or down');
 		var $this = $(this);
 		// get closest quantity input element to change the value up or down 1
@@ -235,7 +235,7 @@ $(document).ready(function() {
 			modifyInputQty($el, -1);
 		}
 	});
-	*/
+	
 
 	$("#header").hoverIntent({
 		over: showMiniCart,
@@ -502,9 +502,9 @@ $(document).ready(function() {
 		}
     });
 
-    if ($('#product-detail').length > 0) {
-    	bindPdpAffixEvents();
-    }
+    // if ($('#product-detail').length > 0) {
+    // 	bindPdpAffixEvents();
+    // }
 
 
 
