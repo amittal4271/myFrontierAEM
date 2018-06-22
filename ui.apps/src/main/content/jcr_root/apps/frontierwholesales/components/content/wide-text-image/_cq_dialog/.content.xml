@@ -342,6 +342,10 @@
                                                 jcr:primaryType="nt:unstructured"
                                                 text="Stewardship"
                                                 value="square-sections"/>
+                                            <growers
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Growers"
+                                                value="square-sections-white"/>
                                         </items>
                                     </style>
                                 </items>

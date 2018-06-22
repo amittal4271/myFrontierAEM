@@ -17,11 +17,21 @@
      data-sly-use.emptyRenderer="emptytextimage.html"
      data-sly-call="${emptyRenderer.emptyTextImageTemplate @ textImage=textImage}" />
 
-<!--/* Display correct css styles based on left-right alingement and style selection */-->
+<sly data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html" data-sly-call="${clientlib.css @ categories='frontierwholesales.component.wide-text-image'}" />          
+
+<!--/* Display correct css styles based on left-right alingement and custom style selection */-->
 <sly data-sly-test="${properties.alignment == 'left'}"
-<sly data-sly-test.pstyle="${properties.style == 'square-sections' ? 'square-sections' : 'bg-light-section'}" />
+data-sly-test.pstyle="${'bg-light-section'}" data-sly-test.titlestyle="${'text-left'}" />
 <sly data-sly-test="${properties.alignment == 'right'}"
-<sly data-sly-test.pstyle="${properties.style == 'square-sections' ? 'square-sections' : 'bg-grain-section'}" />
+ data-sly-test.pstyle="${'bg-grain-section'}" data-sly-test.titlestyle="${'text-left'}" />
+<sly data-sly-test="${(properties.style == 'square-sections-white') || (properties.style == 'square-sections')}"
+ data-sly-test.pstyle="${properties.style}"  /> 
+<sly data-sly-test="${(properties.style == 'square-sections')}"
+ data-sly-test.titlestyle="${'text-center'}" />      
+
+<!--/* Display correct css styles - end */-->     
+
+
 
 <div class="each-left-right-section ${pstyle}" data-sly-test="${properties.alignment == 'left'}">
                          <div class="container clearfix">
@@ -36,7 +46,7 @@
                                         alt="${textImage.alt}"/>
                                    </div>
                                    <figcaption class="information-section-left-right">
-                                        <h3 id="${properties.anchortag}" class="headline-left-right text-center">${properties.brandTitle}</h3>
+                                       <h3 id="${properties.anchortag}" class="headline-left-right ${titlestyle}">${properties.brandTitle}</h3>
                                         <div class="description-holder-left-right">
                                             ${properties.text @context='html'}
                                         </div>
@@ -52,7 +62,7 @@
                          <div class="container clearfix">
                               <figure class="each-figure-section">
                                    <figcaption class="information-section-left-right">
-                                        <h3 id="${properties.anchortag}" class="headline-left-right text-center">${properties.brandTitle}</h3>
+                                        <h3 id="${properties.anchortag}" class="headline-left-right ${titlestyle}">${properties.brandTitle}</h3>
                                         <div class="description-holder-left-right">
                                              ${properties.text @context='html'}
                                         </div>
