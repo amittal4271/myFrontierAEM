@@ -502,9 +502,9 @@ $(document).ready(function() {
 		}
     });
 
-    if ($('#product-detail').length > 0) {
-    	bindPdpAffixEvents();
-    }
+    // if ($('#product-detail').length > 0) {
+    // 	bindPdpAffixEvents();
+    // }
 
 
 
