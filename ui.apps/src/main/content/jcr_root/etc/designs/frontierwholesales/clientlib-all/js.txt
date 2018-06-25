@@ -11,3 +11,5 @@ newsletter.js
 
 chat.js
 
+jquery.liveaddress.js
+address_validation.js
