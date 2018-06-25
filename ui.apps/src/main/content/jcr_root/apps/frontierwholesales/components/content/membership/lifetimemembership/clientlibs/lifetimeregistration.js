@@ -5,34 +5,7 @@ var $el;
 $(document).ready(function(){
     
    console.log(' lifetime registration...'); 
-    
-    $.ajax({
-        url:"/services/registration",
-        method:"GET",
-        dataType: "json",
-        success:function(usRegions){
-           
-          usRegions.forEach(function(key,val){ 
-              if(usRegions[val].id == "US"){ 
-                  
-                  var regions = usRegions[val].available_regions; 
-                  regions.forEach(function(key,val){ 
-                      $('#id_mailing-locality').append($('<option/>',
-                                                          {'data-attr-id':regions[val].id,'value':regions[val].code,'text':regions[val].name})); 
-                      $('#id_shipping-locality').append($('<option/>',
-                                                          {'data-attr-id':regions[val].id,'value':regions[val].code,'text':regions[val].name})); 
-                      $('#id_billing-locality').append($('<option/>',
-                                                          {'data-attr-id':regions[val].id,'value':regions[val].code,'text':regions[val].name}));
-                  });
-              }
-          });
-        },error:function(error){
-            console.log(error);
-             var errorText="The site is currently unavailable and unable to process your request.  Please check back later.";
-             $('.global-server-side-message-holder').css('display','block');
-            $('.global-server-side-message-holder').children().text(errorText);
-        }
-    })
+   loadLifeTimeRegistrationRegions();
     
     validation.registrationLifetimeForm('#lifetime-membership-form');
     showCurrentMonth();
@@ -41,15 +14,22 @@ $(document).ready(function(){
     $('#btn-lifetime-registration').on('click',function(e){
         e.preventDefault();
         $buttonObj = $(this);
-        $el = $('.global-server-side-message-holder');
+       
          $validFlag = $("#lifetime-membership-form").valid();
           emailWithId['list']=[];
         if($validFlag){
              disableAjaxFormButton($buttonObj); 
-            collectUserDetails(); 
+            if(findDuplicateEmailId()){
+                collectUserDetails(); 
+            }else{
+                enableAjaxFormButton($buttonObj);
+               var $buyersClub=$('#buyer-club-group-holder');
+                 scrollToElement($buyersClub);
+            }
         }else{
             console.log('error...');
               $('.global-server-side-message-holder').css('display','block');
+             $el = $('.global-server-side-message-holder');
              enableAjaxFormButton($buttonObj);
              scrollToElement($el);
         }
@@ -61,6 +41,34 @@ $(document).ready(function(){
         setTaxAddressToBillingAddress($this);
     });
 });
+
+
+function findDuplicateEmailId(){
+    var arr=[];
+    var bReturn = true;
+    var checked = $('#id_account-buying_club').is(":checked");
+    if(checked){
+    $('#buyer-club-group-holder input').each(function(idx,data){ 
+        var id = data.id; 
+        if(id.endsWith('email')){ 
+            
+            var $sameValue = data.value;  
+            if (arr.indexOf($sameValue) == -1){
+                arr.push($sameValue);
+            }
+            else {
+                if($('#'+data.id+'-error').length > 0){
+                    $('#'+data.id+'-error').remove();
+                }
+                $('#'+data.id).after("<span id='"+ data.id+"'-error class='validate-error'>Duplicate email id</span>")
+               
+                bReturn = false;
+            }
+        } 
+    });
+    }
+    return bReturn;
+}
 
 function showExpYear(){
    var date = new Date().getFullYear();
@@ -251,6 +259,7 @@ function validateEmailAndRegisterUser(extensionAttributes,customer,company,pwd){
             console.log('error ');
              enableAjaxFormButton($buttonObj);  
              $('.global-server-side-message-holder').css('display','block');
+             $el = $('.global-server-side-message-holder');
              scrollToElement($el);
         }else{
             memberRegistration(customer,company,pwd);
@@ -317,6 +326,7 @@ function memberRegistration(customer,company,pwd){
             console.log(error);
              enableAjaxFormButton($buttonObj);  
              $('.global-server-side-message-holder').css('display','block');
+             $el = $('.global-server-side-message-holder');
              scrollToElement($el);
         }
     });

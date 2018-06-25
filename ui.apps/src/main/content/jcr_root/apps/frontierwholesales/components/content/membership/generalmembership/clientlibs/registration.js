@@ -6,44 +6,30 @@ $(document).ready(function(){
     
    console.log('user registration...'+$('#serverurl').val()); 
     
-    $.ajax({
-        url:"/services/registration",
-        method:"GET",
-       dataType: "json",
-        success:function(usRegions){
-           
-          usRegions.forEach(function(key,val){ 
-              if(usRegions[val].id == "US"){ 
-                  
-                  var regions = usRegions[val].available_regions; 
-                  regions.forEach(function(key,val){ 
-                      $('#id_shipping-locality').append($('<option/>',
-                                                          {'data-attr-id':regions[val].id,'value':regions[val].code,'text':regions[val].name})); 
-                  });
-              }
-          });
-        },error:function(error){
-            console.log(error);
-             var errorText="The site is currently unavailable and unable to process your request.  Please check back later.";
-             $('.global-server-side-message-holder').css('display','block');
-            $('.global-server-side-message-holder').children().text(errorText);
-        }
-    });
+  
+    loadRegions('id_shipping-locality');
 
      validation.registrationGeneralForm('#general-membership-form');
     
     $('#btn-general-registration').on('click',function(e){
         e.preventDefault();
         $buttonObj = $(this);
-        $el = $('.global-server-side-message-holder');
+       
          $validFlag = $("#general-membership-form").valid();
          if($validFlag){
               disableAjaxFormButton($buttonObj);            
              emailWithId['list']=[];
-          collectUserDetails(); 
+             if(findDuplicateEmailId()){
+                collectUserDetails(); 
+             }else{
+                 enableAjaxFormButton($buttonObj);
+                 var $buyersClub=$('#buyer-club-group-holder');
+                 scrollToElement($buyersClub);
+             }
         }else{
           console.log('error in validation');
           $('.global-server-side-message-holder').css('display','block');
+             $el = $('.global-server-side-message-holder');
             enableAjaxFormButton($buttonObj);
             scrollToElement($el);
         }
@@ -58,7 +44,32 @@ $(document).ready(function(){
 
 
 
-
+function findDuplicateEmailId(){
+    var arr=[];
+    var bReturn = true;
+    var checked = $('#id_account-buying_club').is(":checked");
+    if(checked){
+    $('#buyer-club-group-holder input').each(function(idx,data){ 
+        var id = data.id; 
+        if(id.endsWith('email')){ 
+            
+            var $sameValue = data.value;  
+            if (arr.indexOf($sameValue) == -1){
+                arr.push($sameValue);
+            }
+            else {
+                if($('#'+data.id+'-error').length > 0){
+                    $('#'+data.id+'-error').remove();
+                }
+                $('#'+data.id).after("<span id='"+ data.id+"'-error class='validate-error'>Duplicate email id</span>")
+               
+                bReturn = false;
+            }
+        } 
+    });
+    }
+    return bReturn;
+}
 
 
 function collectUserDetails(){
@@ -219,6 +230,7 @@ function validateEmailAndRegisterUser(extensionAttributes,customer,company,pwd){
             console.log('error ');
              enableAjaxFormButton($buttonObj);     
              $('.global-server-side-message-holder').css('display','block');
+             $el = $('.global-server-side-message-holder');
             scrollToElement($el);
         }else{
             userRegistrationService(customer,company,pwd);
@@ -303,6 +315,7 @@ function userRegistrationService(customer,company,pwd){
             var errorText="The site is currently unavailable and unable to process your request.  Please check back later.";
             
             $('.global-server-side-message-holder').css('display','block');
+             $el = $('.global-server-side-message-holder');
             $('.global-server-side-message-holder').children().text(errorText);
             scrollToElement($el);
         }

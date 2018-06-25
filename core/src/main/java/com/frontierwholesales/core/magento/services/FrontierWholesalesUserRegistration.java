@@ -61,12 +61,12 @@ public class FrontierWholesalesUserRegistration {
 	public static String resetPassword(String adminToken,String jsonData) throws Exception{
 
 		String server = FrontierWholesalesMagentoCommerceConnector.getServer();
-		String response = Request.Get(server + "/rest/V1/customers/resetPassword")
+		String response = Request.Post(server + "/rest/V1/customers/resetPassword")
 				.addHeader("Authorization", adminToken)
 				 .bodyString(jsonData,ContentType.APPLICATION_JSON)
                 .execute().returnContent().asString();
 		
-		return response;
+		return response.replace("\"", "");
 	}
 	
 	public static String updateCustomers(String adminToken,String jsonData,String id) throws Exception{
@@ -81,7 +81,7 @@ public class FrontierWholesalesUserRegistration {
 	
 	public static String addAddress(String adminToken,String jsonData) throws Exception{
 		String server = FrontierWholesalesMagentoCommerceConnector.getServer();
-		String response = Request.Put(server + "/rest/all/V1/addNewAddress/")
+		String response = Request.Post(server + "/rest/all/V1/addNewAddress")
 				.addHeader("Authorization", adminToken)
 				 .bodyString(jsonData,ContentType.APPLICATION_JSON)
                 .execute().returnContent().asString();

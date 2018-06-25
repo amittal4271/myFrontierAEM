@@ -1,8 +1,8 @@
 var $el;
 var $buttonObj;
 $(document).ready(function(){
-    $el =$('.global-server-side-message-holder');
-    getRegions();
+   
+    loadRegions('id_shipping-locality');
      validation.buyersClubRegistrationForm('#buyersclub-membership-form');
     
     $(document).on('click','.btn-account-form',function(e){
@@ -52,6 +52,7 @@ function buyersClubRegistration(){
         //The site is currently unavailable and unable to process your request.  Please check back later.
         console.log('error in validation');
         enableAjaxFormButton($buttonObj);
+        $el=$('#membership-holder');
         scrollToElement($el);
     }
 }
@@ -59,12 +60,12 @@ function buyersClubRegistration(){
 function callResetPassword(){
     var jsonData={};
     var resetPwd={};
-    jsonData['email']=$('#id_membership-email').val();
-    jsonData['resetToken']='';
-    jsonData['resetPasssword']='';
+    jsonData['email']=$('#current-email-id').val();
+    jsonData['resetToken']=$('#customer-token').val();
+    
    
     
-    var memberName = $('#id_membership-name').val();
+    var memberName = $('#id_shipping-name').val();
     var memberNameSplit = memberName.split(' ');
 
     var shippingName = $('#id_shipping-name').val();
@@ -76,7 +77,7 @@ function callResetPassword(){
      customer['customer']={};
     
     var customerJsonData={};
-    customerJsonData['email']=$('#current-email-id').val();
+    customerJsonData['email']=$('#id_membership-email').val();
     customerJsonData['firstname'] = memberNameSplit[0];
     customerJsonData['lastname']=memberNameSplit[1];
     customerJsonData['website_id']=1;
@@ -86,7 +87,7 @@ function callResetPassword(){
     address['address']={};
     var addressJsonData={};
     addressJsonData['id']=0;
-    addressJsonData['customer_id']=$('#customer-id').val();
+    
     
     
     var streetData=[];
@@ -116,8 +117,8 @@ function callResetPassword(){
     addressJsonData['company']='';
     addressJsonData['fax']='';
     addressJsonData['prefix']='';
-    addressJsonData['suffic']='';
-    addressJsonData['vat_id']=''
+    addressJsonData['suffix']='';
+    addressJsonData['vat_id']=0;
     
     address['address']=addressJsonData;
     
@@ -140,12 +141,13 @@ function callResetPassword(){
           
         },error:function(error){
             console.log(error);
-            
+            enableAjaxFormButton($buttonObj);
            
             var errorText="The site is currently unavailable and unable to process your request.  Please check back later.";
             
             $('.global-server-side-message-holder').css('display','block');
             $('.global-server-side-message-holder').children().text(errorText);
+             $el =$('.global-server-side-message-holder');
             scrollToElement($el);
         }
     })

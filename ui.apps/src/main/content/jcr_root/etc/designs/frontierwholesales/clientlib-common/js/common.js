@@ -1,25 +1,69 @@
 
-$(document).on( "click", ".btn-heading .btn-faq-section", function() {
-		console.log('click in btn');
-		var el = $(this);
-		slideUpDownSection(el);
-	});	
 function getRedirectPath(){
         return "/content/frontierwholesales/en/myaccount.html"; 
 
     }
 
-  function slideUpDownSection(el) {		
-	var closestSlideSection = el.parent().next('.faq-section-expand-collapse');
-	if (el.hasClass('open')) {
-		el.removeClass('open');
-		el.find('.glyphicon').removeClass('glyphicon-minus').addClass('glyphicon-plus');
-		closestSlideSection.removeClass('open').slideUp("fast");
-	} else {
-		el.addClass('open');
-		closestSlideSection.addClass('open').slideDown("fast");
-		el.find('.glyphicon').removeClass('glyphicon-plus').addClass('glyphicon-minus'); 
-	}
+function loadRegions(obj1){
+    $.ajax({
+        url:"/services/registration",
+        method:"GET",
+      beforeSend: function(xhr){
+        xhr.overrideMimeType("application/json");  
+      }
+    }).done(function(usRegions){
+           
+          usRegions.forEach(function(key,val){ 
+              if(usRegions[val].id == "US"){ 
+                  
+                  var regions = usRegions[val].available_regions; 
+                  regions.forEach(function(key,val){ 
+                      $('#'+obj1).append($('<option/>',
+                                                          {'data-attr-id':regions[val].id,'value':regions[val].code,'text':regions[val].name})); 
+                      
+                  });
+              }
+          });
+        
+    }).fail(function(error){
+            console.log(error);
+             var errorText="The site is currently unavailable and unable to process your request.  Please check back later.";
+             $('.global-server-side-message-holder').css('display','block');
+            $('.global-server-side-message-holder').children().text(errorText);
+        });
+}
+
+function loadLifeTimeRegistrationRegions(){
+     
+    $.ajax({
+        url:"/services/registration",
+        method:"GET",
+        beforeSend: function(xhr){
+        xhr.overrideMimeType("application/json");  
+        }
+      }).done(function(usRegions){
+           
+          usRegions.forEach(function(key,val){ 
+              if(usRegions[val].id == "US"){ 
+                  
+                  var regions = usRegions[val].available_regions; 
+                  regions.forEach(function(key,val){ 
+                      $('#id_mailing-locality').append($('<option/>',
+                                                          {'data-attr-id':regions[val].id,'value':regions[val].code,'text':regions[val].name})); 
+                      $('#id_shipping-locality').append($('<option/>',
+                                                          {'data-attr-id':regions[val].id,'value':regions[val].code,'text':regions[val].name})); 
+                      $('#id_billing-locality').append($('<option/>',
+                                                          {'data-attr-id':regions[val].id,'value':regions[val].code,'text':regions[val].name}));
+                  });
+              }
+          });
+        }).fail(function(error){
+            console.log(error);
+             var errorText="The site is currently unavailable and unable to process your request.  Please check back later.";
+             $('.global-server-side-message-holder').css('display','block');
+            $('.global-server-side-message-holder').children().text(errorText);
+        });
+    
 }
 
 function getUserToken(){

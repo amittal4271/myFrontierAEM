@@ -80,17 +80,31 @@ public class FrontierWholesalesUserRegistrationServlet  extends SlingAllMethodsS
 			        if(action.equals("buyersClub")) {
 			        	String resetPwdData = request.getParameter("resetPwd");
 			        	String adminToken = connector.getAdminToken();
-			        	log.debug("resetPwd data is "+resetPwdData);
-			        	JsonObject resetPwdObject = updateJSONObject(resetPwdData, "resetPassword", credentials);
+			        	log.debug("resetPwd data is "+resetPwdData+" credentials "+credentials);
+			        	JsonObject resetPwdObject = updateJSONObject(resetPwdData, "newPassword", credentials);
+			        	log.debug("after setting password is "+resetPwdObject.toString());
 			        	//get customer id here
 			        	String customerResponse = FrontierWholesalesUserRegistration.resetPassword(adminToken, resetPwdObject.toString());
 			        	//update first and lastname with customer id
 			        	log.debug("customer response is "+customerResponse);
 			        	String customerData = request.getParameter("customer");
+			        	log.debug("customer data is "+customerData);
 			        	String addressData= request.getParameter("address");
+			        	
+			        	JsonObject updatedAddressData = updateJSONObject(addressData,"customer_id",customerResponse,"address");
+			        	log.debug("updated address data "+updatedAddressData.toString());
 			        	FrontierWholesalesUserRegistration.updateCustomers(adminToken, customerData, customerResponse);
-			        	FrontierWholesalesUserRegistration.addAddress(adminToken, addressData);
+			        	log.debug("customer details has been updated");
+			        	String addressResponse = FrontierWholesalesUserRegistration.addAddress(adminToken, updatedAddressData.toString());
 			        	log.debug("buyersclub is registered successfully");
+			        	
+			        	if(addressResponse != null) {
+							  jsonObject.addProperty("Success", addressResponse);
+							  response.getOutputStream().println(jsonObject.toString());
+						  }else {
+							  log.error("Returned object is null ");
+							  response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Address Response object is null");
+						  }
 			        	
 			        }else {
 			        
@@ -106,7 +120,7 @@ public class FrontierWholesalesUserRegistrationServlet  extends SlingAllMethodsS
 						
 						 String id = getCustomerId(customerId);
 						 request.getSession().setAttribute(FrontierWholesalesConstants.CUSTOMER_ID, id);
-						 JsonObject companyObject = updateCompanyJSONObject(company,"super_user_id",id);
+						 JsonObject companyObject = updateJSONObject(company,"super_user_id",id,"company");
 						
 						  //call company service here to register
 						  String registredValues = FrontierWholesalesUserRegistration.companyRegistration(adminToken, companyObject);
@@ -141,21 +155,21 @@ public class FrontierWholesalesUserRegistrationServlet  extends SlingAllMethodsS
 		return object;
 	}
 	
-	private JsonObject updateCompanyJSONObject(String data,String key,String value) throws Exception{
+	private JsonObject updateJSONObject(String data,String key,String value,String objName) throws Exception{
 		Gson json = new Gson();
 		JsonElement element = json.fromJson(data, JsonElement.class);
 		JsonObject object = element.getAsJsonObject();
-		JsonElement companyElement = object.get("company");
-		JsonObject companyObject = companyElement.getAsJsonObject();
+		JsonElement objElement = object.get(objName);
+		JsonObject jsonObject = objElement.getAsJsonObject();
 		
-		companyObject.addProperty(key, value);
+		jsonObject.addProperty(key, value);
 		
 		
 		
-		object.add("company", companyObject);
+		object.add(objName, jsonObject);
 		JsonElement updatedElement = json.fromJson(object, JsonElement.class);
-		companyObject = updatedElement.getAsJsonObject();
-		return companyObject;
+		jsonObject = updatedElement.getAsJsonObject();
+		return jsonObject;
 	}
 	
 	private String getCustomerId(String data) throws Exception{
