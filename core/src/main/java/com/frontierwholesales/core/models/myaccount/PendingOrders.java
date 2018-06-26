@@ -71,7 +71,6 @@ public class PendingOrders {
 	@Via("resource")
 	@Default(values = "Detail")
 	public String detailColumnHeader;
-
 	
 	// Pending Orders Items Row Labels...
 	@Inject
@@ -98,6 +97,94 @@ public class PendingOrders {
 	@Via("resource")
 	@Default(values = "Qty")
 	public String qtyColumnHeader;
+	
+	
+	//Actions section content
+	
+	@Inject
+	@Via("resource")
+	@Default(values = "Approval Actions")
+	public String approvalActionsSectionHeader;
+
+	@Inject
+	@Via("resource")
+	@Default(values = "Approve Orders")
+	public String approveOrdersButtonText;
+
+	@Inject
+	@Via("resource")
+	@Default(values = "Mark as Draft")
+	public String markAsDraftButtonText;
+
+	@Inject
+	@Via("resource")
+	@Default(values = "Delete Orders")
+	public String deleteOrdersButtonText;
+
+	@Inject
+	@Via("resource")
+	@Default(values = "Checkout")
+	public String checkoutButtonText;
+
+	@Inject
+	@Via("resource")
+	@Default(values = "Approval Confirmation")
+	public String approvalConfirmationModalHeader;
+
+	@Inject
+	@Via("resource")
+	@Default(values = "<p>You are approving these orders for purchase. This is another explanation for the approval modal.</p>")
+	public String approvalConfirmationModalMessage;
+
+	@Inject
+	@Via("resource")
+	@Default(values = "Yes, Approve Orders")
+	public String approvalConfirmationModalConfirmButtonText;
+
+	@Inject
+	@Via("resource")
+	@Default(values = "Cancel")
+	public String approvalConfirmationModalCancelButtonText;
+
+	@Inject
+	@Via("resource")
+	@Default(values = "Mark as Draft")
+	public String markAsDraftModalHeader;
+
+	@Inject
+	@Via("resource")
+	@Default(values = "<p>You are marking these orders as a draft. These will not be included in checkout cost.</p>")
+	public String markAsDraftModalMessage;
+
+	@Inject
+	@Via("resource")
+	@Default(values = "Mark as Draft")
+	public String markAsDraftModalConfirmButtonText;
+
+	@Inject
+	@Via("resource")
+	@Default(values = "Cancel")
+	public String markAsDraftModalCancelButtonText;
+
+	@Inject
+	@Via("resource")
+	@Default(values = "Delete Confirmation")
+	public String deleteOrdersModalHeader;
+
+	@Inject
+	@Via("resource")
+	@Default(values = "<p>Messaging explaining delete action. This order will be removed from the users cart along with this cart.</p>")
+	public String deleteOrdersModalMessage;
+
+	@Inject
+	@Via("resource")
+	@Default(values = "Yes, Delete Orders")
+	public String deleteOrdersModalConfirmButtonText;
+
+	@Inject
+	@Via("resource")
+	@Default(values = "Cancel")
+	public String deleteOrdersModalCancelButtonText;
 	
 	@PostConstruct
 	protected void activate() {
