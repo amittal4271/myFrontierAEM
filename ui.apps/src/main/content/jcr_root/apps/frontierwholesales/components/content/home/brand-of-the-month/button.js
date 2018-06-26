@@ -18,9 +18,16 @@ use(function () {
     var linkTo = properties.get("linkTo", "#");
 
     if (linkTo != "#") {
-        linkTo += ".html";
+		if (linkTo .startsWith("/content")) {
+        	linkTo += ".html";
+   		}
+        else if (linkTo.startsWith("http://") || linkTo.startsWith("https://") || linkTo.startsWith("www")) {
+    		return {
+        		linkTo: linkTo
+    		}
+    	}
     }
-    
+
     return {
         linkTo: linkTo
     };

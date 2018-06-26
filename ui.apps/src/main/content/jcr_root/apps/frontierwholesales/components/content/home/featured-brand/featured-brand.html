@@ -14,7 +14,7 @@
   ~ limitations under the License.
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/-->
 
-<a class="featured-link-holder" href="${properties.linkTo @ extension='html' || '#'}">
+<a class="featured-link-holder" data-sly-use.button="button.js" href="${button.linkTo || '#'}">
     <div class="brand-image">
         <img
         data-sly-use.image="image.js"

@@ -20,7 +20,7 @@
 
 
     <div class="each-special-section">
-			<a href="${properties.linkTo @ extension='html' || '#'}" class="special-section-link">
+			<a data-sly-use.button="button.js" href="${button.linkTo || '#'}" class="special-section-link">
 				<div class="special-image-holder"
                 data-sly-test="${textImage.hasContent}"
                 data-sly-resource="${'image' @ resourceType='wcm/foundation/components/image',  wcmmode='disabled'}"
