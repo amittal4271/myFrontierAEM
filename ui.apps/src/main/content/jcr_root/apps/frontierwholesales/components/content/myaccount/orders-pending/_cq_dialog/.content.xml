@@ -122,6 +122,358 @@
                    	</columns>
                 </items>
             </column2>
+            <column3
+				jcr:primaryType="nt:unstructured"
+				jcr:title="Action Buttons Text"
+				sling:resourceType="granite/ui/components/foundation/container">
+				<layout 
+					jcr:primaryType="nt:unstructured" 
+					sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns"/> 
+				<items jcr:primaryType="nt:unstructured"> 
+				<columns 
+					jcr:primaryType="nt:unstructured" 
+					sling:resourceType="granite/ui/components/foundation/container"> 
+						<items jcr:primaryType="nt:unstructured">
+							<approvalActionsSectionHeader
+							    jcr:primaryType="nt:unstructured"
+							    sling:resourceType="granite/ui/components/foundation/form/textfield"
+							    fieldDescription="if left empty defaults to 'Approval Actions'"
+							    fieldLabel="Approval Actions Section Header"
+							    name="./approvalActionsSectionHeader"/>
+							<approveOrdersButtonText
+							    jcr:primaryType="nt:unstructured"
+							    sling:resourceType="granite/ui/components/foundation/form/textfield"
+							    fieldDescription="if left empty defaults to 'Approve Orders'"
+							    fieldLabel="Approve Orders Button Text"
+							    name="./approveOrdersButtonText"/>
+							<markAsDraftButtonText
+							    jcr:primaryType="nt:unstructured"
+							    sling:resourceType="granite/ui/components/foundation/form/textfield"
+							    fieldDescription="if left empty defaults to 'Mark as Draft'"
+							    fieldLabel="Mark as Draft Button Text"
+							    name="./markAsDraftButtonText"/>
+							<deleteOrdersButtonText
+							    jcr:primaryType="nt:unstructured"
+							    sling:resourceType="granite/ui/components/foundation/form/textfield"
+							    fieldDescription="if left empty defaults to 'Delete Orders'"
+							    fieldLabel="Delete Orders Button Text"
+							    name="./deleteOrdersButtonText"/>
+							<checkoutButtonText
+							    jcr:primaryType="nt:unstructured"
+							    sling:resourceType="granite/ui/components/foundation/form/textfield"
+							    fieldDescription="if left empty defaults to 'Checkout'"
+							    fieldLabel="Checkout Button Text"
+							    name="./checkoutButtonText"/>
+					    </items>
+					</columns>
+				</items>
+			</column3>
+			<column4
+				jcr:primaryType="nt:unstructured"
+				jcr:title="Approval Confirmation Modal"
+				sling:resourceType="granite/ui/components/foundation/container">
+				<layout 
+					jcr:primaryType="nt:unstructured" 
+					sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns"/> 
+				<items jcr:primaryType="nt:unstructured"> 
+				<columns 
+					jcr:primaryType="nt:unstructured" 
+					sling:resourceType="granite/ui/components/foundation/container"> 
+						<items jcr:primaryType="nt:unstructured">
+							<approvalConfirmationModalHeader
+							    jcr:primaryType="nt:unstructured"
+							    sling:resourceType="granite/ui/components/foundation/form/textfield"
+							    fieldDescription="if left empty defaults to 'Approval Confirmation'"
+							    fieldLabel="Approval Confirmation Modal Header"
+							    name="./approvalConfirmationModalHeader"/>
+							<approvalConfirmationModalMessage
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="cq/gui/components/authoring/dialog/richtext"
+                                name="./approvalConfirmationModalMessage"
+                                fieldLabel="Approval Confirmation Modal Message"
+                                fieldDescription="if left empty defaults to 'You are approving these orders for purchase. This is another explanation for the approval modal.'"
+                                useFixedInlineToolbar="{Boolean}true">
+                                <rtePlugins jcr:primaryType="nt:unstructured">
+                                    <format
+                                        jcr:primaryType="nt:unstructured"
+                                        features="*"/>
+                                    <justify
+                                        jcr:primaryType="nt:unstructured"
+                                        features="*"/>
+                                    <lists
+                                        jcr:primaryType="nt:unstructured"
+                                        features="*"/>
+                                    <paraformat
+                                        jcr:primaryType="nt:unstructured"
+                                        features="*"/>
+                                    <links
+                                        jcr:primaryType="nt:unstructured"
+                                        features="*"/>
+                                    <table
+                                        jcr:primaryType="nt:unstructured"
+                                        features="-">
+                                        <hiddenHeaderConfig
+                                            jcr:primaryType="nt:unstructured"
+                                            hiddenHeaderClassName="cq-wcm-foundation-aria-visuallyhidden"
+                                            hiddenHeaderEditingCSS="coral-RichText-hiddenHeader--editing"/>
+                                    </table>
+                                </rtePlugins>
+                                <uiSettings jcr:primaryType="nt:unstructured">
+                                    <cui jcr:primaryType="nt:unstructured">
+                                        <inline
+                                            jcr:primaryType="nt:unstructured"
+                                            toolbar="[format#bold,format#italic,format#underline,#justify,#lists,links#modifylink,links#unlink,#paraformat]">
+                                            <popovers jcr:primaryType="nt:unstructured">
+                                                <justify
+                                                    jcr:primaryType="nt:unstructured"
+                                                    items="[justify#justifyleft,justify#justifycenter,justify#justifyright]"
+                                                    ref="justify"/>
+                                                <lists
+                                                    jcr:primaryType="nt:unstructured"
+                                                    items="[lists#unordered,lists#ordered,lists#outdent,lists#indent]"
+                                                    ref="lists"/>
+                                                <paraformat
+                                                    jcr:primaryType="nt:unstructured"
+                                                    items="paraformat:getFormats:paraformat-pulldown"
+                                                    ref="paraformat"/>
+                                            </popovers>
+                                        </inline>
+                                        <dialogFullScreen
+                                            jcr:primaryType="nt:unstructured"
+                                            toolbar="[format#bold,format#italic,format#underline,justify#justifyleft,justify#justifycenter,justify#justifyright,lists#unordered,lists#ordered,lists#outdent,lists#indent,links#modifylink,links#unlink,table#createoredit,#paraformat,image#imageProps]">
+                                            <popovers jcr:primaryType="nt:unstructured">
+                                                <paraformat
+                                                    jcr:primaryType="nt:unstructured"
+                                                    items="paraformat:getFormats:paraformat-pulldown"
+                                                    ref="paraformat"/>
+                                            </popovers>
+                                        </dialogFullScreen>
+                                        <tableEditOptions
+                                            jcr:primaryType="nt:unstructured"
+                                            toolbar="[table#insertcolumn-before,table#insertcolumn-after,table#removecolumn,-,table#insertrow-before,table#insertrow-after,table#removerow,-,table#mergecells-right,table#mergecells-down,table#mergecells,table#splitcell-horizontal,table#splitcell-vertical,-,table#selectrow,table#selectcolumn,-,table#ensureparagraph,-,table#modifytableandcell,table#removetable,-,undo#undo,undo#redo,-,table#exitTableEditing,-]"/>
+                                    </cui>
+                                </uiSettings>
+                            </approvalConfirmationModalMessage>
+							<approvalConfirmationModalConfirmButtonText
+							    jcr:primaryType="nt:unstructured"
+							    sling:resourceType="granite/ui/components/foundation/form/textfield"
+							    fieldDescription="if left empty defaults to 'Yes, Approve Orders'"
+							    fieldLabel="Approval Confirmation Modal Confirm Button Text"
+							    name="./approvalConfirmationModalConfirmButtonText"/>
+							<approvalConfirmationModalCancelButtonText
+							    jcr:primaryType="nt:unstructured"
+							    sling:resourceType="granite/ui/components/foundation/form/textfield"
+							    fieldDescription="if left empty defaults to 'Cancel'"
+							    fieldLabel="Approval Confirmation Modal Cancel Button Text"
+							    name="./approvalConfirmationModalCancelButtonText"/>
+						</items>
+					</columns>
+				</items>
+			</column4>
+			<column5
+				jcr:primaryType="nt:unstructured"
+				jcr:title="Mark as Draft Modal"
+				sling:resourceType="granite/ui/components/foundation/container">
+				<layout 
+					jcr:primaryType="nt:unstructured" 
+					sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns"/> 
+				<items jcr:primaryType="nt:unstructured"> 
+				<columns 
+					jcr:primaryType="nt:unstructured" 
+					sling:resourceType="granite/ui/components/foundation/container"> 
+						<items jcr:primaryType="nt:unstructured">
+							<markAsDraftModalHeader
+							    jcr:primaryType="nt:unstructured"
+							    sling:resourceType="granite/ui/components/foundation/form/textfield"
+							    fieldDescription="if left empty defaults to 'Mark as Draft'"
+							    fieldLabel="Mark as Draft Modal Header"
+							    name="./markAsDraftModalHeader"/>
+							<markAsDraftModalMessage
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="cq/gui/components/authoring/dialog/richtext"
+                                fieldDescription="if left empty defaults to 'You are marking these orders as a draft. These will not be included in checkout cost.'"
+							    fieldLabel="Mark as Draft Modal Message"
+							    name="./markAsDraftModalMessage"
+                                useFixedInlineToolbar="{Boolean}true">
+                                <rtePlugins jcr:primaryType="nt:unstructured">
+                                    <format
+                                        jcr:primaryType="nt:unstructured"
+                                        features="*"/>
+                                    <justify
+                                        jcr:primaryType="nt:unstructured"
+                                        features="*"/>
+                                    <lists
+                                        jcr:primaryType="nt:unstructured"
+                                        features="*"/>
+                                    <paraformat
+                                        jcr:primaryType="nt:unstructured"
+                                        features="*"/>
+                                    <links
+                                        jcr:primaryType="nt:unstructured"
+                                        features="*"/>
+                                    <table
+                                        jcr:primaryType="nt:unstructured"
+                                        features="-">
+                                        <hiddenHeaderConfig
+                                            jcr:primaryType="nt:unstructured"
+                                            hiddenHeaderClassName="cq-wcm-foundation-aria-visuallyhidden"
+                                            hiddenHeaderEditingCSS="coral-RichText-hiddenHeader--editing"/>
+                                    </table>
+                                </rtePlugins>
+                                <uiSettings jcr:primaryType="nt:unstructured">
+                                    <cui jcr:primaryType="nt:unstructured">
+                                        <inline
+                                            jcr:primaryType="nt:unstructured"
+                                            toolbar="[format#bold,format#italic,format#underline,#justify,#lists,links#modifylink,links#unlink,#paraformat]">
+                                            <popovers jcr:primaryType="nt:unstructured">
+                                                <justify
+                                                    jcr:primaryType="nt:unstructured"
+                                                    items="[justify#justifyleft,justify#justifycenter,justify#justifyright]"
+                                                    ref="justify"/>
+                                                <lists
+                                                    jcr:primaryType="nt:unstructured"
+                                                    items="[lists#unordered,lists#ordered,lists#outdent,lists#indent]"
+                                                    ref="lists"/>
+                                                <paraformat
+                                                    jcr:primaryType="nt:unstructured"
+                                                    items="paraformat:getFormats:paraformat-pulldown"
+                                                    ref="paraformat"/>
+                                            </popovers>
+                                        </inline>
+                                        <dialogFullScreen
+                                            jcr:primaryType="nt:unstructured"
+                                            toolbar="[format#bold,format#italic,format#underline,justify#justifyleft,justify#justifycenter,justify#justifyright,lists#unordered,lists#ordered,lists#outdent,lists#indent,links#modifylink,links#unlink,table#createoredit,#paraformat,image#imageProps]">
+                                            <popovers jcr:primaryType="nt:unstructured">
+                                                <paraformat
+                                                    jcr:primaryType="nt:unstructured"
+                                                    items="paraformat:getFormats:paraformat-pulldown"
+                                                    ref="paraformat"/>
+                                            </popovers>
+                                        </dialogFullScreen>
+                                        <tableEditOptions
+                                            jcr:primaryType="nt:unstructured"
+                                            toolbar="[table#insertcolumn-before,table#insertcolumn-after,table#removecolumn,-,table#insertrow-before,table#insertrow-after,table#removerow,-,table#mergecells-right,table#mergecells-down,table#mergecells,table#splitcell-horizontal,table#splitcell-vertical,-,table#selectrow,table#selectcolumn,-,table#ensureparagraph,-,table#modifytableandcell,table#removetable,-,undo#undo,undo#redo,-,table#exitTableEditing,-]"/>
+                                    </cui>
+                                </uiSettings>
+                            </markAsDraftModalMessage>
+							<markAsDraftModalConfirmButtonText
+							    jcr:primaryType="nt:unstructured"
+							    sling:resourceType="granite/ui/components/foundation/form/textfield"
+							    fieldDescription="if left empty defaults to 'Mark as Draft'"
+							    fieldLabel="Mark as Draft Modal Confirm Button Text"
+							    name="./markAsDraftModalConfirmButtonText"/>
+							<markAsDraftModalCancelButtonText
+							    jcr:primaryType="nt:unstructured"
+							    sling:resourceType="granite/ui/components/foundation/form/textfield"
+							    fieldDescription="if left empty defaults to 'Cancel'"
+							    fieldLabel="Mark as Draft Modal Cancel Button Text"
+							    name="./markAsDraftModalCancelButtonText"/>
+						</items>
+					</columns>
+				</items>
+			</column5>
+			<column6
+				jcr:primaryType="nt:unstructured"
+				jcr:title="Delete Modal"
+				sling:resourceType="granite/ui/components/foundation/container">
+				<layout 
+					jcr:primaryType="nt:unstructured" 
+					sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns"/> 
+				<items jcr:primaryType="nt:unstructured"> 
+				<columns 
+					jcr:primaryType="nt:unstructured" 
+					sling:resourceType="granite/ui/components/foundation/container"> 
+						<items jcr:primaryType="nt:unstructured">
+							<deleteOrdersModalHeader
+							    jcr:primaryType="nt:unstructured"
+							    sling:resourceType="granite/ui/components/foundation/form/textfield"
+							    fieldDescription="if left empty defaults to 'Delete Confirmation'"
+							    fieldLabel="Delete Orders Modal Header"
+							    name="./deleteOrdersModalHeader"/>
+							<deleteOrdersModalMessage
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="cq/gui/components/authoring/dialog/richtext"
+                                fieldDescription="if left empty defaults to 'Messaging explaining delete action. This order will be removed from the users cart along with this cart.'"
+							    fieldLabel="Delete Orders Modal Message"
+							    name="./deleteOrdersModalMessage"
+                                useFixedInlineToolbar="{Boolean}true">
+                                <rtePlugins jcr:primaryType="nt:unstructured">
+                                    <format
+                                        jcr:primaryType="nt:unstructured"
+                                        features="*"/>
+                                    <justify
+                                        jcr:primaryType="nt:unstructured"
+                                        features="*"/>
+                                    <lists
+                                        jcr:primaryType="nt:unstructured"
+                                        features="*"/>
+                                    <paraformat
+                                        jcr:primaryType="nt:unstructured"
+                                        features="*"/>
+                                    <links
+                                        jcr:primaryType="nt:unstructured"
+                                        features="*"/>
+                                    <table
+                                        jcr:primaryType="nt:unstructured"
+                                        features="-">
+                                        <hiddenHeaderConfig
+                                            jcr:primaryType="nt:unstructured"
+                                            hiddenHeaderClassName="cq-wcm-foundation-aria-visuallyhidden"
+                                            hiddenHeaderEditingCSS="coral-RichText-hiddenHeader--editing"/>
+                                    </table>
+                                </rtePlugins>
+                                <uiSettings jcr:primaryType="nt:unstructured">
+                                    <cui jcr:primaryType="nt:unstructured">
+                                        <inline
+                                            jcr:primaryType="nt:unstructured"
+                                            toolbar="[format#bold,format#italic,format#underline,#justify,#lists,links#modifylink,links#unlink,#paraformat]">
+                                            <popovers jcr:primaryType="nt:unstructured">
+                                                <justify
+                                                    jcr:primaryType="nt:unstructured"
+                                                    items="[justify#justifyleft,justify#justifycenter,justify#justifyright]"
+                                                    ref="justify"/>
+                                                <lists
+                                                    jcr:primaryType="nt:unstructured"
+                                                    items="[lists#unordered,lists#ordered,lists#outdent,lists#indent]"
+                                                    ref="lists"/>
+                                                <paraformat
+                                                    jcr:primaryType="nt:unstructured"
+                                                    items="paraformat:getFormats:paraformat-pulldown"
+                                                    ref="paraformat"/>
+                                            </popovers>
+                                        </inline>
+                                        <dialogFullScreen
+                                            jcr:primaryType="nt:unstructured"
+                                            toolbar="[format#bold,format#italic,format#underline,justify#justifyleft,justify#justifycenter,justify#justifyright,lists#unordered,lists#ordered,lists#outdent,lists#indent,links#modifylink,links#unlink,table#createoredit,#paraformat,image#imageProps]">
+                                            <popovers jcr:primaryType="nt:unstructured">
+                                                <paraformat
+                                                    jcr:primaryType="nt:unstructured"
+                                                    items="paraformat:getFormats:paraformat-pulldown"
+                                                    ref="paraformat"/>
+                                            </popovers>
+                                        </dialogFullScreen>
+                                        <tableEditOptions
+                                            jcr:primaryType="nt:unstructured"
+                                            toolbar="[table#insertcolumn-before,table#insertcolumn-after,table#removecolumn,-,table#insertrow-before,table#insertrow-after,table#removerow,-,table#mergecells-right,table#mergecells-down,table#mergecells,table#splitcell-horizontal,table#splitcell-vertical,-,table#selectrow,table#selectcolumn,-,table#ensureparagraph,-,table#modifytableandcell,table#removetable,-,undo#undo,undo#redo,-,table#exitTableEditing,-]"/>
+                                    </cui>
+                                </uiSettings>
+                            </deleteOrdersModalMessage>
+							<deleteOrdersModalConfirmButtonText
+							    jcr:primaryType="nt:unstructured"
+							    sling:resourceType="granite/ui/components/foundation/form/textfield"
+							    fieldDescription="if left empty defaults to 'Yes, Delete Orders'"
+							    fieldLabel="Delete Orders Modal Confirm Button Text"
+							    name="./deleteOrdersModalConfirmButtonText"/>
+							<deleteOrdersModalCancelButtonText
+							    jcr:primaryType="nt:unstructured"
+							    sling:resourceType="granite/ui/components/foundation/form/textfield"
+							    fieldDescription="if left empty defaults to 'Cancel'"
+							    fieldLabel="Delete Orders Modal Cancel Button Text"
+							    name="./deleteOrdersModalCancelButtonText"/>
+						</items>
+					</columns>
+				</items>
+			</column6>
         </items>
     </content>
 </jcr:root>
