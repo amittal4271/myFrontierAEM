@@ -36,9 +36,11 @@
                          <li><a href="./account-landing.php">Account Landing</a></li>
                          <li><a href="./account-pending-orders.php">Account Pending Orders</a></li>
                          <li><a href="./account-recent-orders.php">Account Recent Orders</a></li>
+                         <li><a href="./account-order-detail.php">Account Order Detail</a></li>
                          <li><a href="./account-subscriptions.php">Account Subscriptions</a></li>
                          <li><a href="./account-wishlist.php">Account Wishlist</a></li>
                          <li><a href="./account-shelf.php">Account Shelves</a></li>
+
 
                          <li class="spacer"><a href="./help-faq.php">Help - FAQ</a></li>
                          <li><a href="./glossary.php">Content - Glossary</a></li>

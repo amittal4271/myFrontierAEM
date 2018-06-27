@@ -55,19 +55,59 @@
                                                        Shipped
                                                   </div>
                                                   <div class="each-order-section order-detail-action-section">
-                                                       <span class="tablet-below-col-heading">View Details</span>
-                                                       <a href="#" class="btn btn-only-green-icon" title="View Details">
-                                                            <span class="address-link-text mobile-button-text-description">View Details</span>
-                                                            <span class="glyphicon glyphicon-minus"></span>
-                                                       </a>
+                                                       <div class="action-button-section-account last">
+                                                            <span class="tablet-below-col-heading">View</span>
+                                                            <button class="btn btn-only-green-icon btn-toggle-order-details">
+                                                                 <span class="address-link-text visuallyhidden">Show</span>
+                                                                 <span class="glyphicon rotate glyphicon-plus"></span>
+                                                            </button>
+                                                       </div>
+
+                                                  </div>
+                                             </div>
+                                             <div class="order-details-holder">
+                                                  <div class="grid-table-header order-detail-recent-header">
+                                                       <div class="each-order-header order-detail-header-item grid-header">Item #</div>
+                                                       <div class="each-order-header order-detail-header-description grid-header">Description</div>
+                                                       <div class="each-order-header order-detail-header-price grid-header">Price</div>
+                                                       <div class="each-order-header order-detail-header-qty grid-header">Qty.</div>
+                                                       <div class="each-order-header order-detail-header-subtotal grid-header">Subtotal</div>
+                                                       <div class="each-order-header order-detail-header-tax grid-header">Tax</div>
+                                                  </div>
+                                                  <div class="order-detail-grid">
+                                                       <div class="row-each-order-detail">
+                                                            <div class="order-detail-holder">
+                                                                 <div class="order-detail-section order-detail-item-section">
+                                                                      <span class="tablet-below-col-detail-heading">Item #</span>
+                                                                      <span class="order-detail-text item-number-text">18034</span>
+                                                                 </div>
+                                                                 <div class="order-detail-section order-detail-description-section">
+                                                                      <span class="tablet-below-col-detail-heading">Description</span>
+                                                                      <span class="order-detail-text description-text">Simply Organic Adobo Seasoning 4.41 oz.</span>
+                                                                 </div>
+                                                                 <div class="order-detail-section order-detail-price-section">
+                                                                      <span class="tablet-below-col-detail-heading">Price</span>
+                                                                      <span class="order-detail-text price-text">$4.48</span>
+                                                                 </div>
+                                                                 <div class="order-detail-section order-detail-qty-section">
+                                                                      <span class="tablet-below-col-detail-heading">Qty.</span>
+                                                                      <span class="order-detail-text qty-text">1</span>
+                                                                 </div>
+                                                                 <div class="order-detail-section order-detail-subtotal-section">
+                                                                      <span class="tablet-below-col-detail-heading">Subtotal</span>
+                                                                      <span class="order-detail-text subtotal-text">$7.50</span>
+                                                                 </div>
+                                                                 <div class="order-detail-section order-detail-tax-section">
+                                                                      <span class="tablet-below-col-detail-heading">Tax</span>
+                                                                      <span class="order-detail-text tax-text">$0.00</span>
+                                                                 </div>
+                                                            </div>
+                                                       </div>
                                                   </div>
                                              </div>
                                         </div>
-                                        
                                    </div>
-                                   
                               </div>
-                              
                          </section>
                     </div>
                </section>
