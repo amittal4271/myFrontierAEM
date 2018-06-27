@@ -80,21 +80,24 @@ public class FrontierWholesalesUserRegistrationServlet  extends SlingAllMethodsS
 			        if(action.equals("buyersClub")) {
 			        	String resetPwdData = request.getParameter("resetPwd");
 			        	String adminToken = connector.getAdminToken();
-			        	log.debug("resetPwd data is "+resetPwdData+" credentials "+credentials);
+			        	
 			        	JsonObject resetPwdObject = updateJSONObject(resetPwdData, "newPassword", credentials);
-			        	log.debug("after setting password is "+resetPwdObject.toString());
+			        	
 			        	//get customer id here
 			        	String customerResponse = FrontierWholesalesUserRegistration.resetPassword(adminToken, resetPwdObject.toString());
 			        	//update first and lastname with customer id
-			        	log.debug("customer response is "+customerResponse);
+			        
 			        	String customerData = request.getParameter("customer");
-			        	log.debug("customer data is "+customerData);
+			        	
 			        	String addressData= request.getParameter("address");
 			        	
 			        	JsonObject updatedAddressData = updateJSONObject(addressData,"customer_id",customerResponse,"address");
-			        	log.debug("updated address data "+updatedAddressData.toString());
-			        	FrontierWholesalesUserRegistration.updateCustomers(adminToken, customerData, customerResponse);
-			        	log.debug("customer details has been updated");
+			        	
+			        	JsonObject updatedCustomerData = updateJSONObject(customerData,"id",customerResponse,"customer");
+			        	
+			        	FrontierWholesalesUserRegistration.updateCustomers(adminToken, updatedCustomerData.toString(), customerResponse);
+			        	
+			        	
 			        	String addressResponse = FrontierWholesalesUserRegistration.addAddress(adminToken, updatedAddressData.toString());
 			        	log.debug("buyersclub is registered successfully");
 			        	

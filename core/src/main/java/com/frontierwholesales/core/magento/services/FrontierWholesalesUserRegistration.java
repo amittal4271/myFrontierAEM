@@ -47,6 +47,12 @@ public class FrontierWholesalesUserRegistration {
 		return null;
 	}
 	
+	/**
+	 * Get list of countries and regions
+	 * @param adminToken
+	 * @return
+	 * @throws Exception
+	 */
 	public static String getCountriesWithRegions(String adminToken) throws Exception{
 		
 		String server = FrontierWholesalesMagentoCommerceConnector.getServer();
@@ -58,6 +64,13 @@ public class FrontierWholesalesUserRegistration {
 		return countryAndRegions;
 	}
 	
+	/**
+	 * reset Password
+	 * @param adminToken
+	 * @param jsonData
+	 * @return
+	 * @throws Exception
+	 */
 	public static String resetPassword(String adminToken,String jsonData) throws Exception{
 
 		String server = FrontierWholesalesMagentoCommerceConnector.getServer();
@@ -69,6 +82,14 @@ public class FrontierWholesalesUserRegistration {
 		return response.replace("\"", "");
 	}
 	
+	/**
+	 * Update customer email id,first and last name
+	 * @param adminToken
+	 * @param jsonData
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
 	public static String updateCustomers(String adminToken,String jsonData,String id) throws Exception{
 		String server = FrontierWholesalesMagentoCommerceConnector.getServer();
 		String response = Request.Put(server + "/rest/V1/customers/"+id)
@@ -79,11 +100,34 @@ public class FrontierWholesalesUserRegistration {
 		return response;
 	}
 	
+	/** 
+	 * add new address for logged users
+	 * @param adminToken
+	 * @param jsonData
+	 * @return
+	 * @throws Exception
+	 */
 	public static String addAddress(String adminToken,String jsonData) throws Exception{
 		String server = FrontierWholesalesMagentoCommerceConnector.getServer();
 		String response = Request.Post(server + "/rest/all/V1/addNewAddress")
 				.addHeader("Authorization", adminToken)
 				 .bodyString(jsonData,ContentType.APPLICATION_JSON)
+                .execute().returnContent().asString();
+		
+		return response;
+	}
+	
+	/**
+	 * Retrieve user details and address list for logged users
+	 * @param userToken
+	 * @return
+	 * @throws Exception
+	 */
+	public static String getWhoAmI(String userToken) throws Exception{
+		String server = FrontierWholesalesMagentoCommerceConnector.getServer();
+		String response = Request.Get(server + "/rest/V1/customers/me")
+				.addHeader("Authorization", userToken)
+				
                 .execute().returnContent().asString();
 		
 		return response;

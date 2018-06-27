@@ -58,22 +58,20 @@ $.validator.addMethod("urlText", function(value, element) {
 console.log("method is being called here...");
 	var btnRadio = $('.radio-checkbox-section-holder input:radio:checked').attr('id');
     var checked = $('#id_account-buying_club').is(':checked');
-    if(undefined !== btnRadio && !checked){
-        
-        if( value.trim().length > 0){
-            return true;
+   if( value.trim().length > 0){
+        if(checked){
+            return false;
+        }else if(undefined == btnRadio && !checked){
+             this.settings.messages[element.name]['urlText'] =  'Please choose site';
+            return false;
         }
-    }else if(btnRadio == undefined && !checked){
         return true;
-    }else if(btnRadio == undefined && checked){
-         return true;
-    }else if(value.trim().length > 0){
-            if(btnRadio === undefined){
-               
-                return false;
-            }
-        
-        
+    }else{
+		 if(undefined != btnRadio && !checked){
+             this.settings.messages[element.name]['urlText'] = "This field is required";
+            return false;
+        }
+        return true;
     }
 });
 

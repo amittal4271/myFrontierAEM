@@ -60,10 +60,12 @@ function buyersClubRegistration(){
 function callResetPassword(){
     var jsonData={};
     var resetPwd={};
-    jsonData['email']=$('#current-email-id').val();
+     var memberEmailId = $('#id_membership-email').val();
+    var currentEmailId = $('#current-email-id').val();
+    jsonData['email']=currentEmailId;
     jsonData['resetToken']=$('#customer-token').val();
     
-   
+  
     
     var memberName = $('#id_shipping-name').val();
     var memberNameSplit = memberName.split(' ');
@@ -77,7 +79,11 @@ function callResetPassword(){
      customer['customer']={};
     
     var customerJsonData={};
-    customerJsonData['email']=$('#id_membership-email').val();
+    if(memberEmailId != currentEmailId){
+        currentEmailId = memberEmailId;
+    }
+    
+    customerJsonData['email']=currentEmailId;
     customerJsonData['firstname'] = memberNameSplit[0];
     customerJsonData['lastname']=memberNameSplit[1];
     customerJsonData['website_id']=1;
