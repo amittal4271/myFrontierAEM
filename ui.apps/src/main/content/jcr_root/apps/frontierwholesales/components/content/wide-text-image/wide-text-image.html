@@ -47,7 +47,7 @@ data-sly-test.pstyle="${'bg-light-section'}" data-sly-test.titlestyle="${'text-l
                                         alt="${textImage.alt}"/>
                                    </div>
                                    <figcaption class="information-section-left-right">
-                                       <h3 id="${properties.anchortag}" class="headline-left-right ${titlestyle}">${properties.brandTitle}</h3>
+                                       <h3 id="${properties.anchortag}" class="headline-left-right ${titlestyle}">${properties.brandTitle @context='html'}</h3>
                                         <div class="description-holder-left-right">
                                             ${properties.text @context='html'}
                                         </div>
@@ -63,7 +63,7 @@ data-sly-test.pstyle="${'bg-light-section'}" data-sly-test.titlestyle="${'text-l
                          <div class="container clearfix">
                               <figure class="each-figure-section">
                                    <figcaption class="information-section-left-right">
-                                        <h3 id="${properties.anchortag}" class="headline-left-right ${titlestyle}">${properties.brandTitle}</h3>
+                                        <h3 id="${properties.anchortag}" class="headline-left-right ${titlestyle}">${properties.brandTitle @context='html'}</h3>
                                         <div class="description-holder-left-right">
                                              ${properties.text @context='html'}
                                         </div>

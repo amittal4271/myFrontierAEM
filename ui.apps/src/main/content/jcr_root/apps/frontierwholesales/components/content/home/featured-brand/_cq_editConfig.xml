@@ -15,8 +15,4 @@
                 imageRotate=""/>
         </image>
     </cq:dropTargets>
-    <cq:inplaceEditing
-        jcr:primaryType="cq:InplaceEditingConfig"
-        active="{Boolean}true"
-        editorType="image"/>
 </jcr:root>

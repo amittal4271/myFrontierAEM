@@ -19,20 +19,4 @@
             </parameters>
         </image>
     </cq:dropTargets>
-    <cq:inplaceEditing
-        jcr:primaryType="cq:InplaceEditingConfig"
-        active="{Boolean}true"
-        configPath="../../dialog/items/tab1/items/text"
-        editorType="hybrid">
-        <cq:childEditors jcr:primaryType="nt:unstructured">
-            <text
-                jcr:primaryType="cq:ChildEditorConfig"
-                title="Text"
-                type="text"/>
-            <image
-                jcr:primaryType="cq:ChildEditorConfig"
-                title="Image"
-                type="image"/>
-        </cq:childEditors>
-    </cq:inplaceEditing>
 </jcr:root>

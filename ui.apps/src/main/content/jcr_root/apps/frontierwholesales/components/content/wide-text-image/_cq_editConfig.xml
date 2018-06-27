@@ -19,23 +19,4 @@
             </parameters>
         </image>
     </cq:dropTargets>
-    <cq:inplaceEditing
-        jcr:primaryType="cq:InplaceEditingConfig"
-        active="{Boolean}true"
-        editorType="hybrid">
-        <cq:childEditors jcr:primaryType="nt:unstructured">
-            <brandTitle
-                jcr:primaryType="cq:ChildEditorConfig"
-                title="Title"
-                type="title"/>
-        </cq:childEditors>
-        <config
-            jcr:primaryType="nt:unstructured"
-            name="brandTitle"
-            titleTag="[h1,h2,h3,h4]">
-            <title
-                jcr:primaryType="nt:unstructured"
-                name="brandTitle"/>
-        </config>
-    </cq:inplaceEditing>
 </jcr:root>
