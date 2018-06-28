@@ -8,7 +8,7 @@ use(function () {
     // TODO: change currentStyle to wcm.currentStyle
 
     var CONST = {
-        PROP_TITLE: "jcr:titletext",
+        PROP_TITLE: "./text",
         PROP_PAGE_TITLE: "pageTitle",
         PROP_TYPE: "type",
         PROP_DEFAULT_TYPE: "defaultType"
@@ -16,7 +16,7 @@ use(function () {
 
     var titletext = {};
 
-    titletext.title = properties.get('./title');
+    titletext.title = properties.get('./jcr:title');
     // The actual titletext content
     //titletext.text = granite.resource.properties[CONST.PROP_TITLE]
     titletext.text = properties.get(CONST.PROP_TITLE)

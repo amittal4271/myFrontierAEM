@@ -14,9 +14,9 @@ use(function () {
 
    
    
-    multiContent.title = properties.get('./title');
+    multiContent.title = properties.get('./jcr:title');
     if (multiContent.title) {
-    	multiContent.id = properties.get('./title').replace(" ", "-").toLowerCase();
+        multiContent.id = properties.get('./jcr:title').replace(" ", "-").toLowerCase();
     	multiContent.id = multiContent.id.replace("(","");
         multiContent.id = multiContent.id.replace(")","");
     }

@@ -23,8 +23,8 @@
     style="background-image: url('${image.src @ context='styleString'}')"
     onclick="CQ_Analytics.record({event: 'imageClick', values: { imageLink: '${image.linkurl @ context='scriptString'}', imageAsset: '${image.filereference @ context='scriptString'}', imageTitle: '${image.fileName @ context='scriptString'}' }, collect: false, options: { obj: this }, componentPath: '${image.resource.resourceType @ context='scriptString'}'})"
     >
-	<span class="right-image-heading"> <p data-sly-element=${properties.type}>${properties.brandTitle}</p></span>
-	<span class="btn btn-call-to-action-right-side btn-purple">${properties.label}</span>
+    <span class="right-image-heading"> ${properties.jcr:title} </span>
+	<div class="btn btn-call-to-action-right-side btn-purple">${properties.label}</div>
 </a>
 </div>
 

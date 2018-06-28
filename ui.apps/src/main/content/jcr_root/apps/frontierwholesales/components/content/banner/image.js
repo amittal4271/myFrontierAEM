@@ -50,7 +50,7 @@ use(["/libs/wcm/foundation/components/utils/AuthoringUtils.js",
                 image.cssClass = image.cssClass + " " + CONST.PLACEHOLDER_CLASSIC_CLASS;
             }
         }
-        
+
         imageDefer.resolve(image);
     });
     

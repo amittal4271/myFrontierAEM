@@ -99,7 +99,7 @@
                                         sling:resourceType="granite/ui/components/foundation/form/textfield"
                                         fieldDescription="Leave empty to use the page title."
                                         fieldLabel="Title"
-                                        name="./brandTitle"/>
+                                        name="./jcr:Title"/>
                                     <type
                                         jcr:primaryType="nt:unstructured"
                                         sling:resourceType="granite/ui/components/foundation/form/select"

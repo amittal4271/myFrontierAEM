@@ -32,7 +32,7 @@
                                         sling:resourceType="granite/ui/components/foundation/form/textfield"
                                         fieldDescription="No title displayed if empty"
                                         fieldLabel="Enter Title"
-                                        name="./title"/>
+                                        name="./jcr:title"/>
                                     <type
                                         jcr:primaryType="nt:unstructured"
                                         sling:resourceType="granite/ui/components/foundation/form/select"

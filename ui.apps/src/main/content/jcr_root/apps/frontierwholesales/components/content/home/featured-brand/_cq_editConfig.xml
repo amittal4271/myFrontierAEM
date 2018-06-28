@@ -15,4 +15,26 @@
                 imageRotate=""/>
         </image>
     </cq:dropTargets>
+    <cq:listeners
+        jcr:primaryType="cq:EditListenersConfig"
+        afteredit="REFRESH_PAGE"/>
+    <cq:inplaceEditing
+        jcr:primaryType="cq:InplaceEditingConfig"
+        active="{Boolean}true"
+        editorType="hybrid">
+        <cq:childEditors jcr:primaryType="nt:unstructured">
+            <title
+                jcr:primaryType="cq:ChildEditorConfig"
+                title="Title"
+                type="title"/>
+            <text
+                jcr:primaryType="cq:ChildEditorConfig"
+                title="Text"
+                type="text"/>
+        </cq:childEditors>
+        <config
+            jcr:primaryType="nt:unstructured"
+            textTag="[p]"
+            titleTag="[h1,h2,h3,h4]"/>
+    </cq:inplaceEditing>
 </jcr:root>

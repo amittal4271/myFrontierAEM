@@ -24,7 +24,7 @@ use(function () {
     // TODO: change currentStyle to wcm.currentStyle
 
     var CONST = {
-        PROP_TITLE: "./title",
+        PROP_TITLE: "./jcr:title",
         PROP_TEXT: "./text",
         PROP_TYPE: "type",
         PROP_DEFAULT_TYPE: "defaultType"

@@ -63,7 +63,7 @@
                                         sling:resourceType="granite/ui/components/foundation/form/textfield"
                                         fieldDescription="Form title goes here"
                                         fieldLabel="Title"
-                                        name="./formTitle"/>
+                                        name="./jcr:title"/>
                                 </items>
                             </column>
                         </items>
@@ -92,7 +92,7 @@
                                         sling:resourceType="granite/ui/components/foundation/form/textarea"
                                         fieldDescription="Description text goes here"
                                         fieldLabel="Description"
-                                        name="./formText"/>
+                                        name="./text"/>
                                 </items>
                             </column>
                         </items>

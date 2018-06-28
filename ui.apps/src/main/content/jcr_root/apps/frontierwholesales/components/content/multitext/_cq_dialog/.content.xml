@@ -39,7 +39,7 @@
                                                 sling:resourceType="granite/ui/components/foundation/form/textfield"
                                                 fieldDescription="Enter Title"
                                                 fieldLabel="Enter Title"
-                                                name="./title"
+                                                name="./jcr:title"
                                                 required="true"/>
                                             <text
                                                 jcr:primaryType="nt:unstructured"

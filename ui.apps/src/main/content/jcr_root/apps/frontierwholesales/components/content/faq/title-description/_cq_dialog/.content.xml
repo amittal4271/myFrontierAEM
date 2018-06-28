@@ -27,14 +27,14 @@
                                 sling:resourceType="granite/ui/components/foundation/form/textfield"
                                 fieldDescription="Enter Title"
                                 fieldLabel="Enter Title"
-                                name="./title"
+                                name="./jcr:title"
                                 required="true"/>
                             <titletext
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="cq/gui/components/authoring/dialog/richtext"
                                 fieldDescription="Enter text in Rich text editor "
                                 fieldLabel="Paragraph Text"
-                                name="./jcr:titletext"
+                                name="./text"
                                 removeSingleParagraphContainer="{Boolean}true"
                                 useFixedInlineToolbar="{Boolean}true">
                                 <rtePlugins jcr:primaryType="nt:unstructured">

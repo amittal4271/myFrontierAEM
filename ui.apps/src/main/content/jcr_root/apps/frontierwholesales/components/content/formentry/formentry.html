@@ -1,8 +1,8 @@
 <!--/**/-->
 <div class="row">
     <div class="col-md-12">
-        <h4 class="subscribe-header">${properties.formTitle}</h4>
-        <p class="subscribe-text"> ${properties.formText}</p>
+        <h4 class="subscribe-header">${properties.jcr:title}</h4>
+        <p class="subscribe-text"> ${properties.text @context='html'}</p>
         <form id="newsletter-form" autocomplete="off">
             <input name="email" class="form-control email-input" id="email-input" placeholder="Enter Your Email" required="required" type="email">
             <input class="btn btn-submit-email" id="submit-email" value="${properties.label}" type="submit">

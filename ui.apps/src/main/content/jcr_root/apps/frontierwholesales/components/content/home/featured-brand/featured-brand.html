@@ -22,12 +22,12 @@
         alt="${image.alt}"/>
     </div>
     <div class="featured-info">
-        <p class="brand-name">
-            ${properties.brandTitle}
-        </p>
+        <h1 class="brand-name">
+            ${properties.jcr:title}
+        </h1>
     <div class="brand-copy">
         <p class="featured-description">
-                    ${properties.copyText}
+           ${properties.text @context='html'}
         </p>
     </div>
     <div class="brand-button-holder">
