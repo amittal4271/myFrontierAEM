@@ -1,33 +1,21 @@
+<sly data-sly-use.url="../../../../global-useapi/serverurl.js"></sly>
+<script>
+  var serverURL = "${url.server @ context='html'}";
+</script>
+
+<sly data-sly-use.clientLib="${'/libs/granite/sightly/templates/clientlib.html'}"/>
+<sly data-sly-call="${clientlib.js @ categories='address-list'}" data-sly-unwrap/>
+
 <section class="account-main-holder clearfix"
-		 data-sly-use.addressbook="com.frontierwholesales.core.models.myaccount.AddressBook"
-	     data-sly-use.myaccount="com.frontierwholesales.core.models.myaccount.MyAccount">
+		 data-sly-use.addressbook="com.frontierwholesales.core.models.myaccount.AddressBook">
      <div class="account-heading-holder">
           <h2 class="account-heading">${addressbook.addressBookHeader}</h2>
           <a href="#" class="btn btn-white-green btn-account-heading btn-account-form">${addressbook.addNewAddressButtonText}</a>
      </div>
-     <div class="account-information-holder" data-sly-list.address="${myaccount.getAddressBook}">
-
-          <div class="each-address-holder">
-               <div class="each-address">
-                    <span class="name">${address.name}</span><br>
-                    <span class="company">${address.company}</span><br>
-                    <span>${address.street1}</span><br>
-                    <span>${address.street2}</span><br>
-                    <span>${address.city}</span>, <span>${address.state}</span>
-                    <span>${address.zip}</span><br>
-                    <span>${address.country}</span>
-               </div>
-               <div class="address-options">
-                    <a href="/account/addresses/edit/302507/" class="address-link">
-                         <span class="address-link-text">${addressbook.editActionText}</span>
-                    </a>
-                    <a href="/account/addresses/delete/302507/" class="address-link remove-address-link">
-                         <span class="address-link-text">${addressbook.deleteActionText}</span>
-                         <span class="glyphicon glyphicon-remove"></span>
-                    </a>
-               </div>
-          </div>
-
+     <div class="account-information-holder">
+		<div class="ui-config"
+			data-editActionText="${addressbook.editActionText}"
+			data-deleteActionText="${addressbook.deleteActionText}"/>
+          
      </div>
-     
 </section>
