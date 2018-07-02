@@ -18,7 +18,7 @@ Frontier.MyAccountServices = new function(serverURL) {
 		//optional service params can be added here
 		var serviceParams = {};
 
-		var userToken=getUserToken();
+		var userToken = getUserToken();
 		
 		return $.ajax({
             url: getCustomerUrl, 
@@ -31,21 +31,6 @@ Frontier.MyAccountServices = new function(serverURL) {
         });
 	}
 	
-	function getUserToken() {
-		var cookieValue = document.cookie;
-        var cookieSplit=cookieValue.split(";");
-        var userToken='';
-        for(var i=0;i<cookieSplit.length;i++){
-            var token = cookieSplit[i].trim().split("=");
-            if(token[0].startsWith("MagentoUserToken")){
-                userToken = token[1];
-            }
-        }
-        var regx=new RegExp("\"","g");
-        userToken=userToken.replace(regx,"");
-        return userToken;
-    }
-
 	//expose public functions
 	this.getCustomer = getCustomer;
 }(serverURL);
