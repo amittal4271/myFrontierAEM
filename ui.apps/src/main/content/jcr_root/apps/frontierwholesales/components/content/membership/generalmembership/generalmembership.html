@@ -1,6 +1,7 @@
 <sly
     data-sly-use.clientLib="${'/libs/granite/sightly/templates/clientlib.html'}"/>
 <sly data-sly-call="${clientlib.js @ categories='registration'}" data-sly-unwrap/>
+<sly data-sly-call="${clientlib.js @ categories='frontierwholesales.login'}" data-sly-unwrap/>
 
 <div data-sly-use.url="../ServerURL.js">
     <input type='hidden' id='serverurl' name='serverurl' value='${url.server}'>
@@ -23,7 +24,7 @@
                                         <div class="each-form-information">
                                              <div class="checkbox">
                                                   <label for="id_account-buying_club">
-                                                       <input id="id_account-buying_club"  name="account-buying_club" type="checkbox">
+                                                       <input id="id_account-buying_club"  data-buyerclub="BC" name="account-buying_club" type="checkbox">
                                                        <span class="label-text">Buying Club</span>
                                                   </label>
                                              </div>
@@ -90,60 +91,60 @@
                                              <hr class="line-separator after-buying-club">
                                              <div class="radio-checkbox-section-holder thirds">
                                                   <div class="radio">
-                                                       <label for="id_account-business_type_1">
-                                                            <input id="id_account-business_type_1" class="other-than-buying-club-input" name="account-business_type" type="radio" value="food-service">
+                                                       <label for="id_account-business_type_FS">
+                                                            <input id="id_account-business_type_FS" class="other-than-buying-club-input" name="account-business_type" type="radio" value="food-service">
                                                             <span class="label-text">Food Service</span>
                                                        </label>
                                                   </div>
                                                   <div class="radio">
-                                                       <label for="id_account-business_type_2">
-                                                            <input id="id_account-business_type_2" class="other-than-buying-club-input" name="account-business_type" type="radio" value="grocery">
+                                                       <label for="id_account-business_type_GR">
+                                                            <input id="id_account-business_type_GR" class="other-than-buying-club-input" name="account-business_type" type="radio" value="grocery">
                                                             <span class="label-text">Grocery</span>
                                                        </label>
                                                   </div>
                                                   <div class="radio">
-                                                       <label for="id_account-business_type_3">
-                                                            <input id="id_account-business_type_3" class="other-than-buying-club-input" name="account-business_type" type="radio" value="health">
+                                                       <label for="id_account-business_type_HP">
+                                                            <input id="id_account-business_type_HP" class="other-than-buying-club-input" name="account-business_type" type="radio" value="health">
                                                             <span class="label-text">Health Practitioner</span>
                                                        </label>
                                                   </div>
 
 
                                                   <div class="radio">
-                                                       <label for="id_account-business_type_4">
-                                                            <input id="id_account-business_type_4" class="other-than-buying-club-input" name="account-business_type" type="radio" value="massage">
+                                                       <label for="id_account-business_type_MT">
+                                                            <input id="id_account-business_type_MT" class="other-than-buying-club-input" name="account-business_type" type="radio" value="massage">
                                                             <span class="label-text">Massage/Spa</span>
                                                        </label>
                                                   </div>
                                                   <div class="radio">
-                                                       <label for="id_account-business_type_5">
-                                                            <input id="id_account-business_type_5" class="other-than-buying-club-input" name="account-business_type" type="radio" value="natural-foods">
+                                                       <label for="id_account-business_type_NF">
+                                                            <input id="id_account-business_type_NF" class="other-than-buying-club-input" name="account-business_type" type="radio" value="natural-foods">
                                                             <span class="label-text">Natural Foods Retailer</span>
                                                        </label>
                                                   </div>
                                                   <div class="radio">
-                                                       <label for="id_account-business_type_6">
-                                                            <input id="id_account-business_type_6" class="other-than-buying-club-input" name="account-business_type" type="radio" value="other">
+                                                       <label for="id_account-business_type_OT">
+                                                            <input id="id_account-business_type_OT" class="other-than-buying-club-input" name="account-business_type" type="radio" value="other">
                                                             <span class="label-text">Other</span>
                                                        </label>
                                                   </div>
 
                                                   <div class="radio">
-                                                       <label for="id_account-business_type_7">
-                                                            <input id="id_account-business_type_7" class="other-than-buying-club-input" name="account-business_type" type="radio" value="retail">
+                                                       <label for="id_account-business_type_RB">
+                                                            <input id="id_account-business_type_RB" class="other-than-buying-club-input" name="account-business_type" type="radio" value="retail">
                                                             <span class="label-text">Retail Business</span>
                                                        </label>
                                                   </div>
                                                   <div class="radio">
-                                                       <label for="id_account-business_type_8">
-                                                            <input id="id_account-business_type_8" class="other-than-buying-club-input" name="account-business_type" type="radio" value="web">
+                                                       <label for="id_account-business_type_WB">
+                                                            <input id="id_account-business_type_WB" class="other-than-buying-club-input" name="account-business_type" type="radio" value="web">
                                                             <span class="label-text">Web Retailer</span>
                                                        </label>
                                                   </div>
                                              </div>
                                              <hr class="line-separator after-radio-section">
                                             
-                                             <div class="form-group width-two-thirds">
+                                             <div id="webaddress-data" class="form-group width-two-thirds" style="display:none;">
                                                   <label for="id_account-url">Web Address</label>
                                                   <input id="id_account-url" class="form-control" name="account-url" placeholder="www.youronlinestore.com" type="text">
                                              </div>

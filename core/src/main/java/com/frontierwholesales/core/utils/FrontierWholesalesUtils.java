@@ -50,6 +50,14 @@ public class FrontierWholesalesUtils {
 			return object;
 	 }
 	 
+	 public static String getIdFromObject(String object,String key) throws Exception{
+		 Gson gson = new Gson();
+		 JsonElement element = gson.fromJson(object, JsonElement.class);
+		 JsonObject jsonObject = element.getAsJsonObject();
+		 
+		return jsonObject.get(key).getAsString();
+	 }
+	 
 	 /**
 	     * Add the provided HTTP Cookie to the Response
 	     *

@@ -66,6 +66,15 @@ function loadLifeTimeRegistrationRegions(){
     
 }
 
+function enableErrorMsg(){
+    var errorText="The site is currently unavailable and unable to process your request.  Please check back later.";
+            
+            $('.global-server-side-message-holder').css('display','block');
+             $el = $('.global-server-side-message-holder');
+            $('.global-server-side-message-holder').children().text(errorText);
+            scrollToElement($el);
+}
+
 function getUserToken(){
 		var cookieValue = document.cookie;
         var cookieSplit=cookieValue.split(";");
@@ -98,4 +107,8 @@ function getAdminToken(){
         
     });
    return  d.promise();
+}
+
+function addCookie(value){
+    document.cookie="MagentoUserToken="+value+";";
 }

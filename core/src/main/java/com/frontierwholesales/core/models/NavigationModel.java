@@ -4,6 +4,7 @@ import com.adobe.cq.sightly.WCMUsePojo;
 import com.day.cq.wcm.api.Page;
 import com.frontierwholesales.core.beans.FrontierWholesalePages;
 import com.frontierwholesales.core.beans.MagentoCategory;
+import com.frontierwholesales.core.data.cache.CacheManager;
 import com.frontierwholesales.core.magento.services.FrontierWholesalesMagentoCommerceConnector;
 import com.frontierwholesales.core.services.constants.FrontierWholesalesConstants;
 import com.frontierwholesales.core.utils.FrontierWholesalesUtils;
@@ -25,14 +26,29 @@ import org.slf4j.LoggerFactory;
 		private MagentoCategory categories;
 		public void activate() throws Exception {
 			LOGGER.debug("activate method of navigation Start");
+			try {
 			Page root = this.getCurrentPage().getAbsoluteParent(2);
 			FrontierWholesalePages frontierRoot = new FrontierWholesalePages(root);
-			this.frontierWholesalePages = this.getChildren(frontierRoot, 0);
 			
+			this.frontierWholesalePages =  (List<FrontierWholesalePages>)CacheManager.getCache(FrontierWholesalesConstants.AEM_CHILDREN_PAGES);
+			
+			if(this.frontierWholesalePages == null) {
+				CacheManager.putCache(this.getChildren(frontierRoot, 0),FrontierWholesalesConstants.AEM_CHILDREN_PAGES);
+				
+				this.frontierWholesalePages =  (List<FrontierWholesalePages>)CacheManager.getCache(FrontierWholesalesConstants.AEM_CHILDREN_PAGES);
+				
+			}
 			String adminToken =  connector.getAdminToken();
 			
-			this.categories = getAllCategories(adminToken,2);
 			
+			this.categories =  (MagentoCategory)CacheManager.getCache(FrontierWholesalesConstants.MAGENTO_CATEGORIES);
+			if(this.categories == null) {
+				CacheManager.putCache(getAllCategories(adminToken,2),FrontierWholesalesConstants.MAGENTO_CATEGORIES);
+				this.categories =  (MagentoCategory)CacheManager.getCache(FrontierWholesalesConstants.MAGENTO_CATEGORIES);
+			}
+			}catch(Exception anyEx) {
+				LOGGER.error("Error in navigation mode "+anyEx.getMessage());
+			}
 			LOGGER.debug("activate method of navigation End");
 		}
 

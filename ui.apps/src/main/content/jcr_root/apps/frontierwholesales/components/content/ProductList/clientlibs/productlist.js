@@ -89,11 +89,14 @@ function getProductListByCategory(currentPage,recsPerPage,sortBy){
    }
     $.ajax({
         url: "/services/productlist",
-        data:jsonData
-    }).done(function(results){
-       console.log(results); 
+        data:jsonData,
+        beforeSend:function(xhr){
+          xhr.overrideMimeType("application/json");
+      }
+    }).done(function(productList){
+        
         hideLoadingScreen();
-        var productList = JSON.parse(results);
+     
        
         var template = $("#productlistTemplate").html();
      
@@ -104,6 +107,13 @@ function getProductListByCategory(currentPage,recsPerPage,sortBy){
             }else{
               return recordsPerPage;
             }
+        });
+        
+        Handlebars.registerHelper("gt",function(pageTotal,options){
+            var fnTrue = options.fn,
+        fnFalse = options.inverse;
+           return (pageTotal > 28)?fnTrue():fnFalse();
+              
         });
         
        var html = Handlebars.compile(template);
@@ -160,19 +170,33 @@ function addItemToCart(sku,qty){
     jsonData['action']='add';
     
     
-    $.get("/services/cart",jsonData,function(){
+    $.ajax({
+        url:"/services/cart",
+        data:jsonData,
+        headers:{
+
+                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+                'Authorization':getUserToken()
+            },
+        beforeSend:function(xhr){
+          xhr.overrideMimeType("application/json");
+      }
         
-    }).done(function(result){
-        console.log("result is "+result);
+    }).done(function(cart){
+        console.log("result is "+cart);
         hideLoadingScreen();
-        if(result.trim() !== 'Error in Cart'){
-        var cart = JSON.parse(result);
+        
+        
         $('#cartMessage-'+sku).fadeIn('fast').delay(3000).fadeOut('fast');
         var template = $("#minicartTemplate").html();
         var cartTemplate = Handlebars.compile(template);
         var html = cartTemplate(cart,cart.items.reverse());
         $('#minicarttemplate').html(html); 
-        }
+        
        
+    }).fail(function(error){
+        console.log("error is "+error);
+         hideLoadingScreen();
+        enableErrorMsg();
     });
 }

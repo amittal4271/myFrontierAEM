@@ -11,27 +11,62 @@ $(document).ready(function(){
     showCurrentMonth();
     showExpYear();
     
+    $(document).on('click','.other-than-buying-club-input',function(e){ 
+        console.log('button is clicked'); 
+
+        var val = $(this).val();
+        $('#webaddress-data').val('');
+        if(val == 'web'){
+            var visible = $('#webaddress-data').is(':visible');
+            if(!visible){
+                $('#webaddress-data').css('display','block');
+                
+            }
+        }else{
+             $('#webaddress-data').css('display','none');
+        }
+    });
+    
     $('#btn-lifetime-registration').on('click',function(e){
         e.preventDefault();
         $buttonObj = $(this);
        
          $validFlag = $("#lifetime-membership-form").valid();
           emailWithId['list']=[];
-        if($validFlag){
-             disableAjaxFormButton($buttonObj); 
-            if(findDuplicateEmailId()){
-                collectUserDetails(); 
-            }else{
-                enableAjaxFormButton($buttonObj);
-               var $buyersClub=$('#buyer-club-group-holder');
-                 scrollToElement($buyersClub);
-            }
+        
+          var buyerClubChecked = $('#id_account-buying_club').is(":checked");
+        var btSelected = $('.radio-checkbox-section-holder input:radio:checked').attr('id');
+        var bCheck = false;
+        
+        if(!buyerClubChecked && undefined == btSelected){
+              bCheck=false;
+             
+             $('.alert-danger').html("Please select one of the business type");
+           
         }else{
-            console.log('error...');
-              $('.global-server-side-message-holder').css('display','block');
-             $el = $('.global-server-side-message-holder');
-             enableAjaxFormButton($buttonObj);
-             scrollToElement($el);
+        
+            if($validFlag){
+                 disableAjaxFormButton($buttonObj); 
+                if(findDuplicateEmailId()){
+                    bCheck = true;
+                    collectUserDetails(); 
+                }else{
+                    bCheck=false;
+                     $('.alert-danger').html(" There is an error with your application. Please fix the field(s) with the red error message.");
+                }
+            }else{
+                console.log('error in validation');
+                bCheck = false;
+                  $('.alert-danger').html("There is an error with your application. Please fix the field(s) with the red error message.");
+             
+            }
+        }
+        
+         if(!bCheck){
+            $('.global-server-side-message-holder').css('display','block');           
+            $el = $('.global-server-side-message-holder');
+            enableAjaxFormButton($buttonObj);
+            scrollToElement($el);
         }
     });
 
@@ -116,15 +151,19 @@ function collectUserDetails(){
     
     var shippingName = $('#id_shipping-name').val();
     var shippingNameSplit = shippingName.split(' ');
-    
-    var web_retail = $('.radio-checkbox-section-holder input:radio:checked').attr('id');
-    var url=$('#id_account-url').val();
-    if(undefined !== web_retail){
-        web_retail = web_retail.substr(web_retail.length-1,web_retail.length);
-       
+    var buyerClubType='';
+    if($('#id_account-buying_club').is(":checked")){
+         buyerClubType = $('#id_account-buying_club').data('buyerclub');
     }else{
-        web_retail='';
+        buyerClubType = $('.radio-checkbox-section-holder input:radio:checked').attr('id');
+       
     }
+    
+     var url=$('#id_account-url').val();
+        if(buyerClubType !== ''){
+            buyerClubType = buyerClubType.substr(buyerClubType.length-2,buyerClubType.length);
+
+        }
     
      customer['customer']={};
     // customer json data
@@ -198,7 +237,7 @@ function collectUserDetails(){
     taxInfo['tax_companyname']=$('#id_account-company_name').val();
     taxInfo['tax_payerid']=$('#id_account-taxpayer_id').val();
     var businessType={};
-    businessType['business_type']=web_retail;
+    businessType['business_type']=buyerClubType;
     businessType['web_address']=url;
     var card_details={};
     card_details['full_name']=$('#id_billing-name').val();
@@ -259,6 +298,7 @@ function validateEmailAndRegisterUser(extensionAttributes,customer,company,pwd){
             console.log('error ');
              enableAjaxFormButton($buttonObj);  
              $('.global-server-side-message-holder').css('display','block');
+             $('.alert-danger').html(" There is an error with your application. Please fix the field(s) with the red error message.");
              $el = $('.global-server-side-message-holder');
              scrollToElement($el);
         }else{
@@ -311,7 +351,7 @@ function getBuyersClubDetails(){
 function memberRegistration(customer,company,pwd){
      $.ajax({
         url:"/services/registration",
-        data:{customer:JSON.stringify(customer),company:JSON.stringify(company),action:'registration'},
+        data:{customer:JSON.stringify(customer),company:JSON.stringify(company),action:'registration',email: $('#id_membership-email').val()},
         method: "POST",
          headers:{
 
@@ -320,14 +360,13 @@ function memberRegistration(customer,company,pwd){
             },
         success:function(data){
             console.log(data);
+             addCookie(data.Success);
             window.location.href=getRedirectPath();
 
         },error:function(error){
             console.log(error);
              enableAjaxFormButton($buttonObj);  
-             $('.global-server-side-message-holder').css('display','block');
-             $el = $('.global-server-side-message-holder');
-             scrollToElement($el);
+             enableErrorMsg();
         }
     });
 }

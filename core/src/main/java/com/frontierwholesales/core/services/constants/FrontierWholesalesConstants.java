@@ -7,4 +7,8 @@ public interface FrontierWholesalesConstants {
 	public static final String MAGENTO_USER_TOKEN="MagentoUserToken";
 	
 	public static final String CUSTOMER_ID ="CustomerId";
+	
+	public static final String MAGENTO_CATEGORIES = "MagentoCategories";
+	
+	public static final String AEM_CHILDREN_PAGES ="AemChildrenPages";
 }

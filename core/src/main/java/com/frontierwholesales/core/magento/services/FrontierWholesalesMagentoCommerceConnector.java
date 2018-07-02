@@ -176,7 +176,18 @@ public class FrontierWholesalesMagentoCommerceConnector {
     }
 
 
-   
+    /**
+     * 
+     * @param userToken
+     * @return
+     * @throws Exception
+     */
+   public String getCartId(String userToken) throws Exception{
+	   String response = Request.Get(server+"/rest/V1/carts/mine")
+			   .addHeader("Authorization", userToken)               
+               .execute().returnContent().asString();
+	   return response;
+   }
 
 
     public String getAttributeID(String attributeName) throws CommerceException {

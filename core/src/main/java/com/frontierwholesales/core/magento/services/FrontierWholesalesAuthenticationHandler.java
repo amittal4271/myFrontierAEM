@@ -118,7 +118,7 @@ public class FrontierWholesalesAuthenticationHandler extends DefaultAuthenticati
 			
 			
 			String userToken = connector.getToken(username, password);
-			
+			log.debug("usertoken is "+userToken);
 			
 			httpServletRequest.getSession().setAttribute(FrontierWholesalesConstants.MAGENTO_USER_TOKEN, userToken);
 			
@@ -127,7 +127,7 @@ public class FrontierWholesalesAuthenticationHandler extends DefaultAuthenticati
 			cookie.setMaxAge(30 * 60);
 			
 			FrontierWholesalesUtils.addCookie(cookie,httpServletResponse);
-			
+			log.debug("After adding into cookies");
 		
 				if(userToken != null) {
 					

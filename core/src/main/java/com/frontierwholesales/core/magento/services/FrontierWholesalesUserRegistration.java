@@ -19,32 +19,24 @@ public class FrontierWholesalesUserRegistration {
 	  * @throws Exception
 	  */
 	public static String customerRegistration(JsonObject params) throws Exception{
-		
-		
-		
-		
 		String server = FrontierWholesalesMagentoCommerceConnector.getServer();
 		String customerId = Request.Post(server + "/rest/V1/customers")
                 .bodyString(params.toString(),ContentType.APPLICATION_JSON)
                 .execute().returnContent().asString();
-		log.info("customer id is "+customerId);
+		
 		return customerId;
 	}
 	
 	public static String companyRegistration(String pwd,JsonObject params) throws Exception{
-		try {
+		
 		String server = FrontierWholesalesMagentoCommerceConnector.getServer();
 		String userDetails = Request.Post(server + "/rest/all/V1/company")
 				.addHeader("Authorization",pwd)
                 .bodyString(params.toString(),ContentType.APPLICATION_JSON)
                 .execute().returnContent().asString();
-		log.info("customer id is "+userDetails);
+		
 		return userDetails;
-		}catch(Exception anyEx) {
-			log.error("Exception in during the company registration :"+anyEx.getMessage());
-			anyEx.printStackTrace();
-		}
-		return null;
+		
 	}
 	
 	/**

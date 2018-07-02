@@ -3,4 +3,4 @@
     jcr:description="Frontier Wholesales Shopping Cart"
     jcr:primaryType="cq:Component"
     jcr:title="ShoppingCart"   
-    componentGroup="Frontier"/>
+   />

@@ -59,12 +59,9 @@ public class FrontierWholesalesShoppingCartServlet  extends SlingAllMethodsServl
 		try {
 			String action = request.getParameter("action");
 			log.debug(" action is "+action);
+			final String token = request.getHeader("Authorization");
 			
-			//String token = (String)request.getSession().getAttribute(FrontierWholesalesConstants.MAGENTO_USER_TOKEN);
-			
-			Cookie cookie = FrontierWholesalesUtils.getCookie(request, FrontierWholesalesConstants.MAGENTO_USER_TOKEN);
-			String token = cookie.getValue();
-			
+			log.debug("token value is "+token);
 			if(token == null) {
 			
 				throw new Exception("token is null");
@@ -81,12 +78,27 @@ public class FrontierWholesalesShoppingCartServlet  extends SlingAllMethodsServl
 				String jsonData = request.getParameter("items");
 				// create cart
 				String cartId = commerceConnector.initCart(token);
+				if(cartId == null) {
+					throw new Exception("Initialization of cart is failed");
+				}
 				//update json structure with cartid
 				String updatedData = FrontierWholesalesUtils.updateJsonObject(jsonData, "cartItem", "quote_id", cartId);
 				//add item into the cart
 				String cartItems = commerceConnector.addItemToCart(token, updatedData);
 				
 				
+			}else if(action.equals("update")) {
+				String userCart = commerceConnector.getCartId(token);
+				String quote_id = FrontierWholesalesUtils.getIdFromObject(userCart,"id");
+				
+				String items = request.getParameter("cartItem");
+				
+				String itemId = request.getParameter("itemId");
+				log.debug("itemId "+itemId);
+				String updatedData = FrontierWholesalesUtils.updateJsonObject(items, "cartItem", "quote_id",quote_id);
+				log.debug("updated data is "+updatedData);
+				String updatedResponse = commerceConnector.updateCartItem(token, itemId, updatedData);
+				log.debug("response is "+updatedResponse);
 			}
 			String cartObject = commerceConnector.getCartTotal(token);
 			

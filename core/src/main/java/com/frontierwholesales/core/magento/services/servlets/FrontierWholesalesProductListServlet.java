@@ -3,33 +3,37 @@ package com.frontierwholesales.core.magento.services.servlets;
 import java.io.IOException;
 import java.text.DecimalFormat;
 
+import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 
-import org.apache.felix.scr.annotations.sling.SlingServlet;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
-import org.apache.sling.api.resource.Resource;
-import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.api.servlets.HttpConstants;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
+import org.osgi.framework.Constants;
+import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.adobe.cq.commerce.api.Product;
-import com.adobe.cq.commerce.common.CommerceHelper;
-import com.day.cq.wcm.api.Page;
-import com.day.cq.wcm.api.PageManager;
 import com.frontierwholesales.core.beans.FrontierWholesalesProductSearch;
 import com.frontierwholesales.core.magento.services.FrontierWholesalesMagentoCommerceConnector;
-import com.frontierwholesales.core.services.constants.FrontierWholesalesConstants;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 @SuppressWarnings("serial")
-@SlingServlet(label="FrontierWholesalesProductListServlet - Sling All Methods Servlet", 
-description="FrontierWholesales Product List Servlet Sling All Methods Servlet.", 
-paths={"/services/productlist"}, methods={"GET","POST"})
+
+@Component(immediate = true,service=Servlet.class,
+property={
+        Constants.SERVICE_DESCRIPTION + "=FrontierWholesales Product List Servlet",
+        "sling.servlet.methods=" + HttpConstants.METHOD_GET,
+       "sling.servlet.selectors=data",
+       "sling.servlet.paths=/services/productlist",
+        "sling.servlet.extensions=html"      
+        
+})
+
 
 public class FrontierWholesalesProductListServlet extends SlingAllMethodsServlet{
 
@@ -40,7 +44,7 @@ public class FrontierWholesalesProductListServlet extends SlingAllMethodsServlet
 	protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response)
 			throws ServletException, IOException {
 		
-		log.debug("doGet FrontierWholesalesProductListServlet Start here");
+		log.debug("doGet FrontierWholesalesProductListServlet Start here ");
 		try {
 			FrontierWholesalesProductSearch search = new FrontierWholesalesProductSearch();
 			int currentPage = Integer.parseInt(request.getParameter("currentPage"));
@@ -67,18 +71,7 @@ public class FrontierWholesalesProductListServlet extends SlingAllMethodsServlet
 		}
 	}
 	
-	private String getTokenFromSession(SlingHttpServletRequest request) throws Exception{
-		log.debug("getToken from session start");
-		String adminToken = (String)request.getSession().getAttribute(FrontierWholesalesConstants.MAGENTO_ADMIN_TOKEN);
-		
-		if(null == adminToken) {
-			adminToken = commerceConnector.getAdminToken();
-			
-			request.getSession().setAttribute(FrontierWholesalesConstants.MAGENTO_ADMIN_TOKEN, adminToken);
-		}
-		log.debug("getToken from session end");
-		return adminToken;
-	}
+	
 	
 	private String parseJsonObject(String productList,int recsPerPage,int currentPage
 			) throws Exception{
@@ -115,11 +108,14 @@ public class FrontierWholesalesProductListServlet extends SlingAllMethodsServlet
 		object.addProperty("recsPerPage", recsPerPage);
 		JsonElement totalElement = object.get("total_count");
 		int total = totalElement.getAsInt();
-		
-		double dPage = ((double)total / (double)recsPerPage);
+		double dPage;
+		if(total > 28) {
+		 dPage = ((double)total / (double)recsPerPage);
 		
 		dPage = Math.ceil(dPage);
-		
+		}else {
+			dPage = 0;
+		}
 		object.addProperty("pageTotal", (int)dPage);
 		//object.add("categories", catElement.getAsJsonObject());
 		return object.toString();

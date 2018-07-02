@@ -6,7 +6,8 @@ $(document).ready(function(){
     
     $(document).on('click','#signOut',function(){
        localStorage.removeItem('ConfirmationNr');
-       document.cookie = "MagentoUserToken=;expires=0;path=/;";
+        document.cookie="MagentoUserToken=;Max-Age=-99999999;";
+       //document.cookie = "MagentoUserToken=;expires=0;path=/;";
         window.location.href="/content/frontierwholesales/en/home.html";
     });
     
@@ -42,10 +43,18 @@ $(document).ready(function(){
 function getCartItems(){
     var jsonData={};
     jsonData['action']='getCart';
+    
   $.ajax({
         url:"/services/cart",
-        data:jsonData,
-        dataType:"json",
+     data: jsonData,
+       headers:{
+
+                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+                'Authorization':getUserToken()
+            },
+      beforeSend:function(xhr){
+          xhr.overrideMimeType("application/json");
+      }, 
         success:function(cart){
             
            var template = $("#minicartTemplate").html();
@@ -77,12 +86,19 @@ function removeCartItem(itemId){
     $.ajax({
        url: "/services/cart",
         method: "get",
-        data: jsonData
+        data: jsonData,
+         headers:{
+
+                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+                'Authorization':getUserToken()
+            },
+         beforeSend:function(xhr){
+          xhr.overrideMimeType("application/json");
+      },
        
     }).done(function(cart){
         if(cart.trim() !== 'Error in Cart'){
            
-             cart = JSON.parse(cart);
              var template = $("#minicartTemplate").html();
              var processedHTML =  Handlebars.compile(template);
              var html = processedHTML( cart,cart.items.reverse());

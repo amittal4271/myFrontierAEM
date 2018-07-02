@@ -45,6 +45,11 @@ $.validator.addMethod("phoneno", function(value, element) {
 	return this.optional(element)|| /^\d{10}$/.test(value);
 });
 
+$.validator.addMethod("passwordValidate",function(value,element){
+    var regEx = new RegExp("^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+    return regEx.test(value)
+},"Please enter valid password")
+
 $.validator.addMethod("passwordMatch", function(value, element) {
 
 	return $('#id_membership-password').val() == $('#id_membership-password_confirm').val()
@@ -76,7 +81,7 @@ console.log("method is being called here...");
 });
 
 $.validator.addMethod("emailValidation",function(value,element){
-    var emailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    var emailFormat = /^\w+([\+\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     if(value.match(emailFormat)){
         return true;
     }
@@ -121,6 +126,7 @@ function buyersClubCheckboxOperations(){
                               $this.addClass('buying-club-selected');
                               // de-select other business type options if buying club is selected
                               $('.other-than-buying-club-input').prop('checked', false);
+                             $('#webaddress-data').css('display','none');
                          }
                     });
 
@@ -513,13 +519,14 @@ function buyersClubCheckboxOperations(){
                     },"membership-password":{
                         required: true,
                         minlength: 8,
-		            	maxlength: 50
-                        
+		            	maxlength: 50,
+                        passwordValidate: true
                         
                     },"membership-password_confirm":{
                         required: true,
                         minlength: 8,
                         maxlength: 50,
+                        passwordValidate: true,
                         equalTo: '#id_membership-password'
                         
                     },"billing-name":{
@@ -699,13 +706,15 @@ function buyersClubCheckboxOperations(){
                     },"membership-password":{
                         required: true,
                         minlength: 8,
-                        maxlength: 50
+                        maxlength: 50,
+                        passwordValidate: true
                         
                         
                     },"membership-password_confirm":{
                         required: true,
                         minlength: 8,
                         maxlength: 50,
+                        passwordValidate: true,
                         equalTo: '#id_membership-password'
                         
                     },"account-url":{

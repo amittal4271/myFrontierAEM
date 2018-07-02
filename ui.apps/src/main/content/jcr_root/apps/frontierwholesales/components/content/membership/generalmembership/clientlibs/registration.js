@@ -11,25 +11,59 @@ $(document).ready(function(){
 
      validation.registrationGeneralForm('#general-membership-form');
     
+     $(document).on('click','.other-than-buying-club-input',function(e){ 
+        console.log('button is clicked'); 
+      
+        var val = $(this).val();
+        $('#webaddress-data').val('');
+        if(val == 'web'){
+            var visible = $('#webaddress-data').is(':visible');
+            if(!visible){
+                $('#webaddress-data').css('display','block');
+                
+            }
+        }else{
+             $('#webaddress-data').css('display','none');
+        }
+    });
+    
     $('#btn-general-registration').on('click',function(e){
         e.preventDefault();
         $buttonObj = $(this);
        
          $validFlag = $("#general-membership-form").valid();
-         if($validFlag){
-              disableAjaxFormButton($buttonObj);            
-             emailWithId['list']=[];
-             if(findDuplicateEmailId()){
-                collectUserDetails(); 
-             }else{
-                 enableAjaxFormButton($buttonObj);
-                 var $buyersClub=$('#buyer-club-group-holder');
-                 scrollToElement($buyersClub);
-             }
+        
+        var buyerClubChecked = $('#id_account-buying_club').is(":checked");
+        var btSelected = $('.radio-checkbox-section-holder input:radio:checked').attr('id');
+        var bCheck = false;
+        if(!buyerClubChecked && undefined == btSelected){
+              bCheck=false;
+             
+             $('.alert-danger').html("Please select one of the business type");
+           
         }else{
-          console.log('error in validation');
-          $('.global-server-side-message-holder').css('display','block');
-             $el = $('.global-server-side-message-holder');
+           
+            if($validFlag){
+                  disableAjaxFormButton($buttonObj);            
+                 emailWithId['list']=[];
+                 if(findDuplicateEmailId()){
+                    collectUserDetails(); 
+                     bCheck = true;
+                 }else{
+                     bCheck=false;
+                     $('.alert-danger').html(" There is an error with your application. Please fix the field(s) with the red error message.");
+                 }
+            }else{
+                console.log('error in validation');
+                bCheck = false;
+                  $('.alert-danger').html("There is an error with your application. Please fix the field(s) with the red error message.");
+             
+            }
+        }
+        
+        if(!bCheck){
+            $('.global-server-side-message-holder').css('display','block');           
+            $el = $('.global-server-side-message-holder');
             enableAjaxFormButton($buttonObj);
             scrollToElement($el);
         }
@@ -80,15 +114,19 @@ function collectUserDetails(){
 
      var shippingName = $('#id_shipping-name').val();
     var shippingNameSplit = shippingName.split(' ');
-
-     var web_retail = $('.radio-checkbox-section-holder input:radio:checked').attr('id');
-    var url=$('#id_account-url').val();
-    if(undefined !== web_retail){
-        web_retail = web_retail.substr(web_retail.length-1,web_retail.length);
-       
+    var buyerClubType='';
+    if($('#id_account-buying_club').is(":checked")){
+         buyerClubType = $('#id_account-buying_club').data('buyerclub');
     }else{
-        web_retail='';
+        buyerClubType = $('.radio-checkbox-section-holder input:radio:checked').attr('id');
+       
     }
+    
+     var url=$('#id_account-url').val();
+        if(buyerClubType !== ''){
+            buyerClubType = buyerClubType.substr(buyerClubType.length-2,buyerClubType.length);
+
+        }
   
     var customer={};
      var pwd = $('#id_membership-password').val();
@@ -165,7 +203,7 @@ function collectUserDetails(){
     taxInfo['tax_companyname']='';
     taxInfo['tax_payerid']='';
     var businessType={};
-    businessType['business_type']=web_retail;
+    businessType['business_type']=buyerClubType;
     businessType['web_address']=url;
     var card_details={};
     card_details['full_name']='';
@@ -230,6 +268,7 @@ function validateEmailAndRegisterUser(extensionAttributes,customer,company,pwd){
             console.log('error ');
              enableAjaxFormButton($buttonObj);     
              $('.global-server-side-message-holder').css('display','block');
+            $('.alert-danger').html(" There is an error with your application. Please fix the field(s) with the red error message.");
              $el = $('.global-server-side-message-holder');
             scrollToElement($el);
         }else{
@@ -292,34 +331,31 @@ function getBuyersClubDetails(){
 }
 
 function userRegistrationService(customer,company,pwd){
+    var email =  $('#id_membership-email').val();
     
      $.ajax({
         url:"/services/registration",
-        data:{customer:JSON.stringify(customer),company:JSON.stringify(company),action:'registration'},
+        data:{customer:JSON.stringify(customer),company:JSON.stringify(company),action:'registration',email: email},
         method: "POST",
          headers:{
 
                 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
                 'Authorization':'Basic '+btoa(pwd)
-            },
-        success:function(data){
-            
-            var object = JSON.parse(data);             
-            
-               window.location.href=getRedirectPath();
-          
-        },error:function(error){
+            },beforeSend:function(xhr){
+                xhr.overrideMimeType('application/json');
+            }
+     }).done(function(data){
+        console.log(data);        
+        addCookie(data.Success);
+         window.location.href=getRedirectPath();
+     }).fail(function(error){
             console.log(error);
-             enableAjaxFormButton($buttonObj); 
+            enableAjaxFormButton($buttonObj); 
+         enableErrorMsg();
+          
            
-            var errorText="The site is currently unavailable and unable to process your request.  Please check back later.";
-            
-            $('.global-server-side-message-holder').css('display','block');
-             $el = $('.global-server-side-message-holder');
-            $('.global-server-side-message-holder').children().text(errorText);
-            scrollToElement($el);
-        }
-    });
+     });
+       
 }
 
 function emailValidation(jsonBuyersEmailList){

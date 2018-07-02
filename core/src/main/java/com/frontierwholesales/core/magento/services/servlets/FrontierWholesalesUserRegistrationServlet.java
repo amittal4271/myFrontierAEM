@@ -5,6 +5,7 @@ import java.nio.charset.Charset;
 import java.util.Base64;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.felix.scr.annotations.sling.SlingServlet;
@@ -17,6 +18,7 @@ import org.slf4j.LoggerFactory;
 import com.frontierwholesales.core.magento.services.FrontierWholesalesMagentoCommerceConnector;
 import com.frontierwholesales.core.magento.services.FrontierWholesalesUserRegistration;
 import com.frontierwholesales.core.services.constants.FrontierWholesalesConstants;
+import com.frontierwholesales.core.utils.FrontierWholesalesUtils;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -64,6 +66,8 @@ public class FrontierWholesalesUserRegistrationServlet  extends SlingAllMethodsS
 	@Override
 	protected void doPost(SlingHttpServletRequest request, SlingHttpServletResponse response)
 			throws ServletException, IOException {
+			boolean bReturn = false;
+			String credentials="";
 			JsonObject jsonObject = new JsonObject();
 			log.debug("entered into doPost method of registration");
 			try {
@@ -72,7 +76,7 @@ public class FrontierWholesalesUserRegistrationServlet  extends SlingAllMethodsS
 			    if (authorization != null && authorization.startsWith("Basic")) {
 			        // Authorization: Basic base64credentials
 			        String base64Credentials = authorization.substring("Basic".length()).trim();
-			        String credentials = new String(Base64.getDecoder().decode(base64Credentials),
+			         credentials = new String(Base64.getDecoder().decode(base64Credentials),
 			                Charset.forName("UTF-8"));
 					
 			        String action = request.getParameter("action");
@@ -102,9 +106,11 @@ public class FrontierWholesalesUserRegistrationServlet  extends SlingAllMethodsS
 			        	log.debug("buyersclub is registered successfully");
 			        	
 			        	if(addressResponse != null) {
-							  jsonObject.addProperty("Success", addressResponse);
-							  response.getOutputStream().println(jsonObject.toString());
+			        			bReturn = true;
+							  	jsonObject.addProperty("BuyersAddress", addressResponse);
+							  	//response.getOutputStream().println(jsonObject.toString());
 						  }else {
+							 
 							  log.error("Returned object is null ");
 							  response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Address Response object is null");
 						  }
@@ -129,8 +135,9 @@ public class FrontierWholesalesUserRegistrationServlet  extends SlingAllMethodsS
 						  String registredValues = FrontierWholesalesUserRegistration.companyRegistration(adminToken, companyObject);
 						  log.debug("Successfully user is registered");
 						  if(registredValues != null) {
-							  jsonObject.addProperty("Success", registredValues);
-							  response.getOutputStream().println(jsonObject.toString());
+							  bReturn = true;
+							  jsonObject.addProperty("CustomerData", registredValues);
+							 // response.getOutputStream().println(jsonObject.toString());
 						  }else {
 							  log.error("Returned object is null ");
 							  response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Service object is null");
@@ -139,10 +146,20 @@ public class FrontierWholesalesUserRegistrationServlet  extends SlingAllMethodsS
 			    }else {
 			    	response.sendError(HttpServletResponse.SC_FORBIDDEN, "Password is not set");
 			    }
+			    if(bReturn) {
+			    	String username = request.getParameter("email");
+			    	String userToken = connector.getToken(username, credentials);
+			    	log.debug("user token is"+userToken);
+			    	
+			    	 jsonObject.addProperty("Success", userToken);
+			    	 response.getOutputStream().println(jsonObject.toString());
+			    }
 			}catch(Exception anyEx) {
 				log.error("Error is "+anyEx.getMessage());
 				anyEx.printStackTrace();
-				response.sendError(HttpServletResponse.SC_FORBIDDEN, "Error "+anyEx.getMessage());
+				 jsonObject.addProperty("Fail", anyEx.getMessage());
+		    	 response.getOutputStream().println(jsonObject.toString());
+				//response.sendError(HttpServletResponse.SC_FORBIDDEN, "Error "+anyEx.getMessage());
 				
 			}
 			

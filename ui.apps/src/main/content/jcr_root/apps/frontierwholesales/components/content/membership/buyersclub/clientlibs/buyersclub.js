@@ -12,36 +12,7 @@ $(document).ready(function(){
     });
 });
 
-function getRegions(){
-     $.ajax({
-        url:"/services/registration",
-        method:"GET",
-        dataType: "json",
-        success:function(results){
-            if(results !== "Error"){                
-              
-              results.forEach(function(key,val){ 
-                  if(results[val].id == "US"){ 
 
-                      var regions = results[val].available_regions; 
-                      regions.forEach(function(key,val){ 
-                          $('#id_shipping-locality').append($('<option/>',
-                                                              {'data-attr-id':regions[val].id,'value':regions[val].code,'text':regions[val].name})); 
-                      });
-                  }
-
-              });
-            }else{
-                console.log(results);
-            }
-        },error:function(error){
-            console.log(error);
-            var errorText="The site is currently unavailable and unable to process your request.  Please check back later.";
-             $('.global-server-side-message-holder').css('display','block');
-            $('.global-server-side-message-holder').children().text(errorText);
-        }
-    });
-}
 
 function buyersClubRegistration(){
     var $validFlag = $('#buyersclub-membership-form').valid();
@@ -134,27 +105,21 @@ function callResetPassword(){
     $.ajax({
         url: "/services/registration",
         method: "POST",
-        data: {resetPwd:JSON.stringify(jsonData),action:'buyersClub',customer:JSON.stringify(customer),address:JSON.stringify(address)},
+        data: {resetPwd:JSON.stringify(jsonData),action:'buyersClub',customer:JSON.stringify(customer),address:JSON.stringify(address),email: $('#id_membership-email').val()},
          headers:{
 
                 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
                 'Authorization':'Basic '+btoa(pwd)
             }, success:function(data){
             
-            var object = JSON.parse(data);             
+                addCookie(data.Success);         
             
                window.location.href=getRedirectPath();
           
         },error:function(error){
             console.log(error);
             enableAjaxFormButton($buttonObj);
-           
-            var errorText="The site is currently unavailable and unable to process your request.  Please check back later.";
-            
-            $('.global-server-side-message-holder').css('display','block');
-            $('.global-server-side-message-holder').children().text(errorText);
-             $el =$('.global-server-side-message-holder');
-            scrollToElement($el);
+            enableErrorMsg();
         }
     })
     
