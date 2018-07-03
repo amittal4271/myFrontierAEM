@@ -1,8 +1,8 @@
 <sly
     data-sly-use.clientLib="${'/libs/granite/sightly/templates/clientlib.html'}"/>
 <sly data-sly-call="${clientlib.js @ categories='header'}" data-sly-unwrap/>
-<sly data-sly-use.user="${'com.frontierwholesales.core.models.SessionModel'}"></sly>
-<header id="header">
+
+<!-- header component -->
   <div id="left-header-icons-mobile">
           <button id="mobile-menu-icon" class="header-mobile-icon" type="button">
                <span class="menu-icon"><span class="glyphicon glyphicon-menu-hamburger"></span></span>
@@ -14,7 +14,7 @@
           </button>
      </div>
         <div id="logo-header">
-          <a href="/content/frontierwholesales/en/home.html" class="logo-link" title="Frontier Co-op Wholesale">
+          <a href="/" class="logo-link" title="Frontier Co-op Wholesale">
                <span class="logo-icon-header">
                     <img src="/content/dam/frontierwholesales/images/logo.6694741e49f1.svg">
                     <span class="visuallyhidden">Frontier Co-op Wholesale</span>
@@ -30,7 +30,7 @@
                <li><a href="#">Help</a>
                 <ul id="header-help-flyout" class="header-flyout-list">
                          <li><a href="#">Contact</a></li>
-                         <li><a href="/content/frontierwholesales/en/faq.html">FAQ</a></li>
+                         <li><a href="#">FAQ</a></li>
                          <li><a href="/content/frontierwholesales/en/glossary.html">Glossary</a></li>
                     </ul>
                </li>
@@ -38,21 +38,21 @@
               
                <li>
                   
-                   <sly data-sly-test="${user.authToken == null}">
+                   <sly data-sly-test="${currentSession.userID == 'anonymous'}">
                     <a href="/content/frontierwholesales/en/login.html">My Account</a>
                     <ul id="header-account-flyout" class="header-flyout-list">
                       <li><a href="/content/frontierwholesales/en/login.html">Log In</a></li>
                          </ul>
                    </sly>
                    
-                   <sly data-sly-test="${user.authToken != null}">
+                   <sly data-sly-test="${currentSession.userID != 'anonymous'}">
                        <a href="#">My Account</a>
                        <ul id="header-account-flyout" class="header-flyout-list">
                          
                          <li><a href="#">Address Book</a></li>
                          <li><a href="#">Orders</a></li>
                          <li><a href="#">Wish List</a></li>
-                         <li><a id="signOut" href='#'>Sign Out</a></li>
+                         <li><a id="signOut" href="#">Sign Out</a></li>
                     </ul>
                    </sly>
               
@@ -82,14 +82,14 @@
               {{/if}}
               
           </a>
-          {{#if ${user.authToken != null @context='scriptString' }}}
+         
          <a href="#" class="btn btn-cart-display cart-display-owner-total" title="Cart">
                <span class="icon-cart">
                     <span class="glyphicon glyphicon-shopping-cart"></span>
                </span>
                <span class="cart-amount">Our Total: <span class="amount">$0.00</span></span>
           </a>
-         {{/if}}
+         
 
          <div class="mini-cart-holder">
         {{#items}}
@@ -151,4 +151,4 @@
      </script>
      <!-- Delete Confirmation -->
     
-    </header>
+<!-- header component end -->
