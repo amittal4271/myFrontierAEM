@@ -104,6 +104,7 @@ public class FrontierWholesalesAuthenticationHandler extends DefaultAuthenticati
 			
 			final String authorization = httpServletRequest.getHeader("Authorization");
 		    if (authorization != null && authorization.startsWith("Basic")) {
+		    	log.debug("Autorization is "+authorization);
 		        // Authorization: Basic base64credentials
 		        String base64Credentials = authorization.substring("Basic".length()).trim();
 		        String credentials = new String(Base64.getDecoder().decode(base64Credentials),

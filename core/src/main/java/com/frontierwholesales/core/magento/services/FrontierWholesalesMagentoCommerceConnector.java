@@ -27,6 +27,9 @@ import com.frontierwholesales.core.beans.MagentoCategory;
 import com.frontierwholesales.core.magento.models.MagentoRelatedProduct;
 import com.frontierwholesales.core.utils.AuthCredentials;
 
+import com.frontierwholesales.core.magento.services.exceptions.FrontierWholesalesBusinessException;
+import com.frontierwholesales.core.magento.services.exceptions.FrontierWholesalesErrorCode;
+
 @Component(
 		immediate = true,
         label = "Frontier Wholesales Magento Commerce Provider",
@@ -145,14 +148,19 @@ public class FrontierWholesalesMagentoCommerceConnector {
 
     }
     
-    public String getAdminToken()throws Exception{
-        AuthCredentials authCredentials = new AuthCredentials(adminUser, adminPassword);
-
-        log.debug(" AUTHENTICATING " +adminUser + " Against server:" + server);
-        String token = Request.Post(server + "/rest/all/V1/integration/admin/token")
-                .bodyString(mapper.writeValueAsString(authCredentials), ContentType.APPLICATION_JSON)
-                .execute().returnContent().asString();
-        return "Bearer " + token.replace("\"", "");
+    public String getAdminToken() throws FrontierWholesalesBusinessException{
+    	try {
+	        AuthCredentials authCredentials = new AuthCredentials(adminUser, adminPassword);
+	
+	        log.debug(" AUTHENTICATING " +adminUser + " Against server:" + server);
+	        String token = Request.Post(server + "/rest/all/V1/integration/admin/token")
+	                .bodyString(mapper.writeValueAsString(authCredentials), ContentType.APPLICATION_JSON)
+	                .execute().returnContent().asString();
+	        return "Bearer " + token.replace("\"", "");
+    	}
+	    catch (IOException e) {
+	    	throw new FrontierWholesalesBusinessException(e, FrontierWholesalesErrorCode.IO_ERROR);
+	    }
 
     }
     
