@@ -17,6 +17,7 @@ import org.slf4j.LoggerFactory;
 
 import com.frontierwholesales.core.magento.services.FrontierWholesalesMagentoCommerceConnector;
 import com.frontierwholesales.core.magento.services.FrontierWholesalesUserRegistration;
+import com.frontierwholesales.core.magento.services.exceptions.FrontierWholesalesBusinessException;
 import com.frontierwholesales.core.services.constants.FrontierWholesalesConstants;
 import com.frontierwholesales.core.utils.FrontierWholesalesUtils;
 import com.google.gson.Gson;
@@ -51,7 +52,12 @@ public class FrontierWholesalesUserRegistrationServlet  extends SlingAllMethodsS
 			object = FrontierWholesalesUserRegistration.getCountriesWithRegions(adminToken);
 			
 			response.getOutputStream().println(object);
-		} catch (Exception e) {
+		}catch(FrontierWholesalesBusinessException bEx) {
+			log.error("Exception occurred FrontierWholesalesBusinessException "+bEx.getMessage());
+			jsonObject.addProperty("Error", bEx.getMessage());
+			response.getOutputStream().println(jsonObject.toString());
+		}
+		catch (Exception e) {
 			log.error("Exception occurred in doGet method "+e.getMessage());
 			e.printStackTrace();
 			jsonObject.addProperty("Error", "Error");
@@ -90,7 +96,7 @@ public class FrontierWholesalesUserRegistrationServlet  extends SlingAllMethodsS
 			        	//get customer id here
 			        	String customerResponse = FrontierWholesalesUserRegistration.resetPassword(adminToken, resetPwdObject.toString());
 			        	//update first and lastname with customer id
-			        
+			        	
 			        	String customerData = request.getParameter("customer");
 			        	
 			        	String addressData= request.getParameter("address");
@@ -151,7 +157,7 @@ public class FrontierWholesalesUserRegistrationServlet  extends SlingAllMethodsS
 			    	String userToken = connector.getToken(username, credentials);
 			    	log.debug("user token is"+userToken);
 			    	
-			    	 jsonObject.addProperty("Success", userToken);
+			    	 jsonObject.addProperty("UserToken", userToken);
 			    	 response.getOutputStream().println(jsonObject.toString());
 			    }
 			}catch(Exception anyEx) {
@@ -159,7 +165,7 @@ public class FrontierWholesalesUserRegistrationServlet  extends SlingAllMethodsS
 				anyEx.printStackTrace();
 				 jsonObject.addProperty("Fail", anyEx.getMessage());
 		    	 response.getOutputStream().println(jsonObject.toString());
-				//response.sendError(HttpServletResponse.SC_FORBIDDEN, "Error "+anyEx.getMessage());
+				response.sendError(HttpServletResponse.SC_FORBIDDEN, "Error "+anyEx.getMessage());
 				
 			}
 			

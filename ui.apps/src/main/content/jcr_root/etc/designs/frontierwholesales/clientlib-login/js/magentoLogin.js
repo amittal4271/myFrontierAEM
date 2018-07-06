@@ -64,9 +64,14 @@ function magentoLogin(serverURL,userName,password){
          console.log('logged into Magento... '+results);
           var regx=new RegExp("\"","g");
         results=results.replace(regx,"");
-         var token = "Bearer "+results+";";
-         addCookie(token);
-         //document.cookie="MagentoUserToken=Bearer "+results+";";
+         //var token = "MagentoUserToken=Bearer "+results+";";
+           var jsonData={};
+         jsonData['token']="Bearer "+results;
+        
+         var cookieData = "CustomerData="+JSON.stringify(jsonData)+"; path=/";
+        
+         addCookie(cookieData);
+        
             window.location.href=Granite.HTTP.externalize(getRedirectPath());
      }).fail(function(error){
          console.log('error is '+error);

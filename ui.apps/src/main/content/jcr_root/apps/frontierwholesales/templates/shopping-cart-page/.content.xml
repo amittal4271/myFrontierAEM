@@ -15,7 +15,7 @@
             <order
                 
                 jcr:primaryType="nt:unstructured"
-                sling:resourceType="frontierwholesales/components/content/order"/>
+                sling:resourceType="frontierwholesales/components/content/myaccount/orders-pending"/>
         </par>
     </jcr:content>
 </jcr:root>

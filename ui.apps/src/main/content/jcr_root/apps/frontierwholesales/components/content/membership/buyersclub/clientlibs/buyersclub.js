@@ -110,17 +110,20 @@ function callResetPassword(){
 
                 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
                 'Authorization':'Basic '+btoa(pwd)
-            }, success:function(data){
+            },beforeSend:function(xhr){
+                xhr.overrideMimeType('application/json');
+            }
+        }).done(function(data){
+            var address = JSON.parse(data.BuyersAddress);
             
-                addCookie(data.Success);         
-            
+                 addBuyersClubDataToCookie(address,currentEmailId,data.UserToken);
                window.location.href=getRedirectPath();
           
-        },error:function(error){
+        }).fail(function(error){
             console.log(error);
             enableAjaxFormButton($buttonObj);
             enableErrorMsg();
-        }
-    })
+        });
+    
     
 }

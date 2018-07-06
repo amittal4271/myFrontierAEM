@@ -1,2 +1,2 @@
 ../../../../serviceapi/serviceapi.js
-confirmation.js
+js/order.js

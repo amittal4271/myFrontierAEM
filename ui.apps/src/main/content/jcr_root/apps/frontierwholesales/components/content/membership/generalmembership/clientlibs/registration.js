@@ -345,8 +345,8 @@ function userRegistrationService(customer,company,pwd){
                 xhr.overrideMimeType('application/json');
             }
      }).done(function(data){
-        console.log(data);        
-        addCookie(data.Success);
+        addCustomerDataToCookie(data);
+         
          window.location.href=getRedirectPath();
      }).fail(function(error){
             console.log(error);

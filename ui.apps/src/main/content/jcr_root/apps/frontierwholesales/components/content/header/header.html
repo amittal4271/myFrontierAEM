@@ -3,6 +3,7 @@
 <sly data-sly-call="${clientlib.js @ categories='header'}" data-sly-unwrap/>
 <sly data-sly-use.user="${'com.frontierwholesales.core.models.SessionModel'}"></sly>
 <!-- header component -->
+<header id="header">
   <div id="left-header-icons-mobile">
           <button id="mobile-menu-icon" class="header-mobile-icon" type="button">
                <span class="menu-icon"><span class="glyphicon glyphicon-menu-hamburger"></span></span>
@@ -34,7 +35,11 @@
                          <li><a href="/content/frontierwholesales/en/glossary.html">Glossary</a></li>
                     </ul>
                </li>
-               <li><a href="/content/frontierwholesales/en/membership.html">Join</a></li>
+                <sly data-sly-test="${user.authToken == null}">
+                   <li>
+                       <a href="/content/frontierwholesales/en/membership.html">Join</a>
+                  </li>
+              </sly>
               
                <li>
                   
@@ -150,5 +155,5 @@
      </div>
      </script>
      <!-- Delete Confirmation -->
-    
+</header>    
     <!--header component -->

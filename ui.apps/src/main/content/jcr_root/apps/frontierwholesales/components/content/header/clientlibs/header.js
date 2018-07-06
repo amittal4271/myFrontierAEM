@@ -6,8 +6,8 @@ $(document).ready(function(){
     
     $(document).on('click','#signOut',function(){
        localStorage.removeItem('ConfirmationNr');
-        document.cookie="MagentoUserToken=;Max-Age=-99999999;";
-       //document.cookie = "MagentoUserToken=;expires=0;path=/;";
+      
+          document.cookie="CustomerData=;Max-Age=-99999999;path=/;";
         window.location.href="/content/frontierwholesales/en/home.html";
     });
     

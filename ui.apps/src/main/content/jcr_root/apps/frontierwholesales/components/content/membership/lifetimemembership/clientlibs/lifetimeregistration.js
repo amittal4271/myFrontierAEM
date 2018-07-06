@@ -357,17 +357,17 @@ function memberRegistration(customer,company,pwd){
 
                 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
                 'Authorization':'Basic '+btoa(pwd)
-            },
-        success:function(data){
+            }
+     }).done(function(data){
             console.log(data);
-             addCookie(data.Success);
+             addCustomerDataToCookie(data);
             window.location.href=getRedirectPath();
 
-        },error:function(error){
+        
+    }).fail(function(error){
             console.log(error);
              enableAjaxFormButton($buttonObj);  
              enableErrorMsg();
-        }
     });
 }
 

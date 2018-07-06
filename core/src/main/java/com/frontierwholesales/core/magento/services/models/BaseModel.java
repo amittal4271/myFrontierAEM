@@ -2,6 +2,7 @@ package com.frontierwholesales.core.magento.services.models;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
+import javax.servlet.http.Cookie;
 
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
@@ -38,7 +39,8 @@ public abstract class BaseModel {
 	 }
 	 
 	 public String getUserToken() {
-		 this.userToken = (String)slingHttpServletRequest.getSession().getAttribute(FrontierWholesalesConstants.MAGENTO_USER_TOKEN);
+		 Cookie cookie = (Cookie)slingHttpServletRequest.getCookie(FrontierWholesalesConstants.MAGENTO_USER_TOKEN);
+		 this.userToken = cookie.getValue();
 		
 		 return userToken;
 	 }

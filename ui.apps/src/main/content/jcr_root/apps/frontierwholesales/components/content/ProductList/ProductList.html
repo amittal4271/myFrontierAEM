@@ -1,6 +1,7 @@
 <sly
     data-sly-use.clientLib="${'/libs/granite/sightly/templates/clientlib.html'}"/>
 <sly data-sly-call="${clientlib.js @ categories='productlist'}" data-sly-unwrap/>
+<sly data-sly-use.user="${'com.frontierwholesales.core.models.SessionModel'}"></sly>
 <input id="categoryId" type=hidden value="${request.requestParameterMap['id'][0].toString}">
 <article class="product-list-page">
                     <div class="container">
@@ -90,7 +91,7 @@
                               </div>
 
                          </aside>
-                        <sly data-sly-test.user="${currentSession.userID}" />  
+                       
                         <section id="plp-search-product-grid"></section>
                              
                              <script id="productlistTemplate" type="text/x-handlebars-template"  >
@@ -162,7 +163,7 @@
                                                   <span class="product-now-price">Now {{ formattedPrice}}</span>
                                              </span>
                                         </a>
-                                        {{#if ${user != 'anonymous' @context='scriptString' }}}
+                                        {{#if ${user.authToken != null @context='scriptString' }}}
                                        <div class="grid-add-to-cart">
                                              <div class="qty-holder">
                                                   <button type="button" class="decrease qty-button qty-down">

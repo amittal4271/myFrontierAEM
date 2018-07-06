@@ -10,6 +10,9 @@ import org.slf4j.LoggerFactory;
 import com.adobe.cq.sightly.WCMUsePojo;
 import com.frontierwholesales.core.services.constants.FrontierWholesalesConstants;
 import com.frontierwholesales.core.utils.FrontierWholesalesUtils;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 
 
 public class SessionModel extends WCMUsePojo{
@@ -22,10 +25,13 @@ public class SessionModel extends WCMUsePojo{
 		@Override
 		public void activate() throws Exception {
 			LOGGER.debug("activate method...");
-			//this.authToken =(String) getRequest().getSession().getAttribute(FrontierWholesalesConstants.MAGENTO_USER_TOKEN);
-			Cookie cookie = FrontierWholesalesUtils.getCookie(getRequest(), FrontierWholesalesConstants.MAGENTO_USER_TOKEN);
+			
+			Cookie cookie = FrontierWholesalesUtils.getCookie(getRequest(),"CustomerData");
 			LOGGER.debug("activate method..."+cookie.getValue().length());
-			this.authToken = cookie.getValue();
+			
+			String cookieValue = cookie.getValue();
+			this.authToken = FrontierWholesalesUtils.getIdFromObject(cookieValue, "token");
+			
 		}
 
 
