@@ -168,12 +168,23 @@
                                                        </div>
                                                        <div class="action-button-section-account">
                                                             <span class="tablet-below-col-heading">Edit</span>
-                                                            <a href="#" class="btn btn-only-green-icon btn-edit-members-role" title="Edit">
+                                                            <a href="#editRole" data-toggle="collapse" class="btn btn-only-green-icon btn-edit-members-role" title="Edit">
                                                                  <span class="address-link-text">Edit</span>
                                                             </a>
                                                        </div>
                                                   </div>
                                              </div>
+                                        </div>
+                                        <div class="collapse editRoleSection" id="editRole">
+                                             <div class="roleHeader">
+                                                  <span>Update User Role</span>
+                                                  <span class="pull-right">
+                                                       <a class="editRoleDismiss glyphicon glyphicon-remove" href="#editRole" data-toggle="collapse"></a>
+                                                  </span>
+                                             </div>
+                                             <button class="btn btn-light-green" type="button">
+                                                  Manager
+                                             </button>
                                         </div>
                                         <div class="row-each-order">
                                              <div class="information-holder order-information-holder">
@@ -202,12 +213,23 @@
                                                        </div>
                                                        <div class="action-button-section-account">
                                                             <span class="tablet-below-col-heading">Edit</span>
-                                                            <a href="#" class="btn btn-only-green-icon btn-edit-members-role" title="Edit">
+                                                            <a href="#editRole2" data-toggle="collapse" class="btn btn-only-green-icon btn-edit-members-role" title="Edit">
                                                                  <span class="address-link-text">Edit</span>
                                                             </a>
                                                        </div>
                                                   </div>
                                              </div>
+                                        </div>
+                                        <div class="collapse editRoleSection" id="editRole2">
+                                             <div class="roleHeader">
+                                                  <span>Update User Role</span>
+                                                  <span class="pull-right">
+                                                       <a class="editRoleDismiss glyphicon glyphicon-remove" href="#editRole2" data-toggle="collapse"></a>
+                                                  </span>
+                                             </div>
+                                             <button class="btn btn-light-green" type="button">
+                                                  Manager
+                                             </button>
                                         </div>
                                    </div>
                                    <!--

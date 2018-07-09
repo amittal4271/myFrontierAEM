@@ -3134,6 +3134,23 @@ tr.order-details-table-section-row td.inner-table-td-holder {
     margin-top: 0;
   }
 }
+.order-grid .editRoleSection {
+  background-color: #fff;
+  clear: both;
+  margin: 10px;
+}
+.order-grid .editRoleSection .roleHeader {
+  border-bottom: 1px solid #ececec;
+  padding: 15px 20px;
+  font-weight: 700;
+  font-size: 15px;
+}
+.order-grid .editRoleSection .roleHeader .editRoleDismiss {
+  color: #ececec;
+}
+.order-grid .editRoleSection button {
+  margin: 15px 20px;
+}
 .row-each-order {
   float: left;
   width: 100%;
@@ -3148,7 +3165,7 @@ tr.order-details-table-section-row td.inner-table-td-holder {
 @media screen and (min-width: 992px) {
   .row-each-order {
     padding: 15px 0;
-    margin-bottom: 0;
+    margin-bottom: 15px;
     /*
 		background: none;
 		border-left: none;
