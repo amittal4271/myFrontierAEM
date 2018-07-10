@@ -143,10 +143,8 @@ Frontier.MagentoServices = new function(){
         });
     }
     
-    function getConfirmationData(serverURL,adminToken){
-       var confirmationNr = localStorage.getItem("ConfirmationNr");
-      
-           return $.ajax({
+    function getConfirmationData(serverURL,adminToken,confirmationNr){
+         return $.ajax({
                 url: serverURL+"/rest/V1/orders/"+confirmationNr,
                 method: "get",
                  headers:{

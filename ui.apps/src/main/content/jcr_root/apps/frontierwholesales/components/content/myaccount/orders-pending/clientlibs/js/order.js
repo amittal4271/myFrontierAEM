@@ -1,6 +1,6 @@
 var Frontier = Frontier || {};
 Frontier.orderOperations =Frontier.orderOperations || {};
-
+Frontier.orderOperations.customerId='';
 
 Frontier.orderOperations = new function(){
     function init(){
@@ -8,6 +8,7 @@ Frontier.orderOperations = new function(){
         showLoadingScreen();
         Frontier.MagentoServices.getCustomerDetails(serverURL).done(function(data){
             console.log(data.id);
+            Frontier.orderOperations.customerId=data.id;
 			loadOrdersList(serverURL,data.id);
         }).error(function(error){
            console.log(error); 
@@ -36,7 +37,14 @@ Frontier.orderOperations = new function(){
             });
         });
     }
-    $(document).ready(init);
+    $(document).ready(function(){
+        init();
+        
+        $(document).on('click','.btn-cart-checkout',function(){
+            console.log(Frontier.orderOperations.customerId);
+           window.location.href=window.serverURL+"/company/customer/validate/id/"+Frontier.orderOperations.customerId; 
+        });
+    });
 }();
 
 

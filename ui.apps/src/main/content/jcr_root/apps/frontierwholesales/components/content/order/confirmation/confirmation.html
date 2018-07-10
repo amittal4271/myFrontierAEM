@@ -6,7 +6,7 @@
   var serverURL = "${url.server @ context='html'}";
 </script>
 
-
+<input id="confirmationNr" type=hidden value="${request.requestParameterMap['confirmationNr'][0].toString}">
  <div class="container" id="confirmationpage"> </div>
  <script id="confirmationTemplate" type="text/x-handlebars-template"  >
 

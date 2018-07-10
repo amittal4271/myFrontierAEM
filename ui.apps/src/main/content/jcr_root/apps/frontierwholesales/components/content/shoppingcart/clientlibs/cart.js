@@ -1,4 +1,10 @@
+var Frontier = Frontier || {};
+Frontier.shoppingcart =Frontier.shoppingcart || {};
+
+
+
 $(document).ready(function(){
+    
     
     getCartItem();
     $('.cart-qty-input.form-control').on('change',function(){ 
@@ -64,14 +70,14 @@ function updateCart(itemId,qty){
     }).fail(function(error){
          hideLoadingScreen();
         console.log(error);
-        enableErrorMsg();
+        enableErrorMsg(error.status);
     });
 }
 
 
 
 function getCartItem(){
-    showLoadingScreen();
+    /*showLoadingScreen();
     var jsonData={};
     jsonData['action']='getCart';
      $.ajax({
@@ -89,20 +95,67 @@ function getCartItem(){
         
     }).done(function(cart){
          hideLoadingScreen();
-        
-        var template = $("#cartTemplate").html();
-         var processedHTML = Handlebars.compile(template);
-        var html = processedHTML(cart);
-        $('#carttemplate').html(html);
+         if(error !== 'Error in Cart'){
+            var template = $("#cartTemplate").html();
+             var processedHTML = Handlebars.compile(template);
+            var html = processedHTML(cart);
+            $('#carttemplate').html(html);
+         }else{
+              if(error.status == 401){
+                enableErrorMsg(error.status);
+            }
+         }
          
     }).fail(function(error){
          console.log("error");
          hideLoadingScreen();
+         if(error !== 'Error in Cart'){
+           
              var template = $("#carttemplate").html();
             var processedHTML =  Handlebars.compile(template);
 			var html = processedHTML('');
             $('#carttemplate').html(html); 
-     });
+         }else{
+              if(error.status == 401){
+                enableErrorMsg(error.status);
+            }
+         }
+     });*/
+    
+    var userToken = getUserToken();
+    if(userToken != ''){
+        showLoadingScreen();
+        Frontier.MagentoServices.retrieveCartItems().done(function(cart){
+             hideLoadingScreen();
+             if(cart !== 'Error in Cart'){
+                var template = $("#cartTemplate").html();
+                 var processedHTML = Handlebars.compile(template);
+                var html = processedHTML(cart);
+                $('#carttemplate').html(html);
+             }else{
+                  if(error.status == 401){
+                    enableErrorMsg(error.status);
+                }
+             }
+        }).fail(function(error){
+             console.log("error");
+             hideLoadingScreen();
+             if(error !== 'Error in Cart'){
+
+                 var template = $("#carttemplate").html();
+                var processedHTML =  Handlebars.compile(template);
+                var html = processedHTML('');
+                $('#carttemplate').html(html); 
+             }else{
+                  if(error.status == 401){
+                    enableErrorMsg(error.status);
+                }
+             }
+        });
+    }else{
+        //user is not logged in
+        enableErrorMsg('401');
+    }
 }
 
 

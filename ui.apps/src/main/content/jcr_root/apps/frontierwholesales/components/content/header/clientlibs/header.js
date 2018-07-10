@@ -68,10 +68,14 @@ function getCartItems(){
            $('#minicarttemplate').html(html); 
         },error:function(error){
 			console.log("error");
+            if(error.status == 401){
+                enableErrorMsg(error.status);
+            }else{
              var template = $("#minicartTemplate").html();
             var processedHTML =  Handlebars.compile(template);
 			var html = processedHTML('');
             $('#minicarttemplate').html(html); 
+            }
         }
 
     });
@@ -97,7 +101,7 @@ function removeCartItem(itemId){
       },
        
     }).done(function(cart){
-        if(cart.trim() !== 'Error in Cart'){
+        if(cart !== 'Error in Cart'){
            
              var template = $("#minicartTemplate").html();
              var processedHTML =  Handlebars.compile(template);
@@ -105,6 +109,10 @@ function removeCartItem(itemId){
              $('#minicarttemplate').html(html);
              $('.mini-cart-holder').show();
             
+        }else{
+             if(error.status == 401){
+                enableErrorMsg(error.status);
+            }
         }
     });
 }

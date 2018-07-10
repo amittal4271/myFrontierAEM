@@ -97,33 +97,37 @@
          {{/if}}
 
          <div class="mini-cart-holder">
-        {{#items}}
-               <div class="each-mini-cart-item">
-                    <div class="mini-cart-image-holder">
-                         <img src="{{imgPath}}">
-                    </div>
-                    <div class="mini-cart-info-holder">
-                         <div class="mini-cart-name">{{name}}</div>
-                         <div class="mini-cart-price">
-                              <!--<span class="original-price strike-through-price">{{price}}</span>-->
-                              <span class="sale-now-price">Now {{price}} {{#quantities}}* {{qty}} {{/quantities}}</span>
-                         </div>
-                    </div>
-                    <div class="mini-cart-remove-holder">
-                         <button data-itemid="{{item_id}}" class="btn btn-mini-cart-remove">
-                              <span class="glyphicon glyphicon-remove"></span>
-                              <span  class="remove-text" >Remove Item</span>
-                         </button>
-                    </div>
-               </div>
+           {{#if noTotal}}
+             <h4 class="cart-empty-heading">Nothing in your cart yet.</h4>
+             {{else}}
+                {{#items}}
+                       <div class="each-mini-cart-item">
+                            <div class="mini-cart-image-holder">
+                                 <img src="{{imgPath}}">
+                            </div>
+                            <div class="mini-cart-info-holder">
+                                 <div class="mini-cart-name">{{name}}</div>
+                                 <div class="mini-cart-price">
+                                      <!--<span class="original-price strike-through-price">{{price}}</span>-->
+                                      <span class="sale-now-price">Now {{price}} {{#quantities}}* {{qty}} {{/quantities}}</span>
+                                 </div>
+                            </div>
+                            <div class="mini-cart-remove-holder">
+                                 <button data-itemid="{{item_id}}" class="btn btn-mini-cart-remove">
+                                      <span class="glyphicon glyphicon-remove"></span>
+                                      <span  class="remove-text" >Remove Item</span>
+                                 </button>
+                            </div>
+                       </div>
 
-              {{/items}}
-              
-              {{^items.length}}
-              
-              <h4 class="cart-empty-heading">Nothing in your cart yet.</h4>
-              {{/items.length}}
+                      {{/items}}
+                     {{^items.length}}
 
+                      <h4 class="cart-empty-heading">Nothing in your cart yet.</h4>
+                      {{/items.length}}
+           {{/if}}
+              
+            
                <div class="mini-cart-subtotal-holder">
                     <div class="subtotal-text">Subtotal</div>
                    {{#if subTotal}}

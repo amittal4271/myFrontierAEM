@@ -197,6 +197,6 @@ function addItemToCart(sku,qty){
     }).fail(function(error){
         console.log("error is "+error);
          hideLoadingScreen();
-        enableErrorMsg();
+        enableErrorMsg(error.status);
     });
 }
