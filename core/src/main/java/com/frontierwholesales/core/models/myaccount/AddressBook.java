@@ -34,6 +34,11 @@ public class AddressBook {
 	@Via("resource")
 	@Default(values = "Add New Address")
 	public String addNewAddressButtonText;
+	
+	@Inject
+	@Via("resource")
+	@Default(values = "/content/frontierwholesales/en/myaccount/addresses/add")
+	public String addNewAddressButtonLink;
 
 	@Inject
 	@Via("resource")
