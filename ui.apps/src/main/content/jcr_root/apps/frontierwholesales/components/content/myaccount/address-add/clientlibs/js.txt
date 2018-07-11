@@ -1,2 +1,2 @@
 /apps/frontierwholesales/components/serviceapi/serviceapi.js
-js/AddressBook.js
+js/AddressAdd.js

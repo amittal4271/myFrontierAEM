@@ -1,3 +1,11 @@
+<sly data-sly-use.url="../../../../global-useapi/serverurl.js"></sly>
+<script>
+  var serverURL = "${url.server @ context='html'}";
+</script>
+
+<sly data-sly-use.clientLib="${'/libs/granite/sightly/templates/clientlib.html'}"/>
+<sly data-sly-call="${clientlib.js @ categories='address-add'}" data-sly-unwrap/>
+
 <section class="account-main-holder clearfix"
 		 data-sly-use.addAddress="com.frontierwholesales.core.models.myaccount.AddressAdd"
 	     data-sly-use.myaccount="com.frontierwholesales.core.models.myaccount.MyAccount">
@@ -31,12 +39,7 @@
                     <div class="form-group width-half">
                          <label for="id_locality">${addAddress.stateLabel}</label>
                          <select id="id_locality" class="form-control" name="locality">
-                              <option value="1">Alabama</option>
-                              <option value="5">Alaska</option>
-                              <option value="275">American Samoa</option>
-                              <option value="6">Arizona</option>
-                              <option value="7">Arkansas</option>
-                              <option value="281">Armed Forces Americas</option>
+                              
                          </select>
                     </div>
                     <div class="form-group width-half first">

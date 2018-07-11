@@ -10,12 +10,12 @@
 		 data-sly-use.addressbook="com.frontierwholesales.core.models.myaccount.AddressBook">
      <div class="account-heading-holder">
           <h2 class="account-heading">${addressbook.addressBookHeader}</h2>
-          <a href="#" class="btn btn-white-green btn-account-heading btn-account-form">${addressbook.addNewAddressButtonText}</a>
+          <a href="${addressbook.addNewAddressButtonLink}.html" class="btn btn-white-green btn-account-heading btn-account-form">${addressbook.addNewAddressButtonText}</a>
      </div>
      <div class="account-information-holder">
 		<div class="ui-config"
 			data-editActionText="${addressbook.editActionText}"
 			data-deleteActionText="${addressbook.deleteActionText}"/>
-          
      </div>
 </section>
+
