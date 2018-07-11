@@ -79,7 +79,7 @@ Frontier.AddressBook = new function() {
 		
 		var addressItemTemplate = Handlebars.compile(templates.addressItem);
 		
-		Frontier.MyAccountServices.getCustomer().success(function(getCustomerResponse){
+		Frontier.MagentoServices.getCustomerDetails(serverURL).success(function(getCustomerResponse){
 			
 			customerObject = getCustomerResponse;
 			
@@ -125,7 +125,7 @@ Frontier.AddressBook = new function() {
 	        	      
 	        	      	console.log("new customer object to send ", customerObject);
 	        	      
-	        	      	Frontier.MyAccountServices.saveCustomer(customerObject).success(function(){
+	        	      	Frontier.MagentoServices.saveCustomerDetails(serverURL, customerObject).success(function(){
 	        	    	    loadUserAddressesAndDisplay();
 	        	    	    confirmModal.modal('hide');
 						}).error(function(xhr, status, error){

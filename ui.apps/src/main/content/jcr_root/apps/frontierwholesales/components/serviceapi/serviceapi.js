@@ -27,6 +27,33 @@ Frontier.MagentoServices = new function(){
             timeout: serviceCallTimeout
         });
     }
+    
+    function saveCustomerDetails(serverUrl, customerObj) {
+		console.log("Updating customer object", customerObj);
+		
+		var customerUrl = serverURL+"/rest/V1/customers/me";
+		
+		//GET
+		$.support.cors = true;
+		
+		//optional service params can be added here
+		var serviceParams = {
+				customer: customerObj
+		};
+
+		console.log("Saving Customer JSON", JSON.stringify(serviceParams));
+		
+		var userToken = getUserToken();
+		
+		return $.ajax({
+            url: customerUrl, 
+            type: "PUT",
+            data: JSON.stringify(serviceParams),
+            headers: {"Content-Type": "application/json", "Authorization": userToken},
+            crossDomain: true,
+            timeout: serviceCallTimeout
+        });
+	}
 
     function getOrders(serverURL,adminToken,customerId){
      var orders=serverURL+"/rest/V1/orders?searchCriteria[pageSize]=150"
@@ -160,6 +187,7 @@ Frontier.MagentoServices = new function(){
     }
     
     this.getCustomerDetails = getCustomerDetails;
+    this.saveCustomerDetails = saveCustomerDetails;
     this.getOrders = getOrders;
     this.magentoLogin = magentoLogin;
     this.retrieveCartItems = retrieveCartItems

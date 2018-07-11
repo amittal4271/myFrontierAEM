@@ -1,2 +1,2 @@
-../../myaccountSharedResources/js/MyAccountFrontierServices.js
+/apps/frontierwholesales/components/serviceapi/serviceapi.js
 js/AddressBook.js
