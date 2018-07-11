@@ -126,6 +126,7 @@ public class ProductSearchServlet extends SlingSafeMethodsServlet {
 			productPath = productNode.getPath();
 			logger.debug("Adding product {} to search results.", productPath);
 			writer.name("id").value(getProperty(productNode, "identifier"));
+			writer.name("baseSku").value(getProperty(productNode, "baseSku"));
 			writer.name("name").value(getProperty(productNode, "jcr:title"));
 			writer.name("summary").value(getProperty(productNode, "summary"));
 			writer.name("description").value(getProperty(productNode, "jcr:description"));

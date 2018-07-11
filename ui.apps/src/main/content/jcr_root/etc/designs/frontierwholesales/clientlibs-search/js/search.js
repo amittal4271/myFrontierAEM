@@ -137,7 +137,8 @@ var FontierwholesalesSearch = {
 				if (data) {
 					// Append results
 					$.each(data, function(i, item) {
-                        suggest = "<li><a href='#'>" + item.name + "</a></li>";
+						url = "/content/frontierwholesales/en/pdp.html?" + item.id;
+                        suggest = "<li><a href='" + url + "'>" + item.name + "</a></li>";
 					    suggestions.append(suggest);
 					});
 				}
