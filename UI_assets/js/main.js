@@ -648,3 +648,7 @@ $(window).scroll(function() {
 		$('#product-images').affix('checkPosition');
 	}
 });
+
+if($("#cart-holder .cart-display").siblings(".cart-display-owner-total").length == 0){
+    $("#cart-holder .cart-display").addClass("singleLine");
+};

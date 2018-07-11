@@ -2120,6 +2120,11 @@ body.mobile-nav-overflow {
   top: -10px;
   width: 0;
 }
+#cart-holder > .singleLine {
+  position: relative;
+  top: 45%;
+  transform: translateY(-55%);
+}
 .cart-empty-heading {
   text-align: center;
   padding-bottom: 15px;
