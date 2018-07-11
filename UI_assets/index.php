@@ -34,6 +34,7 @@
                          <li><a href="./account-email-password.php">Account Email Password</a></li>
                          <li><a href="./account-authorized-users.php">Account Authorized Users</a></li>
                          <li><a href="./account-landing.php">Account Landing</a></li>
+                         <li><a href="./account-patronage.php">Account Patronage</a></li>
                          <li><a href="./account-pending-orders.php">Account Pending Orders</a></li>
                          <li><a href="./account-recent-orders.php">Account Recent Orders</a></li>
                          <li><a href="./account-order-detail.php">Account Order Detail</a></li>

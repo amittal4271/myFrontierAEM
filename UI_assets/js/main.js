@@ -630,7 +630,9 @@ $(document).ready(function() {
             byRow: byRow
         });
     });
-
+    if($("#cart-holder .cart-display").siblings(".cart-display-owner-total").length == 0){
+	    $("#cart-holder .cart-display").addClass("singleLine");
+	};
 
 });
 
@@ -649,6 +651,3 @@ $(window).scroll(function() {
 	}
 });
 
-if($("#cart-holder .cart-display").siblings(".cart-display-owner-total").length == 0){
-    $("#cart-holder .cart-display").addClass("singleLine");
-};
