@@ -6,7 +6,7 @@ Frontier.MyAccountServices = Frontier.MyAccountServices || {};
 Frontier.MyAccountServices = new function(serverURL) {
 	var serviceCallTimeout = 60000,
 	servicePath = "/rest/V1/",
-	getCustomerUrl = serverURL + servicePath + "customers/me",
+	customerUrl = serverURL + servicePath + "customers/me",
 	addAddressUrl = serverURL + servicePath + "addNewAddress";
 	
 	function getCustomer() {
@@ -22,11 +22,36 @@ Frontier.MyAccountServices = new function(serverURL) {
 		var userToken = getUserToken();
 		
 		return $.ajax({
-            url: getCustomerUrl, 
+            url: customerUrl, 
             type: "GET",
             data: serviceParams,
             dataType: "json",
             headers: {"Content-Type": "application/x-www-form-urlencoded; charset=UTF-8", "Authorization": userToken},
+            crossDomain: true,
+            timeout: serviceCallTimeout
+        });
+	}
+	
+	function saveCustomer(customerObj) {
+		console.log("Updating customer", customerObj);
+		
+		//GET
+		$.support.cors = true;
+		
+		//optional service params can be added here
+		var serviceParams = {
+				customer: customerObj
+		};
+
+		console.log("Saving Customer JSON", JSON.stringify(serviceParams));
+		
+		var userToken = getUserToken();
+		
+		return $.ajax({
+            url: customerUrl, 
+            type: "PUT",
+            data: JSON.stringify(serviceParams),
+            headers: {"Content-Type": "application/json", "Authorization": userToken},
             crossDomain: true,
             timeout: serviceCallTimeout
         });
@@ -82,6 +107,7 @@ Frontier.MyAccountServices = new function(serverURL) {
 	}
 	
 	//expose public functions
+	this.saveCustomer = saveCustomer;
 	this.getCustomer = getCustomer;
 }(serverURL);
 
