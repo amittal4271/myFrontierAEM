@@ -1738,6 +1738,9 @@ body.mobile-nav-overflow {
     display: block;
   }
 }
+#breadcrumbs > .container {
+  max-width: 1200;
+}
 .breadcrumb {
   background: #fff;
   padding-left: 0;
