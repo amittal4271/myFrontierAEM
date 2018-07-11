@@ -204,7 +204,50 @@
 			&.shelf-header-actions {
 				width: 18%;
 			}
-
+			/*patronage headings */
+			&.patronage-header-year{
+				width:10%;
+			}
+			&.patronage-header-allocation{
+				width:14%; 
+			}
+			&.patronage-header-retained{
+				width:19%; 
+			}
+			&.patronage-header-withholding{
+				width:20%; 
+			}
+			&.patronage-header-distributions{
+				width:17%;
+			}
+			&.patronage-header-adjustments{
+				width:20%; 
+			}
+			/*patronage collapse */
+			&.patronage-inner-header-year{
+				width:10%;
+			}
+			&.patronage-inner-header-date{
+				width:13%;
+			}
+			&.patronage-inner-header-type{
+				width:13%;
+			}
+			&.patronage-inner-header-amount{
+				width:12%;
+			}
+			&.patronage-inner-header-cash{
+				width:12%
+			}
+			&.patronage-inner-header-check{
+				width:16%;
+			}
+			&.patronage-inner-header-comment{
+				width:22%;
+			}
+		}
+		a.viewDetailsDismiss{
+			color:#ececec;
 		}
 	}
 
@@ -354,6 +397,28 @@
 	.breakpoint_992({
 		margin-top: 0;
 	});
+	.viewDetailSection{
+		background-color:#fff;
+		clear:both;
+		margin:10px;
+		float:left;
+		
+
+		.roleHeader{
+			border-bottom:1px solid #ececec;
+			padding:15px 20px;
+			font-weight:700;
+			font-size:15px;
+
+			.editRoleDismiss{
+				color:#ececec;
+			}
+		}
+		.row-each-order{
+			border-bottom:none;
+		}
+	}
+
 	.editRoleSection{
 		background-color:#fff;
 		clear:both;
@@ -876,6 +941,51 @@
 			});
 		}
 
+		/*patronage tables */
+		&.patronage-year-section{
+			width:10%;
+
+			a{
+				color:#189060;
+			}
+		}
+		&.patronage-allocation-section{
+			width:14%;
+		}
+		&.patronage-retained-section{
+			width:19%;
+		}
+		&.patronage-withholding-section{
+			width:20%;
+		}
+		&.patronage-distributions-section{
+			width:17%;
+		}
+		&.patronage-adjustments-section{
+			width:20%;
+		}
+		/*patronage collapse */
+		&.patronage-inner-year-section{
+			width:10%;
+		}
+		&.patronage-inner-date-section{
+			width:13%;
+		}
+		&.patronage-inner-type-section{
+			width:13%;
+		}
+		&.patronage-inner-amount-section{
+			width:12%;
+		}
+		&.patronage-inner-cash-section{
+			width:12%;
+		}
+		&.patronage-inner-check-section{
+			width:16%;
+		}
+		&.patronage-inner-check-comment{
+			width:24%;
+		}
 
 		.checkbox {
 			margin-top: 5px;
@@ -890,7 +1000,7 @@
 	            margin: 0; 
 	        });
 		}
-		
+
 	}
 
 	.order-information-break-section {

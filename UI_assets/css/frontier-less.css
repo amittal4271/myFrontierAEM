@@ -2835,6 +2835,8 @@ tr.order-details-table-section-row td.inner-table-td-holder {
   /*account landing pending orders headers*/
   /* recent orders headings*/
   /*wishlist */
+  /*patronage headings */
+  /*patronage collapse */
 }
 @media screen and (min-width: 992px) {
   .grid-table-header.order-information-header .each-order-header {
@@ -2997,6 +2999,48 @@ tr.order-details-table-section-row td.inner-table-td-holder {
 .grid-table-header.order-information-header .each-order-header.shelf-header-actions {
   width: 18%;
 }
+.grid-table-header.order-information-header .each-order-header.patronage-header-year {
+  width: 10%;
+}
+.grid-table-header.order-information-header .each-order-header.patronage-header-allocation {
+  width: 14%;
+}
+.grid-table-header.order-information-header .each-order-header.patronage-header-retained {
+  width: 19%;
+}
+.grid-table-header.order-information-header .each-order-header.patronage-header-withholding {
+  width: 20%;
+}
+.grid-table-header.order-information-header .each-order-header.patronage-header-distributions {
+  width: 17%;
+}
+.grid-table-header.order-information-header .each-order-header.patronage-header-adjustments {
+  width: 20%;
+}
+.grid-table-header.order-information-header .each-order-header.patronage-inner-header-year {
+  width: 10%;
+}
+.grid-table-header.order-information-header .each-order-header.patronage-inner-header-date {
+  width: 13%;
+}
+.grid-table-header.order-information-header .each-order-header.patronage-inner-header-type {
+  width: 13%;
+}
+.grid-table-header.order-information-header .each-order-header.patronage-inner-header-amount {
+  width: 12%;
+}
+.grid-table-header.order-information-header .each-order-header.patronage-inner-header-cash {
+  width: 12%;
+}
+.grid-table-header.order-information-header .each-order-header.patronage-inner-header-check {
+  width: 16%;
+}
+.grid-table-header.order-information-header .each-order-header.patronage-inner-header-comment {
+  width: 22%;
+}
+.grid-table-header.order-information-header a.viewDetailsDismiss {
+  color: #ececec;
+}
 .grid-table-header.order-detail-header {
   display: none;
 }
@@ -3142,6 +3186,24 @@ tr.order-details-table-section-row td.inner-table-td-holder {
     margin-top: 0;
   }
 }
+.order-grid .viewDetailSection {
+  background-color: #fff;
+  clear: both;
+  margin: 10px;
+  float: left;
+}
+.order-grid .viewDetailSection .roleHeader {
+  border-bottom: 1px solid #ececec;
+  padding: 15px 20px;
+  font-weight: 700;
+  font-size: 15px;
+}
+.order-grid .viewDetailSection .roleHeader .editRoleDismiss {
+  color: #ececec;
+}
+.order-grid .viewDetailSection .row-each-order {
+  border-bottom: none;
+}
 .order-grid .editRoleSection {
   background-color: #fff;
   clear: both;
@@ -3208,6 +3270,8 @@ tr.order-details-table-section-row td.inner-table-td-holder {
   /*members invites data tables width*/
   /*pending account landing data tables width*/
   /*recent orders data widths*/
+  /*patronage tables */
+  /*patronage collapse */
 }
 @media screen and (min-width: 480px) {
   .order-information-holder .each-order-section {
@@ -3776,6 +3840,48 @@ tr.order-details-table-section-row td.inner-table-td-holder {
   .order-information-holder .each-order-section.shelf-actions-section {
     width: 18%;
   }
+}
+.order-information-holder .each-order-section.patronage-year-section {
+  width: 10%;
+}
+.order-information-holder .each-order-section.patronage-year-section a {
+  color: #189060;
+}
+.order-information-holder .each-order-section.patronage-allocation-section {
+  width: 14%;
+}
+.order-information-holder .each-order-section.patronage-retained-section {
+  width: 19%;
+}
+.order-information-holder .each-order-section.patronage-withholding-section {
+  width: 20%;
+}
+.order-information-holder .each-order-section.patronage-distributions-section {
+  width: 17%;
+}
+.order-information-holder .each-order-section.patronage-adjustments-section {
+  width: 20%;
+}
+.order-information-holder .each-order-section.patronage-inner-year-section {
+  width: 10%;
+}
+.order-information-holder .each-order-section.patronage-inner-date-section {
+  width: 13%;
+}
+.order-information-holder .each-order-section.patronage-inner-type-section {
+  width: 13%;
+}
+.order-information-holder .each-order-section.patronage-inner-amount-section {
+  width: 12%;
+}
+.order-information-holder .each-order-section.patronage-inner-cash-section {
+  width: 12%;
+}
+.order-information-holder .each-order-section.patronage-inner-check-section {
+  width: 16%;
+}
+.order-information-holder .each-order-section.patronage-inner-check-comment {
+  width: 24%;
 }
 .order-information-holder .each-order-section .checkbox {
   margin-top: 5px;
@@ -6245,6 +6351,16 @@ tr.order-details-table-section-row td.inner-table-td-holder {
   .account-heading-holder.checkout-next-steps {
     margin-top: 50px;
   }
+}
+.account-heading-holder .patronageShareSection {
+  float: right;
+  margin-top: -20px;
+  font-weight: 700;
+}
+.account-heading-holder .patronageShareSection .patronageShare {
+  float: right;
+  display: inline-block;
+  padding-left: 20px;
 }
 .account-heading {
   color: #4d4a48;

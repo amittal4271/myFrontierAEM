@@ -176,7 +176,10 @@ function checkQuantity($el) {
 
 
 $(document).ready(function() {
-
+	//Minicart authorized fix
+	if($("#cart-holder .cart-display").siblings(".cart-display-owner-total").length == 0){
+	    $("#cart-holder .cart-display").addClass("singleLine");
+	};
 	
 	$(document).on('click', '.btn-view-shipping-info', function() {
 		var $this = $(this);
@@ -630,10 +633,6 @@ $(document).ready(function() {
             byRow: byRow
         });
     });
-    if($("#cart-holder .cart-display").siblings(".cart-display-owner-total").length == 0){
-	    $("#cart-holder .cart-display").addClass("singleLine");
-	};
-
 });
 
 $(window).resize(function() {
