@@ -67,8 +67,7 @@ Frontier.AddressAdd = new function() {
     	    
     	    address['telephone']=$('#id_phone').val();
     	    
-    	    //TODO: how to handle fax?
-    	    //address['fax']=$('#id_fax').val();
+    	    address['fax']=$('#id_fax').val();
     	    
     	    var streetData=[];
     	    
