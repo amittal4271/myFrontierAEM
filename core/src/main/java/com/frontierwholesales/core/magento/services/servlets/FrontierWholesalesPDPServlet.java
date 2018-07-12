@@ -135,7 +135,7 @@ public class FrontierWholesalesPDPServlet  extends SlingAllMethodsServlet{
 		JsonElement element = json.fromJson(productDetails, JsonElement.class);
 		
 		JsonObject object = element.getAsJsonObject();
-		
+		boolean bInformation = false;
 		
 		DecimalFormat priceFormat=new DecimalFormat("#0.00");
 					
@@ -147,6 +147,9 @@ public class FrontierWholesalesPDPServlet  extends SlingAllMethodsServlet{
 		for(JsonElement attributesElement:attributesArray) {
 			JsonObject attrObject = attributesElement.getAsJsonObject();
 			JsonElement codeElement = attrObject.get("attribute_code");
+			if(codeElement.getAsString().equals("brand")) {
+				object.addProperty("brand", attrObject.get("value").getAsString());
+			}
 			if(codeElement.getAsString().equals("image")) {
 				object.addProperty("imgPath", attrObject.get("value").getAsString());
 			}
@@ -159,7 +162,46 @@ public class FrontierWholesalesPDPServlet  extends SlingAllMethodsServlet{
 			if(codeElement.getAsString().equals("thumbnail")) {
 				object.addProperty("thumbnail", attrObject.get("value").getAsString());
 			}
+			if(codeElement.getAsString().equals("barcode")) {
+				object.addProperty("barcode", attrObject.get("value").getAsString());
+			}
+			
+			if(codeElement.getAsString().equals("short_description")) {
+				object.addProperty("shortDescription", attrObject.get("value").getAsString());
+			}
+			
+			if(codeElement.getAsString().equals("ingredients")) {
+				
+				object.addProperty("ingredients", attrObject.get("value").getAsString());
+			}
+			
+			if(codeElement.getAsString().equals("directions")) {
+				
+				object.addProperty("directions", attrObject.get("value").getAsString());
+			}
+			
+			if(codeElement.getAsString().equals("features")) {
+				
+				object.addProperty("features", attrObject.get("value").getAsString());
+			}
+			
+			if(codeElement.getAsString().equals("sug_uses")) {
+				
+				object.addProperty("sug_uses", attrObject.get("value").getAsString());
+			}
+			
+			if(codeElement.getAsString().equals("pkg_contents")) {
+				
+				object.addProperty("pkg_contents", attrObject.get("value").getAsString());
+			}
+			
+			if(codeElement.getAsString().equals("safety_info")) {
+				
+				object.addProperty("safety_info", attrObject.get("value").getAsString());
+			}
 		}
+		
+		object.addProperty("additionalInformation", bInformation);
 
 		return object.toString();
 	}

@@ -77,50 +77,6 @@ function updateCart(itemId,qty){
 
 
 function getCartItem(){
-    /*showLoadingScreen();
-    var jsonData={};
-    jsonData['action']='getCart';
-     $.ajax({
-       url: "/services/cart" ,
-        method: "get",
-         data:jsonData,
-        headers:{
-
-                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-                'Authorization':getUserToken()
-            },
-      beforeSend:function(xhr){
-          xhr.overrideMimeType("application/json");
-      }
-        
-    }).done(function(cart){
-         hideLoadingScreen();
-         if(error !== 'Error in Cart'){
-            var template = $("#cartTemplate").html();
-             var processedHTML = Handlebars.compile(template);
-            var html = processedHTML(cart);
-            $('#carttemplate').html(html);
-         }else{
-              if(error.status == 401){
-                enableErrorMsg(error.status);
-            }
-         }
-         
-    }).fail(function(error){
-         console.log("error");
-         hideLoadingScreen();
-         if(error !== 'Error in Cart'){
-           
-             var template = $("#carttemplate").html();
-            var processedHTML =  Handlebars.compile(template);
-			var html = processedHTML('');
-            $('#carttemplate').html(html); 
-         }else{
-              if(error.status == 401){
-                enableErrorMsg(error.status);
-            }
-         }
-     });*/
     
     var userToken = getUserToken();
     if(userToken != ''){

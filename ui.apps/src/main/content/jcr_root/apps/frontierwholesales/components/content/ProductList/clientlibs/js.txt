@@ -1,1 +1,2 @@
+../../../serviceapi/serviceapi.js
 productlist.js

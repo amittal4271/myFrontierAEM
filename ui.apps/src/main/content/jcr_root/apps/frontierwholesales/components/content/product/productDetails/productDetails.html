@@ -2,6 +2,13 @@
 <sly data-sly-use.clientLib="${'/libs/granite/sightly/templates/clientlib.html'}" data-sly-call="${clientlib.js @ categories='frontier.structure.productdetails'}" />   
 <input id="productId" type=hidden value="${request.requestParameterMap['sku'][0].toString}"/>
 <input id="currentPagePath" type=hidden value="${currentPage.path}"/>
+
+
+
+<input id="summaryAttribute" type="hidden" value="${properties.summaryAttribute}"/>
+<input id="infoAttribute" type="hidden" value="${properties.infoAttribute}"/>
+<input id="additionalAttribute" type="hidden" value="${properties.additionalAttribute}"/>
+<sly data-sly-use.user="${'com.frontierwholesales.core.models.SessionModel'}"></sly>
 <!-- /*<sly data-sly-test.user="${currentSession.userID}" />  */-->
 <div data-sly-test="${!request.requestParameterMap['sku'][0].toString}">No product SKU provided in request</div>
 <sly data-sly-test="${request.requestParameterMap['sku'][0].toString}">
@@ -38,14 +45,16 @@
 			</div>
             <h1 class="product-title-name">{{name}}</h1>
 			<div class="product-detail-attributes">
-                                   
+                                   {{#if brand.length}}
                                    <span class="dt-label">Brand: </span>
                                    <span class="dd-value brand">
-                                        <a href="#" class="dd-value-link">Frontier</a>
+                                        <a href="#" class="dd-value-link">{{brand}}</a>
                                    </span>
-                              
+                                    {{/if}}
                                    <span class="dt-label">UPC: </span>
-                                   <span class="dd-value upc">089836230027</span>
+                                    
+                                   <span class="dd-value upc">{{barcode}}</span>
+                                    
                                    
             </div>
 			<div class="product-price-summary"> 
@@ -53,8 +62,11 @@
                                    <span class="product-now-price">Now {{ formattedPrice}}</span>
                                    <span class="product-save-percent">Save 25%</span>
             </div>
-            <div class="product-detail-message">Availability: In Stock</div>
-
+            {{#if extension_attributes.stock_item.is_in_stock}}
+                <div class="product-detail-message">Availability: In Stock</div>
+            {{else}}
+                <div class="product-detail-message">Availability: Out of Stock</div>
+            {{/if}}
             <div class="pdp-message-holder">
                 <div class="alert alert-danger" role="alert"> 
                     <span class="glyphicon glyphicon-exclamation-sign"></span>
@@ -65,7 +77,7 @@
                     <strong>Buy 5 to save 5%:</strong> Discount price will display in cart.
                 </div>
             </div>
-            
+             {{#if ${user.authToken != null @context='scriptString' }}}
             <div class="product-wishlist">
                 <button class="btn btn-add-wishlist btn-wishlist">Add to Wishlist +</button>
                 <button class="btn btn-add-wishlist btn-shelve">Add to Shelves +</button>
@@ -80,7 +92,7 @@
                 <input type="hidden" name=":operation" value="addToSmartList" />
 				
 
-				   {{#if ${user != 'anonymous' @context='scriptString' }}}
+				 
 				   <div class="product-add-options">
 						<div class="qty-holder">
 							 <button type="button" class="decrease qty-button qty-down">
@@ -98,79 +110,89 @@
 							<button id="{{sku}}" class="btn btn-light-green btn-add-to-cart">Add To Cart</button>
 						</div>
 					</div>
-					{{/if}}
-			</div>		
+					
+			</div>
+            {{/if}}
 			<!-- /* form end */-->
 
 			<!-- /* TODO: complete description section */-->
             <div class="product-overview">
 			   <h2 class="heading-product-overview">Product Summary</h2>
 			   <p class="description-product-overview">
-					{{{description}}}
+					{{description}}
 					<!--<a class="description-read-more" href="#">Read More</a>-->
 			   </p>
+               
 			   <ul class="overview-stat-list">
+                    {{#each custom_attributes}}
+                   {{#getAttrValues attribute_code value @index}}
 					<li class="each-stat icon-check">
 						 <span class="each-stat-icon">
 							  <span class="glyphicon glyphicon-ok"></span>
 						 </span>
-						 <span class="each-stat-name-text">Organic</span>
+						 <span class="each-stat-name-text">{{attribute_code}}</span>
 					</li>
-			   
-					<li class="each-stat icon-check">
-						 <span class="each-stat-icon">
-							  <span class="glyphicon glyphicon-ok"></span>
-						 </span>
-						 <span class="each-stat-name-text">Not Tested On Animals</span>
-					</li>
-			   
-					<li class="each-stat icon-check">
-						 <span class="each-stat-icon">
-							  <span class="glyphicon glyphicon-ok"></span>
-						 </span>
-						 <span class="each-stat-name-text">Non Irradiated</span>
-					</li>
-			   
-					<li class="each-stat icon-check">
-						 <span class="each-stat-icon">
-							  <span class="glyphicon glyphicon-ok"></span>
-						 </span>
-						 <span class="each-stat-name-text">Vegan</span>
-					</li>
-			   
-					<li class="each-stat icon-check">
-						 <span class="each-stat-icon">
-							  <span class="glyphicon glyphicon-ok"></span>
-						 </span>
-						 <span class="each-stat-name-text">Alcohol Free</span>
-					</li>
+                   {{/getAttrValues}}
+			    {{/each}}
+					
 			   </ul>
+               
 		  	</div>
 			
 			<div class="product-detail-additional-details">
+                 {{#custom_attributes}}
+                {{#getInfoAttrValues attribute_code value}}
 				   <span class="product-detail-overview-item-detail">
-						<span class="product-detail-overview-label">Flavor</span>
-						<span class="product-detail-overview-value">Crunchy Lentil Fest</span>
+						<span class="product-detail-overview-label">{{attribute_code}}</span>
+						<span class="product-detail-overview-value">{{value}}</span>
 				   </span>
-			  
-				   <span class="product-detail-overview-item-detail">
-						<span class="product-detail-overview-label">Size</span>
-						<span class="product-detail-overview-value">8 oz.</span>
-				   </span>
-
-				   <span class="product-detail-overview-item-detail">
-						<span class="product-detail-overview-label">Count</span>
-						<span class="product-detail-overview-value">1 Item</span>
-				   </span>
+                {{/getInfoAttrValues}}
+			     {{/custom_attributes}}
+				  
 			</div>
-
+            {{#additionalAttrValues features directions ingredients sug_uses pkg_contents safety_info}}
 			<div class="product-more-details">
+                
 				   <h3 class="heading-product-overview">Additional Product Details</h3>
-				   <div class="each-additional-section">
-						<h4 class="additional-heading">Description</h4>
-						<p class="additional-description">${productModel.product.description @context='html'}</p>
+                {{#if features.length}}
+                 <div class="each-additional-section">
+						<h4 class="additional-heading">Product Features</h4>
+						<p class="additional-description">{{features}}</p>
 				   </div>
+                {{/if}}
+                {{#if directions.length}}
+				   <div class="each-additional-section">
+						<h4 class="additional-heading">Directions</h4>
+						<p class="additional-description">{{directions}}</p>
+				   </div>
+                 {{/if}}
+                {{#if ingredients.length}}
+                    <div class="each-additional-section">
+                        <h4 class="additional-heading">Ingredients</h4>
+                        <p class="additional-description">{{ingredients}}</p>
+                    </div>
+                 {{/if}}
+                {{#if sug_uses.length}}
+                 <div class="each-additional-section">
+                        <h4 class="additional-heading">Suggested Uses</h4>
+                        <p class="additional-description">{{sug_uses}}</p>
+                    </div>
+                 {{/if}}
+                {{#if pkg_contents.length}}
+                    <div class="each-additional-section">
+                        <h4 class="additional-heading">Package Content</h4>
+                        <p class="additional-description">{{pkg_contents}}</p>
+                    </div>
+                 {{/if}}
+                {{#if safety_info.length}}
+                 <div class="each-additional-section">
+                        <h4 class="additional-heading">Safety Information</h4>
+                        <p class="additional-description">{{safety_info}}</p>
+                    </div>
+                {{/if}}
+               
             </div>
+             {{/additionalAttrValues}}
 
 
     </div>

@@ -3,5 +3,5 @@
     jcr:description="Frontier Wholesales Product Details"
     jcr:primaryType="cq:Component"
     jcr:title="ProductDetails"
-    sling:resourceSuperType="commerce/components/product_reference"
+    
     componentGroup=".hidden"/>

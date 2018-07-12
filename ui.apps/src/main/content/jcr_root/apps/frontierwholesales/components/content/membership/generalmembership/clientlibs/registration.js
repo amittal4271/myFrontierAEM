@@ -4,16 +4,12 @@ var $buttonObj;
 var $el;
 $(document).ready(function(){
     
-   console.log('user registration...'+$('#serverurl').val()); 
-    
-  
     loadRegions('id_shipping-locality');
 
      validation.registrationGeneralForm('#general-membership-form');
     
      $(document).on('click','.other-than-buying-club-input',function(e){ 
-        console.log('button is clicked'); 
-      
+              
         var val = $(this).val();
         $('#webaddress-data').val('');
         if(val == 'web'){
@@ -245,38 +241,37 @@ function collectUserDetails(){
 }
 
 function validateEmailAndRegisterUser(extensionAttributes,customer,company,pwd){
-      var emailReq = emailValidation(extensionAttributes);
-      emailReq.done(function(data){
-      
-       
-            var bValid = true;
-            // true means email doesn't exists
-            $(data).each(function(i,data){ 
-                if (data.status == false){
-                    bValid = false;
-                    
-                    var id = getEmailInputIdFromObj(data.email);
-                  
-                   $('#'+id).after($('<span/>',{'class':'validate-error','text':'Email address already has an account'}));
-                   
-                   
-                }
+    
+      emailValidation(extensionAttributes).then(function(data){
+      var bValid = true;
+       if($.isArray(data)){
                 
-            });
-        
-        if(!bValid){
-            console.log('error ');
-             enableAjaxFormButton($buttonObj);     
-             $('.global-server-side-message-holder').css('display','block');
-            $('.alert-danger').html(" There is an error with your application. Please fix the field(s) with the red error message.");
-             $el = $('.global-server-side-message-holder');
-            scrollToElement($el);
-        }else{
-            userRegistrationService(customer,company,pwd);
-        }
-           
+                // true means email doesn't exists
+                $(data).each(function(i,data){ 
+                    if (data.status == false){
+                        bValid = false;
+
+                        var id = getEmailInputIdFromObj(data.email);
+
+                       $('#'+id).after($('<span/>',{'class':'validate-error','text':'Email address already has an account'}));
+
+
+                    }
+
+                });
+
+            if(bValid){
+                userRegistrationService(customer,company,pwd);
+            }
+       }else{
+           bValid=false;
+          
+       }         
             
-       
+       if(!bValid){
+           enableAjaxFormButton($buttonObj);    
+           enableErrorMsg(data);
+       }
     });
     
 }
@@ -345,13 +340,16 @@ function userRegistrationService(customer,company,pwd){
                 xhr.overrideMimeType('application/json');
             }
      }).done(function(data){
-        addCustomerDataToCookie(data);
+        if(addCustomerDataToCookie(data)){
          
-         window.location.href=getRedirectPath();
-     }).fail(function(error){
-            console.log(error);
+            window.location.href=getRedirectPath();
+        }else{
+            console.log("error in storing cookie values");
             enableAjaxFormButton($buttonObj); 
-         enableErrorMsg();
+        }
+     }).fail(function(error){
+            enableAjaxFormButton($buttonObj); 
+            enableErrorMsg(error.status);
           
            
      });
@@ -376,28 +374,17 @@ function emailValidation(jsonBuyersEmailList){
     emailData['emailid']='id_membership-email';
     emailData['value']=$('#id_membership-email').val();
     emailWithId['list'].push(emailData);
+      var d = $.Deferred();
+   
     
-    var emailRequest= $.ajax({
-       url:serverurl+"/rest/all/V1/buyingroups/areEmailsAvailable",
-       method:"POST",
-        crossDomain: "true",
-        headers:{
-            "content-Type":"application/json",
-            "Access-Control-Allow-Origin":serverurl,
-            "Access-Control-Allow-Credentials":"true"
-        },
-       data:JSON.stringify(jsonData)
+    Frontier.MagentoServices.emailValidation(serverurl,jsonData).done(function(response){
+         d.resolve(response);
+    }).fail(function(error){
+          
+        d.resolve(error);
     });
     
-    var success = function(response){
-        console.log('success '+response);
-        
-    };
-    
-    var failure = function (error){
-      console.log('error '+error);  
-       
-    };
-   return emailRequest;
+   
+   return d.promise();
   
 }

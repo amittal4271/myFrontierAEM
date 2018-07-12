@@ -87,14 +87,9 @@ function getProductListByCategory(currentPage,recsPerPage,sortBy){
        jsonData['sortByPrice']=sortBy;
        }
    }
-    $.ajax({
-        url: "/services/productlist",
-        data:jsonData,
-        beforeSend:function(xhr){
-          xhr.overrideMimeType("application/json");
-      }
-    }).done(function(productList){
-        
+    
+    
+    Frontier.MagentoServices.getProductListByCategory(jsonData).done(function(productList){
         hideLoadingScreen();
      
        
@@ -142,8 +137,11 @@ function getProductListByCategory(currentPage,recsPerPage,sortBy){
        }else{
            $('#previous').addClass('disabled');
        }
-       
+    }).fail(function(error){
+         hideLoadingScreen();
+        enableErrorMsg(error.status);
     });
+   
 }
 
 
@@ -169,20 +167,7 @@ function addItemToCart(sku,qty){
     jsonData['items']=JSON.stringify(cartData);
     jsonData['action']='add';
     
-    
-    $.ajax({
-        url:"/services/cart",
-        data:jsonData,
-        headers:{
-
-                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-                'Authorization':getUserToken()
-            },
-        beforeSend:function(xhr){
-          xhr.overrideMimeType("application/json");
-      }
-        
-    }).done(function(cart){
+    Frontier.MagentoServices.addItemToCart(jsonData).done(function(cart){
         console.log("result is "+cart);
         hideLoadingScreen();
         
@@ -193,10 +178,10 @@ function addItemToCart(sku,qty){
         var html = cartTemplate(cart,cart.items.reverse());
         $('#minicarttemplate').html(html); 
         
-       
     }).fail(function(error){
         console.log("error is "+error);
          hideLoadingScreen();
         enableErrorMsg(error.status);
     });
+   
 }

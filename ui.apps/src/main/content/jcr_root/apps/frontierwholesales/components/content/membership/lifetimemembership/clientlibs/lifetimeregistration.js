@@ -275,40 +275,51 @@ function collectUserDetails(){
 
 
 function validateEmailAndRegisterUser(extensionAttributes,customer,company,pwd){
-      var emailReq = emailValidation(extensionAttributes);
-      emailReq.done(function(data){
       
-       
-            var bValid = true;
-            // true means email doesn't exists
-            $(data).each(function(i,data){ 
-                if (data.status == false){
-                    bValid = false;
-                    
-                    var id = getEmailInputIdFromObj(data.email);
-                  
-                   $('#'+id).after($('<span/>',{'class':'validate-error','text':'Email address already has an account'}));
-                   
-                   
-                }
+      emailValidation(extensionAttributes).then(function(data){
+      var bValid = true;
+       if($.isArray(data)){
                 
-            });
-        
-        if(!bValid){
-            console.log('error ');
-             enableAjaxFormButton($buttonObj);  
-             $('.global-server-side-message-holder').css('display','block');
-             $('.alert-danger').html(" There is an error with your application. Please fix the field(s) with the red error message.");
-             $el = $('.global-server-side-message-holder');
-             scrollToElement($el);
-        }else{
-            memberRegistration(customer,company,pwd);
-        }
-           
+                // true means email doesn't exists
+                $(data).each(function(i,data){ 
+                    if (data.status == false){
+                        bValid = false;
+
+                        var id = getEmailInputIdFromObj(data.email);
+
+                       $('#'+id).after($('<span/>',{'class':'validate-error','text':'Email address already has an account'}));
+
+
+                    }
+
+                });
+
+            if(bValid){
+                memberRegistration(customer,company,pwd);
+            }
+       }else{
+           bValid=false;
+          
+       }         
             
-       
+       if(!bValid){
+           enableAjaxFormButton($buttonObj);    
+           enableErrorMsg(data);
+       }
     });
     
+}
+
+function getEmailInputIdFromObj(email){
+    var emailid='';
+    $(emailWithId.list).each(function(i,obj) {
+    if(obj.value === email){
+         emailid = obj.emailid; 
+        emailWithId.list.splice(i,1);
+        return false;
+    }
+     });
+    return emailid;
 }
 
 function getBuyersClubDetails(){
@@ -359,15 +370,19 @@ function memberRegistration(customer,company,pwd){
                 'Authorization':'Basic '+btoa(pwd)
             }
      }).done(function(data){
-            console.log(data);
-             addCustomerDataToCookie(data);
+           
+        if(addCustomerDataToCookie(data)){
             window.location.href=getRedirectPath();
+        }else{
+             console.log("error in storing cookie values");
+            enableAjaxFormButton($buttonObj); 
+        }
 
         
     }).fail(function(error){
-            console.log(error);
+           
              enableAjaxFormButton($buttonObj);  
-             enableErrorMsg();
+             enableErrorMsg(error.status);
     });
 }
 
@@ -391,28 +406,18 @@ function emailValidation(jsonBuyersEmailList){
     emailData['value']=$('#id_membership-email').val();
     emailWithId['list'].push(emailData);
     
-    var emailRequest= $.ajax({
-       url:serverurl+"/rest/all/V1/buyingroups/areEmailsAvailable",
-       method:"POST",
-        crossDomain: "true",
-        headers:{
-            "content-Type":"application/json",
-            "Access-Control-Allow-Origin":serverurl,
-            "Access-Control-Allow-Credentials":"true"
-        },
-       data:JSON.stringify(jsonData)
+    var d = $.Deferred();
+   
+    
+    Frontier.MagentoServices.emailValidation(serverurl,jsonData).done(function(response){
+         d.resolve(response);
+    }).fail(function(error){
+          
+        d.resolve(error);
     });
     
-    var success = function(response){
-        console.log('success '+response);
-        
-    };
-    
-    var failure = function (error){
-      console.log('error '+error);  
-       
-    };
-   return emailRequest;
+   
+   return d.promise();
   
 }
 

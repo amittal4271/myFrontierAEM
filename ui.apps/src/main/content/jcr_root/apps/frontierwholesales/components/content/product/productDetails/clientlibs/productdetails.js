@@ -21,10 +21,19 @@ console.log("product details page...");
 
 });
 
+function getAttributeDataFromTxtBox(id){
+    var attribute = $('#'+id).val();
+    var splitArray = attribute.split(",");
+    return splitArray;
+}
+
 function getProductDetails(){
     var jsonData={};
     showLoadingScreen();
-    
+   
+   var summaryAttribute =  getAttributeDataFromTxtBox('summaryAttribute');
+    var infoAttribute = getAttributeDataFromTxtBox('infoAttribute');
+    var additionalAttribute = getAttributeDataFromTxtBox('additionalAttribute');
 
     jsonData['sku']=$('#productId').val();
     jsonData['currentPagePath'] = $('#currentPagePath').val();
@@ -37,7 +46,44 @@ function getProductDetails(){
         var productDetails = JSON.parse(results);
        
         var template = $("#productDetailsTemplate").html();
-     
+        var bCount=0;
+        Handlebars.registerHelper("getAttrValues",function(attCode,value,count,options){
+           
+            var idx = $.inArray(attCode,summaryAttribute);
+            if(idx != -1){
+                if(parseInt(value) > 0){
+                    bCount++;
+                    return  options.fn(this);
+                }
+            }
+           if(bCount == 14){
+                return options.inverse(this);
+           }
+           return options.inverse(this);
+              
+        });
+        
+         Handlebars.registerHelper("getInfoAttrValues",function(attCode,value,options){
+            var idx = $.inArray(attCode,infoAttribute);
+            if(idx != -1){
+                if(value.trim() !="0"){
+                return  options.fn(this);
+                }
+                
+            }
+           return options.inverse(this);
+              
+        });
+        
+         Handlebars.registerHelper("additionalAttrValues",function(value1,value2,value3,value4,value5,value6,options){
+          if(undefined == value1 && undefined == value2  && undefined ==value3 && undefined == value4 && undefined == value5 && undefined == value6 ){
+             return options.inverse(this);
+          }
+              return options.fn(this);
+           
+              
+        });
+        
 
         var html = Handlebars.compile(template);
 

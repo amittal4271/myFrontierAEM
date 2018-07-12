@@ -83,7 +83,7 @@
                               </div>
                          </div>
                         <!-- child items -->
-                        {{#items}}
+                       
                          <div class="order-details-holder">
                               <div class="grid-table-header order-detail-header">
                                    <div class="each-order-header detail-header-image grid-header">&nbsp;</div>
@@ -93,6 +93,7 @@
                                    <div class="each-order-header detail-header-price grid-header">Price</div>
                                    <div class="each-order-header detail-header-qty grid-header">Qty</div>
                               </div>
+                               {{#items}}
                               <div class="order-detail-grid">
 
                                    <div class="row-each-order-detail">
@@ -126,8 +127,9 @@
                                    </div>
 
                               </div>
+                               {{/items}}
                          </div>
-                        {{/items}}
+                       
             </div>
             {{/items}}
             </div></script>

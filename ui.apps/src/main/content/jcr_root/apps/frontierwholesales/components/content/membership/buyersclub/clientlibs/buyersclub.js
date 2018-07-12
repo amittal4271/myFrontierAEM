@@ -116,8 +116,8 @@ function callResetPassword(){
         }).done(function(data){
             var address = JSON.parse(data.BuyersAddress);
             
-                 addBuyersClubDataToCookie(address,currentEmailId,data.UserToken);
-               window.location.href=getRedirectPath();
+            addBuyersClubDataToCookie(address,currentEmailId,data.UserToken);
+            window.location.href=getRedirectPath();
           
         }).fail(function(error){
             console.log(error);

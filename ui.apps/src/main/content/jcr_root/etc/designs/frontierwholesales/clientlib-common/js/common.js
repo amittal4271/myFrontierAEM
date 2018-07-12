@@ -82,7 +82,7 @@ function loadLifeTimeRegistrationRegions(){
 }
 
 function enableErrorMsg(errorCode){
-    if(undefined !== errorCode && errorCode == '401'){
+    if(undefined !== errorCode && errorCode == '401'  && errorCode == '403'){
         window.location=redirectToLogin();
     }else{
         var errorText="The site is currently unavailable and unable to process your request.  Please check back later.";
@@ -167,14 +167,20 @@ function tokenValidity(error){
 }
 
 function addCustomerDataToCookie(data){
-    var customerData = JSON.parse(data);  
-     var customerId=customerData.id
-     var jsonData={};
-     jsonData['token']=data.UserToken;
-     jsonData['email']=customerData.company_email;
-     jsonData['id']=customerData.id;
-     var cookieData = "CustomerData="+JSON.stringify(jsonData)+"; path=/";
-    addCookie(cookieData);
+    try{
+        var customerData = JSON.parse(data.CustomerData);
+         var jsonData={};
+         jsonData['token']=data.UserToken;
+         jsonData['email']=customerData.company_email;
+         jsonData['id']=customerData.id;
+         var cookieData = "CustomerData="+JSON.stringify(jsonData)+"; path=/";
+        addCookie(cookieData);
+        return true;
+    }catch(error){
+        console.log("invalid json format "+error);
+        enableErrorMsg('403');
+        return false;
+    }
 }
 
 function addBuyersClubDataToCookie(data,email,token){
@@ -187,6 +193,11 @@ function addBuyersClubDataToCookie(data,email,token){
      jsonData['email']=email;
      var cookieData = "CustomerData="+JSON.stringify(jsonData)+"; path=/";
     addCookie(cookieData);
+}
+
+function clearErrorMsg(){
+    $('.global-server-side-message-holder').css('display','none');
+    $('.alert-danger').html('');
 }
 
 

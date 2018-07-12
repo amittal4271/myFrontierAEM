@@ -68,7 +68,11 @@ Frontier.MagentoServices = new function(){
             type: "GET",
            
             dataType: "json",
-            headers: {"Content-Type": "application/x-www-form-urlencoded; charset=UTF-8", "Authorization": adminToken},
+            headers: {"Content-Type": "application/x-www-form-urlencoded; charset=UTF-8", 
+                      "Authorization": adminToken,
+                       "Access-Control-Allow-Origin":serverurl,
+                        "Access-Control-Allow-Credentials":"true"
+                     },
             crossDomain: true,
             timeout: serviceCallTimeout
         });
@@ -116,19 +120,8 @@ Frontier.MagentoServices = new function(){
         });
     }
     
-    function addItemToCart(sku,qty){
-       var jsonData={};
-        var cartItems={};
-        var cartData={};
-     
-        cartItems['sku']=sku;
-        cartItems['qty']=qty;
-
-        cartData['cartItem']=cartItems;
-        jsonData['items']=JSON.stringify(cartData);
-        jsonData['action']='add';
-
-    
+    function addItemToCart(jsonData){
+       clearErrorMsg();
         return $.ajax({
             url:"/services/cart",
             data:jsonData,
@@ -144,23 +137,8 @@ Frontier.MagentoServices = new function(){
         });
     }
     
-    function getProductListByCategory(currentPage,recsPerPage,sortBy){
-        var jsonData={};
-   
-    
-    
-        jsonData['currentPage']=currentPage;
-        jsonData['categoryId']=$('#categoryId').val();
-        jsonData['noOfRecsPerPage']=recsPerPage;
-       if(sortBy !== undefined && sortBy !== ''){
-           if(sortBy == "featured"){
-               jsonData['sortByFeatured']="DESC";
-           }else if(sortBy == "newproduct" ){
-               jsonData['newProduct']="DESC";
-           }else{
-           jsonData['sortByPrice']=sortBy;
-           }
-       }
+    function getProductListByCategory(jsonData){
+        clearErrorMsg();
         return $.ajax({
             url: "/services/productlist",
             data:jsonData,
@@ -177,7 +155,9 @@ Frontier.MagentoServices = new function(){
                  headers:{
 
                         'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-                        'Authorization':adminToken
+                        'Authorization':adminToken,
+                        "Access-Control-Allow-Origin":serverurl,
+                        "Access-Control-Allow-Credentials":"true"
                     },
                 beforeSend:function(xhr){
                   xhr.overrideMimeType("application/json");
@@ -186,11 +166,60 @@ Frontier.MagentoServices = new function(){
        
     }
     
+    
+    
+    /**
+    * Verify email including buyers club if selected
+    * if email exists in system then don't allow registration
+    */
+    function emailValidation(serverurl,jsonData){
+       
+         
+        return  $.ajax({
+           url:serverurl+"/rest/all/V1/buyingroups/areEmailsAvailable",
+           method:"POST",
+            crossDomain: "true",
+            headers:{
+                "content-Type":"application/json",
+                "Access-Control-Allow-Origin":serverurl,
+                "Access-Control-Allow-Credentials":"true"
+            },
+           
+           data:JSON.stringify(jsonData)
+        });     
+
+    }
+    
+    /**
+    * Get productdetails based on sku
+    */
+    function getProductDetails(serverurl,sku){
+        return  $.ajax({
+           url:serverurl+"/rest/V1/products/"+sku,
+           method:"GET",
+            crossDomain: "true",
+            headers:{
+
+                        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+                        'Authorization':adminToken,
+                        "Access-Control-Allow-Origin":serverurl,
+                        "Access-Control-Allow-Credentials":"true"
+                    },
+            
+                beforeSend:function(xhr){
+                  xhr.overrideMimeType("application/json");
+              }
+         
+        });    
+    }
+    
     this.getCustomerDetails = getCustomerDetails;
     this.saveCustomerDetails = saveCustomerDetails;
     this.getOrders = getOrders;
     this.magentoLogin = magentoLogin;
-    this.retrieveCartItems = retrieveCartItems
+    this.retrieveCartItems = retrieveCartItems;
     this.addItemToCart = addItemToCart;
+    this.getProductListByCategory = getProductListByCategory;
     this.getConfirmationData = getConfirmationData;
+    this.emailValidation = emailValidation;
 }();
