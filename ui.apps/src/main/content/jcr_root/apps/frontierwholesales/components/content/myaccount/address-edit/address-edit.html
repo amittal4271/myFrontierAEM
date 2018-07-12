@@ -1,205 +1,77 @@
-<section class="account-main-holder clearfix">
-	<div class="account-heading-holder">
-	     <h2 class="account-heading">Edit Address</h2>
-	</div>
-	<div class="account-information-holder">
-		<form action="" class="account-form" method="post" accept-charset="utf-8">
+<sly data-sly-use.url="../../../../global-useapi/serverurl.js"></sly>
+<script>
+  var serverURL = "${url.server @ context='html'}";
+</script>
 
-			<input type="hidden" name="csrfmiddlewaretoken" value="RTRyHFRdCDjx1xmFpt6VFRDtoLuOdqgC">
-			
-			<fieldset>
-				
-		
-				
-					<div class="account__info account__info--inline">
-						<div class="company">
-				
-					<label for="id_company">Company<span class="suffix">:</span></label>
-					<input id="id_company" maxlength="30" name="company" type="text" value="State College Test Company">
-				
-				
-				
-				
-			</div>
-					</div>
-				
-		
-				<div class="account__info account__info--inline">
-					<label for="id_name">Full Name<span class="suffix">:</span></label>
-					<input id="id_name" maxlength="70" name="name" type="text" value="Scrooge McDuck">
-					
-				</div>
-		
-				<div class="account__info account__info--inline">
-					<div class="address">
-				
-					<label for="id_address">Address Line 1<span class="suffix">:</span></label>
-					<input autocomplete="address-line1" autocorrect="off" id="id_address" maxlength="150" name="address" placeholder="123 Example Street" type="text" value="393 E College Ave" disabled="">
-				
-				
-				
-				
-			</div>
-				</div>
-		
-				
-					<div class="account__info account__info--inline">
-						<div class="address2">
-				
-					<label for="id_address2">Address Line 2<span class="suffix">:</span></label>
-					<input autocomplete="address-line2" autocorrect="off" id="id_address2" maxlength="75" name="address2" placeholder="Suite 55C" type="text" disabled="">
-				
-				
-				
-				
-			</div>
-					</div>
-				
-		
-				<div class="account__info account__info--inline">
-					<div class="city">
-				
-					<label for="id_city">City<span class="suffix">:</span></label>
-					<input id="id_city" maxlength="70" name="city" type="text" value="State College" disabled="">
-				
-				
-				
-				
-			</div>
-				</div>
-		
-				<div class="account__info account__info--inline">
-					<div class="locality">
-				
-					<label for="id_locality">State<span class="suffix">:</span></label>
-					<select id="id_locality" name="locality" disabled="">
-		<option value="">Select an Option</option>
-		<option value="1">Alabama</option>
-		<option value="5">Alaska</option>
-		<option value="275">American Samoa</option>
-		<option value="6">Arizona</option>
-		<option value="7">Arkansas</option>
-		<option value="281">Armed Forces Americas</option>
-		<option value="282">Armed Forces Europe</option>
-		<option value="283">Armed Forces Pacific</option>
-		<option value="8">California</option>
-		<option value="9">Colorado</option>
-		<option value="51">Connecticut</option>
-		<option value="10">Delaware</option>
-		<option value="50">District of Columbia</option>
-		<option value="2">Florida</option>
-		<option value="3">Georgia</option>
-		<option value="276">Guam</option>
-		<option value="11">Hawaii</option>
-		<option value="12">Idaho</option>
-		<option value="13">Illinois</option>
-		<option value="14">Indiana</option>
-		<option value="15">Iowa</option>
-		<option value="16">Kansas</option>
-		<option value="17">Kentucky</option>
-		<option value="4">Louisiana</option>
-		<option value="18">Maine</option>
-		<option value="19">Maryland</option>
-		<option value="20">Massachusetts</option>
-		<option value="21">Michigan</option>
-		<option value="22">Minnesota</option>
-		<option value="23">Mississippi</option>
-		<option value="24">Missouri</option>
-		<option value="25">Montana</option>
-		<option value="26">Nebraska</option>
-		<option value="27">Nevada</option>
-		<option value="28">New Hampshire</option>
-		<option value="29">New Jersey</option>
-		<option value="30">New Mexico</option>
-		<option value="31">New York</option>
-		<option value="32">North Carolina</option>
-		<option value="33">North Dakota</option>
-		<option value="277">Northern Mariana Islands</option>
-		<option value="34">Ohio</option>
-		<option value="35">Oklahoma</option>
-		<option value="36">Oregon</option>
-		<option value="37" selected="selected">Pennsylvania</option>
-		<option value="278">Puerto Rico</option>
-		<option value="38">Rhode Island</option>
-		<option value="39">South Carolina</option>
-		<option value="40">South Dakota</option>
-		<option value="41">Tennessee</option>
-		<option value="42">Texas</option>
-		<option value="280">United States Minor Outlying Islands</option>
-		<option value="279">US Virgin Islands</option>
-		<option value="43">Utah</option>
-		<option value="44">Vermont</option>
-		<option value="45">Virginia</option>
-		<option value="46">Washington</option>
-		<option value="47">West Virginia</option>
-		<option value="48">Wisconsin</option>
-		<option value="49">Wyoming</option>
-		</select>
-				
-				
-				
-				
-			</div>
-				</div>
-		
-				<div class="account__info account__info--inline">
-					<div class="postal_code">
-				
-					<label for="id_postal_code">Zip<span class="suffix">:</span></label>
-					<input autocomplete="postal-code" autocorrect="off" id="id_postal_code" name="postal_code" novalidate="novalidate" type="text" value="16801" disabled="">
-				
-				
-				
-				
-			</div>
-				</div>
-		
-				<div class="account__info account__info--inline">
-					<div class="country">
-				
-					<label for="id_country">Country<span class="suffix">:</span></label>
-					<select id="id_country" name="country" disabled="">
-		<option value="840" selected="selected">United States of America</option>
-		</select>
-				
-				
-				
-				
-			</div>
-				</div>
-		
-				<div class="account__info account__info--inline">
-					<div class="commercial">
-				
-					<label for="id_commercial">Building<span class="suffix">:</span></label>
-					<select id="id_commercial" name="commercial">
-		<option value="True" selected="selected">Commercial</option>
-		<option value="False">Residential</option>
-		</select>
-				
-				
-				
-				
-			</div>
-				</div>
-		
-				<div class="account__info account__info--inline">
-					<div class="phone">
-				
-					<label for="id_phone">Phone<span class="suffix">:</span></label>
-					<input autocomplete="tel" autocorrect="off" id="id_phone" name="phone" type="text" value="5551231234">
-				
-				
-				
-				
-			</div>
-				</div>
-		
-				
-		
-			</fieldset>
-		
-			<input type="submit" class="account__button address-book__btn-save button" value="Save" disabled="">
-		</form>
-	</div>
+<sly data-sly-use.clientLib="${'/libs/granite/sightly/templates/clientlib.html'}"/>
+<sly data-sly-call="${clientlib.js @ categories='address-edit'}" data-sly-unwrap/>
+
+<section class="account-main-holder clearfix"
+		 data-sly-use.editAddress="com.frontierwholesales.core.models.myaccount.AddressEdit"
+	     data-sly-use.myaccount="com.frontierwholesales.core.models.myaccount.MyAccount">
+     <div class="account-heading-holder">
+          <h2 class="account-heading">${editAddress.editAddressHeader}</h2>
+     </div>
+     <div class="account-information-holder">
+          <form class="account-form" id="form-contact-information">
+               <fieldset class="account-fieldset-third-holder">
+                    <div class="form-group width-half first">
+                         <label for="id_company">${editAddress.companyLabel}</label>
+                         <input id="id_company" maxlength="30" class="form-control" name="company" type="text" value="">
+                    </div>
+                    <div class="form-group width-half">
+                         <label for="id_name">${editAddress.fullNameLabel}</label>
+                         <input id="id_name" maxlength="70" class="form-control" name="name" type="text" value="">
+                    </div>
+                    
+                    <div class="form-group width-half first">
+                         <label for="id_address">${editAddress.addressLine1Label}</label>
+                         <input id="id_address" autocomplete="address-line1" autocorrect="off" maxlength="150" class="form-control" name="address" placeholder="${editAddress.addressLine1Hint}" type="text" value="">
+                    </div>
+                    <div class="form-group width-half">
+                         <label for="id_address2">${editAddress.addressLine2Label}</label>
+                         <input id="id_address2" autocomplete="address-line2" autocorrect="off" maxlength="75" class="form-control" name="address2" placeholder="${editAddress.addressLine2Hint}" type="text">
+                    </div>
+                    <div class="form-group width-half first">
+                         <label for="id_city">${editAddress.cityLabel}</label>
+                         <input id="id_city" maxlength="70" class="form-control" name="city" type="text" value="">
+                    </div>
+                    <div class="form-group width-half">
+                         <label for="id_locality">${editAddress.stateLabel}</label>
+                         <select id="id_locality" class="form-control" name="locality">
+                              
+                         </select>
+                    </div>
+                    <div class="form-group width-half first">
+                         <label for="id_postal_code">${editAddress.zipLabel}</label>
+                         <input id="id_postal_code" autocomplete="postal-code" autocorrect="off" class="form-control" name="postal_code" type="text" value="">
+                    </div>
+                    <div class="form-group width-half">
+                         <label for="id_country">${editAddress.countryLabel}</label>
+                         <select id="id_country" class="form-control" name="country">
+                              <option value="US" selected="selected">United States of America</option>
+                         </select>
+                    </div>
+                    <div class="form-group width-half first">
+                         <label for="id_commercial">${editAddress.buildingLabel}</label>
+                         <select id="id_commercial" class="form-control" name="commercial">
+                              <option value="true">Commercial</option>
+                              <option value="false">Residential</option>
+                         </select>
+                    </div>
+                    <div class="form-group width-half">
+                         <label for="id_phone">${editAddress.phoneLabel}</label>
+                         <input id="id_phone" class="form-control" name="phone" type="text" value="">
+                    </div>
+                    <div class="form-group width-half first">
+                         <label for="id_fax">${editAddress.faxLabel}</label>
+                         <input id="id_fax" class="form-control" name="fax" type="text">
+                    </div>
+                    <div class="form-group button-holder">
+                         <input type="submit" class="btn btn-white-green btn-account-form" value="${editAddress.saveButtonText}">
+                    </div>
+               </fieldset>
+          </form>
+     </div>
+     
 </section>

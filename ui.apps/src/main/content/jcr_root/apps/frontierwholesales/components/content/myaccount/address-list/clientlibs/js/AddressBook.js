@@ -19,7 +19,7 @@ Frontier.AddressBook = new function() {
 			         <span>{{country_id}}</span> \
 			    </div> \
 			    <div class="address-options"> \
-			         <a href="/account/addresses/edit/302507/" class="address-link"> \
+			         <a href="/content/frontierwholesales/en/myaccount/addresses/edit.html?address_id={{id}}" class="address-link"> \
 			              <span class="address-link-text">{{uiConfig.editActionText}}</span> \
 			         </a> \
 			         <a href="#" data-address-id="{{id}}" class="address-link remove-address-link"> \
@@ -58,14 +58,12 @@ Frontier.AddressBook = new function() {
 	function init() {
 		$componentContainer = $(".address-list");
 		var $uiConfigElem = $componentContainer.find(".ui-config");
-		console.log("UI Config element ", $uiConfigElem);
 		uiConfig = {
 			editActionText : $uiConfigElem.attr("data-editActionText"),
 			deleteActionText : $uiConfigElem.attr("data-deleteActionText")
 		}
 		
 		loadUserAddressesAndDisplay();
-		console.log("initializing address book");
 	}
 
 	function runNoAddressesExperience() {
@@ -94,7 +92,6 @@ Frontier.AddressBook = new function() {
 					var addressToDisplay = JSON.parse(JSON.stringify(address));
 					addressToDisplay.uiConfig = uiConfig;
 					
-		            console.log("address found ", address);
 		            
 		            $addressListContainer.append(addressItemTemplate(addressToDisplay));
 	            }
@@ -102,8 +99,6 @@ Frontier.AddressBook = new function() {
 	            $addressListContainer.find(".remove-address-link").click(function(event) {
 	        	    // get txn id from current table row
 	        	    var id = $(this).data('address-id');
-
-	        	    console.log("Selected address id: "+id);
 	        	    
 	        	    var heading = 'Confirm Address Delete';
 	        	    var question = 'Please confirm that you wish to delete Address ' + id + '.';
@@ -111,20 +106,15 @@ Frontier.AddressBook = new function() {
 	        	    var okButtonTxt = 'Confirm';
 
 	        	    var callback = function(confirmModal) {
-	        	      	        	      
-	        	    	console.log("Deleting address for this customer",JSON.stringify(customerObject));
-	        	      
+	        	      	        	      	        	      
 	        	      	var listToDelete = [id];
 	        	      
 	        	      	var newAddressesArray = customerObject.addresses.filter(function(obj) {
 	        	    	    return listToDelete.indexOf(obj.id) === -1;
 	        	    	});
 	        	      
-	        	      	console.log("Updated Address Array", newAddressesArray);
 	        	      	customerObject.addresses = newAddressesArray;
-	        	      
-	        	      	console.log("new customer object to send ", customerObject);
-	        	      
+	        	      	        	      
 	        	      	Frontier.MagentoServices.saveCustomerDetails(serverURL, customerObject).success(function(){
 	        	    	    loadUserAddressesAndDisplay();
 	        	    	    confirmModal.modal('hide');
