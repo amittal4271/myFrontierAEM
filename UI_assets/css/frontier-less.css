@@ -1772,6 +1772,19 @@ body.mobile-nav-overflow {
 .badge.badge-sale {
   background-color: #f69b31;
 }
+.badge.badge-closeout {
+  background-color: #f69b31;
+  font-size: 11px;
+  height: 30px;
+  line-height: 26px;
+  border-radius: 0;
+  width: 70px;
+}
+.badge.badge-closeout.badge:before {
+  border-radius: 3px;
+  height: 25px;
+  width: 65px;
+}
 .badge:before {
   border: 2px solid #fff;
   border-radius: 50%;

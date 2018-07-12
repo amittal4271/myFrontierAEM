@@ -216,6 +216,7 @@
                                    </div>
 
                                    <div class="product-grid-item">
+                                        <span class="badge badge-closeout">Closeout</span>
                                         <a href="#" class="grid-item-link">
                                              <span class="grid-image-holder">
                                                   <img src="../frontierwholesales/images/search-result-item-6.jpg" alt="Product Name"/>
