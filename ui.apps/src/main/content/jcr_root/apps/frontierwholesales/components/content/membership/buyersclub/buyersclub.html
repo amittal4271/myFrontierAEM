@@ -26,7 +26,7 @@
                                         <div class="each-form-information">
                                              <div class="form-group width-half first">
                                                   <label for="id_membership-email">Email address</label>
-                                                  <input id="id_membership-email" class="form-control" name="membership-email" type="email">
+                                                  <input id="id_membership-email" class="form-control" name="membership-email" type="email" disabled value="${request.requestParameterMap['email'][0].toString}">
                                              </div>
                                              <div class="form-group width-half">
                                                   <label for="id_membership-password">Password</label>
@@ -48,7 +48,7 @@
                                              
                                              <div class="form-group width-half first">
                                                   <label for="id_shipping-name">Full Name</label>
-                                                  <input id="id_shipping-name" class="form-control" maxlength="150" name="shipping-name" type="text">
+                                                  <input id="id_shipping-name" class="form-control" maxlength="150" name="shipping-name" type="text" value="${request.requestParameterMap['firstname'][0].toString} ${request.requestParameterMap['lastname'][0].toString}">
                                              </div>
                                              <div class="form-group width-half">
                                                   <label for="id_shipping-address">Address Line 1</label>
