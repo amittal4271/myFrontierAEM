@@ -7,27 +7,76 @@ Frontier.AddressAdd = new function() {
 
 	var customerObj;
 
-	function init() {
+	function getParameterByName(name, url) {
+	    if (!url) url = window.location.href;
+	    name = name.replace(/[\[\]]/g, '\\$&');
+	    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+	        results = regex.exec(url);
+	    if (!results) return null;
+	    if (!results[2]) return '';
+	    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+	}
+	
+	function init() {		
+		// check if there is an edit address param 
+		var addressIdToEdit = getParameterByName('address_id');
+		
 		loadRegions("id_locality");
 		
 		Frontier.MagentoServices.getCustomerDetails(serverURL).success(function(getCustomerResponse){
 			customerObj = getCustomerResponse;
-			console.log("setting cusomer object", getCustomerResponse);
         }).error(function(xhr, status, error){
         	console.log("Issue with getAddress Service" + xhr.responseText, xhr);
         });
 		
 		$("#form-contact-information").submit(function(event) {
     	    // get txn id from current table row
-    	    console.log("Create new address!!");
-    	    console.log("redirect to address list page");
-    	    console.log("customer object to save", customerObj);
     	    event.preventDefault();
+
+    	    var shippingName = $('#id_name').val();
+    	    var shippingNameSplit = shippingName.split(' ');
     	    
-    	    var newAddress = JSON.parse(JSON.stringify(customerObj.addresses[1]));
-    	    newAddress.lastname = "Testing";
-    	    delete newAddress.id
-    	    customerObj.addresses.push(newAddress);
+    	    var address={};
+    	    address['region']={};
+    	    address['street']=[];
+    	    
+    	    address['defaultShipping']='false';
+    	    address['defaultBilling']='false';
+    	    
+    	    address['firstname']=shippingNameSplit[0];
+    	    address['lastname']=shippingNameSplit[1];
+    	    
+    	    address['company']=$('#id_company').val();
+    	    
+    	    address['city']=$('#id_city').val();
+    	    
+    	    var regionData={};
+    	    regionData['regionCode']=$('#id_locality option:selected').val();
+    	    regionData['regionId']=$('#id_locality option:selected').attr('data-attr-id');
+    	    regionData['region']=$('#id_locality option:selected').text();
+    	    address['region']=regionData;
+    	    
+    	    address['postcode']=$('#id_postal_code').val();
+    	    
+    	    address['countryId']="US";
+    	    
+    	    //TODO: how to handle building value?
+    	    var isCommercial = $('#id_commercial option:selected').val();
+//    	    console.log("building isCommercial = " + isCommercial);
+    	    //address['isCommercial'] = isCommercial;
+    	    
+    	    address['telephone']=$('#id_phone').val();
+    	    
+    	    //TODO: how to handle fax?
+    	    //address['fax']=$('#id_fax').val();
+    	    
+    	    var streetData=[];
+    	    
+    	    streetData.push($('#id_address').val());
+    	    streetData.push($('#id_address2').val());
+    	    address['street']=streetData;
+    	        	    
+    	    customerObj.addresses.push(address);
     	    
     	    Frontier.MagentoServices.saveCustomerDetails(serverURL, customerObj).success(function(){
     	    	window.location.href = '/content/frontierwholesales/en/myaccount/addresses.html'

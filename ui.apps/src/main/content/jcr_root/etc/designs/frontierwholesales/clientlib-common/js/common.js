@@ -11,7 +11,9 @@ function redirectToLogin(){
 }
 
 function loadRegions(obj1){
-    $.ajax({
+	var deferred = $.Deferred();
+	
+	$.ajax({
         url:"/services/registration",
         method:"GET",
         timeout: getServiceTimeOut(),
@@ -31,13 +33,18 @@ function loadRegions(obj1){
                   });
               }
           });
+          
+          deferred.resolve(usRegions);
         
     }).fail(function(error){
             console.log(error);
              var errorText="The site is currently unavailable and unable to process your request.  Please check back later.";
              $('.global-server-side-message-holder').css('display','block');
             $('.global-server-side-message-holder').children().text(errorText);
+            deferred.resolve(error);
         });
+	
+	return deferred.promise();
 }
 
 function loadLifeTimeRegistrationRegions(){
