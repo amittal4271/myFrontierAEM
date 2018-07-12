@@ -180,7 +180,14 @@ $(document).ready(function() {
 	if($("#cart-holder .cart-display").siblings(".cart-display-owner-total").length == 0){
 	    $("#cart-holder .cart-display").addClass("singleLine");
 	};
-	
+	$(document).on('click', '.each-quick-order-section', function() {
+		$(".each-quick-order-section .form-group input").on("keypress", function(){
+			if($(this).siblings(".quick-add-caption").hasClass("hidden")){
+				$(this).siblings(".quick-add-caption").removeClass("hidden");
+			};
+		});
+	});
+
 	$(document).on('click', '.btn-view-shipping-info', function() {
 		var $this = $(this);
 		var $shippingInfoEnteredHolder = $('#shipping-address-holder-on-billing-page');

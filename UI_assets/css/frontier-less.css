@@ -8366,6 +8366,36 @@ table.table-order-summary .discounts {
     width: 75%;
   }
 }
+#quick-order-form-holder .quick-add-caption {
+  background: #8bba4a;
+  border-radius: 3px;
+  width: 75%;
+  color: white;
+  letter-spacing: 0.025rem;
+  line-height: 1.2;
+  margin-bottom: 18px;
+  padding: 10px 13px;
+  position: relative;
+  float: left;
+  margin-top: 20px;
+  margin-left: -10px;
+}
+@media screen and (min-width: 1200px) {
+  #quick-order-form-holder .quick-add-caption {
+    width: 150%;
+  }
+}
+#quick-order-form-holder .quick-add-caption::before {
+  border-color: transparent transparent #8bba4a transparent;
+  border-style: solid;
+  border-width: 0 6px 8px 6px;
+  bottom: 100%;
+  content: "";
+  height: 0;
+  left: 20px;
+  position: absolute;
+  width: 0;
+}
 .each-quick-order-section {
   margin-bottom: 20px;
   padding-bottom: 20px;

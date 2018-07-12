@@ -32,6 +32,9 @@
                                    <div class="form-group item-group">
                                         <label for="item_code_1">Item Code</label>
                                         <input id="item_code_1" name="item_code_1" placeholder="Code" type="text" class="form-control">
+                                        <div class="quick-add-caption hidden">
+                                             Sorry, no product found!
+                                        </div>
                                    </div>
                                    <div class="form-group qty-group">
                                         <label for="item_qty_1">Qty</label>
@@ -54,6 +57,9 @@
                                    <div class="form-group item-group">
                                         <label for="item_code_2">Item Code</label>
                                         <input id="item_code_2" name="item_code_2" placeholder="Code" type="text" class="form-control">
+                                        <div class="quick-add-caption hidden">
+                                             Sorry, no product found!
+                                        </div>
                                    </div>
                                    <div class="form-group qty-group">
                                         <label for="item_qty_2">Qty</label>
@@ -76,6 +82,9 @@
                                    <div class="form-group item-group">
                                         <label for="item_code_3">Item Code</label>
                                         <input id="item_code_3" name="item_code_3" placeholder="Code" type="text" class="form-control">
+                                        <div class="quick-add-caption hidden">
+                                             Sorry, no product found!
+                                        </div>
                                    </div>
                                    <div class="form-group qty-group">
                                         <label for="item_qty_3">Qty</label>
@@ -98,6 +107,9 @@
                                    <div class="form-group item-group">
                                         <label for="item_code_4">Item Code</label>
                                         <input id="item_code_4" name="item_code_4" placeholder="Code" type="text" class="form-control">
+                                        <div class="quick-add-caption hidden">
+                                             Sorry, no product found!
+                                        </div>
                                    </div>
                                    <div class="form-group qty-group">
                                         <label for="item_qty_4">Qty</label>
@@ -120,6 +132,9 @@
                                    <div class="form-group item-group">
                                         <label for="item_code_5">Item Code</label>
                                         <input id="item_code_5" name="item_code_5" placeholder="Code" type="text" class="form-control">
+                                        <div class="quick-add-caption hidden">
+                                             Sorry, no product found!
+                                        </div>
                                    </div>
                                    <div class="form-group qty-group">
                                         <label for="item_qty_5">Qty</label>
@@ -179,6 +194,9 @@
                                         $newRowHtml += '<div class="form-group item-group">';
                                              $newRowHtml += '<label for="item_code_'+quickOrder.currentCount+'">Item Code</label>';
                                              $newRowHtml += '<input id="item_code_'+quickOrder.currentCount+' name="item_code_'+quickOrder.currentCount+'" placeholder="Code" type="text" class="form-control">';
+                                             $newRowHtml += '<div class="quick-add-caption hidden">';
+                                                  $newRowHtml += 'Sorry, no product found!';
+                                             $newRowHtml += '</div>';
                                         $newRowHtml += '</div>';     
                                         $newRowHtml += '<div class="form-group qty-group">';
                                              $newRowHtml += '<label for="item_qty_'+quickOrder.currentCount+'">Qty</label>';
