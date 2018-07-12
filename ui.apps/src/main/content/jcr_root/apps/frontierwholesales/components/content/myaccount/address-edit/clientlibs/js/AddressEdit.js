@@ -65,8 +65,7 @@ Frontier.AddressAdd = new function() {
 	    	    
 	    	    address['telephone']=$('#id_phone').val();
 	    	    
-	    	    //TODO: how to handle fax number?
-	    	    //address['fax']=$('#id_fax').val();
+	    	    address['fax']=$('#id_fax').val();
 	    	    
 	    	    var streetData=[];
 	    	    
@@ -116,6 +115,7 @@ Frontier.AddressAdd = new function() {
 		$("#id_locality option[value='"+address.region.region_code+"']").prop('selected', true);
 		$('#id_postal_code').val(address.postcode);
 		$('#id_phone').val(address.telephone);
+		$('#id_fax').val(address.fax);
 		$('#id_address').val(address.street.length >= 1 ? address.street[0] : '');
 		$('#id_address2').val(address.street.length == 2 ? address.street[1] : '');
 	}
