@@ -260,7 +260,25 @@ function buyersClubCheckboxOperations(){
                                    });
                               }
                          },
-        
+        newletterForm: function($formId) {
+            $($formId).validate({
+                rules: {
+                   
+                    "email":{
+                        required: true,
+		            	maxlength: 150,
+                        emailValidation: true
+                        
+                    }
+                    
+                },messages :{
+                    "email":{
+                         emailValidation:"Please enter a valid email"
+                    }
+                    
+                }
+            });
+        },
         
          buyersClubRegistrationForm: function($formId) {
             $($formId).validate({
