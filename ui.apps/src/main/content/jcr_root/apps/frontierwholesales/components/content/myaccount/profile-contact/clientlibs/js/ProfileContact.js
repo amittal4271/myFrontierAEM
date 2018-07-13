@@ -1,30 +1,17 @@
 //namespace support
 var Frontier = Frontier || {};
-Frontier.AddressEdit = Frontier.AddressEdit || {};
+Frontier.ProfileContact = Frontier.ProfileContact || {};
 //end namespace support
 
-Frontier.AddressEdit = new function() {
+Frontier.ProfileContact = new function() {
 
 	var customerObj,
 	addressToEdit;
-
-	function getParameterByName(name, url) {
-	    if (!url) url = window.location.href;
-	    name = name.replace(/[\[\]]/g, '\\$&');
-	    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-	        results = regex.exec(url);
-	    if (!results) return null;
-	    if (!results[2]) return '';
-	    return decodeURIComponent(results[2].replace(/\+/g, ' '));
-	}
 	
 	function init() {
-		// check if there is an edit address param 
-		var addressIdToEdit = getParameterByName('address_id');
-		
 		Frontier.MagentoServices.getCustomerDetails(serverURL).success(function(getCustomerResponse){
 			customerObj = getCustomerResponse;
-			addressToEdit = findObjectByKey(customerObj.addresses, "id", addressIdToEdit);
+			addressToEdit = findObjectByKey(customerObj.addresses, "default_billing", true);
 			loadRegions("id_locality").then(function(){
 				loadEditForm(addressToEdit);
 			});
@@ -58,11 +45,6 @@ Frontier.AddressEdit = new function() {
 	    	    
 	    	    address['countryId']="US";
 	    	
-	    	    //TODO: how to handle building value
-	    	    var isCommercial = $('#id_commercial option:selected').val();
-//	    	    console.log("building isCommercial = " + isCommercial);
-	    	    //address['isCommercial'] = isCommercial;
-	    	    
 	    	    address['telephone']=$('#id_phone').val();
 	    	    
 	    	    address['fax']=$('#id_fax').val();
@@ -74,11 +56,12 @@ Frontier.AddressEdit = new function() {
 	    	    address['street']=streetData;
 	    	    
 	    	    updateAddress(customerObj, address);
-	    	    
+	    	    showLoadingScreen();
 	    	    Frontier.MagentoServices.saveCustomerDetails(serverURL, customerObj).success(function(){
-	    	    	window.location.href = '/content/frontierwholesales/en/myaccount/addresses.html'
+	    	    	window.location.reload(true);
 				}).error(function(xhr, status, error){
-		        	console.log("Error saving customer to service" + xhr.responseText, xhr);
+					hideLoadingScreen();
+					console.log("Error saving customer to service" + xhr.responseText, xhr);
 			    });
 			});
         }).error(function(xhr, status, error){
