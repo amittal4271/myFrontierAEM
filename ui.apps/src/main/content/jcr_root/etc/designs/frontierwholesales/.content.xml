@@ -53,6 +53,34 @@
                 sling:resourceType="foundation/components/parsys"
                 components="[group:Frontier]"/>
         </home-page>
+        <blog-landing-page jcr:primaryType="nt:unstructured">
+        		<columncontrol jcr:primaryType="nt:unstructured">
+                <col-cntrl-1
+                    jcr:lastModified="{Date}2018-07-12T22:04:15.218-07:00"
+                    jcr:lastModifiedBy="admin"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="wcm/foundation/components/parsys"
+                    components="[/apps/frontierwholesales/components/content/featured-blog]">
+                    <section jcr:primaryType="nt:unstructured"/>
+                </col-cntrl-1>
+                <col-cntrl-2
+                    jcr:lastModified="{Date}2018-07-12T22:03:41.932-07:00"
+                    jcr:lastModifiedBy="admin"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="wcm/foundation/components/parsys"
+                    components="[/apps/frontierwholesales/components/content/featured-blog]">
+                    <section jcr:primaryType="nt:unstructured"/>
+                </col-cntrl-2>
+                <col-cntrl-3
+                    jcr:lastModified="{Date}2018-07-12T20:36:47.091-07:00"
+                    jcr:lastModifiedBy="admin"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="wcm/foundation/components/parsys"
+                    components="/apps/frontierwholesales/components/content/featured-blog">
+                    <section jcr:primaryType="nt:unstructured"/>
+                </col-cntrl-3>
+            </columncontrol>
+        </blog-landing-page>
     </jcr:content>
     <global.less/>
     <common/>

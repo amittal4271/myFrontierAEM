@@ -55,6 +55,31 @@ Frontier.MagentoServices = new function(){
         });
 	}
 
+    function updateCustomerPassword(serverUrl, passwordObj) {
+		console.log("Updating customer password", passwordObj);
+		
+		var customerUrl = serverURL+"/rest/V1/customers/me/password";
+		
+		//GET
+		$.support.cors = true;
+		
+		//optional service params can be added here
+		var serviceParams = passwordObj;
+
+		console.log("Updating Customer Password", JSON.stringify(serviceParams));
+		
+		var userToken = getUserToken();
+		
+		return $.ajax({
+            url: customerUrl, 
+            type: "PUT",
+            data: JSON.stringify(serviceParams),
+            headers: {"Content-Type": "application/json", "Authorization": userToken},
+            crossDomain: true,
+            timeout: serviceCallTimeout
+        });
+	}
+    
     function getOrders(serverURL,adminToken,customerId){
      var orders=serverURL+"/rest/V1/orders?searchCriteria[pageSize]=150"
             + "&searchCriteria[currentPage]=1&searchCriteria[filterGroups][0][filters][0][value]="+customerId
@@ -215,6 +240,7 @@ Frontier.MagentoServices = new function(){
     
     this.getCustomerDetails = getCustomerDetails;
     this.saveCustomerDetails = saveCustomerDetails;
+    this.updateCustomerPassword = updateCustomerPassword;
     this.getOrders = getOrders;
     this.magentoLogin = magentoLogin;
     this.retrieveCartItems = retrieveCartItems;
