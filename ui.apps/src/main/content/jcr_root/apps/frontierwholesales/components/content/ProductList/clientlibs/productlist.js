@@ -92,8 +92,8 @@ function getProductListByCategory(currentPage,recsPerPage,sortBy){
     Frontier.MagentoServices.getProductListByCategory(jsonData).done(function(productList){
         hideLoadingScreen();
      
-       
-        var template = $("#productlistTemplate").html();
+         var template = $("#productlistTemplate").html();
+        
      
         Handlebars.registerHelper("recordsPerPage",function(recsPerPage,page,totalRecs){
             var recordsPerPage = recsPerPage * page;
@@ -111,13 +111,24 @@ function getProductListByCategory(currentPage,recsPerPage,sortBy){
               
         });
         
+        Handlebars.registerHelper("moreCategories",function(index,options){
+			 var fnTrue = options.fn,
+        	fnFalse = options.inverse;
+           return (index > 4)?fnTrue():fnFalse();
+              
+        });
+
+
+        
        var html = Handlebars.compile(template);
       
+      
         var processedHTML = html(productList)
+     
        
+        $('#productlisttemplate').empty();
+        $('#productlisttemplate').html(processedHTML); 
        
-        $('#plp-search-product-grid').empty();
-        $('#plp-search-product-grid').html(processedHTML); 
         $('#itemPerPageSelect option[value='+recsPerPage +']').prop('selected',true);
          if(sortBy !== undefined && sortBy !== ''){
             $('#sortBy option[value='+ sortBy+']').prop('selected',true);

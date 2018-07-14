@@ -461,5 +461,14 @@ public class FrontierWholesalesMagentoCommerceConnector {
         }
         return productList;
     }
+    
+    public String getParentChildrenCategories(String adminToken,int categoryId) throws Exception{
+    	log.debug("getParentChildrenCategories Start");
+    	String response = Request.Get(server+"/rest/V1/frontier/categories/"+categoryId)
+    				.addHeader("Authorization",adminToken)
+    				.execute().returnContent().asString();
+    	log.debug("getParentChildrenCategories End");
+    	return response;
+    }
 
 }

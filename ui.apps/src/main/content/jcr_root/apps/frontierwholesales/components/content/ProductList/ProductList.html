@@ -4,35 +4,52 @@
 <sly data-sly-use.user="${'com.frontierwholesales.core.models.SessionModel'}"></sly>
 <input id="categoryId" type=hidden value="${request.requestParameterMap['id'][0].toString}">
 <article class="product-list-page">
-                    <div class="container">
-                         <aside id="plp-search-left-nav-filters">
-                            <sly data-sly-use.categories="${'com.frontierwholesales.core.magento.services.models.CategoriesModel' @ id=request.requestParameterMap['id'][0].toString}"></sly>  
-                              <sly data-sly-test="${categories.categories.children_data}">
-                                <div class="each-filter-section categories">
-                                     
+    <div class="container">
+    <div id="productlisttemplate"></div>
+                        <script id="productlistTemplate" type="text/x-handlebars-template" >
+                       <section id="breadcrumbs">
+                            <div class="container">
+                                 <ol class="breadcrumb">
+                                 <li><a href="/content/frontierwholesales/en/home.html">Home</a></li>
+                                     {{#each categorylist.parent}}
+
+										 {{#if @last}}
+                                            <li><a class="active">{{.}}</a></li>
+                                            {{else}}
+                                            <li><a href="#">{{.}}</a></li>
+                                        {{/if}}
+										{{/each}}
+                                 </ol>
+                            </div>
+                       </section>           
+
+
+<aside id="plp-search-left-nav-filters">
+<div class="each-filter-section categories">
                                    <h2 class="filter-heading">Categories</h2>
                                    <ul class="each-filters-list">
-                                       <sly data-sly-list.child="${categories.categories.children_data}">
-                                        <li class="filter-item ${childList.count > 5?'visuallyhidden':''}">
-                                             <a href="/content/frontierwholesales/en/productlist.html?id=${child.id}" class="filter-link"><span class="text">${child.name}</span></a>
+                                   {{#each categorylist.children}}
+
+                                        {{#moreCategories @index}}
+                                            <li class="filter-item visuallyhidden">
+                                             <a href="#" class="filter-link"><span class="text">{{..}}</span></a>
+                                            </li>
+										{{else}}
+                                        <li class="filter-item">
+                                             <a href="#" class="filter-link"><span class="text">{{..}}</span></a>
                                         </li>
-                                       
-                                       
-                                       </sly>
-                                       <li class="filter-item filter-item-expand">
+                                       {{/moreCategories}}
+									{{/each}}
+                                    {{#moreCategories categorylist.children.length}}
+                                            <li class="filter-item filter-item-expand">
                                              <button type="button" class="btn btn-view-more-filters">
                                                   <span class="view-more-text">View More</span>
                                              </button>
                                         </li>
-                                   </ul>
-                                    
-                              </div>
-                                  </sly>    
-                                
-                             
-                            
-                              
 
+                                       {{/moreCategories}}
+                                   </ul>
+                              </div>
                               <div class="each-filter-section brand">
                                    <h2 class="filter-heading">Brand</h2>
                                    <ul class="each-filters-list">
@@ -91,16 +108,17 @@
                               </div>
 
                          </aside>
+
                        
-                        <section id="plp-search-product-grid"></section>
+                        <section id="plp-search-product-grid">
                              
-                             <script id="productlistTemplate" type="text/x-handlebars-template"  >
+
                                
                               <div id="plp-search-header-holder" class="search-header-holder">
                                   
                                  
                                    <div id="search-heading">
-                                        <h1 class="plp-search-text-heading">${categories.categories.name @context='scriptString' }</h1>
+                                        <h1 class="plp-search-text-heading">{{categorylist.category.name}}</h1>
                                         <span class="showing-number-of-items">
                                              Showing <span class="number">{{recordsPerPage recsPerPage search_criteria.current_page total_count}}</span> of <span class="number">{{total_count}}</span> Products
                                         </span>
@@ -230,7 +248,7 @@
                               </div>
                              {{/if}}
                             </script>
-
+							</section>
                          
                     </div>
                </article>
