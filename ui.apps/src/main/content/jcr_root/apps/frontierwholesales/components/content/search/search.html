@@ -1,5 +1,6 @@
+<sly data-sly-use.url="../../global-useapi/serverurl.js"></sly>
 <div id="search-header-holder">
-    <form method="get" action="" class="search-form form" data-suggestions-url="/bin/search" id="search-form">
+    <form method="get" action="/bin/search" class="search-form form" data-suggestions-url="${url.server @ context='html'}/index.php/search/ajax/suggest/" id="search-form">
         <input class="form-control search-input" placeholder="Search &amp; Save..." name="q" autocomplete="off" type="text">
         <button class="btn btn-green-dark" id="btn-search">Search</button>
         <div class="suggestions" id="suggestions"></div>
