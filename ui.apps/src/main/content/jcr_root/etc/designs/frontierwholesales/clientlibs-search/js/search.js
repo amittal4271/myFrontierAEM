@@ -117,6 +117,7 @@ var FontierwholesalesSearch = {
 
 		var self = this,
 			form = $(this.settings.form),
+			formAction = form.attr('action'),
 			formInput = $(this.settings.formInput),
 			suggestions = $(this.settings.suggestions);
 			// template = _.template('<li><a href="' + form.attr('action') + '?q=%22<%= term_encoded %>%22"><%= term %></a></li>');
@@ -137,8 +138,8 @@ var FontierwholesalesSearch = {
 				if (data) {
 					// Append results
 					$.each(data, function(i, item) {
-						url = "/content/frontierwholesales/en/pdp.html?" + item.id;
-                        suggest = "<li><a href='" + url + "'>" + item.name + "</a></li>";
+						url = formAction + "?q=" + item.title;
+                        suggest = "<li><a href='" + url + "'>" + item.title + "</a></li>";
 					    suggestions.append(suggest);
 					});
 				}
