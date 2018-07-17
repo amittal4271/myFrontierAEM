@@ -6,24 +6,10 @@
 <sly data-sly-use.clientLib="${'/libs/granite/sightly/templates/clientlib.html'}"/>
 <sly data-sly-call="${clientlib.js @ categories='order-list'}" data-sly-unwrap/>
 <section class="account-main-holder clearfix"
-		 data-sly-use.pendingorders="com.frontierwholesales.core.models.myaccount.PendingOrders" 
-		 data-sly-use.myaccount="com.frontierwholesales.core.models.myaccount.MyAccount"
-		 data-sly-list.user="${myaccount.getUsersWithPendingOrders}">
-     
-     <!-- initial testing, to demonstrate simple double loop over map of lists
-     <ul data-sly-list.user="${pendingorders.users}">
-     	<li>Name: ${user.fullName}
-     		<ul data-sly-list.order="${user.pendingOrders}">
-     		<li>Order Name: ${order.name}</li>
-     	
-     	</li>
-     </ul>
-      -->
-      
-      
+		 data-sly-use.pendingorders="com.frontierwholesales.core.models.myaccount.PendingOrders">      
 	<div class="each-order-by-user-holder" >
 		<div class="account-heading-holder table-below">
-			<h2 class="account-heading">${user.fullName}'s Orders</h2>
+			<h2 class="account-heading">Orders</h2>
 		</div>
 		<div class="orders-holder">
 	        <div class="grid-table-header order-information-header">

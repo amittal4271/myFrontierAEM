@@ -95,7 +95,7 @@ Frontier.MagentoServices = new function(){
             dataType: "json",
             headers: {"Content-Type": "application/x-www-form-urlencoded; charset=UTF-8", 
                       "Authorization": adminToken,
-                       "Access-Control-Allow-Origin":serverurl,
+                       "Access-Control-Allow-Origin":serverURL,
                         "Access-Control-Allow-Credentials":"true"
                      },
             crossDomain: true,
