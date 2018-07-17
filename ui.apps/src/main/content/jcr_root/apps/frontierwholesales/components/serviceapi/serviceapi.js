@@ -55,6 +55,43 @@ Frontier.MagentoServices = new function(){
         });
 	}
 
+    function inviteCustomer(serverUrl, email, firstname, lastname) {		
+		var customerUrl = serverURL+"/rest/V1/customers";
+		
+		//GET
+		$.support.cors = true;
+		
+		
+		//optional service params can be added here
+		var serviceParams = {
+				customer: {
+					email : email,
+					firstname : firstname,
+					lastname : lastname,
+					website_id : 1,
+					extension_attributes : {
+				      company_attributes : {
+				        company_id : 1,
+				        status : 0
+				      }
+				    }
+				}
+		};
+
+		console.log("Inviting Customer JSON", JSON.stringify(serviceParams));
+		
+		var userToken = getUserToken();
+		
+		return $.ajax({
+            url: customerUrl, 
+            type: "POST",
+            data: JSON.stringify(serviceParams),
+            headers: {"Content-Type": "application/json", "Authorization": userToken},
+            crossDomain: true,
+            timeout: serviceCallTimeout
+        });
+	}
+    
     function updateCustomerPassword(serverUrl, passwordObj) {
 		console.log("Updating customer password", passwordObj);
 		
@@ -240,6 +277,7 @@ Frontier.MagentoServices = new function(){
     
     this.getCustomerDetails = getCustomerDetails;
     this.saveCustomerDetails = saveCustomerDetails;
+    this.inviteCustomer = inviteCustomer;
     this.updateCustomerPassword = updateCustomerPassword;
     this.getOrders = getOrders;
     this.magentoLogin = magentoLogin;
