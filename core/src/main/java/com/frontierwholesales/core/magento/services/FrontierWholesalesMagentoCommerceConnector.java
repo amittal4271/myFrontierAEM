@@ -24,6 +24,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.frontierwholesales.core.beans.FrontierWholesalesProductSearch;
 import com.frontierwholesales.core.beans.MagentoCategory;
+import com.frontierwholesales.core.beans.search.MagentoSearch;
 import com.frontierwholesales.core.magento.models.MagentoRelatedProduct;
 import com.frontierwholesales.core.utils.AuthCredentials;
 
@@ -308,6 +309,22 @@ public class FrontierWholesalesMagentoCommerceConnector {
             log.error("Error getting Product List: ERROR: " + e.getMessage());
         }
         return response;
+    }
+    
+    public String getProducts(String adminToken, MagentoSearch search) {
+    		String response = null;
+    		String queryString = search.toString();
+    		String serviceURL = server + "/rest/V1/products?" + queryString;
+    		
+		try {
+			log.debug("Calling product search [{}]", serviceURL);
+			response = Request.Get(serviceURL).addHeader("Authorization", adminToken)
+					.execute().returnContent().asString();
+		} catch (IOException e) {
+			log.error("Error getting Product List", e);
+		}
+    		
+    		return response;
     }
     
     public String getProductDetails(String adminToken,String  productID) {
