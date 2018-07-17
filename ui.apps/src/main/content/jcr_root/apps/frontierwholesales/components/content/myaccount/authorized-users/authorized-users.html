@@ -1,3 +1,11 @@
+<sly data-sly-use.url="../../../../global-useapi/serverurl.js"></sly>
+<script>
+  var serverURL = "${url.server @ context='html'}";
+</script>
+
+<sly data-sly-use.clientLib="${'/libs/granite/sightly/templates/clientlib.html'}"/>
+<sly data-sly-call="${clientlib.js @ categories='authorized-users'}" data-sly-unwrap/>
+
 <section class="account-main-holder clearfix"
 		 data-sly-use.authorizedusers="com.frontierwholesales.core.models.myaccount.AuthorizedUsers" 
 		 data-sly-use.myaccount="com.frontierwholesales.core.models.myaccount.MyAccount">
@@ -118,23 +126,33 @@
 	                         ${myClubMember.status}
 	                    </div>
 	                    <div class="each-order-section members-action-section">
-	                         <div class="action-button-section-account">
-	                              <span class="tablet-below-col-heading">Deactivate</span>
-	                              <a href="#" class="btn btn-only-green-icon" title="Deactivate">
-	                                   <span class="address-link-text mobile-button-text-description">Deactivate</span>
-	                                   <span class="glyphicon glyphicon-remove"></span>
-	                              </a>
-	                         </div>
-	                         <div class="action-button-section-account">
-	                              <span class="tablet-below-col-heading">${authorizedusers.myClubMembersEditButtonText}</span>
-	                              <a href="#" class="btn btn-only-green-icon btn-edit-members-role" title="${authorizedusers.myClubMembersEditButtonText}">
-	                                   <span class="address-link-text">${authorizedusers.myClubMembersEditButtonText}</span>
-	                              </a>
-	                         </div>
-	                    </div>
+                             <div class="action-button-section-account">
+                                  <span class="tablet-below-col-heading">Deactivate</span>
+                                  <a href="#" class="btn btn-only-green-icon" title="Deactivate">
+                                       <span class="address-link-text mobile-button-text-description">Deactivate</span>
+                                       <span class="glyphicon glyphicon-remove"></span>
+                                  </a>
+                             </div>
+                             <div class="action-button-section-account">
+                                  <span class="tablet-below-col-heading">Edit</span>
+                                  <a href="#editRole2" data-toggle="collapse" class="btn btn-only-green-icon btn-edit-members-role" title="Edit">
+                                       <span class="address-link-text">Edit</span>
+                                  </a>
+                             </div>
+                        </div>
 	               </div>
 	          </div>
-	          
+	          <div class="collapse editRoleSection" id="editRole">
+                   <div class="roleHeader">
+                        <span>Update User Role</span>
+                        <span class="pull-right">
+                             <a class="editRoleDismiss glyphicon glyphicon-remove" href="#editRole" data-toggle="collapse"></a>
+                        </span>
+                   </div>
+                   <button class="btn btn-light-green" type="button">
+                        Manager
+                   </button>
+              </div>
 	     </div>
 	     <!--
 	     <table class="simple-responsive">
