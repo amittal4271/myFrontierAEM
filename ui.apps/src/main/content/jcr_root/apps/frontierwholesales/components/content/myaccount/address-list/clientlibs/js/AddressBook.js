@@ -101,13 +101,8 @@ Frontier.AddressBook = new function() {
 	            }
 	            
 	            $addressListContainer.find(".remove-address-link").click(function(event) {
-	        	    // get txn id from current table row
-	        	    var id = $(this).data('address-id');
-	        	    
-	        	    var heading = 'Confirm Address Delete';
-	        	    var question = 'Please confirm that you wish to delete address.';
-	        	    var cancelButtonTxt = 'Cancel';
-	        	    var okButtonTxt = 'Confirm';
+
+	            	var id = $(this).data('address-id');
 
 	        	    var callback = function(confirmModal) {
 	        	      	        	      	        	      
