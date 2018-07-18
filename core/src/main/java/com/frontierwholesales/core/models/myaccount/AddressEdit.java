@@ -82,11 +82,6 @@ public class AddressEdit {
 
 	@Inject
 	@Via("resource")
-	@Default(values = "Building")
-	public String buildingLabel;
-
-	@Inject
-	@Via("resource")
 	@Default(values = "Phone")
 	public String phoneLabel;
 

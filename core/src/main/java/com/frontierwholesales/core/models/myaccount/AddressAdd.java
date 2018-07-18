@@ -79,12 +79,7 @@ public class AddressAdd {
 	@Via("resource")
 	@Default(values = "Country")
 	public String countryLabel;
-
-	@Inject
-	@Via("resource")
-	@Default(values = "Building")
-	public String buildingLabel;
-
+	
 	@Inject
 	@Via("resource")
 	@Default(values = "Phone")
