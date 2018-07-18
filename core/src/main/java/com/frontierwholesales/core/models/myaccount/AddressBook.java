@@ -50,6 +50,27 @@ public class AddressBook {
 	@Default(values = "Delete")
 	public String deleteActionText;
 	
+	@Inject
+	@Via("resource")
+	@Default(values = "Confirm Address Delete")
+	public String deleteModalHeading;
+	
+	@Inject
+	@Via("resource")
+	@Default(values = "Please confirm that you wish to delete the address.")
+	public String deleteModalText;
+	
+	@Inject
+	@Via("resource")
+	@Default(values = "Cancel")
+	public String deleteModalCancelButtonText;
+	
+	@Inject
+	@Via("resource")
+	@Default(values = "Confirm")
+	public String deleteModalConfirmButtonText;
+	
+	
 	@PostConstruct
 	protected void activate() {
 		

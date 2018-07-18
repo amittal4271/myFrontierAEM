@@ -60,7 +60,11 @@ Frontier.AddressBook = new function() {
 		var $uiConfigElem = $componentContainer.find(".ui-config");
 		uiConfig = {
 			editActionText : $uiConfigElem.attr("data-editActionText"),
-			deleteActionText : $uiConfigElem.attr("data-deleteActionText")
+			deleteActionText : $uiConfigElem.attr("data-deleteActionText"),
+			deleteModalHeading : $uiConfigElem.attr("data-deleteModalHeading"),
+			deleteModalText : $uiConfigElem.attr("data-deleteModalText"),
+			deleteModalCancelButtonText : $uiConfigElem.attr("data-deleteModalCancelButtonText"),
+			deleteModalConfirmButtonText : $uiConfigElem.attr("data-deleteModalConfirmButtonText")
 		}
 		
 		loadUserAddressesAndDisplay();
@@ -97,13 +101,8 @@ Frontier.AddressBook = new function() {
 	            }
 	            
 	            $addressListContainer.find(".remove-address-link").click(function(event) {
-	        	    // get txn id from current table row
-	        	    var id = $(this).data('address-id');
-	        	    
-	        	    var heading = 'Confirm Address Delete';
-	        	    var question = 'Please confirm that you wish to delete Address ' + id + '.';
-	        	    var cancelButtonTxt = 'Cancel';
-	        	    var okButtonTxt = 'Confirm';
+
+	            	var id = $(this).data('address-id');
 
 	        	    var callback = function(confirmModal) {
 	        	      	        	      	        	      
@@ -123,7 +122,7 @@ Frontier.AddressBook = new function() {
 					    });
 	        	    };
 
-	        	    confirm(heading, question, cancelButtonTxt, okButtonTxt, callback);
+	        	    confirm(uiConfig.deleteModalHeading, uiConfig.deleteModalText, uiConfig.deleteModalCancelButtonText, uiConfig.deleteModalConfirmButtonText, callback);
 
 	        	  });
         	} else {
