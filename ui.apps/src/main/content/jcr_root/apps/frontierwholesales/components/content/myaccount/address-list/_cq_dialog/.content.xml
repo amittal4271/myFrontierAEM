@@ -47,6 +47,22 @@
 								sling:resourceType="granite/ui/components/foundation/form/textfield"
 								fieldDescription="if left empty defaults to 'Delete'"
 								fieldLabel="Delete Action Text" name="./deleteActionText" />
+							<deleteModalHeading jcr:primaryType="nt:unstructured"
+								sling:resourceType="granite/ui/components/foundation/form/textfield"
+								fieldDescription="if left empty defaults to 'Confirm Address Delete'"
+								fieldLabel="Delete Modal Heading" name="./deleteModalHeading" />
+							<deleteModalText jcr:primaryType="nt:unstructured"
+								sling:resourceType="granite/ui/components/foundation/form/textfield"
+								fieldDescription="if left empty defaults to 'Please confirm that you wish to delete the address.'"
+								fieldLabel="Delete Modal Text" name="./deleteModalText" />
+							<deleteModalCancelButtonText jcr:primaryType="nt:unstructured"
+								sling:resourceType="granite/ui/components/foundation/form/textfield"
+								fieldDescription="if left empty defaults to 'Cancel'"
+								fieldLabel="Delete Modal Cancel Button Text" name="./deleteModalCancelButtonText" />
+							<deleteModalConfirmButtonText jcr:primaryType="nt:unstructured"
+								sling:resourceType="granite/ui/components/foundation/form/textfield"
+								fieldDescription="if left empty defaults to 'Confirm'"
+								fieldLabel="Delete Modal Confirm Button Text" name="./deleteModalConfirmButtonText" />
 						</items>
 					</columns>
 				</items>

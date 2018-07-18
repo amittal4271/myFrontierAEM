@@ -60,7 +60,11 @@ Frontier.AddressBook = new function() {
 		var $uiConfigElem = $componentContainer.find(".ui-config");
 		uiConfig = {
 			editActionText : $uiConfigElem.attr("data-editActionText"),
-			deleteActionText : $uiConfigElem.attr("data-deleteActionText")
+			deleteActionText : $uiConfigElem.attr("data-deleteActionText"),
+			deleteModalHeading : $uiConfigElem.attr("data-deleteModalHeading"),
+			deleteModalText : $uiConfigElem.attr("data-deleteModalText"),
+			deleteModalCancelButtonText : $uiConfigElem.attr("data-deleteModalCancelButtonText"),
+			deleteModalConfirmButtonText : $uiConfigElem.attr("data-deleteModalConfirmButtonText")
 		}
 		
 		loadUserAddressesAndDisplay();
@@ -101,7 +105,7 @@ Frontier.AddressBook = new function() {
 	        	    var id = $(this).data('address-id');
 	        	    
 	        	    var heading = 'Confirm Address Delete';
-	        	    var question = 'Please confirm that you wish to delete Address ' + id + '.';
+	        	    var question = 'Please confirm that you wish to delete address.';
 	        	    var cancelButtonTxt = 'Cancel';
 	        	    var okButtonTxt = 'Confirm';
 
@@ -123,7 +127,7 @@ Frontier.AddressBook = new function() {
 					    });
 	        	    };
 
-	        	    confirm(heading, question, cancelButtonTxt, okButtonTxt, callback);
+	        	    confirm(uiConfig.deleteModalHeading, uiConfig.deleteModalText, uiConfig.deleteModalCancelButtonText, uiConfig.deleteModalConfirmButtonText, callback);
 
 	        	  });
         	} else {
