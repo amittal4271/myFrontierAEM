@@ -68,10 +68,6 @@
 								sling:resourceType="granite/ui/components/foundation/form/textfield"
 								fieldDescription="if left empty defaults to 'Country'"
 								fieldLabel="Country Label" name="./countryLabel" />
-							<buildingLabel jcr:primaryType="nt:unstructured"
-								sling:resourceType="granite/ui/components/foundation/form/textfield"
-								fieldDescription="if left empty defaults to 'Building'"
-								fieldLabel="Building Label" name="./buildingLabel" />
 							<phoneLabel jcr:primaryType="nt:unstructured"
 								sling:resourceType="granite/ui/components/foundation/form/textfield"
 								fieldDescription="if left empty defaults to 'Phone'"

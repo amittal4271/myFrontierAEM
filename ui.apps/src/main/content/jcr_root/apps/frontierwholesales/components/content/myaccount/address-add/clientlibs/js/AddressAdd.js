@@ -59,12 +59,7 @@ Frontier.AddressAdd = new function() {
     	    address['postcode']=$('#id_postal_code').val();
     	    
     	    address['countryId']="US";
-    	    
-    	    //TODO: how to handle building value?
-    	    var isCommercial = $('#id_commercial option:selected').val();
-//    	    console.log("building isCommercial = " + isCommercial);
-    	    //address['isCommercial'] = isCommercial;
-    	    
+    	   
     	    address['telephone']=$('#id_phone').val();
     	    
     	    address['fax']=$('#id_fax').val();
