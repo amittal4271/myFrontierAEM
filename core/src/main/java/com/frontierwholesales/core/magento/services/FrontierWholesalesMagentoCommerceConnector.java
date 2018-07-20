@@ -311,10 +311,27 @@ public class FrontierWholesalesMagentoCommerceConnector {
         return response;
     }
     
+    public String getBrands(String adminToken) {
+    	String response=null;
+    	try {
+    		
+            response = Request.Get(server+"/rest/V1/products/attributes/manufacturer/options")
+                    .addHeader("Authorization", adminToken)
+                    .execute().returnContent().asString();
+         
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+            log.error("Error getting Product List: ERROR: " + e.getMessage());
+        }
+        return response;
+    }
+    
     public String getProducts(String adminToken, MagentoSearch search) {
     		String response = null;
     		String queryString = search.toString();
     		String serviceURL = server + "/rest/V1/products?" + queryString;
+
     		
 		try {
 			log.debug("Calling product search [{}]", serviceURL);
