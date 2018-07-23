@@ -48,6 +48,11 @@ $( document ).ready(function() {
      
 </script>
 <div>
+
+<sly
+	data-sly-resource="${'searchFacets' @ resourceType='frontierwholesales/components/content/searchFacets'}"
+	data-sly-unwrap></sly>
+
 <section id="plp-search-product-grid">
     <div id="plp-search-header-holder" class="search-header-holder">
         <div id="search-heading">
@@ -68,109 +73,6 @@ $( document ).ready(function() {
 
 <div id="productlisttemplate"></div>
                         <script id="productlistTemplate" type="text/x-handlebars-template" >
-                       <section id="breadcrumbs">
-                            <div class="container">
-                                 <ol class="breadcrumb">
-                                 <li><a href="/content/frontierwholesales/en/home.html">Home</a></li>
-                                     {{#each categorylist.parent}}
-
-										 {{#if @last}}
-                                            <li><a class="active">{{.}}</a></li>
-                                            {{else}}
-                                            <li><a href="#">{{.}}</a></li>
-                                        {{/if}}
-										{{/each}}
-                                 </ol>
-                            </div>
-                       </section>           
-
-
-<aside id="plp-search-left-nav-filters">
-<div class="each-filter-section categories">
-                                   <h2 class="filter-heading">Categories</h2>
-                                   <ul class="each-filters-list">
-                                   {{#each categorylist.children}}
-
-                                        {{#moreCategories @index}}
-                                            <li class="filter-item visuallyhidden">
-                                             <a href="#" class="filter-link"><span class="text">{{..}}</span></a>
-                                            </li>
-										{{else}}
-                                        <li class="filter-item">
-                                             <a href="#" class="filter-link"><span class="text">{{..}}</span></a>
-                                        </li>
-                                       {{/moreCategories}}
-									{{/each}}
-                                    {{#moreCategories categorylist.children.length}}
-                                            <li class="filter-item filter-item-expand">
-                                             <button type="button" class="btn btn-view-more-filters">
-                                                  <span class="view-more-text">View More</span>
-                                             </button>
-                                        </li>
-
-                                       {{/moreCategories}}
-                                   </ul>
-                              </div>
-                              <div class="each-filter-section brand">
-                                   <h2 class="filter-heading">Brand</h2>
-                                   <ul class="each-filters-list">
-                                        <li class="filter-item">
-                                             <a href="#" class="filter-link checkbox-link selected-filter"><span class="text">Accessories</span></a>
-                                        </li>
-                                        <li class="filter-item">
-                                             <a href="#" class="filter-link checkbox-link"><span class="text">Seasonings</span></a>
-                                        </li>
-                                        <li class="filter-item">
-                                             <a href="#" class="filter-link checkbox-link"><span class="text">Choice Teas</span></a>
-                                        </li>
-                                        <li class="filter-item">
-                                             <a href="#" class="filter-link checkbox-link"><span class="text">Cusa Teas</span></a>
-                                        </li>
-                                        <li class="filter-item">
-                                             <a href="#" class="filter-link checkbox-link"><span class="text">Earth Mama Angel Baby</span></a>
-                                        </li>
-                                        <!-- we only show the first 5 filters for each section -->
-                                        <li class="filter-item filter-was-hidden">
-                                             <a href="#" class="filter-link checkbox-link"><span class="text">Frontier</span></a>
-                                        </li>
-                                        <li class="filter-item filter-was-hidden">
-                                             <a href="#" class="filter-link checkbox-link"><span class="text">Herbal Zap</span></a>
-                                        </li>
-                                        <li class="filter-item filter-was-hidden">
-                                             <a href="#" class="filter-link checkbox-link"><span class="text">Mate Factor</span></a>
-                                        </li>
-                                        <li class="filter-item filter-item-expand">
-                                             <button type="button" class="btn btn-view-more-filters show-additional">
-                                                  <span class="view-more-text">View Less</span>
-                                             </button>
-                                        </li>
-                                   </ul>
-                              </div>
-
-                              <div class="each-filter-section brand">
-                                   <h2 class="filter-heading">Price</h2>
-                                   <ul class="each-filters-list">
-                                        <li class="filter-item">
-                                             <a href="#" class="filter-link checkbox-link"><span class="text">$0-$25</span></a>
-                                        </li>
-                                        <li class="filter-item">
-                                             <a href="#" class="filter-link checkbox-link selected-filter"><span class="text">$25-$50</span></a>
-                                        </li>
-                                        <li class="filter-item">
-                                             <a href="#" class="filter-link checkbox-link"><span class="text">$50-$75</span></a>
-                                        </li>
-                                        <li class="filter-item">
-                                             <a href="#" class="filter-link checkbox-link"><span class="text">$75-$100</span></a>
-                                        </li>
-                                        <li class="filter-item">
-                                             <a href="#" class="filter-link checkbox-link"><span class="text">$100+</span></a>
-                                        </li>
-                                   </ul>
-                              </div>
-
-                         </aside>
-
-                       
                         <section id="plp-search-product-grid">
                              
 
