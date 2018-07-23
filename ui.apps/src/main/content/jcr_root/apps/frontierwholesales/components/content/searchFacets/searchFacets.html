@@ -1,0 +1,24 @@
+<sly data-sly-use.searchFacets="com.frontierwholesales.core.magento.services.models.SearchFacets"></sly>
+<aside id="plp-search-left-nav-filters" data-sly-list="${searchFacets.facets}">
+    <div class="each-filter-section">
+		<sly data-sly-test="${item.frontend_input == 'select'}">
+	        <h2 class="filter-heading"><label for="id_${item.attribute_code}">${item.default_frontend_label}</label></h2>
+	        <select id="id_${item.attribute_code}" class="form-control" name="${item.attribute_code}" data-sly-list.option="${item.options}">
+	        	<option data-attr-id="${option.value}" value="${option.value}">${option.label}</option>
+	        </select>
+		</sly>
+		<sly data-sly-test="${item.frontend_input == 'text'}">
+			<h2 class="filter-heading"><label for="id_${item.attribute_code}">${item.default_frontend_label}</label></h2>
+	        <input type="text" name="${item.attribute_code}"/>
+		</sly>
+		<sly data-sly-test="${item.frontend_input != 'select' && item.frontend_input != 'text'}">
+			<h2 class="filter-heading">${item.default_frontend_label}</h2>
+			<ul class="each-filters-list" data-sly-list.option="${item.options}">
+				<li class="filter-item">
+					<a href="#" data-attribute-id="${option.value}" class="filter-link checkbox-link"><span class="text">${option.label}</span></a>
+				</li>
+			</ul>
+		</sly>
+    </div>
+</aside>
+

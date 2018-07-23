@@ -210,6 +210,16 @@ Frontier.MagentoServices = new function(){
         });
     }
     
+    function getProductFacets(){
+        clearErrorMsg();
+        return $.ajax({
+            url: "/services/facetlist",
+            beforeSend:function(xhr){
+              xhr.overrideMimeType("application/json");
+          }
+        });
+    }
+    
     function getConfirmationData(serverURL,adminToken,confirmationNr){
          return $.ajax({
                 url: serverURL+"/rest/V1/orders/"+confirmationNr,

@@ -327,6 +327,22 @@ public class FrontierWholesalesMagentoCommerceConnector {
         return response;
     }
     
+    public String getProductFacets(String adminToken) {
+    	String response=null;
+    	try {
+    		
+            response = Request.Get(server+"/rest/V1/products/attributes?searchCriteria[currentPage]=1&searchCriteria[pageSize]=100&searchCriteria[filterGroups][0][filters][0][value]=1&searchCriteria[filterGroups][0][filters][0][field]=is_searchable&searchCriteria[filterGroups][0][filters][0][condition_type]=eq&searchCriteria[sortOrders][0][field]=position&searchCriteria[sortOrders][0][direction]=ASC&fields=items[attribute_code,default_frontend_label,frontend_input,backend_type,position,options]")
+                    .addHeader("Authorization", adminToken)
+                    .execute().returnContent().asString();
+         
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+            log.error("Error getting Product Facet List: ERROR: " + e.getMessage());
+        }
+        return response;
+    }
+    
     public String getProducts(String adminToken, MagentoSearch search) {
     		String response = null;
     		String queryString = search.toString();

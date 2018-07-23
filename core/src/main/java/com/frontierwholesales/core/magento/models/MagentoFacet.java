@@ -1,0 +1,58 @@
+package com.frontierwholesales.core.magento.models;
+
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+public final class MagentoFacet {
+	public final String position;
+	public final String attribute_code;
+	public final String frontend_input;
+	public final List<MagentoFacetOption> options;
+	public final String default_frontend_label;
+	public final String backend_type;
+	
+	@JsonCreator
+    public MagentoFacet( 	@JsonProperty("position") String position, 
+							@JsonProperty("attribute_code") String attribute_code,
+							@JsonProperty("frontend_input") String frontend_input,
+	    					@JsonProperty("options") List<MagentoFacetOption> options,
+							@JsonProperty("default_frontend_label") String default_frontend_label,
+							@JsonProperty("backend_type") String backend_type
+						) {
+        this.position = position;
+        this.attribute_code = attribute_code;
+        this.frontend_input = frontend_input;
+        this.options = options;
+        this.default_frontend_label = default_frontend_label;
+        this.backend_type = backend_type;
+    }
+
+	public String getPosition() {
+		return position;
+	}
+
+	public String getAttribute_code() {
+		return attribute_code;
+	}
+
+	public String getFrontend_input() {
+		return frontend_input;
+	}
+
+	public String getDefault_frontend_label() {
+		return default_frontend_label;
+	}
+
+	public String getBackend_type() {
+		return backend_type;
+	}
+	
+	public List<MagentoFacetOption> getOptions() {
+		return options;
+	}
+	
+}
