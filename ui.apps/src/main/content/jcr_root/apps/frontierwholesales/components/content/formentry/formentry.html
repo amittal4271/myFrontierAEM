@@ -1,5 +1,6 @@
 <sly
-    data-sly-use.clientLib="${'/libs/granite/sightly/templates/clientlib.html'}"/>
+    data-sly-use.clientLib="${'/libs/granite/sightly/templates/clientlib.html'}"
+     data-sly-use.template="core/wcm/components/commons/v1/templates.html" />
 <sly data-sly-call="${clientlib.js @ categories='formentry'}" data-sly-unwrap/>
 <sly data-sly-use.url="../../../global-useapi/serverurl.js"></sly>
 <script>
@@ -18,15 +19,17 @@
         <h4 class="subscribe-header">${properties.jcr:title}</h4>
         <p class="subscribe-text"> ${properties.text @context='html'}</p>
         <form id="newsletter-form" autocomplete="off">
-            <input name="email" class="form-control email-input" id="email-input" placeholder="Enter Your Email" required="required" type="email">
-            <input class="btn btn-submit-email" id="submit-email" value="${properties.label}" type="button">
+            <input name="email" class="form-control email-input" id="email-input" placeholder="${properties.placeholder || 'Enter Your Email' @ i18n}" required="required" type="email">
+            <input class="btn btn-submit-email" id="submit-email" value="${properties.label || 'Submit' @ i18n}" type="button">
         </form>
-        
+        <div class="badge-container" data-sly-list.child="${properties.socialMedia}">
+            <a href="https://www.instagram.com/frontiercoop/" target="_blank" class="badge badge--social badge--instagram" title="Frontier Co-op Wholesale on Instagram" data-sly-test="${child == 'instagram'}">${'Instagram' @ i18n}</a>
+			<a href="https://www.facebook.com/frontiercoop/" target="_blank" class="badge badge--social badge--facebook" title="Frontier Co-op Wholesale on Facebook" data-sly-test="${child == 'facebook'}">${'Facebook' @ i18n}</a>
+			<a href="https://twitter.com/FrontierCoop" target="_blank" class="badge badge--social badge--twitter" title="Frontier Co-op Wholesale on Twitter" data-sly-test="${child == 'twitter'}">${'Twitter' @ i18n}</a>
+			<a href="https://www.pinterest.com/frontiercoop/" target="_blank" class="badge badge--social badge--pinterest" title="Frontier Co-op Wholesale on Pinterest" data-sly-test="${child == 'pinterest'}">${'Pinterest' @ i18n}</a>
+        </div>
     </div>
 </div>
-
-
-<!-- ${properties.label} 
--->
+<sly data-sly-call="${template.placeholder @ isEmpty=!properties.jcr:title}"></sly>
 
 
