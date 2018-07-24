@@ -1,4 +1,6 @@
 <sly data-sly-use.url="../../global-useapi/serverurl.js"></sly>
+<sly data-sly-use.clientLib="${'/libs/granite/sightly/templates/clientlib.html'}"/>
+<sly data-sly-call="${clientlib.js @ categories='frontier-search-controller'}" data-sly-unwrap/>
 <div id="search-header-holder">
     <form method="get" action="/content/frontierwholesales/en/search.html" class="search-form form" data-suggestions-url="${url.server @ context='html'}/index.php/search/ajax/suggest/" id="search-form">
         <input class="form-control search-input" placeholder="Search &amp; Save..." name="q" autocomplete="off" type="text">
