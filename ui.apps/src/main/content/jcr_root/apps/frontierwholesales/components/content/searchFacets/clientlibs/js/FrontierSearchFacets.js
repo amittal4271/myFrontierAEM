@@ -6,17 +6,19 @@ Frontier.SearchFacets = Frontier.SearchFacets || {};
 Frontier.SearchFacets = new function() {
 
 	var filters = [],
-		elem = null;
+		facetSelector = "#plp-search-left-nav-filters select, #plp-search-left-nav-filters input";
 	
 	function init() {
 		console.log("Frontier Search Facets init");
-		
-		elem = $("#plp-search-left-nav-filters");
-		
-		$("#plp-search-left-nav-filters select").change(function(event) {
+				
+		$(facetSelector).change(function(event) {
 			console.log("Filter Changed, new filter list... ", getFilters());
 			Frontier.SearchController.updateResults();
 		});
+		
+		$(facetSelector).change(function(){
+		    	Frontier.SearchController.updateResults();
+	    });
 	}
 	
 	function addFilter(name, value) {
@@ -31,8 +33,21 @@ Frontier.SearchFacets = new function() {
 	function getFilters() {
 		filters = [];
 		
-		$.each($("#plp-search-left-nav-filters select"), function( key, selectFilter ) {
-			addFilter($(selectFilter).attr("name"), $(selectFilter).val());
+		$.each($(facetSelector), function( key, filterElem ) {
+			var value = "";
+			
+			if($(this).attr("type") == "checkbox") {
+				if(this.checked) {
+					value = "1";
+				} else {
+					value = "";
+				}
+			} else {
+				value = $(filterElem).val()
+			}
+			
+			addFilter($(filterElem).attr("name"), value);
+			
 		});
 		
 		
@@ -46,7 +61,6 @@ Frontier.SearchFacets = new function() {
 	 */
 
 	this.getFilters = getFilters;
-	this.elem = elem;
 	
 	$(document).ready(init);
 }();

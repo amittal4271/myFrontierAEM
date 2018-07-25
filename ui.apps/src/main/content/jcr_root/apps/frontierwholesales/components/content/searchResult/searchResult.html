@@ -1,51 +1,11 @@
+<sly data-sly-use.clientLib="${'/libs/granite/sightly/templates/clientlib.html'}"/>
+<sly data-sly-call="${clientlib.js @ categories='frontier-search-results'}" data-sly-unwrap/>
+
 <sly data-sly-use.result="search.js"></sly>
 <sly data-sly-use.user="${'com.frontierwholesales.core.models.SessionModel'}"></sly>
 
 <script>
-
-$( document ).ready(function() {
-	var products = ${result.products @ context = "unsafe"};
-    console.log("products returned", JSON.stringify(products));
-    
-    var template = $("#productlistTemplate").html();
-    
-    
-    Handlebars.registerHelper("recordsPerPage",function(recsPerPage,page,totalRecs){
-        var recordsPerPage = recsPerPage * page;
-        if( recordsPerPage > totalRecs){
-            return totalRecs;
-        }else{
-          return recordsPerPage;
-        }
-    });
-    
-    Handlebars.registerHelper("gt",function(pageTotal,options){
-        var fnTrue = options.fn,
-    fnFalse = options.inverse;
-       return (pageTotal > 28)?fnTrue():fnFalse();
-          
-    });
-    
-    Handlebars.registerHelper("moreCategories",function(index,options){
-			 var fnTrue = options.fn,
-    	fnFalse = options.inverse;
-       return (index > 4)?fnTrue():fnFalse();
-          
-    });
-
-
-    
-   var html = Handlebars.compile(template);
-  
-  
-    var processedHTML = html(products)
- 
-   
-    $('#productlisttemplate').empty();
-    $('#productlisttemplate').html(processedHTML); 
-});
-	 
-     
+	var embeddedFrontierSearchResults = ${result.products @ context = "unsafe"};
 </script>
 <div>
 
