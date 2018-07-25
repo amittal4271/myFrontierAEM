@@ -56,9 +56,16 @@ public class MagentoProductSearchServlet extends SlingSafeMethodsServlet {
 		
 		try {
 			
-			if(searchParam != null && searchParam.length()>0) {
-				search(writer, searchParam, currentPage, pageSize);
-			} 
+			//if(searchParam != null && searchParam.length()>0) {
+				//search(writer, searchParam, currentPage, pageSize);
+				String adminToken = connector.getAdminToken();
+				String productList = connector.getProducts(adminToken, request.getQueryString());
+				logger.debug("Magento product search returned: {}", productList);
+				
+				writer.println(productList);
+				writer.flush();
+			
+			//} 
 		
 		} catch (FrontierWholesalesBusinessException e) {
 			logger.error("Unable to process Magento search.", e);

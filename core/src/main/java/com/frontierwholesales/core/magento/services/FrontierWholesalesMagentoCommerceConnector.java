@@ -360,6 +360,21 @@ public class FrontierWholesalesMagentoCommerceConnector {
     		return response;
     }
     
+    public String getProducts(String adminToken, String queryString) {
+		String response = null;
+		String serviceURL = server + "/rest/V1/products?" + queryString;
+
+		try {
+			log.debug("Calling product search v2 [{}]", serviceURL);
+			response = Request.Get(serviceURL).addHeader("Authorization", adminToken)
+					.execute().returnContent().asString();
+		} catch (IOException e) {
+			log.error("Error getting Product List", e);
+		}
+			
+			return response;
+	}
+    
     public String getProductDetails(String adminToken,String  productID) {
     	
         String response=new String();       

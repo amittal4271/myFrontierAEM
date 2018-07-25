@@ -210,6 +210,16 @@ Frontier.MagentoServices = new function(){
         });
     }
     
+    function searchProducts(searchParams){
+    	console.log("Searching Products with queryString", searchParams);
+        return $.ajax({
+            url: "/bin/product/search?"+searchParams,
+            beforeSend:function(xhr){
+              xhr.overrideMimeType("application/json");
+          }
+        });
+    }
+    
     function getProductFacets(){
         clearErrorMsg();
         return $.ajax({
@@ -296,4 +306,5 @@ Frontier.MagentoServices = new function(){
     this.getProductListByCategory = getProductListByCategory;
     this.getConfirmationData = getConfirmationData;
     this.emailValidation = emailValidation;
+    this.searchProducts = searchProducts;
 }();
