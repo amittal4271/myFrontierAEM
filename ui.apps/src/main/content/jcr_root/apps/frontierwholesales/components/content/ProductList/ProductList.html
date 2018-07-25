@@ -3,6 +3,10 @@
 <sly data-sly-call="${clientlib.js @ categories='productlist'}" data-sly-unwrap/>
 <sly data-sly-use.user="${'com.frontierwholesales.core.models.SessionModel'}"></sly>
 <input id="categoryId" type=hidden value="${request.requestParameterMap['id'][0].toString}">
+<sly data-sly-use.url="../../global-useapi/serverurl.js"></sly>
+<script>
+  var serverURL = "${url.server @ context='html'}";
+</script>
 <article class="product-list-page">
     <div class="container">
     <div id="productlisttemplate"></div>
@@ -12,12 +16,13 @@
                                  <ol class="breadcrumb">
                                  <li><a href="/content/frontierwholesales/en/home.html">Home</a></li>
                                      {{#each categorylist.parent}}
-
+                                        {{#unless @first}}
 										 {{#if @last}}
-                                            <li><a class="active">{{.}}</a></li>
+                                            <li class="active">{{name}}</li>
                                             {{else}}
-                                            <li><a href="#">{{.}}</a></li>
+                                            <li><a href="/content/frontierwholesales/en/productlist.html?id={{id}}">{{name}}</a></li>
                                         {{/if}}
+                                     {{/unless}}
 										{{/each}}
                                  </ol>
                             </div>
@@ -25,87 +30,74 @@
 
 
 <aside id="plp-search-left-nav-filters">
+    {{#if categorylist.children.length}}
 <div class="each-filter-section categories">
-                                   <h2 class="filter-heading">Categories</h2>
+                                     <h2 class="filter-heading">Categories</h2>
                                    <ul class="each-filters-list">
-                                   {{#each categorylist.children}}
+                                   {{#each categorylist.children as |child|}}
 
                                         {{#moreCategories @index}}
                                             <li class="filter-item visuallyhidden">
-                                             <a href="#" class="filter-link"><span class="text">{{..}}</span></a>
+                                             <a href="/content/frontierwholesales/en/productlist.html?id={{child.id}}" class="filter-link"><span class="text">{{child.name}}</span></a>
                                             </li>
 										{{else}}
                                         <li class="filter-item">
-                                             <a href="#" class="filter-link"><span class="text">{{..}}</span></a>
+                                             <a href="/content/frontierwholesales/en/productlist.html?id={{child.id}}" class="filter-link"><span class="text">{{child.name}}</span></a>
                                         </li>
                                        {{/moreCategories}}
 									{{/each}}
-                                    {{#moreCategories categorylist.children.length}}
+                                    {{#viewMore categorylist.children.length}}
                                             <li class="filter-item filter-item-expand">
                                              <button type="button" class="btn btn-view-more-filters">
                                                   <span class="view-more-text">View More</span>
                                              </button>
                                         </li>
 
-                                       {{/moreCategories}}
+                                       {{/viewMore}}
                                    </ul>
+                                
                               </div>
-                              <div class="each-filter-section brand">
-                                   <h2 class="filter-heading">Brand</h2>
-                                   <ul class="each-filters-list">
-                                        <li class="filter-item">
-                                             <a href="#" class="filter-link checkbox-link selected-filter"><span class="text">Accessories</span></a>
-                                        </li>
-                                        <li class="filter-item">
-                                             <a href="#" class="filter-link checkbox-link"><span class="text">Seasonings</span></a>
-                                        </li>
-                                        <li class="filter-item">
-                                             <a href="#" class="filter-link checkbox-link"><span class="text">Choice Teas</span></a>
-                                        </li>
-                                        <li class="filter-item">
-                                             <a href="#" class="filter-link checkbox-link"><span class="text">Cusa Teas</span></a>
-                                        </li>
-                                        <li class="filter-item">
-                                             <a href="#" class="filter-link checkbox-link"><span class="text">Earth Mama Angel Baby</span></a>
-                                        </li>
-                                        <!-- we only show the first 5 filters for each section -->
-                                        <li class="filter-item filter-was-hidden">
-                                             <a href="#" class="filter-link checkbox-link"><span class="text">Frontier</span></a>
-                                        </li>
-                                        <li class="filter-item filter-was-hidden">
-                                             <a href="#" class="filter-link checkbox-link"><span class="text">Herbal Zap</span></a>
-                                        </li>
-                                        <li class="filter-item filter-was-hidden">
-                                             <a href="#" class="filter-link checkbox-link"><span class="text">Mate Factor</span></a>
-                                        </li>
-                                        <li class="filter-item filter-item-expand">
-                                             <button type="button" class="btn btn-view-more-filters show-additional">
-                                                  <span class="view-more-text">View Less</span>
-                                             </button>
-                                        </li>
-                                   </ul>
-                              </div>
+                        {{/if}}
+                                {{#if categorylist.filters.filters.length}}
+                                {{#each categorylist.filters.filters}}
+                                    {{#if @first}}
 
-                              <div class="each-filter-section brand">
-                                   <h2 class="filter-heading">Price</h2>
-                                   <ul class="each-filters-list">
-                                        <li class="filter-item">
-                                             <a href="#" class="filter-link checkbox-link"><span class="text">$0-$25</span></a>
-                                        </li>
-                                        <li class="filter-item">
-                                             <a href="#" class="filter-link checkbox-link selected-filter"><span class="text">$25-$50</span></a>
-                                        </li>
-                                        <li class="filter-item">
-                                             <a href="#" class="filter-link checkbox-link"><span class="text">$50-$75</span></a>
-                                        </li>
-                                        <li class="filter-item">
-                                             <a href="#" class="filter-link checkbox-link"><span class="text">$75-$100</span></a>
-                                        </li>
-                                        <li class="filter-item">
-                                             <a href="#" class="filter-link checkbox-link"><span class="text">$100+</span></a>
-                                        </li>
-                                   </ul>
-                              </div>
+                                     {{else}}
+                                    {{#if filter_values}}
+                                        
+                                       
+                                  <div class="each-filter-section brand">
+                                       <h2 class="filter-heading">{{filter_name}}</h2>
+
+                                       <ul data-code="{{filter_code}}" class="each-filters-list">
+                                           {{#each filter_values as |child|}}
+                                            {{#moreCategories @index}}
+                                            <li class="filter-item visuallyhidden">
+                                                 <a href="#" data-value="{{child.value}}" class="filter-link checkbox-link"><span class="text">{{{child.name}}}</span></a>
+                                            </li>
+                                           {{else}}
+                                            <li class="filter-item">
+                                                 <a href="#"  data-value="{{child.value}}" class="filter-link checkbox-link"><span class="text">{{{child.name}}}</span></a>
+                                            </li>
+                                            {{/moreCategories}}
+
+
+                                           {{/each}}
+                                            {{#viewMore filter_values.length}}
+                                            <li class="filter-item filter-item-expand">
+                                                 <button type="button" class="btn btn-view-more-filters">
+                                                      <span class="view-more-text">View More</span>
+                                                 </button>
+                                            </li>
+                                           {{/viewMore}}
+                                       </ul>
+
+                                  </div>
+                                    {{/if}}
+                                {{/if}}
+                                {{/each}}
+                                {{/if}}
+                             
 
                          </aside>
 
@@ -163,11 +155,20 @@
                                 <div id="product-grid" class="match-height">
                                   {{#items}}
                                    <div class="product-grid-item" >
-                                        <!--<span class="badge badge-sale">Sale</span>-->
+                                       
+                                        {{#ifEquals new_product}}
+                                            <span class="badge badge-new">New</span>
+                                        {{/ifEquals}}
+                                        {{#ifEquals on_sale}}
+                                            <span class="badge badge-sale">Sale</span>
+                                        {{/ifEquals}}
+                                        {{#ifEquals close_out}}
+                                            <span class="badge badge-closeout">Closeout</span>
+                                        {{/ifEquals}}
                                         <a href="/content/frontierwholesales/en/productdetail.html?sku={{sku}}" class="grid-item-link">
                                              <span class="grid-image-holder">
                                             
-                                              <img src="/content/dam/magento2/product{{imgPath}}" alt="Product Name">
+                                              <img src="{{imgPath}}" alt="Product Name">
                                                   
                                              </span>
                                              <span class="grid-item-number">
@@ -176,10 +177,19 @@
                                              <span class="grid-product-name">
                                                   {{name}}
                                              </span>
-                                             <span class="grid-product-price">
+                                            {{#if ${user.authToken != null @context='scriptString' }}} 
+                                            <span class="grid-product-price">
                                                   <!--<span class="product-sale-price">$5.80</span> -->
-                                                  <span class="product-now-price">Now {{ formattedPrice}}</span>
+                                                  <!--<span class="product-now-price">Now {{ formattedPrice}}</span>-->
+                                                
+                                                {{#if special_price includeZero=false}}
+                                                   <span class="product-sale-price">{{ formatNumber price style="currency" currency="USD"}}</span> 
+                                                   <span class="product-now-price">Now {{formatNumber special_price style="currency" currency="USD"}}</span>
+                                                {{else}}
+                                                    <span class="product-sale-price normal-price">{{ formatNumber price style="currency" currency="USD"}}</span>
+                                                {{/if}}
                                              </span>
+                                            {{/if}}
                                         </a>
                                         {{#if ${user.authToken != null @context='scriptString' }}}
                                        <div class="grid-add-to-cart">
@@ -199,13 +209,12 @@
                                         </div>
                                        
                                        <div class="product-wishlist">
-                                             <button class="btn btn-add-wishlist btn-wishlist">Add to Wishlist +</button>
+                                            <div id="message-{{sku}}" class="alert alert-add-to-cart" style="display: none;">Item added to your WishList!</div>
+                                             <button data-skuid="{{sku}}" class="btn btn-add-wishlist btn-wishlist">Add to Wishlist +</button>
                                              <div class="add-to-shelf btn">
-                                                  <select>
+                                                  <select data-prodid="{{id}}" data-wishsku="{{sku}}" class="requisition-list-select">
                                                        <option>Add to Shelves +</option>
-                                                       <option value="shelf1">Shelf 1</option>
-                                                       <option value="shelf2">Shelf 2</option>
-                                                       <option value="shelf3">Shelf 3</option>
+                                                      
                                                   </select>
                                              </div>
                                         </div>

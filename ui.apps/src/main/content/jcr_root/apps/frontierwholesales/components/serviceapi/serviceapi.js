@@ -141,10 +141,10 @@ Frontier.MagentoServices = new function(){
 
     }
     
-    function magentoLogin(serverURL,username,password){
+    function magentoLogin(serverURL,userName,password){
          var loginURL = serverURL+'/rest/V1/integration/customer/token';
         var jsonData = {};
-        var bReturn = false;
+        
         jsonData['username']=userName;
         jsonData['password']=password;
         return $.ajax({
@@ -295,6 +295,82 @@ Frontier.MagentoServices = new function(){
         });    
     }
     
+    function addItemToWishList(jsonData){
+       // clearErrorMsg();
+        return $.ajax({
+            url: "/services/productlist",
+            data:{wishlist:JSON.stringify(jsonData),action:"wishlist"},
+            method: "POST",
+            beforeSend:function(xhr){
+              xhr.overrideMimeType("application/json");
+          }
+        });
+    }
+    
+    function getUserRole(serverurl){
+        clearErrorMsg();
+        return $.ajax({
+            url: serverurl+"/rest/default/V1/fc/customers/me",
+            method: "GET",
+             timeout: serviceCallTimeout,
+          
+            headers:{
+
+                        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+                        'Authorization':getUserToken(),
+                        "Access-Control-Allow-Origin":serverurl,
+                        "Access-Control-Allow-Credentials":"true"
+                    },
+             beforeSend:function(xhr){
+                
+                  xhr.overrideMimeType("application/json");
+            }
+            
+        });
+    }
+    
+    function getRequisitionList(serverurl){
+        return $.ajax({
+            url: serverurl+"/rest/default/V1/frontier/customer/requisitionlist",
+            method: "GET",
+             timeout: serviceCallTimeout,
+          
+            headers:{
+
+                        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+                        'Authorization':getUserToken(),
+                        "Access-Control-Allow-Origin":serverurl,
+                        "Access-Control-Allow-Credentials":"true"
+                    },
+             beforeSend:function(xhr){
+                
+                  xhr.overrideMimeType("application/json");
+            }
+            
+        });
+    }
+    
+    function addRequisitionList(serverurl,jsonData){
+       // clearErrorMsg();
+        return $.ajax({
+            url: serverurl+"/rest/default/V1/frontier/customer/requisitionlistitem",
+            method: "POST",
+             timeout: serviceCallTimeout,
+          data:JSON.stringify(jsonData),
+            headers:{
+                        'Content-Type': 'application/json',
+                        'Authorization':getUserToken(),
+                        "Access-Control-Allow-Origin":serverurl,
+                        "Access-Control-Allow-Credentials":"true"
+                    },
+             beforeSend:function(xhr){
+                
+                  xhr.overrideMimeType("application/json");
+            }
+            
+        });
+    }
+    
     this.getCustomerDetails = getCustomerDetails;
     this.saveCustomerDetails = saveCustomerDetails;
     this.inviteCustomer = inviteCustomer;
@@ -307,4 +383,8 @@ Frontier.MagentoServices = new function(){
     this.getConfirmationData = getConfirmationData;
     this.emailValidation = emailValidation;
     this.searchProducts = searchProducts;
+    this.addItemToWishList = addItemToWishList;
+    this.getUserRole = getUserRole;
+    this.getRequisitionList = getRequisitionList;
+    this.addRequisitionList = addRequisitionList;
 }();

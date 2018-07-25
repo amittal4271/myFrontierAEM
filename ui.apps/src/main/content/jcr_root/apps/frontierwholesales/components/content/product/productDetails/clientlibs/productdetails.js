@@ -17,6 +17,36 @@ console.log("product details page...");
        }
 
     });  
+    
+      $(document).on('click','.btn-wishlist',function(e){
+        e.preventDefault();
+       var skuId = $(this).data('skuid');
+       
+        
+        addItemToWishList(skuId);
+        
+    });
+    
+     $(document).on('click','.requisition-list-select',function(e){
+       e.preventDefault(); 
+        var length = $(this).find("option").length;
+        if(length == 1){
+        var $thisObj = $(this);
+        retrieveRequisitionList($thisObj);
+        }
+    });
+    
+    $(document).on('change','.requisition-list-select',function(e){
+        e.preventDefault(); 
+        var id = $(this).data('prodid');
+        var sku = $(this).data('wishsku');
+        var qty = $(this).parent().parent().siblings().children().find('input').val();
+        if(qty !== undefined && qty !== ''){
+            var reqid = $(this).val();
+            addRequisitionList(reqid,id,qty,sku);
+        }
+        
+    });
 
 
 });
@@ -47,6 +77,7 @@ function getProductDetails(){
        
         var template = $("#productDetailsTemplate").html();
         var bCount=0;
+         HandlebarsIntl.registerWith(Handlebars);
         Handlebars.registerHelper("getAttrValues",function(attCode,value,count,options){
            
             var idx = $.inArray(attCode,summaryAttribute);
@@ -84,6 +115,21 @@ function getProductDetails(){
               
         });
         
+        
+         Handlebars.registerHelper("ifEquals",function(attrib,options){
+			 var fnTrue = options.fn,
+        	fnFalse = options.inverse;
+           return (attrib !== undefined && attrib.trim() !== '0')?fnTrue():fnFalse();
+              
+        });
+        
+        Handlebars.registerHelper("moreImages",function(index,options){
+			 var fnTrue = options.fn,
+        	fnFalse = options.inverse;
+           return (index < 6)?fnTrue():fnFalse();
+              
+        });
+        
 
         var html = Handlebars.compile(template);
 
@@ -113,8 +159,25 @@ function addItemToCart(sku,qty){
     console.log(jsonData);
     jsonData['action']='add';
     
+     Frontier.MagentoServices.addItemToCart(jsonData).done(function(cart){
+        console.log("result is "+cart);
+        hideLoadingScreen();
+        
+        
+        $('#cartMessage-'+sku).fadeIn('fast').delay(3000).fadeOut('fast');
+        var template = $("#minicartTemplate").html();
+        var cartTemplate = Handlebars.compile(template);
+        var html = cartTemplate(cart,cart.items.reverse());
+        $('#minicarttemplate').html(html); 
+        
+    }).fail(function(error){
+        console.log("error is "+error);
+         hideLoadingScreen();
+        enableErrorMsg(error.status);
+    });
+    
 
-    $.get("/services/cart",jsonData,function(){
+   /* $.get("/services/cart",jsonData,function(){
 
     }).done(function(result){
         console.log("result is "+result);
@@ -128,5 +191,64 @@ function addItemToCart(sku,qty){
         $('#minicarttemplate').html(html); 
         }
 
+    });*/
+}
+
+function addItemToWishList(sku){
+     var jsonData={};
+    jsonData['itemDetails']={};
+    var itemDetails={};
+    
+    itemDetails['product_sku']=sku;
+    itemDetails['store_id']='1';
+    itemDetails['website_id']='1';
+    showLoadingScreen();
+    
+        itemDetails['customer_id']=getCustomerIdFromCookie();
+         jsonData['itemDetails']=itemDetails;         
+         Frontier.MagentoServices.addItemToWishList(jsonData).done(function(wishlist){
+             hideLoadingScreen();
+             console.log("added to whishlist");
+              $('#message-'+sku).html("Item added to your WishList!");
+              $('#message-'+sku).fadeIn('fast').delay(3000).fadeOut('fast');
+         }).fail(function(error){
+              console.log("error "+error);
+              hideLoadingScreen();
+            enableErrorMsg(error.status);
+         });
+     
+}
+
+function retrieveRequisitionList(thisObj){
+     Frontier.MagentoServices.getRequisitionList(serverURL).done(function(list){
+         $.each(list,function(key,value){
+              thisObj.append($('<option/>',
+                                    {'value':value.id,'text':value.name}));
+         });
+        
+     }).fail(function(error){
+             hideLoadingScreen();
+            enableErrorMsg(error.status);
+    });
+}
+
+function addRequisitionList(reqid,prodid,qty,sku){
+    var jsonData={};
+   
+    var reqItems={};
+    reqItems['reqlistId']=reqid;
+    reqItems['skuId']=prodid;
+    reqItems['qty']=qty;
+    var reqData = [];
+    reqData.push(reqItems);
+    jsonData['reqitems']=reqData;
+    showLoadingScreen();
+    Frontier.MagentoServices.addRequisitionList(serverURL,jsonData).done(function(response){
+            hideLoadingScreen();
+            $('#message-'+sku).html("Item added to your Shelves!");
+            $('#message-'+sku).fadeIn('fast').delay(3000).fadeOut('fast');
+    }).fail(function(error){
+        hideLoadingScreen();
+        enableErrorMsg(error.status);
     });
 }

@@ -67,8 +67,64 @@ console.log("product list page...");
         var recsPerPage = $('#itemPerPageSelect').val();
         getProductListByCategory(currentPage,recsPerPage,sortBy);
     });
+    
+    $(document).on('click','.btn-wishlist',function(e){
+        e.preventDefault();
+       var skuId = $(this).data('skuid');
+       
+        
+        addItemToWishList(skuId);
+        
+    });
+    
+    $(document).on('click','.requisition-list-select',function(e){
+       e.preventDefault(); 
+        var length = $(this).find("option").length;
+        if(length == 1){
+        var $thisObj = $(this);
+        retrieveRequisitionList($thisObj);
+        }
+    });
+    
+    $(document).on('change','.requisition-list-select',function(e){
+        e.preventDefault(); 
+        var id = $(this).data('prodid');
+        var sku = $(this).data('wishsku');
+        var qty = $(this).parent().parent().siblings().children().find('input').val();
+        if(qty !== undefined && qty !== ''){
+            var reqid = $(this).val();
+            addRequisitionList(reqid,id,qty,sku);
+        }
+        
+    });
    
 });
+
+function addItemToWishList(sku){
+     var jsonData={};
+    jsonData['itemDetails']={};
+    var itemDetails={};
+    
+    itemDetails['product_sku']=sku;
+    itemDetails['store_id']='1';
+    itemDetails['website_id']='1';
+    showLoadingScreen();
+    
+       
+        itemDetails['customer_id']=getCustomerIdFromCookie();
+         jsonData['itemDetails']=itemDetails;         
+         Frontier.MagentoServices.addItemToWishList(jsonData).done(function(wishlist){
+             hideLoadingScreen();
+             console.log("added to whishlist");
+              $('#message-'+sku).html("Item added to your WishList!");
+              $('#message-'+sku).fadeIn('fast').delay(3000).fadeOut('fast');
+         }).fail(function(error){
+              console.log("error "+error);
+              hideLoadingScreen();
+            enableErrorMsg(error.status);
+         });
+     
+}
 
 function getProductListByCategory(currentPage,recsPerPage,sortBy){
     var jsonData={};
@@ -90,11 +146,14 @@ function getProductListByCategory(currentPage,recsPerPage,sortBy){
     
     
     Frontier.MagentoServices.getProductListByCategory(jsonData).done(function(productList){
-        hideLoadingScreen();
+       
      
-         var template = $("#productlistTemplate").html();
+       
+             hideLoadingScreen();
+           
+             var template = $("#productlistTemplate").html();
         
-     
+      HandlebarsIntl.registerWith(Handlebars);
         Handlebars.registerHelper("recordsPerPage",function(recsPerPage,page,totalRecs){
             var recordsPerPage = recsPerPage * page;
             if( recordsPerPage > totalRecs){
@@ -117,7 +176,26 @@ function getProductListByCategory(currentPage,recsPerPage,sortBy){
            return (index > 4)?fnTrue():fnFalse();
               
         });
+        
+         Handlebars.registerHelper("ifEquals",function(attrib,options){
+			 var fnTrue = options.fn,
+        	fnFalse = options.inverse;
+           return (attrib !== undefined && attrib.trim() !== '0')?fnTrue():fnFalse();
+              
+        });
 
+         Handlebars.registerHelper("viewMore",function(index,options){
+			 var fnTrue = options.fn,
+        	fnFalse = options.inverse;
+           return (index > 5)?fnTrue():fnFalse();
+              
+        });
+        
+        Handlebars.registerHelper("noCatFilter",function(name,options){
+             var fnTrue = options.fn,
+        	fnFalse = options.inverse;
+           return (name !== undefined && name !== "Category")?fnTrue():fnFalse();
+        });
 
         
        var html = Handlebars.compile(template);
@@ -148,6 +226,8 @@ function getProductListByCategory(currentPage,recsPerPage,sortBy){
        }else{
            $('#previous').addClass('disabled');
        }
+       
+        
     }).fail(function(error){
          hideLoadingScreen();
         enableErrorMsg(error.status);
@@ -195,4 +275,38 @@ function addItemToCart(sku,qty){
         enableErrorMsg(error.status);
     });
    
+}
+
+function retrieveRequisitionList(thisObj){
+     Frontier.MagentoServices.getRequisitionList(serverURL).done(function(list){
+         $.each(list,function(key,value){
+              thisObj.append($('<option/>',
+                                    {'value':value.id,'text':value.name}));
+         });
+        
+     }).fail(function(error){
+             hideLoadingScreen();
+            enableErrorMsg(error.status);
+    });
+}
+
+function addRequisitionList(reqid,prodid,qty,sku){
+    var jsonData={};
+   
+    var reqItems={};
+    reqItems['reqlistId']=reqid;
+    reqItems['skuId']=prodid;
+    reqItems['qty']=qty;
+    var reqData = [];
+    reqData.push(reqItems);
+    jsonData['reqitems']=reqData;
+    showLoadingScreen();
+    Frontier.MagentoServices.addRequisitionList(serverURL,jsonData).done(function(response){
+            hideLoadingScreen();
+            $('#message-'+sku).html("Item added to your Shelves!");
+            $('#message-'+sku).fadeIn('fast').delay(3000).fadeOut('fast');
+    }).fail(function(error){
+        hideLoadingScreen();
+        enableErrorMsg(error.status);
+    });
 }

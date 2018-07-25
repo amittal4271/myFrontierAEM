@@ -1,5 +1,6 @@
 package com.frontierwholesales.core.magento.services.servlets;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
 
@@ -52,12 +53,12 @@ public class FrontierWholesalesPDPServlet  extends SlingAllMethodsServlet{
 			String productSku = request.getParameter("sku");
 			log.debug("Product details for #sku: {}",productSku);
 			
-			String adminToken = getTokenFromSession(request);
-			//String categories = commerceConnector.getCategories(adminToken, categoryId);
+			String adminToken  = commerceConnector.getAdminToken();
+			
 			if ((productSku != null) && (productSku.length()>0)){
 				System.out.println("DEBUG: "+adminToken);
 				String productDetails = commerceConnector.getProductDetails(adminToken, productSku);		
-				response.getOutputStream().println(parseJsonObject(productDetails));
+				response.getOutputStream().println(parseJsonObject(productDetails,request));
 				// TODO this may not be needed depending on how the final design of PDP looks
 				setProductMasterProperty(request, productSku);
 			}
@@ -71,65 +72,62 @@ public class FrontierWholesalesPDPServlet  extends SlingAllMethodsServlet{
 		}
 	}
 
-	private String getTokenFromSession(SlingHttpServletRequest request) throws Exception{
-		log.debug("getToken from session start");
-		String adminToken = (String)request.getSession().getAttribute(FrontierWholesalesConstants.MAGENTO_ADMIN_TOKEN);
-		
-		if(null == adminToken) {
-			adminToken = commerceConnector.getAdminToken();
-			
-			request.getSession().setAttribute(FrontierWholesalesConstants.MAGENTO_ADMIN_TOKEN, adminToken);
-		}
-		log.debug("getToken from session end");
-		return adminToken;
-	}
 	
-	private String getProduct(String productSku,SlingHttpServletRequest request) throws Exception{
+	
+private JsonArray getImagePath(String productSku,SlingHttpServletRequest request) throws Exception{
 		
 		Session session = request.getResourceResolver().adaptTo(Session.class);
 		QueryManager queryManager = session.getWorkspace().getQueryManager();
 		String path="";
 		String imgPath="";
-		String nodeTitle="";
+		//String nodeTitle="";
 		Resource res = request.getResource();
 		ResourceResolver resourceResolver = request.getResourceResolver();
-		//String productSku = productSku
-		//String[] nameSplit = name.split("-");
-		//String tmpname="MT02";
+		
+		JsonArray array = new JsonArray();
 		
 		String sqlStatement="SELECT * FROM [nt:unstructured] AS node\n" + 
-	    		"WHERE ISDESCENDANTNODE(node, \"/etc/commerce/products/we-retail\")\n" + 
-	    		"AND CONTAINS([baseSku],'"+ productSku+"') AND CONTAINS([cq:commerceType],'product')";		
+	    		"WHERE ISDESCENDANTNODE(node, \"/content/dam/FrontierImages/product/"+ productSku+"\")"; 
+	    			
 		
 		Query query = queryManager.createQuery(sqlStatement,"JCR-SQL2");	   		   
 	    QueryResult result = query.execute();	  
 	    NodeIterator nodeIter = result.getNodes();
-		   
+		   log.debug("before loop");
+		   int count=1;
 	    while ( nodeIter.hasNext() ) {
+	    	JsonObject obj = new JsonObject();
 	    	Node node = nodeIter.nextNode();
 	        path = node.getPath();
-	        System.out.println("-DEBUG: "+path);
+	        log.debug("inside loop: "+path);
 	        res = resourceResolver.getResource(path);	        
-
-            ValueMap properties = res.adaptTo(ValueMap.class);
-            nodeTitle = properties.get("jcr:title", (String) null);	
-            System.out.println("-DEBUG: "+nodeTitle);
-	        	    	
-    		NodeIterator cNode = node.getNodes();
-			while ( cNode.hasNext() ) {
-				Node imgNode = cNode.nextNode();
-				if(imgNode.getName().equals("image")) {
-					imgPath = imgNode.getProperty("fileReference").getValue().getString();
-				}				 				 
-			}
+	        String name = node.getName();
+	        if(name.equals("jcr:content")) {
+	        	log.debug("INSIDE jcr:content");
+	        	ValueMap properties = res.adaptTo(ValueMap.class);
+	        	String imgName = properties.get("cq:name", (String) null);	
+	        	log.debug("image full path is "+imgName);
+	        	String relativePath = properties.get("dam:relativePath",(String)null);
+	        	if(relativePath != null) {
+	        		log.debug("image name "+imgName);
+	        		imgPath = "/content/dam/"+ relativePath;
+	        		obj.addProperty("path", imgPath);
+	        		count++;
+	        		array.add(obj);
+	        	}
+	        	
+	        	
+	        }
+           
+	       
 		    		
 
 	    }
 	    
-	    return imgPath;		    
+	    return array;		    
 	}
 	
-	private String parseJsonObject(String productDetails) throws Exception{
+	private String parseJsonObject(String productDetails,SlingHttpServletRequest request) throws Exception{
 		
 		Gson json = new Gson();
 		JsonElement element = json.fromJson(productDetails, JsonElement.class);
@@ -141,18 +139,22 @@ public class FrontierWholesalesPDPServlet  extends SlingAllMethodsServlet{
 					
 		JsonElement priceElement = object.get("price");
 		object.addProperty("formattedPrice", "$"+priceFormat.format(priceElement.getAsDouble()));
+		JsonElement skuElement = object.get("sku");
+		object.add("imgPath", getImagePath(skuElement.getAsString(),request));
 		
 		JsonArray attributesArray = object.getAsJsonArray("custom_attributes");
 		
 		for(JsonElement attributesElement:attributesArray) {
 			JsonObject attrObject = attributesElement.getAsJsonObject();
 			JsonElement codeElement = attrObject.get("attribute_code");
-			if(codeElement.getAsString().equals("brand")) {
+			if(codeElement.getAsString().equals("special_price")) {
+				
+				object.addProperty("special_price", attrObject.get("value").getAsDouble());
+			}
+			if(codeElement.getAsString().equals("manufacturer")) {
 				object.addProperty("brand", attrObject.get("value").getAsString());
 			}
-			if(codeElement.getAsString().equals("image")) {
-				object.addProperty("imgPath", attrObject.get("value").getAsString());
-			}
+			
 			if(codeElement.getAsString().equals("description")) {
 				object.addProperty("description", attrObject.get("value").getAsString());
 			}
@@ -198,6 +200,18 @@ public class FrontierWholesalesPDPServlet  extends SlingAllMethodsServlet{
 			if(codeElement.getAsString().equals("safety_info")) {
 				
 				object.addProperty("safety_info", attrObject.get("value").getAsString());
+			}
+			
+			if(codeElement.getAsString().equals("new_product")) {
+				object.addProperty("new_product", attrObject.get("value").getAsString());
+			}
+			
+			if(codeElement.getAsString().equals("close_out")) {
+				object.addProperty("close_out", attrObject.get("value").getAsString());
+			}
+			
+			if(codeElement.getAsString().equals("on_sale")) {
+				object.addProperty("on_sale", attrObject.get("value").getAsString());
 			}
 		}
 		

@@ -1,13 +1,24 @@
 package com.frontierwholesales.core.magento.services.servlets;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
 
+import javax.jcr.Node;
+import javax.jcr.NodeIterator;
+import javax.jcr.Session;
+import javax.jcr.query.Query;
+import javax.jcr.query.QueryManager;
+import javax.jcr.query.QueryResult;
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
+import org.apache.sling.api.request.RequestPathInfo;
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.api.servlets.HttpConstants;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
 import org.osgi.framework.Constants;
@@ -45,6 +56,9 @@ public class FrontierWholesalesProductListServlet extends SlingAllMethodsServlet
 			throws ServletException, IOException {
 		
 		log.debug("doGet FrontierWholesalesProductListServlet Start here ");
+		RequestPathInfo path = request.getRequestPathInfo();
+		String selString = path.getSelectorString();
+		log.debug("Selector string is "+selString);
 		try {
 			FrontierWholesalesProductSearch search = new FrontierWholesalesProductSearch();
 			int currentPage = Integer.parseInt(request.getParameter("currentPage"));
@@ -66,21 +80,45 @@ public class FrontierWholesalesProductListServlet extends SlingAllMethodsServlet
 			
 			String catList = commerceConnector.getParentChildrenCategories(adminToken, categoryId);
 			
-			response.getOutputStream().println(parseJsonObject(productList,catList,noOfRecsPerPage,currentPage));
+			response.getOutputStream().println(parseJsonObject(productList,catList,noOfRecsPerPage,currentPage,request));
 		}catch(Exception anyEx) {
 			log.error("Error in productList "+anyEx.getMessage());
 			response.getOutputStream().println("Error");
 		}
 	}
 	
+	@Override
+	protected void doPost(SlingHttpServletRequest request, SlingHttpServletResponse response)
+			throws ServletException, IOException {
+		
+		log.debug("doPost FrontierWholesalesProductListServlet Start here ");
+		try {
+			
+			String adminToken = commerceConnector.getAdminToken();
+			String action = request.getParameter("action");
+			String jsonData = request.getParameter("wishlist");
+			String wishList = commerceConnector.addItemToWishList(adminToken, jsonData);
+			JsonObject object = new JsonObject();
+			if(wishList != null) {
+			
+				object.addProperty("WishList", "Added To WishList");
+			}
+			response.getOutputStream().println(object.toString());
+		}catch(Exception anyEx) {
+			log.error("Error in productList "+anyEx.getMessage());
+			response.getOutputStream().println("Error");
+		}
+		
+		log.debug("doPost FrontierWholesalesProductListServlet End here ");
+	}
 	
 	
-	private String parseJsonObject(String productList,String catList,int recsPerPage,int currentPage
-			) throws Exception{
+	private String parseJsonObject(String productList,String catList,int recsPerPage,int currentPage,
+			SlingHttpServletRequest request) throws Exception{
 		
 		Gson json = new Gson();
 		JsonElement element = json.fromJson(productList, JsonElement.class);
-		//JsonElement catElement = json.fromJson(categories, JsonElement.class);
+		
 		
 		JsonObject object = element.getAsJsonObject();
 		JsonArray itemArray = object.getAsJsonArray("items");
@@ -91,17 +129,37 @@ public class FrontierWholesalesProductListServlet extends SlingAllMethodsServlet
 			
 			JsonElement itemElement = itemArray.get(i);
 			JsonObject itemObject = itemElement.getAsJsonObject();
-			JsonElement priceElement = itemObject.get("price");
-			itemObject.addProperty("formattedPrice", "$"+priceFormat.format(priceElement.getAsDouble()));
+			//JsonElement priceElement = itemObject.get("price");
+			//itemObject.addProperty("formattedPrice", "$"+priceFormat.format(priceElement.getAsDouble()));
+			JsonElement skuElement = itemObject.get("sku");
 			
+			itemObject.addProperty("imgPath", getImagePath(skuElement.getAsString(),request));
 			JsonArray attributesArray = itemObject.getAsJsonArray("custom_attributes");
 			
 			for(JsonElement attributesElement:attributesArray) {
 				JsonObject attrObject = attributesElement.getAsJsonObject();
 				JsonElement codeElement = attrObject.get("attribute_code");
-				if(codeElement.getAsString().equals("image")) {
-					itemObject.addProperty("imgPath", attrObject.get("value").getAsString());
+				
+				
+				
+				if(codeElement.getAsString().equals("new_product")) {
+					itemObject.addProperty("new_product", attrObject.get("value").getAsString());
 				}
+				
+				if(codeElement.getAsString().equals("close_out")) {
+					itemObject.addProperty("close_out", attrObject.get("value").getAsString());
+				}
+				
+				if(codeElement.getAsString().equals("on_sale")) {
+					itemObject.addProperty("on_sale", attrObject.get("value").getAsString());
+				}
+				
+				if(codeElement.getAsString().equals("special_price")) {
+					
+					itemObject.addProperty("special_price", attrObject.get("value").getAsDouble());
+				}
+						
+				
 			}
 		}
 		
@@ -123,6 +181,54 @@ public class FrontierWholesalesProductListServlet extends SlingAllMethodsServlet
 		object.add("categorylist", catListElement);
 		//object.add("categories", catElement.getAsJsonObject());
 		return object.toString();
+	}
+	
+private String getImagePath(String productSku,SlingHttpServletRequest request) throws Exception{
+		
+		Session session = request.getResourceResolver().adaptTo(Session.class);
+		QueryManager queryManager = session.getWorkspace().getQueryManager();
+		String path="";
+		String imgPath="";
+		//String nodeTitle="";
+		Resource res = request.getResource();
+		ResourceResolver resourceResolver = request.getResourceResolver();
+		
+		
+		String sqlStatement="SELECT * FROM [nt:unstructured] AS node\n" + 
+	    		"WHERE ISDESCENDANTNODE(node, \"/content/dam/FrontierImages/product/"+ productSku+"\")"; 
+	    			
+		
+		Query query = queryManager.createQuery(sqlStatement,"JCR-SQL2");	   		   
+	    QueryResult result = query.execute();	  
+	    NodeIterator nodeIter = result.getNodes();
+		   log.debug("before loop");
+	    while ( nodeIter.hasNext() ) {
+	    	Node node = nodeIter.nextNode();
+	        path = node.getPath();
+	        log.debug("inside loop: "+path);
+	        res = resourceResolver.getResource(path);	        
+	        String name = node.getName();
+	        if(name.equals("jcr:content")) {
+	        	log.debug("INSIDE jcr:content");
+	        	ValueMap properties = res.adaptTo(ValueMap.class);
+	        	
+	        	
+	        		String relativePath = properties.get("dam:relativePath",(String)null);
+		        	
+		        	if(relativePath != null) {
+		        		log.debug("image name "+relativePath);
+		        		imgPath = "/content/dam/"+ relativePath;
+		        	}
+	        	}
+	        	
+	        	
+	        }
+           
+	       
+		    		
+
+	    
+	    return imgPath;		    
 	}
 	
 	

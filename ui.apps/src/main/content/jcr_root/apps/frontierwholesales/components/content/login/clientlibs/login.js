@@ -22,7 +22,7 @@ $("#btn-login").click(function(e){
     clearErrorMessages();
     var valid =  validateForm(userName,password);
     if(valid){ 
-       magentoLogin(serverURL,userName,password);
+       login(serverURL,userName,password);
         
     } else{ 
        
@@ -55,13 +55,12 @@ function magentoLogin(serverURL,userName,password){
          url: loginURL,
          method: 'POST',
         data:JSON.stringify(jsonData),
-         // crossDomain: "true",
-         dataType:"text",
-         beforeSend: function(xhr){
-              xhr.setRequestHeader('Content-Type', 'application/json');
-            }
-        
-       }).done(function(results){
+          crossDomain: "true",
+        headers:{
+            "content-Type":"application/json",
+            "Access-Control-Allow-Origin":serverURL,
+            "Access-Control-Allow-Credentials":"true"
+        }}).done(function(results){
          console.log('logged into Magento... '+results);
           var regx=new RegExp("\"","g");
         results=results.replace(regx,"");
@@ -151,3 +150,50 @@ function clearErrorMessages(){
 }
 
 
+
+
+function login(serverURL,username,password){
+    showLoadingScreen();
+    Frontier.MagentoServices.magentoLogin(serverURL,username,password).done(function(results){
+        var regx=new RegExp("\"","g");
+        results=results.replace(regx,"");
+         
+           var jsonData={};
+         jsonData['token']="Bearer "+results;
+        
+         var cookieData = "CustomerData="+JSON.stringify(jsonData)+"; path=/";
+        
+         addCookie(cookieData);
+        Frontier.MagentoServices.getUserRole(serverURL).done(function(customer){
+            hideLoadingScreen();
+             try{
+               
+                 var jsonData={};
+                 jsonData['token']="Bearer "+results;
+                 jsonData['email']=customer.frontier_customer.email;
+                 jsonData['id']=customer.frontier_customer.id;
+                 jsonData['role_name']=customer.role_name;
+                 jsonData['role_id']=customer.role_id;
+                 jsonData['company_name']=customer.company_name;
+                 jsonData['company_id']=customer.company_id;
+                 var cookieData = "CustomerData="+JSON.stringify(jsonData)+"; path=/";
+                addCookie(cookieData);
+                  window.location.href=Granite.HTTP.externalize(getRedirectPath());
+            }catch(error){
+                console.log("invalid json format "+error);
+                enableErrorMsg('403');
+                return false;
+            }
+        }).fail(function(error){
+            console.log("failed to get customer details "+error);
+            hideLoadingScreen();
+             $('.login-text').css('display','block');
+             return false;
+        });
+    }).fail(function(error){
+         console.log("login failure "+error);
+        hideLoadingScreen();
+         $('.login-text').css('display','block');
+             return false;
+    });
+}

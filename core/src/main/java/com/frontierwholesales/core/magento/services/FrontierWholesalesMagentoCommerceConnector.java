@@ -535,5 +535,33 @@ public class FrontierWholesalesMagentoCommerceConnector {
     	log.debug("getParentChildrenCategories End");
     	return response;
     }
+    
+    public String addItemToWishList(String adminToken,String jsonData) throws Exception{
+    	log.debug("addItemToWishList Start");
+    	
+	    	String response = Request.Post(server+"/rest/all/V1/frontier/wishlist/add")
+					.addHeader("Authorization",adminToken)
+					.addHeader("ContentType","application/json")
+					.bodyString(jsonData,ContentType.APPLICATION_JSON)
+					.execute().returnContent().asString();
+	    	
+	    	log.debug("addItemToWishList End");
+	    	return response;
+    	
+    }
+    
+    public String getRequisitionList(String userToken) throws Exception{
+    	log.debug("getRequisitionList Start");
+    	String response = Request.Get(server+"/rest/default/V1/frontier/customer/requisitionlist")
+				.addHeader("Authorization",userToken)
+				.execute().returnContent().asString();
+
+    	log.debug("getRequisitionList End");
+    	return response;
+    	
+    	
+    }
 
 }
+
+

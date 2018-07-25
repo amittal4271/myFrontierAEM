@@ -1,5 +1,12 @@
-<sly data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html" data-sly-call="${clientlib.css @ categories='frontier.structure.productdetails'}" />
-<sly data-sly-use.clientLib="${'/libs/granite/sightly/templates/clientlib.html'}" data-sly-call="${clientlib.js @ categories='frontier.structure.productdetails'}" />   
+<sly data-sly-use.clientlib="${'/libs/granite/sightly/templates/clientlib.html'}" data-sly-call="${clientlib.css @ categories='frontier.structure.productdetails'}" />
+<sly data-sly-use.clientLib="${'/libs/granite/sightly/templates/clientlib.html'}" data-sly-call="${clientlib.js @ categories='frontier.structure.productdetails'}" /> 
+
+<sly data-sly-use.url="../../../global-useapi/serverurl.js"></sly>
+<script>
+  var serverURL = "${url.server @ context='html'}";
+</script>
+
+<input id="testid" type='hidden' value="${request.requestPathInfo.selectorString}"/>
 <input id="productId" type=hidden value="${request.requestParameterMap['sku'][0].toString}"/>
 <input id="currentPagePath" type=hidden value="${currentPage.path}"/>
 
@@ -9,7 +16,7 @@
 <input id="infoAttribute" type="hidden" value="${properties.infoAttribute}"/>
 <input id="additionalAttribute" type="hidden" value="${properties.additionalAttribute}"/>
 <sly data-sly-use.user="${'com.frontierwholesales.core.models.SessionModel'}"></sly>
-<!-- /*<sly data-sly-test.user="${currentSession.userID}" />  */-->
+
 <div data-sly-test="${!request.requestParameterMap['sku'][0].toString}">No product SKU provided in request</div>
 <sly data-sly-test="${request.requestParameterMap['sku'][0].toString}">
 <div data-sly-test="${wcmmode.edit && !model.hasVariants}" class="cq-placeholder"
@@ -19,22 +26,48 @@
 </section>                             
 <script id="productDetailsTemplate" type="text/x-handlebars-template" >
     <div class="container" >
+         <section id="breadcrumbs">
+                            <div class="container">
+                                 <ol class="breadcrumb">
+                                 <li><a href="/content/frontierwholesales/en/home.html">Home</a></li>
+                                    
+                                    <li class="active">{{name}}</li>
+                                           
+                                 </ol>
+                            </div>
+                       </section>  
 		<div id="product-images">
               <div id="product-thumbnails">
-                                   <button type="button" class="each-thumbnail active" data-mainimageswitch="/content/dam/magento2/product{{imgPath}}">
-                                        <img src="/content/dam/magento2/product{{thumbnail}}"/>
-                                   </button>
-                                   <button type="button" class="each-thumbnail" data-mainimageswitch="/content/dam/magento2/product{{imgPath}}">
-                                        <img src="/content/dam/magento2/product{{thumbnail}}"/>
-                                   </button>
-                                   <button type="button" class="each-thumbnail" data-mainimageswitch="/content/dam/magento2/product/m/t/mt01-gray_main.jpg">
-                                        <img src="/content/dam/magento2/product/m/t/mt01-gray_main.jpg"/>
-                                   </button>
+                  {{#each imgPath}}
+                  
+                      {{#if @first}}
+                                       <button type="button" class="each-thumbnail active" data-mainimageswitch="{{path}}">
+                                            <img src="{{path}}"/>
+                                       </button>
+                      {{else}}
+                       <button type="button" class="each-thumbnail {{@first}}" data-mainimageswitch="{{path}}">
+                                            <img src="{{path}}"/>
+                                       </button>
+                      {{/if}}
+                 
+                  {{/each}}
               </div>
               <div id="product-main-image">
-                                   <span class="badge badge-sale">Sale</span>
+                                    {{#ifEquals new_product}}
+                                            <span class="badge badge-new">New</span>
+                                        {{/ifEquals}}
+                                        {{#ifEquals on_sale}}
+                                            <span class="badge badge-sale">Sale</span>
+                                        {{/ifEquals}}
+                                        {{#ifEquals close_out}}
+                                            <span class="badge badge-closeout">Closeout</span>
+                                        {{/ifEquals}}
                                    <div class="product-main-image-holder">
-                                        <img alt="Image Title" src="/content/dam/magento2/product{{imgPath}}" class="img-responsive" />
+                                       {{#each imgPath}}
+                                           {{#if @first}}
+                                            <img alt="Image Title" src="{{path}}" class="img-responsive" />
+                                           {{/if}}
+                                       {{/each}}
                                    </div>
               </div>
         </div>
@@ -51,17 +84,26 @@
                                         <a href="#" class="dd-value-link">{{brand}}</a>
                                    </span>
                                     {{/if}}
+                                    {{#if barcode.length}}
                                    <span class="dt-label">UPC: </span>
                                     
                                    <span class="dd-value upc">{{barcode}}</span>
+                                    {{/if}}
                                     
                                    
             </div>
+             {{#if ${user.authToken != null @context='scriptString' }}} 
 			<div class="product-price-summary"> 
+                                {{#if special_price includeZero=false}}
                                    <span class="product-sale-price">{{ formattedPrice}}</span> 
-                                   <span class="product-now-price">Now {{ formattedPrice}}</span>
-                                   <span class="product-save-percent">Save 25%</span>
+                                   <span class="product-now-price">Now {{formatNumber special_price style="currency" currency="USD"}}</span>
+                                {{else}}
+                                    <span class="product-sale-price normal-price"> {{ formattedPrice}}</span>
+                                {{/if}}
+                                    <!-- Magento Attribute TDB -->
+                                   <!--<span class="product-save-percent">Save 25%</span>-->
             </div>
+            {{/if}}
             {{#if extension_attributes.stock_item.is_in_stock}}
                 <div class="product-detail-message">Availability: In Stock</div>
             {{else}}
@@ -79,11 +121,17 @@
             </div>
              {{#if ${user.authToken != null @context='scriptString' }}}
             <div class="product-wishlist">
-                <button class="btn btn-add-wishlist btn-wishlist">Add to Wishlist +</button>
-                <button class="btn btn-add-wishlist btn-shelve">Add to Shelves +</button>
+                 <div id="message-{{sku}}" class="alert alert-add-to-cart" style="display: none;"></div>
+                <button data-skuid="{{sku}}" class="btn btn-add-wishlist btn-wishlist">Add to Wishlist +</button>
+                <div class="add-to-shelf btn">
+                      <select data-prodid="{{id}}" data-wishsku="{{sku}}" class="requisition-list-select">
+                           <option>Add to Shelves +</option>
+
+                      </select>
+                 </div>
             </div>
 
-			<!--/* TODO: Build valid form action and items */-->
+			
 			<div>
                 <input type="hidden" name="redirect" v-model="product.pagePath" data-sly-attribute="${hapiProductForm.itemprop.redirectPath}" />
                 <input type="hidden" name="redirect-product-not-found" v-model="product.pagePath" data-sly-attribute="${hapiProductForm.itemprop.redirectErrorPath}" />
@@ -113,14 +161,12 @@
 					
 			</div>
             {{/if}}
-			<!-- /* form end */-->
-
-			<!-- /* TODO: complete description section */-->
+			
             <div class="product-overview">
 			   <h2 class="heading-product-overview">Product Summary</h2>
 			   <p class="description-product-overview">
-					{{description}}
-					<!--<a class="description-read-more" href="#">Read More</a>-->
+					{{{description}}}
+					
 			   </p>
                
 			   <ul class="overview-stat-list">
@@ -157,37 +203,37 @@
                 {{#if features.length}}
                  <div class="each-additional-section">
 						<h4 class="additional-heading">Product Features</h4>
-						<p class="additional-description">{{features}}</p>
+						<p class="additional-description">{{{features}}}</p>
 				   </div>
                 {{/if}}
                 {{#if directions.length}}
 				   <div class="each-additional-section">
 						<h4 class="additional-heading">Directions</h4>
-						<p class="additional-description">{{directions}}</p>
+						<p class="additional-description">{{{directions}}}</p>
 				   </div>
                  {{/if}}
                 {{#if ingredients.length}}
                     <div class="each-additional-section">
                         <h4 class="additional-heading">Ingredients</h4>
-                        <p class="additional-description">{{ingredients}}</p>
+                        <p class="additional-description">{{{ingredients}}}</p>
                     </div>
                  {{/if}}
                 {{#if sug_uses.length}}
                  <div class="each-additional-section">
                         <h4 class="additional-heading">Suggested Uses</h4>
-                        <p class="additional-description">{{sug_uses}}</p>
+                        <p class="additional-description">{{{sug_uses}}}</p>
                     </div>
                  {{/if}}
                 {{#if pkg_contents.length}}
                     <div class="each-additional-section">
                         <h4 class="additional-heading">Package Content</h4>
-                        <p class="additional-description">{{pkg_contents}}</p>
+                        <p class="additional-description">{{{pkg_contents}}}</p>
                     </div>
                  {{/if}}
                 {{#if safety_info.length}}
                  <div class="each-additional-section">
                         <h4 class="additional-heading">Safety Information</h4>
-                        <p class="additional-description">{{safety_info}}</p>
+                        <p class="additional-description">{{{safety_info}}}</p>
                     </div>
                 {{/if}}
                
