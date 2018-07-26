@@ -1,47 +1,21 @@
 <sly data-sly-use.clientLib="${'/libs/granite/sightly/templates/clientlib.html'}"/>
 <sly data-sly-call="${clientlib.js @ categories='frontier-search-results'}" data-sly-unwrap/>
 
-<sly data-sly-use.result="search.js"></sly>
 <sly data-sly-use.user="${'com.frontierwholesales.core.models.SessionModel'}"></sly>
 
-<script>
-	var embeddedFrontierSearchResults = ${result.products @ context = "unsafe"};
-</script>
 <div>
 
 <sly
 	data-sly-resource="${'searchFacets' @ resourceType='frontierwholesales/components/content/searchFacets'}"
 	data-sly-unwrap></sly>
 
-<section id="plp-search-product-grid">
-    <div id="plp-search-header-holder" class="search-header-holder">
-        <div id="search-heading">
-            <h1 class="plp-search-text-heading">Search Results for: "${ request.requestParameterMap['q'][0].toString }"</h1>
-            <span class="showing-number-of-items">
-                 Showing <span class="number">28</span> of <span class="number">180</span> Products
-            </span>
-        </div>
-        <div id="search-sort-items">
-            <div id="filters-holder">
-                <div class="form-group">
-                <label for="sortby-type">Filters</label>
-                <button type="button" class="btn btn-black btn-filters-plp-search">View Options</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
 <div id="productlisttemplate"></div>
                         <script id="productlistTemplate" type="text/x-handlebars-template" >
                         <section id="plp-search-product-grid">
-                             
-
-                               
                               <div id="plp-search-header-holder" class="search-header-holder">
-                                  
-                                 
                                    <div id="search-heading">
-                                        <h1 class="plp-search-text-heading">{{categorylist.category.name}}</h1>
+                                        <h1 class="plp-search-text-heading">SEARCH RESULTS FOR: "{{searchTerm}}"</h1>
                                         <span class="showing-number-of-items">
                                              Showing <span class="number">{{recordsPerPage recsPerPage search_criteria.current_page total_count}}</span> of <span class="number">{{total_count}}</span> Products
                                         </span>
@@ -148,7 +122,7 @@
                                    <nav aria-label="Page navigation">
                                         <ul class="pagination">
                                              <li>
-                                                  <a href="#" class="pagination-previous pagination-arrow disabled" id="previous" aria-label="Previous">
+                                                  <a href="#" class="pagination-previous pagination-arrow" id="previous" aria-label="Previous">
                                                        <span class="glyphicon glyphicon-triangle-left"></span>
                                                   </a>
                                              </li>
@@ -171,25 +145,5 @@
                               </div>
                              {{/if}}
                             </script>
-    <div id="search-pagination">
-	     <nav aria-label="Page navigation">
-	          <ul class="pagination">
-	               <li>
-	                    <a class="pagination-previous pagination-arrow disabled" href="#" aria-label="Previous">
-	                         <span class="glyphicon glyphicon-triangle-left"></span>
-	                    </a>
-	               </li>
-	               <li class="pagination-numbers">
-	                    <span class="pag-number">1 of 27</span>
-	               </li>
-	               <li>
-	                    <a class="pagination-next pagination-arrow" href="#" aria-label="Next">
-	                         <span class="glyphicon glyphicon-triangle-right"></span>
-	                    </a>
-	               </li>
-	          </ul>
-	     </nav>
-	</div>
-</section>
 &nbsp;
 </div>
