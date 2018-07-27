@@ -11,34 +11,33 @@ Frontier.SearchController = new function() {
 	    var target = this;
 	    return target.split(search).join(replacement);
 	};
-
 	
 	function init() {
 		console.log("Frontier Search Controller init");
-		$("document").bind("facet-changed", function() { console.log( "facet was changed " + getQueryString()  ); });
-		//TODO check for query params and update results if found
-		console.log("query string", window.location.search);
-		if(window.location.search != "") {
-			console.log("doing initial search");
-			var searchTerm = getParameterByName("searchCriteria[filter_groups][0][filters][0][value]");
-			if(!!searchTerm) {
-				searchTerm = searchTerm.replaceAll("%", "");
-				$(".search-input").val(searchTerm);
-			}
-			
-			if(!!Frontier.SearchResults){
+		if(typeof Frontier.SearchResults !== 'undefined') {
+			console.log("query string", window.location.search);
+			if(window.location.search != "") {
+				console.log("doing initial search");
+				var searchTerm = getParameterByName("searchCriteria[filter_groups][0][filters][0][value]");
+				if(!!searchTerm) {
+					searchTerm = searchTerm.replaceAll("%", "");
+					$(".search-input").val(searchTerm);
+				}
+				
+				if(!!Frontier.SearchResults){
+					showLoadingScreen();
+					Frontier.MagentoServices.searchProducts(window.location.search.slice(1, window.location.search.length)).done(function(productList){
+						Frontier.SearchResults.updateResults(productList);
+						hideLoadingScreen();
+					});
+				}			
+			} else {
 				showLoadingScreen();
-				Frontier.MagentoServices.searchProducts(window.location.search.slice(1, window.location.search.length)).done(function(productList){
+				Frontier.MagentoServices.searchProducts(getQueryString()).done(function(productList){
 					Frontier.SearchResults.updateResults(productList);
 					hideLoadingScreen();
 				});
-			}			
-		} else {
-			showLoadingScreen();
-			Frontier.MagentoServices.searchProducts(getQueryString()).done(function(productList){
-				Frontier.SearchResults.updateResults(productList);
-				hideLoadingScreen();
-			});
+			}
 		}
 		
 		$(".search-form").submit(function(event) {
@@ -46,8 +45,6 @@ Frontier.SearchController = new function() {
 			window.location = "/content/frontierwholesales/en/search.html?"+getQueryString();
 		});
 	}
-	
-	
 	
 	function updateResults(pageNum) {
 		showLoadingScreen();
@@ -90,6 +87,8 @@ Frontier.SearchController = new function() {
 					groupIndex++;
 				}
 			});
+			filtersQueryString += "&" + getFilterParam(groupIndex, 0, "status", "1", "eq");
+			groupIndex++;
 			
 		} 
 		
@@ -111,7 +110,6 @@ Frontier.SearchController = new function() {
 		
 		return queryString;
 	}
-	
 	
 	this.getQueryString = getQueryString;
 	this.updateResults = updateResults;
