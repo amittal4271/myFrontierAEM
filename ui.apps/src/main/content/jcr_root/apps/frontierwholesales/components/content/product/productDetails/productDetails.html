@@ -79,10 +79,12 @@
             <h1 class="product-title-name">{{name}}</h1>
 			<div class="product-detail-attributes">
                                    {{#if brand.length}}
+                                    
                                    <span class="dt-label">Brand: </span>
                                    <span class="dd-value brand">
                                         <a href="#" class="dd-value-link">{{brand}}</a>
                                    </span>
+                                 
                                     {{/if}}
                                     {{#if barcode.length}}
                                    <span class="dt-label">UPC: </span>
@@ -114,10 +116,14 @@
                     <span class="glyphicon glyphicon-exclamation-sign"></span>
                     <strong>Restricted Shipping Item:</strong> Some type of message that explains the situation.
                 </div>
+                
+                {{#ifEquals bulk}}
                 <div class="alert alert-bulk" role="alert">
                     <span class="glyphicon glyphicon-info-sign"></span>
                     <strong>Buy 5 to save 5%:</strong> Discount price will display in cart.
                 </div>
+                {{/ifEquals}}
+                
             </div>
              {{#if ${user.authToken != null @context='scriptString' }}}
             <div class="product-wishlist">

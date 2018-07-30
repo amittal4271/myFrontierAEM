@@ -197,7 +197,7 @@ function addBuyersClubDataToCookie(data,email,token){
 
 function clearErrorMsg(){
     $('.global-server-side-message-holder').css('display','none');
-    $('.alert-danger').html('');
+    $('.global-server-side-message-holder > .alert-danger').html('');
 }
 
 function getParameterByName(name, url) {

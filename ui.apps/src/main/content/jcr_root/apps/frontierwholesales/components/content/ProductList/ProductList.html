@@ -60,24 +60,21 @@
                         {{/if}}
                                 {{#if categorylist.filters.filters.length}}
                                 {{#each categorylist.filters.filters}}
-                                    {{#if @first}}
-
-                                     {{else}}
                                     {{#if filter_values}}
-                                        
+                                    {{#noCatFilter this.filter_name}}
                                        
-                                  <div class="each-filter-section brand">
-                                       <h2 class="filter-heading">{{filter_name}}</h2>
-
-                                       <ul data-code="{{filter_code}}" class="each-filters-list">
-                                           {{#each filter_values as |child|}}
+                                    <div class="each-filter-section {{../filter_name}}">
+                                       <h2 class="filter-heading">{{../filter_name}}</h2>
+                                       
+                                       <ul data-code="{{../filter_code}}" class="each-filters-list">
+                                           {{#each ../filter_values as |child|}}
                                             {{#moreCategories @index}}
                                             <li class="filter-item visuallyhidden">
-                                                 <a href="#" data-value="{{child.value}}" class="filter-link checkbox-link"><span class="text">{{{child.name}}}</span></a>
+                                                 <a href="#" id="{{../../filter_code}}{{@index}}" data-value="{{child.value}}" class="filter-link checkbox-link"><span class="text">{{{child.name}}}</span></a>
                                             </li>
                                            {{else}}
                                             <li class="filter-item">
-                                                 <a href="#"  data-value="{{child.value}}" class="filter-link checkbox-link"><span class="text">{{{child.name}}}</span></a>
+                                                 <a href="#"  id="{{../../filter_code}}{{@index}}" data-value="{{child.value}}" class="filter-link checkbox-link"><span class="text">{{{child.name}}}</span></a>
                                             </li>
                                             {{/moreCategories}}
 
@@ -93,8 +90,8 @@
                                        </ul>
 
                                   </div>
+                                  {{/noCatFilter}}
                                     {{/if}}
-                                {{/if}}
                                 {{/each}}
                                 {{/if}}
                              
@@ -108,7 +105,7 @@
                                
                               <div id="plp-search-header-holder" class="search-header-holder">
                                   
-                                 
+                                 <input type="hidden" id="totalcount" value="{{total_count}}">
                                    <div id="search-heading">
                                         <h1 class="plp-search-text-heading">{{categorylist.category.name}}</h1>
                                         <span class="showing-number-of-items">
@@ -191,6 +188,21 @@
                                              </span>
                                             {{/if}}
                                         </a>
+                                       <!-- Magento attributes TBD -->
+                                       <!--<div class="grid-alert">
+                                             <div class="alert alert-danger" role="alert"> 
+                                                  <span class="glyphicon glyphicon-exclamation-sign"></span>
+                                                  <strong>Restricted Shipping</strong>
+                                             </div>
+                                        </div>-->
+                                        {{#ifEquals bulk}}
+                                       <div class="grid-alert">
+                                             <div class="alert alert-bulk" role="alert">
+                                                  <span class="glyphicon glyphicon-info-sign"></span>
+                                                  <strong>Buy 5 to save 5%:</strong>
+                                             </div>
+                                        </div>
+                                       {{/ifEquals}}
                                         {{#if ${user.authToken != null @context='scriptString' }}}
                                        <div class="grid-add-to-cart">
                                              <div class="qty-holder">

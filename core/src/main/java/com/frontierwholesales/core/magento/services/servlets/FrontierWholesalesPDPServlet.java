@@ -49,25 +49,24 @@ public class FrontierWholesalesPDPServlet  extends SlingAllMethodsServlet{
 			throws ServletException, IOException {
 		log.debug("doGet FrontierWholesalesPDPServlet Start");
 		try {
-			//FrontierWholesalesProducts product = new FrontierWholesalesProducts();
+			
 			String productSku = request.getParameter("sku");
 			log.debug("Product details for #sku: {}",productSku);
 			
 			String adminToken  = commerceConnector.getAdminToken();
 			
 			if ((productSku != null) && (productSku.length()>0)){
-				System.out.println("DEBUG: "+adminToken);
+				
 				String productDetails = commerceConnector.getProductDetails(adminToken, productSku);		
 				response.getOutputStream().println(parseJsonObject(productDetails,request));
-				// TODO this may not be needed depending on how the final design of PDP looks
-				setProductMasterProperty(request, productSku);
+				
 			}
 			else {
 				response.getOutputStream().println("Empty SKU provided");
 			}
 		}catch(Exception anyEx) {
 			log.error("Error in pdpservlet {}", anyEx.getMessage());
-			String errorJson="PDP Error";
+			
 			response.getOutputStream().println("Error");
 		}
 	}
@@ -94,7 +93,7 @@ private JsonArray getImagePath(String productSku,SlingHttpServletRequest request
 	    QueryResult result = query.execute();	  
 	    NodeIterator nodeIter = result.getNodes();
 		   log.debug("before loop");
-		   int count=1;
+		  
 	    while ( nodeIter.hasNext() ) {
 	    	JsonObject obj = new JsonObject();
 	    	Node node = nodeIter.nextNode();
@@ -105,16 +104,16 @@ private JsonArray getImagePath(String productSku,SlingHttpServletRequest request
 	        if(name.equals("jcr:content")) {
 	        	log.debug("INSIDE jcr:content");
 	        	ValueMap properties = res.adaptTo(ValueMap.class);
-	        	String imgName = properties.get("cq:name", (String) null);	
-	        	log.debug("image full path is "+imgName);
-	        	String relativePath = properties.get("dam:relativePath",(String)null);
-	        	if(relativePath != null) {
-	        		log.debug("image name "+imgName);
-	        		imgPath = "/content/dam/"+ relativePath;
-	        		obj.addProperty("path", imgPath);
-	        		count++;
-	        		array.add(obj);
-	        	}
+	        
+		        	String relativePath = properties.get("dam:relativePath",(String)null);
+		        	if(relativePath != null) {
+		        		
+		        		imgPath = "/content/dam/"+ relativePath;
+		        		obj.addProperty("path", imgPath);
+		        	
+		        		array.add(obj);
+		        	}
+	        	
 	        	
 	        	
 	        }
@@ -141,6 +140,20 @@ private JsonArray getImagePath(String productSku,SlingHttpServletRequest request
 		object.addProperty("formattedPrice", "$"+priceFormat.format(priceElement.getAsDouble()));
 		JsonElement skuElement = object.get("sku");
 		object.add("imgPath", getImagePath(skuElement.getAsString(),request));
+	
+		JsonObject extnObject = object.getAsJsonObject("extension_attributes");
+		
+		JsonArray extnArray = extnObject.getAsJsonArray("external_attributes");
+		
+		if(extnArray != null) {
+			for(JsonElement extAttributes:extnArray) {
+				JsonObject obj = extAttributes.getAsJsonObject();
+				JsonElement attrCode = obj.get("attribute_code");
+				if(attrCode !=null && attrCode.getAsString().equals("manufacturer")) {
+					object.addProperty("brand", obj.get("name").getAsString());
+				}
+			}
+		}
 		
 		JsonArray attributesArray = object.getAsJsonArray("custom_attributes");
 		
@@ -151,27 +164,26 @@ private JsonArray getImagePath(String productSku,SlingHttpServletRequest request
 				
 				object.addProperty("special_price", attrObject.get("value").getAsDouble());
 			}
-			if(codeElement.getAsString().equals("manufacturer")) {
-				object.addProperty("brand", attrObject.get("value").getAsString());
-			}
 			
 			if(codeElement.getAsString().equals("description")) {
 				object.addProperty("description", attrObject.get("value").getAsString());
 			}
+			
 			if(codeElement.getAsString().equals("small_image")) {
 				object.addProperty("small_image", attrObject.get("value").getAsString());
 			}
 			if(codeElement.getAsString().equals("thumbnail")) {
 				object.addProperty("thumbnail", attrObject.get("value").getAsString());
 			}
+			
 			if(codeElement.getAsString().equals("barcode")) {
 				object.addProperty("barcode", attrObject.get("value").getAsString());
 			}
-			
+		
 			if(codeElement.getAsString().equals("short_description")) {
 				object.addProperty("shortDescription", attrObject.get("value").getAsString());
 			}
-			
+		
 			if(codeElement.getAsString().equals("ingredients")) {
 				
 				object.addProperty("ingredients", attrObject.get("value").getAsString());
@@ -181,7 +193,7 @@ private JsonArray getImagePath(String productSku,SlingHttpServletRequest request
 				
 				object.addProperty("directions", attrObject.get("value").getAsString());
 			}
-			
+		
 			if(codeElement.getAsString().equals("features")) {
 				
 				object.addProperty("features", attrObject.get("value").getAsString());
@@ -191,79 +203,41 @@ private JsonArray getImagePath(String productSku,SlingHttpServletRequest request
 				
 				object.addProperty("sug_uses", attrObject.get("value").getAsString());
 			}
-			
+	
 			if(codeElement.getAsString().equals("pkg_contents")) {
 				
 				object.addProperty("pkg_contents", attrObject.get("value").getAsString());
 			}
-			
+		
 			if(codeElement.getAsString().equals("safety_info")) {
 				
 				object.addProperty("safety_info", attrObject.get("value").getAsString());
 			}
-			
+		
 			if(codeElement.getAsString().equals("new_product")) {
 				object.addProperty("new_product", attrObject.get("value").getAsString());
 			}
-			
+		
 			if(codeElement.getAsString().equals("close_out")) {
 				object.addProperty("close_out", attrObject.get("value").getAsString());
 			}
-			
+		
 			if(codeElement.getAsString().equals("on_sale")) {
 				object.addProperty("on_sale", attrObject.get("value").getAsString());
 			}
+			
+			if(codeElement.getAsString().equals("bulk")){
+				object.addProperty("bulk",  attrObject.get("value").getAsString());
+			}
 		}
-		
+	
 		object.addProperty("additionalInformation", bInformation);
 
 		return object.toString();
 	}
 	
-	private void setProductMasterProperty( SlingHttpServletRequest slingRequest, String sku ) {
-		String currentPagePath = slingRequest.getParameter("currentPagePath");
-		if( StringUtils.isNotBlank(currentPagePath) ) {
-			// TODO change to use service user
-			ResourceResolver resourceResolver = slingRequest.getResourceResolver();
-			Resource currentProductPageResource = resourceResolver != null ? resourceResolver.getResource(currentPagePath) : null;
-			Resource contentResource = currentProductPageResource != null ? currentProductPageResource.getChild(JcrConstants.JCR_CONTENT) : null;
-			ModifiableValueMap currentProductPageProps = contentResource != null ? contentResource.adaptTo(ModifiableValueMap.class) : null; 
-			String productMaster = currentProductPageProps != null ? currentProductPageProps.get("cq:productMaster", String.class) : StringUtils.EMPTY;
-			// if there is not already the property on the page, find and set it
-			if( StringUtils.isBlank(productMaster) ) {
-				String productMasterPath = getCommerceProductPath(resourceResolver, sku);
-				if( StringUtils.isNotBlank(productMasterPath) ) {
-					currentProductPageProps.put("cq:productMaster", productMasterPath);
-					try {
-						resourceResolver.commit();
-					} catch( PersistenceException persistEx ) {
-						log.error("PersistenceException trying to save property to page:\n", persistEx);
-					}
-				}
-			}
-		}
-	}
 	
-	private String getCommerceProductPath( ResourceResolver resourceResolver, String sku ) {
-		String sqlStatement = new StringBuilder().append("SELECT * FROM [nt:unstructured] AS products")
-								.append(" WHERE ISDESCENDANTNODE(products, '/etc/commerce/products')")
-								.append(" AND [baseSku] = '").append(sku).append("' AND [cq:commerceType] = 'product'").toString();
-		Session session = resourceResolver != null ? resourceResolver.adaptTo(Session.class) : null;
-		try {
-			QueryManager queryManager = session != null ? session.getWorkspace().getQueryManager() : null;
-			Query commerceQuery = queryManager != null ? queryManager.createQuery(sqlStatement, Query.JCR_SQL2) : null;
-			QueryResult queryResult = commerceQuery != null ? commerceQuery.execute() : null;
-			NodeIterator commerceIterator = queryResult != null ? queryResult.getNodes() : null;
-			if( commerceIterator != null && commerceIterator.hasNext() ) {
-				Node commerceNode = commerceIterator.nextNode();
-				String commerceProductPath = commerceNode.getPath();
-				log.debug("cq:productMaster should be set to: {} for sku: {}", commerceProductPath, sku);
-				return commerceProductPath;
-			}
-		} catch( RepositoryException repoEx ) {
-			log.error("RepositoryException trying to execute search query for commerce product path:\n", repoEx);
-		}
-		return null;
-	}
+	
+	
 }	
 	

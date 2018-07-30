@@ -1,8 +1,6 @@
 package com.frontierwholesales.core.magento.services.servlets;
 
-import java.io.File;
 import java.io.IOException;
-import java.text.DecimalFormat;
 
 import javax.jcr.Node;
 import javax.jcr.NodeIterator;
@@ -73,14 +71,17 @@ public class FrontierWholesalesProductListServlet extends SlingAllMethodsServlet
 			search.setSortByFeatured(sortByFeatured);
 			String sortByNewProduct = request.getParameter("newProduct");
 			search.setSortByNewProduct(sortByNewProduct);
+			String facetSearch = request.getParameter("facetQuery");
+			search.setFacetSearchQuery(facetSearch);
 			
 			String adminToken = commerceConnector.getAdminToken();
-			//String categories = commerceConnector.getCategories(adminToken, categoryId);
+			
 			String productList = commerceConnector.getProducts(adminToken, search);
 			
 			String catList = commerceConnector.getParentChildrenCategories(adminToken, categoryId);
-			
-			response.getOutputStream().println(parseJsonObject(productList,catList,noOfRecsPerPage,currentPage,request));
+			response.setContentType("text/html;charset=UTF-8;");
+			response.setCharacterEncoding("UTF-8");
+			response.getOutputStream().write(parseJsonObject(productList,catList,noOfRecsPerPage,currentPage,request).getBytes("UTF-8"));
 		}catch(Exception anyEx) {
 			log.error("Error in productList "+anyEx.getMessage());
 			response.getOutputStream().println("Error");
@@ -95,7 +96,7 @@ public class FrontierWholesalesProductListServlet extends SlingAllMethodsServlet
 		try {
 			
 			String adminToken = commerceConnector.getAdminToken();
-			String action = request.getParameter("action");
+			
 			String jsonData = request.getParameter("wishlist");
 			String wishList = commerceConnector.addItemToWishList(adminToken, jsonData);
 			JsonObject object = new JsonObject();
@@ -123,14 +124,11 @@ public class FrontierWholesalesProductListServlet extends SlingAllMethodsServlet
 		JsonObject object = element.getAsJsonObject();
 		JsonArray itemArray = object.getAsJsonArray("items");
 		
-		
-		DecimalFormat priceFormat=new DecimalFormat("#0.00");
 		for(int i=0;i<itemArray.size();i++) {
 			
 			JsonElement itemElement = itemArray.get(i);
 			JsonObject itemObject = itemElement.getAsJsonObject();
-			//JsonElement priceElement = itemObject.get("price");
-			//itemObject.addProperty("formattedPrice", "$"+priceFormat.format(priceElement.getAsDouble()));
+			
 			JsonElement skuElement = itemObject.get("sku");
 			
 			itemObject.addProperty("imgPath", getImagePath(skuElement.getAsString(),request));
@@ -158,7 +156,9 @@ public class FrontierWholesalesProductListServlet extends SlingAllMethodsServlet
 					
 					itemObject.addProperty("special_price", attrObject.get("value").getAsDouble());
 				}
-						
+				if(codeElement.getAsString().equals("bulk")){
+					itemObject.addProperty("bulk",  attrObject.get("value").getAsString());
+				}		
 				
 			}
 		}
@@ -179,7 +179,7 @@ public class FrontierWholesalesProductListServlet extends SlingAllMethodsServlet
 		object.addProperty("pageTotal", (int)dPage);
 		JsonElement catListElement = json.fromJson(catList, JsonElement.class);
 		object.add("categorylist", catListElement);
-		//object.add("categories", catElement.getAsJsonObject());
+		
 		return object.toString();
 	}
 	
@@ -189,7 +189,7 @@ private String getImagePath(String productSku,SlingHttpServletRequest request) t
 		QueryManager queryManager = session.getWorkspace().getQueryManager();
 		String path="";
 		String imgPath="";
-		//String nodeTitle="";
+		
 		Resource res = request.getResource();
 		ResourceResolver resourceResolver = request.getResourceResolver();
 		
@@ -201,33 +201,28 @@ private String getImagePath(String productSku,SlingHttpServletRequest request) t
 		Query query = queryManager.createQuery(sqlStatement,"JCR-SQL2");	   		   
 	    QueryResult result = query.execute();	  
 	    NodeIterator nodeIter = result.getNodes();
-		   log.debug("before loop");
+		  
 	    while ( nodeIter.hasNext() ) {
 	    	Node node = nodeIter.nextNode();
 	        path = node.getPath();
-	        log.debug("inside loop: "+path);
+	       
 	        res = resourceResolver.getResource(path);	        
 	        String name = node.getName();
 	        if(name.equals("jcr:content")) {
-	        	log.debug("INSIDE jcr:content");
+	        
 	        	ValueMap properties = res.adaptTo(ValueMap.class);
 	        	
 	        	
 	        		String relativePath = properties.get("dam:relativePath",(String)null);
 		        	
 		        	if(relativePath != null) {
-		        		log.debug("image name "+relativePath);
+		        		
 		        		imgPath = "/content/dam/"+ relativePath;
 		        	}
 	        	}
 	        	
 	        	
-	        }
-           
-	       
-		    		
-
-	    
+	        }    
 	    return imgPath;		    
 	}
 	

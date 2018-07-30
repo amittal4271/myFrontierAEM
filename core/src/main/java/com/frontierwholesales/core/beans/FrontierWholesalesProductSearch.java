@@ -8,6 +8,7 @@ public class FrontierWholesalesProductSearch {
 	private int currentPage;
 	private int categoryId;
 	private int noOfRecsPerPage;
+	private String facetSearchQuery;
 	
 	public String getSortByNewProduct() {
 		return sortByNewProduct;
@@ -45,6 +46,14 @@ public class FrontierWholesalesProductSearch {
 	public void setNoOfRecsPerPage(int noOfRecsPerPage) {
 		this.noOfRecsPerPage = noOfRecsPerPage;
 	}
+	public String getFacetSearchQuery() {
+		return facetSearchQuery;
+	}
+	public void setFacetSearchQuery(String facetSearchQuery) {
+		this.facetSearchQuery = facetSearchQuery;
+	}
+	
+	
 	
 	
 	

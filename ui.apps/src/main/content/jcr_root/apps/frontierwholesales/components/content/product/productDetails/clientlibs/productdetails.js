@@ -141,6 +141,9 @@ function getProductDetails(){
         if ($('#product-detail').length > 0) {
     		bindPdpAffixEvents();
     	}
+    }).fail(function(error){
+         hideLoadingScreen();
+        enableErrorMsg(error.status);
     });
 }
 
@@ -177,21 +180,6 @@ function addItemToCart(sku,qty){
     });
     
 
-   /* $.get("/services/cart",jsonData,function(){
-
-    }).done(function(result){
-        console.log("result is "+result);
-        hideLoadingScreen();
-        if(result.trim() !== 'Error in Cart'){
-        var cart = JSON.parse(result);
-        $('#cartMessage-'+sku).fadeIn('fast').delay(3000).fadeOut('fast');
-        var template = $("#minicartTemplate").html();
-        var cartTemplate = Handlebars.compile(template);
-        var html = cartTemplate(cart,cart.items.reverse());
-        $('#minicarttemplate').html(html); 
-        }
-
-    });*/
 }
 
 function addItemToWishList(sku){

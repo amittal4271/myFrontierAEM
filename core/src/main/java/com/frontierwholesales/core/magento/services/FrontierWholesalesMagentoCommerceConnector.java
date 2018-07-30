@@ -282,6 +282,10 @@ public class FrontierWholesalesMagentoCommerceConnector {
         String searchCriteria = "searchCriteria[currentPage]="+search.getCurrentPage()+"&searchCriteria[pageSize]="+search.getNoOfRecsPerPage()+"&"+
         						 "searchCriteria[filterGroups][0][filters][0][value]="+search.getCategoryId()+"&"+
         						 "searchCriteria[filterGroups][0][filters][0][field]=category_id";
+       
+        if(search.getFacetSearchQuery() != null) {
+        	searchCriteria = searchCriteria + search.getFacetSearchQuery();
+        }
         if(search.getSortByPrice() != null) {
          orderByPrice = "&searchCriteria[sortOrders][0][field]=price&searchCriteria[sortOrders][0][direction]="+search.getSortByPrice();
          searchCriteria = searchCriteria + orderByPrice;
@@ -296,6 +300,8 @@ public class FrontierWholesalesMagentoCommerceConnector {
         	newProduct="&searchCriteria[sortOrders][0][field]=created_at&searchCriteria[sortOrders][0][direction]=DESC";
         	 searchCriteria = searchCriteria + newProduct;
         }
+        
+        log.debug("search query is "+searchCriteria);
         
         try {
             
