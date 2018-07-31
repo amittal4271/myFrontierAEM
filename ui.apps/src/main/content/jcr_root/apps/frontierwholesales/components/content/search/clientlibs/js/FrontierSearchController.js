@@ -5,8 +5,10 @@ Frontier.SearchController = Frontier.SearchController || {};
 
 Frontier.SearchController = new function() {
 
-	var filters = [];
-
+	var filters = [],
+		SORT_ORDER_ASC = "ASC",
+		SORT_ORDER_DESC = "DESC";
+	
 	String.prototype.replaceAll = function(search, replacement) {
 	    var target = this;
 	    return target.split(search).join(replacement);
@@ -42,7 +44,11 @@ Frontier.SearchController = new function() {
 		
 		$(".search-form").submit(function(event) {
 			event.preventDefault();
-			window.location = "/content/frontierwholesales/en/search.html?"+getQueryString();
+			if(!!Frontier.SearchResults){
+				updateResults();
+			} else {
+				window.location = "/content/frontierwholesales/en/search.html?"+getQueryString();
+			}
 		});
 	}
 	
@@ -78,13 +84,17 @@ Frontier.SearchController = new function() {
 		if(!!Frontier.SearchFacets) {
 			var filters = Frontier.SearchFacets.getFilters();
 			var groupIndex = 1;
+			var lastGroupName = null;
 			$.each(filters, function( key, filter ) {
 				if(!!filter.value) {
 					if(groupIndex > 1) {
 						filtersQueryString += "&";
 					}
 					filtersQueryString += getFilterParam(groupIndex, 0, filter.name, filter.value, "eq");
-					groupIndex++;
+					if(lastGroupName != filter.name){
+						groupIndex++;
+					}
+					lastGroupName = filter.name;
 				}
 			});
 			filtersQueryString += "&" + getFilterParam(groupIndex, 0, "status", "1", "eq");
@@ -104,6 +114,23 @@ Frontier.SearchController = new function() {
 		if(typeof pageNum === 'undefined') {
 			pageNum = 1;
 		}
+		
+		var sortBy = $("#sortBy").val();
+		console.log("SortBy = "+sortBy);
+		console.log($("#sortBy"));
+		
+		featured ="&searchCriteria[sortOrders][0][field]=featured&searchCriteria[sortOrders][0][direction]=DESC";
+		newProduct="&searchCriteria[sortOrders][0][field]=created_at&searchCriteria[sortOrders][0][direction]=DESC";
+		
+		if(sortBy == "asc" || sortBy == "desc") {
+			queryString += "&searchCriteria[sortOrders][0][field]=price&searchCriteria[sortOrders][0][direction]="+sortBy;
+        } else if(sortBy == "featured") {
+        	queryString += featured;
+        } else if(sortBy == "newproduct") {
+        	queryString += newProduct;
+        } else {
+        	queryString += featured; //default
+        }
 		
 		queryString += "&searchCriteria[currentPage]="+pageNum;
 		queryString += "&searchCriteria[pageSize]="+recsPerPage;
