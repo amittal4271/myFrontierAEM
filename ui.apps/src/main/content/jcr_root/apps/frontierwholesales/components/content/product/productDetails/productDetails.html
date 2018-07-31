@@ -174,7 +174,9 @@
 					{{{description}}}
 					
 			   </p>
-               
+               {{#if map}}
+                <div><a href="{{map}}" target="_blank">Map Agreement</a></div>
+                {{/if}}
 			   <ul class="overview-stat-list">
                     {{#each custom_attributes}}
                    {{#getAttrValues attribute_code value @index}}

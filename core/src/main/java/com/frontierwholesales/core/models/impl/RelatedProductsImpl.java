@@ -67,28 +67,23 @@ public class RelatedProductsImpl implements RelatedProducts {
 	
 	private Collection<FrontierWholesalesProducts> relatedProductsList;
 	
+	@Inject
+	public SlingHttpServletRequest slingHttpServletRequest;
+	
 	@PostConstruct
 	protected void initModel() {
 		// get sku, current page = product page
 		log.debug("Product SKU passed in from request attribute: {}", mainProductSku);
+		try {
 		String productSku = mainProductSku;	// passed in via request attribute from page
-		if( StringUtils.isBlank(productSku) ) {
-			ValueMap pageProps = currentPage != null ? currentPage.getProperties() : ValueMap.EMPTY;
-			// TODO get correct sku from page if not passed in via request attribute
-			String productMaster = pageProps.get("cq:productMaster", String.class);
-			if( StringUtils.isBlank(productMaster) ) {
-				Resource productResource = currentPage != null ? currentPage.getContentResource("par/productDetails") : null;
-				ValueMap productProps = productResource != null ? ResourceUtil.getValueMap(productResource) : ValueMap.EMPTY;
-				productMaster = productProps.get(CommerceConstants.PN_PRODUCT_DATA, String.class);
-			}
-			Resource commerceResource = StringUtils.isNotBlank(productMaster) && resourceResolver != null ? resourceResolver.getResource(productMaster) : null;
-			ValueMap commerceProps = commerceResource != null ? ResourceUtil.getValueMap(commerceResource) : ValueMap.EMPTY;
-			productSku = commerceProps.get("baseSku", String.class);
-		}
+		
 		log.debug("Product SKU from which to get related products: {}", productSku);
 		// call service GET /V1/products/{sku}/links/{type} where type = related, cross_sell or up_sell
-		this.relatedProductsList = productsService != null && StringUtils.isNotBlank(productSku) ? productsService.getRelatedProducts(resourceResolver, productSku) : new ArrayList<FrontierWholesalesProducts>();
+		this.relatedProductsList = productsService != null && StringUtils.isNotBlank(productSku) ? productsService.getRelatedProducts(slingHttpServletRequest, productSku) : new ArrayList<FrontierWholesalesProducts>();
 		log.debug("Related products list size: {}", this.relatedProductsList != null ? this.relatedProductsList.size() : "LIST IS NULL");
+		}catch(Exception anyEx) {
+			log.error("Exception in getting related products "+anyEx.getMessage());
+		}
 	}
 	
 	@Override

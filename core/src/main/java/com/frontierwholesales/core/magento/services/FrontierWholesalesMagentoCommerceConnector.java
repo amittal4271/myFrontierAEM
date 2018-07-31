@@ -55,6 +55,41 @@ public class FrontierWholesalesMagentoCommerceConnector {
     
     private static String adminPassword="";
     
+    @Property(
+            name="ConsumerSecret",
+            label = "Magento Server Consumer Secret",
+            description = "Magento Server Consumer Secret",
+            value = ""
+    )
+    public static String consumerSecret= "";
+    
+    
+    @Property(
+    		 name="ApplicationTokenSecret",
+            label = "Magento Server App Token Secret",
+            description = "Magento Server App Token Secret",
+            value = ""
+    )
+    public static String appTokenSecret ="";
+    
+    
+    @Property(
+    		 name="Application Token",
+            label = "Magento Server App Token",
+            description = "Magento Server App Token",
+            value = ""
+    )
+    public static String appToken ="";
+    
+    
+    @Property(
+    		 name="Consumer Key",
+            label = "Magento Server Consumer Key",
+            description = "Magento Server Consumer Key",
+            value = ""
+    )
+    public static String consumerKey ="";
+    
     private long PAGE_SIZE=2;
 
     @Property(
@@ -102,8 +137,57 @@ public class FrontierWholesalesMagentoCommerceConnector {
        
     }
 
+    
 
-    public static String getServer() {
+    public static String getConsumerSecret() {
+		return consumerSecret;
+	}
+
+
+
+	public static void setConsumerSecret(String consumerSecret) {
+		FrontierWholesalesMagentoCommerceConnector.consumerSecret = consumerSecret;
+	}
+
+
+
+	public static String getAppTokenSecret() {
+		return appTokenSecret;
+	}
+
+
+
+	public static void setAppTokenSecret(String appTokenSecret) {
+		FrontierWholesalesMagentoCommerceConnector.appTokenSecret = appTokenSecret;
+	}
+
+
+
+	public static String getAppToken() {
+		return appToken;
+	}
+
+
+
+	public static void setAppToken(String appToken) {
+		FrontierWholesalesMagentoCommerceConnector.appToken = appToken;
+	}
+
+
+
+	public static String getConsumerKey() {
+		return consumerKey;
+	}
+
+
+
+	public static void setConsumerKey(String consumerKey) {
+		FrontierWholesalesMagentoCommerceConnector.consumerKey = consumerKey;
+	}
+
+
+
+	public static String getServer() {
         return server;
     }
 

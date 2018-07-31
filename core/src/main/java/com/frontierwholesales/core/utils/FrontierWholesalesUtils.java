@@ -6,11 +6,23 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.jcr.Node;
+import javax.jcr.NodeIterator;
+import javax.jcr.Session;
+import javax.jcr.query.Query;
+import javax.jcr.query.QueryManager;
+import javax.jcr.query.QueryResult;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.api.resource.ValueMap;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
@@ -18,6 +30,7 @@ import com.google.gson.JsonObject;
 
 public class FrontierWholesalesUtils {
 
+	private final Logger log = LoggerFactory.getLogger(this.getClass());
 	/**
 	 * update for single json object
 	 * @param object
@@ -264,4 +277,56 @@ public class FrontierWholesalesUtils {
 
 	        return dropCookies(response, cookies, cookiePath);
 	    }
+	    
+	    /**
+	     * Retrieve image based on SKU
+	     * @param productSku
+	     * @param request
+	     * @return
+	     * @throws Exception
+	     */
+	    public String getImagePath(String productSku,SlingHttpServletRequest request) throws Exception{
+			log.debug("getImagePath Start");
+			Session session = request.getResourceResolver().adaptTo(Session.class);
+			QueryManager queryManager = session.getWorkspace().getQueryManager();
+			String path="";
+			String imgPath="";
+			
+			Resource res = request.getResource();
+			ResourceResolver resourceResolver = request.getResourceResolver();
+			
+			
+			String sqlStatement="SELECT * FROM [nt:unstructured] AS node\n" + 
+		    		"WHERE ISDESCENDANTNODE(node, \"/content/dam/FrontierImages/product/"+ productSku+"\")"; 
+		    			
+			
+			Query query = queryManager.createQuery(sqlStatement,"JCR-SQL2");	   		   
+		    QueryResult result = query.execute();	  
+		    NodeIterator nodeIter = result.getNodes();
+			  
+		    while ( nodeIter.hasNext() ) {
+		    	
+		    	Node node = nodeIter.nextNode();
+		        path = node.getPath();
+		       
+		        res = resourceResolver.getResource(path);	        
+		        String name = node.getName();
+		        if(name.equals("jcr:content")) {
+		        
+		        	ValueMap properties = res.adaptTo(ValueMap.class);
+		        	
+		        	
+		        		String relativePath = properties.get("dam:relativePath",(String)null);
+			        	
+			        	if(relativePath != null) {
+			        		
+			        		imgPath = "/content/dam/"+ relativePath;
+			        	}
+		        	}
+		        	
+		        	
+		        }    
+		    return imgPath;		    
+		}
+		
 }

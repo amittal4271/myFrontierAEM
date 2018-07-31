@@ -17,16 +17,17 @@
 <sly data-sly-test.sku="${request.requestParameterMap && request.requestParameterMap['sku'] && request.requestParameterMap['sku'][0].toString}"></sly>
 <sly data-sly-use.products="${'com.frontierwholesales.core.models.RelatedProducts' @ mainProductSku=sku}"
      data-sly-use.template="core/wcm/components/commons/v1/templates.html" />
+<sly data-sly-test="${products.relatedProductsList.size > 0}">
 <section class="related-products-holder" id="related-products-holder-pdp">
     <div class="container">
         <div class="related-products-heading-holder">
             <h4 class="related-products-heading">${products.heading @ i18n}</h4>
         </div>
         <div id="pdp-scroller">
-            <div class="swiper-container" data-sly-test="${products.relatedProductsList.size > 0}">
+            <div class="swiper-container" >
                 <div class="swiper-wrapper" data-sly-list.oneProduct="${products.relatedProductsList}">
                     <div class="swiper-slide">
-                        <a class="each-slider-related-link-holder" href="${oneProduct.path @ extension = 'html'}">
+                        <a class="each-slider-related-link-holder" href="/content/frontierwholesales/en/productdetails.html?sku={{products.productSKU}}">
                             <span class="image-holder">
                                 <img src="${oneProduct.imagePath}"/>
                             </span>
@@ -50,5 +51,6 @@
         </div>
     </div>
 </section>
+</sly>
 <sly data-sly-call="${template.placeholder @ isEmpty=!products.heading}"></sly>
 

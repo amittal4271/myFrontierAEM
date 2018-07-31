@@ -229,6 +229,10 @@ private JsonArray getImagePath(String productSku,SlingHttpServletRequest request
 			if(codeElement.getAsString().equals("bulk")){
 				object.addProperty("bulk",  attrObject.get("value").getAsString());
 			}
+			
+			if(codeElement.getAsString().equals("map")){
+				object.addProperty("map",  attrObject.get("value").getAsString());
+			}
 		}
 	
 		object.addProperty("additionalInformation", bInformation);

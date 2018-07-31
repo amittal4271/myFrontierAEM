@@ -1,7 +1,5 @@
 package com.frontierwholesales.core.services.impl;
 
-import org.osgi.service.component.annotations.Component;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -11,7 +9,7 @@ import java.util.Map;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.LoginException;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -20,6 +18,7 @@ import org.apache.sling.api.resource.ResourceUtil;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.jcr.resource.api.JcrResourceConstants;
 import org.osgi.framework.Constants;
+import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
 import org.osgi.service.component.annotations.ReferencePolicy;
@@ -39,6 +38,10 @@ import com.frontierwholesales.core.beans.FrontierWholesalesProducts;
 import com.frontierwholesales.core.magento.models.MagentoRelatedProduct;
 import com.frontierwholesales.core.magento.services.FrontierWholesalesMagentoCommerceConnector;
 import com.frontierwholesales.core.services.RelatedProductsService;
+import com.frontierwholesales.core.utils.FrontierWholesalesUtils;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 
 @Component(service = RelatedProductsService.class, immediate = true,
 		property = { "process.label=Zilker Related Products Service Impl",
@@ -55,22 +58,9 @@ public class RelatedProductsServiceImpl implements RelatedProductsService {
 	
 	private FrontierWholesalesMagentoCommerceConnector magentoConnector;
 
-	@Override
-	public Collection<FrontierWholesalesProducts> getRelatedProducts( String sku ) {
-		ResourceResolver writeResourceResolver = null;
-		try {
-			writeResourceResolver = getResourceResolver();
-			return getRelatedProducts(writeResourceResolver, sku);
-		} finally {
-			if( writeResourceResolver != null && writeResourceResolver.isLive() ) {
-				writeResourceResolver.close();
-				writeResourceResolver = null;
-			}
-		}
-	}
 	
 	@Override
-	public Collection<FrontierWholesalesProducts> getRelatedProducts( ResourceResolver resourceResolver, String sku ) {
+	public Collection<FrontierWholesalesProducts> getRelatedProducts( SlingHttpServletRequest request, String sku ) throws Exception {
 		if( magentoConnector == null ) {
 			magentoConnector = new FrontierWholesalesMagentoCommerceConnector();
 		}
@@ -87,18 +77,51 @@ public class RelatedProductsServiceImpl implements RelatedProductsService {
 			// call service GET /V1/products/{sku}/links/{type} where type = related
 			List<MagentoRelatedProduct> productList = magentoConnector != null ? magentoConnector.getRelatedProductsForSku(adminToken, sku) : null;
 			if( productList != null && !productList.isEmpty() ) {
+				log.debug("Related product list is not empty");
 				for( MagentoRelatedProduct magentoProduct : productList ) {
+					log.debug("inside the loop ");
 					String relatedSku = magentoProduct.getLinkedProductSku();
-					FrontierWholesalesProducts product = StringUtils.isNotBlank(relatedSku) ? getProductForSku(resourceResolver, relatedSku) : null;
+					log.debug("related sku "+relatedSku);
+					
+					String productDetails = magentoConnector.getProductDetails(adminToken,relatedSku);
+					
+					//FrontierWholesalesProducts product = StringUtils.isNotBlank(relatedSku) ? getProductForSku(resourceResolver, relatedSku) : null;
+					log.debug("product is "+productDetails);
 					// TODO need to get path to product page
-					if( product != null && StringUtils.isNotBlank(product.getTitle()) ) {
-						listItems.add(product);
+					if( productDetails != null ) {
+						log.debug("before adding into listitems");
+						listItems.add(parseJsonObject(productDetails,request));
+						log.debug("after adding into the list");
 					}
 				}
 			}
 		}
 
 		return listItems;
+	}
+	
+	
+	private FrontierWholesalesProducts parseJsonObject(String productDetails,SlingHttpServletRequest request) throws Exception{
+		FrontierWholesalesUtils utils = new FrontierWholesalesUtils();
+		Gson json = new Gson();
+		JsonElement element = json.fromJson(productDetails, JsonElement.class);
+		
+		
+		JsonObject object = element.getAsJsonObject();
+		
+		JsonElement skuElement = object.get("sku");
+		log.debug("after sku "+skuElement.getAsString());
+		JsonElement name = object.get("name");
+		log.debug("after name "+name.getAsString() );
+		
+		FrontierWholesalesProducts products = new FrontierWholesalesProducts();
+		products.setTitle(name.getAsString());
+		products.setProductSKU(skuElement.getAsString());
+		products.setImagePath(utils.getImagePath(skuElement.getAsString(),request));
+		log.debug("after the image");
+		return products;
+		
+		
 	}
 	
 	@Override

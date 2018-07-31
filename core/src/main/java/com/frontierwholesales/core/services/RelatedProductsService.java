@@ -2,6 +2,7 @@ package com.frontierwholesales.core.services;
 
 import java.util.Collection;
 
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.ResourceResolver;
 
 import com.frontierwholesales.core.beans.FrontierWholesalesProducts;
@@ -20,8 +21,8 @@ public interface RelatedProductsService {
 	public static final String PROPERTY_PRODUCT_DATA = "jcr:content/root/product/@productData";	
 	public static final String PROPERTY_VALUE_PRODUCT = "product";
 	
-	Collection<FrontierWholesalesProducts> getRelatedProducts( String sku );
-	Collection<FrontierWholesalesProducts> getRelatedProducts( ResourceResolver resourceResolver, String sku );
+	//Collection<FrontierWholesalesProducts> getRelatedProducts( String sku ) throws Exception;
+	Collection<FrontierWholesalesProducts> getRelatedProducts( SlingHttpServletRequest request, String sku ) throws Exception;
 	
 	FrontierWholesalesProducts getProductForSku( ResourceResolver resourceResolver, String sku );
 }
