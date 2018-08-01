@@ -46,7 +46,13 @@ Frontier.SearchFacets = new function() {
 				value = $(filterElem).val()
 			}
 			
-			addFilter($(filterElem).attr("name"), value);
+			if($.isArray(value)) {
+				$.each(value, function(key, filterValue){
+					addFilter($(filterElem).attr("name"), filterValue);
+				});
+			} else {
+				addFilter($(filterElem).attr("name"), value);
+			}
 			
 		});
 		

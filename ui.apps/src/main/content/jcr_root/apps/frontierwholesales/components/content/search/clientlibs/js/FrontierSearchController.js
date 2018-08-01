@@ -84,21 +84,34 @@ Frontier.SearchController = new function() {
 		if(!!Frontier.SearchFacets) {
 			var filters = Frontier.SearchFacets.getFilters();
 			var groupIndex = 1;
+			var paramCount = 1;
+			var groupItemIndex = 0;
 			var lastGroupName = null;
 			$.each(filters, function( key, filter ) {
 				if(!!filter.value) {
-					if(groupIndex > 1) {
+					if(lastGroupName != null && lastGroupName != filter.name){
+						groupIndex++;
+						groupItemIndex = 0;
+					}
+					
+					if(lastGroupName == filter.name) {
+						groupItemIndex++;
+					}
+					
+					if(paramCount > 1) {
 						filtersQueryString += "&";
 					}
-					filtersQueryString += getFilterParam(groupIndex, 0, filter.name, filter.value, "eq");
-					if(lastGroupName != filter.name){
-						groupIndex++;
-					}
+					filtersQueryString += getFilterParam(groupIndex, groupItemIndex, filter.name, filter.value, "eq");
+					
 					lastGroupName = filter.name;
+					
+					paramCount++;
 				}
 			});
-			filtersQueryString += "&" + getFilterParam(groupIndex, 0, "status", "1", "eq");
+			
 			groupIndex++;
+			
+			filtersQueryString += "&" + getFilterParam(groupIndex, 0, "status", "1", "eq");
 			
 		} 
 		
