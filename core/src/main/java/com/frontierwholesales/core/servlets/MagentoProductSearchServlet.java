@@ -11,6 +11,7 @@ import javax.jcr.query.Query;
 import javax.jcr.query.QueryManager;
 import javax.jcr.query.QueryResult;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 
 import org.apache.felix.scr.annotations.Reference;
 import org.apache.felix.scr.annotations.sling.SlingServlet;
@@ -28,6 +29,7 @@ import com.frontierwholesales.core.beans.search.MagentoSearchCondition;
 import com.frontierwholesales.core.beans.search.MagentoSearchFilterGroup;
 import com.frontierwholesales.core.magento.services.FrontierWholesalesMagentoCommerceConnector;
 import com.frontierwholesales.core.magento.services.exceptions.FrontierWholesalesBusinessException;
+import com.frontierwholesales.core.services.constants.FrontierWholesalesConstants;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -73,7 +75,6 @@ public class MagentoProductSearchServlet extends SlingSafeMethodsServlet {
 				//search(writer, searchParam, currentPage, pageSize);
 				String adminToken = connector.getAdminToken();
 				String productList = connector.getProducts(adminToken, request.getQueryString());
-				log.debug("Magento product search returned: {}", productList);
 				
 				try {
 					productList = parseJsonObject(productList, pageSize, currentPage, request);
@@ -95,6 +96,17 @@ public class MagentoProductSearchServlet extends SlingSafeMethodsServlet {
 		}
 	}
 	
+	public String getUserToken(SlingHttpServletRequest request) {
+		 Cookie cookie = (Cookie)request.getCookie("CustomerData");
+		 return cookie.getValue();
+	 }
+	
+	private JsonObject extractJsonObject(String jsonObject)throws Exception {
+		 Gson gson = new Gson();
+		 JsonElement element = gson.fromJson(jsonObject, JsonElement.class);
+		 JsonObject object = element.getAsJsonObject();
+		 return object;
+	}
 
 	private String parseJsonObject(String productList,int recsPerPage,int currentPage,
 			SlingHttpServletRequest request) throws Exception{
@@ -106,6 +118,20 @@ public class MagentoProductSearchServlet extends SlingSafeMethodsServlet {
 		JsonObject object = element.getAsJsonObject();
 		JsonArray itemArray = object.getAsJsonArray("items");
 		
+		String customerGroupId = null;
+		
+		try {
+			String customerToken = getUserToken(request);
+			JsonObject tokenObj = extractJsonObject(customerToken);
+			String token = tokenObj.get("token").getAsString();
+			String customer = connector.getCustomer(token);
+			
+			JsonObject customerObject = extractJsonObject(customer);
+			customerGroupId = customerObject.get("group_id").getAsString();
+			object.addProperty("customer_group_id", customerGroupId);
+		} catch(Exception e) {
+			log.error("Issue getting customer group_id", e);
+		}
 		
 		DecimalFormat priceFormat=new DecimalFormat("#0.00");
 		for(int i=0;i<itemArray.size();i++) {
@@ -144,10 +170,25 @@ public class MagentoProductSearchServlet extends SlingSafeMethodsServlet {
 						
 				
 			}
+			
+			if(customerGroupId != null) {
+				JsonArray tierPriceArr = itemObject.getAsJsonArray("tier_prices");
+				if(tierPriceArr != null)
+				for(JsonElement tierElem : tierPriceArr) {
+					JsonObject tierObject = tierElem.getAsJsonObject();
+					JsonElement groupElement = tierObject.get("customer_group_id");
+				
+					if(groupElement.getAsString().equals(customerGroupId)) {
+						itemObject.addProperty("customer_price", tierObject.get("value").getAsDouble());
+					}
+				}
+			}
+			
+			itemObject.remove("tier_prices");
 		}
 		
-		JsonElement arrayElement = json.fromJson(itemArray, JsonElement.class);
-		object.add("items", arrayElement);
+//		JsonElement arrayElement = json.fromJson(itemArray, JsonElement.class);
+//		object.add("items", arrayElement);
 		object.addProperty("recsPerPage", recsPerPage);
 		
 		String searchTerm = request.getParameter("searchCriteria[filter_groups][0][filters][0][value]");

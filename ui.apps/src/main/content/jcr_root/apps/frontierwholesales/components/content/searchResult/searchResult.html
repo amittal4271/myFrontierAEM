@@ -81,6 +81,9 @@
 													{{else}}
                                                     	<span class="product-sale-price normal-price">{{ formatNumber price style="currency" currency="USD"}}</span>
                                                 	{{/if}}
+													{{#if customer_price includeZero=false}}
+														<span class="product-sale-price normal-price">Your Price: {{ formatNumber customer_price style="currency" currency="USD"}}</span>
+													{{/if}}
                                              </span>
                                         </a>
                                         {{#if ${user.authToken != null @context='scriptString' }}}
