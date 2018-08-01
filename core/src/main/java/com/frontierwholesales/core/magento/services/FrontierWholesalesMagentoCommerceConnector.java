@@ -116,6 +116,7 @@ public class FrontierWholesalesMagentoCommerceConnector {
     )
     public static final String ADMIN_PASSWORD="adminPassword";
 
+    public static final String TIME_OUT="6000";
 
     public FrontierWholesalesMagentoCommerceConnector() {
         mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
@@ -650,6 +651,17 @@ public class FrontierWholesalesMagentoCommerceConnector {
     	return response;
     	
     	
+    }
+    
+    public String getCustomerDetails(String userToken) throws Exception{
+    	log.debug("getCustomerDetails Start");
+    	String response = Request.Get(server+"/rest/default/V1/fc/customers/me")
+				.addHeader("Authorization",userToken)
+				.addHeader("timeout",TIME_OUT)
+				.execute().returnContent().asString();
+
+    	log.debug("getCustomerDetails End");
+    	return response;
     }
 
 }

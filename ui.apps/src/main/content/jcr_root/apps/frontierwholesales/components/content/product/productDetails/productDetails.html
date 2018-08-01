@@ -97,10 +97,12 @@
              {{#if ${user.authToken != null @context='scriptString' }}} 
 			<div class="product-price-summary"> 
                                 {{#if special_price includeZero=false}}
-                                   <span class="product-sale-price">{{ formattedPrice}}</span> 
+                                   <span class="product-sale-price">{{formatNumber tierprice  style="currency" currency="USD"}}</span> 
                                    <span class="product-now-price">Now {{formatNumber special_price style="currency" currency="USD"}}</span>
                                 {{else}}
-                                    <span class="product-sale-price normal-price"> {{ formattedPrice}}</span>
+                                {{#priceCheck tierprice}}
+                                    <span class="product-sale-price normal-price"> {{ formatNumber ../tierprice style="currency" currency="USD"}}</span>
+                                {{/priceCheck}}
                                 {{/if}}
                                     <!-- Magento Attribute TDB -->
                                    <!--<span class="product-save-percent">Save 25%</span>-->
@@ -126,6 +128,7 @@
                 
             </div>
              {{#if ${user.authToken != null @context='scriptString' }}}
+             {{#priceCheck tierprice}}
             <div class="product-wishlist">
                  <div id="message-{{sku}}" class="alert alert-add-to-cart" style="display: none;"></div>
                 <button data-skuid="{{sku}}" class="btn btn-add-wishlist btn-wishlist">Add to Wishlist +</button>
@@ -166,6 +169,7 @@
 					</div>
 					
 			</div>
+            {{/priceCheck}}
             {{/if}}
 			
             <div class="product-overview">

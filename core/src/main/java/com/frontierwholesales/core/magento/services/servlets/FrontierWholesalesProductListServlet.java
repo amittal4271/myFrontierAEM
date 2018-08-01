@@ -26,6 +26,7 @@ import org.slf4j.LoggerFactory;
 
 import com.frontierwholesales.core.beans.FrontierWholesalesProductSearch;
 import com.frontierwholesales.core.magento.services.FrontierWholesalesMagentoCommerceConnector;
+import com.frontierwholesales.core.utils.FrontierWholesalesUtils;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -48,16 +49,20 @@ public class FrontierWholesalesProductListServlet extends SlingAllMethodsServlet
 
 	private static final Logger log = LoggerFactory.getLogger(FrontierWholesalesProductListServlet.class);
 	private FrontierWholesalesMagentoCommerceConnector commerceConnector = new FrontierWholesalesMagentoCommerceConnector();
-	
+	private FrontierWholesalesUtils utils = new FrontierWholesalesUtils();
 	@Override
 	protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response)
 			throws ServletException, IOException {
 		
 		log.debug("doGet FrontierWholesalesProductListServlet Start here ");
 		RequestPathInfo path = request.getRequestPathInfo();
-		String selString = path.getSelectorString();
-		log.debug("Selector string is "+selString);
+		
 		try {
+			final String authorization = request.getHeader("Authorization");
+			
+			String groupId ="";
+			
+		   
 			FrontierWholesalesProductSearch search = new FrontierWholesalesProductSearch();
 			int currentPage = Integer.parseInt(request.getParameter("currentPage"));
 			search.setCurrentPage(currentPage);
@@ -73,6 +78,10 @@ public class FrontierWholesalesProductListServlet extends SlingAllMethodsServlet
 			search.setSortByNewProduct(sortByNewProduct);
 			String facetSearch = request.getParameter("facetQuery");
 			search.setFacetSearchQuery(facetSearch);
+			if(authorization != null) {				
+				groupId = utils.getCustomerDetailsByParameter("group_id", authorization);
+				
+			}
 			
 			String adminToken = commerceConnector.getAdminToken();
 			
@@ -81,7 +90,7 @@ public class FrontierWholesalesProductListServlet extends SlingAllMethodsServlet
 			String catList = commerceConnector.getParentChildrenCategories(adminToken, categoryId);
 			response.setContentType("text/html;charset=UTF-8;");
 			response.setCharacterEncoding("UTF-8");
-			response.getOutputStream().write(parseJsonObject(productList,catList,noOfRecsPerPage,currentPage,request).getBytes("UTF-8"));
+			response.getOutputStream().write(parseJsonObject(productList,catList,noOfRecsPerPage,currentPage,request,groupId).getBytes("UTF-8"));
 		}catch(Exception anyEx) {
 			log.error("Error in productList "+anyEx.getMessage());
 			response.getOutputStream().println("Error");
@@ -115,7 +124,7 @@ public class FrontierWholesalesProductListServlet extends SlingAllMethodsServlet
 	
 	
 	private String parseJsonObject(String productList,String catList,int recsPerPage,int currentPage,
-			SlingHttpServletRequest request) throws Exception{
+			SlingHttpServletRequest request,String groupId) throws Exception{
 		
 		Gson json = new Gson();
 		JsonElement element = json.fromJson(productList, JsonElement.class);
@@ -133,7 +142,7 @@ public class FrontierWholesalesProductListServlet extends SlingAllMethodsServlet
 			
 			itemObject.addProperty("imgPath", getImagePath(skuElement.getAsString(),request));
 			JsonArray attributesArray = itemObject.getAsJsonArray("custom_attributes");
-			
+			JsonArray tierPrices = itemObject.getAsJsonArray("tier_prices");
 			for(JsonElement attributesElement:attributesArray) {
 				JsonObject attrObject = attributesElement.getAsJsonObject();
 				JsonElement codeElement = attrObject.get("attribute_code");
@@ -161,6 +170,18 @@ public class FrontierWholesalesProductListServlet extends SlingAllMethodsServlet
 				}		
 				
 			}
+			
+			for(JsonElement pricesElement:tierPrices) {
+				
+				JsonObject obj = pricesElement.getAsJsonObject();
+				
+				JsonElement customerGroupElement = obj.get("customer_group_id");
+			
+				if(customerGroupElement.getAsString().equals(groupId)) {
+					
+					itemObject.addProperty("tierprice", obj.get("value").getAsDouble());
+				}
+			}
 		}
 		
 		JsonElement arrayElement = json.fromJson(itemArray, JsonElement.class);
@@ -183,7 +204,7 @@ public class FrontierWholesalesProductListServlet extends SlingAllMethodsServlet
 		return object.toString();
 	}
 	
-private String getImagePath(String productSku,SlingHttpServletRequest request) throws Exception{
+	private String getImagePath(String productSku,SlingHttpServletRequest request) throws Exception{
 		
 		Session session = request.getResourceResolver().adaptTo(Session.class);
 		QueryManager queryManager = session.getWorkspace().getQueryManager();
@@ -224,6 +245,20 @@ private String getImagePath(String productSku,SlingHttpServletRequest request) t
 	        	
 	        }    
 	    return imgPath;		    
+	}
+
+	private String getCustomerGroupId(String jsonObject) throws Exception{
+		Gson json = new Gson();
+		JsonElement element = json.fromJson(jsonObject, JsonElement.class);
+		
+		
+		JsonObject object = element.getAsJsonObject();
+		JsonObject customerObject = object.getAsJsonObject("frontier_customer");
+		
+		String groupId = customerObject.get("group_id").getAsString();
+		
+		return groupId;
+		
 	}
 	
 	

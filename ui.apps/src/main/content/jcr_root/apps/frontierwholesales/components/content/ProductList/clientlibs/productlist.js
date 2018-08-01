@@ -167,6 +167,7 @@ function getProductListByCategory(currentPage,recsPerPage,sortBy,searchString){
     jsonData['currentPage']=currentPage;
     jsonData['categoryId']=$('#categoryId').val();
     jsonData['noOfRecsPerPage']=recsPerPage;
+   
    if(sortBy !== undefined && sortBy !== ''){
        if(sortBy == "featured"){
            jsonData['sortByFeatured']="DESC";
@@ -270,6 +271,12 @@ function initHandlbarFunctions(){
                  var fnTrue = options.fn,
                 fnFalse = options.inverse;
                return (name !== undefined && name !== "Category" && name !== "Price")?fnTrue():fnFalse();
+            });
+    
+        Handlebars.registerHelper("priceCheck",function(price,options){
+                 var fnTrue = options.fn,
+                fnFalse = options.inverse;
+               return (price !== undefined && price >=0 )?fnTrue():fnFalse();
             });
 
 }

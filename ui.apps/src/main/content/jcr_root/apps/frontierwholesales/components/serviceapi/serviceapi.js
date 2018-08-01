@@ -206,7 +206,10 @@ Frontier.MagentoServices = new function(){
             data:jsonData,
             beforeSend:function(xhr){
               xhr.overrideMimeType("application/json");
-          }
+            },
+            headers:{
+             'Authorization':getUserToken(),
+            }
         });
     }
     

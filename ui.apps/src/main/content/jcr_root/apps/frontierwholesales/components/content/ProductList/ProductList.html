@@ -180,10 +180,12 @@
                                                   <!--<span class="product-now-price">Now {{ formattedPrice}}</span>-->
                                                 
                                                 {{#if special_price includeZero=false}}
-                                                   <span class="product-sale-price">{{ formatNumber price style="currency" currency="USD"}}</span> 
+                                                   <span class="product-sale-price">{{ formatNumber tierprice style="currency" currency="USD"}}</span> 
                                                    <span class="product-now-price">Now {{formatNumber special_price style="currency" currency="USD"}}</span>
                                                 {{else}}
-                                                    <span class="product-sale-price normal-price">{{ formatNumber price style="currency" currency="USD"}}</span>
+                                                    {{#priceCheck tierprice}}
+                                                        <span class="product-sale-price normal-price">{{ formatNumber ../tierprice style="currency" currency="USD"}}</span>
+                                                    {{/priceCheck}}
                                                 {{/if}}
                                              </span>
                                             {{/if}}
@@ -204,6 +206,7 @@
                                         </div>
                                        {{/ifEquals}}
                                         {{#if ${user.authToken != null @context='scriptString' }}}
+                                        {{#priceCheck tierprice}}
                                        <div class="grid-add-to-cart">
                                              <div class="qty-holder">
                                                   <button type="button" class="decrease qty-button qty-down">
@@ -230,6 +233,7 @@
                                                   </select>
                                              </div>
                                         </div>
+                                       {{/priceCheck}}
                                  {{/if}}
                                         </div>
                                         {{/items}}

@@ -24,6 +24,7 @@ import org.apache.sling.api.resource.ValueMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.frontierwholesales.core.magento.services.FrontierWholesalesMagentoCommerceConnector;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -31,6 +32,8 @@ import com.google.gson.JsonObject;
 public class FrontierWholesalesUtils {
 
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
+	
+	private FrontierWholesalesMagentoCommerceConnector commerceConnector = new FrontierWholesalesMagentoCommerceConnector();
 	/**
 	 * update for single json object
 	 * @param object
@@ -328,5 +331,35 @@ public class FrontierWholesalesUtils {
 		        }    
 		    return imgPath;		    
 		}
+	    
+	    /**
+	     * 
+	     * @param id
+	     * @param customerToken
+	     * @return
+	     * @throws Exception
+	     */
+	    public  String getCustomerDetailsByParameter(String id,String customerToken) throws Exception{
+	    		String groupId ="";
+	    		if(customerToken != null) {
+					String customerDetails = commerceConnector.getCustomerDetails(customerToken);
+					
+					if(customerDetails != null) {
+						
+	    	
+			    		Gson json = new Gson();
+			    		JsonElement element = json.fromJson(customerDetails, JsonElement.class);
+			    		
+			    		
+			    		JsonObject object = element.getAsJsonObject();
+			    		JsonObject customerObject = object.getAsJsonObject("frontier_customer");
+			    		
+			    		groupId = customerObject.get(id).getAsString();
+					} 		
+	    		
+	    	
+	    		}
+	    		return groupId;
+	    }
 		
 }

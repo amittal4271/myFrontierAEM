@@ -30,6 +30,7 @@ import org.slf4j.LoggerFactory;
 import com.day.cq.commons.jcr.JcrConstants;
 import com.frontierwholesales.core.magento.services.FrontierWholesalesMagentoCommerceConnector;
 import com.frontierwholesales.core.services.constants.FrontierWholesalesConstants;
+import com.frontierwholesales.core.utils.FrontierWholesalesUtils;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -43,12 +44,17 @@ public class FrontierWholesalesPDPServlet  extends SlingAllMethodsServlet{
 
 	private static final Logger log = LoggerFactory.getLogger(FrontierWholesalesPDPServlet.class);	
 	private FrontierWholesalesMagentoCommerceConnector commerceConnector = new FrontierWholesalesMagentoCommerceConnector();
-	
+	private FrontierWholesalesUtils utils = new FrontierWholesalesUtils();
 	@Override
 	protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response)
 			throws ServletException, IOException {
 		log.debug("doGet FrontierWholesalesPDPServlet Start");
 		try {
+			
+			final String authorization = request.getHeader("Authorization");
+			
+			String groupId ="";
+			
 			
 			String productSku = request.getParameter("sku");
 			log.debug("Product details for #sku: {}",productSku);
@@ -57,8 +63,14 @@ public class FrontierWholesalesPDPServlet  extends SlingAllMethodsServlet{
 			
 			if ((productSku != null) && (productSku.length()>0)){
 				
-				String productDetails = commerceConnector.getProductDetails(adminToken, productSku);		
-				response.getOutputStream().println(parseJsonObject(productDetails,request));
+				String productDetails = commerceConnector.getProductDetails(adminToken, productSku);
+				
+				
+				if(authorization != null) {
+					groupId = utils.getCustomerDetailsByParameter("group_id", authorization);
+				}
+				
+				response.getOutputStream().println(parseJsonObject(productDetails,request,groupId));
 				
 			}
 			else {
@@ -126,7 +138,7 @@ private JsonArray getImagePath(String productSku,SlingHttpServletRequest request
 	    return array;		    
 	}
 	
-	private String parseJsonObject(String productDetails,SlingHttpServletRequest request) throws Exception{
+	private String parseJsonObject(String productDetails,SlingHttpServletRequest request,String groupId) throws Exception{
 		
 		Gson json = new Gson();
 		JsonElement element = json.fromJson(productDetails, JsonElement.class);
@@ -156,6 +168,19 @@ private JsonArray getImagePath(String productSku,SlingHttpServletRequest request
 		}
 		
 		JsonArray attributesArray = object.getAsJsonArray("custom_attributes");
+		JsonArray tierPrices = object.getAsJsonArray("tier_prices");
+		
+		for(JsonElement pricesElement:tierPrices) {
+			
+			JsonObject obj = pricesElement.getAsJsonObject();
+			
+			JsonElement customerGroupElement = obj.get("customer_group_id");
+		
+			if(customerGroupElement.getAsString().equals(groupId)) {
+				
+				object.addProperty("tierprice", obj.get("value").getAsDouble());
+			}
+		}
 		
 		for(JsonElement attributesElement:attributesArray) {
 			JsonObject attrObject = attributesElement.getAsJsonObject();

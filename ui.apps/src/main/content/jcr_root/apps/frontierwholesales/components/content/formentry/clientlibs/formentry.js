@@ -10,6 +10,12 @@ Frontier.formEntry = new function(){
             enableErrorMsg('error');
         }
         
+         $("#email-input").keyup(function(event){ 
+            if(event.keyCode == 13){ 
+               subscribeNewsletter();
+            }
+         });
+        
     }
     
     function subscribeNewsletter(){
@@ -56,6 +62,14 @@ Frontier.formEntry = new function(){
     }
     $(document).ready(function(){
         validation.newletterForm('#newsletter-form');
+         $(document).on('keypress',"#email-input",function(event){ 
+
+            if(event.keyCode == 13){ 
+               $('#submit-email').trigger('click');
+                return false;
+            }
+
+         });
         $(document).on('click','#submit-email',function(e){
             e.preventDefault();
            //call api here....

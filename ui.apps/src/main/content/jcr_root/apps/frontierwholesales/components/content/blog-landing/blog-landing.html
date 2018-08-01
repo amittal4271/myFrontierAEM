@@ -1,0 +1,43 @@
+<!--/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  ~ Copyright 2016 Adobe Systems Incorporated
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/-->
+<div id="article-grid" class="search-results-article-grid match-height">
+<article class="article-grid-item">
+<figure class="figure-article-holder">
+
+<a class="article-link-holder" data-sly-use.button="button.js" href="${button.linkTo || '#'}">
+	<div class="article-grid-image">
+        <img
+        data-sly-use.image="image.js"
+        src="${image.src}"
+        alt="${image.alt}"/>
+
+	</div>
+   <figcaption class="figcaption-article-grid-info">
+          <span class="article-date">March 30, 2018</span>
+          <span class="article-title"> ${properties.jcr:title}</span>
+          <span class="article-description"> ${properties.text @context='html'}</span>
+          <span class="btn btn btn-white-green btn-article-read-more">${properties.label}</span>
+     </figcaption> 
+
+
+
+</a>
+
+
+</figure>
+</article>
+&nbsp;
+</div>

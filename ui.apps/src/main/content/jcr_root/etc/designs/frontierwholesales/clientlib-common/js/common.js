@@ -130,6 +130,25 @@ function getCustomerIdFromCookie(){
     return customerId;
 }
 
+
+function getGroupIdFromCookie(){
+    var cookieValue = document.cookie;
+        var cookieSplit=cookieValue.split(";");
+        var CustomerData={};
+        for(var i=0;i<cookieSplit.length;i++){
+            var token = cookieSplit[i].trim().split("=");
+            if(token[0].startsWith("CustomerData")){
+                CustomerData = JSON.parse(token[1]);
+            }
+        }
+    var groupId='';
+    if(!$.isEmptyObject(CustomerData)){
+        groupId = CustomerData.group_id;
+    }
+    return groupId;
+}
+
+
 function getAdminToken(){
      var d = $.Deferred();
 

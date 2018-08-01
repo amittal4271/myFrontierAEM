@@ -67,18 +67,42 @@ function getProductDetails(){
 
     jsonData['sku']=$('#productId').val();
     jsonData['currentPagePath'] = $('#currentPagePath').val();
-
+   
     $.ajax({
         url: "/services/pdp",
-        data:jsonData
+        data:jsonData,
+        headers:{
+            'Authorization':getUserToken()
+        }
     }).done(function(results){
         hideLoadingScreen();
         var productDetails = JSON.parse(results);
        
         var template = $("#productDetailsTemplate").html();
-        var bCount=0;
+       
          HandlebarsIntl.registerWith(Handlebars);
-        Handlebars.registerHelper("getAttrValues",function(attCode,value,count,options){
+       
+        registerHandleBarHelpers();
+
+        var html = Handlebars.compile(template);
+
+        var processedHTML = html(productDetails)
+       
+
+        $('#product-detail').empty();
+        $('#product-detail').html(processedHTML);
+        if ($('#product-detail').length > 0) {
+    		bindPdpAffixEvents();
+    	}
+    }).fail(function(error){
+         hideLoadingScreen();
+        enableErrorMsg(error.status);
+    });
+}
+
+function registerHandleBarHelpers(){
+    var bCount = 0;
+     Handlebars.registerHelper("getAttrValues",function(attCode,value,count,options){
            
             var idx = $.inArray(attCode,summaryAttribute);
             if(idx != -1){
@@ -130,23 +154,12 @@ function getProductDetails(){
               
         });
         
-
-        var html = Handlebars.compile(template);
-
-        var processedHTML = html(productDetails)
-       
-
-        $('#product-detail').empty();
-        $('#product-detail').html(processedHTML);
-        if ($('#product-detail').length > 0) {
-    		bindPdpAffixEvents();
-    	}
-    }).fail(function(error){
-         hideLoadingScreen();
-        enableErrorMsg(error.status);
-    });
+        Handlebars.registerHelper("priceCheck",function(price,options){
+                 var fnTrue = options.fn,
+                fnFalse = options.inverse;
+               return (price !== undefined && price >=0 )?fnTrue():fnFalse();
+            });
 }
-
 
 function addItemToCart(sku,qty){
    console.log("in addItemToCart("+sku+", "+qty+")");
