@@ -128,7 +128,6 @@ public class MagentoProductSearchServlet extends SlingSafeMethodsServlet {
 			
 			JsonObject customerObject = extractJsonObject(customer);
 			customerGroupId = customerObject.get("group_id").getAsString();
-			object.addProperty("customer_group_id", customerGroupId);
 		} catch(Exception e) {
 			log.error("Issue getting customer group_id", e);
 		}
@@ -179,7 +178,7 @@ public class MagentoProductSearchServlet extends SlingSafeMethodsServlet {
 					JsonElement groupElement = tierObject.get("customer_group_id");
 				
 					if(groupElement.getAsString().equals(customerGroupId)) {
-						itemObject.addProperty("customer_price", tierObject.get("value").getAsDouble());
+						itemObject.addProperty("tierprice", tierObject.get("value").getAsDouble());
 					}
 				}
 			}

@@ -1,5 +1,7 @@
 package com.frontierwholesales.core.magento.models;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -11,7 +13,7 @@ public final class MagentoFacet {
 	public final String position;
 	public final String attribute_code;
 	public final String frontend_input;
-	public final List<MagentoFacetOption> options;
+	private final List<MagentoFacetOption> options;
 	public final String default_frontend_label;
 	public final String backend_type;
 	
@@ -52,6 +54,21 @@ public final class MagentoFacet {
 	}
 	
 	public List<MagentoFacetOption> getOptions() {
+		
+		Collections.sort(options, new Comparator<MagentoFacetOption>() {
+            @Override
+            public int compare(MagentoFacetOption offer1, MagentoFacetOption offer2)
+            {
+                String label1 = (offer1.getLabel() != null) ? offer1.getLabel() : "";
+                String label2 = (offer2.getLabel() != null) ? offer2.getLabel() : "";
+                
+                label1 = label1.toLowerCase();
+                label2 = label2.toLowerCase();
+                
+                return  label1.compareTo(label2);
+            }
+        });
+		
 		return options;
 	}
 	

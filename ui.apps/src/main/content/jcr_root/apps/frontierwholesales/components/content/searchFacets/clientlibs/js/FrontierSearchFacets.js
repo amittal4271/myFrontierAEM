@@ -6,18 +6,19 @@ Frontier.SearchFacets = Frontier.SearchFacets || {};
 Frontier.SearchFacets = new function() {
 
 	var filters = [],
-		facetSelector = "#plp-search-left-nav-filters select, #plp-search-left-nav-filters input";
+		facetSelector = "#plp-search-left-nav-filters .checkbox-link";
 	
 	function init() {
 		console.log("Frontier Search Facets init");
-				
-		$(facetSelector).change(function(event) {
-			console.log("Filter Changed, new filter list... ", getFilters());
-			Frontier.SearchController.updateResults();
-		});
-		
-		$(facetSelector).change(function(){
-		    	Frontier.SearchController.updateResults();
+			
+		$(document).on('click',facetSelector,function(event){ 
+	        event.preventDefault();
+			if(!$(this).hasClass('selected-filter')) {
+	            $(this).addClass('selected-filter');
+	        }else{
+	            $(this).removeClass('selected-filter');
+	        } 
+	        Frontier.SearchController.updateResults();
 	    });
 	}
 	
@@ -33,29 +34,9 @@ Frontier.SearchFacets = new function() {
 	function getFilters() {
 		filters = [];
 		
-		$.each($(facetSelector), function( key, filterElem ) {
-			var value = "";
-			
-			if($(this).attr("type") == "checkbox") {
-				if(this.checked) {
-					value = "1";
-				} else {
-					value = "";
-				}
-			} else {
-				value = $(filterElem).val()
-			}
-			
-			if($.isArray(value)) {
-				$.each(value, function(key, filterValue){
-					addFilter($(filterElem).attr("name"), filterValue);
-				});
-			} else {
-				addFilter($(filterElem).attr("name"), value);
-			}
-			
+		$.each($(facetSelector+".selected-filter"), function( key, filterElem ) {
+			addFilter($(this).closest(".each-filters-list").attr("data-code"), $(this).attr("data-value"));
 		});
-		
 		
 		return filters;
 	}

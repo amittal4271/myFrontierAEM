@@ -17,7 +17,7 @@ Frontier.SearchController = new function() {
 	function init() {
 		console.log("Frontier Search Controller init");
 		if(typeof Frontier.SearchResults !== 'undefined') {
-			console.log("query string", window.location.search);
+			console.log("query string found on load ... ", window.location.search);
 			if(window.location.search != "") {
 				console.log("doing initial search");
 				var searchTerm = getParameterByName("searchCriteria[filter_groups][0][filters][0][value]");
@@ -129,8 +129,6 @@ Frontier.SearchController = new function() {
 		}
 		
 		var sortBy = $("#sortBy").val();
-		console.log("SortBy = "+sortBy);
-		console.log($("#sortBy"));
 		
 		featured ="&searchCriteria[sortOrders][0][field]=featured&searchCriteria[sortOrders][0][direction]=DESC";
 		newProduct="&searchCriteria[sortOrders][0][field]=created_at&searchCriteria[sortOrders][0][direction]=DESC";
