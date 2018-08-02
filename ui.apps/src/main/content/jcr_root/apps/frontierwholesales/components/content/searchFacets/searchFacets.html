@@ -12,6 +12,15 @@
 	        	<option data-attr-id="${option.value}" value="${option.value}">${option.label}</option>
 	        </select>
 		</sly>
+		<sly data-sly-test="${item.frontend_input == 'multiselect'}">
+	        <h2 class="filter-heading"><label for="id_${item.attribute_code}">${item.default_frontend_label}</label></h2>
+	        <select multiple id="id_${item.attribute_code}" class="form-control" name="${item.attribute_code}" data-sly-list.option="${item.options}">
+	        	<sly data-sly-test="${option.value != '' && optionList.first}">
+	        		<option data-attr-id="" value=""></option>
+	        	</sly>
+	        	<option data-attr-id="${option.value}" value="${option.value}">${option.label}</option>
+	        </select>
+		</sly>
 		<sly data-sly-test="${item.frontend_input == 'boolean'}">
 			<h2 class="filter-heading"><label for="${item.attribute_code}">${item.default_frontend_label}&nbsp;</label><input type="checkbox" id="${item.attribute_code}" name="${item.attribute_code}"/></h2>
 		</sly>

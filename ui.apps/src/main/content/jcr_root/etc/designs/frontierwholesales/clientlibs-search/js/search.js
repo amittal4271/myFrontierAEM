@@ -138,9 +138,16 @@ var FontierwholesalesSearch = {
 				if (data) {
 					// Append results
 					$.each(data, function(i, item) {
-						url = formAction + "?q=" + item.title;
-                        suggest = "<li><a href='" + url + "'>" + item.title + "</a></li>";
+                        suggest = $("<li><a href='#'>" + item.title + "</a></li>");
 					    suggestions.append(suggest);
+					    
+					    (function(suggest){
+					    	suggest.find("a").click(function(event){
+						    	event.preventDefault();
+						    	$(".search-input").val($(this).text());
+						    	$(this).closest("form").submit();
+						    });
+				    	})(suggest);
 					});
 				}
 				// Trigger event to enable custom callbacks

@@ -74,8 +74,16 @@
                                                   {{name}}
                                              </span>
                                              <span class="grid-product-price">
-                                                  <!--<span class="product-sale-price">$5.80</span> -->
-                                                  <span class="product-now-price">Now {{ formattedPrice}}</span>
+                                                  	<!--<span class="product-sale-price">$5.80</span> -->
+                                                  	{{#if special_price includeZero=false}}
+                                                   		<span class="product-sale-price">{{ formatNumber price style="currency" currency="USD"}}</span> 
+														<span class="product-now-price">Now {{formatNumber special_price style="currency" currency="USD"}}</span>
+													{{else}}
+                                                    	<span class="product-sale-price normal-price">{{ formatNumber price style="currency" currency="USD"}}</span>
+                                                	{{/if}}
+													{{#if customer_price includeZero=false}}
+														<span class="product-sale-price normal-price">Your Price: {{ formatNumber customer_price style="currency" currency="USD"}}</span>
+													{{/if}}
                                              </span>
                                         </a>
                                         {{#if ${user.authToken != null @context='scriptString' }}}

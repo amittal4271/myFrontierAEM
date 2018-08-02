@@ -7,14 +7,9 @@ Frontier.SearchResults = new function() {
 	
 	function init() {
 		console.log("Frontier Search Results init");
-	}
-	
-	function updateResults(products) {
+		HandlebarsIntl.registerWith(Handlebars);
 		
-		$(".plp-search-text-heading").html('Search Results for "'+$(".search-input").val()+'"');
-		var template = $("#productlistTemplate").html();
-	    
-	    Handlebars.registerHelper("recordsPerPage",function(recsPerPage,page,totalRecs){
+		Handlebars.registerHelper("recordsPerPage",function(recsPerPage,page,totalRecs){
 	        var recordsPerPage = recsPerPage * page;
 	        if( recordsPerPage > totalRecs){
 	            return totalRecs;
@@ -36,43 +31,57 @@ Frontier.SearchResults = new function() {
 	       return (index > 4)?fnTrue():fnFalse();
 	          
 	    });
-
-
+	}
+	
+	function updateResults(products) {
+		
+		$(".plp-search-text-heading").html('Search Results for "'+$(".search-input").val()+'"');
+		var template = $("#productlistTemplate").html();
 	    
-	   var html = Handlebars.compile(template);
-	  
+	    var html = Handlebars.compile(template);
 	  
 	    var processedHTML = html(products)
-	 
 	   
 	    $('#productlisttemplate').empty();
 	    $('#productlisttemplate').html(processedHTML); 
 	    
 	    var pageSize = getParameterByName("searchCriteria[pageSize]");
+	    
 		$('#itemPerPageSelect option[value='+pageSize +']').prop('selected',true);
 
-//	    if(sortBy !== undefined && sortBy !== ''){
-//           $('#sortBy option[value='+ sortBy+']').prop('selected',true);
-//        }
+		//pull sortby from query string // could also save in session storage or otherwise
+		var sortBy = getParameterByName("searchCriteria[sortOrders][0][field]");
+		var sortDirection = getParameterByName("searchCriteria[sortOrders][0][direction]");
+				
+		if(sortBy == "price") {
+			sortBy = sortDirection;
+        } else if(sortBy == "created_at") {
+        	sortBy = "newproduct";
+        } else if(sortBy == "featured") {
+        	sortBy = "featured";
+        } 
+		
+	    if(sortBy !== null){
+           $('#sortBy option[value='+ sortBy+']').prop('selected',true);
+        }
        
         var $el = $('#plp-search-header-holder');
-       scrollToElement($el);
+        scrollToElement($el);
        
        
-       setTimeout(function() {
-                  adjustHeight();
-              }, 500);
+        setTimeout(function() {
+        	adjustHeight();
+        }, 500);
        
-   //enable/disable previous button - Pagination
-//    if(currentPage > 1){
-//          $('#previous').removeClass('disabled');
-//      }else{
-//          $('#previous').addClass('disabled');
-//      }
+		//enable/disable previous button - Pagination
+//	    if(currentPage > 1){
+//	          $('#previous').removeClass('disabled');
+//		} else {
+//	          $('#previous').addClass('disabled');
+//		}
+//       
        
-       
-
-       $(document).on('change','#itemPerPageSelect',function(){
+       $(document).on('change','#itemPerPageSelect,#sortBy',function(){
     	   Frontier.SearchController.updateResults();
        });
        
