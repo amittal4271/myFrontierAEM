@@ -2,32 +2,31 @@
 <sly data-sly-call="${clientlib.js @ categories='frontier-search-facets'}" data-sly-unwrap/>
 <sly data-sly-use.searchFacets="com.frontierwholesales.core.magento.services.models.SearchFacets"></sly>
 <aside id="plp-search-left-nav-filters" data-sly-list="${searchFacets.facets}">
-    <div class="each-filter-section">
-		<sly data-sly-test="${item.frontend_input == 'select'}">
-	        <h2 class="filter-heading"><label for="id_${item.attribute_code}">${item.default_frontend_label}</label></h2>
-	        <select id="id_${item.attribute_code}" class="form-control" name="${item.attribute_code}" data-sly-list.option="${item.options}">
-	        	<sly data-sly-test="${option.value != '' && optionList.first}">
-	        		<option data-attr-id="" value=""></option>
-	        	</sly>
-	        	<option data-attr-id="${option.value}" value="${option.value}">${option.label}</option>
-	        </select>
+		<sly data-sly-test="${item.attribute_code == 'manufacturer'}">
+		<div class="each-filter-section">
+	        <h2 class="filter-heading"><label for="id_${item.attribute_code}">Brand</label></h2>
+	        <ul data-code="${item.attribute_code}" class="each-filters-list" data-sly-list.option="${item.options}">
+	        	<li data-sly-test="${option.value != '' && option.value != ' '}" class="filter-item ${optionList.index > 5 ? 'visuallyhidden' : ''}">
+					<a href="#" id="0" data-value="${option.value}" class="filter-link checkbox-link"><span class="text">${option.label}</span></a>
+				</li>
+				<li data-sly-test="${optionList.last}" class="filter-item filter-item-expand">
+					<button type="button" class="btn btn-view-more-filters">
+					     <span class="view-more-text">View More</span>
+					</button>
+				</li>
+	        </ul>
+        </div>
 		</sly>
-		<sly data-sly-test="${item.frontend_input == 'multiselect'}">
-	        <h2 class="filter-heading"><label for="id_${item.attribute_code}">${item.default_frontend_label}</label></h2>
-	        <select multiple id="id_${item.attribute_code}" class="form-control" name="${item.attribute_code}" data-sly-list.option="${item.options}">
-	        	<sly data-sly-test="${option.value != '' && optionList.first}">
-	        		<option data-attr-id="" value=""></option>
-	        	</sly>
-	        	<option data-attr-id="${option.value}" value="${option.value}">${option.label}</option>
-	        </select>
+		
+		<sly data-sly-test="${item.attribute_code == 'certifications' && item.frontend_input != 'boolean'}">
+        <div class="each-filter-section">
+	        <h2 class="filter-heading"><label for="id_${item.attribute_code}">Certifications</label></h2>
+	        <ul data-code="${item.attribute_code}" class="each-filters-list" data-sly-list.option="${item.options}">
+	        	<li data-sly-test="${option.value != '' && option.value != ' '}" class="filter-item">
+					<a href="#" id="0" data-value="${option.value}" class="filter-link checkbox-link"><span class="text">${option.label}</span></a>
+				</li>
+	        </ul>
+        </div>
 		</sly>
-		<sly data-sly-test="${item.frontend_input == 'boolean'}">
-			<h2 class="filter-heading"><label for="${item.attribute_code}">${item.default_frontend_label}&nbsp;</label><input type="checkbox" id="${item.attribute_code}" name="${item.attribute_code}"/></h2>
-		</sly>
-		<sly data-sly-test="${item.frontend_input == 'text'}">
-			<h2 class="filter-heading"><label for="id_${item.attribute_code}">${item.default_frontend_label}</label></h2>
-	        <input type="text" name="${item.attribute_code}"/>
-		</sly>
-    </div>
 </aside>
 

@@ -7,30 +7,78 @@ Frontier.SearchResults = new function() {
 	
 	function init() {
 		console.log("Frontier Search Results init");
+		initHandlbarFunctions();
+
+       $(document).on('change','#itemPerPageSelect,#sortBy',function(){
+    	   console.log("SortBy or Item per page changed!!");
+    	   Frontier.SearchController.updateResults();
+       });
+       
+       $(document).on('click','.pagination-next.pagination-arrow',function(e){
+    	   console.log("next arrow clicked!!!");
+           e.preventDefault();
+           var currentPage = parseInt($('#currentPage').val());
+         
+           var pageTotal = parseInt($('#totalPage').val());
+           var sortBy = $('#sortBy').val();
+           if(currentPage < pageTotal){
+                currentPage = currentPage + 1;
+               var recsPerPage = $('#itemPerPageSelect').val();
+               Frontier.SearchController.updateResults(currentPage);
+           }
+       });
+       
+        $(document).on('click','.pagination-previous.pagination-arrow',function(e){
+            e.preventDefault();
+           var disabled = $(this).hasClass('disabled');
+            if(!disabled){
+               var currentPage = parseInt($('#currentPage').val());
+                if(currentPage > 1){
+                var prevPage = currentPage - 1;
+
+                     var pageTotal = parseInt($('#totalPage').val());
+                    var recsPerPage = $('#itemPerPageSelect').val();
+                     var sortBy = $('#sortBy').val();
+                     Frontier.SearchController.updateResults(prevPage);
+                }
+            }
+       });
+	       
+	}
+	
+
+	function initHandlbarFunctions() {
+
 		HandlebarsIntl.registerWith(Handlebars);
 		
-		Handlebars.registerHelper("recordsPerPage",function(recsPerPage,page,totalRecs){
-	        var recordsPerPage = recsPerPage * page;
-	        if( recordsPerPage > totalRecs){
-	            return totalRecs;
-	        }else{
-	          return recordsPerPage;
-	        }
-	    });
-	    
-	    Handlebars.registerHelper("gt",function(pageTotal,options){
-	        var fnTrue = options.fn,
-	    fnFalse = options.inverse;
-	       return (pageTotal > 28)?fnTrue():fnFalse();
-	          
-	    });
-	    
-	    Handlebars.registerHelper("moreCategories",function(index,options){
-				 var fnTrue = options.fn,
-	    	fnFalse = options.inverse;
-	       return (index > 4)?fnTrue():fnFalse();
-	          
-	    });
+		Handlebars.registerHelper("recordsPerPage", function(recsPerPage, page,
+				totalRecs) {
+			var recordsPerPage = recsPerPage * page;
+			if (recordsPerPage > totalRecs) {
+				return totalRecs;
+			} else {
+				return recordsPerPage;
+			}
+		});
+
+		Handlebars.registerHelper("gt", function(pageTotal, options) {
+			var fnTrue = options.fn, fnFalse = options.inverse;
+			return (pageTotal > 28) ? fnTrue() : fnFalse();
+
+		});
+
+		Handlebars.registerHelper("ifEquals", function(attrib, options) {
+			var fnTrue = options.fn, fnFalse = options.inverse;
+			return (attrib !== undefined && attrib.trim() !== '0') ? fnTrue()
+					: fnFalse();
+
+		});
+		
+		Handlebars.registerHelper("priceCheck", function(price, options) {
+			var fnTrue = options.fn, fnFalse = options.inverse;
+			return (price !== undefined && price >= 0) ? fnTrue() : fnFalse();
+		});
+
 	}
 	
 	function updateResults(products) {
@@ -80,40 +128,6 @@ Frontier.SearchResults = new function() {
 //	          $('#previous').addClass('disabled');
 //		}
 //       
-       
-       $(document).on('change','#itemPerPageSelect,#sortBy',function(){
-    	   Frontier.SearchController.updateResults();
-       });
-       
-       $(document).on('click','.pagination-next.pagination-arrow',function(e){
-           e.preventDefault();
-           var currentPage = parseInt($('#currentPage').val());
-         
-           var pageTotal = parseInt($('#totalPage').val());
-           var sortBy = $('#sortBy').val();
-           if(currentPage < pageTotal){
-                currentPage = currentPage + 1;
-               var recsPerPage = $('#itemPerPageSelect').val();
-               Frontier.SearchController.updateResults(currentPage);
-           }
-       });
-       
-        $(document).on('click','.pagination-previous.pagination-arrow',function(e){
-            e.preventDefault();
-           var disabled = $(this).hasClass('disabled');
-            if(!disabled){
-               var currentPage = parseInt($('#currentPage').val());
-                if(currentPage > 1){
-                var prevPage = currentPage - 1;
-
-                     var pageTotal = parseInt($('#totalPage').val());
-                    var recsPerPage = $('#itemPerPageSelect').val();
-                     var sortBy = $('#sortBy').val();
-                     Frontier.SearchController.updateResults(prevPage);
-                }
-            }
-       });
-       
        
 	}
 	
