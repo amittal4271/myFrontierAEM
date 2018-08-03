@@ -1,6 +1,6 @@
 .suggestions {
     text-align: center;
-    top: 116px;
+    top: 75px;
     font-size: 14px;
     background: #f6f6f6;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
@@ -9,6 +9,12 @@
 	position: absolute;
 	right: 0;
     z-index: 2;
+}
+
+@media screen and (min-width: 1200px){
+	.suggestions {
+  		top: 118px;
+	}
 }
 
 .suggestions li {
@@ -33,3 +39,10 @@
     background: #ececec;
     color: #000;
 }
+
+@media screen and (min-width: 1200px){
+	#search-header-holder {
+	    position: static !important;
+	}
+}
+
