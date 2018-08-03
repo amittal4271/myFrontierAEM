@@ -17,9 +17,8 @@ Frontier.SearchController = new function() {
 	function init() {
 		console.log("Frontier Search Controller init");
 		if(typeof Frontier.SearchResults !== 'undefined') {
-			console.log("query string found on load ... ", window.location.search);
 			if(window.location.search != "") {
-				console.log("doing initial search");
+				console.log("doing initial search from incoming page load query string");
 				var searchTerm = getParameterByName("searchCriteria[filter_groups][0][filters][0][value]");
 				if(!!searchTerm) {
 					searchTerm = searchTerm.replaceAll("%", "");
@@ -44,11 +43,7 @@ Frontier.SearchController = new function() {
 		
 		$(".search-form").submit(function(event) {
 			event.preventDefault();
-			if(!!Frontier.SearchResults){
-				updateResults();
-			} else {
-				window.location = "/content/frontierwholesales/en/search.html?"+getQueryString();
-			}
+			window.location = "/content/frontierwholesales/en/search.html?"+getQueryString(null, true);
 		});
 	}
 	
@@ -72,7 +67,7 @@ Frontier.SearchController = new function() {
 			   "searchCriteria[filter_groups][" + group_index + "][filters][" + index + "][condition_type]=" + type;
 	}
 	
-	function getQueryString(pageNum) {
+	function getQueryString(pageNum, searchTermOnly) {
 		var queryString = "";
 		
 		var searchTerm = $(".search-input").val();
@@ -81,20 +76,21 @@ Frontier.SearchController = new function() {
 		
 		var filtersQueryString = "";
 		
-		if(!!Frontier.SearchFacets) {
+		if(!!Frontier.SearchFacets && !searchTermOnly) {
 			var filters = Frontier.SearchFacets.getFilters();
 			var groupIndex = 1;
 			var paramCount = 1;
 			var groupItemIndex = 0;
-			var lastGroupName = null;
+			var previousFilterName = null;
+			
 			$.each(filters, function( key, filter ) {
 				if(!!filter.value) {
-					if(lastGroupName != null && lastGroupName != filter.name){
+					if(previousFilterName != null && previousFilterName != filter.name || (previousFilterName == filter.name && filter.type == "AND") ) {
 						groupIndex++;
 						groupItemIndex = 0;
-					}
+					} 
 					
-					if(lastGroupName == filter.name) {
+					if(previousFilterName == filter.name && filter.type != "AND") {
 						groupItemIndex++;
 					}
 					
@@ -103,32 +99,38 @@ Frontier.SearchController = new function() {
 					}
 					filtersQueryString += getFilterParam(groupIndex, groupItemIndex, filter.name, filter.value, "eq");
 					
-					lastGroupName = filter.name;
+					previousFilterName = filter.name;
 					
 					paramCount++;
 				}
 			});
 			
-			groupIndex++;
-			
-			filtersQueryString += "&" + getFilterParam(groupIndex, 0, "status", "1", "eq");
+			if(filtersQueryString.length > 0) {
+				queryString += "&"+filtersQueryString ;
+			} 
 			
 		} 
 		
-		if(filtersQueryString.length > 0) {
-			queryString += "&"+filtersQueryString ;
-		} 
+		groupIndex++;
+		queryString += "&" + getFilterParam(groupIndex, 0, "status", "1", "eq");
 		
-		var recsPerPage = $('#itemPerPageSelect').val();
+		var recsPerPage;
+		if(!searchTermOnly) {
+			recsPerPage = $('#itemPerPageSelect').val();
+		}
+
 		if(typeof recsPerPage === 'undefined') {
 			recsPerPage = 28;
 		}
 		
-		if(typeof pageNum === 'undefined') {
+		if(typeof pageNum === 'undefined' || pageNum == '' || pageNum == null || pageNum < 1 || searchTermOnly) {
 			pageNum = 1;
 		}
 		
-		var sortBy = $("#sortBy").val();
+		var sortBy;
+		if(!searchTermOnly) {
+			sortBy = $("#sortBy").val();
+		}
 		
 		featured ="&searchCriteria[sortOrders][0][field]=featured&searchCriteria[sortOrders][0][direction]=DESC";
 		newProduct="&searchCriteria[sortOrders][0][field]=created_at&searchCriteria[sortOrders][0][direction]=DESC";
