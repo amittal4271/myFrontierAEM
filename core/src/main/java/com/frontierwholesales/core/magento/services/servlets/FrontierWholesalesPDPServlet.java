@@ -3,6 +3,10 @@ package com.frontierwholesales.core.magento.services.servlets;
 import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 import javax.jcr.Node;
 import javax.jcr.NodeIterator;
@@ -98,7 +102,8 @@ private JsonArray getImagePath(String productSku,SlingHttpServletRequest request
 		JsonArray array = new JsonArray();
 		
 		String sqlStatement="SELECT * FROM [nt:unstructured] AS node\n" + 
-	    		"WHERE ISDESCENDANTNODE(node, \"/content/dam/FrontierImages/product/"+ productSku+"\")"; 
+	    		"WHERE ISDESCENDANTNODE(node, \"/content/dam/FrontierImages/product/"+ productSku+"\")"
+	    				+ "ORDER BY node.title"; 
 	    			
 		
 		Query query = queryManager.createQuery(sqlStatement,"JCR-SQL2");	   		   
@@ -151,6 +156,8 @@ private JsonArray getImagePath(String productSku,SlingHttpServletRequest request
 		JsonElement priceElement = object.get("price");
 		object.addProperty("formattedPrice", "$"+priceFormat.format(priceElement.getAsDouble()));
 		JsonElement skuElement = object.get("sku");
+		
+	
 		object.add("imgPath", getImagePath(skuElement.getAsString(),request));
 	
 		JsonObject extnObject = object.getAsJsonObject("extension_attributes");

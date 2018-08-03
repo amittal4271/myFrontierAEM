@@ -1,8 +1,11 @@
 package com.frontierwholesales.core.utils;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -300,7 +303,8 @@ public class FrontierWholesalesUtils {
 			
 			
 			String sqlStatement="SELECT * FROM [nt:unstructured] AS node\n" + 
-		    		"WHERE ISDESCENDANTNODE(node, \"/content/dam/FrontierImages/product/"+ productSku+"\")"; 
+		    		"WHERE ISDESCENDANTNODE(node, \"/content/dam/FrontierImages/product/"+ productSku+"\")"+
+		    		"ORDER BY node.title"; 
 		    			
 			
 			Query query = queryManager.createQuery(sqlStatement,"JCR-SQL2");	   		   
@@ -322,14 +326,19 @@ public class FrontierWholesalesUtils {
 		        		String relativePath = properties.get("dam:relativePath",(String)null);
 			        	
 			        	if(relativePath != null) {
-			        		
-			        		imgPath = "/content/dam/"+ relativePath;
+			        		boolean bFind = Pattern.compile(Pattern.quote("1_"), Pattern.CASE_INSENSITIVE).matcher(relativePath).find();
+			        		if(bFind) {
+			        				        			
+			        			imgPath = "/content/dam/"+ relativePath;
+			        			
+			        			 return imgPath;
+			        		}
 			        	}
 		        	}
 		        	
 		        	
 		        }    
-		    return imgPath;		    
+		    return "";		    
 		}
 	    
 	    /**
@@ -360,6 +369,21 @@ public class FrontierWholesalesUtils {
 	    	
 	    		}
 	    		return groupId;
+	    }
+	   
+	    /**
+	     * 
+	     * @param dtCreated
+	     * @return
+	     * @throws Exception
+	     */
+	    public String convertToDate(Date dtCreated) throws Exception{
+	    	 log.debug("convertToDate Start...");
+	    	 String newDate = null;
+	    	 SimpleDateFormat sdf = new SimpleDateFormat("MMM dd, yyyy", Locale.getDefault());
+	    	 newDate = sdf.format(dtCreated);
+	    	 log.debug("convertToDate End...");
+	    	 return newDate;
 	    }
 		
 }

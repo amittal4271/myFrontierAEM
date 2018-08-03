@@ -1,6 +1,7 @@
 package com.frontierwholesales.core.magento.services.servlets;
 
 import java.io.IOException;
+import java.util.regex.Pattern;
 
 import javax.jcr.Node;
 import javax.jcr.NodeIterator;
@@ -216,7 +217,8 @@ public class FrontierWholesalesProductListServlet extends SlingAllMethodsServlet
 		
 		
 		String sqlStatement="SELECT * FROM [nt:unstructured] AS node\n" + 
-	    		"WHERE ISDESCENDANTNODE(node, \"/content/dam/FrontierImages/product/"+ productSku+"\")"; 
+	    		"WHERE ISDESCENDANTNODE(node, \"/content/dam/FrontierImages/product/"+ productSku+"\")"+
+	    		"ORDER BY node.title"; 
 	    			
 		
 		Query query = queryManager.createQuery(sqlStatement,"JCR-SQL2");	   		   
@@ -235,16 +237,22 @@ public class FrontierWholesalesProductListServlet extends SlingAllMethodsServlet
 	        	
 	        	
 	        		String relativePath = properties.get("dam:relativePath",(String)null);
-		        	
+		        	log.debug("relative path is "+relativePath);
 		        	if(relativePath != null) {
-		        		
-		        		imgPath = "/content/dam/"+ relativePath;
+		        		imgPath="";
+		        		boolean bFind = Pattern.compile(Pattern.quote("1_"), Pattern.CASE_INSENSITIVE).matcher(relativePath).find();
+		        		if(bFind) {
+		        				        			
+		        			imgPath = "/content/dam/"+ relativePath;
+		        			
+		        			 return imgPath;
+		        		}
 		        	}
 	        	}
 	        	
 	        	
 	        }    
-	    return imgPath;		    
+	   		 return "";   
 	}
 
 	private String getCustomerGroupId(String jsonObject) throws Exception{

@@ -1,0 +1,85 @@
+<script>
+    var currentPageURL="${currentPage.path @ extension='html',context='html'}";
+</script>
+<sly
+    data-sly-use.clientLib="${'/libs/granite/sightly/templates/clientlib.html'}"/>
+<sly data-sly-call="${clientlib.js @ categories='blog-list'}" data-sly-unwrap/>
+<sly data-sly-use.list="${'com.frontierwholesales.core.models.BlogListModel' @ pageRecord=properties.pageRecord, nodePath=properties.listURL}">
+<sly data-sly-test="${list.currentPage <= list.totalPages}">
+<section class="blog-list-page">
+    <div class="container">
+        <input id="page-id" type='hidden' value="${request.requestPathInfo.suffix==null?1:request.requestPathInfo.suffix}"/>
+        <input id="current-page" type='hidden' value="${list.currentPage}"/>
+        <input id="total-pages" type='hidden' value="${list.totalPages}"/>
+        <div class="search-header-holder article-header-holder">
+                  <div id="search-heading">
+                       <h1 class="plp-search-text-heading">${properties.pageTitle}</h1>
+                       <span class="showing-number-of-items">
+                            Showing <span class="number">${list.recsShow}</span> of <span class="number">${list.totalRecs}</span> Posts
+                       </span>
+                  </div>
+        </div>
+        <div id="article-grid" class="search-results-article-grid match-height">
+
+            
+                <sly data-sly-list="${list.blogContent}">
+                     <sly data-sly-test="${itemList.count >=list.recStart && itemList.count<=list.recsShow}">
+
+                    <article class="article-grid-item">
+                        <figure class="figure-article-holder">
+
+                        <a class="article-link-holder"  href="${item.btnLink || '#' @ extension='html'}">
+                            <div class="article-grid-image">
+                                <img
+
+                                src="${item.filePath}"
+                                alt=""/>
+
+                            </div>
+                           <figcaption class="figcaption-article-grid-info">
+                                  <span class="article-date">${item.publishedDate}</span>
+                                  <span class="article-title"> ${item.title}</span>
+                                  <span class="article-description"> ${item.description @context='html'}</span>
+                                  <span class="btn btn btn-white-green btn-article-read-more">${item.buttonLabel}</span>
+                             </figcaption> 
+
+
+
+                        </a>
+
+
+                    </figure>
+                    </article>
+
+                </sly>
+                </sly>
+            
+            
+             <div id="search-pagination">
+                                   <nav aria-label="Page navigation">
+                                        <ul class="pagination">
+                                             <li>
+                                                  <a class="pagination-previous pagination-arrow disabled" href="#" aria-label="Previous">
+                                                       <span class="glyphicon glyphicon-triangle-left"></span>
+                                                  </a>
+                                             </li>
+                                             <li class="pagination-numbers">
+                                                  <span class="pag-number">${list.currentPage} of ${list.totalPages}</span>
+                                             </li>
+                                             <li>
+                                                  <a class="pagination-next pagination-arrow" href="#" aria-label="Next">
+                                                       <span class="glyphicon glyphicon-triangle-right"></span>
+                                                  </a>
+                                             </li>
+                                        </ul>
+                                   </nav>
+                </div>
+        </div>
+</div>
+
+</section> 
+    </sly>
+    <sly data-sly-test="${list.currentPage > list.totalPages}">
+        <div class="container"> No Blog content available</div>
+    </sly>
+    </sly>
