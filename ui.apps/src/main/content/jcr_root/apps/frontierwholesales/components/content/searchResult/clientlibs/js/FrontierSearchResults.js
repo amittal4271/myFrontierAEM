@@ -10,12 +10,10 @@ Frontier.SearchResults = new function() {
 		initHandlbarFunctions();
 
        $(document).on('change','#itemPerPageSelect,#sortBy',function(){
-    	   console.log("SortBy or Item per page changed!!");
     	   Frontier.SearchController.updateResults();
        });
        
        $(document).on('click','.pagination-next.pagination-arrow',function(e){
-    	   console.log("next arrow clicked!!!");
            e.preventDefault();
            var currentPage = parseInt($('#currentPage').val());
          

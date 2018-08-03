@@ -25,7 +25,8 @@ Frontier.SearchFacets = new function() {
 	function addFilter(name, value) {
 		var filter = {
 				name: name,
-				value: value
+				value: value,
+				type: name != "certifications" ? 'OR' : 'AND'
 		}
 		
 		filters.push(filter);
@@ -37,15 +38,9 @@ Frontier.SearchFacets = new function() {
 		$.each($(facetSelector+".selected-filter"), function( key, filterElem ) {
 			addFilter($(this).closest(".each-filters-list").attr("data-code"), $(this).attr("data-value"));
 		});
-		
+				
 		return filters;
 	}
-	//TODO
-	/*
-	 * Probably want a way to remember the selected filters and the value selected
-	 * 
-	 * 
-	 */
 
 	this.getFilters = getFilters;
 	
