@@ -46,9 +46,16 @@ Frontier.SearchFacets = new function() {
 		return $(".each-filters-list[data-code='"+filtername+"'] .checkbox-link[data-value='"+id+"']").find(".text").text();
 	}
 	
+	function selectFilter(filtername, id) {
+		var filterCheckbox = $(".each-filters-list[data-code='"+filtername+"'] .checkbox-link[data-value='"+id+"']");
+		if(!filterCheckbox.hasClass("selected-filter")){
+			filterCheckbox.addClass("selected-filter");
+		}
+	}
 
 	this.getFilters = getFilters;
 	this.getFilterDisplayText = getFilterDisplayText;
+	this.selectFilter = selectFilter;
 	
 	$(document).ready(init);
 }();
