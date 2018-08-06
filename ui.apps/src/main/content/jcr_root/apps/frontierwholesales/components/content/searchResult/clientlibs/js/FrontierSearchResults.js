@@ -89,7 +89,7 @@ Frontier.SearchResults = new function() {
 		var filterGroups = [];
 		
 		var searchTerm;
-		var brandId;
+		var brandIds = [];
 		
 		if(typeof products.search_criteria !== "undefined") {
 			filterGroups = products.search_criteria.filter_groups;
@@ -97,10 +97,13 @@ Frontier.SearchResults = new function() {
 			jQuery.each( filterGroups, function(i,filterGroup) {
 			    jQuery.each( filterGroup, function(j,filterGroupAttributes) {
 			    	jQuery.each(filterGroupAttributes, function(k,filterGroupAttribute) {
-			    		console.log("filterGroupAttribute",filterGroupAttribute);
+			    		
+			    		if(!!Frontier.SearchFacets) {
+			    			Frontier.SearchFacets.selectFilter(filterGroupAttribute.field,filterGroupAttribute.value);
+			    		}
 			    		
 			    		if(filterGroupAttribute.field == "manufacturer") {
-			    			brandId = filterGroupAttribute.value;
+			    			brandIds.push(filterGroupAttribute.value);
 			    		}
 			    		
 			    		if(filterGroupAttribute.field == "name") {
@@ -113,16 +116,26 @@ Frontier.SearchResults = new function() {
 			});
 		}
 		
-		console.log("products",products);
+		
 		
 		if(!!searchTerm) {
 			products.searchTerm = decodeURI(searchTerm);
 			$(".search-input").val(searchTerm);
-		} else if(!!brandId) {
+		} else if(brandIds.length > 0) {
 			if(!!Frontier.SearchFacets) {
-				products.searchTerm = decodeURI(Frontier.SearchFacets.getFilterDisplayText("manufacturer",brandId));
+				products.searchTerm = "";
+				$(brandIds).each(function(i, idValue) {
+					if(i>0) {
+						products.searchTerm += ", ";
+					}
+					
+					var displayValue = Frontier.SearchFacets.getFilterDisplayText("manufacturer",idValue);
+					products.searchTerm += displayValue.replaceAll("&#039;","'");
+				});				
 			}
 		}
+		
+		console.log("search results",products);
 		
 		var template = $("#productlistTemplate").html();
 	    
