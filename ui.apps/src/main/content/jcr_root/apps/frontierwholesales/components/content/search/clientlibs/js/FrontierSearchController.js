@@ -18,12 +18,17 @@ Frontier.SearchController = new function() {
 		console.log("Frontier Search Controller init");
 		if(typeof Frontier.SearchResults !== 'undefined') {
 			if(window.location.search != "") {
+				
 				console.log("doing initial search from incoming page load query string");
-				var searchTerm = getParameterByName("searchCriteria[filter_groups][0][filters][0][value]");
+				
+				// Get saved data from sessionStorage
+				var searchTerm = sessionStorage.getItem('Frontier.searchTerm');
 				if(!!searchTerm) {
 					searchTerm = searchTerm.replaceAll("%", "");
 					$(".search-input").val(searchTerm);
 				}
+				// Remove saved data from sessionStorage
+				sessionStorage.removeItem('Frontier.searchTerm');
 				
 				if(!!Frontier.SearchResults){
 					showLoadingScreen();
@@ -43,6 +48,8 @@ Frontier.SearchController = new function() {
 		
 		$(".search-form").submit(function(event) {
 			event.preventDefault();
+			// Save data to sessionStorage
+			sessionStorage.setItem('Frontier.searchTerm', $(".search-input").val());
 			window.location = "/content/frontierwholesales/en/search.html?"+getQueryString(null, true);
 		});
 	}

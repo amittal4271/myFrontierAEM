@@ -219,7 +219,10 @@ Frontier.MagentoServices = new function(){
             url: "/bin/product/search?"+searchParams,
             beforeSend:function(xhr){
               xhr.overrideMimeType("application/json");
-          }
+            },
+            headers:{
+             'Authorization':getUserToken(),
+            }
         });
     }
     
