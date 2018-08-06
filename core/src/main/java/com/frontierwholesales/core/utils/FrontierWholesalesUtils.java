@@ -29,6 +29,7 @@ import org.slf4j.LoggerFactory;
 
 import com.frontierwholesales.core.magento.services.FrontierWholesalesMagentoCommerceConnector;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
@@ -385,5 +386,107 @@ public class FrontierWholesalesUtils {
 	    	 log.debug("convertToDate End...");
 	    	 return newDate;
 	    }
-		
+	    
+	    public String parseJsonObject(String productList,int recsPerPage,int currentPage,
+				SlingHttpServletRequest request, String groupId) throws Exception{
+			
+			Gson json = new Gson();
+			JsonElement element = json.fromJson(productList, JsonElement.class);
+			
+			
+			JsonObject object = element.getAsJsonObject();
+			JsonArray itemArray = object.getAsJsonArray("items");
+			
+			
+//			DecimalFormat priceFormat=new DecimalFormat("#0.00");
+			for(int i=0;i<itemArray.size();i++) {
+				
+				JsonElement itemElement = itemArray.get(i);
+				JsonObject itemObject = itemElement.getAsJsonObject();
+				//JsonElement priceElement = itemObject.get("price");
+				//itemObject.addProperty("formattedPrice", "$"+priceFormat.format(priceElement.getAsDouble()));
+				JsonElement skuElement = itemObject.get("sku");
+				
+				itemObject.addProperty("imgPath", this.getImagePath(skuElement.getAsString(),request));
+				JsonArray attributesArray = itemObject.getAsJsonArray("custom_attributes");
+				
+				for(JsonElement attributesElement:attributesArray) {
+					JsonObject attrObject = attributesElement.getAsJsonObject();
+					JsonElement codeElement = attrObject.get("attribute_code");
+					
+					if(codeElement.getAsString().equals("new_product")) {
+						itemObject.addProperty("new_product", attrObject.get("value").getAsString());
+					}
+					
+					if(codeElement.getAsString().equals("close_out")) {
+						itemObject.addProperty("close_out", attrObject.get("value").getAsString());
+					}
+					
+					if(codeElement.getAsString().equals("on_sale")) {
+						itemObject.addProperty("on_sale", attrObject.get("value").getAsString());
+					}
+					
+					if(codeElement.getAsString().equals("special_price")) {
+						itemObject.addProperty("special_price", attrObject.get("value").getAsDouble());
+					}
+					
+					if(codeElement.getAsString().equals("bulk")){
+						itemObject.addProperty("bulk",  attrObject.get("value").getAsString());
+					}
+				}
+				
+				if(groupId != null) {
+					JsonArray tierPriceArr = itemObject.getAsJsonArray("tier_prices");
+					if(tierPriceArr != null)
+					for(JsonElement tierElem : tierPriceArr) {
+						JsonObject tierObject = tierElem.getAsJsonObject();
+						JsonElement groupElement = tierObject.get("customer_group_id");
+					
+						if(groupElement.getAsString().equals(groupId)) {
+							itemObject.addProperty("tierprice", tierObject.get("value").getAsDouble());
+						}
+					}
+				}
+				
+				itemObject.remove("tier_prices");
+				itemObject.remove("price");
+			}
+			
+//			JsonElement arrayElement = json.fromJson(itemArray, JsonElement.class);
+//			object.add("items", arrayElement);
+			object.addProperty("recsPerPage", recsPerPage);
+			
+			JsonElement totalElement = object.get("total_count");
+			int total = totalElement.getAsInt();
+			double dPage;
+			if(total > 28) {
+			 dPage = ((double)total / (double)recsPerPage);
+			
+			dPage = Math.ceil(dPage);
+			}else {
+				dPage = 0;
+			}
+			object.addProperty("pageTotal", (int)dPage);
+			//object.add("categories", catElement.getAsJsonObject());
+			
+			object.addProperty("response_creation_time", new Date()+"");
+			return object.toString();
+		}
+	    
+	    public String addCategoryListToJson(String objectJson, String catList) {
+	    	try {
+	    	Gson json = new Gson();
+	    	
+	    	JsonElement element = json.fromJson(objectJson, JsonElement.class);
+			JsonObject object = element.getAsJsonObject();
+	    	
+	    	JsonElement catListElement = json.fromJson(catList, JsonElement.class);
+			object.add("categorylist", catListElement);
+			
+			return object.toString();
+	    	} catch(Exception e) {
+	    		log.error("Could not add category list", e);
+	    		return objectJson;
+	    	}
+	    }
 }

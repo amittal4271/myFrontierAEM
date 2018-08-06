@@ -79,9 +79,51 @@ Frontier.SearchResults = new function() {
 
 	}
 	
+	String.prototype.replaceAll = function(search, replacement) {
+	    var target = this;
+	    return target.split(search).join(replacement);
+	};
+	
 	function updateResults(products) {
 		
-		$(".plp-search-text-heading").html('Search Results for "'+$(".search-input").val()+'"');
+		var filterGroups = [];
+		
+		var searchTerm;
+		var brandId;
+		
+		if(typeof products.search_criteria !== "undefined") {
+			filterGroups = products.search_criteria.filter_groups;
+			
+			jQuery.each( filterGroups, function(i,filterGroup) {
+			    jQuery.each( filterGroup, function(j,filterGroupAttributes) {
+			    	jQuery.each(filterGroupAttributes, function(k,filterGroupAttribute) {
+			    		console.log("filterGroupAttribute",filterGroupAttribute);
+			    		
+			    		if(filterGroupAttribute.field == "manufacturer") {
+			    			brandId = filterGroupAttribute.value;
+			    		}
+			    		
+			    		if(filterGroupAttribute.field == "name") {
+			    			searchTerm = filterGroupAttribute.value;
+			    			searchTerm = searchTerm.replaceAll("%", "");
+			    		}
+			    		
+			    	});
+			    });
+			});
+		}
+		
+		console.log("products",products);
+		
+		if(!!searchTerm) {
+			products.searchTerm = decodeURI(searchTerm);
+			$(".search-input").val(searchTerm);
+		} else if(!!brandId) {
+			if(!!Frontier.SearchFacets) {
+				products.searchTerm = decodeURI(Frontier.SearchFacets.getFilterDisplayText("manufacturer",brandId));
+			}
+		}
+		
 		var template = $("#productlistTemplate").html();
 	    
 	    var html = Handlebars.compile(template);

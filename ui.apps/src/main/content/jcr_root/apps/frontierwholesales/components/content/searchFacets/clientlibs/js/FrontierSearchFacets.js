@@ -41,8 +41,14 @@ Frontier.SearchFacets = new function() {
 				
 		return filters;
 	}
+	
+	function getFilterDisplayText(filtername, id) {
+		return $(".each-filters-list[data-code='"+filtername+"'] .checkbox-link[data-value='"+id+"']").find(".text").text();
+	}
+	
 
 	this.getFilters = getFilters;
+	this.getFilterDisplayText = getFilterDisplayText;
 	
 	$(document).ready(init);
 }();
