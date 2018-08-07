@@ -1,6 +1,7 @@
 package com.frontierwholesales.core.magento.services;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -26,10 +27,10 @@ import com.frontierwholesales.core.beans.FrontierWholesalesProductSearch;
 import com.frontierwholesales.core.beans.MagentoCategory;
 import com.frontierwholesales.core.beans.search.MagentoSearch;
 import com.frontierwholesales.core.magento.models.MagentoRelatedProduct;
-import com.frontierwholesales.core.utils.AuthCredentials;
-
 import com.frontierwholesales.core.magento.services.exceptions.FrontierWholesalesBusinessException;
 import com.frontierwholesales.core.magento.services.exceptions.FrontierWholesalesErrorCode;
+import com.frontierwholesales.core.utils.AuthCredentials;
+import com.frontierwholesales.core.utils.FrontierWholesalesUtils;
 
 @Component(
 		immediate = true,
@@ -46,6 +47,7 @@ import com.frontierwholesales.core.magento.services.exceptions.FrontierWholesale
 public class FrontierWholesalesMagentoCommerceConnector {
 
     private static final Logger log = LoggerFactory.getLogger(FrontierWholesalesMagentoCommerceConnector.class);
+    
 
     private ObjectMapper mapper = new ObjectMapper();
 
@@ -54,46 +56,20 @@ public class FrontierWholesalesMagentoCommerceConnector {
     private static String adminUser="";
     
     private static String adminPassword="";
+    private static String appToken="";
+  
     
     @Property(
-            name="ConsumerSecret",
-            label = "Magento Server Consumer Secret",
-            description = "Magento Server Consumer Secret",
-            value = ""
-    )
-    public static String consumerSecret= "";
-    
-    
-    @Property(
-    		 name="ApplicationTokenSecret",
-            label = "Magento Server App Token Secret",
-            description = "Magento Server App Token Secret",
-            value = ""
-    )
-    public static String appTokenSecret ="";
-    
-    
-    @Property(
-    		 name="Application Token",
+    		
             label = "Magento Server App Token",
             description = "Magento Server App Token",
-            value = ""
+            value = "token"
     )
-    public static String appToken ="";
+    public static String APP_TOKEN ="appToken";
     
-    
-    @Property(
-    		 name="Consumer Key",
-            label = "Magento Server Consumer Key",
-            description = "Magento Server Consumer Key",
-            value = ""
-    )
-    public static String consumerKey ="";
-    
-    private long PAGE_SIZE=2;
 
     @Property(
-           
+    		
             label = "Magento Server",
             description = "Magento Server",
             value = "http://frontierb2b.ztech.io/index.php"
@@ -101,7 +77,7 @@ public class FrontierWholesalesMagentoCommerceConnector {
     public static final String SERVER = "server";
     
     @Property(
-            
+    		
             label = "Magento Server admin user",
             description = "Magento Server admin user",
             value = "admin"
@@ -116,7 +92,7 @@ public class FrontierWholesalesMagentoCommerceConnector {
     )
     public static final String ADMIN_PASSWORD="adminPassword";
 
-    public static final String TIME_OUT="6000";
+    public static final int TIME_OUT=6000;
 
     public FrontierWholesalesMagentoCommerceConnector() {
         mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
@@ -128,11 +104,13 @@ public class FrontierWholesalesMagentoCommerceConnector {
     protected void activate(Map<String, Object> properties) {
 
         ConfigurationParameters cfg = ConfigurationParameters.of(properties);
-       
+        
+        appToken = cfg.getConfigValue(APP_TOKEN, "");
+        
         server = cfg.getConfigValue(SERVER, "http://frontierb2b.ztech.io/index.php");
-        
+       
         adminUser = cfg.getConfigValue(ADMIN_USER, "admin");
-        
+       
         adminPassword = cfg.getConfigValue(ADMIN_PASSWORD, "admin");
         
        
@@ -140,51 +118,19 @@ public class FrontierWholesalesMagentoCommerceConnector {
 
     
 
-    public static String getConsumerSecret() {
-		return consumerSecret;
-	}
 
-
-
-	public static void setConsumerSecret(String consumerSecret) {
-		FrontierWholesalesMagentoCommerceConnector.consumerSecret = consumerSecret;
-	}
-
-
-
-	public static String getAppTokenSecret() {
-		return appTokenSecret;
-	}
-
-
-
-	public static void setAppTokenSecret(String appTokenSecret) {
-		FrontierWholesalesMagentoCommerceConnector.appTokenSecret = appTokenSecret;
-	}
-
-
-
-	public static String getAppToken() {
+	public  String getAppToken() {
+		
 		return appToken;
 	}
 
 
 
-	public static void setAppToken(String appToken) {
+	public  void setAppToken(String appToken) {
 		FrontierWholesalesMagentoCommerceConnector.appToken = appToken;
 	}
 
 
-
-	public static String getConsumerKey() {
-		return consumerKey;
-	}
-
-
-
-	public static void setConsumerKey(String consumerKey) {
-		FrontierWholesalesMagentoCommerceConnector.consumerKey = consumerKey;
-	}
 
 
 
@@ -235,18 +181,9 @@ public class FrontierWholesalesMagentoCommerceConnector {
     }
     
     public String getAdminToken() throws FrontierWholesalesBusinessException{
-    	try {
-	        AuthCredentials authCredentials = new AuthCredentials(adminUser, adminPassword);
-	
-	        log.debug(" AUTHENTICATING " +adminUser + " Against server:" + server);
-	        String token = Request.Post(server + "/rest/all/V1/integration/admin/token")
-	                .bodyString(mapper.writeValueAsString(authCredentials), ContentType.APPLICATION_JSON)
-	                .execute().returnContent().asString();
-	        return "Bearer " + token.replace("\"", "");
-    	}
-	    catch (IOException e) {
-	    	throw new FrontierWholesalesBusinessException(e, FrontierWholesalesErrorCode.IO_ERROR);
-	    }
+    	log.debug("getAdminToken Method");
+    	
+    	return "Bearer "+appToken;
 
     }
     
@@ -343,24 +280,26 @@ public class FrontierWholesalesMagentoCommerceConnector {
    
     
     public String addItemToCart(String token,String jsonData) throws Exception{
-    	String newItem= null;
+    	
     	log.debug("api url for add to cart "+server+"/rest/V1/carts/mine/items");
     	log.debug("json item is "+jsonData);
-    	try {
-    	 newItem = Request.Post(server+"/rest/V1/carts/mine/items")
+    	
+    	InputStream inputStream = Request.Post(server+"/rest/V1/carts/mine/items")
     			.addHeader("Authorization",token)
     			.addHeader("ContentType","application/json")
     			.bodyString(jsonData,ContentType.APPLICATION_JSON)
-    			.execute().returnContent().asString();
-    	}catch(IOException ioEx) {
-    		log.error(" addItemToCart: ERROR: " + ioEx.getMessage());
-    	}
-    	return newItem;
+    			.execute().returnResponse().getEntity().getContent(); 	 
+    	 
+    	 
+    	String response = FrontierWholesalesUtils.parseMagentoResponseObject(inputStream);
+    	    		
+    	log.debug("Add to cart response is "+response);
+    	return response;
     }
     
-    public String getProducts(String adminToken,FrontierWholesalesProductSearch search) {
+    public String getProducts(String adminToken,FrontierWholesalesProductSearch search) throws Exception{
     	
-        String response=null;
+        
         String orderByPrice= "";
         String featured ="";
         String newProduct="";
@@ -388,34 +327,30 @@ public class FrontierWholesalesMagentoCommerceConnector {
         
         log.debug("search query is "+searchCriteria);
         
-        try {
+       
             
-            response = Request.Get(server+"/rest/V1/products?"+searchCriteria)
+           InputStream inputStream = Request.Get(server+"/rest/V1/products?"+searchCriteria)
                     .addHeader("Authorization", adminToken)
-                    .execute().returnContent().asString();
+                    .connectTimeout(TIME_OUT)
+                    .execute().returnResponse().getEntity().getContent();
          
-            
-        } catch (IOException e) {
-            e.printStackTrace();
-            log.error("Error getting Product List: ERROR: " + e.getMessage());
-        }
+          
+        String response = FrontierWholesalesUtils.parseMagentoResponseObject(inputStream);
         return response;
     }
     
-    public String getBrands(String adminToken) {
+    public String getBrands(String adminToken) throws Exception{
     	String response=null;
-    	try {
+    
     		
-            response = Request.Get(server+"/rest/V1/products/attributes/manufacturer/options")
+    	 InputStream inputStream = Request.Get(server+"/rest/V1/products/attributes/manufacturer/options")
                     .addHeader("Authorization", adminToken)
-                    .execute().returnContent().asString();
+                    .connectTimeout(TIME_OUT)
+                    .execute().returnResponse().getEntity().getContent();
          
-            
-        } catch (IOException e) {
-            e.printStackTrace();
-            log.error("Error getting Product List: ERROR: " + e.getMessage());
-        }
-        return response;
+    	 response = FrontierWholesalesUtils.parseMagentoResponseObject(inputStream);
+      
+    	 return response;
     }
     
     public String getProductFacets(String adminToken) {
@@ -434,20 +369,16 @@ public class FrontierWholesalesMagentoCommerceConnector {
         return response;
     }
     
-    public String getProducts(String adminToken, MagentoSearch search) {
+    public String getProducts(String adminToken, MagentoSearch search) throws Exception {
     		String response = null;
     		String queryString = search.toString();
     		String serviceURL = server + "/rest/V1/products?" + queryString;
 
-    		
-		try {
 			log.debug("Calling product search [{}]", serviceURL);
-			response = Request.Get(serviceURL).addHeader("Authorization", adminToken)
-					.execute().returnContent().asString();
-		} catch (IOException e) {
-			log.error("Error getting Product List", e);
-		}
-    		
+			InputStream inputStream = Request.Get(serviceURL).addHeader("Authorization", adminToken)
+					.execute().returnResponse().getEntity().getContent();
+		
+			response =  FrontierWholesalesUtils.parseMagentoResponseObject(inputStream);
     		return response;
     }
     
@@ -466,34 +397,30 @@ public class FrontierWholesalesMagentoCommerceConnector {
 			return response;
 	}
     
-    public String getProductDetails(String adminToken,String  productID) {
+    public String getProductDetails(String adminToken,String  productID) throws Exception {
     	
-        String response=new String();       
-        try {
-            response = Request.Get(server+"/rest/V1/products/"+productID)
+        	String response=null;       
+      
+        	InputStream inputStream  = Request.Get(server+"/rest/V1/products/"+productID)
                     .addHeader("Authorization", adminToken)
-                    .execute().returnContent().asString();         
-            
-        } catch (IOException e) {
-            e.printStackTrace();
-            log.error("Error getting Product Details. ERROR: " + e.getMessage());
-        }
-        return response;
+                    .execute().returnResponse().getEntity().getContent();        
+        	response =  FrontierWholesalesUtils.parseMagentoResponseObject(inputStream);
+    		return response;
+        
     }
     
-    public MagentoCategory getCategories(String adminToken,int categoryId){
+    public MagentoCategory getCategories(String adminToken,int categoryId) throws Exception{
+    	log.debug("getCategories Method Start");
        String predicate=(categoryId > 0)?"?rootCategoryId="+categoryId:"";
        MagentoCategory category=null;
-        try {
-            String response = Request.Get(server+"/rest/V1/categories"+predicate)
-                    .addHeader("Authorization", adminToken)
-                    .execute().returnContent().asString();
-          
-           category = mapper.readValue(response,MagentoCategory.class);
-        } catch (IOException e) {
-            e.printStackTrace();
-            log.error("Error Getting Categories from Server: ERROR" + e.getMessage());
-        }
+  
+    	InputStream inputStream  = Request.Get(server+"/rest/V1/categories"+predicate)
+                .addHeader("Authorization", adminToken)
+                .connectTimeout(TIME_OUT)
+                .execute().returnResponse().getEntity().getContent();
+    	String response =  FrontierWholesalesUtils.parseMagentoResponseObject(inputStream);
+    	category = mapper.readValue(response,MagentoCategory.class);
+    	log.debug("getCategories Method End");
         return category;
     }
     
@@ -599,30 +526,29 @@ public class FrontierWholesalesMagentoCommerceConnector {
     }
 
 
-    public List<MagentoRelatedProduct> getRelatedProductsForSku( String authToken, String sku ) {
+    public List<MagentoRelatedProduct> getRelatedProductsForSku(String adminToken, String sku ) throws Exception{
         log.info("Getting related products for SKU: {}", sku);
         List<MagentoRelatedProduct> productList = new ArrayList<>();
-        String response;
-        try {
-        	// products
-        	response = Request.Get(server + "/rest/V1/products/" + sku + "/links/related")
-                    .addHeader("Authorization", authToken)
-                    .execute().returnContent().asString();
-            log.debug("Related products for SKU response from endpoint:\n {}", response);
-
-            productList = mapper.readValue(response, new TypeReference<List<MagentoRelatedProduct>>(){});
-        } catch( IOException e ) {
-        	e.printStackTrace();
-            log.error("IOException trying to retrieve related products for sku: {}\n{}", sku, e);
-        }
+       
+        
+        InputStream inputStream = Request.Get(server + "/rest/V1/products/" + sku + "/links/related")
+                    .addHeader("Authorization", adminToken)
+                    .connectTimeout(TIME_OUT)
+                    .execute().returnResponse().getEntity().getContent();
+            log.debug("Related products for SKU response from endpoint:\n {}");
+        String response =  FrontierWholesalesUtils.parseMagentoResponseObject(inputStream);
+        productList = mapper.readValue(response, new TypeReference<List<MagentoRelatedProduct>>(){});
+   
         return productList;
     }
     
     public String getParentChildrenCategories(String adminToken,int categoryId) throws Exception{
     	log.debug("getParentChildrenCategories Start");
-    	String response = Request.Get(server+"/rest/V1/frontier/categories/"+categoryId)
+    	InputStream inputStream = Request.Get(server+"/rest/V1/frontier/categories/"+categoryId)
     				.addHeader("Authorization",adminToken)
-    				.execute().returnContent().asString();
+    				.connectTimeout(TIME_OUT)
+    				.execute().returnResponse().getEntity().getContent();
+    	 String response =  FrontierWholesalesUtils.parseMagentoResponseObject(inputStream);
     	log.debug("getParentChildrenCategories End");
     	return response;
     }
@@ -630,23 +556,25 @@ public class FrontierWholesalesMagentoCommerceConnector {
     public String addItemToWishList(String adminToken,String jsonData) throws Exception{
     	log.debug("addItemToWishList Start");
     	
-	    	String response = Request.Post(server+"/rest/all/V1/frontier/wishlist/add")
+    	InputStream inputStream  = Request.Post(server+"/rest/all/V1/frontier/wishlist/add")
 					.addHeader("Authorization",adminToken)
 					.addHeader("ContentType","application/json")
+					.connectTimeout(TIME_OUT)
 					.bodyString(jsonData,ContentType.APPLICATION_JSON)
-					.execute().returnContent().asString();
-	    	
-	    	log.debug("addItemToWishList End");
-	    	return response;
+					.execute().returnResponse().getEntity().getContent();
+    	 String response =  FrontierWholesalesUtils.parseMagentoResponseObject(inputStream);
+	    log.debug("addItemToWishList End");
+	    return response;
     	
     }
     
     public String getRequisitionList(String userToken) throws Exception{
     	log.debug("getRequisitionList Start");
-    	String response = Request.Get(server+"/rest/default/V1/frontier/customer/requisitionlist")
+    	InputStream inputStream = Request.Get(server+"/rest/default/V1/frontier/customer/requisitionlist")
 				.addHeader("Authorization",userToken)
-				.execute().returnContent().asString();
-
+				.connectTimeout(TIME_OUT)
+				.execute().returnResponse().getEntity().getContent();
+    	 String response =  FrontierWholesalesUtils.parseMagentoResponseObject(inputStream);
     	log.debug("getRequisitionList End");
     	return response;
     	
@@ -655,11 +583,11 @@ public class FrontierWholesalesMagentoCommerceConnector {
     
     public String getCustomerDetails(String userToken) throws Exception{
     	log.debug("getCustomerDetails Start");
-    	String response = Request.Get(server+"/rest/default/V1/fc/customers/me")
+    	InputStream inputStream = Request.Get(server+"/rest/default/V1/fc/customers/me")
 				.addHeader("Authorization",userToken)
-				.addHeader("timeout",TIME_OUT)
-				.execute().returnContent().asString();
-
+				.connectTimeout(TIME_OUT)
+				.execute().returnResponse().getEntity().getContent();
+    	 String response =  FrontierWholesalesUtils.parseMagentoResponseObject(inputStream);
     	log.debug("getCustomerDetails End");
     	return response;
     }

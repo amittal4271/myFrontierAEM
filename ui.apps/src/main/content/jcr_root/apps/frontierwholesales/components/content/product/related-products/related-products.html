@@ -29,7 +29,14 @@
                     <div class="swiper-slide">
                         <a class="each-slider-related-link-holder" href="/content/frontierwholesales/en/productdetail.html?sku=${oneProduct.productSKU}">
                             <span class="image-holder">
-                                <img src="${oneProduct.imagePath}"/>
+                                
+                                 <sly data-sly-test="${oneProduct.imagePath != null}">
+                                    <img src="${oneProduct.imagePath}"/>                               
+                                               
+                                </sly>
+                                <sly data-sly-test="${oneProduct.imagePath == ''}">
+                                     <img src="/content/dam/FrontierImages/default_product_image.jpg" alt="Product Name">
+                                </sly>
                             </span>
                             <span class="title-holder">
                                 <span class="product-tile-sku">${'Item #: {0}' @ i18n, format=[oneProduct.productSKU]}</span>

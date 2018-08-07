@@ -27,7 +27,7 @@ public class SessionModel extends WCMUsePojo{
 			LOGGER.debug("activate method...");
 			
 			Cookie cookie = FrontierWholesalesUtils.getCookie(getRequest(),"CustomerData");
-			LOGGER.debug("activate method..."+cookie.getValue().length());
+			LOGGER.debug("activate method..."+cookie.getValue());
 			
 			String cookieValue = cookie.getValue();
 			this.authToken = FrontierWholesalesUtils.getIdFromObject(cookieValue, "token");

@@ -139,7 +139,11 @@ private JsonArray getImagePath(String productSku,SlingHttpServletRequest request
 		    		
 
 	    }
-	    
+	    if(array.size() == 0) {
+	    	JsonObject obj = new JsonObject();
+	    	obj.addProperty("path", "/content/dam/FrontierImages/default_product_image.jpg");
+	    	array.add(obj);
+	    }
 	    return array;		    
 	}
 	

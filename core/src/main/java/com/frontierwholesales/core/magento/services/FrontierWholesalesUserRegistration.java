@@ -19,22 +19,23 @@ public class FrontierWholesalesUserRegistration {
 	  * @throws Exception
 	  */
 	public static String customerRegistration(JsonObject params) throws Exception{
+		log.debug("customerRegistration Method Start");
 		String server = FrontierWholesalesMagentoCommerceConnector.getServer();
 		String customerId = Request.Post(server + "/rest/V1/customers")
                 .bodyString(params.toString(),ContentType.APPLICATION_JSON)
                 .execute().returnContent().asString();
-		
+		log.debug("customerRegistration Method End");
 		return customerId;
 	}
 	
 	public static String companyRegistration(String pwd,JsonObject params) throws Exception{
-		
+		log.debug("companyRegistration Method Start");
 		String server = FrontierWholesalesMagentoCommerceConnector.getServer();
 		String userDetails = Request.Post(server + "/rest/all/V1/company")
 				.addHeader("Authorization",pwd)
                 .bodyString(params.toString(),ContentType.APPLICATION_JSON)
                 .execute().returnContent().asString();
-		
+		log.debug("companyRegistration Method End");
 		return userDetails;
 		
 	}
@@ -46,13 +47,13 @@ public class FrontierWholesalesUserRegistration {
 	 * @throws Exception
 	 */
 	public static String getCountriesWithRegions(String adminToken) throws Exception{
-		
+		log.debug("getCountriesWithRegions Method Start");
 		String server = FrontierWholesalesMagentoCommerceConnector.getServer();
 		String countryAndRegions = Request.Get(server + "/rest/all/V1/directory/countries")
 				.addHeader("Authorization", adminToken)
                
                 .execute().returnContent().asString();
-		
+		log.debug("getCountriesWithRegions Method End");
 		return countryAndRegions;
 	}
 	
@@ -64,13 +65,13 @@ public class FrontierWholesalesUserRegistration {
 	 * @throws Exception
 	 */
 	public static String resetPassword(String adminToken,String jsonData) throws Exception{
-
+		log.debug("resetPassword Method Start");
 		String server = FrontierWholesalesMagentoCommerceConnector.getServer();
 		String response = Request.Post(server + "/rest/V1/customers/resetPassword")
 				.addHeader("Authorization", adminToken)
 				 .bodyString(jsonData,ContentType.APPLICATION_JSON)
                 .execute().returnContent().asString();
-		
+		log.debug("resetPassword Method End");
 		return response.replace("\"", "");
 	}
 	

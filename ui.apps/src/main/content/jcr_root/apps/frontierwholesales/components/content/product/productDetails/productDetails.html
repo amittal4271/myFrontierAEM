@@ -82,7 +82,7 @@
                                     
                                    <span class="dt-label">Brand: </span>
                                    <span class="dd-value brand">
-                                        <a href="#" class="dd-value-link">{{brand}}</a>
+                                        <a href="#" class="dd-value-link">{{{brand}}}</a>
                                    </span>
                                  
                                     {{/if}}
@@ -130,10 +130,10 @@
              {{#if ${user.authToken != null @context='scriptString' }}}
              {{#priceCheck tierprice}}
             <div class="product-wishlist">
-                 <div id="message-{{sku}}" class="alert alert-add-to-cart" style="display: none;"></div>
-                <button data-skuid="{{sku}}" class="btn btn-add-wishlist btn-wishlist">Add to Wishlist +</button>
+                 <div id="message-{{../sku}}" class="alert alert-add-to-cart" style="display: none;"></div>
+                <button data-skuid="{{../sku}}" class="btn btn-add-wishlist btn-wishlist">Add to Wishlist +</button>
                 <div class="add-to-shelf btn">
-                      <select data-prodid="{{id}}" data-wishsku="{{sku}}" class="requisition-list-select">
+                      <select data-prodid="{{../id}}" data-wishsku="{{../sku}}" class="requisition-list-select">
                            <option>Add to Shelves +</option>
 
                       </select>
@@ -163,8 +163,8 @@
 							 </button>
 						</div>
 						<div class="add-to-cart-holder">
-                            <div id="cartMessage-{{sku}}" class="alert alert-add-to-cart" style="display: none;">Added to your Cart!</div>
-							<button id="{{sku}}" class="btn btn-light-green btn-add-to-cart">Add To Cart</button>
+                            <div id="cartMessage-{{../sku}}" class="alert alert-add-to-cart" style="display: none;">Added to your Cart!</div>
+							<button id="{{../sku}}" class="btn btn-light-green btn-add-to-cart">Add To Cart</button>
 						</div>
 					</div>
 					

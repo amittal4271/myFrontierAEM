@@ -82,7 +82,7 @@ function getProductDetails(){
        
          HandlebarsIntl.registerWith(Handlebars);
        
-        registerHandleBarHelpers();
+        registerHandleBarHelpers(summaryAttribute,infoAttribute,additionalAttribute);
 
         var html = Handlebars.compile(template);
 
@@ -100,7 +100,7 @@ function getProductDetails(){
     });
 }
 
-function registerHandleBarHelpers(){
+function registerHandleBarHelpers(summaryAttribute,infoAttribute,additionalAttribute){
     var bCount = 0;
      Handlebars.registerHelper("getAttrValues",function(attCode,value,count,options){
            

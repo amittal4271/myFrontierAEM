@@ -1,5 +1,7 @@
 package com.frontierwholesales.core.utils;
 
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -19,6 +21,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
@@ -35,7 +38,7 @@ import com.google.gson.JsonObject;
 
 public class FrontierWholesalesUtils {
 
-	private final Logger log = LoggerFactory.getLogger(this.getClass());
+	private static final Logger log = LoggerFactory.getLogger(FrontierWholesalesUtils.class);
 	
 	private FrontierWholesalesMagentoCommerceConnector commerceConnector = new FrontierWholesalesMagentoCommerceConnector();
 	/**
@@ -488,5 +491,25 @@ public class FrontierWholesalesUtils {
 	    		log.error("Could not add category list", e);
 	    		return objectJson;
 	    	}
+	    }
+	    
+	    public static String parseMagentoResponseObject(InputStream inStream) throws Exception{
+	    	log.debug("parseMagentoResponseObject Start");
+	    	String response = IOUtils.toString(inStream, StandardCharsets.UTF_8.name());
+	    	Gson json = new Gson();
+	    	
+	    	JsonElement element = json.fromJson(response, JsonElement.class);
+	    	String msg = null;
+	    	if (element.isJsonObject()) {
+	    		JsonObject object = element.getAsJsonObject();
+	    		 msg = (object.get("message")!=null)?object.get("message").getAsString():null;
+	    	}
+	    	
+	    	if(msg != null) {
+	    		log.debug("parseMagentoResponseObject Error "+msg);
+	    		throw new Exception(msg);
+	    	}
+	    	log.debug("parseMagentoResponseObject End ");
+	    	return response;
 	    }
 }

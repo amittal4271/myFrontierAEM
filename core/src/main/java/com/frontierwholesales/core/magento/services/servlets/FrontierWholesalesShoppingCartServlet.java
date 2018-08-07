@@ -135,52 +135,9 @@ public class FrontierWholesalesShoppingCartServlet  extends SlingAllMethodsServl
 	
 	private String getImagePath(String name,SlingHttpServletRequest request) throws Exception{
 		
-		Session session = request.getResourceResolver().adaptTo(Session.class);
-		QueryManager queryManager = session.getWorkspace().getQueryManager();
-		String path="";
-		String[] nameSplit = name.split("-");
-		
-		String sqlStatement="SELECT * FROM [nt:unstructured] AS node\n" + 
-	    		"WHERE ISDESCENDANTNODE(node, \"/etc/commerce/products/we-retail\")\n" + 
-	    		"AND CONTAINS([jcr:title],'"+ nameSplit[0]+"')";
-		
-		 Query query = queryManager.createQuery(sqlStatement,"JCR-SQL2");
-		   
-		   
-		    QueryResult result = query.execute();
-		  
-		    NodeIterator nodeIter = result.getNodes();
-		   
-		    while ( nodeIter.hasNext() ) {
-		    	Node node = nodeIter.nextNode();
-		    	if(nameSplit.length > 1) {
-			    	if(node.getName().equals(nameSplit[2])) {
-			    		NodeIterator cNode = node.getNodes();
-			    		 while ( cNode.hasNext() ) {
-			    			 Node imgNode = cNode.nextNode();
-			    			 if(imgNode.getName().equals("image")) {
-			    				 path = imgNode.getProperty("fileReference").getValue().getString();
-			    			 }
-			    			 
-			    			 
-			    		 }
-			    		
-			    		}
-			    	}else {
-			    		NodeIterator cNode = node.getNodes();
-			    		 while ( cNode.hasNext() ) {
-			    			 Node imgNode = cNode.nextNode();
-			    			 if(imgNode.getName().equals("image")) {
-			    				path = imgNode.getProperty("fileReference").getValue().getString();
-			    			 }
-			    			 
-			    			 
-			    		 }
-			    		
-			    	}
-		    }
+		//TODO SKU is required to get image. Custom API needed
 		    
-		  return path;
+		  return "";
 		    
 	}
 	
