@@ -114,10 +114,12 @@
                 <div class="product-detail-message">Availability: Out of Stock</div>
             {{/if}}
             <div class="pdp-message-holder">
+                {{#if product_restriction includeZero=false}}
                 <div class="alert alert-danger" role="alert"> 
                     <span class="glyphicon glyphicon-exclamation-sign"></span>
-                    <strong>Restricted Shipping Item:</strong> Some type of message that explains the situation.
+                    <strong>Restricted Item:</strong> Item Requires Buyer Certification.
                 </div>
+                {{/if}}
                 
                 {{#ifEquals bulk}}
                 <div class="alert alert-bulk" role="alert">
