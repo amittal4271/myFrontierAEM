@@ -113,12 +113,19 @@ console.log("product list page..."+facetsquery);
         }
         var currentPage = parseInt(page);
         var recsPerPage = $('#itemPerPageSelect').val();
-        
-        if(undefined == recsPerPage){
+        var itemPerPageVisible = $('#itemPerPageSelect').is(':visible');
+        if(undefined == recsPerPage  && itemPerPageVisible){
             recsPerPage = $('#totalcount').val();
+	   }else if(!itemPerPageVisible){
+            recsPerPage='28';
         }
         
         var sortBy = $('#sortBy').val();
+	   var sortByVisible = $('#sortBy').is(':visible');
+        
+        if(!sortByVisible){
+            sortBy='featured';
+        }
         if(!$(this).hasClass('selected-filter')) {
             $(this).addClass('selected-filter');
            
@@ -316,20 +323,14 @@ function constructFilterConditions(){
     var group={};
     var filterValues=[];
     var jsonData={};
-    var groupIdx = 1;
+    var groupIdx = 0;
     var index = 0;
     var queryString='';
     $('#plp-search-left-nav-filters').find('.selected-filter').each(function(i,data){
        var code = $(this).parent().parent().data('code'); 
         var data = $(this).data('value').toString();
          filterIds.push($(this).attr('id'));
-
-        if(temp != code){
-			groupIdx++;
-			index=0;
-        }else{
-			index++;
-        }
+	   groupIdx++;
          queryString+=getFilterParam(groupIdx,index,code,data,''); 
         temp = code;
 

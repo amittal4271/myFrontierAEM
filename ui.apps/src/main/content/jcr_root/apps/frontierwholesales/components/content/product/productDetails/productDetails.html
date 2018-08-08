@@ -108,7 +108,7 @@
                                    <!--<span class="product-save-percent">Save 25%</span>-->
             </div>
             {{/if}}
-            {{#if extension_attributes.stock_item.is_in_stock}}
+            {{#if extension_attributes.stock_item.qty includeZero=false}}
                 <div class="product-detail-message">Availability: In Stock</div>
             {{else}}
                 <div class="product-detail-message">Availability: Out of Stock</div>
