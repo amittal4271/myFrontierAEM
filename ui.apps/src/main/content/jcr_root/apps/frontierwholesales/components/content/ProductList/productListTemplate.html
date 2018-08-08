@@ -1,0 +1,115 @@
+<section id="breadcrumbs">
+	<div class="container">
+		<ol class="breadcrumb">
+			<li><a href="/content/frontierwholesales/en/home.html">Home</a></li>
+			{{#each categorylist.parent}}
+			{{#unless @first}}
+			{{#if @last}}
+			<li class="active">{{name}}</li>
+			{{else}}
+			<li><a href="/content/frontierwholesales/en/productlist.html?id={{id}}">{{name}}</a></li>
+			{{/if}}
+			{{/unless}}
+			{{/each}}
+		</ol>
+	</div>
+</section>           
+ <div id="mobile-filters-holder">
+     <div id="mobile-filters-header">
+          <div id="mobile-filters-heading">
+               <span>Filters</span>
+          </div>
+          <div id="mobile-filters-close-holder">
+               <button class="btn" id="close-filters-plp-search">
+                    <span class="hidden">Close</span>
+                    <span class="glyphicon glyphicon-remove"></span>
+               </button>
+          </div>
+     </div>
+     <!-- the HTML from id plp-search-left-nav-filters is injected here when opened on smaller devices -->
+     <div id="mobile-filters">
+     </div>
+</div>
+<div id="mobile-filters-overlay"></div>
+
+<aside id="plp-search-left-nav-filters">
+	{{#if categorylist.children.length}}
+	<div class="each-filter-section categories">
+		<h2 class="filter-heading">Categories</h2>
+		<ul class="each-filters-list">
+			{{#each categorylist.children as |child|}}
+		
+			{{#moreCategories @index}}
+			<li class="filter-item visuallyhidden">
+				<a href="/content/frontierwholesales/en/productlist.html?id={{child.id}}" class="filter-link"><span class="text">{{child.name}}</span></a>
+			</li>
+			{{else}}
+			<li class="filter-item">
+				<a href="/content/frontierwholesales/en/productlist.html?id={{child.id}}" class="filter-link"><span class="text">{{child.name}}</span></a>
+			</li>
+			{{/moreCategories}}
+			{{/each}}
+			{{#viewMore categorylist.children.length}}
+			<li class="filter-item filter-item-expand">
+				<button type="button" class="btn btn-view-more-filters">
+					<span class="view-more-text">View More</span>
+				</button>
+			</li>
+	
+			{{/viewMore}}
+		</ul>
+	                               
+	</div>
+	{{/if}}
+	{{#if categorylist.filters.filters.length}}
+	{{#each categorylist.filters.filters}}
+	    {{#if filter_values}}
+	    {{#noCatFilter this.filter_name}}
+	       
+	    <div class="each-filter-section {{../filter_name}}">
+	       <h2 class="filter-heading">{{../filter_name}}</h2>
+	       
+	       <ul data-code="{{../filter_code}}" class="each-filters-list">
+	           {{#each ../filter_values as |child|}}
+	            {{#moreCategories @index}}
+	            <li class="filter-item visuallyhidden">
+	                 <a href="#" id="{{../../filter_code}}{{@index}}" data-value="{{child.value}}" class="filter-link checkbox-link"><span class="text">{{{child.name}}}</span></a>
+	            </li>
+	           {{else}}
+	            <li class="filter-item">
+	                 <a href="#"  id="{{../../filter_code}}{{@index}}" data-value="{{child.value}}" class="filter-link checkbox-link"><span class="text">{{{child.name}}}</span></a>
+	            </li>
+	            {{/moreCategories}}
+	
+	
+	           {{/each}}
+	            {{#viewMore filter_values.length}}
+	            <li class="filter-item filter-item-expand">
+	                 <button type="button" class="btn btn-view-more-filters">
+	                      <span class="view-more-text">View More</span>
+	                 </button>
+	            </li>
+	           {{/viewMore}}
+	       </ul>
+	
+	  </div>
+	  {{/noCatFilter}}
+	    {{/if}}
+	{{/each}}
+	{{/if}}
+</aside>
+
+<section id="plp-search-product-grid">
+	<div id="plp-search-header-holder" class="search-header-holder">
+		<input type="hidden" id="totalcount" value="{{total_count}}">
+		<div id="search-heading">
+			<h1 class="plp-search-text-heading">{{categorylist.category.name}}</h1>
+				<span class="showing-number-of-items">
+				     Showing <span class="number">{{recordsPerPage recsPerPage search_criteria.current_page total_count}}</span> of <span class="number">{{total_count}}</span> Products
+				</span>
+		</div>
+		<div data-sly-unwrap data-sly-include="../sharedHandlebarsTemplates/product-sort.html"></div>
+	</div>
+	<div data-sly-unwrap data-sly-include="../sharedHandlebarsTemplates/product-grid.html"></div>
+	<div data-sly-unwrap data-sly-include="../sharedHandlebarsTemplates/product-pagination.html"></div>
+</section>
