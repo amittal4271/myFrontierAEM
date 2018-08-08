@@ -7,7 +7,7 @@ Frontier.SearchResults = new function() {
 	
 	function init() {
 		console.log("Frontier Search Results init");
-		initHandlbarFunctions();
+		initProductSearchHandlbarFunctions();
 
        $(document).on('change','#itemPerPageSelect,#sortBy',function(){
     	   Frontier.SearchController.updateResults();
@@ -44,40 +44,6 @@ Frontier.SearchResults = new function() {
 	       
 	}
 	
-
-	function initHandlbarFunctions() {
-
-		HandlebarsIntl.registerWith(Handlebars);
-		
-		Handlebars.registerHelper("recordsPerPage", function(recsPerPage, page,
-				totalRecs) {
-			var recordsPerPage = recsPerPage * page;
-			if (recordsPerPage > totalRecs) {
-				return totalRecs;
-			} else {
-				return recordsPerPage;
-			}
-		});
-
-		Handlebars.registerHelper("gt", function(pageTotal, options) {
-			var fnTrue = options.fn, fnFalse = options.inverse;
-			return (pageTotal > 28) ? fnTrue() : fnFalse();
-
-		});
-
-		Handlebars.registerHelper("ifEquals", function(attrib, options) {
-			var fnTrue = options.fn, fnFalse = options.inverse;
-			return (attrib !== undefined && attrib.trim() !== '0') ? fnTrue()
-					: fnFalse();
-
-		});
-		
-		Handlebars.registerHelper("priceCheck", function(price, options) {
-			var fnTrue = options.fn, fnFalse = options.inverse;
-			return (price !== undefined && price >= 0) ? fnTrue() : fnFalse();
-		});
-
-	}
 	
 	String.prototype.replaceAll = function(search, replacement) {
 	    var target = this;

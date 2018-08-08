@@ -184,7 +184,7 @@ function getProductListByCategory(currentPage,recsPerPage,sortBy,searchString){
          hideLoadingScreen();
 
          var template = $("#productlistTemplate").html();
-         initHandlbarFunctions();
+         initProductSearchHandlbarFunctions();
 
            var html = Handlebars.compile(template);
 
@@ -227,59 +227,7 @@ function getProductListByCategory(currentPage,recsPerPage,sortBy,searchString){
    
 }
 
-function initHandlbarFunctions(){
-    
-          HandlebarsIntl.registerWith(Handlebars);
-            Handlebars.registerHelper("recordsPerPage",function(recsPerPage,page,totalRecs){
-                var recordsPerPage = recsPerPage * page;
-                if( recordsPerPage > totalRecs){
-                    return totalRecs;
-                }else{
-                  return recordsPerPage;
-                }
-            });
 
-            Handlebars.registerHelper("gt",function(pageTotal,options){
-                var fnTrue = options.fn,
-            fnFalse = options.inverse;
-               return (pageTotal > 28)?fnTrue():fnFalse();
-
-            });
-
-            Handlebars.registerHelper("moreCategories",function(index,options){
-                 var fnTrue = options.fn,
-                fnFalse = options.inverse;
-               return (index > 4)?fnTrue():fnFalse();
-
-            });
-
-             Handlebars.registerHelper("ifEquals",function(attrib,options){
-                 var fnTrue = options.fn,
-                fnFalse = options.inverse;
-               return (attrib !== undefined && attrib.trim() !== '0')?fnTrue():fnFalse();
-
-            });
-
-             Handlebars.registerHelper("viewMore",function(index,options){
-                 var fnTrue = options.fn,
-                fnFalse = options.inverse;
-               return (index > 5)?fnTrue():fnFalse();
-
-            });
-
-            Handlebars.registerHelper("noCatFilter",function(name,options){
-                 var fnTrue = options.fn,
-                fnFalse = options.inverse;
-               return (name !== undefined && name !== "Category" && name !== "Price")?fnTrue():fnFalse();
-            });
-    
-        Handlebars.registerHelper("priceCheck",function(price,options){
-                 var fnTrue = options.fn,
-                fnFalse = options.inverse;
-               return (price !== undefined && price >=0 )?fnTrue():fnFalse();
-            });
-
-}
 
 function retainFilterChkboxSelections(){
     $.each(filterIds,function(index,data){
