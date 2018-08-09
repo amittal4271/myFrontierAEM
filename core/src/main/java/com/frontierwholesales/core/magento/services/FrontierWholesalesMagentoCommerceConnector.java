@@ -357,7 +357,7 @@ public class FrontierWholesalesMagentoCommerceConnector {
     	String response=null;
     	try {
     		
-            response = Request.Get(server+"/rest/V1/products/attributes?searchCriteria[currentPage]=1&searchCriteria[pageSize]=100&searchCriteria[filterGroups][0][filters][0][value]=1&searchCriteria[filterGroups][0][filters][0][field]=is_searchable&searchCriteria[filterGroups][0][filters][0][condition_type]=eq&searchCriteria[sortOrders][0][field]=position&searchCriteria[sortOrders][0][direction]=ASC&fields=items[attribute_code,default_frontend_label,frontend_input,backend_type,position,options]")
+            response = Request.Get(server+"/rest/V1/products/attributes?searchCriteria[currentPage]=1&searchCriteria[pageSize]=1000&searchCriteria[sortOrders][0][field]=position&searchCriteria[sortOrders][0][direction]=ASC&fields=items[attribute_code,default_frontend_label,frontend_input,backend_type,position,options]")
                     .addHeader("Authorization", adminToken)
                     .execute().returnContent().asString();
          
