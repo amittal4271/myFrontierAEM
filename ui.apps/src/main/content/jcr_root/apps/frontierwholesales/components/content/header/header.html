@@ -2,6 +2,8 @@
     data-sly-use.clientLib="${'/libs/granite/sightly/templates/clientlib.html'}"/>
 <sly data-sly-call="${clientlib.js @ categories='header'}" data-sly-unwrap/>
 <sly data-sly-use.user="${'com.frontierwholesales.core.models.SessionModel'}"></sly>
+<sly data-sly-use.magentoInfo="${'com.frontierwholesales.core.magento.services.models.MagentoInfo'}"></sly>
+
 <!-- header component -->
 <header id="header">
   <div id="left-header-icons-mobile">
@@ -27,7 +29,7 @@
      
      <div id="secondary-nav-holder">
           <ul class="user-menu">
-               <li><a href="#">Quick Order</a></li>
+               <li><a href="${magentoInfo.magentoServer}quickorder/">Quick Order</a></li>
                <li><a href="#">Help</a>
                 <ul id="header-help-flyout" class="header-flyout-list">
                          <li><a href="#">Contact</a></li>

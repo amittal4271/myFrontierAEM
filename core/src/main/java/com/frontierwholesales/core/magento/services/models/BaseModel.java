@@ -44,4 +44,8 @@ public abstract class BaseModel {
 		
 		 return userToken;
 	 }
+	 
+	 public String getMagentoServer() {
+		 return FrontierWholesalesMagentoCommerceConnector.getServer();
+	 }
 }
