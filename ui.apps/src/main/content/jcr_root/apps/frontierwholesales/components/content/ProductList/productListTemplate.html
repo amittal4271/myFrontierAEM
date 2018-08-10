@@ -73,11 +73,11 @@
 	           {{#each ../filter_values as |child|}}
 	            {{#moreCategories @index}}
 	            <li class="filter-item visuallyhidden">
-	                 <a href="#" id="{{../../filter_code}}{{@index}}" data-value="{{child.value}}" class="filter-link checkbox-link"><span class="text">{{{child.name}}}</span></a>
+	                 <a href="#" id="{{../../../filter_code}}{{@index}}" data-value="{{child.value}}" class="filter-link checkbox-link"><span class="text">{{{child.name}}}</span></a>
 	            </li>
 	           {{else}}
 	            <li class="filter-item">
-	                 <a href="#"  id="{{../../filter_code}}{{@index}}" data-value="{{child.value}}" class="filter-link checkbox-link"><span class="text">{{{child.name}}}</span></a>
+	                 <a href="#"  id="{{../../../filter_code}}{{@index}}" data-value="{{child.value}}" class="filter-link checkbox-link"><span class="text">{{{child.name}}}</span></a>
 	            </li>
 	            {{/moreCategories}}
 	
