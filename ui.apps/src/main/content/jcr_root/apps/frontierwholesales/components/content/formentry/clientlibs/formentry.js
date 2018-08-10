@@ -23,14 +23,13 @@ Frontier.formEntry = new function(){
          $('#formentry-message').css('display','none'); 
         var serverURL = window.serverURL;
         var email = $('#email-input').val();
-        getAdminToken().then(function(response){  
-           $.support.cors = true;
+        
             $.ajax({
                 url: serverURL+"/rest/V1/frontier-newsletter/newsletter/subscribe/"+email,
                 type: "GET",
                 dataType: "json",
                 headers: {"Content-Type": "application/x-www-form-urlencoded; charset=UTF-8", 
-                      "Authorization": response,
+                      
                        "Access-Control-Allow-Origin":serverURL,
                         "Access-Control-Allow-Credentials":"true"
                      },
@@ -58,7 +57,7 @@ Frontier.formEntry = new function(){
                 $('#formentry-message').css('display','none'); 
                 enableErrorMsg('error');
             });
-        });
+        
     }
     $(document).ready(function(){
         validation.newletterForm('#newsletter-form');
