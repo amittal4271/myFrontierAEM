@@ -195,7 +195,9 @@ function addItemToCart(sku,qty){
 
 }
 
-function addItemToWishList(sku){
+
+
+/*function addItemToWishList(sku){
      var jsonData={};
     jsonData['itemDetails']={};
     var itemDetails={};
@@ -252,4 +254,4 @@ function addRequisitionList(reqid,prodid,qty,sku){
         hideLoadingScreen();
         enableErrorMsg(error.status);
     });
-}
+}*/

@@ -282,3 +282,69 @@ function initProductSearchHandlbarFunctions(){
       });
 
 }
+
+function addItemToWishList(sku){
+     var jsonData={};
+    jsonData['itemDetails']={};
+    var itemDetails={};
+    
+    itemDetails['product_sku']=sku;
+    itemDetails['store_id']='1';
+    itemDetails['website_id']='1';
+    showLoadingScreen();
+    Frontier.MagentoServices.getUserRole(serverURL).done(function(customerData){
+         itemDetails['customer_id']=customerData.frontier_customer.id;
+         jsonData['itemDetails']=itemDetails;         
+         Frontier.MagentoServices.addItemToWishList(serverURL,jsonData).done(function(wishlist){
+             hideLoadingScreen();
+             console.log("added to whishlist");
+              $('#message-'+sku).html("Item added to your WishList!");
+              $('#message-'+sku).fadeIn('fast').delay(3000).fadeOut('fast');
+         }).fail(function(error){
+              console.log("error "+error);
+              hideLoadingScreen();
+            enableErrorMsg(error.status);
+         });
+    }).fail(function(error){
+              console.log("error "+error);
+              hideLoadingScreen();
+            enableErrorMsg(error.status);
+    });  
+       
+     
+}
+
+
+function retrieveRequisitionList(thisObj){
+     Frontier.MagentoServices.getRequisitionList(serverURL).done(function(list){
+         $.each(list,function(key,value){
+              thisObj.append($('<option/>',
+                                    {'value':value.id,'text':value.name}));
+         });
+        
+     }).fail(function(error){
+             hideLoadingScreen();
+            enableErrorMsg(error.status);
+    });
+}
+
+function addRequisitionList(reqid,prodid,qty,sku){
+    var jsonData={};
+   
+    var reqItems={};
+    reqItems['reqlistId']=reqid;
+    reqItems['skuId']=prodid;
+    reqItems['qty']=qty;
+    var reqData = [];
+    reqData.push(reqItems);
+    jsonData['reqitems']=reqData;
+    showLoadingScreen();
+    Frontier.MagentoServices.addRequisitionList(serverURL,jsonData).done(function(response){
+            hideLoadingScreen();
+            $('#message-'+sku).html("Item added to your Shelves!");
+            $('#message-'+sku).fadeIn('fast').delay(3000).fadeOut('fast');
+    }).fail(function(error){
+        hideLoadingScreen();
+        enableErrorMsg(error.status);
+    });
+}

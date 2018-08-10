@@ -12,7 +12,7 @@ public interface Carousel extends List {
      * @see #PN_IMAGE_NODE_PATH
      * @since com.adobe.cq.wcm.core.components.models 11.0.0
      */
-    String PN_HERO_IMAGE_OTHER_NODE_PATH = "hero_image";
+    String PN_HERO_IMAGE_OTHER_NODE_PATH = "image";
     
     /**
      * Name of the resource property storing the path to the image node on the page.
@@ -20,7 +20,7 @@ public interface Carousel extends List {
      * @see #PN_HERO_IMAGE_NODE_PATH
      * @since com.adobe.cq.wcm.core.components.models 11.0.0
      */
-    String PN_HERO_IMAGE_NODE_PATH = "root/hero_image";
+    String PN_HERO_IMAGE_NODE_PATH = "par/image";
     
     /**
      * Name of the image node.
@@ -34,5 +34,5 @@ public interface Carousel extends List {
      * 
      * @see #PN_ONE_COLUMN_PAGE_RESOURCE_TYPE
      */
-    String PN_ONE_COLUMN_PAGE_RESOURCE_TYPE = "^(weretail|frontierwholesales)/components/structure/page$";
+    String PN_ONE_COLUMN_PAGE_RESOURCE_TYPE = "frontierwholesales/components/structure/general-page";
 }

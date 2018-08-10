@@ -63,13 +63,16 @@ public class CarouselListItemImpl implements ListItem {
 	    		}
 	    		this.isValidImageNode = (imageResource != null);
 	    		if( this.isValidImageNode ) {
+	    		
 	    			ValueMap imageMap = imageResource != null ? ResourceUtil.getValueMap(imageResource) : ValueMap.EMPTY;
-	    			String imageSrc = imageMap.get(Image.PN_REFERENCE, String.class);
+	    			String imageSrc = imageMap.get(Image.PN_FILE_NAME, String.class);
+	    			
 	    			if( StringUtils.isBlank(imageSrc) ) {
 	    				ValueMap childImageMap = imageResource != null && imageResource.getChild(Carousel.PN_IMAGE_NODE) != null ? ResourceUtil.getValueMap(imageResource.getChild(Carousel.PN_IMAGE_NODE)) : ValueMap.EMPTY;
-	    				imageSrc = childImageMap.get(Image.PN_REFERENCE, String.class);
+	    				imageSrc = childImageMap.get(Image.PN_FILE_NAME, String.class);
 	    			}
 	    			this.isValidImageRef = imageSrc != null;
+	    			imageSrc = imageResource.getPath() +".img.png/"+imageSrc;
 	    			return imageSrc;	// is there default value if no image file found?
 	    		}
     		}

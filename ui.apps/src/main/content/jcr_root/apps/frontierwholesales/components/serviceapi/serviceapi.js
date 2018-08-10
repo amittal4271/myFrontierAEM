@@ -301,12 +301,17 @@ Frontier.MagentoServices = new function(){
         });    
     }
     
-    function addItemToWishList(jsonData){
+    function addItemToWishList(serverurl,jsonData){
        // clearErrorMsg();
         return $.ajax({
-            url: "/services/productlist",
-            data:{wishlist:JSON.stringify(jsonData),action:"wishlist"},
+            url: serverurl+"/rest/all/V1/frontier/wishlist/add",
+            data:JSON.stringify(jsonData),
             method: "POST",
+             headers:{  "Content-Type": "application/json", 
+                        "Authorization": getUserToken(),
+                        "Access-Control-Allow-Origin":serverurl,
+                        "Access-Control-Allow-Credentials":"true"
+                    },
             beforeSend:function(xhr){
               xhr.overrideMimeType("application/json");
           }
