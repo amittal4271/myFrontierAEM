@@ -1,4 +1,7 @@
 $(document).ready(function(){
+	
+	initCartHandlbarFunctions();
+	
     var pageTitle = $("#pageTitle").data("pagetitle");
     console.log(pageTitle);
     //getCartItems('minicartTemplate');
