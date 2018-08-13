@@ -229,6 +229,19 @@ function getParameterByName(name, url) {
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
 
+function initCartHandlbarFunctions(){	
+	Handlebars.registerHelper("getCartUrl",function(){
+        try {
+        	var magentoCartUrl = serverURL + "checkout/cart";
+        	return magentoCartUrl;
+        }
+        catch(error){
+        	console.log("error getting server cart url");
+        	return '#';
+        }
+    });
+}
+
 function initProductSearchHandlbarFunctions(){
     
     HandlebarsIntl.registerWith(Handlebars);
