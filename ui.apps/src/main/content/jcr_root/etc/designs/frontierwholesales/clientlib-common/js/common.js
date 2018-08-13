@@ -232,7 +232,11 @@ function getParameterByName(name, url) {
 function initCartHandlbarFunctions(){	
 	Handlebars.registerHelper("getCartUrl",function(){
         try {
-        	var magentoCartUrl = serverURL + "checkout/cart";
+        	var magentoCartUrl = serverURL;
+        	if (magentoCartUrl.slice(-1) != '/') {
+        		magentoCartUrl += "/";
+        	}
+        	magentoCartUrl = magentoCartUrl + "checkout/cart";
         	return magentoCartUrl;
         }
         catch(error){
