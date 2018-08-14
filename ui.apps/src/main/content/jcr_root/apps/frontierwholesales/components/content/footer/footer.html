@@ -1,3 +1,4 @@
+<sly data-sly-use.user="${'com.frontierwholesales.core.models.SessionModel'}"></sly>
 <!-- footer component -->
      <div class="container">
           <div id="logo-footer">
@@ -63,7 +64,12 @@
                     <div class="footer-heading">Community</div>
                     <ul class="navfooter-submenu">
                          <li class="navfooter-subitem">
-                              <a href="#" class="navfooter-link">My Account</a>
+                              <sly data-sly-test="${user.authToken == null}">
+                                 <a href="/content/frontierwholesales/en/login.html" class="navfooter-link">My Account</a>
+                             </sly>
+                              <sly data-sly-test="${user.authToken != null}">
+                                  <a href="#" class="navfooter-link">My Account</a>
+                             </sly>
                          </li>
                          <li class="navfooter-subitem">
                               <a href="#" class="navfooter-link">Coop Membership</a>

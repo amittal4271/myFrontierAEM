@@ -103,7 +103,7 @@
              <h4 class="cart-empty-heading">Nothing in your cart yet.</h4>
              {{else}}
                 {{#items}}
-                       <div class="each-mini-cart-item">
+                       <div data-cartitem="{{item_id}}" class="each-mini-cart-item">
                             <div class="mini-cart-image-holder">
                                  <img src="{{imgPath}}">
                             </div>
@@ -119,6 +119,11 @@
                                       <span class="glyphicon glyphicon-remove"></span>
                                       <span  class="remove-text" >Remove Item</span>
                                  </button>
+                            </div>
+                           
+                           <div id="removeid-{{item_id}}" class="mini-cart-item-remove-confirmation" style="display:none;">
+                               <button type="button" data-itemid="{{item_id}}" class="btn btn-smaller btn-confirm-remove-mini-cart-item">Remove Item</button>
+                               <button type="button" class="btn btn-smaller btn-white-green btn-cancel-remove-mini-cart-item">Cancel</button>
                             </div>
                        </div>
 

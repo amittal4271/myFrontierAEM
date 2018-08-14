@@ -51,55 +51,133 @@
 				</li>-->
 				<sly data-sly-use.topNav="${'com.frontierwholesales.core.models.NavigationModel'}" >
 					<sly data-sly-list.pages="${topNav.frontierWholesalePages}">
+
+                            <sly data-sly-test="${pagesList.first}">
+
+                            <li class="mobile-top-level-category">
+
+                                <a class="btn mobile-top-level-link" href="${pages.link}"><span class="top-level-text">${pages.title}</span></a>
+
+                             </li>
+                             </sly>
+						</sly>
+
+					 <!-- Magento Category pages here -->
+        <sly data-sly-list.pages="${topNav.categories.children_data}">
+
+                 <sly data-sly-test="${pages.is_active}"> 
 						<li class="mobile-top-level-category">
-							<button class="btn mobile-top-level-btn">
-								<a href="${pages.link}" class="btn mobile-top-level-link"><span class="top-level-text">${pages.title}</span> </a>
-								<span class="glyphicon glyphicon-plus"></span>
-							</button>
-							<ul class="sub-nav-mobile first-level" data-sly-list.child1="${pages.childList}">
-								<!--<li class="mobile-first-level-item">
-									<a href="${child1.link}" class="mobile-second-level-link">
-										<span class="top-level-text">${child1.title}</span> 
-									</a>
-								</li>-->
+
+                            <sly data-sly-test="${pages.children_data.length == 0}">
+
+								<a href="${pages.link}" class="btn mobile-top-level-link">
+                                    <span class="top-level-text">${pages.name}</span> 
+                                </a>
+                                </sly>
+									 <sly data-sly-test="${pages.children_data.length > 0}">
+                                         <button class="btn mobile-top-level-btn">
+                                         <span class="top-level-text">${pages.name}</span> 
+                                    <span class="glyphicon glyphicon-plus"></span>
+                                    </button>
+                                    </sly>
+
+
+
+							<ul class="sub-nav-mobile first-level" data-sly-list.child1="${pages.children_data}">
+
 								<li class="mobile-first-level-item">
-									<button class="btn mobile-second-level-btn">
-										<span class="top-level-text">${child1.title}</span> 
-										<span class="glyphicon glyphicon-plus"></span>
-									</button>
-									<ul class="sub-nav-mobile second-level" data-sly-list.child2="${child1.childList}">
-										<li class="mobile-second-level-item">
-											<button class="btn mobile-second-level-btn">${child2.title}</button>
-
-
-											<!-- third level -->
-
-											<ul class="sub-nav-mobile third-level" data-sly-list.child3="${child2.childList}">
-										<li class="mobile-third-level-item">
-											<button class="btn mobile-third-level-btn">${child3.title}</button>
-
-
-											
-
-										</li>
 										
-									</ul>
+                                          <button class="btn mobile-second-level-btn">
+
+                                                <span class="top-level-text">${child1.name}</span> 
+                                            <span class="glyphicon glyphicon-plus"></span>
+                                                </button>
+
+									<ul class="sub-nav-mobile second-level" data-sly-list.child2="${child1.children_data}">
+										<li class="mobile-second-level-item">
+											
+                                            <button class="btn mobile-third-level-btn">
+												<span class="top-level-text">${child2.name}</span> 
+                                                <span class="glyphicon glyphicon-plus"></span>
+                                                </button>
+
+											<ul class="sub-nav-mobile third-level" data-sly-list.child3="${child2.children_data}">
+                                                <li class="mobile-third-level-item">
+                                                    <a class="mobile-third-level-link" data-linkname="/${child1.name}/${child2.name}/${child3.name}/" href="#">
+                                                       <span class="top-level-text">
+                                                           ${child3.name}</span> 
+                                                           </a>
+                                                </li>
+										
+											</ul>
 
 
-
-											<!-- third level -->
 
 
 
 										</li>
-										<!--<li class="mobile-second-level-item">
-											<button class="btn mobile-second-level-btn">Spices and Seasonings</button>
-										</li>-->
+
 									</ul>
 								</li>
 							</ul>
 						</li>
-			</sly>
+                        </sly>
+                        </sly>
+
+
+
+
+                        <sly data-sly-list.aemPageFirst="${topNav.frontierWholesalePages}">
+                        <sly data-sly-test="${aemPageFirstList.last}">
+                         <li class="mobile-top-level-category">
+                			<button class="btn mobile-top-level-btn">
+                            <span class="top-level-text">${aemPageFirst.title}</span>
+
+                                    <span class="glyphicon glyphicon-plus"></span>
+                                    </button>
+
+                             <ul class="sub-nav-mobile first-level" data-sly-list.lastChildLevel1="${aemPageFirst.childList}">
+                                   <li class="mobile-first-level-item">
+                                       <button class="btn mobile-second-level-btn">
+										<a href="${lastChildLevel1.link}">
+                                           <span class="top-level-text">${lastChildLevel1.title}</span></a>
+
+                                                                     <span class="glyphicon glyphicon-plus">
+                                                                        </span>
+                                                                    </button>
+
+                                        <ul  class="sub-nav-mobile second-level" data-sly-list.lastChildLevel2="${lastChildLevel1.childList}">
+                                             <li class="mobile-second-level-item">
+													 <button class="btn mobile-third-level-btn">
+                                                         <a href="${lastChildLevel2.link}">
+                                                             <span class="top-level-text">${lastChildLevel2.title}</span></a>
+
+                                                        	<span class="glyphicon glyphicon-plus"> </span>
+
+                                                        </button>
+
+
+
+                                                 <ul  class="sub-nav-mobile third-level" data-sly-list.lastChildLevel3="${lastChildLevel2.childList}">
+
+                                                     <li class="mobile-third-level-item">
+                                                         <button class="btn mobile-third-level-btn">
+                                                             <a href="${lastChildLevel3.link}" >
+                                                                 <span class="top-level-text">${lastChildLevel3.title}</span>
+                                                            </a>
+                                                            </button> 
+                                                            </li>
+
+                
+                                                      </ul>  
+                                            </li>
+                                       </ul>
+                                 </li>
+                             </ul>
+                         </li>
+                         </sly>
+                         </sly>
+
 			</sly>
 
 		</ul>

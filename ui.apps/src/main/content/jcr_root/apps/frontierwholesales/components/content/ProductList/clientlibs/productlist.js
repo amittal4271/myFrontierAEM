@@ -267,15 +267,26 @@ function constructFilterConditions(){
     var group={};
     var filterValues=[];
     var jsonData={};
-    var groupIdx = 0;
+    var groupIdx = 1;
     var index = 0;
     var queryString='';
     $('#plp-search-left-nav-filters').find('.selected-filter').each(function(i,data){
        var code = $(this).parent().parent().data('code'); 
         var data = $(this).data('value').toString();
-         filterIds.push($(this).attr('id'));
-	   groupIdx++;
-         queryString+=getFilterParam(groupIdx,index,code,data,''); 
+        var id = $(this).attr('id');
+         filterIds.push(id);
+	   
+        if(id.startsWith('manufacturer')){
+			index++;
+           }else{
+			index=0;
+
+            groupIdx++;
+           }
+        if(temp != code){
+			index = 0;
+        }
+        queryString+=getFilterParam(groupIdx,index,code,data,'');
         temp = code;
 
 

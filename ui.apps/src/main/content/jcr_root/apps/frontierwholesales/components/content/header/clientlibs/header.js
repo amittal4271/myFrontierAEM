@@ -19,13 +19,7 @@ $(document).ready(function(){
         var parentMiniCartItem = $this.parents('.each-mini-cart-item');
         var itemId = $this.data('itemid');
        
-        var html = '';
-         html += '<div class="mini-cart-item-remove-confirmation">';
-             html += '<button type="button" data-itemid="'+itemId +'" class="btn btn-smaller btn-confirm-remove-mini-cart-item">Remove Item</button>';
-             html += '<button type="button" class="btn btn-smaller btn-white-green btn-cancel-remove-mini-cart-item">Cancel</button>';
-         html += '</div>';
-        parentMiniCartItem.append(html);
-        
+        $('#removeid-'+itemId).css('display','block');
     });
     
      $(document).on('click','.btn-confirm-remove-mini-cart-item',function(){

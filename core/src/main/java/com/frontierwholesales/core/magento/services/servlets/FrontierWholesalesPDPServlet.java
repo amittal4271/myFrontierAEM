@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import javax.jcr.Node;
 import javax.jcr.NodeIterator;
@@ -39,6 +40,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonPrimitive;
 
 @SuppressWarnings("serial")
 @SlingServlet(label="FrontierWholesalesUserRegistration - Sling All Methods Servlet", 
@@ -100,7 +102,7 @@ private JsonArray getImagePath(String productSku,SlingHttpServletRequest request
 		ResourceResolver resourceResolver = request.getResourceResolver();
 		
 		JsonArray array = new JsonArray();
-		
+		JsonArray imgArray = new JsonArray();
 		String sqlStatement="SELECT * FROM [nt:unstructured] AS node\n" + 
 	    		"WHERE ISDESCENDANTNODE(node, \"/content/dam/FrontierImages/product/"+ productSku+"\")"
 	    				+ "ORDER BY node.title"; 
@@ -110,7 +112,7 @@ private JsonArray getImagePath(String productSku,SlingHttpServletRequest request
 	    QueryResult result = query.execute();	  
 	    NodeIterator nodeIter = result.getNodes();
 		   log.debug("before loop");
-		  
+		   String frontImage="";
 	    while ( nodeIter.hasNext() ) {
 	    	JsonObject obj = new JsonObject();
 	    	Node node = nodeIter.nextNode();
@@ -124,11 +126,15 @@ private JsonArray getImagePath(String productSku,SlingHttpServletRequest request
 	        
 		        	String relativePath = properties.get("dam:relativePath",(String)null);
 		        	if(relativePath != null) {
-		        		
+		        		boolean bFind = Pattern.compile(Pattern.quote("1_"), Pattern.CASE_INSENSITIVE).matcher(relativePath).find();
 		        		imgPath = "/content/dam/"+ relativePath;
 		        		obj.addProperty("path", imgPath);
-		        	
-		        		array.add(obj);
+		        		
+		        		if(bFind) {
+		        			frontImage = imgPath;		        			
+		        		}else {       	
+		        			array.add(obj);
+		        		}
 		        	}
 	        	
 	        	
@@ -139,13 +145,40 @@ private JsonArray getImagePath(String productSku,SlingHttpServletRequest request
 		    		
 
 	    }
-	    if(array.size() == 0) {
+	    
+	    if(array.size() == 0 && frontImage == "") {
 	    	JsonObject obj = new JsonObject();
 	    	obj.addProperty("path", "/content/dam/FrontierImages/default_product_image.jpg");
 	    	array.add(obj);
+	    }else {
+	    	JsonObject obj = new JsonObject();
+	    	obj.addProperty("path", frontImage);      
+	    	imgArray = insert(0,obj,array);
+	    	
 	    }
-	    return array;		    
+	    return imgArray;		    
 	}
+
+	private  JsonArray insert(int index,JsonObject frontImgObj, JsonArray currentArray) {
+	    JsonArray newArray = new JsonArray();
+	    for (int i = 0; i < index; i++) {
+	    	newArray.add(currentArray.get(i));
+	    }
+	    if(frontImgObj.get("path").getAsString() != "") {
+	    	newArray.add(frontImgObj);
+	    }
+	
+	    for (int i = index; i < currentArray.size(); i++) {
+	    	log.debug("current array values "+currentArray.get(i));
+	        newArray.add(currentArray.get(i));
+	    }
+	    
+	    for(int i=0;i<newArray.size();i++) {
+	    	log.debug("New Array is "+newArray.get(i));
+	    }
+	    return newArray;
+	}
+
 	
 	private String parseJsonObject(String productDetails,SlingHttpServletRequest request,String groupId) throws Exception{
 		
