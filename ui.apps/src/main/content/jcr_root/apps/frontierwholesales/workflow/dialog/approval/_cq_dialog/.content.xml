@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Approve Content Activation"
+    sling:resourceType="cq/gui/components/authoring/dialog"
+    helpPath="en/cq/current/wcm/default_components.html#Text">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/foundation/container">
+        <layout
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/foundation/layouts/tabs"/>
+        <items jcr:primaryType="nt:unstructured">
+            <tab2
+                jcr:primaryType="nt:unstructured"
+                jcr:title="Request for Publish Workflow Options"
+                sling:resourceType="granite/ui/components/foundation/container">
+                <layout
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/foundation/layouts/fit"/>
+	                <content
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+                            <display
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                fieldLabel="Select"
+                                name="name">
+                                <items jcr:primaryType="cq:WidgetCollection">
+                                    <approve
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Approve"
+                                        value="approve"/>
+                                    <reject
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Reject"
+                                        value="rejected"/>
+                                </items>
+                            </display>
+                        </items>
+                    </content>
+            </tab2>
+        </items>
+    </content>
+</jcr:root>

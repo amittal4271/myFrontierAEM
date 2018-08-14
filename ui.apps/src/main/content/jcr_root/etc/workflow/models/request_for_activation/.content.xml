@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2018-08-13T01:41:54.913-06:00"
+        cq:lastModifiedBy="admin"
+        cq:tags="[workflow:wcm]"
+        cq:template="/libs/cq/workflow/templates/model"
+        jcr:description="This is the default request for activation workflow"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Request for Activation"
+        sling:resourceType="cq/workflow/components/pages/model"
+        multiResourceSupport="true">
+        <flow
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="foundation/components/parsys">
+            <dialog
+                jcr:created="{Date}2018-08-10T01:25:12.375-06:00"
+                jcr:createdBy="admin"
+                jcr:lastModified="{Date}2018-08-12T22:49:41.945-06:00"
+                jcr:lastModifiedBy="admin"
+                jcr:primaryType="nt:unstructured"
+                jcr:title="Approve / Reject Activation"
+                sling:resourceType="cq/workflow/components/model/dialog">
+                <metaData
+                    jcr:primaryType="nt:unstructured"
+                    DIALOG_PATH="/apps/frontierwholesales/workflow/dialog/approval/cq:dialog"
+                    DO_NOTIFY="true"
+                    PARTICIPANT="frontier-content-reviewers"/>
+            </dialog>
+            <process
+                jcr:created="{Date}2018-08-10T01:33:03.432-06:00"
+                jcr:createdBy="admin"
+                jcr:lastModified="{Date}2018-08-10T02:23:54.554-06:00"
+                jcr:lastModifiedBy="admin"
+                jcr:primaryType="nt:unstructured"
+                jcr:title="Process Activation Selection"
+                sling:resourceType="cq/workflow/components/model/process">
+                <metaData
+                    jcr:primaryType="nt:unstructured"
+                    PROCESS="/etc/workflow/scripts/replaceDialogvalue.ecma"
+                    PROCESS_AUTO_ADVANCE="true"/>
+            </process>
+            <or
+                jcr:created="{Date}2018-08-10T01:34:23.720-06:00"
+                jcr:createdBy="admin"
+                jcr:lastModified="{Date}2018-08-10T01:35:10.709-06:00"
+                jcr:lastModifiedBy="admin"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="cq/workflow/components/model/or"
+                branches="2"
+                orSplit="true"
+                script1="function check() {&#xa;    var match = 'approve';&#xa;    if (workflowData.getMetaData().get('name') == match) {&#xa;        return true;&#xa;    } else {&#xa;        return false;&#xa;    }&#xa;} "
+                script2="function check() {&#xa;    var match = 'rejected';&#xa;    if (workflowData.getMetaData().get('name') == match) {&#xa;        return true;&#xa;    } else {&#xa;        return false;&#xa;    }&#xa;}">
+                <_x0031_
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="cq/flow/components/parsys">
+                    <activateresourceproc
+                        jcr:created="{Date}2018-08-10T01:36:12.856-06:00"
+                        jcr:createdBy="admin"
+                        jcr:description="A process to activate a page or asset"
+                        jcr:lastModified="{Date}2018-08-10T01:36:38.457-06:00"
+                        jcr:lastModifiedBy="admin"
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Activate Page/Asset"
+                        sling:resourceType="wcm/workflow/components/workflow/activateresourceprocess"
+                        PROCESS="com.day.cq.wcm.workflow.process.ActivatePageProcess"
+                        PROCESS_AUTO_ADVANCE="true">
+                        <metaData
+                            jcr:primaryType="nt:unstructured"
+                            PROCESS="com.day.cq.wcm.workflow.process.ActivatePageProcess"
+                            PROCESS_AUTO_ADVANCE="true"/>
+                    </activateresourceproc>
+                    <process
+                        jcr:created="{Date}2018-08-10T01:38:47.997-06:00"
+                        jcr:createdBy="admin"
+                        jcr:lastModified="{Date}2018-08-10T01:39:25.669-06:00"
+                        jcr:lastModifiedBy="admin"
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Approval Email"
+                        sling:resourceType="cq/workflow/components/model/process">
+                        <metaData
+                            jcr:primaryType="nt:unstructured"
+                            PROCESS="com.frontierwholesales.core.workflow.CustomStepForApproval"
+                            PROCESS_AUTO_ADVANCE="true"/>
+                    </process>
+                </_x0031_>
+                <_x0032_
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="cq/flow/components/parsys">
+                    <process
+                        jcr:created="{Date}2018-08-10T01:39:01.473-06:00"
+                        jcr:createdBy="admin"
+                        jcr:lastModified="{Date}2018-08-10T01:39:13.052-06:00"
+                        jcr:lastModifiedBy="admin"
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Reject Email"
+                        sling:resourceType="cq/workflow/components/model/process">
+                        <metaData
+                            jcr:primaryType="nt:unstructured"
+                            PROCESS="com.frontierwholesales.core.workflow.CustomStepForApproval"
+                            PROCESS_AUTO_ADVANCE="true"/>
+                    </process>
+                    <dynamic_participant
+                        jcr:created="{Date}2018-08-10T01:44:04.695-06:00"
+                        jcr:createdBy="admin"
+                        jcr:lastModified="{Date}2018-08-13T01:41:17.380-06:00"
+                        jcr:lastModifiedBy="admin"
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Request for Publication Rejected"
+                        sling:resourceType="cq/workflow/components/model/dynamic_participant">
+                        <metaData
+                            jcr:primaryType="nt:unstructured"
+                            DO_NOTIFY="true"
+                            DYNAMIC_PARTICIPANT="com.frontierwholesales.core.workflow.CustomStepForDynamicParticipant"/>
+                    </dynamic_participant>
+                    <goto
+                        jcr:created="{Date}2018-08-10T01:47:59.407-06:00"
+                        jcr:createdBy="admin"
+                        jcr:description="Goto Step"
+                        jcr:lastModified="{Date}2018-08-10T01:49:17.428-06:00"
+                        jcr:lastModifiedBy="admin"
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Goto Step"
+                        sling:resourceType="cq/workflow/components/model/goto"
+                        PROCESS="com.adobe.granite.workflow.core.process.GotoProcess"
+                        PROCESS_AUTO_ADVANCE="false">
+                        <metaData
+                            jcr:primaryType="nt:unstructured"
+                            PROCESS="com.adobe.granite.workflow.core.process.GotoProcess"
+                            PROCESS_AUTO_ADVANCE="false"
+                            TARGET_NODE_PATH="/etc/workflow/models/request_for_activation/jcr:content/flow/dialog"/>
+                    </goto>
+                </_x0032_>
+            </or>
+        </flow>
+        <model/>
+    </jcr:content>
+</jcr:root>
