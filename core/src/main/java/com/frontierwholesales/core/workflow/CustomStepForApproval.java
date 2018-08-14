@@ -9,6 +9,7 @@ import org.apache.commons.mail.Email;
 import org.apache.commons.mail.SimpleEmail;
 import org.apache.felix.scr.annotations.Activate;
 import org.apache.felix.scr.annotations.Component;
+import org.apache.felix.scr.annotations.ConfigurationPolicy;
 import org.apache.felix.scr.annotations.Properties;
 import org.apache.felix.scr.annotations.Property;
 import org.apache.felix.scr.annotations.Reference;
@@ -33,7 +34,13 @@ import com.day.cq.mailer.MessageGateway;
 import com.day.cq.mailer.MessageGatewayService;
 
 //This is a component so it can provide or consume services
-@Component
+@Component(
+			label = "Frontier Publication Request Email Step.",
+			description = "Workflow process that sends rejection or approval message as email",
+			metatype = true,
+			immediate = true,
+			policy = ConfigurationPolicy.OPTIONAL
+		)
 @Service
 @Properties({ @Property(name = Constants.SERVICE_DESCRIPTION, value = "Frontier Publication Request Email Step."),
 		@Property(name = Constants.SERVICE_VENDOR, value = "Adobe"),
