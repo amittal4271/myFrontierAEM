@@ -27,7 +27,7 @@
                 jcr:primaryType="nt:unstructured"
                 DIALOG_PATH="/apps/frontierwholesales/workflow/dialog/approval/cq:dialog"
                 DO_NOTIFY="true"
-                PARTICIPANT="frontier-content-reviewers"/>
+                PARTICIPANT="frontier-reviewers"/>
         </node1>
         <node2
             jcr:primaryType="cq:WorkflowNode"
