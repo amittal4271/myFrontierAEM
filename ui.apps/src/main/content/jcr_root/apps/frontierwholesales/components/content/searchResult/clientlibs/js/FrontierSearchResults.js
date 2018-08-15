@@ -9,6 +9,8 @@ Frontier.SearchResults = new function() {
 		console.log("Frontier Search Results init");
 		initProductSearchHandlbarFunctions();
 
+		initListenersForProductButtons();
+		
        $(document).on('change','#itemPerPageSelect,#sortBy',function(){
     	   Frontier.SearchController.updateResults();
        });
