@@ -591,6 +591,18 @@ public class FrontierWholesalesMagentoCommerceConnector {
     	log.debug("getCustomerDetails End");
     	return response;
     }
+    
+    public String getOrderConfirmation(String adminToken,String confirmationNr) throws Exception{
+    	log.debug("getOrderConfirmation Start");
+    	InputStream inputStream = Request.Get(server+"/rest/V1/orders/"+confirmationNr)
+				.addHeader("Authorization",adminToken)
+				.connectTimeout(TIME_OUT)
+				.execute().returnResponse().getEntity().getContent();
+    	 String response =  FrontierWholesalesUtils.parseMagentoResponseObject(inputStream);
+    	inputStream.close();
+    	log.debug("getOrderConfirmation Start");
+    	return response;
+    }
 
 }
 

@@ -350,7 +350,7 @@ function addRequisitionList(reqid,prodid,qty,sku){
    
     var reqItems={};
     reqItems['reqlistId']=reqid;
-    reqItems['skuId']=prodid;
+    reqItems['skuId']=sku;
     reqItems['qty']=qty;
     var reqData = [];
     reqData.push(reqItems);

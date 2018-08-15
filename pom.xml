@@ -30,6 +30,7 @@
     </modules>
 
     <properties>
+    	<aem.protocol>${aemprotocol}</aem.protocol>
         <aem.host>${aemhost}</aem.host>
         <aem.port>${aemport}</aem.port>
         <aem.publish.host>${publish.host}</aem.publish.host>
@@ -216,7 +217,7 @@
                         </execution>
                     </executions>
                     <configuration>
-                        <slingUrl>http://${aem.host}:${aem.port}/crx/repository/crx.default</slingUrl>
+                        <slingUrl>${aem.protocol}://${aem.host}:${aem.port}/crx/repository/crx.default</slingUrl>
                         <usePut>true</usePut>
                         <failOnError>true</failOnError>
                     </configuration>
@@ -227,7 +228,7 @@
                     <artifactId>content-package-maven-plugin</artifactId>
                     <version>0.0.24</version>
                     <configuration>
-                        <targetURL>http://${aem.host}:${aem.port}/crx/packmgr/service.jsp</targetURL>
+                        <targetURL>${aem.protocol}://${aem.host}:${aem.port}/crx/packmgr/service.jsp</targetURL>
                         <failOnError>true</failOnError>
                         <failOnMissingEmbed>true</failOnMissingEmbed>
                     </configuration>
