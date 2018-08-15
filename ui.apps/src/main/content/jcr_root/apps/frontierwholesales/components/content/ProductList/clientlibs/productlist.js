@@ -6,20 +6,7 @@ console.log("product list page..."+facetsquery);
     
     getProductListByCategory(1,28,'featured',facetsquery);
     
-  $(document).on('click','.btn.btn-light-green.btn-grid-add-to-cart',function(){
-       console.log("cart has been added");
-       var sku = $(this).attr('id');
-       var qty='';
-       $(this).parent().find(":input").each(function(i,data) { 
-           var className=data.getAttribute('class');
-           if(className == 'grid-product-qty-input qty-input-field'){
-               qty = data.value;
-           }
-          
-       });
-       addItemToCart(sku,qty);
-        
-    });
+    initListenersForProductButtons();
     
     $(document).on('change','#itemPerPageSelect',function(){
         var recsPerPage = $(this).val();
@@ -74,35 +61,7 @@ console.log("product list page..."+facetsquery);
         getProductListByCategory(currentPage,recsPerPage,sortBy,facetsquery);
     });
     
-    $(document).on('click','.btn-wishlist',function(e){
-        e.preventDefault();
-       var skuId = $(this).data('skuid');
-       
-        
-        addItemToWishList(skuId);
-        
-    });
     
-    $(document).on('click','.requisition-list-select',function(e){
-       e.preventDefault(); 
-        var length = $(this).find("option").length;
-        if(length == 1){
-        var $thisObj = $(this);
-        retrieveRequisitionList($thisObj);
-        }
-    });
-    
-    $(document).on('change','.requisition-list-select',function(e){
-        e.preventDefault(); 
-        var id = $(this).data('prodid');
-        var sku = $(this).data('wishsku');
-        var qty = $(this).parent().parent().siblings().children().find('input').val();
-        if(qty !== undefined && qty !== ''){
-            var reqid = $(this).val();
-            addRequisitionList(reqid,id,qty,sku);
-        }
-        
-    });
    
     
     $(document).on('click','.filter-link.checkbox-link',function(){ 
@@ -225,37 +184,6 @@ function adjustHeight(){
            byRow: byRow
        });
    });
-}
-
-function addItemToCart(sku,qty){
-   var jsonData={};
-    var cartItems={};
-    var cartData={};
-   showLoadingScreen();
-    cartItems['sku']=sku;
-    cartItems['qty']=qty;
-   
-    cartData['cartItem']=cartItems;
-    jsonData['items']=JSON.stringify(cartData);
-    jsonData['action']='add';
-    
-    Frontier.MagentoServices.addItemToCart(jsonData).done(function(cart){
-        console.log("result is "+cart);
-        hideLoadingScreen();
-        
-        
-        $('#cartMessage-'+sku).fadeIn('fast').delay(3000).fadeOut('fast');
-        var template = $("#minicartTemplate").html();
-        var cartTemplate = Handlebars.compile(template);
-        var html = cartTemplate(cart,cart.items.reverse());
-        $('#minicarttemplate').html(html); 
-        
-    }).fail(function(error){
-        console.log("error is "+error);
-         hideLoadingScreen();
-        enableErrorMsg(error.status);
-    });
-   
 }
 
 
