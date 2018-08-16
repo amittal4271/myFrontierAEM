@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:cloudservicename="generictracker"
+        cq:lastModified="{Date}2018-08-16T00:21:30.307-06:00"
+        cq:lastModifiedBy="admin"
+        cq:template="/libs/cq/analytics/templates/generictracker"
+        jcr:lastModified="{Date}2018-08-16T00:21:30.306-06:00"
+        jcr:lastModifiedBy="admin"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="ga-and-hotjar-uat"
+        sling:resourceType="cq/analytics/components/generictrackerpage"
+        snippetCode="(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function()&#xa;{ (i[r].q=i[r].q||[]).push(arguments)}&#xa;&#xa;,i[r].l=1*new Date();a=s.createElement(o),&#xa;m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)&#xa;})(window,document,'script','//www.google-analytics.com/analytics.js','ga');&#xa;&#xa;ga('create', 'UA-2381001-1', 'auto');&#xa;ga('require', 'linkid', 'linkid.js');&#xa;ga('require', 'displayfeatures');&#xa;ga('require', 'main_analytics');&#xa;ga('require', 'ecommerce');&#xa;ga('send', 'pageview');&#xa;&#xa;&lt;!-- Hotjar Tracking Code for https://wholesaleuat.frontiercoop.com/ -->&#xa;(function(h,o,t,j,a,r){&#xa;h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)}&#xa;;&#xa;h._hjSettings=&#xa;&#xa;{hjid:897468,hjsv:6}&#xa;;&#xa;a=o.getElementsByTagName('head')[0];&#xa;r=o.createElement('script');r.async=1;&#xa;r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;&#xa;a.appendChild(r);&#xa;})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');"/>
+</jcr:root>

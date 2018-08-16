@@ -9,4 +9,6 @@
     <filter root="/etc/acs-commons/lists"/>
     <filter root="/etc/workflow/models/request_for_activation"/>
     <filter root="/etc/workflow/scripts/replaceDialogvalue.ecma"/>
+    <filter root="/etc/cloudservices/generic-tracker/ga-and-hotjar-uat"/>
+    <filter root="/etc/cloudservices/generic-tracker/ga-and-hotjar-dev"/>
 </workspaceFilter>
