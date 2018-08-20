@@ -1,5 +1,4 @@
 <sly data-sly-use.clientLib="${'/libs/granite/sightly/templates/clientlib.html'}"/>
-<sly data-sly-call="${clientlib.js @ categories='frontier-search-facets'}" data-sly-unwrap/>
 <sly data-sly-use.searchFacets="com.frontierwholesales.core.magento.services.models.SearchFacets"></sly>
 <aside id="plp-search-left-nav-filters" data-sly-list="${searchFacets.facets}">
 		<sly data-sly-test="${item.attribute_code == 'manufacturer'}">

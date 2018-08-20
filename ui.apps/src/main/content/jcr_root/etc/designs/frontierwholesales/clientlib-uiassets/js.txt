@@ -1,0 +1,11 @@
+#base=js
+
+bootstrap.min.js
+swiper.min.js
+jquery.hoverIntent.min.js
+jquery.matchHeight.js
+jquery.form.min.js
+jquery.validate.min.js
+main.js
+validate.js
+

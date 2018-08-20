@@ -1,0 +1,12 @@
+#base=js
+
+additional-methods.min.js
+handlebars.min-latest.js
+handlebars-intl.min.js
+#handlebars-intl.min.js.map
+
+validations.js
+#newsletter.js
+
+chat.js
+
