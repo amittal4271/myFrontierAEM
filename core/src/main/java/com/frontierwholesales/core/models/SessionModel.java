@@ -24,14 +24,13 @@ public class SessionModel extends WCMUsePojo{
 
 		@Override
 		public void activate() throws Exception {
-			LOGGER.debug("activate method...");
+			LOGGER.debug("activate method Start...");
 			
 			Cookie cookie = FrontierWholesalesUtils.getCookie(getRequest(),"CustomerData");
-			LOGGER.debug("activate method..."+cookie.getValue());
 			
 			String cookieValue = cookie.getValue();
 			this.authToken = FrontierWholesalesUtils.getIdFromObject(cookieValue, "token");
-			
+			LOGGER.debug("activate method End...");
 		}
 
 

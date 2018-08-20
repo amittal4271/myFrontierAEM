@@ -171,12 +171,12 @@ function login(serverURL,username,password){
                  var jsonData={};
                  jsonData['token']="Bearer "+results;
                  jsonData['email']=customer.frontier_customer.email;
-                 jsonData['id']=customer.frontier_customer.id;
-                 jsonData['role_name']=customer.role_name;
-                 jsonData['role_id']=customer.role_id;
-                 jsonData['company_name']=customer.company_name;
-                 jsonData['company_id']=customer.company_id;
-                 jsonData['group_id']=customer.frontier_customer.group_id;
+                // jsonData['id']=customer.frontier_customer.id;
+               //  jsonData['role_name']=customer.role_name;
+               //  jsonData['role_id']=customer.role_id;
+                // jsonData['company_name']=customer.company_name;
+               //  jsonData['company_id']=customer.company_id;
+               //  jsonData['group_id']=customer.frontier_customer.group_id;
                  var cookieData = "CustomerData="+JSON.stringify(jsonData)+"; path=/";
                 addCookie(cookieData);
                   window.location.href=Granite.HTTP.externalize(getRedirectPath());

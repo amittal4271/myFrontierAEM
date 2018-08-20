@@ -3,8 +3,6 @@ package com.frontierwholesales.core.magento.services.models;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.inject.Inject;
-
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Model;
@@ -32,13 +30,13 @@ public class OrderConfirmationModel extends BaseModel{
 			if(confirmationPath !=null) {
 				String[] pathSplit = confirmationPath.split("/");
 				if(pathSplit.length > 0) {
-					log.debug("cof1");
+					
 					String confirmationNr = pathSplit[1];
-					log.debug("cof2 "+confirmationNr);
+					
 					String response = connector.getOrderConfirmation(adminToken, confirmationNr);
-					log.debug("response is "+response);
+					
 					  this.confirmation = transferJsonToObject(response);
-					  log.debug("transferred to class "+confirmation.getCustomerEmail());
+					 
 					
 				}else {
 					log.debug("path is invalid");

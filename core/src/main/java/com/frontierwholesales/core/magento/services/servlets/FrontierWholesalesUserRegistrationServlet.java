@@ -132,9 +132,9 @@ public class FrontierWholesalesUserRegistrationServlet  extends SlingAllMethodsS
 			        	String customerId = FrontierWholesalesUserRegistration.customerRegistration(customerObject);
 					 
 						String adminToken = connector.getAdminToken();
-						log.debug("application token for user registration is "+adminToken);
+						
 						 String id = getCustomerId(customerId);
-						 request.getSession().setAttribute(FrontierWholesalesConstants.CUSTOMER_ID, id);
+						
 						 JsonObject companyObject = updateJSONObject(company,"super_user_id",id,"company");
 						
 						  //call company service here to register
@@ -150,12 +150,11 @@ public class FrontierWholesalesUserRegistrationServlet  extends SlingAllMethodsS
 						  }
 			        }
 			    }else {
-			    	response.sendError(HttpServletResponse.SC_FORBIDDEN, "Password is not set");
+			    	response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Password is not set");
 			    }
 			    if(bReturn) {
 			    	String username = request.getParameter("email");
-			    	String userToken = connector.getToken(username, credentials);
-			    	log.debug("user token is"+userToken);
+			    	String userToken = connector.getToken(username, credentials);		    	
 			    	
 			    	 jsonObject.addProperty("UserToken", userToken);
 			    	 response.getOutputStream().println(jsonObject.toString());
@@ -165,7 +164,7 @@ public class FrontierWholesalesUserRegistrationServlet  extends SlingAllMethodsS
 				anyEx.printStackTrace();
 				 jsonObject.addProperty("Fail", anyEx.getMessage());
 		    	 response.getOutputStream().println(jsonObject.toString());
-				response.sendError(HttpServletResponse.SC_FORBIDDEN, "Error "+anyEx.getMessage());
+		    	 response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Service object is null");
 				
 			}
 			

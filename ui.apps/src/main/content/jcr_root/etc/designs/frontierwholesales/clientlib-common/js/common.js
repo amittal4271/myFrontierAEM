@@ -191,7 +191,7 @@ function addCustomerDataToCookie(data){
          var jsonData={};
          jsonData['token']=data.UserToken;
          jsonData['email']=customerData.company_email;
-         jsonData['id']=customerData.id;
+        // jsonData['id']=customerData.id;
          var cookieData = "CustomerData="+JSON.stringify(jsonData)+"; path=/";
         addCookie(cookieData);
         return true;
@@ -205,9 +205,9 @@ function addCustomerDataToCookie(data){
 function addBuyersClubDataToCookie(data,email,token){
    
      var jsonData={};
-    if($.isArray(data)){
+   /* if($.isArray(data)){
         jsonData['id'] = data[0].customer_id;
-    }
+    }*/
      jsonData['token']=token;
      jsonData['email']=email;
      var cookieData = "CustomerData="+JSON.stringify(jsonData)+"; path=/";
