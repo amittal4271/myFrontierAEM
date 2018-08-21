@@ -100,7 +100,7 @@ public class FrontierWholesalesShoppingCartServlet  extends SlingAllMethodsServl
 				
 			}
 			String cartObject = commerceConnector.getCartTotalWithItems(token);
-			log.debug("cart object is"+cartObject);
+			
 			String object = getValueFromJson(cartObject,request);
 			response.getOutputStream().println(object);
 			

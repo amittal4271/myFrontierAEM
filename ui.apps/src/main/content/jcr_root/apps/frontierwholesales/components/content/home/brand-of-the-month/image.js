@@ -53,6 +53,8 @@ use(["/libs/wcm/foundation/components/utils/AuthoringUtils.js",
         
         imageDefer.resolve(image);
     });
+     image.url = ((properties.get("./linkURL")!=null)?properties.get("./linkURL")+'.html':"#");
+    
     
     // Adding the constants to the exposed API
     image.CONST = CONST;

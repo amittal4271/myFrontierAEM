@@ -18,13 +18,12 @@
 <div class="each-side-image background-image">
 <a  
 	data-sly-use.image="image.js"
-    data-sly-use.button="button.js"
-    href="${button.linkTo || '#'}" 
+    
+    href="${image.url || '#' @ context='html'}" 
     style="background-image: url('${image.src @ context='styleString'}')"
-    onclick="CQ_Analytics.record({event: 'imageClick', values: { imageLink: '${image.linkurl @ context='scriptString'}', imageAsset: '${image.filereference @ context='scriptString'}', imageTitle: '${image.fileName @ context='scriptString'}' }, collect: false, options: { obj: this }, componentPath: '${image.resource.resourceType @ context='scriptString'}'})"
+    onclick="CQ_Analytics.record({event: 'imageClick', values: { imageLink: '${image.url @ context='scriptString'}', imageAsset: '${image.filereference @ context='scriptString'}', imageTitle: '${image.fileName @ context='scriptString'}' }, collect: false, options: { obj: this }, componentPath: '${image.resource.resourceType @ context='scriptString'}'})"
     >
-    <span class="right-image-heading"> ${properties.jcr:title} </span>
-	<div class="btn btn-call-to-action-right-side btn-purple">${properties.label}</div>
+   
 </a>
 </div>
 

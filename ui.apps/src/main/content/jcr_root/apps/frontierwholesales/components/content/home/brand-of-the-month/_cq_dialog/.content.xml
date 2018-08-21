@@ -78,35 +78,7 @@
                     </column>
                 </items>
             </title>
-            <button
-                jcr:primaryType="nt:unstructured"
-                jcr:title="Button"
-                sling:resourceType="granite/ui/components/foundation/section">
-                <layout
-                    jcr:primaryType="nt:unstructured"
-                    sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns"
-                    margin="{Boolean}false"/>
-                <items jcr:primaryType="nt:unstructured">
-                    <column
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="granite/ui/components/foundation/container">
-                        <items jcr:primaryType="nt:unstructured">
-                            <label
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/foundation/form/textfield"
-                                fieldLabel="Button label"
-                                name="./label"/>
-                            <linkTo
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/foundation/form/pathbrowser"
-                                fieldLabel="Link to"
-                                name="./linkTo"
-                                rootPath="/content"
-                                suffix=".html"/>
-                        </items>
-                    </column>
-                </items>
-            </button>
+          
             <accessibility
                 jcr:primaryType="nt:unstructured"
                 jcr:title="Accessibility"
