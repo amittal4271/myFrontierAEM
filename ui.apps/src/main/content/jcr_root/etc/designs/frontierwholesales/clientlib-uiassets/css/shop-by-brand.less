@@ -1,0 +1,110 @@
+#shop-by-brand-holder {
+	position: relative;
+	float: left;
+	width: 100%;
+	margin-top: 10px;
+	padding: 40px 0 20px 0;
+	border-top: 4px dotted #ddd;
+}
+
+.top-three-brands {
+	margin-top: 40px;
+}
+
+.additional-brands {
+	
+}
+
+.row-of-four-brands {
+	margin-bottom: 40px;
+}
+
+.shop-brand-top-three-link {
+	display: block;
+	width: 100%;
+
+	img.top-three-image {
+		display: block;
+		width: 100%;
+		border-radius: 6px;
+		border: 1px solid #ececec;
+	}
+}
+
+.row-each-brand-filter {
+	background: #fcfcfc;
+	border: 1px solid #ececec;  
+	padding: 20px;
+	margin: 20px 0;
+	float: left;
+	width: 100%; 
+	border-radius: 5px;
+
+	.breakpoint_1200({
+		
+	});
+}
+
+.brands-letter-filter {
+	margin-top: 30px;
+	.breakpoint_768({
+    	margin-top: 40px; 
+	});
+}
+
+.shop-brand-letter {
+	font-size: 30px;
+    color: #5a524b;
+    letter-spacing: .8px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.brand-list-break {
+	float: left;
+	width: 100%;
+	height: 1px;
+	display: block;
+
+	.breakpoint_768({
+    	display: block;
+	});
+
+	.breakpoint_992({
+    	display: none;
+	});
+}
+
+.brand-list {
+	float: left;
+	width: 100%;
+	list-style: none;
+
+	li {
+		float: left;
+		width: 100%;
+		padding: 3px 0;
+
+		.breakpoint_768({
+			width: 50%;
+			padding: 3px 20px 3px 0;
+		});
+
+		.breakpoint_992({
+			width: 33.333%;
+		});
+
+		.breakpoint_1200({
+			width: 25%;
+		});
+
+		a {
+			color: #817266;
+
+			&:hover, &:focus, &:active {
+				color: #8bba4a;
+			}
+		}
+	}
+}

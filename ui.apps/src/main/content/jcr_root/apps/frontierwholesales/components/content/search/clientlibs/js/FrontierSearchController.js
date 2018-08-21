@@ -15,10 +15,8 @@ Frontier.SearchController = new function() {
 	};
 	
 	function init() {
-		console.log("Frontier Search Controller init");
-		if(typeof Frontier.SearchResults !== 'undefined') {
+		if(typeof Frontier.SearchResults !== 'undefined' && $(".searchResult").length > 0) {
 			if(window.location.search != "") {
-				
 				console.log("doing initial search from incoming page load query string");
 				
 				// Get saved data from sessionStorage

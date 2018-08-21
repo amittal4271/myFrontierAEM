@@ -6,11 +6,9 @@ Frontier.SearchFacets = Frontier.SearchFacets || {};
 Frontier.SearchFacets = new function() {
 
 	var filters = [],
-		facetSelector = "#plp-search-left-nav-filters .checkbox-link";
+		facetSelector = ".searchResult #plp-search-left-nav-filters .checkbox-link";
 	
-	function init() {
-		console.log("Frontier Search Facets init");
-			
+	function init() {			
 		$(document).on('click',facetSelector,function(event){ 
 	        event.preventDefault();
 			if(!$(this).hasClass('selected-filter')) {
