@@ -1,2 +1,2 @@
 #base=js
-magentoLogin.js
+#magentoLogin.js

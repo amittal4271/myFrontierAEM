@@ -1,6 +1,3 @@
-<sly
-    data-sly-use.clientLib="${'/libs/granite/sightly/templates/clientlib.html'}"/>
-<sly data-sly-call="${clientlib.js @ categories='header'}" data-sly-unwrap/>
 <sly data-sly-use.user="${'com.frontierwholesales.core.models.SessionModel'}"></sly>
 <sly data-sly-use.magentoInfo="${'com.frontierwholesales.core.magento.services.models.MagentoInfo'}"></sly>
 
@@ -76,13 +73,13 @@
           <a href="#" class="btn btn-cart-display cart-display" title="Cart">
                <span class="icon-cart">
                     <span class="glyphicon glyphicon-shopping-cart"></span>
-                   {{#if items_qty includedZero=false}}
-                    <span class="cart-count quantity">{{items_qty}}</span>
+                   {{#if quote.items_qty includedZero=false}}
+                    <span class="cart-count quantity">{{quote.items_qty}}</span>
                    {{else}}
                    <span class="cart-count quantity">0</span>
                    {{/if}}
                </span>
-               {{#if items_qty includedZero=false}}
+               {{#if quote.items_qty includedZero=false}}
                <span class="cart-amount">My Total: <span id="shopping-cart-total" class="amount">{{subTotal}}</span></span>
               {{else}}
               <span class="cart-amount">My Total: <span id="shopping-cart-total" class="amount">$0.00</span></span>
@@ -105,7 +102,11 @@
                 {{#items}}
                        <div data-cartitem="{{item_id}}" class="each-mini-cart-item">
                             <div class="mini-cart-image-holder">
+                                {{#if imgPath}}
                                  <img src="{{imgPath}}">
+                                {{else}}
+                                <img src="/content/dam/FrontierImages/default_product_image.jpg">
+                                {{/if}}
                             </div>
                             <div class="mini-cart-info-holder">
                                  <div class="mini-cart-name">{{name}}</div>

@@ -234,7 +234,17 @@ public class FrontierWholesalesMagentoCommerceConnector {
         }
     }
     
-   
+   public String getCartTotalWithItems(String token) throws Exception{
+	   log.debug("server name is "+server);
+   	
+	   InputStream inputStream = Request.Get(server+"/rest/V1/frontier/aem/carts/mine/totals/details")
+	   			.addHeader("Authorization",token)
+	   			.addHeader("ContentType","application/json")
+	   			.execute().returnResponse().getEntity().getContent();
+	   
+   		String response = FrontierWholesalesUtils.parseMagentoResponseObject(inputStream);
+	   	return response;
+   }
     
     public String getCartTotal(String token) throws Exception{
     	log.debug("server name is "+server);

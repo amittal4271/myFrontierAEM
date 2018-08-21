@@ -1,2 +1,1 @@
-/apps/frontierwholesales/components/serviceapi/serviceapi.js
 productlist.js

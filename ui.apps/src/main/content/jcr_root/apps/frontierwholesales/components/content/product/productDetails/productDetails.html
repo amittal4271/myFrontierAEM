@@ -1,11 +1,3 @@
-<sly data-sly-use.clientlib="${'/libs/granite/sightly/templates/clientlib.html'}" data-sly-call="${clientlib.css @ categories='frontier.structure.productdetails'}" />
-<sly data-sly-use.clientLib="${'/libs/granite/sightly/templates/clientlib.html'}" data-sly-call="${clientlib.js @ categories='frontier.structure.productdetails'}" /> 
-
-<sly data-sly-use.url="../../../global-useapi/serverurl.js"></sly>
-<script>
-  var serverURL = "${url.server @ context='html'}";
-</script>
-
 <input id="testid" type='hidden' value="${request.requestPathInfo.selectorString}"/>
 <input id="productId" type=hidden value="${request.requestParameterMap['sku'][0].toString}"/>
 <input id="currentPagePath" type=hidden value="${currentPage.path}"/>

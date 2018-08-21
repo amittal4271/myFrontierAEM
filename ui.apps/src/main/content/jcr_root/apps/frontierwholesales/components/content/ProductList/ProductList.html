@@ -1,11 +1,6 @@
-<sly
-    data-sly-use.clientLib="${'/libs/granite/sightly/templates/clientlib.html'}"/>
-<sly data-sly-call="${clientlib.js @ categories='productlist'}" data-sly-unwrap/>
 <input id="categoryId" type=hidden value="${request.requestParameterMap['id'][0].toString}">
-<sly data-sly-use.url="../../global-useapi/serverurl.js"></sly>
-<script>
-  var serverURL = "${url.server @ context='html'}";
-</script>
+
+
 <article class="product-list-page">
     <div class="container">
     <div id="productlisttemplate"></div>

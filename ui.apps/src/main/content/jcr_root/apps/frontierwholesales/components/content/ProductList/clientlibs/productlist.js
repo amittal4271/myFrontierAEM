@@ -3,7 +3,7 @@ var filterIds=[];
 var facetsquery='';
 $(document).ready(function(){
 console.log("product list page..."+facetsquery);
-    
+  if($('.product-list-page').length > 0){  
     getProductListByCategory(1,28,'featured',facetsquery);
     
     initListenersForProductButtons();
@@ -96,6 +96,7 @@ console.log("product list page..."+facetsquery);
         var searchString = constructFilterConditions();
         getProductListByCategory(currentPage,recsPerPage,sortBy,searchString);
     });
+  }
     
 });
 

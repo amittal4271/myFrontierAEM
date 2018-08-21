@@ -61,7 +61,6 @@ public class FrontierWholesalesShoppingCartServlet  extends SlingAllMethodsServl
 			log.debug(" action is "+action);
 			final String token = request.getHeader("Authorization");
 			
-			log.debug("token value is "+token);
 			if(token == null) {
 			
 				throw new Exception("token is null");
@@ -94,14 +93,14 @@ public class FrontierWholesalesShoppingCartServlet  extends SlingAllMethodsServl
 				String items = request.getParameter("cartItem");
 				
 				String itemId = request.getParameter("itemId");
-				log.debug("itemId "+itemId);
+				
 				String updatedData = FrontierWholesalesUtils.updateJsonObject(items, "cartItem", "quote_id",quote_id);
-				log.debug("updated data is "+updatedData);
+				
 				String updatedResponse = commerceConnector.updateCartItem(token, itemId, updatedData);
-				log.debug("response is "+updatedResponse);
+				
 			}
-			String cartObject = commerceConnector.getCartTotal(token);
-			
+			String cartObject = commerceConnector.getCartTotalWithItems(token);
+			log.debug("cart object is"+cartObject);
 			String object = getValueFromJson(cartObject,request);
 			response.getOutputStream().println(object);
 			
@@ -133,13 +132,6 @@ public class FrontierWholesalesShoppingCartServlet  extends SlingAllMethodsServl
 		
 	}
 	
-	private String getImagePath(String name,SlingHttpServletRequest request) throws Exception{
-		
-		//TODO SKU is required to get image. Custom API needed
-		    
-		  return "";
-		    
-	}
 	
 	private String getValueFromJson(String cartObject,SlingHttpServletRequest request) throws Exception{
 		log.debug("FrontierWholesalesShoppingCartServlet getValueFromJson method Start");
@@ -147,43 +139,39 @@ public class FrontierWholesalesShoppingCartServlet  extends SlingAllMethodsServl
 		JsonElement element = json.fromJson(cartObject,JsonElement.class);
 		
 		JsonObject object = element.getAsJsonObject();
+		JsonElement quoteElement = object.get("quote");
 		
-		JsonElement items = object.get("items");
-		
-		DecimalFormat priceFormat=new DecimalFormat("#0.00");
-		
+		JsonObject quote = quoteElement.getAsJsonObject();
+		FrontierWholesalesUtils utils = new FrontierWholesalesUtils();
+		JsonArray array = object.getAsJsonArray("item_details");
+	
 		JsonArray updatedArray = new JsonArray();
-		
-		JsonArray array = items.getAsJsonArray();
+		DecimalFormat priceFormat=new DecimalFormat("#0.00");
 		
 		for(int i=0;i<array.size();i++) {
 			JsonElement jsonElement = array.get(i);
 			JsonObject itemObject = jsonElement.getAsJsonObject();
-			JsonElement name = itemObject.get("name");
+			JsonElement price = itemObject.get("price");
 			
-			String path = getImagePath(name.getAsString(),request);
-			itemObject.addProperty("imgPath", path);
+			String sku = itemObject.get("sku").getAsString();
 			
-			JsonElement price = itemObject.get("base_price");
-			JsonElement rowTotal = itemObject.get("base_row_total");
-			
+			String imgPath = utils.getImagePath(sku, request);
+			itemObject.addProperty("imgPath", imgPath);
+			itemObject.addProperty("price", "$"+priceFormat.format(price.getAsDouble()));
 			JsonElement qtyObject = itemObject.get("qty");
 			boolean bReturn = false;
 			if(qtyObject.getAsInt() > 1) {
 				bReturn = true;
 			}
 			itemObject.addProperty("quantities", bReturn);
-			itemObject.addProperty("price", "$"+priceFormat.format(price.getAsDouble()));
-			itemObject.addProperty("rowTotal", "$"+priceFormat.format(rowTotal.getAsDouble()));
-			
 			JsonElement updatedElement = json.fromJson(itemObject, JsonElement.class);
 			updatedArray.add(updatedElement);
-			
 		}
+		
 		
 			JsonElement arrayElement = json.fromJson(updatedArray, JsonElement.class);
 		
-			JsonElement subTotal = object.get("subtotal");
+			JsonElement subTotal = quote.get("subtotal");
 			
 			double subtotal = subTotal.getAsDouble();
 			

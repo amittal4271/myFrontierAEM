@@ -1,6 +1,6 @@
 $(document).ready(function(){
 console.log("product details page...");
-    
+  if($('#product-detail').length > 0){
   getProductDetails();
 
     $(document).on('click','.btn.btn-light-green.btn-add-to-cart',function(){
@@ -47,13 +47,16 @@ console.log("product details page...");
         }
         
     });
-
+  }
 
 });
 
 function getAttributeDataFromTxtBox(id){
     var attribute = $('#'+id).val();
-    var splitArray = attribute.split(",");
+    var splitArray;
+    if(attribute !== undefined){
+     splitArray = attribute.split(",");
+    }
     return splitArray;
 }
 
@@ -64,7 +67,7 @@ function getProductDetails(){
    var summaryAttribute =  getAttributeDataFromTxtBox('summaryAttribute');
     var infoAttribute = getAttributeDataFromTxtBox('infoAttribute');
     var additionalAttribute = getAttributeDataFromTxtBox('additionalAttribute');
-
+if(summaryAttribute !== undefined && infoAttribute !== undefined && additionalAttribute !== undefined){
     jsonData['sku']=$('#productId').val();
     jsonData['currentPagePath'] = $('#currentPagePath').val();
    
@@ -98,6 +101,7 @@ function getProductDetails(){
          hideLoadingScreen();
         enableErrorMsg(error.status);
     });
+}
 }
 
 function registerHandleBarHelpers(summaryAttribute,infoAttribute,additionalAttribute){
