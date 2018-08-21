@@ -6,14 +6,7 @@ $(document).ready(function(){
     console.log(pageTitle);
     //getCartItems('minicartTemplate');
     getCartItems();
-    
-    $(document).on('click','#signOut',function(){
-       localStorage.removeItem('ConfirmationNr');
-      
-          document.cookie="CustomerData=;Max-Age=-99999999;path=/;";
-        window.location.href="/content/frontierwholesales/en/home.html";
-    });
-    
+   
     $(document).on('click','.btn-mini-cart-remove',function(){
        var $this = $(this);
         var parentMiniCartItem = $this.parents('.each-mini-cart-item');

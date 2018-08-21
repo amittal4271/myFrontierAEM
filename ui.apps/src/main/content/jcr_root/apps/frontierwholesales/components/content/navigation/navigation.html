@@ -26,13 +26,16 @@
                       <li class="category-nav-item">
                                                  
                                                     <a id="${childLevel1.id}" class="category-nav-link" href="/content/frontierwholesales/en/productlist.html?id=${childLevel1.id}" data-attr-name='${childLevel1.name}'>${childLevel1.name}
-                                                    <span class="glyphicon glyphicon-menu-right">
-                                                        </span></a>
+										<sly data-sly-test="${childLevel1.children_data.length > 0}">
+										<span class="glyphicon glyphicon-menu-right">
+                                                        </span></sly>
+										</a>
                  <ul  class="sub-nav second-level" data-sly-list.child2="${childLevel1.children_data}">
                                                         <li class="category-nav-child-item">
                                                             <a class="category-nav-child-link"  href="/content/frontierwholesales/en/productlist.html?id=${child2.id}" data-attr-name='${child2.name}'>${child2.name}
-                                                                 <span class="glyphicon glyphicon-menu-right">
-                                                        </span>
+														<sly data-sly-test="${child2.children_data.length > 0}">
+														<span class="glyphicon glyphicon-menu-right">
+                                                        </span></sly>
                                                             </a>
                                                               <ul  class="sub-nav third-level" data-sly-list.child3="${child2.children_data}">
                                                             <li class="category-nav-child-child-item">
@@ -65,14 +68,16 @@
              <ul class="sub-nav first-level" data-sly-list.lastChildLevel1="${aemPageFirst.childList}">
                    <li class="category-nav-item">
                        <a  class="category-nav-link" href="${lastChildLevel1.link}" data-attr-name='${lastChildLevel1.name}'>${lastChildLevel1.title}
-                                                    <span class="glyphicon glyphicon-menu-right">
-                                                        </span>
+												<sly data-sly-test="${lastChildLevel1.childList.size > 0}">
+												<span class="glyphicon glyphicon-menu-right">
+                                                        </span></sly>
                        </a>
                         <ul  class="sub-nav second-level" data-sly-list.lastChildLevel2="${lastChildLevel1.childList}">
                              <li class="category-nav-child-item">
                                                             <a class="category-nav-child-link"  href="${lastChildLevel2.link}" >${lastChildLevel2.title}
-                                                                 <span class="glyphicon glyphicon-menu-right">
-                                                        </span>
+														<sly data-sly-test="${lastChildLevel2.childList.size > 0}">
+														<span class="glyphicon glyphicon-menu-right">
+                                                        </span></sly>
                                                             </a>
                                  
                                  <ul  class="sub-nav third-level" data-sly-list.lastChildLevel3="${lastChildLevel2.childList}">

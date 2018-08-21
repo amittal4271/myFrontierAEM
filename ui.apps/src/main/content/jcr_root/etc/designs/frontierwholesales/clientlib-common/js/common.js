@@ -1,3 +1,13 @@
+$(document).ready(function(){
+    
+    $(document).on('click','#signOut',function(){
+       localStorage.removeItem('ConfirmationNr');
+      
+          document.cookie="CustomerData=;Max-Age=-99999999;path=/;";
+        window.location.href="/content/frontierwholesales/en/home.html";
+    });
+     
+});
 /**
 * redirect to my account
 */
