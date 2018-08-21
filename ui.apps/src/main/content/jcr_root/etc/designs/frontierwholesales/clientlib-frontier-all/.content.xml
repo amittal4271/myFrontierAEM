@@ -2,5 +2,5 @@
 <jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
     jcr:primaryType="cq:ClientLibraryFolder"
     categories="[frontierwholesales.frontier-all]"
-    embed="[frontierwholesales.site,frontierwholesales.page,frontierwholesales.topnav,frontierwholesales.colctrl,frontierwholesales.textimage,frontierwholesales.shoppingcart,frontierwholesales.common, frontierwholesales.homepage, frontierwholesales.search,frontier-search-facets,frontier-search-results,jquery, granite.utils, granite.jquery, cq.jquery, cq.wcm.foundation, cq.wcm.foundation-main, frontierwholesales.uiassets]"
+    embed="[frontierwholesales.handlebars,frontierwholesales.site,frontierwholesales.page,frontierwholesales.topnav,frontierwholesales.colctrl,frontierwholesales.textimage,frontierwholesales.shoppingcart,frontierwholesales.common, frontierwholesales.homepage, frontierwholesales.search,frontier-search-controller,frontier-search-facets,frontier-search-results,jquery, granite.utils, granite.jquery, cq.jquery, cq.wcm.foundation, cq.wcm.foundation-main, frontierwholesales.uiassets,frontierwholesales.validation,frontierwholesales.chat]"
     jsProcessor="[min:gcc]"/>

@@ -36,7 +36,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
-@SlingServlet(paths = "/bin/product/search", methods = "GET")
+@SlingServlet(paths = "/services/productsearch", methods = "GET")
 public class MagentoProductSearchServlet extends SlingSafeMethodsServlet {
 
 	/**

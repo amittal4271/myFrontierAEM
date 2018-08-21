@@ -216,7 +216,7 @@ Frontier.MagentoServices = new function(){
     function searchProducts(searchParams){
     	console.log("Searching Products with queryString", searchParams);
         return $.ajax({
-            url: "/bin/product/search?"+searchParams,
+            url: "/services/productsearch?"+searchParams,
             beforeSend:function(xhr){
               xhr.overrideMimeType("application/json");
             },
