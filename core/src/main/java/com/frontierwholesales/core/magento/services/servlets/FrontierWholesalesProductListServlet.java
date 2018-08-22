@@ -11,6 +11,7 @@ import javax.jcr.query.QueryManager;
 import javax.jcr.query.QueryResult;
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
@@ -27,6 +28,7 @@ import org.slf4j.LoggerFactory;
 
 import com.frontierwholesales.core.beans.FrontierWholesalesProductSearch;
 import com.frontierwholesales.core.magento.services.FrontierWholesalesMagentoCommerceConnector;
+import com.frontierwholesales.core.models.ProductListModel;
 import com.frontierwholesales.core.utils.FrontierWholesalesUtils;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -93,8 +95,11 @@ public class FrontierWholesalesProductListServlet extends SlingAllMethodsServlet
 			String jsonResponse = utils.parseJsonObject(productList,noOfRecsPerPage,currentPage,request,groupId);
 			
 			jsonResponse = utils.addCategoryListToJson(jsonResponse, catList);
-			response.getOutputStream().println(jsonResponse);
-			//response.getOutputStream().write(parseJsonObject(productList,catList,noOfRecsPerPage,currentPage,request,groupId).getBytes("UTF-8"));
+			
+			ServletOutputStream stream = response.getOutputStream();
+			
+			stream.write(jsonResponse.getBytes("UTF-8"));
+			
 		}catch(Exception anyEx) {
 			log.error("Error in productList "+anyEx.getMessage());
 			response.getOutputStream().println("Error");

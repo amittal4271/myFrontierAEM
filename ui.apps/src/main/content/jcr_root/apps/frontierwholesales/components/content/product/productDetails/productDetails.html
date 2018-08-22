@@ -55,11 +55,15 @@
                                             <span class="badge badge-closeout">Closeout</span>
                                         {{/ifEquals}}
                                    <div class="product-main-image-holder">
-                                       {{#each imgPath}}
+                                      {{#if imgPath}}
+                                         {{#each imgPath}}
                                            {{#if @first}}
                                             <img alt="Image Title" src="{{path}}" class="img-responsive" />
                                            {{/if}}
-                                       {{/each}}
+                                         {{/each}}
+                                       {{else}}
+                                             <img src="/content/dam/FrontierImages/default_product_image.jpg" alt="Product Name">
+                                      {{/if}}
                                    </div>
               </div>
         </div>
@@ -193,11 +197,11 @@
 			
 			<div class="product-detail-additional-details">
                  {{#custom_attributes}}
-                {{#getInfoAttrValues attribute_code value}}
+                {{#getInfoAttrValues attribute_code value}}                
 				   <span class="product-detail-overview-item-detail">
 						<span class="product-detail-overview-label">{{attribute_code}}</span>
 						<span class="product-detail-overview-value">{{value}}</span>
-				   </span>
+				   </span>                
                 {{/getInfoAttrValues}}
 			     {{/custom_attributes}}
 				  

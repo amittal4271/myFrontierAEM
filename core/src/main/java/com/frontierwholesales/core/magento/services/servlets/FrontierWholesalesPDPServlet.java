@@ -76,7 +76,7 @@ public class FrontierWholesalesPDPServlet  extends SlingAllMethodsServlet{
 					groupId = utils.getCustomerDetailsByParameter("group_id", authorization);
 				}
 				
-				response.getOutputStream().println(parseJsonObject(productDetails,request,groupId));
+				response.getOutputStream().write(parseJsonObject(productDetails,request,groupId).getBytes("UTF-8"));
 				
 			}
 			else {

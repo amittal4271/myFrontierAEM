@@ -51,7 +51,7 @@ public class FrontierWholesalesUserRegistrationServlet  extends SlingAllMethodsS
 			String adminToken = connector.getAdminToken();
 			object = FrontierWholesalesUserRegistration.getCountriesWithRegions(adminToken);
 			
-			response.getOutputStream().println(object);
+			response.getOutputStream().write(object.getBytes("UTF-8"));
 		}catch(FrontierWholesalesBusinessException bEx) {
 			log.error("Exception occurred FrontierWholesalesBusinessException "+bEx.getMessage());
 			jsonObject.addProperty("Error", bEx.getMessage());

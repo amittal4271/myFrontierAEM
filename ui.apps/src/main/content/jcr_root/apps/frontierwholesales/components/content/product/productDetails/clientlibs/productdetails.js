@@ -125,7 +125,7 @@ function registerHandleBarHelpers(summaryAttribute,infoAttribute,additionalAttri
          Handlebars.registerHelper("getInfoAttrValues",function(attCode,value,options){
             var idx = $.inArray(attCode,infoAttribute);
             if(idx != -1){
-                if(value.trim() !="0"){
+                if(value.trim() !=""){
                 return  options.fn(this);
                 }
                 

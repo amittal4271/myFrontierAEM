@@ -4,7 +4,7 @@ var facetsquery='';
 $(document).ready(function(){
 console.log("product list page..."+facetsquery);
   if($('.product-list-page').length > 0){  
-    getProductListByCategory(1,28,'featured',facetsquery);
+    getProductListByCategory(1,28,'newproduct',facetsquery);
     
     initListenersForProductButtons();
     
@@ -83,7 +83,7 @@ console.log("product list page..."+facetsquery);
 	   var sortByVisible = $('#sortBy').is(':visible');
         
         if(!sortByVisible){
-            sortBy='featured';
+            sortBy='newproduct';
         }
         if(!$(this).hasClass('selected-filter')) {
             $(this).addClass('selected-filter');
@@ -112,12 +112,10 @@ function getProductListByCategory(currentPage,recsPerPage,sortBy,searchString){
     jsonData['noOfRecsPerPage']=recsPerPage;
    
    if(sortBy !== undefined && sortBy !== ''){
-       if(sortBy == "featured"){
-           jsonData['sortByFeatured']="DESC";
-       }else if(sortBy == "newproduct" ){
+       if(sortBy == "newproduct" ){
            jsonData['newProduct']="DESC";
        }else{
-       jsonData['sortByPrice']=sortBy;
+           jsonData['sortByPrice']=sortBy;
        }
    }
     
