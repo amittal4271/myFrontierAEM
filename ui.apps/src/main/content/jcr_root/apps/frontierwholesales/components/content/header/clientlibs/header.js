@@ -1,33 +1,33 @@
 $(document).ready(function(){
-	
-	initCartHandlbarFunctions();
-	
-    var pageTitle = $("#pageTitle").data("pagetitle");
-    console.log(pageTitle);
-    //getCartItems('minicartTemplate');
-    getCartItems();
-   
-    $(document).on('click','.btn-mini-cart-remove',function(){
-       var $this = $(this);
-        var parentMiniCartItem = $this.parents('.each-mini-cart-item');
-        var itemId = $this.data('itemid');
-       
-        $('#removeid-'+itemId).css('display','block');
-    });
-    
-     $(document).on('click','.btn-confirm-remove-mini-cart-item',function(){
-          
-         var $this = $(this);
-        var itemId = $this.data('itemid');
-         removeCartItem(itemId);
-     });
-    
-    $(document).on('click', '.btn-cancel-remove-mini-cart-item', function() {
-        var $this = $(this);
-        var removeHolder = $this.parent('.mini-cart-item-remove-confirmation');
-        removeHolder.remove();
-    });
-  
+	if(window.location.href.indexOf("/myaccount") == -1) { 	 
+		initCartHandlbarFunctions();
+		
+	    var pageTitle = $("#pageTitle").data("pagetitle");
+	    console.log(pageTitle);
+	    //getCartItems('minicartTemplate');
+	    getCartItems();
+	   
+	    $(document).on('click','.btn-mini-cart-remove',function(){
+	       var $this = $(this);
+	        var parentMiniCartItem = $this.parents('.each-mini-cart-item');
+	        var itemId = $this.data('itemid');
+	       
+	        $('#removeid-'+itemId).css('display','block');
+	    });
+	    
+	     $(document).on('click','.btn-confirm-remove-mini-cart-item',function(){
+	          
+	         var $this = $(this);
+	        var itemId = $this.data('itemid');
+	         removeCartItem(itemId);
+	     });
+	    
+	    $(document).on('click', '.btn-cancel-remove-mini-cart-item', function() {
+	        var $this = $(this);
+	        var removeHolder = $this.parent('.mini-cart-item-remove-confirmation');
+	        removeHolder.remove();
+	    });
+	}
 });
 
 function getCartItems(){
