@@ -1,0 +1,7 @@
+<sly data-sly-use.url="../../../../global-useapi/serverurl.js"></sly>
+<script>
+  var serverURL = "${url.server @ context='html'}";
+</script>
+<div class="magento-iframe-container">
+	<iframe src="${url.server @ context='html'}/customer/account" frameborder="0" class="fullwidth"></iframe>
+</div>
