@@ -1,5 +1,4 @@
-<input id="categoryId" type=hidden value="${request.requestParameterMap['id'][0].toString}">
-
+<input data-sly-use.plp="com.frontierwholesales.core.models.ProductListPage" id="categoryId" type=hidden value="${plp.pageCategory.id}">
 
 <article class="product-list-page">
     <div class="container">

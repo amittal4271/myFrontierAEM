@@ -33,5 +33,9 @@ public class MagentoCategory {
 	        this.product_count = product_count;
 	        this.children_data = children_data;
 	    }
+	    
+	    public String getPathName() {
+	    	return this.name != null ? this.name.toLowerCase().replace(" ", "-") : this.name;
+	    }
 
-	   }
+}
