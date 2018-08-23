@@ -3,7 +3,7 @@ emailWithId['list']=[];
 var $buttonObj;
 var $el;
 $(document).ready(function(){
- 
+  
     loadRegions('id_shipping-locality');
 
      validation.registrationGeneralForm('#general-membership-form');

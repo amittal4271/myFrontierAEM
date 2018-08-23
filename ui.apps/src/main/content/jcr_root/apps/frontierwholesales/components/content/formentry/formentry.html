@@ -1,6 +1,4 @@
-<sly
-    data-sly-use.clientLib="${'/libs/granite/sightly/templates/clientlib.html'}"/>
-<sly data-sly-call="${clientlib.js @ categories='formentry'}" data-sly-unwrap/>
+
 <sly data-sly-use.url="../../../global-useapi/serverurl.js"></sly>
 <script>
   var serverURL = "${url.server @ context='html'}";

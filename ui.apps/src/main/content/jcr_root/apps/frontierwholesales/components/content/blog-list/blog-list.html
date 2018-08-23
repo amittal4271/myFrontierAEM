@@ -1,9 +1,7 @@
 <script>
     var currentPageURL="${currentPage.path @ extension='html',context='html'}";
 </script>
-<sly
-    data-sly-use.clientLib="${'/libs/granite/sightly/templates/clientlib.html'}"/>
-<sly data-sly-call="${clientlib.js @ categories='blog-list'}" data-sly-unwrap/>
+
 <sly data-sly-use.list="${'com.frontierwholesales.core.models.BlogListModel' @ pageRecord=properties.pageRecord, nodePath=properties.listURL}">
 <sly data-sly-test="${list.currentPage <= list.totalPages}">
 <section class="blog-list-page">

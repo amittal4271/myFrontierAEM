@@ -85,7 +85,7 @@ public class BlogListModel {
 			});
 			String pageNo = slingHttpServletRequest.getRequestPathInfo().getSuffix();
 			if(pageNo == null) {
-				pageNo = "/page/1.html/";
+				pageNo = "/page/1/";
 			}
 			String pageSplit[]=pageNo.split("/");
 			

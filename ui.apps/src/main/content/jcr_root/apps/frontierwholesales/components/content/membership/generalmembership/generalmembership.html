@@ -1,7 +1,7 @@
 <sly
     data-sly-use.clientLib="${'/libs/granite/sightly/templates/clientlib.html'}"/>
-<sly data-sly-call="${clientlib.js @ categories='registration'}" data-sly-unwrap/>
-<sly data-sly-call="${clientlib.js @ categories='frontierwholesales.login'}" data-sly-unwrap/>
+<sly data-sly-call="${clientlib.js @ categories='frontierwholesales.registration'}" data-sly-unwrap/>
+<!--<sly data-sly-call="${clientlib.js @ categories='frontierwholesales.login'}" data-sly-unwrap/>-->
 
 <div data-sly-use.url="../ServerURL.js">
     <input type='hidden' id='serverurl' name='serverurl' value='${url.server}'>
