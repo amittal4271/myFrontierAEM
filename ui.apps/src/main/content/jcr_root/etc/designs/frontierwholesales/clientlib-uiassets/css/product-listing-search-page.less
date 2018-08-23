@@ -266,6 +266,8 @@
 #product-grid {
     float: left;
     width: 100%;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .product-grid-row {
@@ -283,15 +285,18 @@
     .product-grid-item {
         margin-bottom: 20px;
         padding-bottom: 30px;
+        height:auto !important;
         border-bottom: 1px solid #ececec;
 
         .breakpoint_600({
             margin-bottom: 30px;
+            height:auto !important;
             padding-bottom: 40px;
         });
 
         .breakpoint_992({
             margin-bottom: 60px;
+            height:auto !important;
             padding-bottom: 60px;
         });
     }
@@ -377,6 +382,7 @@
         img {
             display: block;
             width: 100%;
+            max-height:260px;
         }
     }
 
