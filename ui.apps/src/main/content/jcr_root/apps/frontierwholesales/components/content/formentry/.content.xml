@@ -3,5 +3,5 @@
     jcr:primaryType="cq:Component"
     jcr:title="Form Entry"
     sling:resourceSuperType="foundation/components/parbase"
-    
+    allowedParents="[*/parsys]"
     componentGroup="Frontier"/>

@@ -172,11 +172,13 @@ public class FrontierWholesalesMagentoCommerceConnector {
 	public String getToken(String username, String password)throws Exception{
         AuthCredentials authCredentials = new AuthCredentials(username, password);
 
-        log.debug(" AUTHENTICATING " + username + " Against server:" + server);
-        String token = Request.Post(server + "/rest/V1/integration/customer/token")
+        log.debug(" AUTHENTICATING " + username + " Against server:" + server+" password "+password);
+        log.debug("credential is "+mapper.writeValueAsString(authCredentials));
+        InputStream inputStream = Request.Post(server + "/rest/V1/integration/customer/token")
                 .bodyString(mapper.writeValueAsString(authCredentials), ContentType.APPLICATION_JSON)
-                .execute().returnContent().asString();
-        return "Bearer " + token.replace("\"", "");
+                .execute().returnResponse().getEntity().getContent();
+        String response = FrontierWholesalesUtils.parseMagentoResponseObject(inputStream);
+        return "Bearer " + response.replace("\"", "");
 
     }
     

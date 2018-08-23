@@ -32,18 +32,23 @@ Frontier.formEntry = new function(){
                       
                        "Access-Control-Allow-Origin":serverURL,
                         "Access-Control-Allow-Credentials":"true"
-                     },
+                },beforeSend:function(xhr){
+                        xhr.overrideMimeType('application/json');
+                       },
                 crossDomain: true,
                 timeout: getServiceTimeOut()
             }).done(function(results){
-                console.log(results);
+                
                 var bReturn = false;
-                if($.isArray(results)){
-                   if(results[0].subscribed){
+                if(results !== ""){
+                results = JSON.parse(results);
+                if(results.Envelope !== undefined){
+                   if(results.Envelope.Body.RESULT.SUCCESS){
                        bReturn = true;
                    }
-                  
                 }
+                }
+               
                 if(bReturn){
                      $('#formentry-message').css('display','block');
                        $('#formentry-message').html("Email is Subscribed");

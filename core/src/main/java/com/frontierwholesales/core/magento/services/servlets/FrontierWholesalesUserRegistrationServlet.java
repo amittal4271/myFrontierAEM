@@ -139,11 +139,11 @@ public class FrontierWholesalesUserRegistrationServlet  extends SlingAllMethodsS
 						
 						  //call company service here to register
 						  String registredValues = FrontierWholesalesUserRegistration.companyRegistration(adminToken, companyObject);
-						  log.debug("Successfully user is registered");
+						  log.debug("Successfully user is registered ");
 						  if(registredValues != null) {
 							  bReturn = true;
 							  jsonObject.addProperty("CustomerData", registredValues);
-							 // response.getOutputStream().println(jsonObject.toString());
+							 
 						  }else {
 							  log.error("Returned object is null ");
 							  response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Service object is null");
@@ -157,7 +157,7 @@ public class FrontierWholesalesUserRegistrationServlet  extends SlingAllMethodsS
 			    	String userToken = connector.getToken(username, credentials);		    	
 			    	
 			    	 jsonObject.addProperty("UserToken", userToken);
-			    	 response.getOutputStream().println(jsonObject.toString());
+			    	 response.getOutputStream().write(jsonObject.toString().getBytes("UTF-8"));
 			    }
 			}catch(Exception anyEx) {
 				log.error("Error is "+anyEx.getMessage());

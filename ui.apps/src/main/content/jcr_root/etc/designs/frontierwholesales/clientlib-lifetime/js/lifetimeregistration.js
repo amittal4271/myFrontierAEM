@@ -368,6 +368,8 @@ function memberRegistration(customer,company,pwd){
 
                 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
                 'Authorization':'Basic '+btoa(pwd)
+            },beforeSend:function(xhr){
+                xhr.overrideMimeType('application/json');
             }
      }).done(function(data){
            
@@ -377,7 +379,6 @@ function memberRegistration(customer,company,pwd){
              console.log("error in storing cookie values");
             enableAjaxFormButton($buttonObj); 
         }
-
         
     }).fail(function(error){
            
@@ -406,8 +407,7 @@ function emailValidation(jsonBuyersEmailList){
     emailData['value']=$('#id_membership-email').val();
     emailWithId['list'].push(emailData);
     
-    var d = $.Deferred();
-   
+    var d = $.Deferred();   
     
     Frontier.MagentoServices.emailValidation(serverurl,jsonData).done(function(response){
          d.resolve(response);

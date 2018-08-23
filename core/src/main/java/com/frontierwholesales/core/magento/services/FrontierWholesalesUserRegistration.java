@@ -1,11 +1,14 @@
 package com.frontierwholesales.core.magento.services;
 
+import java.io.InputStream;
+
 import org.apache.http.client.fluent.Request;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.frontierwholesales.core.utils.FrontierWholesalesUtils;
 import com.google.gson.JsonObject;
 
 public class FrontierWholesalesUserRegistration {
@@ -21,9 +24,10 @@ public class FrontierWholesalesUserRegistration {
 	public static String customerRegistration(JsonObject params) throws Exception{
 		log.debug("customerRegistration Method Start");
 		String server = FrontierWholesalesMagentoCommerceConnector.getServer();
-		String customerId = Request.Post(server + "/rest/V1/customers")
+		InputStream inputStream = Request.Post(server + "/rest/V1/customers")
                 .bodyString(params.toString(),ContentType.APPLICATION_JSON)
-                .execute().returnContent().asString();
+                .execute().returnResponse().getEntity().getContent();
+		 String customerId = FrontierWholesalesUtils.parseMagentoResponseObject(inputStream);
 		log.debug("customerRegistration Method End");
 		return customerId;
 	}
@@ -31,10 +35,11 @@ public class FrontierWholesalesUserRegistration {
 	public static String companyRegistration(String pwd,JsonObject params) throws Exception{
 		log.debug("companyRegistration Method Start");
 		String server = FrontierWholesalesMagentoCommerceConnector.getServer();
-		String userDetails = Request.Post(server + "/rest/all/V1/company")
+		InputStream inputStream = Request.Post(server + "/rest/all/V1/company")
 				.addHeader("Authorization",pwd)
                 .bodyString(params.toString(),ContentType.APPLICATION_JSON)
-                .execute().returnContent().asString();
+                .execute().returnResponse().getEntity().getContent();
+		 String userDetails = FrontierWholesalesUtils.parseMagentoResponseObject(inputStream);
 		log.debug("companyRegistration Method End");
 		return userDetails;
 		
@@ -49,10 +54,11 @@ public class FrontierWholesalesUserRegistration {
 	public static String getCountriesWithRegions(String adminToken) throws Exception{
 		log.debug("getCountriesWithRegions Method Start");
 		String server = FrontierWholesalesMagentoCommerceConnector.getServer();
-		String countryAndRegions = Request.Get(server + "/rest/all/V1/directory/countries")
+		InputStream inputStream = Request.Get(server + "/rest/all/V1/directory/countries")
 				.addHeader("Authorization", adminToken)
                
-                .execute().returnContent().asString();
+				.execute().returnResponse().getEntity().getContent();
+		 String countryAndRegions = FrontierWholesalesUtils.parseMagentoResponseObject(inputStream);
 		log.debug("getCountriesWithRegions Method End");
 		return countryAndRegions;
 	}
@@ -67,10 +73,11 @@ public class FrontierWholesalesUserRegistration {
 	public static String resetPassword(String adminToken,String jsonData) throws Exception{
 		log.debug("resetPassword Method Start");
 		String server = FrontierWholesalesMagentoCommerceConnector.getServer();
-		String response = Request.Post(server + "/rest/V1/customers/resetPassword")
+		InputStream inputStream =  Request.Post(server + "/rest/V1/customers/resetPassword")
 				.addHeader("Authorization", adminToken)
 				 .bodyString(jsonData,ContentType.APPLICATION_JSON)
-                .execute().returnContent().asString();
+				.execute().returnResponse().getEntity().getContent();
+		 String response = FrontierWholesalesUtils.parseMagentoResponseObject(inputStream);
 		log.debug("resetPassword Method End");
 		return response.replace("\"", "");
 	}
@@ -85,11 +92,11 @@ public class FrontierWholesalesUserRegistration {
 	 */
 	public static String updateCustomers(String adminToken,String jsonData,String id) throws Exception{
 		String server = FrontierWholesalesMagentoCommerceConnector.getServer();
-		String response = Request.Put(server + "/rest/V1/customers/"+id)
+		InputStream inputStream =  Request.Put(server + "/rest/V1/customers/"+id)
 				.addHeader("Authorization", adminToken)
 				 .bodyString(jsonData,ContentType.APPLICATION_JSON)
-                .execute().returnContent().asString();
-		
+				 .execute().returnResponse().getEntity().getContent();
+		 String response = FrontierWholesalesUtils.parseMagentoResponseObject(inputStream);
 		return response;
 	}
 	
@@ -102,11 +109,11 @@ public class FrontierWholesalesUserRegistration {
 	 */
 	public static String addAddress(String adminToken,String jsonData) throws Exception{
 		String server = FrontierWholesalesMagentoCommerceConnector.getServer();
-		String response = Request.Post(server + "/rest/all/V1/addNewAddress")
+		InputStream inputStream =Request.Post(server + "/rest/all/V1/addNewAddress")
 				.addHeader("Authorization", adminToken)
 				 .bodyString(jsonData,ContentType.APPLICATION_JSON)
-                .execute().returnContent().asString();
-		
+				 .execute().returnResponse().getEntity().getContent();
+		 String response = FrontierWholesalesUtils.parseMagentoResponseObject(inputStream);
 		return response;
 	}
 	
@@ -118,11 +125,11 @@ public class FrontierWholesalesUserRegistration {
 	 */
 	public static String getWhoAmI(String userToken) throws Exception{
 		String server = FrontierWholesalesMagentoCommerceConnector.getServer();
-		String response = Request.Get(server + "/rest/V1/customers/me")
+		InputStream inputStream = Request.Get(server + "/rest/V1/customers/me")
 				.addHeader("Authorization", userToken)
 				
-                .execute().returnContent().asString();
-		
+				.execute().returnResponse().getEntity().getContent();
+		 String response = FrontierWholesalesUtils.parseMagentoResponseObject(inputStream);
 		return response;
 	}
 	
