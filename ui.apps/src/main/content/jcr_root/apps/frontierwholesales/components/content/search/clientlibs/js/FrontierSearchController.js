@@ -76,8 +76,9 @@ Frontier.SearchController = new function() {
 		var queryString = "";
 		
 		var searchTerm = $(".search-input").val();
-		queryString += getFilterParam(0,0,"botanicalname",encodeURIComponent("%"+searchTerm+"%"), "like");
-		queryString += "&"+ getFilterParam(0,0,"name",encodeURIComponent("%"+searchTerm+"%"), "like");
+//		queryString += getFilterParam(0,0,"botanicalname",encodeURIComponent("%"+searchTerm+"%"), "like");
+//		queryString += "&"+ getFilterParam(0,0,"name",encodeURIComponent("%"+searchTerm+"%"), "like");
+		queryString += getFilterParam(0,0,"search_term",encodeURIComponent("%"+searchTerm+"%"), "like");
 		
 		var filtersQueryString = "";
 		

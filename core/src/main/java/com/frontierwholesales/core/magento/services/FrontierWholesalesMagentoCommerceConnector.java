@@ -395,8 +395,8 @@ public class FrontierWholesalesMagentoCommerceConnector {
     }
     
     public String getProducts(String adminToken, String queryString) {
-		String response = null;
-		String serviceURL = server + "/rest/V1/products?" + queryString;
+		String response = null;      
+		String serviceURL = server + "/rest/V1/mailman/search?searchCriteria[requestName]=quick_search_container&" + queryString;
 
 		try {
 			log.debug("Calling product search v2 [{}]", serviceURL);

@@ -64,7 +64,7 @@ Frontier.SearchResults = new function() {
 			
 			if(typeof products.search_criteria !== "undefined") {
 				filterGroups = products.search_criteria.filter_groups;
-				
+				console.log("filterGroups",filterGroups);
 				jQuery.each( filterGroups, function(i,filterGroup) {
 				    jQuery.each( filterGroup, function(j,filterGroupAttributes) {
 				    	jQuery.each(filterGroupAttributes, function(k,filterGroupAttribute) {
@@ -77,7 +77,7 @@ Frontier.SearchResults = new function() {
 				    			brandIds.push(filterGroupAttribute.value);
 				    		}
 				    		
-				    		if(filterGroupAttribute.field == "name") {
+				    		if(filterGroupAttribute.field == "search_term") {
 				    			searchTerm = filterGroupAttribute.value;
 				    			searchTerm = searchTerm.replaceAll("%", "");
 				    		}
