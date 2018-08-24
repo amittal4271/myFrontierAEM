@@ -4,9 +4,9 @@ $(document).ready(function(){
 		
 	    var pageTitle = $("#pageTitle").data("pagetitle");
 	    console.log(pageTitle);
-	    //getCartItems('minicartTemplate');
-	    getCartItems();
 	   
+	    getCartItems();
+       
 	    $(document).on('click','.btn-mini-cart-remove',function(){
 	       var $this = $(this);
 	        var parentMiniCartItem = $this.parents('.each-mini-cart-item');

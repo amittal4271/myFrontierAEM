@@ -66,10 +66,7 @@ $(document).ready(function(){
     });
     
     
-    $('#id_membership-email').on('onchange',function(e){
-        e.preventDefault();
-        emailValidation();
-    });
+   
    
 });
 
@@ -241,11 +238,30 @@ function collectUserDetails(){
     
 }
 
-function validateEmailAndRegisterUser(extensionAttributes,customer,company,pwd){
+function validateEmailAndRegisterUser(jsonBuyersEmailList,customer,company,pwd){
     
-      emailValidation(extensionAttributes).then(function(data){
-      var bValid = true;
-       if($.isArray(data)){
+    var serverurl = $('#serverurl').val();
+    var validation = false;
+    var jsonData={};
+    jsonData['customerEmail']=[]
+      
+   $(jsonBuyersEmailList.buying_groups.email).each(function(i,data){
+      if(undefined !== data && data !== ''){
+        jsonData['customerEmail'].push(data);  
+      } 
+   });
+    
+    jsonData['customerEmail'].push($('#id_membership-email').val());
+    jsonData['websiteId']=1;
+    var emailData={};
+    emailData['emailid']='id_membership-email';
+    emailData['value']=$('#id_membership-email').val();
+    emailWithId['list'].push(emailData);
+     
+   
+    
+    Frontier.MagentoServices.emailValidation(serverurl,jsonData).done(function(response){
+         if($.isArray(data)){
                 
                 // true means email doesn't exists
                 $(data).each(function(i,data){ 
@@ -273,8 +289,13 @@ function validateEmailAndRegisterUser(extensionAttributes,customer,company,pwd){
            enableAjaxFormButton($buttonObj);    
            enableErrorMsg(data);
        }
+    }).fail(function(error){
+           enableAjaxFormButton($buttonObj);    
+           enableErrorMsg(error);
     });
     
+   
+   
 }
 
 function getEmailInputIdFromObj(email){

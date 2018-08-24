@@ -112,8 +112,7 @@
                                  <div class="mini-cart-name">{{name}}</div>
                                  <div class="mini-cart-price">
                                      <span class="product-sale-price normal-price">{{price}} {{#quantities}}* {{qty}}{{/quantities}}</span>
-                                      <!--<span class="original-price strike-through-price">{{price}}</span>-->
-                                      <!--<span class="sale-now-price">Now {{price}} {{#quantities}}* {{qty}} {{/quantities}}</span>-->
+                                      
                                  </div>
                             </div>
                             <div class="mini-cart-remove-holder">
@@ -147,7 +146,7 @@
                </div>
 
                <div class="mini-cart-go-to-cart-holder">
-                    <a href="{{getCartUrl}}" class="btn btn-light-green btn-mini-cart-go-to-cart">Go to Cart</a>
+                    <a href="{{getCartUrl}}?token=${user.token @context='scriptString'}" class="btn btn-light-green btn-mini-cart-go-to-cart">Go to Cart</a>
                </div>
 
           </div>
@@ -161,7 +160,7 @@
           <a id="mobile-cart-icon" href="#" class="header-mobile-icon">
                <span class="icon-cart">
                     <span class="glyphicon glyphicon-shopping-cart"></span>
-                    <span class="cart-count quantity">{{items_qty}}</span>
+                    <span class="cart-count quantity">{{quote.items_qty}}</span>
                </span>
                <span class="visuallyhidden">Cart</span>
           </a>

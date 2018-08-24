@@ -19,7 +19,8 @@ public class SessionModel extends WCMUsePojo{
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(SessionModel.class);
 	 private String authToken;
-
+	 // token without bearer to handshake magento commerce
+     private String token;
 	    
 
 		@Override
@@ -30,6 +31,9 @@ public class SessionModel extends WCMUsePojo{
 			
 			String cookieValue = cookie.getValue();
 			this.authToken = FrontierWholesalesUtils.getIdFromObject(cookieValue, "token");
+			if(this.authToken != null && this.authToken != "") {
+				this.token = this.authToken.substring("Bearer ".length(), this.authToken.length());
+			}
 			LOGGER.debug("activate method End...");
 		}
 
@@ -37,6 +41,10 @@ public class SessionModel extends WCMUsePojo{
 
 		public String getAuthToken() {
 			return authToken;
+		}
+		
+		public String getToken() {
+			return token;
 		}
 		
 		

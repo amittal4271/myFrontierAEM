@@ -79,6 +79,7 @@ if(summaryAttribute !== undefined && infoAttribute !== undefined && additionalAt
         }
     }).done(function(results){
         hideLoadingScreen();
+        if(!results.startsWith("Error")){
         var productDetails = JSON.parse(results);
        
         var template = $("#productDetailsTemplate").html();
@@ -97,6 +98,10 @@ if(summaryAttribute !== undefined && infoAttribute !== undefined && additionalAt
         if ($('#product-detail').length > 0) {
     		bindPdpAffixEvents();
     	}
+        }else{
+             hideLoadingScreen();
+            enableErrorMsg('');
+        }
     }).fail(function(error){
          hideLoadingScreen();
         enableErrorMsg(error.status);
