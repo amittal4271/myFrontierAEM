@@ -61,6 +61,7 @@ Frontier.SearchController = new function() {
 			    var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + "?" + queryStringForSearch;
 			    window.history.pushState({path:newurl},'',newurl);
 			}
+			
 			Frontier.SearchResults.updateResults(productList);
 			hideLoadingScreen();
 		});
@@ -81,10 +82,10 @@ Frontier.SearchController = new function() {
 		queryString += getFilterParam(0,0,"search_term",encodeURIComponent("%"+searchTerm+"%"), "like");
 		
 		var filtersQueryString = "";
-		
+		var groupIndex = 0;
 		if(!!Frontier.SearchFacets && !searchTermOnly) {
+			groupIndex++;
 			var filters = Frontier.SearchFacets.getFilters();
-			var groupIndex = 1;
 			var paramCount = 1;
 			var groupItemIndex = 0;
 			var previousFilterName = null;
@@ -116,6 +117,8 @@ Frontier.SearchController = new function() {
 			} 
 			
 		} 
+		
+		console.log("groupIndex = "+ groupIndex);
 		
 		groupIndex++;
 		queryString += "&" + getFilterParam(groupIndex, 0, "status", "1", "eq");

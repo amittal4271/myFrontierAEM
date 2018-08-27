@@ -62,6 +62,12 @@ Frontier.SearchResults = new function() {
 			var searchTerm;
 			var brandIds = [];
 			
+			console.log("products.buckets = ", products.buckets);
+			
+			if(typeof Frontier.SearchFacets != "undefined" && typeof products.buckets != "undefined") {
+				Frontier.SearchFacets.updateFilterOptions(products.buckets);
+			}
+			
 			if(typeof products.search_criteria !== "undefined") {
 				filterGroups = products.search_criteria.filter_groups;
 				console.log("filterGroups",filterGroups);
@@ -86,9 +92,7 @@ Frontier.SearchResults = new function() {
 				    });
 				});
 			}
-			
-			
-			
+						
 			if(!!searchTerm) {
 				products.searchTerm = decodeURI(searchTerm);
 				$(".search-input").val(searchTerm);
@@ -152,6 +156,7 @@ Frontier.SearchResults = new function() {
 //		          $('#previous').addClass('disabled');
 //			}
 //	       
+		
 		}
 		
 	}
