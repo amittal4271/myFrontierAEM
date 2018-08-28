@@ -54,17 +54,21 @@ Frontier.SearchResults = new function() {
 	
 	function updateResults(products) {
 		
+		if(products == null) {
+			products = {};
+		}
+		
 		if($(".searchResult").length > 0) {
 			var filterGroups = [];
 			
 			var searchTerm;
 			var brandIds = [];
 						
-			if(typeof Frontier.SearchFacets != "undefined" && typeof products.buckets != "undefined") {
+			if(typeof Frontier.SearchFacets != "undefined" && products != null && typeof products.buckets != "undefined") {
 				Frontier.SearchFacets.updateFilterOptions(products.buckets);
 			}
 			
-			if(typeof products.search_criteria !== "undefined") {
+			if(products != null && typeof products.search_criteria !== "undefined") {
 				filterGroups = products.search_criteria.filter_groups;
 				jQuery.each( filterGroups, function(i,filterGroup) {
 				    jQuery.each( filterGroup, function(j,filterGroupAttributes) {

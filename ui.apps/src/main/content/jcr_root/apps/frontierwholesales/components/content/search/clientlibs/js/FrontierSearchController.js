@@ -82,7 +82,7 @@ Frontier.SearchController = new function() {
 		var searchTerm = $(".search-input").val();
 //		queryString += getFilterParam(0,0,"botanicalname",encodeURIComponent("%"+searchTerm+"%"), "like");
 //		queryString += "&"+ getFilterParam(0,0,"name",encodeURIComponent("%"+searchTerm+"%"), "like");
-		queryString += getFilterParam(0,0,"search_term",encodeURIComponent(searchTerm), "eq");
+		queryString += getFilterParam(0,0,"search_term",encodeURIComponent(searchTerm), "like");
 		
 		var filtersQueryString = "";
 		var groupIndex = 0;
@@ -161,6 +161,7 @@ Frontier.SearchController = new function() {
         	queryString += featured; //default
         }
 		
+		//TODO re-enable the pageNum and pageSize when fixed in magento service
 		//queryString += "&searchCriteria[currentPage]="+pageNum;
 		//queryString += "&searchCriteria[pageSize]="+recsPerPage;
 		
