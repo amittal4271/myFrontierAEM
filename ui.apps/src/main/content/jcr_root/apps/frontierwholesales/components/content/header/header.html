@@ -44,14 +44,14 @@
                   
                    <sly data-sly-test="${user.authToken == null}">
                     <a href="/content/frontierwholesales/en/login.html">My Account</a>
-                    <ul id="header-account-flyout" class="header-flyout-list">
+                    <ul id="header-account-flyout" class="header-flyout-list mobile-closed">
                       <li><a href="/content/frontierwholesales/en/login.html">Log In</a></li>
                          </ul>
                    </sly>
                    
                    <sly data-sly-test="${user.authToken != null}">
                        <a href="#">My Account</a>
-                       <ul id="header-account-flyout" class="header-flyout-list">
+                       <ul id="header-account-flyout" class="header-flyout-list mobile-closed">
                          
                          <li><a href="#">Address Book</a></li>
                          <li><a href="#">Orders</a></li>
@@ -95,7 +95,7 @@
           </a>
          {{/if}}
 
-         <div class="mini-cart-holder">
+         <div class="mini-cart-holder mobile-closed">
            {{#if noTotal}}
              <h4 class="cart-empty-heading">Nothing in your cart yet.</h4>
              {{else}}

@@ -657,3 +657,23 @@ $(window).scroll(function() {
 	}
 });
 
+$(document).on( "click", "#mobile-cart-icon", function(e) {
+    var miniCartPopup = $('.mini-cart-holder');
+    if (miniCartPopup.hasClass('mobile-closed')) {
+		miniCartPopup.removeClass('mobile-closed');
+        miniCartPopup.css('display','block');
+    } else {
+		miniCartPopup.addClass('mobile-closed');
+		miniCartPopup.css('display','none');
+    }
+});
+$(document).on( "click", "#mobile-account-icon", function(e) {
+    var userPopup = $('#header-account-flyout');
+    if (userPopup.hasClass('mobile-closed')) {
+		userPopup.removeClass('mobile-closed');
+        userPopup.css('display','block');
+    } else {
+		userPopup.addClass('mobile-closed');
+        userPopup.css('display','none');
+    }
+});
