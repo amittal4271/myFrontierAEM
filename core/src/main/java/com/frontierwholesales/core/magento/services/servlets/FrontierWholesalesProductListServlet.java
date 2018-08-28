@@ -12,6 +12,7 @@ import javax.jcr.query.QueryResult;
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
+import javax.servlet.http.Cookie;
 
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
@@ -34,6 +35,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 @SuppressWarnings("serial")
 
@@ -58,7 +60,6 @@ public class FrontierWholesalesProductListServlet extends SlingAllMethodsServlet
 			throws ServletException, IOException {
 		
 		log.debug("doGet FrontierWholesalesProductListServlet Start here ");
-		RequestPathInfo path = request.getRequestPathInfo();
 		
 		try {
 			final String authorization = request.getHeader("Authorization");
@@ -88,7 +89,7 @@ public class FrontierWholesalesProductListServlet extends SlingAllMethodsServlet
 			String adminToken = commerceConnector.getAdminToken();
 			String productList = commerceConnector.getProducts(adminToken, search);
 			String catList = commerceConnector.getParentChildrenCategories(adminToken, categoryId);
-
+			
 			response.setContentType("text/html;charset=UTF-8;");
 			response.setCharacterEncoding("UTF-8");
 			
@@ -96,14 +97,24 @@ public class FrontierWholesalesProductListServlet extends SlingAllMethodsServlet
 			
 			jsonResponse = utils.addCategoryListToJson(jsonResponse, catList);
 			
-			ServletOutputStream stream = response.getOutputStream();
+			Cookie cookie = FrontierWholesalesUtils.getCookie(request,"CustomerData");
+			if(cookie != null) {
+				log.debug("cookie is available");
+				String cookieValue = cookie.getValue();
+				String authToken = FrontierWholesalesUtils.getIdFromObject(cookieValue, "token");
+				jsonResponse = addUserTokenToObject(jsonResponse,"authToken",authToken);
+				log.debug("auth token is available");
+			}
 			
+			ServletOutputStream stream = response.getOutputStream();
+			log.debug(" FrontierWholesalesProductListServlet operations End ");
 			stream.write(jsonResponse.getBytes("UTF-8"));
 			
 		}catch(Exception anyEx) {
 			log.error("Error in productList "+anyEx.getMessage());
-			response.getOutputStream().println("Error");
+			response.getOutputStream().println("Error "+anyEx.getMessage());
 		}
+		log.debug("doGet FrontierWholesalesProductListServlet End here ");
 	}
 	
 	@Override
@@ -129,5 +140,16 @@ public class FrontierWholesalesProductListServlet extends SlingAllMethodsServlet
 		}
 		
 		log.debug("doPost FrontierWholesalesProductListServlet End here ");
+	}
+	
+	private String addUserTokenToObject(String object,String key,String value) throws Exception{
+			log.debug("addUserTokenToObject Start");
+			JsonParser parser =  new JsonParser();
+			JsonObject jsonObject =parser.parse(object).getAsJsonObject();
+			
+			jsonObject.addProperty(key, value);
+		
+			log.debug("addUserTokenToObject End ");
+			return jsonObject.toString();
 	}
 }

@@ -171,8 +171,23 @@ function getProductListByCategory(currentPage,recsPerPage,sortBy,searchString){
 
 
 function retainFilterChkboxSelections(){
+   
+    var bCheck = false;
     $.each(filterIds,function(index,data){
-        $('#'+data).addClass('selected-filter');
+         $('#'+data).addClass('selected-filter');
+       var number =  data.match(/(\d+)/g);
+        if(number > 5){
+            var title = data.match(/([a-z]+)/g);
+            if(!bCheck){
+            if(title == "manufacturer"){
+                $('.Brand .btn-view-more-filters').trigger('click');
+                bCheck = true;
+            }else if(title == "certifications"){
+                $('.Certifications .btn-view-more-filters').trigger('click');
+                bCheck = true;
+            }
+            }
+        }
     });
 }
 

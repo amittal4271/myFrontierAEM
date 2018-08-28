@@ -2,6 +2,6 @@
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" 
 jcr:primaryType="sling:OsgiConfig"
 allow.hosts.regexp="[]"
-allow.hosts="[wholesaledevcheckout.frontiercoop.com]"
+allow.hosts="[wholesaleuatcheckout.frontiercoop.com]"
 filter.methods="[PUT,DELETE]"
 allow.empty="false" />

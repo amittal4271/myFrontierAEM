@@ -1,5 +1,6 @@
 <div data-sly-test="${!wcmmode.edit}" id="mobile-nav" class="mobile-nav-open" style="display: block;">
 <sly data-sly-use.user="${'com.frontierwholesales.core.models.SessionModel'}"></sly>
+<sly data-sly-use.magentoInfo="${'com.frontierwholesales.core.magento.services.models.MagentoInfo'}"></sly>
 	<div id="mobile-nav-header">
 		<div id="mobile-nav-logo">
 			<a href="#">
@@ -42,10 +43,11 @@
 <sly data-sly-test="${user.authToken == null}">
 					<li class="mobile-first-level-item"><a class="mobile-first-level-link" href="/content/frontierwholesales/en/login.html">Login</a></li>
 </sly>
-					<li class="mobile-first-level-item"><a class="mobile-first-level-link" href="#">Account Info</a></li>
-					<li class="mobile-first-level-item"><a class="mobile-first-level-link" href="#">Address Book</a></li>
-					<li class="mobile-first-level-item"><a class="mobile-first-level-link" href="#">Orders</a></li>
-					<li class="mobile-first-level-item"><a class="mobile-first-level-link" href="#">Wish List</a></li>
+					<li class="mobile-first-level-item"><a class="mobile-first-level-link" href="#">Account Info</a></li>				
+                    
+                     <li  class="mobile-first-level-item"><a class="mobile-first-level-link" href="${magentoInfo.magentoServer}/customer/address?token=${user.token @context='scriptString'}">Address Book</a></li>
+                         <li  class="mobile-first-level-item"><a class="mobile-first-level-link" href="${magentoInfo.magentoServer}/sales/order/history?token=${user.token @context='scriptString'}">Orders</a></li>
+                         <li  class="mobile-first-level-item"><a class="mobile-first-level-link" href="${magentoInfo.magentoServer}/wishlist?token=${user.token @context='scriptString'}">Wish List</a></li>
 <sly data-sly-test="${user.authToken != null}">
 					<li class="mobile-first-level-item"><a class="mobile-first-level-link" id="signOut" href="#">Sign Out</a></li>
 </sly>

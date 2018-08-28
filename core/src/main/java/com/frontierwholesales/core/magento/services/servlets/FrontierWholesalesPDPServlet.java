@@ -85,7 +85,7 @@ public class FrontierWholesalesPDPServlet  extends SlingAllMethodsServlet{
 		}catch(Exception anyEx) {
 			log.error("Error in pdpservlet {}", anyEx.getMessage());
 			
-			response.getOutputStream().println("Error");
+			response.getOutputStream().println("Error "+anyEx.getMessage());
 		}
 	}
 

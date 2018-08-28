@@ -53,9 +53,9 @@
                        <a href="#">My Account</a>
                        <ul id="header-account-flyout" class="header-flyout-list mobile-closed">
                          
-                         <li><a href="#">Address Book</a></li>
-                         <li><a href="#">Orders</a></li>
-                         <li><a href="#">Wish List</a></li>
+                         <li><a href="${magentoInfo.magentoServer}/customer/address?token=${user.token @context='scriptString'}">Address Book</a></li>
+                         <li><a href="${magentoInfo.magentoServer}/sales/order/history?token=${user.token @context='scriptString'}">Orders</a></li>
+                         <li><a href="${magentoInfo.magentoServer}/wishlist?token=${user.token @context='scriptString'}">Wish List</a></li>
                          <li><a id="signOut" href='#'>Sign Out</a></li>
                     </ul>
                    </sly>

@@ -1,8 +1,9 @@
 <sly
     data-sly-use.clientLib="${'/libs/granite/sightly/templates/clientlib.html'}"/>
 <sly data-sly-call="${clientlib.js @ categories='frontierwholesales.buyersclub'}" data-sly-unwrap/>
+    <sly data-sly-use.email="${'buyersclub.js' @ params=request.queryString}" />
 <input type="hidden" id="customer-token" value="${request.requestParameterMap['token'][0].toString}">
-<input type="hidden" id="current-email-id" value="${request.requestParameterMap['email'][0].toString}">
+    <input type="hidden" id="current-email-id" value="${email.email}">
 <section id="membership-holder">
                     <div class="container">
                          <div class="lifetime-leaf"></div>
@@ -26,7 +27,7 @@
                                         <div class="each-form-information">
                                              <div class="form-group width-half first">
                                                   <label for="id_membership-email">Email address</label>
-                                                  <input id="id_membership-email" class="form-control" name="membership-email" type="email" disabled value="${request.requestParameterMap['email'][0].toString}">
+                                                  <input id="id_membership-email" class="form-control" name="membership-email" type="email" disabled value="${email.email}">
                                              </div>
                                              <div class="form-group width-half">
                                                   <label for="id_membership-password">Password</label>

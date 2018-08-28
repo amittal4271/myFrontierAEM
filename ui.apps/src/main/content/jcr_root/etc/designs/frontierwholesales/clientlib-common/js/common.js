@@ -344,10 +344,16 @@ function addItemToWishList(sku){
 
 function retrieveRequisitionList(thisObj){
      Frontier.MagentoServices.getRequisitionList(serverURL).done(function(list){
-         $.each(list,function(key,value){
-              thisObj.append($('<option/>',
-                                    {'value':value.id,'text':value.name}));
-         });
+         if(list.length > 0){
+             $('.requisition-list-select').find('option').not(':first').remove();
+             $.each(list,function(key,value){
+                  thisObj.append($('<option/>',
+                                        {'value':value.id,'text':value.name}));
+             });
+         }else{
+             thisObj.append($('<option/>',
+                                    {'text':'Not available'}));
+         }
         
      }).fail(function(error){
              hideLoadingScreen();
@@ -452,5 +458,12 @@ function initListenersForProductButtons() {
         }
         
     });
+}
+
+function showProdErrorMessage(msg){
+     $('.global-server-side-message-holder').css('display','block');
+             $el = $('.global-server-side-message-holder');
+            $('.global-server-side-message-holder').children().text(msg);
+            scrollToElement($el);
 }
 

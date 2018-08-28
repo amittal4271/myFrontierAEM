@@ -92,7 +92,7 @@ public class FrontierWholesalesUserRegistrationServlet  extends SlingAllMethodsS
 			        	String adminToken = connector.getAdminToken();
 			        	
 			        	JsonObject resetPwdObject = updateJSONObject(resetPwdData, "newPassword", credentials);
-			        	
+			        	log.debug("before reset password "+resetPwdObject);
 			        	//get customer id here
 			        	String customerResponse = FrontierWholesalesUserRegistration.resetPassword(adminToken, resetPwdObject.toString());
 			        	//update first and lastname with customer id
