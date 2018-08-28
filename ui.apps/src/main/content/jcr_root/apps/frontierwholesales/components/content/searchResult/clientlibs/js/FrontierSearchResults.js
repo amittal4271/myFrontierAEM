@@ -7,9 +7,7 @@ Frontier.SearchResults = new function() {
 	
 	function init() {
 		if($(".searchResult").length > 0) {
-			console.log("Frontier Search Results init");
 			initProductSearchHandlbarFunctions();
-
 			initListenersForProductButtons();
 			
 	       $(document).on('change','#itemPerPageSelect,#sortBy',function(){
@@ -61,16 +59,13 @@ Frontier.SearchResults = new function() {
 			
 			var searchTerm;
 			var brandIds = [];
-			
-			console.log("products.buckets = ", products.buckets);
-			
+						
 			if(typeof Frontier.SearchFacets != "undefined" && typeof products.buckets != "undefined") {
 				Frontier.SearchFacets.updateFilterOptions(products.buckets);
 			}
 			
 			if(typeof products.search_criteria !== "undefined") {
 				filterGroups = products.search_criteria.filter_groups;
-				console.log("filterGroups",filterGroups);
 				jQuery.each( filterGroups, function(i,filterGroup) {
 				    jQuery.each( filterGroup, function(j,filterGroupAttributes) {
 				    	jQuery.each(filterGroupAttributes, function(k,filterGroupAttribute) {

@@ -16,9 +16,7 @@ Frontier.SearchController = new function() {
 	
 	function init() {
 		if(typeof Frontier.SearchResults !== 'undefined' && $(".searchResult").length > 0) {
-			if(window.location.search != "") {
-				console.log("doing initial search from incoming page load query string");
-				
+			if(window.location.search != "") {				
 				// Get saved data from sessionStorage
 				var searchTerm = sessionStorage.getItem('Frontier.searchTerm');
 				if(!!searchTerm) {
@@ -55,7 +53,6 @@ Frontier.SearchController = new function() {
 	function updateResults(pageNum) {
 		showLoadingScreen();
 		var queryStringForSearch = getQueryString(pageNum);
-		console.log( "Refreshing Search... " + queryStringForSearch);
 		Frontier.MagentoServices.searchProducts(queryStringForSearch).done(function(productList){
 			if (history.pushState) {
 			    var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + "?" + queryStringForSearch;
@@ -74,18 +71,30 @@ Frontier.SearchController = new function() {
 	}
 	
 	function getQueryString(pageNum, searchTermOnly) {
-		var queryString = "";
+		var queryString;
+		
+		if(searchTermOnly) {
+			queryString = "searchCriteria[requestName]=quick_search_container&"
+		} else {
+			queryString = "searchCriteria[requestName]=advanced_search_container&"
+		}
 		
 		var searchTerm = $(".search-input").val();
 //		queryString += getFilterParam(0,0,"botanicalname",encodeURIComponent("%"+searchTerm+"%"), "like");
 //		queryString += "&"+ getFilterParam(0,0,"name",encodeURIComponent("%"+searchTerm+"%"), "like");
-		queryString += getFilterParam(0,0,"search_term",encodeURIComponent("%"+searchTerm+"%"), "like");
+		queryString += getFilterParam(0,0,"search_term",encodeURIComponent(searchTerm), "eq");
 		
 		var filtersQueryString = "";
 		var groupIndex = 0;
 		if(!!Frontier.SearchFacets && !searchTermOnly) {
-			groupIndex++;
+			
 			var filters = Frontier.SearchFacets.getFilters();
+			
+			console.log("Filters", filters);
+			if(filters.length > 0) {
+				groupIndex++;
+			}
+			
 			var paramCount = 1;
 			var groupItemIndex = 0;
 			var previousFilterName = null;
@@ -117,8 +126,6 @@ Frontier.SearchController = new function() {
 			} 
 			
 		} 
-		
-		console.log("groupIndex = "+ groupIndex);
 		
 		groupIndex++;
 		queryString += "&" + getFilterParam(groupIndex, 0, "status", "1", "eq");
@@ -154,8 +161,8 @@ Frontier.SearchController = new function() {
         	queryString += featured; //default
         }
 		
-		queryString += "&searchCriteria[currentPage]="+pageNum;
-		queryString += "&searchCriteria[pageSize]="+recsPerPage;
+		//queryString += "&searchCriteria[currentPage]="+pageNum;
+		//queryString += "&searchCriteria[pageSize]="+recsPerPage;
 		
 		return queryString;
 	}

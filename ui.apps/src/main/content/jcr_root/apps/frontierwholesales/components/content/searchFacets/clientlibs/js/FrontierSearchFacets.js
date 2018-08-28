@@ -32,7 +32,7 @@ Frontier.SearchFacets = new function() {
 			        </div>'
 		};
 	
-	function hydrateTemplateObject(buckets, bucketName, facetLabel, isExpandable) {
+	function hydrateTemplateObject(buckets, bucketName, facetLabel, isExpandable) {		
 		for(i=0 ; i<=buckets.bucket.length-1 ; i++) {
         	var bucket = buckets.bucket[i];
         	if(bucket.value != null) {
@@ -64,7 +64,7 @@ Frontier.SearchFacets = new function() {
 	}
 	
 	function initListeners() {
-		$(document).on('click',facetSelector,function(event){ 
+		$(document).on('click',facetSelector,function(event){ 			
 	        event.preventDefault();
 			if(!$(this).hasClass('selected-filter')) {
 	            $(this).addClass('selected-filter');
@@ -75,14 +75,10 @@ Frontier.SearchFacets = new function() {
 	    });
 	}
 	
-	function updateFilterOptions(buckets) {
-		console.log(buckets);
-		
+	function updateFilterOptions(buckets) {		
 		if(typeof buckets.bucket !== "undefined" && buckets.bucket != null && buckets.bucket.length > 0) {
 			for(i=0 ; i<=buckets.bucket.length-1 ; i++){
 	        	var bucket = buckets.bucket[i];
-	        	
-	        	console.log("Bucket = " , bucket);
 			}
 			
 			var facetTemplate = Handlebars.compile(templates.facetTemplate);
@@ -91,14 +87,15 @@ Frontier.SearchFacets = new function() {
 			$(".searchResult #plp-search-left-nav-filters").html("");
 			
 			var manufacturerFacetObject = hydrateTemplateObject(buckets, "manufacturer_bucket", "Manufacturer", true);
-			var certificationsFacetObject = hydrateTemplateObject(buckets, "certifications_bucket", "Certifications", false);
-			console.log(manufacturerFacetObject);
-			console.log(certificationsFacetObject);
 			
-			$(".searchResult #plp-search-left-nav-filters").append(facetTemplate(manufacturerFacetObject));
-			$(".searchResult #plp-search-left-nav-filters").append(facetTemplate(certificationsFacetObject));
+			if(!!manufacturerFacetObject.options) {
+				$(".searchResult #plp-search-left-nav-filters").append(facetTemplate(manufacturerFacetObject));
+			}
 		
-			initListeners();
+			var certificationsFacetObject = hydrateTemplateObject(buckets, "certifications_bucket", "Certifications", false);
+			if(!!certificationsFacetObject.options) {
+				$(".searchResult #plp-search-left-nav-filters").append(facetTemplate(certificationsFacetObject));
+			}		
 		}
 		
 	}
