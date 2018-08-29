@@ -31,6 +31,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.frontierwholesales.core.magento.services.FrontierWholesalesMagentoCommerceConnector;
+import com.frontierwholesales.core.models.ProductListPage;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -476,7 +477,7 @@ public class FrontierWholesalesUtils {
 			return object.toString();
 		}
 	    
-	    public String addCategoryListToJson(String objectJson, String catList) {
+	    public String addCategoryListToJson(String objectJson, String catList, SlingHttpServletRequest request) {
 	    	try {
 	    	Gson json = new Gson();
 	    	
@@ -484,6 +485,13 @@ public class FrontierWholesalesUtils {
 			JsonObject object = element.getAsJsonObject();
 	    	
 	    	JsonElement catListElement = json.fromJson(catList, JsonElement.class);
+			
+			ProductListPage plp = request.adaptTo(ProductListPage.class);
+			
+			for(JsonElement category : catListElement.getAsJsonObject().get("children").getAsJsonArray()) {
+				category.getAsJsonObject().addProperty("vanity_path", plp.getPageCategoryById(category.getAsJsonObject().get("id").getAsString()));
+			}
+			
 			object.add("categorylist", catListElement);
 			
 			return object.toString();

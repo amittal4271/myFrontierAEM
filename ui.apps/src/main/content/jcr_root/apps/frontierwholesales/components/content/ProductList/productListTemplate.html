@@ -41,11 +41,11 @@
 		
 			{{#moreCategories @index}}
 			<li class="filter-item visuallyhidden">
-				<a href="/content/frontierwholesales/en/productlist.html?id={{child.id}}" class="filter-link"><span class="text">{{child.name}}</span></a>
+				<a href="/browse/{{child.vanity_path}}" class="filter-link"><span class="text">{{child.name}}</span></a>
 			</li>
 			{{else}}
 			<li class="filter-item">
-				<a href="/content/frontierwholesales/en/productlist.html?id={{child.id}}" class="filter-link"><span class="text">{{child.name}}</span></a>
+				<a href="/browse/{{child.vanity_path}}" class="filter-link"><span class="text">{{child.name}}</span></a>
 			</li>
 			{{/moreCategories}}
 			{{/each}}

@@ -5,6 +5,8 @@ import java.util.LinkedHashMap;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
+import org.apache.commons.collections.BidiMap;
+import org.apache.commons.collections.bidimap.DualHashBidiMap;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
@@ -29,6 +31,8 @@ public class ProductListPage {
 	
 	private LinkedHashMap<String,MagentoCategory> categorySeoPathMap = new LinkedHashMap<String, MagentoCategory>();
 	
+	private LinkedHashMap<String,String> categorySeoIdMap = new LinkedHashMap<String, String>();
+	
 	
 	@SlingObject
 	SlingHttpServletResponse response;
@@ -51,19 +55,23 @@ public class ProductListPage {
 			//TODO, could cache the category map, for better performance
 			for(MagentoCategory categoryLevel1 : categories.children_data) {
 				categorySeoPathMap.put(categoryLevel1.getPathName(), categoryLevel1);
+				categorySeoIdMap.put(String.valueOf(categoryLevel1.id), categoryLevel1.getPathName());
 				
 				if(categoryLevel1.children_data != null && categoryLevel1.children_data.length > 0) {
 					
 					for(MagentoCategory categoryLevel2 : categoryLevel1.children_data) {
 						categorySeoPathMap.put(categoryLevel1.getPathName()+"/"+categoryLevel2.getPathName(), categoryLevel2);
+						categorySeoIdMap.put(String.valueOf(categoryLevel2.id), categoryLevel1.getPathName()+"/"+categoryLevel2.getPathName());
 						
 						if(categoryLevel2.children_data != null && categoryLevel2.children_data.length > 0) {
 							for(MagentoCategory categoryLevel3 : categoryLevel2.children_data) {
 								categorySeoPathMap.put(categoryLevel1.getPathName()+"/"+categoryLevel2.getPathName()+"/"+categoryLevel3.getPathName(), categoryLevel3);
-							
+								categorySeoIdMap.put(String.valueOf(categoryLevel3.id), categoryLevel1.getPathName()+"/"+categoryLevel2.getPathName()+"/"+categoryLevel3.getPathName());
+								
 								if(categoryLevel3.children_data != null && categoryLevel3.children_data.length > 0) {
 									for(MagentoCategory categoryLevel4 : categoryLevel3.children_data) {
 										categorySeoPathMap.put(categoryLevel1.getPathName()+"/"+categoryLevel2.getPathName()+"/"+categoryLevel3.getPathName()+"/"+categoryLevel4.getPathName(), categoryLevel4);
+										categorySeoIdMap.put(String.valueOf(categoryLevel4.id), categoryLevel1.getPathName()+"/"+categoryLevel2.getPathName()+"/"+categoryLevel3.getPathName()+"/"+categoryLevel4.getPathName());
 									}
 								}
 							}
@@ -81,6 +89,10 @@ public class ProductListPage {
 	
 	public MagentoCategory getPageCategory() {
 		return categorySeoPathMap.get(request.getRequestPathInfo().getSuffix().substring(1));
+	}
+	
+	public String getPageCategoryById(String id) {
+		return categorySeoIdMap.get(id);
 	}
 	
 	private MagentoCategory getAllCategories(String adminToken,int categoryId) throws Exception{

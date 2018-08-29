@@ -562,6 +562,9 @@ public class FrontierWholesalesMagentoCommerceConnector {
     				.execute().returnResponse().getEntity().getContent();
     	 String response =  FrontierWholesalesUtils.parseMagentoResponseObject(inputStream);
     	log.debug("getParentChildrenCategories End");
+    	
+    	
+    	
     	return response;
     }
     

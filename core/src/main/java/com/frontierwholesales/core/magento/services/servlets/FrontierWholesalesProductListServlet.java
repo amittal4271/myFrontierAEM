@@ -95,7 +95,7 @@ public class FrontierWholesalesProductListServlet extends SlingAllMethodsServlet
 			
 			String jsonResponse = utils.parseJsonObject(productList,noOfRecsPerPage,currentPage,request,groupId);
 			
-			jsonResponse = utils.addCategoryListToJson(jsonResponse, catList);
+			jsonResponse = utils.addCategoryListToJson(jsonResponse, catList, request);
 			
 			Cookie cookie = FrontierWholesalesUtils.getCookie(request,"CustomerData");
 			if(cookie != null) {
