@@ -92,11 +92,11 @@ public class FrontierWholesalesUserRegistrationServlet  extends SlingAllMethodsS
 			        	String adminToken = connector.getAdminToken();
 			        	
 			        	JsonObject resetPwdObject = updateJSONObject(resetPwdData, "newPassword", credentials);
-			        	log.debug("before reset password "+resetPwdObject);
+			        	
 			        	//get customer id here
 			        	String customerResponse = FrontierWholesalesUserRegistration.resetPassword(adminToken, resetPwdObject.toString());
 			        	//update first and lastname with customer id
-			        	
+			        	log.debug("password is resetted successfully.");
 			        	String customerData = request.getParameter("customer");
 			        	
 			        	String addressData= request.getParameter("address");
@@ -106,7 +106,7 @@ public class FrontierWholesalesUserRegistrationServlet  extends SlingAllMethodsS
 			        	JsonObject updatedCustomerData = updateJSONObject(customerData,"id",customerResponse,"customer");
 			        	
 			        	FrontierWholesalesUserRegistration.updateCustomers(adminToken, updatedCustomerData.toString(), customerResponse);
-			        	
+			        	log.debug("customer is successfully updated.");
 			        	
 			        	String addressResponse = FrontierWholesalesUserRegistration.addAddress(adminToken, updatedAddressData.toString());
 			        	log.debug("buyersclub is registered successfully");
@@ -173,14 +173,17 @@ public class FrontierWholesalesUserRegistrationServlet  extends SlingAllMethodsS
 	}
 	
 	private JsonObject updateJSONObject(String data,String key,String value) throws Exception{
+		log.debug("updateJSONObject method start");
 		Gson json = new Gson();
 		JsonElement element = json.fromJson(data, JsonElement.class);
 		JsonObject object = element.getAsJsonObject();
 		object.addProperty(key, value);
+		log.debug("updateJSONObject method end");
 		return object;
 	}
 	
 	private JsonObject updateJSONObject(String data,String key,String value,String objName) throws Exception{
+		log.debug("updateJSONObject start");
 		Gson json = new Gson();
 		JsonElement element = json.fromJson(data, JsonElement.class);
 		JsonObject object = element.getAsJsonObject();
@@ -194,6 +197,7 @@ public class FrontierWholesalesUserRegistrationServlet  extends SlingAllMethodsS
 		object.add(objName, jsonObject);
 		JsonElement updatedElement = json.fromJson(object, JsonElement.class);
 		jsonObject = updatedElement.getAsJsonObject();
+		log.debug("updateJSONObject end");
 		return jsonObject;
 	}
 	

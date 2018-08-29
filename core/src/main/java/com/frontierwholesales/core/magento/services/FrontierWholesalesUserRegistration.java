@@ -91,12 +91,14 @@ public class FrontierWholesalesUserRegistration {
 	 * @throws Exception
 	 */
 	public static String updateCustomers(String adminToken,String jsonData,String id) throws Exception{
+		log.debug("updateCustomers Method Start");
 		String server = FrontierWholesalesMagentoCommerceConnector.getServer();
 		InputStream inputStream =  Request.Put(server + "/rest/V1/customers/"+id)
 				.addHeader("Authorization", adminToken)
 				 .bodyString(jsonData,ContentType.APPLICATION_JSON)
 				 .execute().returnResponse().getEntity().getContent();
 		 String response = FrontierWholesalesUtils.parseMagentoResponseObject(inputStream);
+		 log.debug("updateCustomers Method End");
 		return response;
 	}
 	
@@ -108,12 +110,14 @@ public class FrontierWholesalesUserRegistration {
 	 * @throws Exception
 	 */
 	public static String addAddress(String adminToken,String jsonData) throws Exception{
+		log.debug("addAddress Method Start");
 		String server = FrontierWholesalesMagentoCommerceConnector.getServer();
 		InputStream inputStream =Request.Post(server + "/rest/all/V1/addNewAddress")
 				.addHeader("Authorization", adminToken)
 				 .bodyString(jsonData,ContentType.APPLICATION_JSON)
 				 .execute().returnResponse().getEntity().getContent();
 		 String response = FrontierWholesalesUtils.parseMagentoResponseObject(inputStream);
+		 log.debug("addAddress Method End");
 		return response;
 	}
 	

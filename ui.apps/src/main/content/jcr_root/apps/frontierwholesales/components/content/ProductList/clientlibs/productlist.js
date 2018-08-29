@@ -218,15 +218,11 @@ function constructFilterConditions(){
         var id = $(this).attr('id');
          filterIds.push(id);
 	   
-        if(id.startsWith('manufacturer')){
-			index++;
-           }else{
-			index=0;
-
-            groupIdx++;
-           }
         if(temp != code){
 			index = 0;
+            groupIdx++;
+        }else{
+            index++;
         }
         queryString+=getFilterParam(groupIdx,index,code,data,'');
         temp = code;

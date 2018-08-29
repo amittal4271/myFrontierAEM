@@ -345,7 +345,7 @@ function addItemToWishList(sku){
 function retrieveRequisitionList(thisObj){
      Frontier.MagentoServices.getRequisitionList(serverURL).done(function(list){
          if(list.length > 0){
-             $('.requisition-list-select').find('option').not(':first').remove();
+            thisObj.find('option').not(':first').remove();
              $.each(list,function(key,value){
                   thisObj.append($('<option/>',
                                         {'value':value.id,'text':value.name}));
