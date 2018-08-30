@@ -492,6 +492,10 @@ public class FrontierWholesalesUtils {
 				category.getAsJsonObject().addProperty("vanity_path", plp.getPageCategoryById(category.getAsJsonObject().get("id").getAsString()));
 			}
 			
+			for(JsonElement category : catListElement.getAsJsonObject().get("parent").getAsJsonArray()) {
+				category.getAsJsonObject().addProperty("vanity_path", plp.getPageCategoryById(category.getAsJsonObject().get("id").getAsString()));
+			}
+			
 			object.add("categorylist", catListElement);
 			
 			return object.toString();
