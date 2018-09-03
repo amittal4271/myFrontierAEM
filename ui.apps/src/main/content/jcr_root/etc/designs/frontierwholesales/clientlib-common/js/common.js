@@ -6,7 +6,7 @@ $(document).ready(function(){
           document.cookie="CustomerData=;Max-Age=-99999999;path=/;";
         window.location.href="/content/frontierwholesales/en/home.html";
     });
-     
+
 });
 /**
 * redirect to my account
@@ -345,10 +345,11 @@ function addItemToWishList(sku){
 function retrieveRequisitionList(thisObj){
      Frontier.MagentoServices.getRequisitionList(serverURL).done(function(list){
          if(list.length > 0){
-            thisObj.find('option').not(':first').remove();
+             thisObj.find('option').not(':first').remove();
              $.each(list,function(key,value){
                   thisObj.append($('<option/>',
                                         {'value':value.id,'text':value.name}));
+				  thisObj.attr("size", list.length + 1);
              });
          }else{
              thisObj.append($('<option/>',
@@ -435,18 +436,19 @@ function initListenersForProductButtons() {
        
         
         addItemToWishList(skuId);
-        
+
     });
-    
-    $(document).on('click','.requisition-list-select',function(e){
-       e.preventDefault(); 
+
+    $(document).on('focus','.requisition-list-select',function(e){
+        e.preventDefault(); 
+        $(this).removeClass('closed');
         var length = $(this).find("option").length;
-        if(length == 1){
-        var $thisObj = $(this);
-        retrieveRequisitionList($thisObj);
+        if(length == 1){           
+          var $thisObj = $(this);
+          retrieveRequisitionList($thisObj);
         }
     });
-    
+
     $(document).on('change','.requisition-list-select',function(e){
         e.preventDefault(); 
         var id = $(this).data('prodid');
@@ -455,9 +457,21 @@ function initListenersForProductButtons() {
         if(qty !== undefined && qty !== ''){
             var reqid = $(this).val();
             addRequisitionList(reqid,id,qty,sku);
+            $(this).addClass('closed').blur();
         }
         
     });
+
+    //  close when clicked outside of shelves dropdown
+    $(document).mouseup(function(e) {
+        var shelvesDropdown = $(".requisition-list-select");
+        var activeshelvf = $(".requisition-list-select").find('option');
+        if (!shelvesDropdown.is(e.target) && shelvesDropdown.has(e.target).length === 0) {
+            shelvesDropdown.addClass('closed');
+        }
+	});
+
+
 }
 
 function showProdErrorMessage(msg){

@@ -1,7 +1,7 @@
 <div id="product-grid" class="match-height">
  {{#items}}
   <div class="product-grid-item" >
-      
+
        {{#ifEquals new_product}}
            <span class="badge badge-new">New</span>
        {{/ifEquals}}
@@ -78,9 +78,9 @@
            <div id="message-{{../sku}}" class="alert alert-add-to-cart" style="display: none;">Item added to your WishList!</div>
             <button data-skuid="{{../sku}}" class="btn btn-add-wishlist btn-wishlist">Add to Wishlist +</button>
             <div class="add-to-shelf btn">
-                 <select data-prodid="{{../id}}" data-wishsku="{{../sku}}" class="requisition-list-select">
+                 <select data-prodid="{{../id}}" data-wishsku="{{../sku}}" class="requisition-list-select closed">
                       <option>Add to Shelves +</option>
-                     
+
                  </select>
             </div>
        </div>
