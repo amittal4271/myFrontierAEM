@@ -335,10 +335,18 @@
     } 
     .add-to-shelf{
         width:100%;
+        padding:0px;
+        position:relative;
+        z-index:999;
 
         select{
             border:none;
-            position:relative;
+            position:absolute;
+            display:block;
+            overflow:hidden;
+            width:100%;
+            text-align:center;
+            max-height:initial;
             font-family:Lato,sans-serif;
             font-weight:400;
             color:#7d7671;
@@ -350,14 +358,60 @@
             -webkit-appearance:none; /* Safari and Chrome */
             appearance:none;
             cursor:pointer;
-            padding:10px 12px;
+            padding:0px;
+            text-indent:0px;
+            border-radius:4px;
+            box-shadow: 1px 2px 8px rgba(0,0,0,0.2);
 
             option{
                 width:100%;
+                padding:10px 0px;
+                background:#fff;
+                display:block;
             }
+            option:hover,
+            option:focus,
+            option:active,
+            option:checked   {
+              	background-color: #fff !important;
+                color:#8bba4a;
+            }
+            option:first-child {
+				pointer-events:none;
+                display:none;
+            }
+        }
+        select[size] option:first-child {
+            display:block;
+        }
+        select[size].closed option:first-child {
+            display:none;
+        }
+        select.closed {
+			box-shadow: none;
+            max-height: 38px;
+            padding:9px 37px;
+            option {
+               display:none;
+            }
+            option:checked {
+               display:block !important;
+            }
+        }
+        select {
+           padding:9px 37px;
+           padding-left:17% !important;
+           padding-right:5% !important;
+        }
+        select[size].closed, select[size]{
+           padding:0px;
+           padding-left:0% !important;
+           padding-right:0% !important;
         }
     }
 }
+select:-internal-list-box option:checked {background-color:#fff !important;}
+
 .grid-item-link {
     float: left;
     width: 100%;
@@ -818,6 +872,49 @@
     }
 
 
-
-
+@media screen and (max-width: 992px) {
+   .product-grid-item {
+        .add-to-shelf{
+           select {
+               padding-left:30% !important;
+               padding-right:5% !important;
+           }
+           select[size].closed, select[size]{
+               padding-right:0% !important;
+           }
+       }
+    }
+}
+@media screen and (max-width: 768px) {
+   .product-grid-item {
+        .add-to-shelf{
+           select {
+               padding-left:20% !important;
+               padding-right:5% !important;
+           }
+           select[size].closed, select[size]{
+               padding-right:0% !important;
+           }
+       }
+    }
+}
+@media screen and (max-width: 480px) {
+   .product-grid-item {
+        .btn-add-wishlist {
+           font-size:12px;
+           letter-spacing: 1px;
+        }
+        .add-to-shelf{
+           select {
+               font-size: 12px;
+    		   letter-spacing: 1px;
+               padding-left:5% !important;
+               padding-right:0% !important;
+           }
+           select[size].closed, select[size]{
+               padding-right:0% !important;
+           }
+       }
+    }
+}
 

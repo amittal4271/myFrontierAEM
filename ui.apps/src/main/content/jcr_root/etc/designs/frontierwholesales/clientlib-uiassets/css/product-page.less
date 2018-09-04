@@ -128,10 +128,18 @@
     });
     .add-to-shelf{
         width:50%;
+        padding:0px;
+        position:relative;
+        z-index: 999;
 
         select{
-            border:none;
-            position:relative;
+           border:none;
+            position:absolute;
+            display:block;
+            overflow:hidden;
+            width:100%;
+            text-align:center;
+            max-height:initial;
             font-family:Lato,sans-serif;
             font-weight:400;
             color:#7d7671;
@@ -143,12 +151,55 @@
             -webkit-appearance:none; /* Safari and Chrome */
             appearance:none;
             cursor:pointer;
-            padding:0 12px;
+            padding:0px;
+            text-indent:0px;
+            border-radius:4px;
+            box-shadow: 1px 2px 8px rgba(0,0,0,0.2);
 
             option{
                 width:100%;
+                padding:10px 0px;
+                background:#fff;
+                display:block;
+            }
+            option:hover,
+            option:focus,
+            option:active,
+            option:checked   {
+              	background-color: #fff !important;
+                color:#8bba4a;
+            }
+            option:first-child {
+				pointer-events:none;
+                display:none;
             }
         }
+        select[size] option:first-child {
+            display:block;
+        }
+        select[size].closed option:first-child {
+            display:none;
+        }
+        select.closed {
+			box-shadow: none;
+            max-height: 38px;
+            padding:9px 37px;
+            option {
+               display:none;
+            }
+            option:checked {
+               display:block !important;
+            }
+        }
+        select {
+           padding:9px 37px;
+           padding-left:30% !important;
+        }
+        select[size].closed, select[size]{
+           padding:0px;
+           padding-left:0% !important;
+        }
+
     }
 }
 .product-sku-number {
@@ -697,5 +748,66 @@
         float: left;
     }
 }
-
-
+@media screen and (max-width: 1300px) {
+    #product-information {
+       .add-to-shelf {
+           select {
+               padding-left:25% !important;
+               padding-right:5% !important;
+           }
+           select[size].closed, select[size]{
+               padding-right:0% !important;
+           }
+       }
+    }
+}
+@media screen and (max-width: 1024px) {
+    #product-information {
+       .add-to-shelf {
+           select {
+               padding-left:20% !important;
+               padding-right:5% !important;
+           }
+           select[size].closed, select[size]{
+               padding-right:0% !important;
+           }
+       }
+    }
+}
+@media screen and (max-width: 860px) {
+    #product-information {
+       .add-to-shelf {
+           select {
+               padding-left:10% !important;
+               padding-right:5% !important;
+           }
+       }
+    }
+}
+@media screen and (max-width: 768px) {
+    #product-information {
+       .add-to-shelf {
+           select {
+               padding-left:30% !important;
+           }
+       }
+    }
+}
+@media screen and (max-width: 768px) {
+    #product-information {
+       .add-to-shelf {
+           select {
+               padding-left:23% !important;
+           }
+       }
+    }
+}
+@media screen and (max-width: 480px) {
+    #product-information {
+       .add-to-shelf {
+           select {
+               padding-left:10% !important;
+           }
+       }
+    }
+}

@@ -26,16 +26,17 @@ console.log("product details page...");
         addItemToWishList(skuId);
         
     });
-    
-     $(document).on('click','.requisition-list-select',function(e){
+
+     $(document).on('focus','.requisition-list-select',function(e){
        e.preventDefault(); 
+        $(this).removeClass('closed');
         var length = $(this).find("option").length;
         if(length == 1){
-        var $thisObj = $(this);
-        retrieveRequisitionList($thisObj);
+          var $thisObj = $(this);
+          retrieveRequisitionList($thisObj);
         }
     });
-    
+
     $(document).on('change','.requisition-list-select',function(e){
         e.preventDefault(); 
         var id = $(this).data('prodid');
@@ -44,9 +45,17 @@ console.log("product details page...");
         if(qty !== undefined && qty !== ''){
             var reqid = $(this).val();
             addRequisitionList(reqid,id,qty,sku);
+            $(this).addClass('closed').blur();
         }
         
     });
+    //  close when clicked outside of shelves dropdown
+    $(document).mouseup(function(e) {
+        var shelfDropdown = $(".requisition-list-select");
+        if (!shelfDropdown.is(e.target) && shelfDropdown.has(e.target).length === 0) {
+            shelfDropdown.addClass('closed');
+        }
+	});
   }
 
 });
