@@ -7,9 +7,7 @@ Frontier.SearchResults = new function() {
 	
 	function init() {
 		if($(".searchResult").length > 0) {
-			console.log("Frontier Search Results init");
 			initProductSearchHandlbarFunctions();
-
 			initListenersForProductButtons();
 			
 	       $(document).on('change','#itemPerPageSelect,#sortBy',function(){
@@ -18,6 +16,7 @@ Frontier.SearchResults = new function() {
 	       
 	       $(document).on('click','.pagination-next.pagination-arrow',function(e){
 	           e.preventDefault();
+	           	           
 	           var currentPage = parseInt($('#currentPage').val());
 	         
 	           var pageTotal = parseInt($('#totalPage').val());
@@ -31,7 +30,8 @@ Frontier.SearchResults = new function() {
 	       
 	        $(document).on('click','.pagination-previous.pagination-arrow',function(e){
 	            e.preventDefault();
-	           var disabled = $(this).hasClass('disabled');
+	            
+	            var disabled = $(this).hasClass('disabled');
 	            if(!disabled){
 	               var currentPage = parseInt($('#currentPage').val());
 	                if(currentPage > 1){
@@ -55,16 +55,23 @@ Frontier.SearchResults = new function() {
 	};
 	
 	function updateResults(products) {
+				
+		if(products == null) {
+			products = {};
+		}
 		
 		if($(".searchResult").length > 0) {
 			var filterGroups = [];
 			
 			var searchTerm;
 			var brandIds = [];
+						
+			if(typeof Frontier.SearchFacets != "undefined" && products != null && typeof products.buckets != "undefined") {
+				Frontier.SearchFacets.updateFilterOptions(products.buckets);
+			}
 			
-			if(typeof products.search_criteria !== "undefined") {
+			if(products != null && typeof products.search_criteria !== "undefined") {
 				filterGroups = products.search_criteria.filter_groups;
-				
 				jQuery.each( filterGroups, function(i,filterGroup) {
 				    jQuery.each( filterGroup, function(j,filterGroupAttributes) {
 				    	jQuery.each(filterGroupAttributes, function(k,filterGroupAttribute) {
@@ -77,18 +84,22 @@ Frontier.SearchResults = new function() {
 				    			brandIds.push(filterGroupAttribute.value);
 				    		}
 				    		
+				    		if(filterGroupAttribute.field == "search_term") {
+				    			searchTerm = filterGroupAttribute.value;
+				    			searchTerm = searchTerm.replaceAll("%", "");
+				    		}
+				    		
 				    		if(filterGroupAttribute.field == "name") {
 				    			searchTerm = filterGroupAttribute.value;
 				    			searchTerm = searchTerm.replaceAll("%", "");
 				    		}
 				    		
+				    		
 				    	});
 				    });
 				});
 			}
-			
-			
-			
+						
 			if(!!searchTerm) {
 				products.searchTerm = decodeURI(searchTerm);
 				$(".search-input").val(searchTerm);
@@ -145,13 +156,16 @@ Frontier.SearchResults = new function() {
 	        	adjustHeight();
 	        }, 500);
 	       
-			//enable/disable previous button - Pagination
-//		    if(currentPage > 1){
-//		          $('#previous').removeClass('disabled');
-//			} else {
-//		          $('#previous').addClass('disabled');
-//			}
-//	       
+	        var currentPage = parseInt($('#currentPage').val());
+	        
+//			enable/disable previous button - Pagination
+		    if(currentPage > 1){
+		          $('#previous').removeClass('disabled');
+			} else {
+		          $('#previous').addClass('disabled');
+			}
+	       
+		
 		}
 		
 	}
