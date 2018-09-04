@@ -74,15 +74,20 @@ Frontier.SearchController = new function() {
 		var queryString;
 		
 		if(searchTermOnly) {
-			queryString = "searchCriteria[requestName]=quick_search_container&"
+			queryString = "searchCriteria[requestName]=quick_search_container"
 		} else {
-			queryString = "searchCriteria[requestName]=advanced_search_container&"
+			queryString = "searchCriteria[requestName]=advanced_search_container"
 		}
-		
+				
 		var searchTerm = $(".search-input").val();
-//		queryString += getFilterParam(0,0,"botanicalname",encodeURIComponent("%"+searchTerm+"%"), "like");
-//		queryString += "&"+ getFilterParam(0,0,"name",encodeURIComponent("%"+searchTerm+"%"), "like");
-		queryString += getFilterParam(0,0,"search_term",encodeURIComponent(searchTerm), "like");
+		if(!!searchTerm) {
+			if(searchTermOnly) {
+				queryString += "&"+ getFilterParam(0,0,"search_term",encodeURIComponent(searchTerm), "like");
+			} else {
+				queryString += "&"+ getFilterParam(0,0,"botanicalname",encodeURIComponent("%"+searchTerm+"%"), "like");
+				queryString += "&"+ getFilterParam(0,0,"name",encodeURIComponent("%"+searchTerm+"%"), "like");
+			}
+		}
 		
 		var filtersQueryString = "";
 		var groupIndex = 0;
@@ -162,8 +167,8 @@ Frontier.SearchController = new function() {
         }
 		
 		//TODO re-enable the pageNum and pageSize when fixed in magento service
-		//queryString += "&searchCriteria[currentPage]="+pageNum;
-		//queryString += "&searchCriteria[pageSize]="+recsPerPage;
+		queryString += "&searchCriteria[currentPage]="+pageNum;
+		queryString += "&searchCriteria[pageSize]="+recsPerPage;
 		
 		return queryString;
 	}

@@ -98,6 +98,7 @@ Frontier.SearchFacets = new function() {
 			}		
 		}
 		
+		$(".each-filter-section").removeClass("hide");
 	}
 	
 	function addFilter(name, value) {
