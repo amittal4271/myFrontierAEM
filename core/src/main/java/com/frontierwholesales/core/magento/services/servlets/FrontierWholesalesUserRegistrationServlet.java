@@ -78,7 +78,7 @@ public class FrontierWholesalesUserRegistrationServlet  extends SlingAllMethodsS
 			log.debug("entered into doPost method of registration");
 			try {
 			 
-				final String authorization = request.getHeader("Authorization");
+				 String authorization = request.getHeader("Authorization");
 			    if (authorization != null && authorization.startsWith("Basic")) {
 			        // Authorization: Basic base64credentials
 			        String base64Credentials = authorization.substring("Basic".length()).trim();

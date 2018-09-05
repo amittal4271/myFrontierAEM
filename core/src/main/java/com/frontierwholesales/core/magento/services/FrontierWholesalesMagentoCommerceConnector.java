@@ -53,9 +53,7 @@ public class FrontierWholesalesMagentoCommerceConnector {
 
     private static String server = "http://localhost:8000";
     
-    private static String adminUser="";
     
-    private static String adminPassword="";
     private static String appToken="";
   
     
@@ -76,21 +74,7 @@ public class FrontierWholesalesMagentoCommerceConnector {
     )
     public static final String SERVER = "server";
     
-    @Property(
-    		
-            label = "Magento Server admin user",
-            description = "Magento Server admin user",
-            value = "admin"
-    )
-    public static final String ADMIN_USER="adminUser";
-    
-    @Property(
-    		
-            label = "Magento Server admin password",
-            description = "Magento Server admin password",
-            passwordValue = "admin"
-    )
-    public static final String ADMIN_PASSWORD="adminPassword";
+   
 
     public static final int TIME_OUT=6000;
 
@@ -109,10 +93,6 @@ public class FrontierWholesalesMagentoCommerceConnector {
         
         server = cfg.getConfigValue(SERVER, "http://frontierb2b.ztech.io/index.php");
        
-        adminUser = cfg.getConfigValue(ADMIN_USER, "admin");
-       
-        adminPassword = cfg.getConfigValue(ADMIN_PASSWORD, "admin");
-        
        
     }
 
@@ -143,31 +123,6 @@ public class FrontierWholesalesMagentoCommerceConnector {
     }
     
     
-
-    public String getAdminUser() {
-    	log.debug("get method "+adminUser);
-		return adminUser;
-	}
-
-
-
-	public void setAdminUser(String adminUser) {
-		FrontierWholesalesMagentoCommerceConnector.adminUser = adminUser;
-	}
-
-
-
-	public String getAdminPassword() {
-		return adminPassword;
-	}
-
-
-
-	public void setAdminPassword(String adminPassword) {
-		FrontierWholesalesMagentoCommerceConnector.adminPassword = adminPassword;
-	}
-
-
 
 	public String getToken(String username, String password)throws Exception{
         AuthCredentials authCredentials = new AuthCredentials(username, password);

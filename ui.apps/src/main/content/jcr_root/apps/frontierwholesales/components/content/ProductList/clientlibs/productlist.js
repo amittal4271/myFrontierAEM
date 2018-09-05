@@ -212,7 +212,13 @@ function constructFilterConditions(){
     var groupIdx = 1;
     var index = 0;
     var queryString='';
-    $('#plp-search-left-nav-filters').find('.selected-filter').each(function(i,data){
+    var findLength = $('#mobile-filters').children().length;
+    var findFilters = $('#plp-search-left-nav-filters');
+    if(findLength > 0){
+        findFilters =  $('#mobile-filters');
+    }
+   
+    findFilters.find('.selected-filter').each(function(i,data){
        var code = $(this).parent().parent().data('code'); 
         var data = $(this).data('value').toString();
         var id = $(this).attr('id');

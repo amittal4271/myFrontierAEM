@@ -43,11 +43,11 @@
 <sly data-sly-test="${user.authToken == null}">
 					<li class="mobile-first-level-item"><a class="mobile-first-level-link" href="/content/frontierwholesales/en/login.html">Login</a></li>
 </sly>
-					<li class="mobile-first-level-item"><a class="mobile-first-level-link" href="#">Account Info</a></li>				
+					<li class="mobile-first-level-item"><a class="mobile-first-level-link" href="/content/frontierwholesales/en/myaccount.html">Account Info</a></li>				
                     
-                     <li  class="mobile-first-level-item"><a class="mobile-first-level-link" href="${magentoInfo.magentoServer}/customer/address?token=${user.token @context='scriptString'}">Address Book</a></li>
-                         <li  class="mobile-first-level-item"><a class="mobile-first-level-link" href="${magentoInfo.magentoServer}/sales/order/history?token=${user.token @context='scriptString'}">Orders</a></li>
-                         <li  class="mobile-first-level-item"><a class="mobile-first-level-link" href="${magentoInfo.magentoServer}/wishlist?token=${user.token @context='scriptString'}">Wish List</a></li>
+                     <li  class="mobile-first-level-item"><a class="mobile-first-level-link" href="/content/frontierwholesales/en/myaccount.html/addressbook">Address Book</a></li>
+                         <li  class="mobile-first-level-item"><a class="mobile-first-level-link" href="/content/frontierwholesales/en/myaccount.html/orders">Orders</a></li>
+                         <li  class="mobile-first-level-item"><a class="mobile-first-level-link" href="/content/frontierwholesales/en/myaccount.html/wishlist">Wish List</a></li>
 <sly data-sly-test="${user.authToken != null}">
 					<li class="mobile-first-level-item"><a class="mobile-first-level-link" id="signOut" href="#">Sign Out</a></li>
 </sly>

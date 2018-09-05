@@ -59,7 +59,7 @@ public class FrontierWholesalesShoppingCartServlet  extends SlingAllMethodsServl
 		try {
 			String action = request.getParameter("action");
 			log.debug(" action is "+action);
-			final String token = request.getHeader("Authorization");
+			String token = request.getHeader("Authorization");
 			
 			if(token == null) {
 			
@@ -67,16 +67,12 @@ public class FrontierWholesalesShoppingCartServlet  extends SlingAllMethodsServl
 			
 			}
 		
-			if(action.equals("remove")) {
-				String itemId = request.getParameter("itemId");
-				
-				 commerceConnector.removeCartItem(token, itemId);
-				
-				
-			}else if(action.equals("add")){
+			if(action.equals("add")){
 				String jsonData = request.getParameter("items");
+			
 				// create cart
 				String cartId = commerceConnector.initCart(token);
+				
 				if(cartId == null) {
 					throw new Exception("Initialization of cart is failed");
 				}
@@ -86,24 +82,13 @@ public class FrontierWholesalesShoppingCartServlet  extends SlingAllMethodsServl
 				String cartItems = commerceConnector.addItemToCart(token, updatedData);
 				
 				
-			}else if(action.equals("update")) {
-				String userCart = commerceConnector.getCartId(token);
-				String quote_id = FrontierWholesalesUtils.getIdFromObject(userCart,"id");
-				
-				String items = request.getParameter("cartItem");
-				
-				String itemId = request.getParameter("itemId");
-				
-				String updatedData = FrontierWholesalesUtils.updateJsonObject(items, "cartItem", "quote_id",quote_id);
-				
-				String updatedResponse = commerceConnector.updateCartItem(token, itemId, updatedData);
-				
 			}
 			String cartObject = commerceConnector.getCartTotalWithItems(token);
 			
 			String object = getValueFromJson(cartObject,request);
 			log.debug("shopping cart operations end ");
-			response.getOutputStream().println(object);
+			
+			response.getOutputStream().write(object.getBytes("UTF-8"));
 			
 		}catch(Exception anyEx) {
 			
@@ -158,6 +143,8 @@ public class FrontierWholesalesShoppingCartServlet  extends SlingAllMethodsServl
 			
 			String imgPath = utils.getImagePath(sku, request);
 			itemObject.addProperty("imgPath", imgPath);
+			
+
 			itemObject.addProperty("price", "$"+priceFormat.format(price.getAsDouble()));
 			JsonElement qtyObject = itemObject.get("qty");
 			boolean bReturn = false;
@@ -165,8 +152,12 @@ public class FrontierWholesalesShoppingCartServlet  extends SlingAllMethodsServl
 				bReturn = true;
 			}
 			itemObject.addProperty("quantities", bReturn);
+			
+
 			JsonElement updatedElement = json.fromJson(itemObject, JsonElement.class);
 			updatedArray.add(updatedElement);
+			
+
 		}
 		
 		
@@ -174,9 +165,14 @@ public class FrontierWholesalesShoppingCartServlet  extends SlingAllMethodsServl
 		
 			JsonElement subTotal = quote.get("subtotal");
 			
-			double subtotal = subTotal.getAsDouble();
+			double subtotal = 0;
+			if(subTotal != null) {
+				
+				subtotal = subTotal.getAsDouble();
+			}
 			
 			if(subtotal == 0) {
+				
 				object.addProperty("noTotal", true);
 			}else {
 			

@@ -1,5 +1,4 @@
 $(document).ready(function(){
-    
     $(document).on('click','#signOut',function(){
        localStorage.removeItem('ConfirmationNr');
       
