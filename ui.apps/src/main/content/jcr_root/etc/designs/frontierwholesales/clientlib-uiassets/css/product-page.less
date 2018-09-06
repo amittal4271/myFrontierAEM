@@ -804,9 +804,27 @@
 }
 @media screen and (max-width: 480px) {
     #product-information {
+        .btn-add-wishlist {
+			padding-left:0px !important;
+            text-align:left !important;
+        }
        .add-to-shelf {
+            width: 100% !important;
+            display: inline-block;
+            min-height: 40px;
+
            select {
-               padding-left:10% !important;
+               padding-left:0px !important;
+               box-shadow:none !important;
+               padding:0px !important;
+               margin:10px 0px !important;
+           }
+           select[size].closed, select[size]{
+               padding-right:0% !important;
+               box-shadow:none !important;
+               text-align:left;
+               padding:0px !important;
+               margin:10px 0px !important;
            }
        }
     }
