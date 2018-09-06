@@ -351,6 +351,10 @@ function retrieveRequisitionList(thisObj){
                                         {'value':value.id,'text':value.name}));
 				  thisObj.attr("size", list.length + 1);
              });
+             if(($( window ).width()) < 480) {
+				thisObj.delay(2000).focus().click();
+
+             }
          }else{
              thisObj.append($('<option/>',
                                     {'text':'Not available'}));
