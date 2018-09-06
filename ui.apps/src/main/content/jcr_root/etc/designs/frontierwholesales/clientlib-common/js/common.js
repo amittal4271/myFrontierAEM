@@ -1,4 +1,8 @@
 $(document).ready(function(){
+    if (!!window.performance && window.performance.navigation.type === 2) {
+        console.log('browser back button...');
+        location.reload();
+    }
     $(document).on('click','#signOut',function(){
        localStorage.removeItem('ConfirmationNr');
       
