@@ -54,10 +54,10 @@ Frontier.SearchController = new function() {
 		showLoadingScreen();
 		var queryStringForSearch = getQueryString(pageNum);
 		Frontier.MagentoServices.searchProducts(queryStringForSearch).done(function(productList){
-			if (history.pushState) {
-			    var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + "?" + queryStringForSearch;
-			    window.history.pushState({path:newurl},'',newurl);
-			}
+//			if (history.pushState) {
+//			    var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + "?" + queryStringForSearch;
+//			    window.history.pushState({path:newurl},'',newurl);
+//			}
 			
 			Frontier.SearchResults.updateResults(productList);
 			hideLoadingScreen();
@@ -74,18 +74,18 @@ Frontier.SearchController = new function() {
 		var queryString;
 		
 		if(searchTermOnly) {
-			queryString = "searchCriteria[requestName]=quick_search_container"
+			queryString = "searchCriteria[requestName]=quick_search_container";
 		} else {
-			queryString = "searchCriteria[requestName]=advanced_search_container"
+			queryString = "searchCriteria[requestName]=advanced_search_container";
 		}
-				
+		
 		var searchTerm = $(".search-input").val();
 		if(!!searchTerm) {
 			if(searchTermOnly) {
 				queryString += "&"+ getFilterParam(0,0,"search_term",encodeURIComponent(searchTerm), "like");
 			} else {
 				queryString += "&"+ getFilterParam(0,0,"botanicalname",encodeURIComponent("%"+searchTerm+"%"), "like");
-				queryString += "&"+ getFilterParam(0,0,"name",encodeURIComponent("%"+searchTerm+"%"), "like");
+				queryString += "&"+ getFilterParam(0,1,"name",encodeURIComponent("%"+searchTerm+"%"), "like");
 			}
 		}
 		
@@ -147,26 +147,13 @@ Frontier.SearchController = new function() {
 		if(typeof pageNum === 'undefined' || pageNum == '' || pageNum == null || pageNum < 1 || searchTermOnly) {
 			pageNum = 1;
 		}
-		
-		var sortBy;
-		if(!searchTermOnly) {
-			sortBy = $("#sortBy").val();
+				
+		try {
+			pageNum = pageNum - 1;
+		} catch(error) {
+			console.log("pagination error ", error);
 		}
 		
-		featured ="&searchCriteria[sortOrders][0][field]=featured&searchCriteria[sortOrders][0][direction]=DESC";
-		newProduct="&searchCriteria[sortOrders][0][field]=created_at&searchCriteria[sortOrders][0][direction]=DESC";
-		
-		if(sortBy == "asc" || sortBy == "desc") {
-			queryString += "&searchCriteria[sortOrders][0][field]=price&searchCriteria[sortOrders][0][direction]="+sortBy;
-        } else if(sortBy == "featured") {
-        	queryString += featured;
-        } else if(sortBy == "newproduct") {
-        	queryString += newProduct;
-        } else {
-        	queryString += featured; //default
-        }
-		
-		//TODO re-enable the pageNum and pageSize when fixed in magento service
 		queryString += "&searchCriteria[currentPage]="+pageNum;
 		queryString += "&searchCriteria[pageSize]="+recsPerPage;
 		

@@ -86,7 +86,7 @@ Frontier.SearchFacets = new function() {
 			
 			$(".searchResult #plp-search-left-nav-filters").html("");
 			
-			var manufacturerFacetObject = hydrateTemplateObject(buckets, "manufacturer_bucket", "Manufacturer", true);
+			var manufacturerFacetObject = hydrateTemplateObject(buckets, "manufacturer_bucket", "Brand", true);
 			
 			if(!!manufacturerFacetObject.options) {
 				$(".searchResult #plp-search-left-nav-filters").append(facetTemplate(manufacturerFacetObject));

@@ -38,7 +38,7 @@ Frontier.SearchResults = new function() {
 	                var prevPage = currentPage - 1;
 
 	                     var pageTotal = parseInt($('#totalPage').val());
-	                    var recsPerPage = $('#itemPerPageSelect').val();
+	                     var recsPerPage = $('#itemPerPageSelect').val();
 	                     var sortBy = $('#sortBy').val();
 	                     Frontier.SearchController.updateResults(prevPage);
 	                }
@@ -56,6 +56,10 @@ Frontier.SearchResults = new function() {
 	
 	function updateResults(products) {
 				
+		if(products != null && !!products.search_criteria) {
+			products.search_criteria.current_page = products.search_criteria.current_page + 1;
+		}
+		
 		if(products == null) {
 			products = {};
 		}
@@ -63,9 +67,11 @@ Frontier.SearchResults = new function() {
 		if($(".searchResult").length > 0) {
 			var filterGroups = [];
 			
+			var filterCount = 0;
 			var searchTerm;
 			var brandIds = [];
-						
+			var certIds = [];
+			
 			if(typeof Frontier.SearchFacets != "undefined" && products != null && typeof products.buckets != "undefined") {
 				Frontier.SearchFacets.updateFilterOptions(products.buckets);
 			}
@@ -84,6 +90,10 @@ Frontier.SearchResults = new function() {
 				    			brandIds.push(filterGroupAttribute.value);
 				    		}
 				    		
+				    		if(filterGroupAttribute.field == "certifications") {
+				    			certIds.push(filterGroupAttribute.value);
+				    		}
+				    		
 				    		if(filterGroupAttribute.field == "search_term") {
 				    			searchTerm = filterGroupAttribute.value;
 				    			searchTerm = searchTerm.replaceAll("%", "");
@@ -94,7 +104,6 @@ Frontier.SearchResults = new function() {
 				    			searchTerm = searchTerm.replaceAll("%", "");
 				    		}
 				    		
-				    		
 				    	});
 				    });
 				});
@@ -102,17 +111,36 @@ Frontier.SearchResults = new function() {
 						
 			if(!!searchTerm) {
 				products.searchTerm = decodeURI(searchTerm);
+				filterCount++;
 				$(".search-input").val(searchTerm);
-			} else if(brandIds.length > 0) {
+			} else {
+				products.searchTerm = "";
+			}
+			
+			if(brandIds.length > 0) {
 				if(!!Frontier.SearchFacets) {
-					products.searchTerm = "";
 					$(brandIds).each(function(i, idValue) {
-						if(i>0) {
+						if(filterCount > 0) {
 							products.searchTerm += ", ";
 						}
 						
 						var displayValue = Frontier.SearchFacets.getFilterDisplayText("manufacturer",idValue);
 						products.searchTerm += displayValue.replaceAll("&#039;","'");
+						filterCount++;
+					});				
+				}
+			}
+			
+			if(certIds.length > 0) {
+				if(!!Frontier.SearchFacets) {
+					$(certIds).each(function(i, idValue) {
+						if(filterCount > 0) {
+							products.searchTerm += ", ";
+						}
+						
+						var displayValue = Frontier.SearchFacets.getFilterDisplayText("certifications",idValue);
+						products.searchTerm += displayValue.replaceAll("&#039;","'");
+						filterCount++;
 					});				
 				}
 			}
