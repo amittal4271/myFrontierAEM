@@ -111,7 +111,17 @@ public class CarouselListItemImpl implements ListItem {
     @Override
     public String getURL() {
     	String vanityURL = page.getVanityUrl();
-        return StringUtils.isEmpty(vanityURL) ? request.getContextPath() + page.getPath() + ".html" : request.getContextPath() + vanityURL;
+    	
+    	if(StringUtils.isEmpty(vanityURL) ) {
+    		if(!StringUtils.isEmpty(imageLink)){
+    			return imageLink;
+    		} else {
+    			return request.getContextPath() + page.getPath() + ".html";
+    		}
+    		
+    	} else {
+    		return request.getContextPath() + vanityURL;
+    	}
     }
 
     @Override
