@@ -37,7 +37,7 @@ function callResetPassword(){
     jsonData['email']=currentEmailId;
     jsonData['resetToken']=$('#customer-token').val();
     
-  
+   jsonData['customerId']=$('#customer-id').val();
     
     var memberName = $('#id_shipping-name').val();
     var memberNameSplit = memberName.split(' ');
@@ -106,7 +106,8 @@ function callResetPassword(){
     $.ajax({
         url: "/services/registration",
         method: "POST",
-        data: {resetPwd:JSON.stringify(jsonData),action:'buyersClub',customer:JSON.stringify(customer),address:JSON.stringify(address),email: $('#id_membership-email').val()},
+        data: {customerId: $('#customer-id').val(),
+               resetToken: $('#customer-token').val(),resetPwd:JSON.stringify(jsonData),action:'buyersClub',customer:JSON.stringify(customer),address:JSON.stringify(address),email: $('#id_membership-email').val()},
          headers:{
 
                 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',

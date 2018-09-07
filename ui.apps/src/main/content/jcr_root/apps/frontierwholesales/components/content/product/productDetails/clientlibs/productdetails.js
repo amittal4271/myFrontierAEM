@@ -77,7 +77,14 @@ function getProductDetails(){
     var infoAttribute = getAttributeDataFromTxtBox('infoAttribute');
     var additionalAttribute = getAttributeDataFromTxtBox('additionalAttribute');
 if(summaryAttribute !== undefined && infoAttribute !== undefined && additionalAttribute !== undefined){
-    jsonData['sku']=$('#productId').val();
+     var sku = $('#productId').val();
+    if(sku == undefined || sku == ''){
+        return false;
+    }
+    sku = sku.split('/');
+    
+    sku = sku[sku.length-1];
+    jsonData['sku']=sku;
     jsonData['currentPagePath'] = $('#currentPagePath').val();
    
     $.ajax({

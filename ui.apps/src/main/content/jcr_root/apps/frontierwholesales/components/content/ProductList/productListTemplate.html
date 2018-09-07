@@ -5,9 +5,9 @@
 			{{#each categorylist.parent}}
 			{{#unless @first}}
 			{{#if @last}}
-			<li class="active">{{name}}</li>
+			<li class="active">{{{name}}}</li>
 			{{else}}
-			<li><a href="/content/frontierwholesales/en/productlist.html?id={{id}}">{{name}}</a></li>
+			<li><a href="/content/frontierwholesales/en/productlist.html/{{{categoryname}}}/{{id}}">{{{name}}}</a></li>
 			{{/if}}
 			{{/unless}}
 			{{/each}}
@@ -41,11 +41,11 @@
 		
 			{{#moreCategories @index}}
 			<li class="filter-item visuallyhidden">
-				<a href="/content/frontierwholesales/en/productlist.html?id={{child.id}}" class="filter-link"><span class="text">{{child.name}}</span></a>
+				<a href="/content/frontierwholesales/en/productlist.html{{{child.childpath}}}/{{{child.childname}}}/{{child.id}}" class="filter-link"><span class="text">{{{child.name}}}</span></a>
 			</li>
 			{{else}}
 			<li class="filter-item">
-				<a href="/content/frontierwholesales/en/productlist.html?id={{child.id}}" class="filter-link"><span class="text">{{child.name}}</span></a>
+				<a href="/content/frontierwholesales/en/productlist.html{{{child.childpath}}}/{{{child.childname}}}/{{child.id}}" class="filter-link"><span class="text">{{{child.name}}}</span></a>
 			</li>
 			{{/moreCategories}}
 			{{/each}}
@@ -103,7 +103,7 @@
 	<div id="plp-search-header-holder" class="search-header-holder">
 		<input type="hidden" id="totalcount" value="{{total_count}}">
 		<div id="search-heading">
-			<h1 class="plp-search-text-heading">{{categorylist.category.name}}</h1>
+			<h1 class="plp-search-text-heading">{{{categorylist.category.name}}}</h1>
 				<span class="showing-number-of-items">
 				     Showing <span class="number">{{recordsPerPage recsPerPage search_criteria.current_page total_count}}</span> of <span class="number">{{total_count}}</span> Products
 				</span>

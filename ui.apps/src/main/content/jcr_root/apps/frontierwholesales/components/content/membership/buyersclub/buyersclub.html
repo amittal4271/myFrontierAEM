@@ -3,6 +3,7 @@
 <sly data-sly-call="${clientlib.js @ categories='frontierwholesales.buyersclub'}" data-sly-unwrap/>
     <sly data-sly-use.email="${'buyersclub.js' @ params=request.queryString}" />
 <input type="hidden" id="customer-token" value="${request.requestParameterMap['token'][0].toString}">
+<input type="hidden" id="customer-id" value="${request.requestParameterMap['id'][0].toString}">
     <input type="hidden" id="current-email-id" value="${email.email}">
 <section id="membership-holder">
                     <div class="container">

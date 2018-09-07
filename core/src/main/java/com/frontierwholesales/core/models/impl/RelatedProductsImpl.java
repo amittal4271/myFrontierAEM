@@ -75,7 +75,11 @@ public class RelatedProductsImpl implements RelatedProducts {
 		// get sku, current page = product page
 		log.debug("Product SKU passed in from request attribute: {}", mainProductSku);
 		try {
-		String productSku = mainProductSku;	// passed in via request attribute from page
+			
+			String[] skuSplit = mainProductSku.split("/");
+			
+		//String productSku = mainProductSku;	// passed in via request attribute from page
+			String productSku = skuSplit[skuSplit.length-1];
 		
 		log.debug("Product SKU from which to get related products: {}", productSku);
 		// call service GET /V1/products/{sku}/links/{type} where type = related, cross_sell or up_sell

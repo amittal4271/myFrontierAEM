@@ -89,7 +89,7 @@ public class FrontierWholesalesProductListServlet extends SlingAllMethodsServlet
 			String adminToken = commerceConnector.getAdminToken();
 			String productList = commerceConnector.getProducts(adminToken, search);
 			String catList = commerceConnector.getParentChildrenCategories(adminToken, categoryId);
-			
+			catList = parseCatListObject(catList);
 			response.setContentType("text/html;charset=UTF-8;");
 			response.setCharacterEncoding("UTF-8");
 			
@@ -151,5 +151,54 @@ public class FrontierWholesalesProductListServlet extends SlingAllMethodsServlet
 		
 			log.debug("addUserTokenToObject End ");
 			return jsonObject.toString();
+	}
+	
+	private String parseCatListObject(String catList) throws Exception{
+		log.debug("parseCatListObject start");
+		JsonParser parser = new JsonParser();
+		JsonObject object = parser.parse(catList).getAsJsonObject();
+		
+		JsonArray parentArray = object.get("parent").getAsJsonArray();
+		JsonArray childArray = object.get("children").getAsJsonArray();
+		int count=0;
+		String parentNames="";
+		log.debug("before array");
+		for(JsonElement element:parentArray) {
+			log.debug("inside array");
+			
+			if(count > 0) {
+				JsonObject obj = element.getAsJsonObject();
+				String name = obj.get("name").getAsString();
+				name = name.toLowerCase();
+				parentNames+="/"+name.replaceAll(" ", "-");
+				log.debug("name is "+name);
+				obj.addProperty("categoryname", name.replaceAll(" ", "-"));
+				
+				
+			}
+			
+			count++;
+		}
+		log.debug("before if condition");
+		if(parentNames != "") {
+			log.debug("parentNames are "+parentNames);
+			object.addProperty("fullpath", parentNames);
+		}
+		
+		for(JsonElement element:childArray) {
+		
+		
+			JsonObject obj = element.getAsJsonObject();
+			String name = obj.get("name").getAsString();
+			name = name.toLowerCase();
+			
+			obj.addProperty("childname", name.replaceAll(" ","-"));
+			obj.addProperty("childpath", parentNames);
+			
+			count++;
+		}
+		
+		log.debug("parseCatListObject End");
+		return object.toString();
 	}
 }

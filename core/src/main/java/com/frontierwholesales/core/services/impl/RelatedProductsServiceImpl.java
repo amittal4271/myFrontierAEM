@@ -117,6 +117,7 @@ public class RelatedProductsServiceImpl implements RelatedProductsService {
 		FrontierWholesalesProducts products = new FrontierWholesalesProducts();
 		products.setTitle(name.getAsString());
 		products.setProductSKU(skuElement.getAsString());
+		products.setUrlPath(name.getAsString().toLowerCase().replaceAll(" ", "-"));
 		products.setImagePath(utils.getImagePath(skuElement.getAsString(),request));
 		log.debug("after the image");
 		return products;

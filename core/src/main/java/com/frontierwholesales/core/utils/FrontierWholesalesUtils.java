@@ -413,6 +413,10 @@ public class FrontierWholesalesUtils {
 				itemObject.addProperty("imgPath", this.getImagePath(skuElement.getAsString(),request));
 				JsonArray attributesArray = itemObject.getAsJsonArray("custom_attributes");
 				
+				String status = itemObject.get("status").getAsString();
+				String visibility = itemObject.get("visibility").getAsString();
+				
+				
 				for(JsonElement attributesElement:attributesArray) {
 					JsonObject attrObject = attributesElement.getAsJsonObject();
 					JsonElement codeElement = attrObject.get("attribute_code");
@@ -436,6 +440,12 @@ public class FrontierWholesalesUtils {
 					if(codeElement.getAsString().equals("bulk")){
 						itemObject.addProperty("bulk",  attrObject.get("value").getAsString());
 					}
+					
+					if(codeElement.getAsString().equals("url_key")) {
+						String url = attrObject.get("value").getAsString();
+						url = url.replaceAll(" ", "-");
+						itemObject.addProperty("url", url);
+					}
 				}
 				
 				if(groupId != null) {
@@ -453,6 +463,7 @@ public class FrontierWholesalesUtils {
 				
 				itemObject.remove("tier_prices");
 				itemObject.remove("price");
+				
 			}
 			
 //			JsonElement arrayElement = json.fromJson(itemArray, JsonElement.class);

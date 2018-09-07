@@ -1,4 +1,4 @@
-<input id="productId" type=hidden value="${request.requestParameterMap['sku'][0].toString}"/>
+<input id="productId" type=hidden value="${request.requestPathInfo.suffix}"/>
 <input id="currentPagePath" type=hidden value="${currentPage.path}"/>
 
 
@@ -8,8 +8,8 @@
 <input id="additionalAttribute" type="hidden" value="${properties.additionalAttribute}"/>
 <sly data-sly-use.user="${'com.frontierwholesales.core.models.SessionModel'}"></sly>
 
-<div data-sly-test="${!request.requestParameterMap['sku'][0].toString}">No product SKU provided in request</div>
-<sly data-sly-test="${request.requestParameterMap['sku'][0].toString}">
+<div data-sly-test="${!request.requestPathInfo.suffix}">Product is not found.</div>
+<sly data-sly-test="${request.requestPathInfo.suffix}">
 <div data-sly-test="${wcmmode.edit && !model.hasVariants}" class="cq-placeholder"
          data-emptytext="Product Component"></div>
        
@@ -22,7 +22,7 @@
                                  <ol class="breadcrumb">
                                  <li><a href="/content/frontierwholesales/en/home.html">Home</a></li>
                                     
-                                    <li class="active">{{name}}</li>
+                                    <li class="active">{{{name}}}</li>
                                            
                                  </ol>
                             </div>

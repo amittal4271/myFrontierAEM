@@ -273,6 +273,14 @@ public class FrontierWholesalesMagentoCommerceConnector {
         String searchCriteria = "searchCriteria[currentPage]="+search.getCurrentPage()+"&searchCriteria[pageSize]="+search.getNoOfRecsPerPage()+"&"+
         						 "searchCriteria[filterGroups][0][filters][0][value]="+search.getCategoryId()+"&"+
         						 "searchCriteria[filterGroups][0][filters][0][field]=category_id";
+        
+        searchCriteria += "&searchCriteria[filterGroups][1][filters][0][field]=visibility&"+
+        		"searchCriteria[filterGroups][1][filters][0][value]=2&"+
+        		"searchCriteria[filterGroups][1][filters][1][field]=visibility&"+
+        		"searchCriteria[filterGroups][1][filters][1][value]=4&"+
+        		"searchCriteria[filterGroups][2][filters][0][field]=status&"+
+        		"searchCriteria[filterGroups][2][filters][0][value]=1";
+        		
        
         if(search.getFacetSearchQuery() != null) {
         	searchCriteria = searchCriteria + search.getFacetSearchQuery();

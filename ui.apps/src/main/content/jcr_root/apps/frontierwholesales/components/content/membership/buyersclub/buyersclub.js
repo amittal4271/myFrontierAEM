@@ -1,11 +1,15 @@
 use(function () {
   var param = this.params;
     var paramSplit = param.split('&');
+    for(var i=0;i<paramSplit.length;i++){
+    	var emailSplit = paramSplit[i].split('=');
 
-    var emailSplit = paramSplit[1].split('=');
-    if(emailSplit[0] == 'email'){         
-        return { email:emailSplit[1]
+        if(emailSplit[0].indexOf('email') ==0){ 
+
+        	return { email:emailSplit[1]
                };
+    	}
     }
+
     return "";
 });

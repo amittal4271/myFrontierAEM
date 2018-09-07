@@ -137,4 +137,14 @@ public class FrontierWholesalesUserRegistration {
 		return response;
 	}
 	
+	public static String validateToken(String adminToken,String resetToken,String customerId) throws Exception{
+		
+		String server =  FrontierWholesalesMagentoCommerceConnector.getServer();
+		InputStream inputStream = Request.Get(server + "/rest/V1/customers/"+customerId+"/password/resetLinkToken/"+resetToken)
+				.addHeader("Authorization", adminToken)
+				.execute().returnResponse().getEntity().getContent();
+		 String response = FrontierWholesalesUtils.parseMagentoResponseObject(inputStream);
+			return response;
+	}
+	
 }

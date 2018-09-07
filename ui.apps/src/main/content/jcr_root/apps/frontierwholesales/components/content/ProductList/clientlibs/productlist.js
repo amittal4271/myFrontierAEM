@@ -108,7 +108,18 @@ function getProductListByCategory(currentPage,recsPerPage,sortBy,searchString){
     
     jsonData['facetQuery']=searchString;
     jsonData['currentPage']=currentPage;
-    jsonData['categoryId']=$('#categoryId').val();
+    var categoryId = $('#categoryId').val();
+    if(categoryId == undefined || categoryId == ''){
+       
+         hideLoadingScreen();
+        enableErrorMsg(error.status);
+        return false;
+    }
+    categoryId = categoryId.split('/');
+    
+    categoryId = categoryId[categoryId.length-1];
+    
+    jsonData['categoryId']=categoryId;
     jsonData['noOfRecsPerPage']=recsPerPage;
    
    if(sortBy !== undefined && sortBy !== ''){

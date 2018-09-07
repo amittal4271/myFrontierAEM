@@ -1,5 +1,6 @@
 <div id="product-grid" class="match-height">
  {{#items}}
+  
   <div class="product-grid-item" >
 
        {{#ifEquals new_product}}
@@ -11,7 +12,7 @@
        {{#ifEquals close_out}}
            <span class="badge badge-closeout">Closeout</span>
        {{/ifEquals}}
-       <a href="/content/frontierwholesales/en/productdetail.html?sku={{sku}}" class="grid-item-link">
+       <a href="/content/frontierwholesales/en/productdetail.html/{{url}}/{{sku}}" class="grid-item-link">
             <span class="grid-image-holder">
            {{#if imgPath}}
                <img src="{{imgPath}}" alt="Product Name">
@@ -87,6 +88,7 @@
       {{/priceCheck}}
 {{/if}}
        </div>
+    
        {{/items}}
       
 

@@ -89,7 +89,13 @@ public class FrontierWholesalesUserRegistrationServlet  extends SlingAllMethodsS
 			        // buyers club registration
 			        if(action.equals("buyersClub")) {
 			        	String resetPwdData = request.getParameter("resetPwd");
+			        	String resetToken = request.getParameter("resetToken");
+			        	String customerId = request.getParameter("customerId");
 			        	String adminToken = connector.getAdminToken();
+			        	
+			        	String tokenValidateResponse = FrontierWholesalesUserRegistration.validateToken(adminToken, resetToken, customerId);
+			        	
+			        	if(tokenValidateResponse.equals("true")) {
 			        	
 			        	JsonObject resetPwdObject = updateJSONObject(resetPwdData, "newPassword", credentials);
 			        	
@@ -120,6 +126,10 @@ public class FrontierWholesalesUserRegistrationServlet  extends SlingAllMethodsS
 							  log.error("Returned object is null ");
 							  response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Address Response object is null");
 						  }
+			        	}else {
+			        		jsonObject.addProperty("Fail", tokenValidateResponse);
+			        		response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Reset password token is mismatch");
+			        	}
 			        	
 			        }else {
 			        
@@ -164,7 +174,7 @@ public class FrontierWholesalesUserRegistrationServlet  extends SlingAllMethodsS
 				anyEx.printStackTrace();
 				 jsonObject.addProperty("Fail", anyEx.getMessage());
 		    	 response.getOutputStream().println(jsonObject.toString());
-		    	 response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Service object is null");
+		    	 response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, jsonObject.toString());
 				
 			}
 			
