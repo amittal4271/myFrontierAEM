@@ -30,6 +30,7 @@ public class CarouselListItemImpl implements ListItem {
     protected SlingHttpServletRequest request;
     protected Page page;
     protected String imagePath;
+    protected String imageLink;
     protected boolean isValidTemplate;
     protected boolean isValidImageNode = true;
     protected boolean isValidImageRef = true;
@@ -73,6 +74,13 @@ public class CarouselListItemImpl implements ListItem {
 	    			}
 	    			this.isValidImageRef = imageSrc != null;
 	    			imageSrc = imageResource.getPath() +".img.png/"+imageSrc;
+	    			
+	    			imageLink = imageMap.get("linkURL", String.class);
+	    			
+	    			if(imageLink != null && imageLink.startsWith("/") && !imageLink.contains(".html")) {
+	    				imageLink += ".html";
+	    			} 
+	    			
 	    			return imageSrc;	// is there default value if no image file found?
 	    		}
     		}
@@ -82,6 +90,10 @@ public class CarouselListItemImpl implements ListItem {
     
     public String getImagePath() {
     	return this.imagePath;
+    }
+    
+    public String getImageLink() {
+    	return this.imageLink;
     }
     
     public boolean isValidTemplate() {

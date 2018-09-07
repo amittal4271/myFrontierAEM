@@ -14,7 +14,7 @@
   ~ limitations under the License.
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/-->
 <template data-sly-template.item="${@ list, item}">
-    <a class="cmp-list__item-link" href="${item.URL}" data-sly-unwrap="${!list.linkItems}">
+    <a class="cmp-list__item-link" href="${item.imageLink @ context='unsafe'}" data-sly-unwrap="${!list.linkItems}">
         <img alt="${item.description || item.title}" src="${item.imagePath}" data-sly-test="${item.imagePath}"/>
     </a>
     <p style="text-align: center;" data-sly-test="${!wcmmode.disabled && !item.isValidTemplate}">
