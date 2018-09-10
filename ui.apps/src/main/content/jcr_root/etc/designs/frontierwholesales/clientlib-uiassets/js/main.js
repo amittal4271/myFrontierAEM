@@ -347,7 +347,7 @@ $(document).ready(function() {
 
 		$mobileNavOverlay.hide().removeClass('mobile-overlay-open');
 		$mobileNav.hide().removeClass('mobile-nav-open');
-		
+
 	});
 
 	
@@ -676,4 +676,21 @@ $(document).on( "click", "#mobile-account-icon", function(e) {
 		userPopup.addClass('mobile-closed');
         userPopup.css('display','none');
     }
+});
+
+// preserve scroll position on back from pdp to clp
+$(function () {
+            var pathName = document.location.pathname;
+            window.onbeforeunload = function () {
+                setTimeout(function(){ 
+                    var scrollPosition = $(document).scrollTop();
+                    sessionStorage.setItem("scrollPosition_" + pathName, scrollPosition.toString());
+                    console.log('dsadasdasd');
+				}, 5000);
+            }
+
+            if (sessionStorage["scrollPosition_" + pathName]) {
+                $(document).scrollTop(sessionStorage.getItem("scrollPosition_" + pathName));
+                console.log('345345345');
+            }
 });

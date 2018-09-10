@@ -19,7 +19,7 @@ console.log("product list page..."+facetsquery);
     $(document).on('click','.pagination-next.pagination-arrow',function(e){
         e.preventDefault();
         var currentPage = parseInt($('#currentPage').val());
-      
+
         var pageTotal = parseInt($('#totalPage').val());
         var sortBy = $('#sortBy').val();
         if(currentPage < pageTotal){
@@ -129,7 +129,7 @@ function getProductListByCategory(currentPage,recsPerPage,sortBy,searchString){
            jsonData['sortByPrice']=sortBy;
        }
    }
-    
+
     
     Frontier.MagentoServices.getProductListByCategory(jsonData).done(function(productList){
               
@@ -152,13 +152,29 @@ function getProductListByCategory(currentPage,recsPerPage,sortBy,searchString){
                 $('#sortBy option[value='+ sortBy+']').prop('selected',true);
              }
 
-             var $el = $('#plp-search-header-holder');
-            scrollToElement($el);
 
+          //  var $el = $('#plp-search-header-holder');
+          //  scrollToElement($el);
 
+           
             setTimeout(function() {
                        adjustHeight();
                    }, 500);
+
+
+
+$(function () {
+            var pathName = document.location.pathname;
+            window.onbeforeunload = function () {
+                var scrollPosition = $(document).scrollTop();
+                sessionStorage.setItem("scrollPosition_" + pathName, scrollPosition.toString());
+            }
+            if (sessionStorage["scrollPosition_" + pathName]) {
+                $(document).scrollTop(sessionStorage.getItem("scrollPosition_" + pathName));
+            }
+        });
+
+
 
         //enable/disable previous button - Pagination
          if(currentPage > 1){
