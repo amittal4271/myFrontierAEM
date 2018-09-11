@@ -48,9 +48,11 @@ function getCartItems(){
         success:function(cart){
             
            var template = $("#minicartTemplate").html();
+             HandlebarsIntl.registerWith(Handlebars);
             var processedHTML =  Handlebars.compile(template);
+           
         var html = '';
-        if(!$.isEmptyObject(cart)){
+        if(!$.isEmptyObject(cart.quote)){
           html  = processedHTML(cart,cart.items.reverse());
         }else{
             html = processedHTML(cart);

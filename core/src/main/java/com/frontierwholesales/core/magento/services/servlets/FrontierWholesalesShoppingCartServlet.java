@@ -93,8 +93,10 @@ public class FrontierWholesalesShoppingCartServlet  extends SlingAllMethodsServl
 		}catch(Exception anyEx) {
 			
 			log.error("Error "+anyEx.getMessage());
-			String errorJson="Error in Cart "+anyEx.getMessage();
-			response.getOutputStream().println(errorJson.toString());
+			
+			JsonObject errorJsonObject = new JsonObject();
+			errorJsonObject.addProperty("Fail", anyEx.getMessage());
+			response.getOutputStream().println(errorJsonObject.toString());
 			
 		}
 		log.debug("FrontierWholesalesShoppingCartServlet doGet method End");

@@ -405,13 +405,15 @@ function addItemToCart(sku,qty){
 	    Frontier.MagentoServices.addItemToCart(jsonData).done(function(cart){
 	        console.log("result is "+cart);
 	        hideLoadingScreen();
-	        
-	        
-	        $('#cartMessage-'+sku).fadeIn('fast').delay(3000).fadeOut('fast');
-	        var template = $("#minicartTemplate").html();
-	        var cartTemplate = Handlebars.compile(template);
-	        var html = cartTemplate(cart,cart.items.reverse());
-	        $('#minicarttemplate').html(html); 
+	        if(undefined == cart.Fail){	        
+                $('#cartMessage-'+sku).fadeIn('fast').delay(3000).fadeOut('fast');
+                var template = $("#minicartTemplate").html();
+                var cartTemplate = Handlebars.compile(template);
+                var html = cartTemplate(cart,cart.items.reverse());
+                $('#minicarttemplate').html(html); 
+            }else{
+                 showProdErrorMessage(cart.Fail); 
+            }
 	        
 	    }).fail(function(error){
 	        console.log("error is "+error);

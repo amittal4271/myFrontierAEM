@@ -105,7 +105,11 @@
                <span class="icon-cart">
                     <span class="glyphicon glyphicon-shopping-cart"></span>
                </span>
+             {{#if our_total includedZero=false}}
+               <span class="cart-amount">Our Total: <span class="amount">{{formatNumber our_total  style="currency" currency="USD"}}</span></span>
+             {{else}}
                <span class="cart-amount">Our Total: <span class="amount">$0.00</span></span>
+             {{/if}}
           </a>
          {{/if}}
 

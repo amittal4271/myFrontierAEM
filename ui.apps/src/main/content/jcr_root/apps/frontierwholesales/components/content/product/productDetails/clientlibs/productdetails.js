@@ -186,7 +186,7 @@ function registerHandleBarHelpers(summaryAttribute,infoAttribute,additionalAttri
             });
 }
 
-function addItemToCart(sku,qty){
+/*function addItemToCart(sku,qty){
    console.log("in addItemToCart("+sku+", "+qty+")");
    var jsonData={};
    var cartItems={};
@@ -218,5 +218,5 @@ function addItemToCart(sku,qty){
     });
     
 
-}
+}*/
 

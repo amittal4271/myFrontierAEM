@@ -135,7 +135,7 @@ public class FrontierWholesalesUserRegistrationServlet  extends SlingAllMethodsS
 			        	String adminToken = connector.getAdminToken();
 			        	String data = request.getParameter("registration");
 			        	JsonObject updatedObject = updateJSONObject(data,"password",credentials);
-			        	log.debug("customer object is "+updatedObject);
+			        	
 			        	String customerId = FrontierWholesalesUserRegistration.registration(updatedObject.toString(),adminToken);
 			        	 jsonObject.addProperty("CustomerData", customerId);
 			        	 bReturn = true;
