@@ -164,8 +164,8 @@ function collectUserDetails(){
             buyerClubType = buyerClubType.substr(buyerClubType.length-2,buyerClubType.length);
 
         }
-    
-     customer['customer']={};
+    var jsonData={};
+     jsonData['customer']={};
     // customer json data
     var customerJsonData={};
     customerJsonData['addresses']=[];
@@ -180,8 +180,7 @@ function collectUserDetails(){
     address['region']={};
     address['street']=[];
     
-    address['defaultShipping']='false';
-    address['defaultBilling']='true';
+    
     address['firstname']=shippingNameSplit[0];
     address['lastname']=shippingNameSplit[1];
     address['postcode']=$('#id_shipping-postal_code').val();
@@ -192,9 +191,9 @@ function collectUserDetails(){
    
    
     var regionData={};
-    regionData['regionCode']=$('#id_shipping-locality option:selected').val();
+    //regionData['regionCode']=$('#id_shipping-locality option:selected').val();
     regionData['regionId']=$('#id_shipping-locality option:selected').attr('data-attr-id');
-    regionData['region']=$('#id_shipping-locality option:selected').text();
+    //regionData['region']=$('#id_shipping-locality option:selected').text();
     address['region']=regionData;
     var streetData=[];
     
@@ -205,19 +204,16 @@ function collectUserDetails(){
     addressData.push(address);
     customerJsonData['addresses']=addressData;
     
-    customer['customer']=customerJsonData;
-    console.log("consumer data "+customer);
+    jsonData['customer']=customerJsonData;
+   
     
-    var company={};
-    company['company']={};
+   
+    jsonData['company']={};
     
     var companyJsonData={};
     companyJsonData['status']=1;
     companyJsonData['company_name']=$('#id_account-company_name').val();
-    companyJsonData['legal_name']=$('#id_mailing-name').val();
-    companyJsonData['company_email']=$('#id_membership-email').val();
-    // customer id will be passed after customer service call. This will happen in servlet class side.
-    companyJsonData['super_user_id']='';
+    
     companyJsonData['city']=$('#id_mailing-city').val();
     companyJsonData['country_id']='US';
     companyJsonData['region']=$('#id_mailing-locality option:selected').text();
@@ -225,8 +221,7 @@ function collectUserDetails(){
     
     companyJsonData['postcode']=$('#id_mailing-postal_code').val();
     companyJsonData['telephone']=$('#id_shipping-phone').val();
-    // 10 is for lifetime member
-    companyJsonData['customer_group_id']='10';
+
     
    
     companyJsonData['street']=[];
@@ -236,9 +231,7 @@ function collectUserDetails(){
     taxInfo['tax_fullname']=$('#id_mailing-name').val();
     taxInfo['tax_companyname']=$('#id_account-company_name').val();
     taxInfo['tax_payerid']=$('#id_account-taxpayer_id').val();
-    var businessType={};
-    businessType['business_type']=buyerClubType;
-    businessType['web_address']=url;
+   
     var card_details={};
     card_details['full_name']=$('#id_billing-name').val();
     card_details['company']=$('#id_billing-company').val();
@@ -252,25 +245,27 @@ function collectUserDetails(){
     card_details['cvv_code']=$('#id_billing-cvv').val();
     card_details['expiration_month']=$('#id_billing-exp_month option:selected').text();
     card_details['expiration_year']=$('#id_billing-exp_year option:selected').text();
-    var extensionAttributes={};
-    extensionAttributes['tax_info']={};
-    extensionAttributes['business_type']={};
-    extensionAttributes['card_details']={};
-    companyJsonData['extension_attributes']={};
     
-    extensionAttributes['tax_info']=taxInfo;
-    extensionAttributes['business_type']=businessType;
-    extensionAttributes['card_details']=card_details;
-    
-    extensionAttributes['buying_groups'] = getBuyersClubDetails();
-    
-    companyJsonData['extension_attributes']=extensionAttributes;
-    company['company']=companyJsonData;
-    
-    console.log('company details '+company);
+    var businessType={};
+    businessType['business_type']=buyerClubType;
+    businessType['web_address']=url;
    
+    jsonData['company']=companyJsonData;
+  
+    jsonData['businessType']=businessType;
+    jsonData['signature']=$('#id_account-signature').val();
+    jsonData['taxInterface']=taxInfo;
+    jsonData['cardDetails']=card_details;
+    jsonData['password']='';
     
-    validateEmailAndRegisterUser(extensionAttributes,customer,company,pwd);  
+    var buyersClub = getBuyersClubDetails();
+    if(buyersClub.email.length > 0){
+     jsonData['buyingGroups'] = buyersClub;
+    }
+    
+    
+   
+    memberRegistration(jsonData,pwd);
 }
 
 
@@ -386,10 +381,10 @@ function getBuyersClubDetails(){
     
 }
 
-function memberRegistration(customer,company,pwd){
+function memberRegistration(jsonData,pwd){
      $.ajax({
         url:"/services/registration",
-        data:{customer:JSON.stringify(customer),company:JSON.stringify(company),action:'registration',email: $('#id_membership-email').val()},
+        data:{registration:JSON.stringify(jsonData),action:'registration',email: $('#id_membership-email').val()},
         method: "POST",
          headers:{
 
@@ -399,13 +394,17 @@ function memberRegistration(customer,company,pwd){
                 xhr.overrideMimeType('application/json');
             }
      }).done(function(data){
-           
-        if(addCustomerDataToCookie(data)){
-            window.location.href=getRedirectPath();
-        }else{
-             console.log("error in storing cookie values");
-            enableAjaxFormButton($buttonObj); 
-        }
+           if(undefined == data.Fail){
+                if(addCustomerDataToCookie(data)){
+                    window.location.href=getRedirectPath();
+                }else{
+                     console.log("error in storing cookie values");
+                    enableAjaxFormButton($buttonObj); 
+                }
+           }else{
+             enableAjaxFormButton($buttonObj);  
+            showProdErrorMessage(data.Fail);   
+         }
         
     }).fail(function(error){
            
