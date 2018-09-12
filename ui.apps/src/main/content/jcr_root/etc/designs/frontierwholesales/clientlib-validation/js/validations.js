@@ -86,6 +86,11 @@ console.log("method is being called here...");
     }
 });
 
+$.validator.addMethod('validUrl', function(value, element) {
+    var url = $.validator.methods.url.bind(this);
+    return url(value, element) || url('http://' + value, element);
+}, 'Please enter a valid URL');
+
 $.validator.addMethod("emailValidation",function(value,element){
     var emailFormat = /^\w+([\+\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     if(value.match(emailFormat)){
@@ -612,7 +617,7 @@ function buyersClubCheckboxOperations(){
                         maxlength: 70
                     },"account-url":{
                         urlText: true,
-                        url: true
+                        validUrl: true
                     }
                 },		        
 		        messages: {
@@ -768,7 +773,7 @@ function buyersClubCheckboxOperations(){
                         
                     },"account-url":{
                         urlText: true,
-                        url:true
+                        validUrl:true
                        
                     }
                 },messages :{
