@@ -156,14 +156,14 @@ function getProductListByCategory(currentPage,recsPerPage,sortBy,searchString){
           //  var $el = $('#plp-search-header-holder');
           //  scrollToElement($el);
 
-           
+
             setTimeout(function() {
                        adjustHeight();
                    }, 500);
 
 
 
-$(function () {
+			// preserve scroll position on back from pdp to clp
             var pathName = document.location.pathname;
             window.onbeforeunload = function () {
                 var scrollPosition = $(document).scrollTop();
@@ -172,7 +172,7 @@ $(function () {
             if (sessionStorage["scrollPosition_" + pathName]) {
                 $(document).scrollTop(sessionStorage.getItem("scrollPosition_" + pathName));
             }
-        });
+
 
 
 

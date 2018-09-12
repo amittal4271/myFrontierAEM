@@ -176,14 +176,26 @@ Frontier.SearchResults = new function() {
 	           $('#sortBy option[value='+ sortBy+']').prop('selected',true);
 	        }
 	       
-	        var $el = $('#plp-search-header-holder');
-	        scrollToElement($el);
-	       
+	        // var $el = $('#plp-search-header-holder');
+	        // scrollToElement($el);
+
+
+            // preserve scroll position on back from pdp to clp
+            var pathName = document.location.pathname;
+            window.onbeforeunload = function () {
+                var scrollPosition = $(document).scrollTop();
+                sessionStorage.setItem("scrollPosition_" + pathName, scrollPosition.toString());
+            }
+            if (sessionStorage["scrollPosition_" + pathName]) {
+                $(document).scrollTop(sessionStorage.getItem("scrollPosition_" + pathName));
+            }
+
+
 	       
 	        setTimeout(function() {
 	        	adjustHeight();
 	        }, 500);
-	       
+
 	        var currentPage = parseInt($('#currentPage').val());
 	        
 //			enable/disable previous button - Pagination
