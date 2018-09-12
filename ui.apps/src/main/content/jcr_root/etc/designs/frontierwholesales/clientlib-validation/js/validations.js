@@ -45,6 +45,12 @@ $.validator.addMethod("phoneno", function(value, element) {
 	return this.optional(element)|| /^\d{10}$/.test(value);
 });
 
+$.validator.addMethod("notalpha", function(value, element) {
+	var regEx = new RegExp("^[a-zA-Z ]*$");
+    return !regEx.test(value)
+});
+
+
 $.validator.addMethod("passwordValidate",function(value,element){
     var regEx = new RegExp("^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
     return regEx.test(value)
@@ -316,7 +322,8 @@ function buyersClubCheckboxOperations(){
                     },"shipping-postal_code":{
                         required: true,
                         minlength: 5,
-                        maxlength: 12
+                        maxlength: 12,
+                        notalpha: true
                         
                     },"shipping-phone":{
                         required: true,
@@ -333,6 +340,10 @@ function buyersClubCheckboxOperations(){
                        
                          fullName: 'Please enter full name'
                         
+                    },"shipping-postal_code":{
+                        
+                        notalpha: 'Enter a valid postal code'
+                      
                     },"shipping-phone":{
                         
                           phoneno: 'Enter a valid phone number'
@@ -368,7 +379,8 @@ function buyersClubCheckboxOperations(){
                     },"billing-postal_code":{
                         required: true,
                         minlength: 5,
-                        maxlength: 12
+                        maxlength: 12,
+                        notalpha: true
                         
                     },"billing-phone":{
                         required: true,
@@ -386,6 +398,10 @@ function buyersClubCheckboxOperations(){
                         
                           phoneno: 'Enter a valid phone number'
                         
+                    },"billing-postal_code":{
+                        
+                        notalpha: 'Enter a valid postal code'
+                      
                     }
                 }
             });
@@ -408,7 +424,8 @@ function buyersClubCheckboxOperations(){
                     },"shipping-postal_code":{
                         required: true,
                         minlength: 5,
-                        maxlength: 12
+                        maxlength: 12,
+                        notalpha: true
                         
                     },"shipping-phone":{
                         required: true,
@@ -427,6 +444,10 @@ function buyersClubCheckboxOperations(){
                         
                           phoneno: 'Enter a valid phone number'
                         
+                    },"shipping-postal_code":{
+                        
+                        notalpha: 'Enter a valid postal code'
+                      
                     }
                 }
             });
@@ -491,7 +512,8 @@ function buyersClubCheckboxOperations(){
                     },"mailing-postal_code":{
                         required: true,
                         minlength: 5,
-		            	maxlength: 12
+		            	maxlength: 12,
+		            	notalpha: true
                         
                     },"shipping-name":{
                         required: true,
@@ -513,7 +535,8 @@ function buyersClubCheckboxOperations(){
                     },"shipping-postal_code":{
                         required: true,
                         minlength: 5,
-		            	maxlength: 12
+		            	maxlength: 12,
+		            	notalpha: true
                         
                     },"shipping-phone":{
                         required: true,
@@ -563,7 +586,8 @@ function buyersClubCheckboxOperations(){
                     },"billing-postal_code":{
                         required: true,
                         minlength: 5,
-		            	maxlength: 12
+		            	maxlength: 12,
+		            	notalpha: true
                     
                     },"billing-number":{
                         required: true,
@@ -644,6 +668,12 @@ function buyersClubCheckboxOperations(){
                         emailValidation:"Please enter a valid email"
                     },"billing-number":{
                         creditcardValidate: "Enter a valid card number!"
+                    },"shipping-postal_code":{
+                        notalpha: 'Enter a valid postal code'
+                    },"mailing-postal_code":{
+                    	notalpha: 'Enter a valid postal code'
+                    },"billing-postal_code":{
+                    	notalpha: 'Enter a valid postal code'
                     }
 		        }
 		    });
@@ -700,7 +730,8 @@ function buyersClubCheckboxOperations(){
                     },"shipping-postal_code":{
                         required: true,
                         minlength: 5,
-                        maxlength: 12
+                        maxlength: 12,
+                        notalpha: true
                         
                     },"shipping-phone":{
                         required: true,
@@ -781,6 +812,8 @@ function buyersClubCheckboxOperations(){
                         urlText: "This field is required"
                     },"membership-email":{
                         emailValidation: "Please enter a valid email"
+                    },"shipping-postal_code":{
+                        notalpha: 'Enter a valid postal code'
                     }
                 }
             });
