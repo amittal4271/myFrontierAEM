@@ -91,7 +91,7 @@ function callResetPassword(){
     addressJsonData['lastname']=shippingNameSplit[1];
     addressJsonData['postcode']=$('#id_shipping-postal_code').val();
     addressJsonData['city']=$('#id_shipping-city').val();
-    addressJsonData['telephone']=$('#id_shipping-phone').val();
+    addressJsonData['telephone']=$('#id_shipping-phone').val().replace(/-/g, "");
     addressJsonData['company']='';
     addressJsonData['fax']='';
     addressJsonData['prefix']='';

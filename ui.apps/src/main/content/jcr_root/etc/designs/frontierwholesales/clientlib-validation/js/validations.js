@@ -41,8 +41,7 @@ $.validator.addMethod("fullName", function(value, element) {
 });
 
 $.validator.addMethod("phoneno", function(value, element) {
-
-	return this.optional(element)|| /^\d{10}$/.test(value);
+	return this.optional(element)|| /^\(?\d{3}\)?[- ]?\d{3}[- ]?\d{4}$/.test(value);
 });
 
 $.validator.addMethod("notalpha", function(value, element) {
@@ -332,7 +331,6 @@ function buyersClubCheckboxOperations(){
                         
                     },"shipping-phone":{
                         required: true,
-		            	maxlength: 10,
                         phoneno: true
                         
                     }
@@ -389,8 +387,7 @@ function buyersClubCheckboxOperations(){
                         
                     },"billing-phone":{
                         required: true,
-		            	maxlength: 10,
-                        phoneno: true
+		            	phoneno: true
                         
                     },
                 },messages :{
@@ -434,8 +431,7 @@ function buyersClubCheckboxOperations(){
                         
                     },"shipping-phone":{
                         required: true,
-		            	maxlength: 10,
-                        phoneno: true
+		            	phoneno: true
                         
                     }
                     
@@ -545,8 +541,7 @@ function buyersClubCheckboxOperations(){
                         
                     },"shipping-phone":{
                         required: true,
-		            	maxlength: 10,
-                        phoneno: true
+		            	phoneno: true
                         
                     },"account-signature":{
                         required: true,
@@ -740,7 +735,6 @@ function buyersClubCheckboxOperations(){
                         
                     },"shipping-phone":{
                         required: true,
-                        maxlength: 10,
                         phoneno: true
                         
                     },"account-signature":{

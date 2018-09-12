@@ -185,7 +185,7 @@ function collectUserDetails(){
     address['lastname']=shippingNameSplit[1];
     address['postcode']=$('#id_shipping-postal_code').val();
     address['city']=$('#id_shipping-city').val();
-    address['telephone']=$('#id_shipping-phone').val();
+    address['telephone']=$('#id_shipping-phone').val().replace(/-/g, "");
     address['countryId']="US";
     
    
@@ -220,7 +220,7 @@ function collectUserDetails(){
     companyJsonData['region_id']=$('#id_mailing-locality option:selected').attr('data-attr-id');
     
     companyJsonData['postcode']=$('#id_mailing-postal_code').val();
-    companyJsonData['telephone']=$('#id_shipping-phone').val();
+    companyJsonData['telephone']=$('#id_shipping-phone').val().replace(/-/g, "");
 
     
    
