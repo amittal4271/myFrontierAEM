@@ -21,6 +21,22 @@ $(document).ready(function(){
         }else{
             location.href="/content/frontierwholesales/en/login.html";
         }
+    }  
+
+	counter = 0;
+
+    function getIframeHeight() {
+        if( $('#magento-myaccount-iframe').length > 0 && counter < 10) {
+            if($('#maincontent').length > 0) {
+                var iframeHeight = document.getElementById("maincontent").offsetHeight;
+                console.log(iframeHeight);
+                $('#magento-myaccount-iframe').css('height',iframeHeight);
+            } else {
+                setTimeout(getIframeHeight, 1000);
+                counter ++;
+            }
+        }
     }
-   
+	getIframeHeight();
+
 });
