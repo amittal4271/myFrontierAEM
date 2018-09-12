@@ -54,7 +54,7 @@ $.validator.addMethod("notalpha", function(value, element) {
 $.validator.addMethod("passwordValidate",function(value,element){
     var regEx = new RegExp("^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
     return regEx.test(value)
-},"Please enter valid password")
+},"Please enter valid password, must contain a capital letter, a number, and a symbol")
 
 $.validator.addMethod("passwordMatch", function(value, element) {
 
