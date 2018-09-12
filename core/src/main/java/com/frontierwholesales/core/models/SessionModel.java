@@ -28,11 +28,12 @@ public class SessionModel extends WCMUsePojo{
 			LOGGER.debug("activate method Start...");
 			
 			Cookie cookie = FrontierWholesalesUtils.getCookie(getRequest(),"CustomerData");
-			
-			String cookieValue = cookie.getValue();
-			this.authToken = FrontierWholesalesUtils.getIdFromObject(cookieValue, "token");
-			if(this.authToken != null && this.authToken != "") {
-				this.token = this.authToken.substring("Bearer ".length(), this.authToken.length());
+			if(cookie != null) {
+				String cookieValue = cookie.getValue();
+				this.authToken = FrontierWholesalesUtils.getIdFromObject(cookieValue, "token");
+				if(this.authToken != null && this.authToken != "") {
+					this.token = this.authToken.substring("Bearer ".length(), this.authToken.length());
+				}
 			}
 			LOGGER.debug("activate method End...");
 		}
