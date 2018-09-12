@@ -40,6 +40,14 @@
                         name="./additionalAttribute"
                         required="true"/>
                     
+                    <additional
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/foundation/form/textarea"
+                        fieldDescription="Product Summary Attributes Labels"
+                        fieldLabel="Product Summary Attributes Labels"
+                        name="./summaryAttributeLabel"
+                        required="true"/>
+                    
                     
                 </items>
             </column>

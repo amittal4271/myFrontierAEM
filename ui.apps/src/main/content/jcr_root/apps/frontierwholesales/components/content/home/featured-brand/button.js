@@ -18,7 +18,7 @@ use(function () {
     var linkTo = properties.get("linkTo", "#");
 
     if (linkTo != "#") {
-		if (linkTo .startsWith("/content")) {
+		if (linkTo .startsWith("/content") && linkTo.indexOf(".html") == -1) {
         	linkTo += ".html";
    		}
         else if (linkTo.startsWith("http://") || linkTo.startsWith("https://") || linkTo.startsWith("www")) {

@@ -67,7 +67,13 @@ public class FrontierWholesalesShoppingCartServlet  extends SlingAllMethodsServl
 			
 			}
 		
-			if(action.equals("add")){
+			if(action.equals("remove")) {
+				String itemId = request.getParameter("itemId");
+				
+				 commerceConnector.removeCartItem(token, itemId);
+				
+				
+			}else if(action.equals("add")){
 				String jsonData = request.getParameter("items");
 			
 				// create cart
