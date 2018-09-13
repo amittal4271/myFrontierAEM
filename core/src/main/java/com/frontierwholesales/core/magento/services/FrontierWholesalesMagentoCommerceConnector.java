@@ -266,7 +266,7 @@ public class FrontierWholesalesMagentoCommerceConnector {
     
     public String getProducts(String adminToken,FrontierWholesalesProductSearch search) throws Exception{
     	
-        
+        log.debug("FrontierWholesalesMagentoCommerceConnector getProducts Start");
         String orderByPrice= "";
         String featured ="";
         String newProduct="";
@@ -311,6 +311,7 @@ public class FrontierWholesalesMagentoCommerceConnector {
          
           
         String response = FrontierWholesalesUtils.parseMagentoResponseObject(inputStream);
+        log.debug("FrontierWholesalesMagentoCommerceConnector getProducts End");
         return response;
     }
     

@@ -1,14 +1,7 @@
 package com.frontierwholesales.core.magento.services.servlets;
 
 import java.io.IOException;
-import java.util.regex.Pattern;
 
-import javax.jcr.Node;
-import javax.jcr.NodeIterator;
-import javax.jcr.Session;
-import javax.jcr.query.Query;
-import javax.jcr.query.QueryManager;
-import javax.jcr.query.QueryResult;
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
@@ -16,10 +9,6 @@ import javax.servlet.http.Cookie;
 
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
-import org.apache.sling.api.request.RequestPathInfo;
-import org.apache.sling.api.resource.Resource;
-import org.apache.sling.api.resource.ResourceResolver;
-import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.api.servlets.HttpConstants;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
 import org.osgi.framework.Constants;
@@ -29,9 +18,7 @@ import org.slf4j.LoggerFactory;
 
 import com.frontierwholesales.core.beans.FrontierWholesalesProductSearch;
 import com.frontierwholesales.core.magento.services.FrontierWholesalesMagentoCommerceConnector;
-import com.frontierwholesales.core.models.ProductListModel;
 import com.frontierwholesales.core.utils.FrontierWholesalesUtils;
-import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
