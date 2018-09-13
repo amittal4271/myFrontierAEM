@@ -220,7 +220,7 @@ function constructFilterConditions(){
     var group={};
     var filterValues=[];
     var jsonData={};
-    var groupIdx = 1;
+    var groupIdx = 2;
     var index = 0;
     var queryString='';
     var findLength = $('#mobile-filters').children().length;
@@ -252,11 +252,11 @@ function constructFilterConditions(){
 
 
 function getFilterParam(group_index, index, field, value, type) {
-		var searchCriteria ="&searchCriteria[filter_groups][" + group_index + "][filters][" + index + "][field]=" + field + "&" +
-			   "searchCriteria[filter_groups][" + group_index + "][filters][" + index + "][value]=" + value  ;
+		var searchCriteria ="&searchCriteria[filterGroups][" + group_index + "][filters][" + index + "][field]=" + field + "&" +
+			   "searchCriteria[filterGroups][" + group_index + "][filters][" + index + "][value]=" + value  ;
             
         if( type != ''){
-           searchCriteria = searchCriteria +"&searchCriteria[filter_groups][" + group_index + "][filters][" + index + "][condition_type]=" + type;
+           searchCriteria = searchCriteria +"&searchCriteria[filterGroups][" + group_index + "][filters][" + index + "][condition_type]=" + type;
         }
     return searchCriteria;
 }
