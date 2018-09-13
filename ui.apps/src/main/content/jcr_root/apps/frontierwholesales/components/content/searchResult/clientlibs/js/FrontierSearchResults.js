@@ -161,14 +161,41 @@ Frontier.SearchResults = new function() {
 			$('#itemPerPageSelect option[value='+pageSize +']').prop('selected',true);
 
 	       
-	        var $el = $('#plp-search-header-holder');
-	        scrollToElement($el);
-	       
+	        // var $el = $('#plp-search-header-holder');
+	        // scrollToElement($el);
+
+
+			// preserve scroll position on back from pdp to clp
+            var pathName = document.location.pathname;
+    
+            $(document).click(function(e) {
+    
+              if ( $(e.target).hasClass('grid-item-link') || ($(e.target).parents('.grid-item-link').length)) {
+                // hide menu here
+                  var scrollPosition = $(e.target).offset().top;
+                  sessionStorage.setItem("scrollPosition_" + pathName, scrollPosition.toString());
+              } else {
+                sessionStorage.setItem("scrollPosition_" + pathName, '0');
+              }
+    
+            });
+    
+            $( document ).ready(function() {
+    
+                setTimeout(function() {
+                    if (sessionStorage["scrollPosition_" + pathName]) {
+                     $(document).scrollTop(sessionStorage.getItem("scrollPosition_" + pathName));
+                    }
+    
+                 }, 800);
+            });
+
+
 	       
 	        setTimeout(function() {
 	        	adjustHeight();
 	        }, 500);
-	       
+
 	        var currentPage = parseInt($('#currentPage').val());
 	        
 //			enable/disable previous button - Pagination

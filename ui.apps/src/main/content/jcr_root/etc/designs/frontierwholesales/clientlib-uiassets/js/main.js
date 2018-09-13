@@ -347,7 +347,7 @@ $(document).ready(function() {
 
 		$mobileNavOverlay.hide().removeClass('mobile-overlay-open');
 		$mobileNav.hide().removeClass('mobile-nav-open');
-		
+
 	});
 
 	
