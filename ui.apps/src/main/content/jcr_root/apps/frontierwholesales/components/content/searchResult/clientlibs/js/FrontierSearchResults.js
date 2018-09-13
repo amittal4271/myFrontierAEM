@@ -180,15 +180,30 @@ Frontier.SearchResults = new function() {
 	        // scrollToElement($el);
 
 
-            // preserve scroll position on back from pdp to clp
+			// preserve scroll position on back from pdp to clp
             var pathName = document.location.pathname;
-            window.onbeforeunload = function () {
-                var scrollPosition = $(document).scrollTop();
-                sessionStorage.setItem("scrollPosition_" + pathName, scrollPosition.toString());
-            }
-            if (sessionStorage["scrollPosition_" + pathName]) {
-                $(document).scrollTop(sessionStorage.getItem("scrollPosition_" + pathName));
-            }
+    
+            $(document).click(function(e) {
+    
+              if ( $(e.target).hasClass('grid-item-link') || ($(e.target).parents('.grid-item-link').length)) {
+                // hide menu here
+                  var scrollPosition = $(e.target).offset().top;
+                  sessionStorage.setItem("scrollPosition_" + pathName, scrollPosition.toString());
+              } else {
+                sessionStorage.setItem("scrollPosition_" + pathName, '0');
+              }
+    
+            });
+    
+            $( document ).ready(function() {
+    
+                setTimeout(function() {
+                    if (sessionStorage["scrollPosition_" + pathName]) {
+                     $(document).scrollTop(sessionStorage.getItem("scrollPosition_" + pathName));
+                    }
+    
+                 }, 800);
+            });
 
 
 	       

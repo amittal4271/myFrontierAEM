@@ -677,27 +677,3 @@ $(document).on( "click", "#mobile-account-icon", function(e) {
         userPopup.css('display','none');
     }
 });
-$(document).on( "click", ".pagination-next", function(e) {
-    if ($('product-grid'))
-    var $el = $('#plp-search-header-holder');
-    scrollToElement($el);
-    console.log('motaj');
-});
-
-// preserve scroll position on back from pdp to clp
-$(function () {
-    if ($('.productlisttemplate')) {
-		var pathName = document.location.pathname;
-        window.onbeforeunload = function () {
-            setTimeout(function(){ 
-                var scrollPosition = $(document).scrollTop();
-                sessionStorage.setItem("scrollPosition_" + pathName, scrollPosition.toString());
-            }, 5000);
-        }
-        
-        if (sessionStorage["scrollPosition_" + pathName]) {
-            $(document).scrollTop(sessionStorage.getItem("scrollPosition_" + pathName));
-        }
-
-    }
-});
