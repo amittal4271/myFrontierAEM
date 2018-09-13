@@ -156,25 +156,10 @@ Frontier.SearchResults = new function() {
 		    $('#productlisttemplate').empty();
 		    $('#productlisttemplate').html(processedHTML); 
 		    
-		    var pageSize = getParameterByName("searchCriteria[pageSize]");
+		    var pageSize = products.search_criteria.page_size;
 		    
 			$('#itemPerPageSelect option[value='+pageSize +']').prop('selected',true);
 
-			//pull sortby from query string // could also save in session storage or otherwise
-			var sortBy = getParameterByName("searchCriteria[sortOrders][0][field]");
-			var sortDirection = getParameterByName("searchCriteria[sortOrders][0][direction]");
-					
-			if(sortBy == "price") {
-				sortBy = sortDirection;
-	        } else if(sortBy == "created_at") {
-	        	sortBy = "newproduct";
-	        } else if(sortBy == "featured") {
-	        	sortBy = "featured";
-	        } 
-			
-		    if(sortBy !== null){
-	           $('#sortBy option[value='+ sortBy+']').prop('selected',true);
-	        }
 	       
 	        var $el = $('#plp-search-header-holder');
 	        scrollToElement($el);
