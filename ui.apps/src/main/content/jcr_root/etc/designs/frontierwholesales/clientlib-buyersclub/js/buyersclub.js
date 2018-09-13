@@ -91,7 +91,7 @@ function callResetPassword(){
     addressJsonData['lastname']=shippingNameSplit[1];
     addressJsonData['postcode']=$('#id_shipping-postal_code').val();
     addressJsonData['city']=$('#id_shipping-city').val();
-    addressJsonData['telephone']=$('#id_shipping-phone').val();
+    addressJsonData['telephone']=$('#id_shipping-phone').val().replace(/-/g, "");
     addressJsonData['company']='';
     addressJsonData['fax']='';
     addressJsonData['prefix']='';
@@ -116,15 +116,20 @@ function callResetPassword(){
                 xhr.overrideMimeType('application/json');
             }
         }).done(function(data){
+         if(undefined == data.Fail){
             var address = JSON.parse(data.BuyersAddress);
             
             addBuyersClubDataToCookie(address,currentEmailId,data.UserToken);
             window.location.href=getRedirectPath();
+         }else{
+             enableAjaxFormButton($buttonObj);  
+            showProdErrorMessage(data.Fail);   
+         }
           
         }).fail(function(error){
             console.log(error);
             enableAjaxFormButton($buttonObj);
-            enableErrorMsg();
+            enableErrorMsg(error.status);
         });
     
     

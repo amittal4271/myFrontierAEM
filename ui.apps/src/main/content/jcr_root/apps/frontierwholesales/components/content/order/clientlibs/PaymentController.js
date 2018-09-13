@@ -50,7 +50,7 @@ console.log("payment controller ");
     billingAddress['same_as_billing']=0;
     billingAddress['save_in_address_book']=0;
     billingAddress['street']=street;
-    billingAddress['telephone']=$('#id_billing-phone').val();
+    billingAddress['telephone']=$('#id_billing-phone').val().replace(/-/g, "");
     
     var paymentMethod={};
     paymentMethod['method']='checkmo';

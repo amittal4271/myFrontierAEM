@@ -67,7 +67,13 @@ public class FrontierWholesalesShoppingCartServlet  extends SlingAllMethodsServl
 			
 			}
 		
-			if(action.equals("add")){
+			if(action.equals("remove")) {
+				String itemId = request.getParameter("itemId");
+				
+				 commerceConnector.removeCartItem(token, itemId);
+				
+				
+			}else if(action.equals("add")){
 				String jsonData = request.getParameter("items");
 			
 				// create cart
@@ -93,8 +99,10 @@ public class FrontierWholesalesShoppingCartServlet  extends SlingAllMethodsServl
 		}catch(Exception anyEx) {
 			
 			log.error("Error "+anyEx.getMessage());
-			String errorJson="Error in Cart "+anyEx.getMessage();
-			response.getOutputStream().println(errorJson.toString());
+			
+			JsonObject errorJsonObject = new JsonObject();
+			errorJsonObject.addProperty("Fail", anyEx.getMessage());
+			response.getOutputStream().println(errorJsonObject.toString());
 			
 		}
 		log.debug("FrontierWholesalesShoppingCartServlet doGet method End");

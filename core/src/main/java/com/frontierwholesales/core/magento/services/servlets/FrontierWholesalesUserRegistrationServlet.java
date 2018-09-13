@@ -132,32 +132,15 @@ public class FrontierWholesalesUserRegistrationServlet  extends SlingAllMethodsS
 			        	}
 			        	
 			        }else {
-			        
-			        	String data = request.getParameter("customer");
-			        	String company = request.getParameter("company");
-					 
-			        	JsonObject customerObject = updateJSONObject(data,"password",credentials);
-					 
-			        	//Call customer service to get customer id here
-			        	String customerId = FrontierWholesalesUserRegistration.customerRegistration(customerObject);
-					 
-						String adminToken = connector.getAdminToken();
-						
-						 String id = getCustomerId(customerId);
-						
-						 JsonObject companyObject = updateJSONObject(company,"super_user_id",id,"company");
-						
-						  //call company service here to register
-						  String registredValues = FrontierWholesalesUserRegistration.companyRegistration(adminToken, companyObject);
-						  log.debug("Successfully user is registered ");
-						  if(registredValues != null) {
-							  bReturn = true;
-							  jsonObject.addProperty("CustomerData", registredValues);
-							 
-						  }else {
-							  log.error("Returned object is null ");
-							  response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Service object is null");
-						  }
+			        	String adminToken = connector.getAdminToken();
+			        	String data = request.getParameter("registration");
+			        	JsonObject updatedObject = updateJSONObject(data,"password",credentials);
+			        	
+			        	String customerId = FrontierWholesalesUserRegistration.registration(updatedObject.toString(),adminToken);
+			        	 jsonObject.addProperty("CustomerData", customerId);
+			        	 bReturn = true;
+			        	 log.debug("Successfully user is registered ");
+			        	
 			        }
 			    }else {
 			    	response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Password is not set");
@@ -174,7 +157,7 @@ public class FrontierWholesalesUserRegistrationServlet  extends SlingAllMethodsS
 				anyEx.printStackTrace();
 				 jsonObject.addProperty("Fail", anyEx.getMessage());
 		    	 response.getOutputStream().println(jsonObject.toString());
-		    	 response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, jsonObject.toString());
+		    	// response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, jsonObject.toString());
 				
 			}
 			

@@ -76,6 +76,8 @@ function getProductDetails(){
    var summaryAttribute =  getAttributeDataFromTxtBox('summaryAttribute');
     var infoAttribute = getAttributeDataFromTxtBox('infoAttribute');
     var additionalAttribute = getAttributeDataFromTxtBox('additionalAttribute');
+    var summaryLabel = $('#summaryAttributeLabel').val();
+     summaryLabel = $.parseJSON(summaryLabel);
 if(summaryAttribute !== undefined && infoAttribute !== undefined && additionalAttribute !== undefined){
      var sku = $('#productId').val();
     if(sku == undefined || sku == ''){
@@ -102,7 +104,7 @@ if(summaryAttribute !== undefined && infoAttribute !== undefined && additionalAt
        
          HandlebarsIntl.registerWith(Handlebars);
        
-        registerHandleBarHelpers(summaryAttribute,infoAttribute,additionalAttribute);
+        registerHandleBarHelpers(summaryAttribute,infoAttribute,additionalAttribute,summaryLabel);
 
         var html = Handlebars.compile(template);
 
@@ -125,7 +127,7 @@ if(summaryAttribute !== undefined && infoAttribute !== undefined && additionalAt
 }
 }
 
-function registerHandleBarHelpers(summaryAttribute,infoAttribute,additionalAttribute){
+function registerHandleBarHelpers(summaryAttribute,infoAttribute,additionalAttribute,summaryLabel){
     var bCount = 0;
      Handlebars.registerHelper("getAttrValues",function(attCode,value,count,options){
            
@@ -142,7 +144,19 @@ function registerHandleBarHelpers(summaryAttribute,infoAttribute,additionalAttri
            return options.inverse(this);
               
         });
-        
+    
+       Handlebars.registerHelper("getSummaryAttrLabel",function(attCode){
+           var label="";
+          
+           $.map(summaryLabel,function(value,key){ 
+               if(key == attCode){ 
+                   label = value;
+                } 
+           });
+           
+            return label;
+                                         
+        });
          Handlebars.registerHelper("getInfoAttrValues",function(attCode,value,options){
             var idx = $.inArray(attCode,infoAttribute);
             if(idx != -1){
@@ -186,37 +200,5 @@ function registerHandleBarHelpers(summaryAttribute,infoAttribute,additionalAttri
             });
 }
 
-function addItemToCart(sku,qty){
-   console.log("in addItemToCart("+sku+", "+qty+")");
-   var jsonData={};
-   var cartItems={};
-   var cartData={};
-   showLoadingScreen();
-    cartItems['sku']=sku;
-    cartItems['qty']=qty;
-   
-    cartData['cartItem']=cartItems;
-    jsonData['items']=JSON.stringify(cartData);
-    console.log(jsonData);
-    jsonData['action']='add';
-    
-     Frontier.MagentoServices.addItemToCart(jsonData).done(function(cart){
-        console.log("result is "+cart);
-        hideLoadingScreen();
-        
-        
-        $('#cartMessage-'+sku).fadeIn('fast').delay(3000).fadeOut('fast');
-        var template = $("#minicartTemplate").html();
-        var cartTemplate = Handlebars.compile(template);
-        var html = cartTemplate(cart,cart.items.reverse());
-        $('#minicarttemplate').html(html); 
-        
-    }).fail(function(error){
-        console.log("error is "+error);
-         hideLoadingScreen();
-        enableErrorMsg(error.status);
-    });
-    
 
-}
 

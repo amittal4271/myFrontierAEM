@@ -19,7 +19,7 @@
 <a  
 	data-sly-use.image="image.js"
     
-    href="${image.url || '#' @ context='html'}" 
+    href="${image.url || '#' @ context='unsafe'}" 
     style="background-image: url('${image.src @ context='styleString'}')"
     onclick="CQ_Analytics.record({event: 'imageClick', values: { imageLink: '${image.url @ context='scriptString'}', imageAsset: '${image.filereference @ context='scriptString'}', imageTitle: '${image.fileName @ context='scriptString'}' }, collect: false, options: { obj: this }, componentPath: '${image.resource.resourceType @ context='scriptString'}'})"
     >

@@ -14,6 +14,24 @@ import com.google.gson.JsonObject;
 public class FrontierWholesalesUserRegistration {
 
 	 private static final Logger log = LoggerFactory.getLogger(FrontierWholesalesUserRegistration.class);
+	 
+	 /**
+	  * This is for both member and non member registration
+	  * @param data
+	  * @return
+	  * @throws Exception
+	  */
+	 public static String registration(String data,String authToken) throws Exception{
+		 log.debug("registration Method start ");
+		 String server = FrontierWholesalesMagentoCommerceConnector.getServer();
+			InputStream inputStream = Request.Post(server + "/rest/all/V1/frontier/account")
+					.addHeader("Authorization",authToken)
+	                .bodyString(data,ContentType.APPLICATION_JSON)
+	                .execute().returnResponse().getEntity().getContent();
+			 String customerId = FrontierWholesalesUtils.parseMagentoResponseObject(inputStream);
+		 log.debug("registration Method end ");
+		 return customerId;
+	 }
 	
 	 /**
 	  * customer registration

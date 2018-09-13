@@ -6,12 +6,13 @@
 <input id="summaryAttribute" type="hidden" value="${properties.summaryAttribute}"/>
 <input id="infoAttribute" type="hidden" value="${properties.infoAttribute}"/>
 <input id="additionalAttribute" type="hidden" value="${properties.additionalAttribute}"/>
+<input id="summaryAttributeLabel" type="hidden" value="${properties.summaryAttributeLabel}"/>
 <sly data-sly-use.user="${'com.frontierwholesales.core.models.SessionModel'}"></sly>
 
 <div data-sly-test="${!request.requestPathInfo.suffix}">Product is not found.</div>
 <sly data-sly-test="${request.requestPathInfo.suffix}">
-<div data-sly-test="${wcmmode.edit && !model.hasVariants}" class="cq-placeholder"
-         data-emptytext="Product Component"></div>
+<!--<div data-sly-test="${wcmmode.edit && !model.hasVariants}" class="cq-placeholder"
+         data-emptytext="Product Component"></div>-->
        
 <section id="product-detail">      
 </section>                             
@@ -185,7 +186,7 @@
 						 <span class="each-stat-icon">
 							  <span class="glyphicon glyphicon-ok"></span>
 						 </span>
-						 <span class="each-stat-name-text">{{attribute_code}}</span>
+						 <span class="each-stat-name-text">{{getSummaryAttrLabel attribute_code}}</span>
 					</li>
                    {{/getAttrValues}}
 			    {{/each}}

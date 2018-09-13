@@ -14,7 +14,7 @@
   ~ limitations under the License.
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/-->
 
-<a class="featured-link-holder" data-sly-use.button="button.js" href="${button.linkTo || '#'}">
+<a class="featured-link-holder" data-sly-use.button="button.js" href="${button.linkTo || '#' @ context='unsafe'}">
     <div class="brand-image">
         <img
         data-sly-use.image="image.js"

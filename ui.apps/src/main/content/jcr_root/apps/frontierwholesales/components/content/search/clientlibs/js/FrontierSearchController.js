@@ -84,7 +84,7 @@ Frontier.SearchController = new function() {
 			if(searchTermOnly) {
 				queryString += "&"+ getFilterParam(0,0,"search_term",encodeURIComponent(searchTerm), "like");
 			} else {
-				queryString += "&"+ getFilterParam(0,0,"botanicalname",encodeURIComponent("%"+searchTerm+"%"), "like");
+				queryString += "&"+ getFilterParam(0,0,"botanicalName",encodeURIComponent("%"+searchTerm+"%"), "like");
 				queryString += "&"+ getFilterParam(0,1,"name",encodeURIComponent("%"+searchTerm+"%"), "like");
 			}
 		}
