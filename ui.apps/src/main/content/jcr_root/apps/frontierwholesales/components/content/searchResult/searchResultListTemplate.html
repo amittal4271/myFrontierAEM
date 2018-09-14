@@ -4,7 +4,7 @@
 		{{#if items.length}}
 		<h1 class="plp-search-text-heading">SEARCH RESULTS FOR: "{{searchTerm}}"</h1>
 		<span class="showing-number-of-items">
-			Showing <span class="number">{{recordsPerPage recsPerPage search_criteria.current_page total_count}}</span> of <span class="number">{{total_count}}</span> Products
+			Showing <span class="number">{{numOfResultsStart}} - {{recordsPerPage recsPerPage search_criteria.current_page total_count}}</span> of <span class="number">{{total_count}}</span> Products
 		</span>
 		{{else}}
 		<header class="search-category__header">

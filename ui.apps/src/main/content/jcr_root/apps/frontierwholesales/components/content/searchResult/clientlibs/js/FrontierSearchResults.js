@@ -145,6 +145,16 @@ Frontier.SearchResults = new function() {
 				}
 			}
 			
+			if(!!products && !!products.search_criteria) {
+				var numOfResultsStart = 1;
+				
+				if(products.search_criteria.current_page > 1) {
+					numOfResultsStart =  ( products.search_criteria.current_page -1 ) * products.search_criteria.page_size;
+				}
+				products.numOfResultsStart = numOfResultsStart;
+			}
+			
+			
 			console.log("search results",products);
 			
 			var template = $("#productlistTemplate").html();
@@ -156,7 +166,14 @@ Frontier.SearchResults = new function() {
 		    $('#productlisttemplate').empty();
 		    $('#productlisttemplate').html(processedHTML); 
 		    
-		    var pageSize = products.search_criteria.page_size;
+		    var pageSize;
+		    
+		    if(products != null && !!products.search_criteria) {
+		    	pageSize = products.search_criteria.page_size;
+			} else {
+				pageSize = 28;
+			}
+		    
 		    
 			$('#itemPerPageSelect option[value='+pageSize +']').prop('selected',true);
 
