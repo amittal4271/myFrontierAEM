@@ -6,7 +6,7 @@ Frontier.SearchFacets = Frontier.SearchFacets || {};
 Frontier.SearchFacets = new function() {
 
 	var filters = [],
-		facetSelector = ".searchResult #plp-search-left-nav-filters .checkbox-link",
+		facetSelector = ".filter-link.checkbox-link",
 		templates = {
 		        facetTemplate:
 		        	'<div class="each-filter-section"> \
@@ -64,15 +64,22 @@ Frontier.SearchFacets = new function() {
 	}
 	
 	function initListeners() {
-		$(document).on('click',facetSelector,function(event){ 			
-	        event.preventDefault();
-			if(!$(this).hasClass('selected-filter')) {
-	            $(this).addClass('selected-filter');
-	        }else{
-	            $(this).removeClass('selected-filter');
-	        } 
-	        Frontier.SearchController.updateResults();
-	    });
+		if($(".searchResult").length > 0) {
+			$(document).on('click',facetSelector,function(event){ 	
+		        event.preventDefault();
+				if(!$(this).hasClass('selected-filter')) {
+		            $(this).addClass('selected-filter');
+		        }else{
+		            $(this).removeClass('selected-filter');
+		            var value = $(this).attr("data-value");
+		            var filterName = $(this).closest(".each-filters-list").attr("data-code");
+		            clearFilter(filterName, value);
+		        } 
+				$("#mobile-filters-holder").hide();
+				$("#mobile-filters-overlay").hide();
+		        Frontier.SearchController.updateResults();
+		    });
+		}
 	}
 	
 	function updateFilterOptions(buckets) {		
@@ -84,17 +91,17 @@ Frontier.SearchFacets = new function() {
 			var facetTemplate = Handlebars.compile(templates.facetTemplate);
 			
 			
-			$(".searchResult #plp-search-left-nav-filters").html("");
+			$("#plp-search-left-nav-filters").html("");
 			
 			var manufacturerFacetObject = hydrateTemplateObject(buckets, "manufacturer_bucket", "Brand", true);
 			
 			if(!!manufacturerFacetObject.options) {
-				$(".searchResult #plp-search-left-nav-filters").append(facetTemplate(manufacturerFacetObject));
+				$("#plp-search-left-nav-filters").append(facetTemplate(manufacturerFacetObject));
 			}
 		
 			var certificationsFacetObject = hydrateTemplateObject(buckets, "certifications_bucket", "Certifications", false);
 			if(!!certificationsFacetObject.options) {
-				$(".searchResult #plp-search-left-nav-filters").append(facetTemplate(certificationsFacetObject));
+				$("#plp-search-left-nav-filters").append(facetTemplate(certificationsFacetObject));
 			}		
 		}
 		
@@ -108,7 +115,17 @@ Frontier.SearchFacets = new function() {
 				type: name != "certifications" ? 'OR' : 'AND'
 		}
 		
-		filters.push(filter);
+		var found = false;
+		for(var i = 0; i < filters.length; i++) {
+		    if (filters[i].name == name && filters[i].value === value) {
+		        found = true;
+		        break;
+		    }
+		}
+		
+		if(!found) {
+			filters.push(filter);
+		}
 	}
 	
 	function getFilters() {
@@ -122,14 +139,25 @@ Frontier.SearchFacets = new function() {
 	}
 	
 	function getFilterDisplayText(filtername, id) {
-		return $(".each-filters-list[data-code='"+filtername+"'] .checkbox-link[data-value='"+id+"']").find(".text").text();
+		
+		var filterCheckboxes = $(".each-filters-list[data-code='"+filtername+"'] .checkbox-link[data-value='"+id+"']");
+		
+		var displayText = "";
+		$.each(filterCheckboxes,function(){
+			displayText = $(this).find(".text").text();
+		});
+		
+		return displayText;
 	}
 	
 	function selectFilter(filtername, id) {
 		var filterCheckbox = $(".each-filters-list[data-code='"+filtername+"'] .checkbox-link[data-value='"+id+"']");
-		if(!filterCheckbox.hasClass("selected-filter")){
-			filterCheckbox.addClass("selected-filter");
-		}
+		filterCheckbox.addClass("selected-filter");
+	}
+	
+	function clearFilter(filtername, id) {
+		var filterCheckbox = $(".each-filters-list[data-code='"+filtername+"'] .checkbox-link[data-value='"+id+"']");
+		filterCheckbox.removeClass("selected-filter");
 	}
 
 	this.getFilters = getFilters;

@@ -1,4 +1,21 @@
 <sly data-sly-use.searchFacets="com.frontierwholesales.core.magento.services.models.SearchFacets"></sly>
+<div id="mobile-filters-holder">
+     <div id="mobile-filters-header">
+          <div id="mobile-filters-heading">
+               <span>Filters</span>
+          </div>
+          <div id="mobile-filters-close-holder">
+               <button class="btn" id="close-filters-plp-search">
+                    <span class="hidden">Close</span>
+                    <span class="glyphicon glyphicon-remove"></span>
+               </button>
+          </div>
+     </div>
+     <!-- the HTML from id plp-search-left-nav-filters is injected here when opened on smaller devices -->
+     <div id="mobile-filters">
+     </div>
+</div>
+<div id="mobile-filters-overlay"></div>
 <aside id="plp-search-left-nav-filters" data-sly-list="${searchFacets.facets}">
 		<sly data-sly-test="${item.attribute_code == 'manufacturer'}">
 		<div class="each-filter-section hide">
