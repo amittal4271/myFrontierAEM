@@ -140,6 +140,15 @@ function getProductListByCategory(currentPage,recsPerPage,sortBy,searchString){
 
            var html = Handlebars.compile(template);
 
+           if(!!productList && !!productList.search_criteria) {
+				var numOfResultsStart = 1;
+				
+				if(productList.search_criteria.current_page > 1) {
+					numOfResultsStart =  ( productList.search_criteria.current_page -1 ) * productList.search_criteria.page_size;
+				}
+				productList.numOfResultsStart = numOfResultsStart;
+			}
+			
 
             var processedHTML = html(productList)
 
