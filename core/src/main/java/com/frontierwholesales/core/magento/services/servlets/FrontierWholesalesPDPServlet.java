@@ -181,7 +181,7 @@ private JsonArray getImagePath(String productSku,SlingHttpServletRequest request
 
 	
 	private String parseJsonObject(String productDetails,SlingHttpServletRequest request,String groupId) throws Exception{
-		
+		log.debug("FrontierWholesalesPDPServlet parseJsonObject Start");
 		Gson json = new Gson();
 		JsonElement element = json.fromJson(productDetails, JsonElement.class);
 		
@@ -306,10 +306,13 @@ private JsonArray getImagePath(String productSku,SlingHttpServletRequest request
 			if(codeElement.getAsString().equals("dea_required")) {
 				object.addProperty("product_restriction",  attrObject.get("value").getAsInt());
 			}
+			if(codeElement.getAsString().equals("url_key")) {
+				object.addProperty("product_url",  attrObject.get("value").getAsString());
+			}
 		}
 	
 		object.addProperty("additionalInformation", bInformation);
-
+		log.debug("FrontierWholesalesPDPServlet parseJsonObject End");
 		return object.toString();
 	}
 	

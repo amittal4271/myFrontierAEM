@@ -116,6 +116,7 @@ if(summaryAttribute !== undefined && infoAttribute !== undefined && additionalAt
         if ($('#product-detail').length > 0) {
     		bindPdpAffixEvents();
     	}
+            history.replaceState(location.pathname,"","/content/frontierwholesales/en/productdetail.html/"+productDetails.product_url+"/"+productDetails.sku)
         }else{
              hideLoadingScreen();
             enableErrorMsg('');
