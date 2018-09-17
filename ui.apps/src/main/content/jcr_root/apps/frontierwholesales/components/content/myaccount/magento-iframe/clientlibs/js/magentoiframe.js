@@ -37,9 +37,9 @@ $(document).ready(function(){
             }
         }
     }
-    
+
 	getIframeHeight();
-   
+
     function iframeURLChange(iframe, callback) {
         var unloadHandler = function () {
             // Timeout needed because the URL changes immediately after
@@ -60,9 +60,12 @@ $(document).ready(function(){
         attachUnload();
     }
 
-    iframeURLChange(document.getElementById("magento-myaccount-iframe"), function (newURL) {
-        if(newURL.indexOf("/shop/checkout") != -1){
-          window.location = newURL;
-        }
-    });
+    if ($('#magento-myaccount-iframe').length > 0) {
+		iframeURLChange(document.getElementById("magento-myaccount-iframe"), function (newURL) {
+            if(newURL.indexOf("/shop/checkout") != -1){
+              window.location = newURL;
+            }
+        });
+    }
+
 });
