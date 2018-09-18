@@ -150,7 +150,8 @@ function getProductListByCategory(currentPage,recsPerPage,sortBy,searchString){
 			}
 			
             if(!!productList && !!productList.categorylist) {
-            		document.title = productList.categorylist.category.name + " | Frontier Co-op Wholesale";
+            	var pageTitle = document.title;
+            	document.title = productList.categorylist.category.name + " | " + pageTitle;
     		}
     
             var processedHTML = html(productList)
