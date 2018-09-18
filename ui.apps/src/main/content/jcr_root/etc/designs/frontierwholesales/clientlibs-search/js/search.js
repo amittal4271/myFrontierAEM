@@ -88,6 +88,14 @@ var FontierwholesalesSearch = {
 
 		});
 
+		$('body').on('blur', this.settings.formInput, function(e) {
+			suggestions.hide();
+        });
+
+        $('body').on('focus', this.settings.formInput, function(e) {
+			suggestions.show();
+        });
+		
 		// Results key navigation
 		$('body').on('keydown', this.settings.formInput, function(e) {
 
@@ -152,7 +160,10 @@ var FontierwholesalesSearch = {
 				}
 				// Trigger event to enable custom callbacks
 				form.trigger('search:suggestions', [data.results]);
-			}
+			},
+            error: function (data) {
+				suggestions.empty();
+            }
 		});
 
 	},
