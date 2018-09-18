@@ -100,6 +100,11 @@ if(summaryAttribute !== undefined && infoAttribute !== undefined && additionalAt
         if(!results.startsWith("Error")){
         var productDetails = JSON.parse(results);
        
+        if(!!productDetails) {
+        	var pageTitle = document.title;
+    		document.title = productDetails.name + " | " + pageTitle;
+        }
+
         var template = $("#productDetailsTemplate").html();
        
          HandlebarsIntl.registerWith(Handlebars);
