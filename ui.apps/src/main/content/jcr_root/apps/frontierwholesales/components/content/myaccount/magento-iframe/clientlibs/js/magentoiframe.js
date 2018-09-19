@@ -60,6 +60,7 @@ $(document).ready(function(){
         attachUnload();
     }
 
+    /* this is not needed right now.
     if ($('#magento-myaccount-iframe').length > 0) {
 		iframeURLChange(document.getElementById("magento-myaccount-iframe"), function (newURL) {
             if(newURL.indexOf("/shop/checkout") != -1){
@@ -67,5 +68,5 @@ $(document).ready(function(){
             }
         });
     }
-
+    */
 });
