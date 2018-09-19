@@ -1,0 +1,154 @@
+/*
+ *  Copyright 2016 Adobe Systems Incorporated
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+
+.contact {
+    h1 {
+        font-size:36px;
+        border-bottom: 3px solid #ececec;
+        font-weight:700;
+    }
+    h2 {
+        display:inline-block;
+        font-family: 'Open Sans', sans-serif;
+		font-size: 18px;
+        color: #817266;
+        line-height: 1.44;
+    	padding: 29px 0 15px;
+        font-weight:700;
+    }
+    .contact-list {
+        position:relative;
+        display:inline-block;
+        width: 100%;
+
+        .contact-item {
+			width:50%;
+            display:inline-block;
+            float:left;
+
+            .contact-company {
+				font-size: 14px;
+                color: #817266;
+
+            }
+            .contact-email {
+				font-size: 14px;
+                color: #f4901c;
+            }
+            .contact-email:hover {
+				font-size: 14px;
+                color: #8bba4a;
+            }
+            .contact-telephone {
+				font-size: 14px;
+                color: #817266;
+            }
+        }
+
+
+    }
+	#id_contact-form {
+        margin-top: 45px;
+
+        .contact-form-list {
+			position:relative;
+            display:inline-block;
+            width:100%;
+
+            .contact-form-item {
+				width:50%;
+                float:left;
+
+                label {
+					width:100%;
+                    color: #5a524b;
+                    font-weight:400;
+                }
+                input, select, textarea {
+                    color: #817266;
+                    width:100%;
+                    font-size: 15px;
+                    height: 41px;
+                    line-height: normal;
+                    margin-bottom: 18px;
+                    outline: 0;
+                    padding: 12px;
+                    transition:0.2s all ease-in-out;
+                }
+                input:focus, select:focus, textarea:focus {
+					border-color:#5a524b;
+                    transition:0.2s all ease-in-out;
+                }
+                select {
+                    padding:10px;
+                }
+                textarea {
+                    height:auto;
+                }
+            }
+            .contact-form-item-message {
+                width:100%;
+            }
+            .contact-form-item-name, 
+            .contact-form-item-phone-number-optional {
+                padding-right: 10px;
+            }
+            .contact-form-item-email,
+            .contact-form-item-subject {
+                padding-left: 10px;
+            }
+        }
+        .contact-form-submit {
+            button {
+               background: #8bba4a;
+               border-radius: 3px;
+               padding: 18px 30px;
+               text-transform: uppercase;
+               border:none;
+               color:#fff;
+               letter-spacing:1px;
+               font-weight:700;
+            }
+            button:hover {
+			   background: #189060;
+            }
+        }
+    }
+}
+@media only screen and (max-width: 768px) {
+    .contact {
+        .contact-list {
+            .contact-item {
+                width:100%;
+            } 
+        }
+        #id_contact-form {
+            .contact-form-list {
+                .contact-form-item {
+                    width:100%;
+                }
+                .contact-form-item-name, 
+                .contact-form-item-phone-number-optional {
+                    padding-right: 0px;
+                }
+                .contact-form-item-email,
+                .contact-form-item-subject {
+                    padding-left: 0px;
+                }
+            }
+        }
+    }
+}
