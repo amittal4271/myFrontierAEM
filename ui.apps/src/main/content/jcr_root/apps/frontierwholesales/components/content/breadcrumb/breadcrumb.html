@@ -6,7 +6,7 @@
     data-sly-use.template="core/wcm/components/commons/v1/templates.html"
     data-sly-list.navItem="${breadcrumb.items}">
     <li class="${navItem.active ? 'active' : ''}">
-        <a href="${navItem.page.path @ extension='html'}" data-sly-unwrap="${navItem.active}">
+        <a href="${(navItem.page.title == 'Home'?'/content/frontierwholesales/en/home':navItem.page.path) @ extension='html'}" data-sly-unwrap="${navItem.active}">
             ${navItem.page.title || navItem.page.name}
         </a>
     </li>
