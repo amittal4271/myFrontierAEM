@@ -82,7 +82,7 @@ Frontier.SearchResults = new function() {
 				    jQuery.each( filterGroup, function(j,filterGroupAttributes) {
 				    	jQuery.each(filterGroupAttributes, function(k,filterGroupAttribute) {
 				    		
-				    		if(!!Frontier.SearchFacets) {
+				    		if(!!Frontier.SearchFacets && (filterGroupAttribute.field == "manufacturer" ||  filterGroupAttribute.field == "certifications")) {
 				    			Frontier.SearchFacets.selectFilter(filterGroupAttribute.field,filterGroupAttribute.value);
 				    		}
 				    		
