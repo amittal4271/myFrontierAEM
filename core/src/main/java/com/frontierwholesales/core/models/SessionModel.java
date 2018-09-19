@@ -2,6 +2,8 @@ package com.frontierwholesales.core.models;
 
 
 
+import java.util.Calendar;
+
 import javax.servlet.http.Cookie;
 
 import org.slf4j.Logger;
@@ -21,11 +23,14 @@ public class SessionModel extends WCMUsePojo{
 	 private String authToken;
 	 // token without bearer to handshake magento commerce
      private String token;
-	    
+	 private int year;
 
 		@Override
 		public void activate() throws Exception {
 			LOGGER.debug("activate method Start...");
+			
+			Calendar now = Calendar.getInstance();
+			this.year = now.get(Calendar.YEAR);
 			
 			Cookie cookie = FrontierWholesalesUtils.getCookie(getRequest(),"CustomerData");
 			if(cookie != null) {
@@ -46,6 +51,10 @@ public class SessionModel extends WCMUsePojo{
 		
 		public String getToken() {
 			return token;
+		}
+		
+		public int getYear() {
+			return year;
 		}
 		
 		

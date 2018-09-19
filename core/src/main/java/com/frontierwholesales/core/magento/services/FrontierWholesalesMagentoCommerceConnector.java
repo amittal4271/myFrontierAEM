@@ -316,16 +316,17 @@ public class FrontierWholesalesMagentoCommerceConnector {
     }
     
     public String getBrands(String adminToken) throws Exception{
+    	log.debug("getBrands Start");
     	String response=null;
     
     		
-    	 InputStream inputStream = Request.Get(server+"/rest/V1/products/attributes/manufacturer/options")
+    	 InputStream inputStream = Request.Get(server+"/rest/V1/frontier/product/attributes/brandlist")
                     .addHeader("Authorization", adminToken)
                     .connectTimeout(TIME_OUT)
                     .execute().returnResponse().getEntity().getContent();
          
     	 response = FrontierWholesalesUtils.parseMagentoResponseObject(inputStream);
-      
+    	 log.debug("getBrands End");
     	 return response;
     }
     
