@@ -73,7 +73,8 @@ public class FrontierWholesalesEmailContactServlet extends SlingAllMethodsServle
 	    
 	    Session session = Session.getInstance(properties,auth);
 	    try {
-			sendEmail(session,name,fromEmail,toEmail,subject,message);
+			sendEmail(session,name,fromEmail,toEmail,subject,message,phoneNo);
+			
 			response.getOutputStream().print("Success");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -84,7 +85,7 @@ public class FrontierWholesalesEmailContactServlet extends SlingAllMethodsServle
 	    log.debug("doGet Method end");
 	}
 	
-	private static void sendEmail(Session session, String name,String fromEmail,String toEmail, String subject, String body) throws Exception{
+	private static void sendEmail(Session session, String name,String fromEmail,String toEmail, String subject, String body,String phone) throws Exception{
 			MimeMessage msg = new MimeMessage(session);
 			log.debug("sendEmail Method Start");
 	      //set message headers
@@ -98,7 +99,7 @@ public class FrontierWholesalesEmailContactServlet extends SlingAllMethodsServle
 
 	      msg.setSubject(subject, "UTF-8");
 
-	      msg.setText(body, "UTF-8");
+	      msg.setContent(constructBodyMessage(name,fromEmail,phone,subject,body), "text/HTML; charset=UTF-8");
 
 	      msg.setSentDate(new Date());
 
@@ -107,5 +108,18 @@ public class FrontierWholesalesEmailContactServlet extends SlingAllMethodsServle
 	      Transport.send(msg);  
 	      log.debug("sendEmail Method End");
 
+	}
+	
+	private static String constructBodyMessage(String name,String email,String phone,String reason,String msg) {
+		StringBuilder builder = new StringBuilder();
+		builder.append("<p>Name: ").append(name).append("</p>");
+		builder.append("<p>Email: ").append(email).append("</p>");
+		if(phone !=null && !phone.equals("")) {
+		builder.append("<p>Phone Number: ").append(phone).append("</p>");
+		}
+		builder.append("<p>Reason: ").append(reason).append("</p>");
+		builder.append("<p>Message: ").append(msg).append("</p>");
+		return builder.toString();
+		
 	}
 }

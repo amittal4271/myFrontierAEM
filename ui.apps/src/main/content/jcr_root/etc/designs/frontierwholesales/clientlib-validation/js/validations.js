@@ -290,6 +290,39 @@ function buyersClubCheckboxOperations(){
             });
         },
         
+        
+        contactUsForm: function($formId){
+             $($formId).validate({
+                rules: {
+                   "name":{
+                        required: true,
+		            	maxlength: 70,
+                       
+                       
+                   },
+                    "reason":{
+                         required: true
+                    },"message":{
+                         required: true
+                       
+                        
+                    },
+                    "email":{
+                        required: true,
+		            	maxlength: 150,
+                        emailValidation: true
+                        
+                    }
+                    
+                },messages :{
+                    "email":{
+                         emailValidation:"Please enter a valid email"
+                    }
+                    
+                }
+            });
+        },
+        
          buyersClubRegistrationForm: function($formId) {
             $($formId).validate({
                 rules: {

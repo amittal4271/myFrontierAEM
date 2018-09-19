@@ -1,5 +1,11 @@
 <body>
+    <div id="ajax-form-overlay-holder">
+     <div class="loader"></div>
+</div>
 <main class="main-content-container help-pages content-page">
+    <div class="global-server-side-message-holder" style="display:none;">
+                        <div class="alert alert-danger" role="alert"> <strong>Message Alert:</strong> Some type of message that shows errors </div>
+                   </div>
 <!-- bread crumb start-->
  <sly data-sly-resource="${'breadcrumb' @ resourceType='frontierwholesales/components/content/breadcrumb'}" data-sly-unwrap></sly> 
 <!-- bread crum end -->
