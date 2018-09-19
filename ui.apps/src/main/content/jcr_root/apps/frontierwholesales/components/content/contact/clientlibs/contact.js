@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    $('.contact-form__submit').on('click',function(event){
+    $('.contact-form-submit').on('click',function(event){
         event.preventDefault();
         sendContactDetails();
     })
