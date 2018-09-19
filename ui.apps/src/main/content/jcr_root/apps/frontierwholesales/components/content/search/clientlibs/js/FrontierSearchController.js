@@ -95,7 +95,6 @@ Frontier.SearchController = new function() {
 			
 			var filters = Frontier.SearchFacets.getFilters();
 			
-			console.log("Filters", filters);
 			if(filters.length > 0) {
 				groupIndex++;
 			}
