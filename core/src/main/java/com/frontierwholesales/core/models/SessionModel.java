@@ -36,9 +36,12 @@ public class SessionModel extends WCMUsePojo{
 			if(cookie != null) {
 				String cookieValue = cookie.getValue();
 				this.authToken = FrontierWholesalesUtils.getIdFromObject(cookieValue, "token");
+				LOGGER.debug("Auth token is "+this.authToken);
 				if(this.authToken != null && this.authToken != "") {
 					this.token = this.authToken.substring("Bearer ".length(), this.authToken.length());
 				}
+			}else {
+				LOGGER.debug("cookie is null...");
 			}
 			LOGGER.debug("activate method End...");
 		}

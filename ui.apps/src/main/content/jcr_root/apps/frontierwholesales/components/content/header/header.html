@@ -84,7 +84,7 @@
          {{else}}
          
                
-          <a href="{{getCartUrl}}?token=${user.token @context='scriptString'}" class="btn btn-cart-display cart-display" title="Cart">
+          <a href="/content/frontierwholesales/en/cart.html" class="btn btn-cart-display cart-display" title="Cart">
                <span class="icon-cart">
                     <span class="glyphicon glyphicon-shopping-cart"></span>
                    {{#if quote.items_qty includedZero=false}}
@@ -165,7 +165,7 @@
 
                <div class="mini-cart-go-to-cart-holder">
                    {{#if ${user.authToken != null @context='scriptString' }}}
-                    <a href="{{getCartUrl}}?token=${user.token @context='scriptString'}" class="btn btn-light-green btn-mini-cart-go-to-cart">Go to Cart</a>
+                    <a href="/content/frontierwholesales/en/cart.html" class="btn btn-light-green btn-mini-cart-go-to-cart">Go to Cart</a>
                    {{else}}
                     <a href="/content/frontierwholesales/en/login.html" class="btn btn-light-green btn-mini-cart-go-to-cart">Go to Cart</a>
                    {{/if}}
