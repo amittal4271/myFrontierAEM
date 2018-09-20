@@ -95,7 +95,7 @@
 							<ul class="sub-nav-mobile first-level" data-sly-list.child1="${pages.children_data}">
 
 								<li class="mobile-first-level-item">
-										
+
                                           <button class="btn mobile-second-level-btn">
 											<a class="mobile-second-level-link" data-linkname="/${child1.name}/" 
 														href="/content/frontierwholesales/en/productlist.html/${child1.name}/${child1.id}">
@@ -110,7 +110,7 @@
 											
                                             <button class="btn mobile-third-level-btn">
 											<a class="mobile-second-level-link" data-linkname="/${child1.name}/${child2.name}/" 
-														href="/content/frontierwholesales/en/productlist.html/${childLevel1.displayName}/${child2.displayName}/${child2.id}">
+														href="/content/frontierwholesales/en/productlist.html/${child1.name}/${child2.name}/${child2.id}">
 												<span class="top-level-text">${child2.name}</span> </a>
 											<sly data-sly-test="${child2.children_data.length > 0}">
                                                 <span class="glyphicon glyphicon-plus"></span>
@@ -121,7 +121,7 @@
                                                 <li class="mobile-third-level-item">
 													<button class="btn mobile-third-level-btn">
                                                     <a class="mobile-third-level-link" data-linkname="/${child1.name}/${child2.name}/${child3.name}/" 
-														href="/content/frontierwholesales/en/productlist.html/${childLevel1.displayName}/${child2.displayName}/${child3.displayName}/${child3.id}">
+														href="/content/frontierwholesales/en/productlist.html/${child1.name}/${child2.name}/${child3.name}/${child3.id}">
                                                        <span class="top-level-text">
                                                            ${child3.name}</span> 
                                                            </a>
