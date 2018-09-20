@@ -16,38 +16,27 @@ Frontier.SearchController = new function() {
 	
 	function init() {
 		if(typeof Frontier.SearchResults !== 'undefined' && $(".searchResult").length > 0) {
-			if(window.location.search != "") {				
-				// Get saved data from sessionStorage
-				var searchTerm = sessionStorage.getItem('Frontier.searchTerm');
-				if(!!searchTerm) {
-					searchTerm = searchTerm.replaceAll("%", "");
-					$(".search-input").val(searchTerm);
-				}
-				// Remove saved data from sessionStorage
-				sessionStorage.removeItem('Frontier.searchTerm');
-				
-				if(!!Frontier.SearchResults){
-					showLoadingScreen();
-					Frontier.MagentoServices.searchProducts(window.location.search.slice(1, window.location.search.length)).done(function(productList){
-						Frontier.SearchResults.updateResults(productList);
-						hideLoadingScreen();
-					});
-				}			
+			var searchTerm = getParameterByName("q");
+			$(".search-input").val(searchTerm);
+			
+			var brandId = getParameterByName("brand");
+			
+			var searchQS ="";
+			
+			if(!!brandId) {
+				searchQS = "searchCriteria[requestName]=quick_search_container&searchCriteria[filter_groups][1][filters][0][field]=manufacturer&searchCriteria[filter_groups][1][filters][0][value]="+brandId+"&searchCriteria[filter_groups][1][filters][0][condition_type]=eq&searchCriteria[filter_groups][2][filters][0][field]=status&searchCriteria[filter_groups][2][filters][0][value]=1&searchCriteria[filter_groups][2][filters][0][condition_type]=eq&searchCriteria[currentPage]=0&searchCriteria[pageSize]=28";
 			} else {
+				searchQS = getQueryString(1, true);
+			}
+			
+			if(!!Frontier.SearchResults ){
 				showLoadingScreen();
-				Frontier.MagentoServices.searchProducts(getQueryString()).done(function(productList){
+				Frontier.MagentoServices.searchProducts(searchQS).done(function(productList){
 					Frontier.SearchResults.updateResults(productList);
 					hideLoadingScreen();
 				});
-			}
+			}			
 		}
-		
-		$(".search-form").submit(function(event) {
-			event.preventDefault();
-			// Save data to sessionStorage
-			sessionStorage.setItem('Frontier.searchTerm', $(".search-input").val());
-			window.location = "/content/frontierwholesales/en/search.html?"+getQueryString(null, true);
-		});
 	}
 	
 	function updateResults(pageNum) {
