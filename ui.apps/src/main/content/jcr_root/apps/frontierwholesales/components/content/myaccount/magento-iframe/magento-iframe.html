@@ -2,7 +2,15 @@
 <sly data-sly-use.user="com.frontierwholesales.core.models.SessionModel"></sly>
 <script>
   var serverURL = "${url.server @ context='html'}";
+
+    function iframeLoaded() {
+            var iFrameID = document.getElementById('magento-myaccount-iframe');
+            if(iFrameID) {
+            iFrameID.height = "";
+            iFrameID.height = iFrameID.contentWindow.document.body.scrollHeight + "px";
+        }   
+    }
 </script>
 <div class="magento-iframe-container">
-	<iframe id="magento-myaccount-iframe"  frameborder="0" scrolling="auto" class="fullwidth"></iframe>
+	<iframe id="magento-myaccount-iframe" onload="iframeLoaded()" frameborder="0" scrolling="auto" class="fullwidth"></iframe>
 </div>
