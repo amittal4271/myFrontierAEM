@@ -79,7 +79,7 @@
 
                             <sly data-sly-test="${pages.children_data.length == 0}">
 
-								<a href="${pages.link}" class="btn mobile-top-level-link">
+								<a href="/content/frontierwholesales/en/productlist.html/${pages.displayName}/${pages.id}" class="btn mobile-top-level-link">
                                     <span class="top-level-text">${pages.name}</span> 
                                 </a>
                                 </sly>
@@ -95,10 +95,10 @@
 							<ul class="sub-nav-mobile first-level" data-sly-list.child1="${pages.children_data}">
 
 								<li class="mobile-first-level-item">
-										
+
                                           <button class="btn mobile-second-level-btn">
 											<a class="mobile-second-level-link" data-linkname="/${child1.name}/" 
-														href="/content/frontierwholesales/en/productlist.html?id=${child1.id}">
+														href="/content/frontierwholesales/en/productlist.html/${child1.name}/${child1.id}">
                                                 <span class="top-level-text">${child1.name}</span> </a>
 											<sly data-sly-test="${child1.children_data.length > 0}">
                                             <span class="glyphicon glyphicon-plus"></span>
@@ -110,7 +110,7 @@
 											
                                             <button class="btn mobile-third-level-btn">
 											<a class="mobile-second-level-link" data-linkname="/${child1.name}/${child2.name}/" 
-														href="/content/frontierwholesales/en/productlist.html?id=${child2.id}">
+														href="/content/frontierwholesales/en/productlist.html/${child1.name}/${child2.name}/${child2.id}">
 												<span class="top-level-text">${child2.name}</span> </a>
 											<sly data-sly-test="${child2.children_data.length > 0}">
                                                 <span class="glyphicon glyphicon-plus"></span>
@@ -121,7 +121,7 @@
                                                 <li class="mobile-third-level-item">
 													<button class="btn mobile-third-level-btn">
                                                     <a class="mobile-third-level-link" data-linkname="/${child1.name}/${child2.name}/${child3.name}/" 
-														href="/content/frontierwholesales/en/productlist.html?id=${child3.id}">
+														href="/content/frontierwholesales/en/productlist.html/${child1.name}/${child2.name}/${child3.name}/${child3.id}">
                                                        <span class="top-level-text">
                                                            ${child3.name}</span> 
                                                            </a>
@@ -158,7 +158,7 @@
                              <ul class="sub-nav-mobile first-level" data-sly-list.lastChildLevel1="${aemPageFirst.childList}">
                                    <li class="mobile-first-level-item">
                                        <button class="btn mobile-second-level-btn">
-										<a href="${lastChildLevel1.link}">
+										<a class="mobile-second-level-link" href="${lastChildLevel1.link}">
                                            <span class="top-level-text">${lastChildLevel1.title}</span></a>
 												<sly data-sly-test="${lastChildLevel1.childList.size > 0}">
                                                                      <span class="glyphicon glyphicon-plus">
@@ -169,7 +169,7 @@
                                         <ul  class="sub-nav-mobile second-level" data-sly-list.lastChildLevel2="${lastChildLevel1.childList}">
                                              <li class="mobile-second-level-item">
 													 <button class="btn mobile-third-level-btn">
-                                                         <a href="${lastChildLevel2.link}">
+                                                         <a class="mobile-second-level-link" href="${lastChildLevel2.link}">
                                                              <span class="top-level-text">${lastChildLevel2.title}</span></a>
 															<sly data-sly-test="${lastChildLevel2.childList.size > 1}">
                                                         	<span class="glyphicon glyphicon-plus"> </span>
@@ -182,7 +182,7 @@
 
                                                      <li class="mobile-third-level-item">
                                                          <button class="btn mobile-third-level-btn">
-                                                             <a href="${lastChildLevel3.link}" >
+                                                             <a class="mobile-third-level-link" href="${lastChildLevel3.link}" >
                                                                  <span class="top-level-text">${lastChildLevel3.title}</span>
                                                             </a>
                                                             </button> 
