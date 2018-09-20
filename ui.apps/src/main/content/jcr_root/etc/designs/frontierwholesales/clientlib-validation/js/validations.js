@@ -49,6 +49,11 @@ $.validator.addMethod("notalpha", function(value, element) {
     return !regEx.test(value)
 });
 
+$.validator.addMethod("cvvValidate", function(value, element) {
+	var regEx = new RegExp("^[0-9]{3,4}$");
+    return regEx.test(value)
+});
+
 
 $.validator.addMethod("passwordValidate",function(value,element){
     var regEx = new RegExp("^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
@@ -629,7 +634,8 @@ function buyersClubCheckboxOperations(){
                         
                     },"billing-cvv":{
                         required: true,
-		            	maxlength: 4
+		            	maxlength: 4,
+		            	cvvValidate: true
                         
                     },"billing-exp_month":{
                         required: true,
@@ -701,6 +707,8 @@ function buyersClubCheckboxOperations(){
                         emailValidation:"Please enter a valid email"
                     },"billing-number":{
                         creditcardValidate: "Enter a valid card number!"
+                    },"billing-cvv":{
+                    	cvvValidate: "Please match the requested format."
                     },"shipping-postal_code":{
                         notalpha: 'Enter a valid postal code'
                     },"mailing-postal_code":{
