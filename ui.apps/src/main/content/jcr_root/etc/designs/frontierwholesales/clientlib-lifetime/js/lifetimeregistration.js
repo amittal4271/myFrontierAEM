@@ -170,8 +170,8 @@ function collectUserDetails(){
     var customerJsonData={};
     customerJsonData['addresses']=[];
     customerJsonData['email'] = $('#id_membership-email').val();
-    customerJsonData['firstname'] =memberNameSplit[0] ;
-    customerJsonData['lastname']=memberNameSplit[1];
+    customerJsonData['firstname'] =memberName.substr(0,memberName.indexOf(' '));;
+    customerJsonData['lastname']=memberName.substr(memberName.indexOf(' ')+1);
     customerJsonData['website_id']='1';
    
     var addressData=[];
@@ -181,8 +181,8 @@ function collectUserDetails(){
     address['street']=[];
     
     
-    address['firstname']=shippingNameSplit[0];
-    address['lastname']=shippingNameSplit[1];
+    address['firstname']=shippingName.substr(0,shippingName.indexOf(' '));
+    address['lastname']=shippingName.substr(shippingName.indexOf(' ')+1);
     address['postcode']=$('#id_shipping-postal_code').val();
     address['city']=$('#id_shipping-city').val();
     address['telephone']=$('#id_shipping-phone').val().replace(/-/g, "");

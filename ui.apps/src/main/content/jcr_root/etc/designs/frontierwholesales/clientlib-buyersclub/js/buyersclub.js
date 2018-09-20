@@ -56,8 +56,8 @@ function callResetPassword(){
     }
     
     customerJsonData['email']=currentEmailId;
-    customerJsonData['firstname'] = memberNameSplit[0];
-    customerJsonData['lastname']=memberNameSplit[1];
+    customerJsonData['firstname'] = memberName.substr(0,memberName.indexOf(' '));
+    customerJsonData['lastname']=memberName.substr(memberName.indexOf(' ')+1);
     customerJsonData['website_id']=1;
     customer['customer']=customerJsonData;
     
