@@ -57,13 +57,15 @@ public class FrontierWholesalesEmailContactServlet extends SlingAllMethodsServle
 		
 		Properties properties = System.getProperties();
 		String toEmail = emailConnector.getToAddress();
-		properties.setProperty("mail.smtp.host", emailConnector.getHostName());
-	    properties.setProperty("mail.smtp.user",emailConnector.getSmtpUser());
-	    properties.setProperty("mail.smtp.port", emailConnector.getSmtpPort());
-	    properties.setProperty("mail.smtp.auth", "true");
-	    properties.setProperty("mail.imap.ssl.enable", "true");
-	    properties.put("mail.smtp.starttls.enable", "true");
-	    
+		properties.put("mail.smtp.host", emailConnector.getHostName());
+	   
+	    properties.put("mail.smtp.port", emailConnector.getSmtpPort());
+	    properties.put("mail.debug","true");
+	    properties.put("mail.smtp.auth", "true");
+	    properties.put("mail.imap.ssl.enable", "true");
+	   properties.put("mail.smtp.starttls.enable", "true");
+	   
+	   String noReply = emailConnector.getFromAddress();
 	    Authenticator auth = new Authenticator() {
 			//override the getPasswordAuthentication method
 			protected PasswordAuthentication getPasswordAuthentication() {
@@ -73,7 +75,7 @@ public class FrontierWholesalesEmailContactServlet extends SlingAllMethodsServle
 	    
 	    Session session = Session.getInstance(properties,auth);
 	    try {
-			sendEmail(session,name,fromEmail,toEmail,subject,message,phoneNo);
+			sendEmail(session,name,noReply,fromEmail,toEmail,subject,message,phoneNo);
 			
 			response.getOutputStream().print("Success");
 		} catch (Exception e) {
@@ -85,7 +87,7 @@ public class FrontierWholesalesEmailContactServlet extends SlingAllMethodsServle
 	    log.debug("doGet Method end");
 	}
 	
-	private static void sendEmail(Session session, String name,String fromEmail,String toEmail, String subject, String body,String phone) throws Exception{
+	private static void sendEmail(Session session, String name,String noReply,String fromEmail,String toEmail, String subject, String body,String phone) throws Exception{
 			MimeMessage msg = new MimeMessage(session);
 			log.debug("sendEmail Method Start");
 	      //set message headers
@@ -93,9 +95,9 @@ public class FrontierWholesalesEmailContactServlet extends SlingAllMethodsServle
 	      msg.addHeader("format", "flowed");
 	      msg.addHeader("Content-Transfer-Encoding", "8bit");
 	      log.debug("From email is "+fromEmail);
-	      msg.setFrom(new InternetAddress(fromEmail, name));
+	      msg.setFrom(new InternetAddress(noReply, name));
 
-	      msg.setReplyTo(InternetAddress.parse(toEmail, false));
+	      msg.setReplyTo(InternetAddress.parse(fromEmail, false));
 
 	      msg.setSubject(subject, "UTF-8");
 
