@@ -226,6 +226,10 @@ private JsonArray getImagePath(String productSku,SlingHttpServletRequest request
 			}
 		}
 		
+		String newProduct="";
+		String closeOut="";
+		String sale="";
+		
 		for(JsonElement attributesElement:attributesArray) {
 			JsonObject attrObject = attributesElement.getAsJsonObject();
 			JsonElement codeElement = attrObject.get("attribute_code");
@@ -284,14 +288,17 @@ private JsonArray getImagePath(String productSku,SlingHttpServletRequest request
 			}
 		
 			if(codeElement.getAsString().equals("new_product")) {
+				newProduct = attrObject.get("value").getAsString();
 				object.addProperty("new_product", attrObject.get("value").getAsString());
 			}
 		
 			if(codeElement.getAsString().equals("close_out")) {
+				closeOut = attrObject.get("value").getAsString();
 				object.addProperty("close_out", attrObject.get("value").getAsString());
 			}
 		
 			if(codeElement.getAsString().equals("on_sale")) {
+				sale = attrObject.get("value").getAsString();
 				object.addProperty("on_sale", attrObject.get("value").getAsString());
 			}
 			
@@ -308,6 +315,25 @@ private JsonArray getImagePath(String productSku,SlingHttpServletRequest request
 			}
 			if(codeElement.getAsString().equals("url_key")) {
 				object.addProperty("product_url",  attrObject.get("value").getAsString());
+			}
+			
+			if(newProduct.equals("1")  && closeOut.equals("1") && sale.equals("Yes")) {
+				
+				object.addProperty("new_product","1");
+				object.addProperty("close_out", "0");
+				object.addProperty("on_sale", "0");
+			}else if(closeOut.equals("1")  && sale.equals("Yes")) {
+				object.addProperty("new_product","0");
+				object.addProperty("close_out", "1");
+				object.addProperty("on_sale", "0");
+			}else if(newProduct.equals("1") && sale.equals("Yes")) {
+				object.addProperty("new_product","1");
+				object.addProperty("close_out", "0");
+				object.addProperty("on_sale", "0");
+			}else if(newProduct.equals("1") && closeOut.equals("1")) {
+				object.addProperty("new_product","1");
+				object.addProperty("close_out", "0");
+				object.addProperty("on_sale", "0");
 			}
 		}
 	

@@ -30,6 +30,7 @@ public class EmailConnector {
 	 
 	 private static String hostName;
 	 private static String smtpPort;
+	 private static String fromAddress;
 	 private static String toAddress;
 	 private static String smtpUser;
 	 private static String password;
@@ -42,13 +43,21 @@ public class EmailConnector {
 	            value = "hostname"
 	    )
 	    public static String HOST_NAME ="hostName";
+	 
+	  @Property(
+	    		
+	            label = "From Address",
+	            description = "Email From Address",
+	            value = "no-reply@frontiercoop.com"
+	    )
+	    public static final String FROM_ADDRESS = "fromAddress";
 	    
 
 	    @Property(
 	    		
 	            label = "To Address",
-	            description = "Email To Addressr",
-	            value = "no-reply@frontiercoop.com"
+	            description = "Email To Address",
+	            value = "customercare@frontiercoop.com"
 	    )
 	    public static final String TO_ADDRESS = "toAddress";
 	    
@@ -82,6 +91,8 @@ public class EmailConnector {
 	        ConfigurationParameters cfg = ConfigurationParameters.of(properties);
 	        
 	        hostName = cfg.getConfigValue(HOST_NAME, "");
+	        
+	        fromAddress = cfg.getConfigValue(FROM_ADDRESS, "");
 	       
 	        toAddress = cfg.getConfigValue(TO_ADDRESS, "");
 	        
@@ -133,6 +144,12 @@ public class EmailConnector {
 		public  void setPassword(String password) {
 			EmailConnector.password = password;
 		}
+
+		public  String getFromAddress() {
+			return fromAddress;
+		}
+		
+		
 	    
 		
 		

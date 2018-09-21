@@ -416,20 +416,26 @@ public class FrontierWholesalesUtils {
 				String status = itemObject.get("status").getAsString();
 				String visibility = itemObject.get("visibility").getAsString();
 				
+				String newProduct="";
+				String closeOut="";
+				String sale="";
 				
 				for(JsonElement attributesElement:attributesArray) {
 					JsonObject attrObject = attributesElement.getAsJsonObject();
 					JsonElement codeElement = attrObject.get("attribute_code");
 					
 					if(codeElement.getAsString().equals("new_product")) {
+						newProduct = attrObject.get("value").getAsString();
 						itemObject.addProperty("new_product", attrObject.get("value").getAsString());
 					}
 					
 					if(codeElement.getAsString().equals("close_out")) {
+						closeOut = attrObject.get("value").getAsString();
 						itemObject.addProperty("close_out", attrObject.get("value").getAsString());
 					}
 					
 					if(codeElement.getAsString().equals("on_sale")) {
+						sale = attrObject.get("value").getAsString();
 						itemObject.addProperty("on_sale", attrObject.get("value").getAsString());
 					}
 					
@@ -445,6 +451,28 @@ public class FrontierWholesalesUtils {
 						String url = attrObject.get("value").getAsString();
 						url = url.replaceAll(" ", "-");
 						itemObject.addProperty("url", url);
+					}
+					
+					if(newProduct.equals("1")  && closeOut.equals("1") && sale.equals("Yes")) {
+						
+						itemObject.addProperty("new_product","1");
+						itemObject.addProperty("close_out", "0");
+						itemObject.addProperty("on_sale", "0");
+					}else if(closeOut.equals("1")  && sale.equals("Yes")) {
+						
+						itemObject.addProperty("new_product","0");
+						itemObject.addProperty("close_out", "1");
+						itemObject.addProperty("on_sale", "0");
+					}else if(newProduct.equals("1") && sale.equals("Yes")) {
+						
+						itemObject.addProperty("new_product","1");
+						itemObject.addProperty("close_out", "0");
+						itemObject.addProperty("on_sale", "0");
+					}else if(newProduct.equals("1") && closeOut.equals("1")) {
+						
+						itemObject.addProperty("new_product","1");
+						itemObject.addProperty("close_out", "0");
+						itemObject.addProperty("on_sale", "0");
 					}
 				}
 				
