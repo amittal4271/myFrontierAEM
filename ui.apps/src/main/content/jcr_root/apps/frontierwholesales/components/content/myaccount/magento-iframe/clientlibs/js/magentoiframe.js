@@ -3,8 +3,8 @@ $(document).ready(function(){
         var userToken = getUserToken();
         if(userToken.startsWith('Bearer') && userToken.trim().length > 0){
             userToken = userToken.replace('Bearer ','');
-            var path = location.pathname;
-            path = path.substr(path.lastIndexOf("/")+1);
+            var pathName = location.pathname;
+           var path = pathName.substr(pathName.lastIndexOf("/")+1);
             if(path == 'addressbook'){
                 //update with address url
                 $('#magento-myaccount-iframe').prop('src',serverURL+'/customer/address?token='+userToken);
@@ -16,6 +16,8 @@ $(document).ready(function(){
                  $('#magento-myaccount-iframe').prop('src',serverURL+'/wishlist?token='+userToken);
             }else if(path == 'pendingorders'){
                  $('#magento-myaccount-iframe').prop('src',serverURL+'/savecart/customer/cartlist?token='+userToken); 
+            }else if(pathName.search('/vieworder/') > 0){
+                 $('#magento-myaccount-iframe').prop('src',serverURL+'/sales/order/view/order_id/'+path);
             }else{
                 $('#magento-myaccount-iframe').prop('src',serverURL+'/customer/account?token='+userToken);
             }

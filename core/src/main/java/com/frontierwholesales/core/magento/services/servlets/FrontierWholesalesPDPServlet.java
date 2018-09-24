@@ -289,17 +289,17 @@ private JsonArray getImagePath(String productSku,SlingHttpServletRequest request
 		
 			if(codeElement.getAsString().equals("new_product")) {
 				newProduct = attrObject.get("value").getAsString();
-				object.addProperty("new_product", attrObject.get("value").getAsString());
+				object.addProperty("new_product", newProduct);
 			}
 		
 			if(codeElement.getAsString().equals("close_out")) {
 				closeOut = attrObject.get("value").getAsString();
-				object.addProperty("close_out", attrObject.get("value").getAsString());
+				object.addProperty("close_out", closeOut);
 			}
 		
 			if(codeElement.getAsString().equals("on_sale")) {
-				sale = attrObject.get("value").getAsString();
-				object.addProperty("on_sale", attrObject.get("value").getAsString());
+				sale = attrObject.get("value").getAsString().equals("Yes")?"1":"0";	
+				object.addProperty("on_sale", sale);
 			}
 			
 			if(codeElement.getAsString().equals("bulk")){
@@ -317,16 +317,16 @@ private JsonArray getImagePath(String productSku,SlingHttpServletRequest request
 				object.addProperty("product_url",  attrObject.get("value").getAsString());
 			}
 			
-			if(newProduct.equals("1")  && closeOut.equals("1") && sale.equals("Yes")) {
+			if(newProduct.equals("1")  && closeOut.equals("1") && sale.equals("1")) {
 				
 				object.addProperty("new_product","1");
 				object.addProperty("close_out", "0");
 				object.addProperty("on_sale", "0");
-			}else if(closeOut.equals("1")  && sale.equals("Yes")) {
+			}else if(closeOut.equals("1")  && sale.equals("1")) {
 				object.addProperty("new_product","0");
 				object.addProperty("close_out", "1");
 				object.addProperty("on_sale", "0");
-			}else if(newProduct.equals("1") && sale.equals("Yes")) {
+			}else if(newProduct.equals("1") && sale.equals("1")) {
 				object.addProperty("new_product","1");
 				object.addProperty("close_out", "0");
 				object.addProperty("on_sale", "0");
