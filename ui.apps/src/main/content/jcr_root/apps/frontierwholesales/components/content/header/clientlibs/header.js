@@ -1,6 +1,7 @@
 $(document).ready(function(){
 	if(window.location.href.indexOf("/myaccount") == -1) { 	 
 		initCartHandlbarFunctions();
+       
 		
 	    var pageTitle = $("#pageTitle").data("pagetitle");
 	    console.log(pageTitle);
@@ -49,6 +50,18 @@ function getCartItems(){
             
            var template = $("#minicartTemplate").html();
              HandlebarsIntl.registerWith(Handlebars);
+            
+            Handlebars.registerHelper("login",function(options){
+                var userToken = getUserToken();
+                 var fnTrue = options.fn,
+                     fnFalse = options.inverse;
+                if(userToken !== undefined && userToken.startsWith('Bearer ')){
+                    return fnTrue();
+                }else{
+                    return fnFalse();
+                }
+            });
+            
             var processedHTML =  Handlebars.compile(template);
            
         var html = '';

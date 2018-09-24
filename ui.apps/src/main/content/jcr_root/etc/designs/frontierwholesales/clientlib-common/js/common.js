@@ -1,4 +1,17 @@
 $(document).ready(function(){
+     var userToken = getUserToken();
+        
+        if(userToken !== undefined && userToken.startsWith("Bearer ")){
+            $('.join-membership').css('display','none');
+            $('.login-menu').css('display','none');
+            $('.post-login-menu').css('display','inline-block');
+            $('.myaccount-url').attr('href','/content/frontierwholesales/en/myaccount.html');
+        }else{
+            $('.join-membership').css('display','inline-block');
+              $('.login-menu').css('display','inline-block');
+            $('.post-login-menu').css('display','none');
+             $('.myaccount-url').attr('href','/content/frontierwholesales/en/login.html');
+        }
     if (!!window.performance && window.performance.navigation.type === 2) {
         console.log('browser back button...');
         location.reload();

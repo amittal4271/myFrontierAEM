@@ -34,31 +34,24 @@
                          <li><a href="/content/frontierwholesales/en/glossary.html">Glossary</a></li>
                     </ul>
                </li>
-                <sly data-sly-test="${user.authToken == null @ context='scriptString' }">
-                   <li>
+                
+                   <li class="join-membership" style="display:none;">
                        <a href="/content/frontierwholesales/en/membership.html">Join</a>
                   </li>
-              </sly>
+            
               
-               <li>
+               <li>                  
                   
-                   <sly data-sly-test="${user.authToken == null @ context='scriptString' }">
                     <a href="/content/frontierwholesales/en/login.html">My Account</a>
-                    <ul id="header-account-flyout" class="header-flyout-list mobile-closed">
-                      <li><a href="/content/frontierwholesales/en/login.html">Log In</a></li>
-                         </ul>
-                   </sly>
-                   
-                   <sly data-sly-test="${user.authToken != null @ context='scriptString' }">
-                       <a href="/content/frontierwholesales/en/myaccount.html">My Account</a>
-                       <ul id="header-account-flyout" class="header-flyout-list mobile-closed">
-                         
-                         <li><a href="/content/frontierwholesales/en/myaccount.html/addressbook">Address Book</a></li>
-                         <li><a href="/content/frontierwholesales/en/myaccount.html/orders">Orders</a></li>
-                           <li><a href="/content/frontierwholesales/en/myaccount.html/wishlist">Wish List</a></li>
-                         <li><a id="signOut" href='#'>Sign Out</a></li>
+                    <ul id="header-account-flyout" class="log-in-menu header-flyout-list mobile-closed">
+                      <li class="login-menu"><a href="/content/frontierwholesales/en/login.html">Log In</a></li>
+                
+                         <li class="post-login-menu"><a href="/content/frontierwholesales/en/myaccount.html/addressbook">Address Book</a></li>
+                         <li class="post-login-menu"><a href="/content/frontierwholesales/en/myaccount.html/orders">Orders</a></li>
+                           <li class="post-login-menu"><a href="/content/frontierwholesales/en/myaccount.html/wishlist">Wish List</a></li>
+                         <li class="post-login-menu"><a id="signOut" href='#'>Sign Out</a></li>
                     </ul>
-                   </sly>
+                  
               
               </li>
           </ul>
@@ -70,18 +63,7 @@
       <script id="minicartTemplate" type="text/x-handlebars-template">
      <div id="cart-holder" class="owner-account-cart-holder">
          
-         {{#if ${user.authToken == null @context='scriptString' }}}
-              <a href="/content/frontierwholesales/en/login.html" class="btn btn-cart-display cart-display" title="Cart">
-                  <span class="icon-cart">
-                    <span class="glyphicon glyphicon-shopping-cart"></span>
-                  
-                   <span class="cart-count quantity">0</span>
-                  
-                    </span>
-              
-                    <span class="cart-amount">My Total: <span id="shopping-cart-total" class="amount">$0.00</span></span>
-              </a>
-         {{else}}
+       {{#login}}
          
                
           <a href="/content/frontierwholesales/en/cart.html" class="btn btn-cart-display cart-display" title="Cart">
@@ -111,7 +93,18 @@
                <span class="cart-amount">Our Total: <span class="amount">$0.00</span></span>
              {{/if}}
           </a>
-         {{/if}}
+         {{else}}
+            <a href="/content/frontierwholesales/en/login.html" class="btn btn-cart-display cart-display" title="Cart">
+                  <span class="icon-cart">
+                    <span class="glyphicon glyphicon-shopping-cart"></span>
+                  
+                   <span class="cart-count quantity">0</span>
+                  
+                    </span>
+              
+                    <span class="cart-amount">My Total: <span id="shopping-cart-total" class="amount">$0.00</span></span>
+              </a>
+         {{/login}}
 
          <div class="mini-cart-holder mobile-closed">
            {{#if noTotal}}
@@ -164,11 +157,12 @@
                </div>
 
                <div class="mini-cart-go-to-cart-holder">
-                   {{#if ${user.authToken != null @context='scriptString' }}}
-                    <a href="/content/frontierwholesales/en/cart.html" class="btn btn-light-green btn-mini-cart-go-to-cart">Go to Cart</a>
+                  
+                   {{#login}}
+                        <a href="/content/frontierwholesales/en/login.html" class="btn btn-light-green btn-mini-cart-go-to-cart">Go to Cart</a>
                    {{else}}
-                    <a href="/content/frontierwholesales/en/login.html" class="btn btn-light-green btn-mini-cart-go-to-cart">Go to Cart</a>
-                   {{/if}}
+                        <a href="/content/frontierwholesales/en/cart.html" class="btn btn-light-green btn-mini-cart-go-to-cart">Go to Cart</a>
+                   {{/login}}
                </div>
 
           </div>
