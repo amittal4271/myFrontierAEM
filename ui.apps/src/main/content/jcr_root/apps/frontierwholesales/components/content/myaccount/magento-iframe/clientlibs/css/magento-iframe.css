@@ -1,8 +1,7 @@
 .magento-iframe-container {
     position: relative;
-    min-height: 60vh;
 }
-#magento-myaccount-iframe {
+#magento-myaccount-iframe, #magento-cart-iframe, #magento-quickorder-iframe {
 	width:100%;
-    min-height:100%;
+    min-height: 60vh;
 }
