@@ -8,7 +8,7 @@
 
 <!--/* Include Adobe Dynamic Tag Management libraries for the header */-->
 <sly data-sly-include="/libs/cq/cloudserviceconfigs/components/servicelibs/servicelibs.jsp" data-sly-unwrap/>
-    <sly data-sly-use.clientLib="/libs/granite/sightly/templates/clientlib.html" data-sly-call="${clientLib.js @ categories='cq.widgets'}"/>
+    <sly data-sly-test.author="${wcmmode.edit || wcmmode.design}" data-sly-use.clientLib="/libs/granite/sightly/templates/clientlib.html" data-sly-call="${clientLib.js @ categories='cq.widgets'}"/>
 </sly>
 <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700|Open+Sans+Condensed:300,700|Open+Sans:300,400,700" rel="stylesheet">
 
