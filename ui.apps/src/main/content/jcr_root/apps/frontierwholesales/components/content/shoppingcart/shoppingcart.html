@@ -1,5 +1,5 @@
 <sly data-sly-use.url="../../../global-useapi/serverurl.js"></sly>
-<sly data-sly-use.user="com.frontierwholesales.core.models.SessionModel"></sly>
+
 <script>
   var serverURL = "${url.server @ context='html'}";
 
@@ -17,5 +17,5 @@
 
 </script>
 <div class="magento-iframe-container">
-	<iframe id="magento-cart-iframe" onload="cartIframeLoaded()" src="${url.server @ context='html'}/checkout/cart?token=${user.token}" frameborder="0" scrolling="auto" class="fullwidth"></iframe>
+	<iframe id="magento-cart-iframe" onload="cartIframeLoaded()"  frameborder="0" scrolling="auto" class="fullwidth"></iframe>
 </div>
