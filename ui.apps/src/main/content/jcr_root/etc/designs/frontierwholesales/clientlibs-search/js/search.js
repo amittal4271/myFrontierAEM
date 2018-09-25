@@ -150,7 +150,9 @@ var FontierwholesalesSearch = {
 					    suggestions.append(suggest);
 					    
 					    (function(suggest){
-					    	suggest.find("a").click(function(event){
+					    	suggest.find("a").on('mousedown', function(event) {
+                                event.preventDefault();
+                            }).click(function(event){
 						    	event.preventDefault();
 						    	$(".search-input").val($(this).text());
 						    	$(this).closest("form").submit();
