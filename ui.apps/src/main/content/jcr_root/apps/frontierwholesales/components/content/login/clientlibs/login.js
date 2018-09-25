@@ -78,7 +78,7 @@ function magentoLogin(serverURL,userName,password){
         
          addCookie(cookieData);
         
-            window.location.href=Granite.HTTP.externalize(getRedirectPath());
+            window.location.href=getRedirectPath();
      }).fail(function(error){
          console.log('error is '+error);
               $('.login-text').css('display','block');
@@ -185,7 +185,7 @@ function login(serverURL,username,password){
                //  jsonData['group_id']=customer.frontier_customer.group_id;
                  var cookieData = "CustomerData="+JSON.stringify(jsonData)+"; path=/";
                 addCookie(cookieData);
-                  window.location.href=Granite.HTTP.externalize(getRedirectPath());
+                  window.location.href=getRedirectPath();
             }catch(error){
                 console.log("invalid json format "+error);
                 enableErrorMsg('403');
