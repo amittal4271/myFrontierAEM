@@ -87,7 +87,7 @@ public class FrontierWholesalesShoppingCartServlet  extends SlingAllMethodsServl
 				//add item into the cart
 				String cartItems = commerceConnector.addItemToCart(token, updatedData);
 				
-				
+				commerceConnector.initCart(token);
 			}
 			String cartObject = commerceConnector.getCartTotalWithItems(token);
 			
