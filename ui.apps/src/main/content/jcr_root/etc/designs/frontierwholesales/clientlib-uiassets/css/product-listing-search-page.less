@@ -403,6 +403,15 @@
            padding-left:17% !important;
            padding-right:5% !important;
         }
+
+
+        @-moz-document url-prefix() {
+          select {
+            padding-left:17% !important;
+          }
+        }
+
+
         select[size].closed, select[size]{
            padding:0px;
            padding-left:0% !important;
@@ -410,6 +419,7 @@
         }
     }
 }
+select:-internal-list-box option:checked {background-color:#fff !important;}
 _::-moz-progress-bar, body:last-child .product-grid-item .add-to-shelf select.closed {padding-left:5% !important;}
 
 .grid-item-link {
