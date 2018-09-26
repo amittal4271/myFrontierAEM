@@ -62,6 +62,16 @@ Frontier.SearchController = new function() {
 	function getQueryString(pageNum, searchTermOnly) {
 		var queryString;
 		
+		if(!!Frontier.SearchFacets && !searchTermOnly) {
+			var filters = Frontier.SearchFacets.getFilters();
+			
+			if(filters.length > 0) {
+				searchTermOnly = false;
+			} else {
+				searchTermOnly = true;
+			}
+		}
+		
 		if(searchTermOnly) {
 			queryString = "searchCriteria[requestName]=quick_search_container";
 		} else {
@@ -124,15 +134,15 @@ Frontier.SearchController = new function() {
 		queryString += "&" + getFilterParam(groupIndex, 0, "status", "1", "eq");
 		
 		var recsPerPage;
-		if(!searchTermOnly) {
-			recsPerPage = $('#itemPerPageSelect').val();
-		}
+		
+		
+		recsPerPage = $('#itemPerPageSelect').val();
 
 		if(typeof recsPerPage === 'undefined') {
 			recsPerPage = 28;
 		}
 		
-		if(typeof pageNum === 'undefined' || pageNum == '' || pageNum == null || pageNum < 1 || searchTermOnly) {
+		if(typeof pageNum === 'undefined' || pageNum == '' || pageNum == null || pageNum < 1) {
 			pageNum = 1;
 		}
 				
