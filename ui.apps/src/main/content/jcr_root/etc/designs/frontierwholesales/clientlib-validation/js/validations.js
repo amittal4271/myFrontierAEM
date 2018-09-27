@@ -49,6 +49,10 @@ $.validator.addMethod("notalpha", function(value, element) {
     return !regEx.test(value)
 });
 
+$.validator.addMethod("containsOneOrMoreSpaces", function(value, element) {
+    return value.trim().indexOf(" ") !== -1;
+});
+
 $.validator.addMethod("cvvValidate", function(value, element) {
 	var regEx = new RegExp("^[0-9]{3,4}$");
     return regEx.test(value)
@@ -583,7 +587,8 @@ function buyersClubCheckboxOperations(){
                         
                     },"account-signature":{
                         required: true,
-		            	maxlength: 70
+		            	maxlength: 70,
+		            	containsOneOrMoreSpaces: true
                         
                     },"membership-name":{
                         required: true,
@@ -655,6 +660,9 @@ function buyersClubCheckboxOperations(){
                     }
                 },		        
 		        messages: {
+		        	 "account-signature": {
+		        		 containsOneOrMoreSpaces: 'Signature must contain a space.'
+		        	 },
                      "invite_1_name": {
                           fullName: 'Please enter full name'
                      },"invite_1_email":{
@@ -780,8 +788,8 @@ function buyersClubCheckboxOperations(){
                         
                     },"account-signature":{
                         required: true,
-                        maxlength: 70
-                        
+                        maxlength: 70,
+                        containsOneOrMoreSpaces: true
                     },"membership-name":{
                         required: true,
                         maxlength: 70,
@@ -812,6 +820,9 @@ function buyersClubCheckboxOperations(){
                        
                     }
                 },messages :{
+                	 "account-signature": {
+		        		 containsOneOrMoreSpaces: 'Signature must contain a space.'
+		        	 },
                      "invite_1_name": {
                           fullName: 'Please enter full name'
                      },"invite_1_email":{
