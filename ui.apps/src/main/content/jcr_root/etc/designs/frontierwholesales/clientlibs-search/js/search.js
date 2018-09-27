@@ -158,6 +158,11 @@ var FontierwholesalesSearch = {
 						    	$(this).closest("form").submit();
 						    });
 				    	})(suggest);
+					    
+					    //limit to 10 suggestions
+					    if(i >= 9) {
+					    	return false;
+					    }
 					});
 				}
 				// Trigger event to enable custom callbacks
