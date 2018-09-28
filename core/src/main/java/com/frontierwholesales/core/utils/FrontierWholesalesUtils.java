@@ -482,9 +482,11 @@ public class FrontierWholesalesUtils {
 					for(JsonElement tierElem : tierPriceArr) {
 						JsonObject tierObject = tierElem.getAsJsonObject();
 						JsonElement groupElement = tierObject.get("customer_group_id");
-					
+						int qty = tierObject.get("qty").getAsInt();
 						if(groupElement.getAsString().equals(groupId)) {
+							if(qty == 1) {
 							itemObject.addProperty("tierprice", tierObject.get("value").getAsDouble());
+							}
 						}
 					}
 				}

@@ -125,19 +125,19 @@ function setTaxAddressToBillingAddress($this){
            var stateVal = $('#id_mailing-locality option:selected').val();
             $('#id_shipping-name').val($('#id_mailing-name').val());
             $('#id_shipping-company').val($('#id_account-company_name').val());
-            $('#id_shipping-address').val($('#id_mailing-address').val());
-            $('#id_shipping-address2').val($('#id_mailing-address2').val());
-            $('#id_shipping-city').val($('#id_mailing-city').val());
-            $('#id_shipping-locality option[value='+stateVal+']').prop('selected',true);
-            $('#id_shipping-postal_code').val($('#id_mailing-postal_code').val());
+           $('#id_shipping-address').val($('#id_mailing-address').val()).trigger('change');
+            $('#id_shipping-address2').val($('#id_mailing-address2').val()).trigger('change');
+            $('#id_shipping-city').val($('#id_mailing-city').val()).trigger('change');
+            $('#id_shipping-locality option[value='+stateVal+']').prop('selected',true).trigger('change');
+            $('#id_shipping-postal_code').val($('#id_mailing-postal_code').val()).trigger('change');
         }else{
             $('#id_shipping-name').val('');
             $('#id_shipping-company').val('');
-            $('#id_shipping-address').val('');
-            $('#id_shipping-address2').val('');
-            $('#id_shipping-city').val('');
-            $('#id_shipping-locality').prop('selectedIndex',0);
-            $('#id_shipping-postal_code').val('');
+            $('#id_shipping-address').val('').trigger('change');
+            $('#id_shipping-address2').val('').trigger('change');
+            $('#id_shipping-city').val('').trigger('change');
+            $('#id_shipping-locality').prop('selectedIndex',0).trigger('change');
+            $('#id_shipping-postal_code').val('').trigger('change');
         }
 }
 

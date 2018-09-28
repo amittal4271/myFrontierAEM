@@ -219,10 +219,11 @@ private JsonArray getImagePath(String productSku,SlingHttpServletRequest request
 			JsonObject obj = pricesElement.getAsJsonObject();
 			
 			JsonElement customerGroupElement = obj.get("customer_group_id");
-		
+			int qty = obj.get("qty").getAsInt();
 			if(customerGroupElement.getAsString().equals(groupId)) {
-				
-				object.addProperty("tierprice", obj.get("value").getAsDouble());
+				if(qty == 1) {
+					object.addProperty("tierprice", obj.get("value").getAsDouble());
+				}
 			}
 		}
 		

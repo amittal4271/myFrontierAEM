@@ -16,6 +16,22 @@ $(document).ready(function(){
                  $('#magento-myaccount-iframe').prop('src',serverURL+'/wishlist?token='+userToken);
             }else if(path == 'pendingorders'){
                  $('#magento-myaccount-iframe').prop('src',serverURL+'/savecart/customer/cartlist?token='+userToken); 
+            }else if(path == 'myquote'){
+                $('#magento-myaccount-iframe').prop('src',serverURL+'/negotiable_quote/quote?token='+userToken);   
+            }else if(path == 'myshelves'){
+                $('#magento-myaccount-iframe').prop('src',serverURL+'/requisition_list/requisition/index?token='+userToken); 
+            }else if(path == 'mywishlist'){
+                 $('#magento-myaccount-iframe').prop('src',serverURL+'/wishlist?token='+userToken);
+            }else if(path == 'accountinfo'){
+                 $('#magento-myaccount-iframe').prop('src',serverURL+'/customer/account/edit?token='+userToken);
+            }else if(path == 'users'){
+                 $('#magento-myaccount-iframe').prop('src',serverURL+'/company/users?token='+userToken);
+            }else if(path == 'rewardpoints'){
+                 $('#magento-myaccount-iframe').prop('src',serverURL+'/reward/customer/info?token='+userToken);
+            }else if(path == 'giftregistry'){
+                 $('#magento-myaccount-iframe').prop('src',serverURL+'/giftregistry?token='+userToken);
+            }else if(path == 'subscription'){
+                 $('#magento-myaccount-iframe').prop('src',serverURL+'/customersubscription/manage?token='+userToken);
             }else if(pathName.search('/vieworder/') > 0){
                  $('#magento-myaccount-iframe').prop('src',serverURL+'/sales/order/view/order_id/'+path);
             }else{
