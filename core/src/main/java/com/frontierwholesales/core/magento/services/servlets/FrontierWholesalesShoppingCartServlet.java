@@ -78,10 +78,7 @@ public class FrontierWholesalesShoppingCartServlet  extends SlingAllMethodsServl
 			
 				// create cart
 				String cartId = commerceConnector.initCart(token);
-				
-				if(cartId == null) {
-					throw new Exception("Initialization of cart is failed");
-				}
+				log.debug("after cart id");
 				//update json structure with cartid
 				String updatedData = FrontierWholesalesUtils.updateJsonObject(jsonData, "cartItem", "quote_id", cartId);
 				//add item into the cart
@@ -98,7 +95,7 @@ public class FrontierWholesalesShoppingCartServlet  extends SlingAllMethodsServl
 			
 		}catch(Exception anyEx) {
 			
-			log.error("Error "+anyEx.getMessage());
+			log.debug("Error "+anyEx.getMessage());
 			
 			JsonObject errorJsonObject = new JsonObject();
 			errorJsonObject.addProperty("Fail", anyEx.getMessage());

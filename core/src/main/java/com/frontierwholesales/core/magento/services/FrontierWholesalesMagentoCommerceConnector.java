@@ -132,7 +132,7 @@ public class FrontierWholesalesMagentoCommerceConnector {
         InputStream inputStream = Request.Post(server + "/rest/V1/integration/customer/token")
                 .bodyString(mapper.writeValueAsString(authCredentials), ContentType.APPLICATION_JSON)
                 .execute().returnResponse().getEntity().getContent();
-        String response = FrontierWholesalesUtils.parseMagentoResponseObject(inputStream);
+        String response = FrontierWholesalesUtils.parseMagentoResponseObject(inputStream,"getToken");
         return "Bearer " + response.replace("\"", "");
 
     }
@@ -150,16 +150,11 @@ public class FrontierWholesalesMagentoCommerceConnector {
 
     public String initCart(String authToken) throws Exception {
         
-    	String cartId = null;
-    	try {
-         cartId = Request.Post(server + "/rest/V1/carts/mine")
+        String cartId = Request.Post(server + "/rest/V1/carts/mine")
                 .addHeader("Authorization", authToken)
                
                 .execute().returnContent().asString();
-    	}catch(Exception ioEx) {
-    		log.error("Error in cart initialization: ERROR" + ioEx.getMessage());
-    		
-    	}
+    	
         return (cartId != null)?cartId.replace("\"", ""):null;
     }
 
@@ -199,7 +194,7 @@ public class FrontierWholesalesMagentoCommerceConnector {
 	   			.addHeader("ContentType","application/json")
 	   			.execute().returnResponse().getEntity().getContent();
 	   
-   		String response = FrontierWholesalesUtils.parseMagentoResponseObject(inputStream);
+   		String response = FrontierWholesalesUtils.parseMagentoResponseObject(inputStream,"getCartTotalWithItems");
 	   	return response;
    }
     
@@ -258,7 +253,7 @@ public class FrontierWholesalesMagentoCommerceConnector {
     			.execute().returnResponse().getEntity().getContent(); 	 
     	 
     	 
-    	String response = FrontierWholesalesUtils.parseMagentoResponseObject(inputStream);
+    	String response = FrontierWholesalesUtils.parseMagentoResponseObject(inputStream,"addItemToCart");
     	    		
     	log.debug("Add to cart response is "+response);
     	return response;
@@ -310,7 +305,7 @@ public class FrontierWholesalesMagentoCommerceConnector {
                     .execute().returnResponse().getEntity().getContent();
          
           
-        String response = FrontierWholesalesUtils.parseMagentoResponseObject(inputStream);
+        String response = FrontierWholesalesUtils.parseMagentoResponseObject(inputStream,"getProducts");
         log.debug("FrontierWholesalesMagentoCommerceConnector getProducts End");
         return response;
     }
@@ -325,7 +320,7 @@ public class FrontierWholesalesMagentoCommerceConnector {
                     .connectTimeout(TIME_OUT)
                     .execute().returnResponse().getEntity().getContent();
          
-    	 response = FrontierWholesalesUtils.parseMagentoResponseObject(inputStream);
+    	 response = FrontierWholesalesUtils.parseMagentoResponseObject(inputStream,"getBrands");
     	 log.debug("getBrands End");
     	 return response;
     }
@@ -355,7 +350,7 @@ public class FrontierWholesalesMagentoCommerceConnector {
 			InputStream inputStream = Request.Get(serviceURL).addHeader("Authorization", adminToken)
 					.execute().returnResponse().getEntity().getContent();
 		
-			response =  FrontierWholesalesUtils.parseMagentoResponseObject(inputStream);
+			response =  FrontierWholesalesUtils.parseMagentoResponseObject(inputStream,"getProducts");
     		return response;
     }
     
@@ -381,7 +376,7 @@ public class FrontierWholesalesMagentoCommerceConnector {
         	InputStream inputStream  = Request.Get(server+"/rest/V1/products/"+productID)
                     .addHeader("Authorization", adminToken)
                     .execute().returnResponse().getEntity().getContent();        
-        	response =  FrontierWholesalesUtils.parseMagentoResponseObject(inputStream);
+        	response =  FrontierWholesalesUtils.parseMagentoResponseObject(inputStream,"getProductDetails");
     		return response;
         
     }
@@ -395,7 +390,7 @@ public class FrontierWholesalesMagentoCommerceConnector {
                 .addHeader("Authorization", adminToken)
                 .connectTimeout(TIME_OUT)
                 .execute().returnResponse().getEntity().getContent();
-    	String response =  FrontierWholesalesUtils.parseMagentoResponseObject(inputStream);
+    	String response =  FrontierWholesalesUtils.parseMagentoResponseObject(inputStream,"getCategories");
     	category = mapper.readValue(response,MagentoCategory.class);
     	log.debug("getCategories Method End");
         return category;
@@ -513,7 +508,7 @@ public class FrontierWholesalesMagentoCommerceConnector {
                     .connectTimeout(TIME_OUT)
                     .execute().returnResponse().getEntity().getContent();
             log.debug("Related products for SKU response from endpoint:\n {}");
-        String response =  FrontierWholesalesUtils.parseMagentoResponseObject(inputStream);
+        String response =  FrontierWholesalesUtils.parseMagentoResponseObject(inputStream,"getRelatedProductsForSku");
         productList = mapper.readValue(response, new TypeReference<List<MagentoRelatedProduct>>(){});
    
         return productList;
@@ -525,7 +520,7 @@ public class FrontierWholesalesMagentoCommerceConnector {
     				.addHeader("Authorization",adminToken)
     				.connectTimeout(TIME_OUT)
     				.execute().returnResponse().getEntity().getContent();
-    	 String response =  FrontierWholesalesUtils.parseMagentoResponseObject(inputStream);
+    	 String response =  FrontierWholesalesUtils.parseMagentoResponseObject(inputStream,"getParentChildrenCategories");
     	log.debug("getParentChildrenCategories End");
     	return response;
     }
@@ -539,7 +534,7 @@ public class FrontierWholesalesMagentoCommerceConnector {
 					.connectTimeout(TIME_OUT)
 					.bodyString(jsonData,ContentType.APPLICATION_JSON)
 					.execute().returnResponse().getEntity().getContent();
-    	 String response =  FrontierWholesalesUtils.parseMagentoResponseObject(inputStream);
+    	 String response =  FrontierWholesalesUtils.parseMagentoResponseObject(inputStream,"addItemToWishList");
 	    log.debug("addItemToWishList End");
 	    return response;
     	
@@ -551,7 +546,7 @@ public class FrontierWholesalesMagentoCommerceConnector {
 				.addHeader("Authorization",userToken)
 				.connectTimeout(TIME_OUT)
 				.execute().returnResponse().getEntity().getContent();
-    	 String response =  FrontierWholesalesUtils.parseMagentoResponseObject(inputStream);
+    	 String response =  FrontierWholesalesUtils.parseMagentoResponseObject(inputStream,"getRequisitionList");
     	log.debug("getRequisitionList End");
     	return response;
     	
@@ -564,7 +559,7 @@ public class FrontierWholesalesMagentoCommerceConnector {
 				.addHeader("Authorization",userToken)
 				.connectTimeout(TIME_OUT)
 				.execute().returnResponse().getEntity().getContent();
-    	 String response =  FrontierWholesalesUtils.parseMagentoResponseObject(inputStream);
+    	 String response =  FrontierWholesalesUtils.parseMagentoResponseObject(inputStream,"getCustomerDetails");
     	log.debug("getCustomerDetails End");
     	return response;
     }
@@ -575,7 +570,7 @@ public class FrontierWholesalesMagentoCommerceConnector {
 				.addHeader("Authorization",adminToken)
 				.connectTimeout(TIME_OUT)
 				.execute().returnResponse().getEntity().getContent();
-    	 String response =  FrontierWholesalesUtils.parseMagentoResponseObject(inputStream);
+    	 String response =  FrontierWholesalesUtils.parseMagentoResponseObject(inputStream,"getOrderConfirmation");
     	inputStream.close();
     	log.debug("getOrderConfirmation Start");
     	return response;

@@ -353,25 +353,31 @@ public class FrontierWholesalesUtils {
 	     * @throws Exception
 	     */
 	    public  String getCustomerDetailsByParameter(String id,String customerToken) throws Exception{
+	    	log.debug("getCustomerDetailsByParameter Start");
 	    		String groupId ="";
-	    		if(customerToken != null) {
-					String customerDetails = commerceConnector.getCustomerDetails(customerToken);
-					
-					if(customerDetails != null) {
+	    		try {
+		    		if(customerToken != null) {
+						String customerDetails = commerceConnector.getCustomerDetails(customerToken);
 						
-	    	
-			    		Gson json = new Gson();
-			    		JsonElement element = json.fromJson(customerDetails, JsonElement.class);
-			    		
-			    		
-			    		JsonObject object = element.getAsJsonObject();
-			    		JsonObject customerObject = object.getAsJsonObject("frontier_customer");
-			    		
-			    		groupId = customerObject.get(id).getAsString();
-					} 		
-	    		
-	    	
+						if(customerDetails != null) {
+							
+		    	
+				    		Gson json = new Gson();
+				    		JsonElement element = json.fromJson(customerDetails, JsonElement.class);
+				    		
+				    		
+				    		JsonObject object = element.getAsJsonObject();
+				    		JsonObject customerObject = object.getAsJsonObject("frontier_customer");
+				    		
+				    		groupId = customerObject.get(id).getAsString();
+						} 		
+		    		
+		    	
+		    		}
+	    		}catch(Exception exp) {
+	    			log.debug("Exception in getCustomerDetailsByParameter "+exp.getMessage());
 	    		}
+	    		log.debug("getCustomerDetailsByParameter End");
 	    		return groupId;
 	    }
 	   
@@ -534,8 +540,8 @@ public class FrontierWholesalesUtils {
 	    	}
 	    }
 	    
-	    public static String parseMagentoResponseObject(InputStream inStream) throws Exception{
-	    	log.debug("parseMagentoResponseObject Start");
+	    public static String parseMagentoResponseObject(InputStream inStream,String apiMethod) throws Exception{
+	    	log.debug("parseMagentoResponseObject Start "+apiMethod);
 	    	String response = IOUtils.toString(inStream, StandardCharsets.UTF_8.name());
 	    	Gson json = new Gson();
 	    	
@@ -547,7 +553,7 @@ public class FrontierWholesalesUtils {
 	    	}
 	    	
 	    	if(msg != null) {
-	    		log.debug("parseMagentoResponseObject Error "+msg);
+	    		log.debug("parseMagentoResponseObject Error in"+apiMethod+" "+msg);
 	    		throw new Exception(msg);
 	    	}
 	    	log.debug("parseMagentoResponseObject End ");

@@ -28,7 +28,7 @@ public class FrontierWholesalesUserRegistration {
 					.addHeader("Authorization",authToken)
 	                .bodyString(data,ContentType.APPLICATION_JSON)
 	                .execute().returnResponse().getEntity().getContent();
-			 String customerId = FrontierWholesalesUtils.parseMagentoResponseObject(inputStream);
+			 String customerId = FrontierWholesalesUtils.parseMagentoResponseObject(inputStream,"registration");
 		 log.debug("registration Method end ");
 		 return customerId;
 	 }
@@ -45,7 +45,7 @@ public class FrontierWholesalesUserRegistration {
 		InputStream inputStream = Request.Post(server + "/rest/V1/customers")
                 .bodyString(params.toString(),ContentType.APPLICATION_JSON)
                 .execute().returnResponse().getEntity().getContent();
-		 String customerId = FrontierWholesalesUtils.parseMagentoResponseObject(inputStream);
+		 String customerId = FrontierWholesalesUtils.parseMagentoResponseObject(inputStream,"customerRegistration");
 		log.debug("customerRegistration Method End");
 		return customerId;
 	}
@@ -57,7 +57,7 @@ public class FrontierWholesalesUserRegistration {
 				.addHeader("Authorization",pwd)
                 .bodyString(params.toString(),ContentType.APPLICATION_JSON)
                 .execute().returnResponse().getEntity().getContent();
-		 String userDetails = FrontierWholesalesUtils.parseMagentoResponseObject(inputStream);
+		 String userDetails = FrontierWholesalesUtils.parseMagentoResponseObject(inputStream,"companyRegistration");
 		log.debug("companyRegistration Method End");
 		return userDetails;
 		
@@ -76,7 +76,7 @@ public class FrontierWholesalesUserRegistration {
 				.addHeader("Authorization", adminToken)
                
 				.execute().returnResponse().getEntity().getContent();
-		 String countryAndRegions = FrontierWholesalesUtils.parseMagentoResponseObject(inputStream);
+		 String countryAndRegions = FrontierWholesalesUtils.parseMagentoResponseObject(inputStream,"getCountriesWithRegions");
 		log.debug("getCountriesWithRegions Method End");
 		return countryAndRegions;
 	}
@@ -95,7 +95,7 @@ public class FrontierWholesalesUserRegistration {
 				.addHeader("Authorization", adminToken)
 				 .bodyString(jsonData,ContentType.APPLICATION_JSON)
 				.execute().returnResponse().getEntity().getContent();
-		 String response = FrontierWholesalesUtils.parseMagentoResponseObject(inputStream);
+		 String response = FrontierWholesalesUtils.parseMagentoResponseObject(inputStream,"resetPassword");
 		log.debug("resetPassword Method End");
 		return response.replace("\"", "");
 	}
@@ -115,7 +115,7 @@ public class FrontierWholesalesUserRegistration {
 				.addHeader("Authorization", adminToken)
 				 .bodyString(jsonData,ContentType.APPLICATION_JSON)
 				 .execute().returnResponse().getEntity().getContent();
-		 String response = FrontierWholesalesUtils.parseMagentoResponseObject(inputStream);
+		 String response = FrontierWholesalesUtils.parseMagentoResponseObject(inputStream,"updateCustomers");
 		 log.debug("updateCustomers Method End");
 		return response;
 	}
@@ -134,7 +134,7 @@ public class FrontierWholesalesUserRegistration {
 				.addHeader("Authorization", adminToken)
 				 .bodyString(jsonData,ContentType.APPLICATION_JSON)
 				 .execute().returnResponse().getEntity().getContent();
-		 String response = FrontierWholesalesUtils.parseMagentoResponseObject(inputStream);
+		 String response = FrontierWholesalesUtils.parseMagentoResponseObject(inputStream,"addAddress");
 		 log.debug("addAddress Method End");
 		return response;
 	}
@@ -151,7 +151,7 @@ public class FrontierWholesalesUserRegistration {
 				.addHeader("Authorization", userToken)
 				
 				.execute().returnResponse().getEntity().getContent();
-		 String response = FrontierWholesalesUtils.parseMagentoResponseObject(inputStream);
+		 String response = FrontierWholesalesUtils.parseMagentoResponseObject(inputStream,"getWhoAmI");
 		return response;
 	}
 	
@@ -161,7 +161,7 @@ public class FrontierWholesalesUserRegistration {
 		InputStream inputStream = Request.Get(server + "/rest/V1/customers/"+customerId+"/password/resetLinkToken/"+resetToken)
 				.addHeader("Authorization", adminToken)
 				.execute().returnResponse().getEntity().getContent();
-		 String response = FrontierWholesalesUtils.parseMagentoResponseObject(inputStream);
+		 String response = FrontierWholesalesUtils.parseMagentoResponseObject(inputStream,"validateResetToken");
 			return response;
 	}
 	

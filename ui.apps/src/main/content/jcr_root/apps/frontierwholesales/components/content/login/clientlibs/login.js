@@ -1,12 +1,7 @@
 
 $(document).ready(function(){
    checkCookie(); 
-   if($('.login-section').length > 0){
-       var userToken = getUserToken();
-       if(userToken.startsWith('Bearer') && userToken.trim().length > 0){
-           location.href='/content/frontierwholesales/en/myaccount.html';
-       }
-   }
+   
     $("#id_username").keyup(function(event){ 
         if(event.keyCode == 13){ 
             $("#btn-login").click(); 

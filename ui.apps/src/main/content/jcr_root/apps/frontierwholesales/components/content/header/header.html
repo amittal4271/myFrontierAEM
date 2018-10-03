@@ -62,37 +62,39 @@
       <script id="minicartTemplate" type="text/x-handlebars-template">
      <div id="cart-holder" class="owner-account-cart-holder">
          
-       {{#login}}
+       
          
-               
-          <a href="/content/frontierwholesales/en/cart.html" class="btn btn-cart-display cart-display" title="Cart">
-               <span class="icon-cart">
-                    <span class="glyphicon glyphicon-shopping-cart"></span>
-                   {{#if ../quote.items_qty includedZero=false}}
-                    <span class="cart-count quantity">{{../../quote.items_qty}}</span>
-                   {{else}}
-                   <span class="cart-count quantity">0</span>
-                   {{/if}}
-               </span>
-               {{#if ../quote.items_qty includedZero=false}}
-               <span class="cart-amount">My Total: <span id="shopping-cart-total" class="amount">{{../../subTotal}}</span></span>
-              {{else}}
-              <span class="cart-amount">My Total: <span id="shopping-cart-total" class="amount">$0.00</span></span>
-              {{/if}}
-              
-          </a>
+            <div class="signed-in-cart" style="display:none;">   
+              <a href="/content/frontierwholesales/en/cart.html" class="btn btn-cart-display cart-display" title="Cart">
+                   <span class="icon-cart">
+                        <span class="glyphicon glyphicon-shopping-cart"></span>
+                       {{#if quote.items_qty includedZero=false}}
+                        <span class="cart-count quantity">{{quote.items_qty}}</span>
+                       {{else}}
+                       <span class="cart-count quantity">0</span>
+                       {{/if}}
+                   </span>
+                   {{#if quote.items_qty includedZero=false}}
+                   <span class="cart-amount">My Total: <span id="shopping-cart-total" class="amount">{{subTotal}}</span></span>
+                  {{else}}
+                  <span class="cart-amount">My Total: <span id="shopping-cart-total" class="amount">$0.00</span></span>
+                  {{/if}}
+
+              </a>
+
+             <a href="/content/frontierwholesales/en/myaccount.html/pendingorders" class="btn btn-cart-display cart-display-owner-total" title="Cart">
+                   <span class="icon-cart">
+                        <span class="glyphicon glyphicon-shopping-cart"></span>
+                   </span>
+                 {{#if our_total includedZero=false}}
+                   <span class="cart-amount">Our Total: <span class="amount">{{formatNumber our_total  style="currency" currency="USD"}}</span></span>
+                 {{else}}
+                   <span class="cart-amount">Our Total: <span class="amount">$0.00</span></span>
+                 {{/if}}
+              </a>
+        </div>
          
-         <a href="/content/frontierwholesales/en/myaccount.html/pendingorders" class="btn btn-cart-display cart-display-owner-total" title="Cart">
-               <span class="icon-cart">
-                    <span class="glyphicon glyphicon-shopping-cart"></span>
-               </span>
-             {{#if ../our_total includedZero=false}}
-               <span class="cart-amount">Our Total: <span class="amount">{{formatNumber ../../our_total  style="currency" currency="USD"}}</span></span>
-             {{else}}
-               <span class="cart-amount">Our Total: <span class="amount">$0.00</span></span>
-             {{/if}}
-          </a>
-         {{else}}
+         <div class='sign-in-cart'>
             <a href="/content/frontierwholesales/en/login.html" class="btn btn-cart-display cart-display" title="Cart">
                   <span class="icon-cart">
                     <span class="glyphicon glyphicon-shopping-cart"></span>
@@ -103,7 +105,8 @@
               
                     <span class="cart-amount">My Total: <span id="shopping-cart-total" class="amount">$0.00</span></span>
               </a>
-         {{/login}}
+            </div>
+         
 
          <div class="mini-cart-holder mobile-closed">
            {{#if noTotal}}

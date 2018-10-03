@@ -1,21 +1,21 @@
+ var bTokenValid = false;
 $(document).ready(function(){
      var userToken = getUserToken();
+   
         
         if(userToken !== undefined && userToken.startsWith("Bearer ")){
-            $('.join-membership').css('display','none');
-            $('.login-menu').css('display','none');
-            $('.post-login-menu').css('display','inline-block');
-            $('.myaccount-url').attr('href','/content/frontierwholesales/en/myaccount.html');
+            
+            verifyToken();
         }else{
-            $('.join-membership').css('display','inline-block');
-              $('.login-menu').css('display','inline-block');
-            $('.post-login-menu').css('display','none');
-             $('.myaccount-url').attr('href','/content/frontierwholesales/en/login.html');
+                
+           bTokenValid = false;
+           loginHeaderMenus();
         }
     if (!!window.performance && window.performance.navigation.type === 2) {
         console.log('browser back button...');
         location.reload();
     }
+   
     $(document).on('click','#signOut',function(){
        localStorage.removeItem('ConfirmationNr');
       
@@ -24,6 +24,48 @@ $(document).ready(function(){
     });
 
 });
+
+function verifyToken(){
+    var deferred = $.Deferred();
+    
+    var bReturn = false;
+     Frontier.MagentoServices.getUserRole(serverURL).done(function(customer){
+               
+                loggedInHeaderMenus();
+               
+                bTokenValid = true;
+                deferred.resolve(bTokenValid);
+                if(window.location.href.indexOf("/login") != -1){
+                    location.href = getRedirectPath();
+                }
+            }).fail(function(error){               
+               if(error.status == '401'){
+                //Remove cookie (CustomerData) if token is not valid
+                    document.cookie="CustomerData=;Max-Age=-99999999;path=/;";
+                    loginHeaderMenus();
+               }
+               
+                deferred.resolve(bTokenValid);
+                
+            });
+   
+    return deferred.promise();
+    
+}
+
+function loggedInHeaderMenus(){
+    $('.join-membership').css('display','none');
+    $('.login-menu').css('display','none');
+    $('.post-login-menu').css('display','inline-block');   
+    $('.myaccount-url').attr('href','/content/frontierwholesales/en/myaccount.html');
+}
+
+function loginHeaderMenus(){
+    $('.join-membership').css('display','inline-block');
+    $('.login-menu').css('display','inline-block');
+    $('.post-login-menu').css('display','none');   
+    $('.myaccount-url').attr('href','/content/frontierwholesales/en/login.html');
+}
 /**
 * redirect to my account
 */
@@ -424,8 +466,17 @@ function addItemToCart(sku,qty){
                 var cartTemplate = Handlebars.compile(template);
                 var html = cartTemplate(cart,cart.items.reverse());
                 $('#minicarttemplate').html(html); 
+                 $('.signed-in-cart').css('display','block');
+                $('.sign-in-cart').css('display','none');
             }else{
-                 showProdErrorMessage(cart.Fail); 
+                if(cart.Fail == "Unauthorized"){
+                    location.href=redirectToLogin();
+                    $('.signed-in-cart').css('display','none');
+                    $('.sign-in-cart').css('display','block');
+                }else{
+                    showProdErrorMessage(cart.Fail); 
+                }
+                 
             }
 	        
 	    }).fail(function(error){

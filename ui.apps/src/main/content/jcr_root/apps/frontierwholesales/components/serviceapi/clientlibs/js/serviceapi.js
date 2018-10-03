@@ -324,7 +324,8 @@ Frontier.MagentoServices = new function(){
             url: serverurl+"/rest/default/V1/fc/customers/me",
             method: "GET",
              timeout: serviceCallTimeout,
-          
+            crossDomain: true,
+			//xhrFields: { withCredentials: true },
             headers:{
 
                         'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
