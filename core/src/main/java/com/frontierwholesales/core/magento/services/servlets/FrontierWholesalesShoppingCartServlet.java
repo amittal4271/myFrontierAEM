@@ -31,6 +31,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 @SuppressWarnings("serial")
 @SlingServlet(label="FrontierWholesalesUserRegistration - Sling All Methods Servlet", 
@@ -42,6 +43,7 @@ public class FrontierWholesalesShoppingCartServlet  extends SlingAllMethodsServl
 	
 	private FrontierWholesalesMagentoCommerceConnector commerceConnector = new FrontierWholesalesMagentoCommerceConnector();
 	private ObjectMapper mapper = new ObjectMapper();
+	private FrontierWholesalesUtils utils = new FrontierWholesalesUtils();
 	
 	
 	
@@ -78,7 +80,7 @@ public class FrontierWholesalesShoppingCartServlet  extends SlingAllMethodsServl
 			
 				// create cart
 				String cartId = commerceConnector.initCart(token);
-				log.debug("after cart id");
+				
 				//update json structure with cartid
 				String updatedData = FrontierWholesalesUtils.updateJsonObject(jsonData, "cartItem", "quote_id", cartId);
 				//add item into the cart
@@ -87,8 +89,15 @@ public class FrontierWholesalesShoppingCartServlet  extends SlingAllMethodsServl
 				commerceConnector.initCart(token);
 			}
 			String cartObject = commerceConnector.getCartTotalWithItems(token);
+			String customerId = utils.getCustomerDetailsByParameter("id", token);
+			String adminToken = commerceConnector.getAdminToken();
+			String roleObject = commerceConnector.getUserRole(adminToken, customerId);
 			
-			String object = getValueFromJson(cartObject,request);
+			String roleName = getRoleName(roleObject);
+			
+			
+			String object = getValueFromJson(cartObject,request,roleName);
+			
 			log.debug("shopping cart operations end ");
 			
 			response.getOutputStream().write(object.getBytes("UTF-8"));
@@ -123,8 +132,21 @@ public class FrontierWholesalesShoppingCartServlet  extends SlingAllMethodsServl
 		
 	}
 	
+	private String getRoleName(String object) throws Exception{
+		log.debug("getRoleName start");
+		JsonParser parser = new JsonParser();
+		JsonObject jsonObject = parser.parse(object).getAsJsonObject();
+		String roleName="";
+		JsonElement attribElement = jsonObject.get("extension_attributes");
+		JsonElement roleObject = attribElement.getAsJsonObject().get("role_name");
+		if(roleObject != null) {
+			roleName = roleObject.getAsString();
+		}
+		log.debug("getRoleName end");
+		return roleName;
+	}
 	
-	private String getValueFromJson(String cartObject,SlingHttpServletRequest request) throws Exception{
+	private String getValueFromJson(String cartObject,SlingHttpServletRequest request,String roleName) throws Exception{
 		log.debug("FrontierWholesalesShoppingCartServlet getValueFromJson method Start");
 		Gson json = new Gson();
 		JsonElement element = json.fromJson(cartObject,JsonElement.class);
@@ -187,6 +209,9 @@ public class FrontierWholesalesShoppingCartServlet  extends SlingAllMethodsServl
 			object.addProperty("subTotal", "$"+priceFormat.format(subtotal));
 			
 			object.add("items", arrayElement);
+			
+			object.addProperty("role_name", roleName);
+			
 			log.debug("FrontierWholesalesShoppingCartServlet getValueFromJson method End");
 			return object.toString();
 			

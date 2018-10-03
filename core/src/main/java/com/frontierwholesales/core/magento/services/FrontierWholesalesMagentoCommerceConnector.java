@@ -2,11 +2,13 @@ package com.frontierwholesales.core.magento.services;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.felix.scr.annotations.Activate;
 import org.apache.felix.scr.annotations.Component;
 import org.apache.felix.scr.annotations.ConfigurationPolicy;
@@ -128,7 +130,7 @@ public class FrontierWholesalesMagentoCommerceConnector {
         AuthCredentials authCredentials = new AuthCredentials(username, password);
 
         log.debug(" AUTHENTICATING " + username + " Against server:" + server);
-        
+               
         InputStream inputStream = Request.Post(server + "/rest/V1/integration/customer/token")
                 .bodyString(mapper.writeValueAsString(authCredentials), ContentType.APPLICATION_JSON)
                 .execute().returnResponse().getEntity().getContent();
@@ -220,7 +222,7 @@ public class FrontierWholesalesMagentoCommerceConnector {
 	}
     
     public String removeCartItem(String token,String itemId) throws Exception{
-    	log.debug("user token is"+token+" itemId "+itemId);
+    	
     	log.debug("url is "+server+"/rest/V1/carts/mine/items/"+itemId);
     	String isItemRemoved = Request.Delete(server+"/rest/V1/carts/mine/items/"+itemId)
 				.addHeader("Authorization",token)
@@ -555,11 +557,8 @@ public class FrontierWholesalesMagentoCommerceConnector {
     
     public String getCustomerDetails(String userToken) throws Exception{
     	log.debug("getCustomerDetails Start");
-    	InputStream inputStream = Request.Get(server+"/rest/default/V1/fc/customers/me")
-				.addHeader("Authorization",userToken)
-				.connectTimeout(TIME_OUT)
-				.execute().returnResponse().getEntity().getContent();
-    	 String response =  FrontierWholesalesUtils.parseMagentoResponseObject(inputStream,"getCustomerDetails");
+    	String api = server+"/rest/default/V1/fc/customers/me";
+    	String response = constructAPIMethod("Get",userToken,api,"getCustomerDetails",null);    		
     	log.debug("getCustomerDetails End");
     	return response;
     }
@@ -572,8 +571,47 @@ public class FrontierWholesalesMagentoCommerceConnector {
 				.execute().returnResponse().getEntity().getContent();
     	 String response =  FrontierWholesalesUtils.parseMagentoResponseObject(inputStream,"getOrderConfirmation");
     	inputStream.close();
-    	log.debug("getOrderConfirmation Start");
+    	log.debug("getOrderConfirmation End");
     	return response;
+    }
+    
+    public String getUserRole(String adminToken,String customerId) throws Exception{
+    	log.debug("getUserRole Start");
+    	String apiWithParam = server+"/rest/all/V1/customers/"+customerId;
+    	String response = constructAPIMethod("Get",adminToken,apiWithParam,"getUserRole",null);
+    	log.debug("getUserRole End");
+    	return response;
+    }
+    
+    private String constructAPIMethod(String apiType,String token,String api,
+    		String methodName,AuthCredentials authCredentials) throws Exception{
+    	log.debug("constructAPIMethod Start");
+    	InputStream inputStream = null;
+   	 	String response = null;
+   	 	try {
+	   	 	switch (apiType) {
+	   	 	case "Get" :
+	   	 		//api for get method
+	   	 		inputStream = Request.Get(api)
+	   	 		.addHeader("Authorization",token)
+	   	 		.connectTimeout(TIME_OUT)	   	 		
+	   	 		.execute().returnResponse().getEntity().getContent();	   	 
+	   	 		break;
+	   	 	case "Login" :
+	   	 	  inputStream = Request.Post(api)
+             .bodyString(mapper.writeValueAsString(authCredentials), ContentType.APPLICATION_JSON)
+             .execute().returnResponse().getEntity().getContent();
+	   	 	  break;
+	   	 		
+	   	 	}
+   	 	response = FrontierWholesalesUtils.parseMagentoResponseObject(inputStream,methodName);
+   	 	}finally {
+    		if(inputStream != null)
+    			inputStream.close();
+    	}
+    	log.debug("constructAPIMethod End");
+    	return response;
+   	 	
     }
 
 }

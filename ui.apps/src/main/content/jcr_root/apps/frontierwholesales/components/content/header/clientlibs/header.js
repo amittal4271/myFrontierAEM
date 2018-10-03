@@ -52,7 +52,12 @@ function getCartItems(){
                var template = $("#minicartTemplate").html();
                  HandlebarsIntl.registerWith(Handlebars);
 
-              
+              Handlebars.registerHelper("rolecheck",function(attrib,options){
+                   var fnTrue = options.fn,
+                  fnFalse = options.inverse;
+                 return (attrib !== undefined && attrib.trim() !== '' && (attrib === 'Manager' || attrib === 'Owner'))?"/content/frontierwholesales/en/myaccount.html/pendingorders":"#";
+
+              });
                 var processedHTML =  Handlebars.compile(template);
 
                
