@@ -28,8 +28,6 @@ console.log("product list page..."+facetsquery);
             getProductListByCategory(currentPage,recsPerPage,sortBy,facetsquery);
         }
 
-       	debugger;
-       
     });
     
      $(document).on('click','.pagination-previous.pagination-arrow',function(e){
@@ -47,9 +45,7 @@ console.log("product list page..."+facetsquery);
 
              }
          }
-         debugger;
-       
-       
+
     });
     
     $(document).on('change','#sortBy',function(){
