@@ -15,7 +15,7 @@ console.log("product list page..."+facetsquery);
         getProductListByCategory(currentPage,recsPerPage,sortBy,facetsquery);
        
     });
-    
+
     $(document).on('click','.pagination-next.pagination-arrow',function(e){
         e.preventDefault();
         var currentPage = parseInt($('#currentPage').val());
@@ -27,7 +27,8 @@ console.log("product list page..."+facetsquery);
             var recsPerPage = $('#itemPerPageSelect').val();
             getProductListByCategory(currentPage,recsPerPage,sortBy,facetsquery);
         }
-       
+
+       	debugger;
        
     });
     
@@ -46,6 +47,7 @@ console.log("product list page..."+facetsquery);
 
              }
          }
+         debugger;
        
        
     });
@@ -61,7 +63,7 @@ console.log("product list page..."+facetsquery);
         getProductListByCategory(currentPage,recsPerPage,sortBy,facetsquery);
     });
     
-    
+
    
     
     $(document).on('click','.filter-link.checkbox-link',function(){ 
@@ -181,13 +183,12 @@ function getProductListByCategory(currentPage,recsPerPage,sortBy,searchString){
         $(document).click(function(e) {
 
           if ( $(e.target).hasClass('grid-item-link') || ($(e.target).parents('.grid-item-link').length)) {
-            // hide menu here
-              var scrollPosition = $(e.target).offset().top;
+              var scrollPosition = $(e.target).closest('.grid-item-link').offset().top;
               sessionStorage.setItem("scrollPosition_" + pathName, scrollPosition.toString());
+
           } else {
             sessionStorage.setItem("scrollPosition_" + pathName, '0');
           }
-
         });
 
         $( document ).ready(function() {
@@ -196,7 +197,6 @@ function getProductListByCategory(currentPage,recsPerPage,sortBy,searchString){
     		 	if (sessionStorage["scrollPosition_" + pathName]) {
            		 $(document).scrollTop(sessionStorage.getItem("scrollPosition_" + pathName));
         		}
-
       		 }, 800);
 		});
 
