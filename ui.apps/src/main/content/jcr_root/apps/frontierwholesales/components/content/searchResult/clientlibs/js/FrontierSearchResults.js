@@ -189,7 +189,7 @@ Frontier.SearchResults = new function() {
     
               if ( $(e.target).hasClass('grid-item-link') || ($(e.target).parents('.grid-item-link').length)) {
                 // hide menu here
-                  var scrollPosition = $(e.target).offset().top;
+                  var scrollPosition = $(e.target).closest('.grid-item-link').offset().top;
                   sessionStorage.setItem("scrollPosition_" + pathName, scrollPosition.toString());
               } else {
                 sessionStorage.setItem("scrollPosition_" + pathName, '0');
