@@ -548,6 +548,9 @@ function initListenersForProductButtons() {
 }
 
 function showProdErrorMessage(msg){
+    if(msg.startsWith('No such entity with %fieldName')){
+        msg = 'There was an issue with this invite, please contact customer service at 1-800-669-3275';
+    }
      $('.global-server-side-message-holder').css('display','block');
              $el = $('.global-server-side-message-holder');
             $('.global-server-side-message-holder').children().text(msg);

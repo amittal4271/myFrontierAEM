@@ -109,7 +109,12 @@ $.validator.addMethod("emailValidation",function(value,element){
 $.validator.addMethod("expiryMonth",function(value,element){
    var dt = new Date();
    var currentMonth =  dt.getMonth();
-    if(value > currentMonth){
+    currentMonth = currentMonth + 1;
+   value = parseInt(value);
+    var fullYear = parseInt($('#id_billing-exp_year').val());
+    if(value < currentMonth && fullYear == dt.getFullYear()){
+        return false;
+    }else{
         return true;
     }
 });

@@ -152,12 +152,12 @@ public class FrontierWholesalesUserRegistrationServlet  extends SlingAllMethodsS
 			    	 jsonObject.addProperty("UserToken", userToken);
 			    	 response.getOutputStream().write(jsonObject.toString().getBytes("UTF-8"));
 			    }
-			}catch(Exception anyEx) {
+			}catch(Exception anyEx) {				
 				log.error("Error is "+anyEx.getMessage());
-				anyEx.printStackTrace();
-				 jsonObject.addProperty("Fail", anyEx.getMessage());
+				String msg = anyEx.getMessage();				
+				 jsonObject.addProperty("Fail", msg);
 		    	 response.getOutputStream().println(jsonObject.toString());
-		    	// response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, jsonObject.toString());
+		    	
 				
 			}
 			
