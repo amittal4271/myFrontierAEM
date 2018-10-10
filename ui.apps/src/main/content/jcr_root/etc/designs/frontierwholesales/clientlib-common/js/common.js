@@ -365,6 +365,17 @@ function initProductSearchHandlbarFunctions(){
           fnFalse = options.inverse;
          return (price !== undefined && price >=0 )?fnTrue():fnFalse();
       });
+     Handlebars.registerHelper("getBtnText",function(callToOrder,stockStatus){
+       
+       if(callToOrder !== undefined && callToOrder == 1){
+            return "CALL TO ORDER";
+        }else if(stockStatus !== undefined && stockStatus == 0){
+            return "OUT OF STOCK";
+        }else{
+            return "ADD TO CART";
+        }
+        
+    });
 
 }
 
@@ -499,7 +510,9 @@ function initListenersForProductButtons() {
            }
           
        });
-       addItemToCart(sku,qty);
+        if(qty !== '' && btnName !== "CALL TO ORDER"){
+            addItemToCart(sku,qty);
+        }
         
     });
 	

@@ -213,19 +213,44 @@ private JsonArray getImagePath(String productSku,SlingHttpServletRequest request
 		
 		JsonArray attributesArray = object.getAsJsonArray("custom_attributes");
 		JsonArray tierPrices = object.getAsJsonArray("tier_prices");
-		
+		double salesPrice=0;
+		double tierPrice=0;
+		boolean bTierPriceAvailable=false;
 		for(JsonElement pricesElement:tierPrices) {
 			
 			JsonObject obj = pricesElement.getAsJsonObject();
 			
 			JsonElement customerGroupElement = obj.get("customer_group_id");
 			int qty = obj.get("qty").getAsInt();
+			
 			if(customerGroupElement.getAsString().equals(groupId)) {
-				if(qty == 1) {
-					object.addProperty("tierprice", obj.get("value").getAsDouble());
+				bTierPriceAvailable = true;
+				if(qty == 0) {
+					salesPrice = obj.get("value").getAsDouble();
+					
 				}
+				if(qty == 1) {
+					
+					tierPrice = obj.get("value").getAsDouble();
+					
+				}
+				
+				
+				
 			}
 		}
+		
+		if(salesPrice > 0 && salesPrice != tierPrice) {
+			
+			object.addProperty("special_price", salesPrice);					
+		}
+		if(bTierPriceAvailable) {
+			object.addProperty("tierprice", tierPrice);
+		}
+		
+		//Price is removed here as it should not be shown to other users.
+		object.remove("tier_prices");
+		object.remove("price");
 		
 		String newProduct="";
 		String closeOut="";
@@ -234,10 +259,15 @@ private JsonArray getImagePath(String productSku,SlingHttpServletRequest request
 		for(JsonElement attributesElement:attributesArray) {
 			JsonObject attrObject = attributesElement.getAsJsonObject();
 			JsonElement codeElement = attrObject.get("attribute_code");
-			if(codeElement.getAsString().equals("special_price")) {
-				
-				object.addProperty("special_price", attrObject.get("value").getAsDouble());
+			
+			if(codeElement.getAsString().equals("in_stock")) {
+				object.addProperty("in_stock", attrObject.get("value").getAsInt());
 			}
+			
+			if(codeElement.getAsString().equals("call_to_order")) {
+				object.addProperty("call_to_order", attrObject.get("value").getAsInt());
+			}
+			
 			
 			if(codeElement.getAsString().equals("description")) {
 				object.addProperty("description", attrObject.get("value").getAsString());
@@ -337,7 +367,7 @@ private JsonArray getImagePath(String productSku,SlingHttpServletRequest request
 				object.addProperty("on_sale", "0");
 			}
 		}
-	
+		
 		object.addProperty("additionalInformation", bInformation);
 		log.debug("FrontierWholesalesPDPServlet parseJsonObject End");
 		return object.toString();

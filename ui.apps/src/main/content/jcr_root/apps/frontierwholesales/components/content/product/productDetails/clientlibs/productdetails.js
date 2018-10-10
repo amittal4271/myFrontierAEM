@@ -6,9 +6,10 @@ console.log("product details page...");
     $(document).on('click','.btn.btn-light-green.btn-add-to-cart',function(){
        console.log("Add to card invoked");
        var sku = $(this).attr('id');
+        var btnName = $(this).text()
        var qty=''; 
        qty = $('#product-qty-input').val();
-       if(qty > 0){
+       if(qty > 0 && btnName !== "CALL TO ORDER"){           
            addItemToCart(sku,qty);
 			console.log("cart has been added");
        }
@@ -204,6 +205,18 @@ function registerHandleBarHelpers(summaryAttribute,infoAttribute,additionalAttri
                 fnFalse = options.inverse;
                return (price !== undefined && price >=0 )?fnTrue():fnFalse();
             });
+    
+    Handlebars.registerHelper("getBtnText",function(callToOrder,stockStatus){
+       
+        if(callToOrder !== undefined && callToOrder == 1){
+            return "CALL TO ORDER";
+        }else if(stockStatus !== undefined && stockStatus == 0){
+            return "OUT OF STOCK";
+        }else{
+            return "ADD TO CART";
+        }
+        
+    });
 }
 
 

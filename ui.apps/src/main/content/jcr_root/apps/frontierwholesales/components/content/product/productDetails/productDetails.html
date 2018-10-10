@@ -100,11 +100,10 @@
                                     <span class="product-sale-price normal-price"> {{ formatNumber ../tierprice style="currency" currency="USD"}}</span>
                                 {{/priceCheck}}
                                 {{/if}}
-                                    <!-- Magento Attribute TDB -->
-                                   <!--<span class="product-save-percent">Save 25%</span>-->
+                                   
             </div>
             {{/if}}
-            {{#if extension_attributes.stock_item.qty includeZero=false}}
+            {{#if in_stock includeZero=false}}
                 <div class="product-detail-message">Availability: In Stock</div>
             {{else}}
                 <div class="product-detail-message">Availability: Out of Stock</div>
@@ -116,13 +115,14 @@
                     <strong>Restricted Item:</strong> Item Requires Buyer Certification.
                 </div>
                 {{/if}}
-                
-                {{#ifEquals bulk}}
-                <div class="alert alert-bulk" role="alert">
-                    <span class="glyphicon glyphicon-info-sign"></span>
-                    <strong>Buy 5 to save 5%:</strong> Discount price will display in cart.
-                </div>
-                {{/ifEquals}}
+                {{#priceCheck tierprice}}
+                    {{#ifEquals ../bulk}}
+                    <div class="alert alert-bulk" role="alert">
+                        <span class="glyphicon glyphicon-info-sign"></span>
+                        <strong>Buy 5 to save 5%:</strong> Discount price will display in cart.
+                    </div>
+                    {{/ifEquals}}
+                {{/priceCheck}}
                 
             </div>
              {{#if ${user.authToken != null @context='scriptString' }}}
@@ -162,7 +162,7 @@
 						</div>
 						<div class="add-to-cart-holder">
                             <div id="cartMessage-{{../sku}}" class="alert alert-add-to-cart" style="display: none;">Added to your Cart!</div>
-							<button id="{{../sku}}" class="btn btn-light-green btn-add-to-cart">Add To Cart</button>
+							<button id="{{../sku}}" class="btn btn-light-green btn-add-to-cart">{{getBtnText ../call_to_order ../in_stock}}</button>
 						</div>
 					</div>
 					

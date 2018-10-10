@@ -26,10 +26,9 @@
             <span class="grid-product-name">
                  {{name}}
             </span>
-           {{#if tierprice}} 
+           
            <span class="grid-product-price">
-                 <!--<span class="product-sale-price">$5.80</span> -->
-                 <!--<span class="product-now-price">Now {{ formattedPrice}}</span>-->
+               
                
                {{#if special_price includeZero=false}}
                   <span class="product-sale-price">{{ formatNumber tierprice style="currency" currency="USD"}}</span> 
@@ -40,16 +39,10 @@
                    {{/priceCheck}}
                {{/if}}
             </span>
-           {{/if}}
+           
        </a>
-      <!-- Magento attributes TBD -->
-      <!--<div class="grid-alert">
-            <div class="alert alert-danger" role="alert"> 
-                 <span class="glyphicon glyphicon-exclamation-sign"></span>
-                 <strong>Restricted Shipping</strong>
-            </div>
-       </div>-->
-       {{#ifEquals bulk}}
+     {{#priceCheck tierprice}}
+       {{#ifEquals ../bulk}}
       <div class="grid-alert">
             <div class="alert alert-bulk" role="alert">
                  <span class="glyphicon glyphicon-info-sign"></span>
@@ -57,8 +50,8 @@
             </div>
        </div>
       {{/ifEquals}}
-       {{#if tierprice}}
-       {{#priceCheck tierprice}}
+       
+       
       <div class="grid-add-to-cart">
             <div class="qty-holder">
                  <button type="button" class="decrease qty-button qty-down">
@@ -72,7 +65,7 @@
                  </button>
             </div>
           <div id="cartMessage-{{../sku}}" class="alert alert-add-to-cart" style="display: none;">Added to your Cart!</div>
-            <button id="{{../sku}}"type="button" class="btn btn-light-green btn-grid-add-to-cart">Add to Cart</button>
+            <button id="{{../sku}}"type="button" class="btn btn-light-green btn-grid-add-to-cart">{{getBtnText ../call_to_order ../in_stock}}</button>
        </div>
       
       <div class="product-wishlist">
@@ -86,7 +79,7 @@
             </div>
        </div>
       {{/priceCheck}}
-{{/if}}
+
        </div>
     
        {{/items}}

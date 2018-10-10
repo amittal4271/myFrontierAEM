@@ -430,6 +430,13 @@ public class FrontierWholesalesUtils {
 					JsonObject attrObject = attributesElement.getAsJsonObject();
 					JsonElement codeElement = attrObject.get("attribute_code");
 					
+					if(codeElement.getAsString().equals("in_stock")) {
+						itemObject.addProperty("in_stock", attrObject.get("value").getAsInt());
+					}
+					
+					if(codeElement.getAsString().equals("call_to_order")) {
+						itemObject.addProperty("call_to_order", attrObject.get("value").getAsInt());
+					}
 					if(codeElement.getAsString().equals("new_product")) {
 						newProduct = attrObject.get("value").getAsString();
 						itemObject.addProperty("new_product", newProduct);
@@ -445,9 +452,7 @@ public class FrontierWholesalesUtils {
 						itemObject.addProperty("on_sale", sale);
 					}
 					
-					if(codeElement.getAsString().equals("special_price")) {
-						itemObject.addProperty("special_price", attrObject.get("value").getAsDouble());
-					}
+					
 					
 					if(codeElement.getAsString().equals("bulk")){
 						itemObject.addProperty("bulk",  attrObject.get("value").getAsString());
@@ -484,26 +489,40 @@ public class FrontierWholesalesUtils {
 				
 				if(groupId != null) {
 					JsonArray tierPriceArr = itemObject.getAsJsonArray("tier_prices");
-					if(tierPriceArr != null)
+					double salesPrice=0;
+					double tierPrice=0;
+					boolean bTierPriceAvailable=false;
+					if(tierPriceArr != null) {
 					for(JsonElement tierElem : tierPriceArr) {
 						JsonObject tierObject = tierElem.getAsJsonObject();
 						JsonElement groupElement = tierObject.get("customer_group_id");
 						int qty = tierObject.get("qty").getAsInt();
 						if(groupElement.getAsString().equals(groupId)) {
+							 bTierPriceAvailable=true;
+							if(qty == 0) {
+								salesPrice = tierObject.get("value").getAsDouble();
+							}
 							if(qty == 1) {
-							itemObject.addProperty("tierprice", tierObject.get("value").getAsDouble());
+								tierPrice = tierObject.get("value").getAsDouble();
 							}
 						}
+					}
+					if(salesPrice > 0 && salesPrice != tierPrice) {
+						
+						itemObject.addProperty("special_price", salesPrice);					
+					}
+					if(bTierPriceAvailable) {
+						itemObject.addProperty("tierprice", tierPrice);
+					}
 					}
 				}
 				
 				itemObject.remove("tier_prices");
-				itemObject.remove("price");
+				itemObject.remove("price");				
 				
 			}
 			
-//			JsonElement arrayElement = json.fromJson(itemArray, JsonElement.class);
-//			object.add("items", arrayElement);
+
 			object.addProperty("recsPerPage", recsPerPage);
 			
 			JsonElement totalElement = object.get("total_count");
@@ -517,7 +536,7 @@ public class FrontierWholesalesUtils {
 				dPage = 0;
 			}
 			object.addProperty("pageTotal", (int)dPage);
-			//object.add("categories", catElement.getAsJsonObject());
+			
 			
 			object.addProperty("response_creation_time", new Date()+"");
 			return object.toString();
