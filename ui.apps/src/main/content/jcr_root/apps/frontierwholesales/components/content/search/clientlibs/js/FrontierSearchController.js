@@ -151,6 +151,17 @@ Frontier.SearchController = new function() {
 		} catch(error) {
 			console.log("pagination error ", error);
 		}
+        
+        var sortBy = $('#sortBy').val();
+        
+        if(sortBy == 'asc'){
+             queryString += "&searchCriteria[sortOrders][0][field]=price&searchCriteria[sortOrders][0][direction]=ASC";
+        }else if(sortBy == 'desc'){
+           queryString += "&searchCriteria[sortOrders][0][field]=price&searchCriteria[sortOrders][0][direction]=DESC";
+        }else{
+             queryString += "&searchCriteria[sortOrders][0][field]=created_at&searchCriteria[sortOrders][0][direction]=DESC";
+        }
+            
 		
 		queryString += "&searchCriteria[currentPage]="+pageNum;
 		queryString += "&searchCriteria[pageSize]="+recsPerPage;

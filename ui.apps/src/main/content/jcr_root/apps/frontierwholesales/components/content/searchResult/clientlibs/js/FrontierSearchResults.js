@@ -13,6 +13,8 @@ Frontier.SearchResults = new function() {
 	       $(document).on('change','#itemPerPageSelect,#sortBy',function(){
 	    	   Frontier.SearchController.updateResults();
 	       });
+            
+             
 	       
 	       $(document).on('click','.pagination-next.pagination-arrow',function(e){
 	           e.preventDefault();
@@ -177,7 +179,16 @@ Frontier.SearchResults = new function() {
 		    
 			$('#itemPerPageSelect option[value='+pageSize +']').prop('selected',true);
 
-	       
+	      var sortName = products.search_criteria.sort_orders[0].field;
+          var sortOptions = products.search_criteria.sort_orders[0].direction;
+            if(sortName == 'price' && sortOptions == 'ASC'){
+                sortName='asc';
+            }else if(sortName == 'price' && sortOptions == 'DESC'){
+                sortName='desc';
+            }else{
+                 sortName = "newproduct";
+            }
+             $('#sortBy option[value='+ sortName+']').prop('selected',true);
 	        // var $el = $('#plp-search-header-holder');
 	        // scrollToElement($el);
 

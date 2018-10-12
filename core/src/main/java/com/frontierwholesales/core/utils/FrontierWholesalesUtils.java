@@ -517,6 +517,10 @@ public class FrontierWholesalesUtils {
 					}
 				}
 				
+				if(itemObject.get("in_stock") == null) {
+					itemObject.addProperty("in_stock", 0);
+				}
+				
 				itemObject.remove("tier_prices");
 				itemObject.remove("price");				
 				

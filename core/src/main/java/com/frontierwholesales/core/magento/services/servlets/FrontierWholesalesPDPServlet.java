@@ -367,7 +367,9 @@ private JsonArray getImagePath(String productSku,SlingHttpServletRequest request
 				object.addProperty("on_sale", "0");
 			}
 		}
-		
+		if(object.get("in_stock") == null) {
+			object.addProperty("in_stock", 0);
+		}
 		object.addProperty("additionalInformation", bInformation);
 		log.debug("FrontierWholesalesPDPServlet parseJsonObject End");
 		return object.toString();

@@ -35,6 +35,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 @SlingServlet(paths = "/services/productsearch", methods = "GET")
 public class MagentoProductSearchServlet extends SlingSafeMethodsServlet {
@@ -88,12 +89,20 @@ public class MagentoProductSearchServlet extends SlingSafeMethodsServlet {
 			
 			try {
 				productList = utils.parseJsonObject(productList, pageSize, currentPage, request, groupId);
+				Cookie cookie = FrontierWholesalesUtils.getCookie(request,"CustomerData");
+				if(cookie != null) {
+					
+					String cookieValue = cookie.getValue();
+					String authToken = FrontierWholesalesUtils.getIdFromObject(cookieValue, "token");
+					productList = addUserTokenToObject(productList,"authToken",authToken);
+					
+				}
 			}catch(Exception e) {
 			}
 			
 			writer.println(productList);
 			writer.flush();
-		} catch (FrontierWholesalesBusinessException e) {
+		}catch (FrontierWholesalesBusinessException e) {
 			log.error("Unable to process Magento search.", e);
 		} finally {
 			if(log.isDebugEnabled()) {
@@ -125,6 +134,17 @@ public class MagentoProductSearchServlet extends SlingSafeMethodsServlet {
 	private String getRequestParameter(SlingHttpServletRequest request, String name) {
 		String param = request.getParameter(name) == null ? null : request.getParameter(name).trim();
 		return param;
+	}
+	
+	private String addUserTokenToObject(String object,String key,String value) throws Exception{
+		log.debug("addUserTokenToObject Start");
+		JsonParser parser =  new JsonParser();
+		JsonObject jsonObject =parser.parse(object).getAsJsonObject();
+		
+		jsonObject.addProperty(key, value);
+	
+		log.debug("addUserTokenToObject End ");
+		return jsonObject.toString();
 	}
 
 }

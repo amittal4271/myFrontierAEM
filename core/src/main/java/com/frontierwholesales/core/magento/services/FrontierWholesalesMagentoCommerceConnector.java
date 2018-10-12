@@ -356,16 +356,20 @@ public class FrontierWholesalesMagentoCommerceConnector {
     		return response;
     }
     
-    public String getProducts(String adminToken, String queryString) {
+    public String getProducts(String adminToken, String queryString) throws FrontierWholesalesBusinessException {
 		String response = null;      
 		String serviceURL = server + "/rest/V1/mailman/search?" + queryString;
-
+		
+		InputStream inputStream = null;
 		try {
 			log.debug("Calling product search v2 [{}]", serviceURL);
-			response = Request.Get(serviceURL).addHeader("Authorization", adminToken)
-					.execute().returnContent().asString();
+			inputStream = Request.Get(serviceURL).addHeader("Authorization", adminToken)
+					.execute().returnResponse().getEntity().getContent();
+			response =  FrontierWholesalesUtils.parseMagentoResponseObject(inputStream,"getProducts");
 		} catch (IOException e) {
 			log.error("Error getting Product List", e);
+		}catch(Exception anyEx) {
+			throw new FrontierWholesalesBusinessException("ServiceError", FrontierWholesalesErrorCode.IO_ERROR);
 		}
 			
 			return response;
