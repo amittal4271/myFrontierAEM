@@ -19,7 +19,9 @@ $(document).ready(function(){
     $(document).on('click','#signOut',function(){
        localStorage.removeItem('ConfirmationNr');
       
-          document.cookie="CustomerData=;Max-Age=-99999999;path=/;";
+          var domainName = serverURL.split("//")[1].split("/")[0];
+        document.cookie="CustomerData=;Max-Age=-99999999;path=/;domain=."+domainName;
+        document.cookie="CustomerData=;Max-Age=-99999999;path=/;";
         window.location.href="/content/frontierwholesales/en/home.html";
     });
 
@@ -41,7 +43,9 @@ function verifyToken(){
             }).fail(function(error){               
                if(error.status == '401'){
                 //Remove cookie (CustomerData) if token is not valid
-                    document.cookie="CustomerData=;Max-Age=-99999999;path=/;";
+                   var domainName = serverURL.split("//")[1].split("/")[0];
+                   document.cookie="CustomerData=;Max-Age=-99999999;path=/;";
+                    document.cookie="CustomerData=;Max-Age=-99999999;path=/;domain=."+domainName;                  
                     loginHeaderMenus();
                }
                
@@ -163,13 +167,14 @@ function enableErrorMsg(errorCode){
 }
 
 function getUserToken(){
-		var cookieValue = document.cookie;
+		var cookieValue = decodeURIComponent(document.cookie);
         var cookieSplit=cookieValue.split(";");
         var CustomerData={};
         for(var i=0;i<cookieSplit.length;i++){
             var token = cookieSplit[i].trim().split("=");
             if(token[0].startsWith("CustomerData")){
                 CustomerData = JSON.parse(token[1]);
+                CustomerData.token = CustomerData.token.replace("+"," ");
             }
         }
         

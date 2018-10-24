@@ -179,8 +179,8 @@ Frontier.SearchResults = new function() {
 		    
 			$('#itemPerPageSelect option[value='+pageSize +']').prop('selected',true);
 
-	      var sortName = products.search_criteria.sort_orders[0].field;
-          var sortOptions = products.search_criteria.sort_orders[0].direction;
+	      var sortName = (products.search_criteria.sort_orders !== undefined?products.search_criteria.sort_orders[0].field:'');
+          var sortOptions = (products.search_criteria.sort_orders !== undefined?products.search_criteria.sort_orders[0].direction:'');
             if(sortName == 'price' && sortOptions == 'ASC'){
                 sortName='asc';
             }else if(sortName == 'price' && sortOptions == 'DESC'){
