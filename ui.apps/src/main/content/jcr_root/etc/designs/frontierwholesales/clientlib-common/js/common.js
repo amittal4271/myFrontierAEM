@@ -506,6 +506,7 @@ function initListenersForProductButtons() {
 	$(document).on('click','.btn.btn-light-green.btn-grid-add-to-cart',function(){
        console.log("cart has been added");
        var sku = $(this).attr('id');
+        var btnName = $(this).text();
        var qty='';
        $(this).parent().find(":input").each(function(i,data) { 
            var className=data.getAttribute('class');
