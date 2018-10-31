@@ -1,7 +1,5 @@
 package com.frontierwholesales.core.beans;
 
-import com.google.gson.JsonObject;
-
 public class FrontierWholesaleBrand {
 
 	private String name;

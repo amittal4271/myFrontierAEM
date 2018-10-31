@@ -2,14 +2,7 @@ package com.frontierwholesales.core.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.DecimalFormat;
 
-import javax.jcr.Node;
-import javax.jcr.NodeIterator;
-import javax.jcr.Session;
-import javax.jcr.query.Query;
-import javax.jcr.query.QueryManager;
-import javax.jcr.query.QueryResult;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 
@@ -17,23 +10,13 @@ import org.apache.felix.scr.annotations.Reference;
 import org.apache.felix.scr.annotations.sling.SlingServlet;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
-import org.apache.sling.api.resource.Resource;
-import org.apache.sling.api.resource.ResourceResolver;
-import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.frontierwholesales.core.beans.search.MagentoSearch;
-import com.frontierwholesales.core.beans.search.MagentoSearchCondition;
-import com.frontierwholesales.core.beans.search.MagentoSearchFilterGroup;
 import com.frontierwholesales.core.magento.services.FrontierWholesalesMagentoCommerceConnector;
 import com.frontierwholesales.core.magento.services.exceptions.FrontierWholesalesBusinessException;
-import com.frontierwholesales.core.services.constants.FrontierWholesalesConstants;
 import com.frontierwholesales.core.utils.FrontierWholesalesUtils;
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
@@ -66,9 +49,12 @@ public class MagentoProductSearchServlet extends SlingSafeMethodsServlet {
 		
 		int currentPage = getPageRequestParameter(request);
 		int pageSize = getPageSizeRequestParameter(request);
+		Object[] obj = new Object[2];
+		obj[0]=currentPage;
+		obj[1]=pageSize;
 		
 		long startTime = System.currentTimeMillis(); 
-		log.debug("Processing search request: query={}; current_page={}; page_size={}", new Object[] {currentPage, pageSize});
+		log.debug("Processing search request: query={}; current_page={}; page_size={}", obj);
 		
 		response.setContentType("application/json");
 		response.setCharacterEncoding("utf-8");

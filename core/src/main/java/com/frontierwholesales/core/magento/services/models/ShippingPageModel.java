@@ -24,12 +24,11 @@ public class ShippingPageModel extends BaseModel{
 	
 	private List<FrontierWholesalesShippingMethods> shippingMethods;
 	
-	private ObjectMapper mapper = new ObjectMapper();
+	
 	private String cartObject;
 	
 	private String emailId;
 	private FrontierWholesalesCartItems items;
-	private FrontierWholesalesMagentoCommerceConnector connector = new FrontierWholesalesMagentoCommerceConnector();
 	
 	/**
 	 * Service call for shipping

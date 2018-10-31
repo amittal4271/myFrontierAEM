@@ -30,9 +30,7 @@ public class ShopByBrandModel extends BaseModel {
 
 	private String brandListResponse;
 
-	private FrontierWholesalesMagentoCommerceConnector connector = new FrontierWholesalesMagentoCommerceConnector();
-
-	private ObjectMapper mapper = new ObjectMapper();
+	
 	private JsonParser parser = new JsonParser();
 	
 	private ArrayList<String> letters = new ArrayList<String>();

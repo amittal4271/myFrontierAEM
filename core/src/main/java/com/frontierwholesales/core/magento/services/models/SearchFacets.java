@@ -33,9 +33,7 @@ public class SearchFacets extends BaseModel {
 
 	private String searchFacetsListResponse;
 
-	private FrontierWholesalesMagentoCommerceConnector connector = new FrontierWholesalesMagentoCommerceConnector();
-
-	private ObjectMapper mapper = new ObjectMapper();
+	
 	private JsonParser parser = new JsonParser();
 	
 	private ArrayList<MagentoFacet> facetList = new ArrayList<MagentoFacet>();

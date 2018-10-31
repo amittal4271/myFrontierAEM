@@ -9,8 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.frontierwholesales.core.magento.services.FrontierWholesalesMagentoCommerceConnector;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -23,8 +21,6 @@ public class PaymentModel extends BaseModel{
 	
 	private String emailId;
 	
-	private FrontierWholesalesMagentoCommerceConnector connector = new FrontierWholesalesMagentoCommerceConnector();
-	private ObjectMapper mapper = new ObjectMapper();
 	 @PostConstruct
 	  protected void init() {
 		 mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);

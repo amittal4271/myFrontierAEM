@@ -74,7 +74,7 @@ public class FrontierWholesalesMagentoCommerceConnector {
             description = "Magento Server",
             value = "http://frontierb2b.ztech.io/index.php"
     )
-    public static final String SERVER = "server";
+    public static final String MAGENTO_SERVER = "server";
     
    
 
@@ -93,7 +93,7 @@ public class FrontierWholesalesMagentoCommerceConnector {
         
         appToken = cfg.getConfigValue(APP_TOKEN, "");
         
-        server = cfg.getConfigValue(SERVER, "http://frontierb2b.ztech.io/index.php");
+        server = cfg.getConfigValue(MAGENTO_SERVER, "http://frontierb2b.ztech.io/index.php");
        
        
     }

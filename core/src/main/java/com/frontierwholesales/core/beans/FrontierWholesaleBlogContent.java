@@ -1,6 +1,6 @@
 package com.frontierwholesales.core.beans;
 
-import java.util.Date;
+
 
 public class FrontierWholesaleBlogContent {
 

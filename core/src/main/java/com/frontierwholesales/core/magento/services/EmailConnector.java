@@ -33,7 +33,7 @@ public class EmailConnector {
 	 private static String fromAddress;
 	 private static String toAddress;
 	 private static String smtpUser;
-	 private static String password;
+	 private static String emailPwd;
 	 
 	 
 	 @Property(
@@ -83,7 +83,7 @@ public class EmailConnector {
 	            description = "SMTP Email Password",
 	            value = ""
 	    )
-	    public static final String PASSWORD = "password";
+	    public static final String EMAIL_P1 = "email_pass";
 	    
 	    @Activate
 	    protected void activate(Map<String, Object> properties) {
@@ -100,7 +100,7 @@ public class EmailConnector {
 	        
 	        smtpUser = cfg.getConfigValue(SMTP_USER, "");
 	        
-	        password = cfg.getConfigValue(PASSWORD, "");
+	        emailPwd = cfg.getConfigValue(EMAIL_P1, "");
 	       
 	       
 	    }
@@ -138,11 +138,11 @@ public class EmailConnector {
 		}
 
 		public  String getPassword() {
-			return password;
+			return emailPwd;
 		}
 
 		public  void setPassword(String password) {
-			EmailConnector.password = password;
+			EmailConnector.emailPwd = password;
 		}
 
 		public  String getFromAddress() {
