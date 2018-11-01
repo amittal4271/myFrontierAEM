@@ -20,8 +20,8 @@ description="FrontierWholesales Admin Servlet Sling All Methods Servlet.",
 paths={"/services/admintoken"}, methods={"GET","POST"})
 
 public class FrontierWholesalesAdminServlet extends SlingAllMethodsServlet{
-
-	public FrontierWholesalesMagentoCommerceConnector connector = new FrontierWholesalesMagentoCommerceConnector();
+	
+	public transient FrontierWholesalesMagentoCommerceConnector connector = new FrontierWholesalesMagentoCommerceConnector();
 	 private static final Logger log = LoggerFactory.getLogger(FrontierWholesalesUserRegistrationServlet.class);
 	@Override
 	protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response)
@@ -33,8 +33,7 @@ public class FrontierWholesalesAdminServlet extends SlingAllMethodsServlet{
 			json.addProperty("Token", adminToken);
 			response.getOutputStream().print(json.toString());
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			
 			json.addProperty("Error", e.getMessage());			
 			log.error("Error getting admin token",e,e.getMessage());
 			response.getOutputStream().print(json.toString());

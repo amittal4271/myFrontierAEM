@@ -5,7 +5,6 @@ import java.nio.charset.Charset;
 import java.util.Base64;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.felix.scr.annotations.sling.SlingServlet;
@@ -19,7 +18,6 @@ import com.frontierwholesales.core.magento.services.FrontierWholesalesMagentoCom
 import com.frontierwholesales.core.magento.services.FrontierWholesalesUserRegistration;
 import com.frontierwholesales.core.magento.services.exceptions.FrontierWholesalesBusinessException;
 import com.frontierwholesales.core.services.constants.FrontierWholesalesConstants;
-import com.frontierwholesales.core.utils.FrontierWholesalesUtils;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -51,7 +49,7 @@ public class FrontierWholesalesUserRegistrationServlet  extends SlingAllMethodsS
 			String adminToken = connector.getAdminToken();
 			object = FrontierWholesalesUserRegistration.getCountriesWithRegions(adminToken);
 			
-			response.getOutputStream().write(object.getBytes("UTF-8"));
+			response.getOutputStream().write(object.getBytes(FrontierWholesalesConstants.UTF8));
 		}catch(FrontierWholesalesBusinessException bEx) {
 			log.error("Exception occurred FrontierWholesalesBusinessException "+bEx.getMessage());
 			jsonObject.addProperty("Error", bEx.getMessage());

@@ -11,4 +11,8 @@ public interface FrontierWholesalesConstants {
 	public static final String MAGENTO_CATEGORIES = "MagentoCategories";
 	
 	public static final String AEM_CHILDREN_PAGES ="AemChildrenPages";
+	
+	public static final String AUTHORIZATION="Authorization";
+	
+	public static final String UTF8="UTF-8";
 }

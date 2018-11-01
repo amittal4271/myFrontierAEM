@@ -36,7 +36,7 @@ import com.google.gson.JsonParser;
 @SuppressWarnings("serial")
 @SlingServlet(label="FrontierWholesalesUserRegistration - Sling All Methods Servlet", 
 description="FrontierWholesales User Registration Sling All Methods Servlet.", 
-paths={"/services/cart"}, methods={"GET","POST","DELETE","PUT"})
+paths={"/services/cart"}, methods={"GET","POST"})
 public class FrontierWholesalesShoppingCartServlet  extends SlingAllMethodsServlet{
 
 	private static final Logger log = LoggerFactory.getLogger(FrontierWholesalesShoppingCartServlet.class);
@@ -114,23 +114,7 @@ public class FrontierWholesalesShoppingCartServlet  extends SlingAllMethodsServl
 		log.debug("FrontierWholesalesShoppingCartServlet doGet method End");
 	}
 	
-	@Override
-	protected void doPost(SlingHttpServletRequest request, SlingHttpServletResponse response)
-			throws ServletException, IOException {
-		
-	}
 	
-	@Override
-	protected void doDelete(SlingHttpServletRequest request, SlingHttpServletResponse response)
-			throws ServletException, IOException {
-		
-	}
-	
-	@Override
-	protected void doPut(SlingHttpServletRequest request, SlingHttpServletResponse response)
-			throws ServletException, IOException {
-		
-	}
 	
 	private String getRoleName(String object) throws Exception{
 		log.debug("getRoleName start");

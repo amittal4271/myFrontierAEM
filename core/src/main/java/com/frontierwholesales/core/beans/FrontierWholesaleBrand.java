@@ -5,10 +5,6 @@ public class FrontierWholesaleBrand {
 	private String name;
 	private String id;
 	
-	public FrontierWholesaleBrand() {
-		
-		
-	}
 	
 	public String getName() {
 		return name;

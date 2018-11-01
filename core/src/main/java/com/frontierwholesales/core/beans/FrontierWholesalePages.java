@@ -34,7 +34,7 @@ public class FrontierWholesalePages
       uniquePath = page.getPath();
       
       uniquePath = uniquePath.replace("/", ".");
-      if (uniquePath.indexOf(" ") > 0) {
+      if (uniquePath.indexOf(" ") != -1) {
         uniquePath = uniquePath.replace(" ", "");
       }
       uniquePath = uniquePath.substring(1, uniquePath.length());

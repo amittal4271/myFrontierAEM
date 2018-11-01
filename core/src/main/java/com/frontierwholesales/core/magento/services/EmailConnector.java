@@ -26,7 +26,7 @@ import org.slf4j.LoggerFactory;
 })
 public class EmailConnector {
 
-	 private static final Logger log = LoggerFactory.getLogger(EmailConnector.class);
+	
 	 
 	 private static String hostName;
 	 private static String smtpPort;
@@ -83,69 +83,58 @@ public class EmailConnector {
 	            description = "SMTP Email Password",
 	            value = ""
 	    )
-	    public static final String EMAIL_P1 = "email_pass";
+	    public static final String EMAIL_PWD = "email_pwd";
 	    
 	    @Activate
 	    protected void activate(Map<String, Object> properties) {
 	    	
 	        ConfigurationParameters cfg = ConfigurationParameters.of(properties);
 	        
-	        hostName = cfg.getConfigValue(HOST_NAME, "");
+	        EmailConnector.hostName = cfg.getConfigValue(HOST_NAME, "");
 	        
-	        fromAddress = cfg.getConfigValue(FROM_ADDRESS, "");
+	        EmailConnector.fromAddress = cfg.getConfigValue(FROM_ADDRESS, "");
 	       
-	        toAddress = cfg.getConfigValue(TO_ADDRESS, "");
+	        EmailConnector.toAddress = cfg.getConfigValue(TO_ADDRESS, "");
 	        
-	        smtpPort = cfg.getConfigValue(SMTP_PORT, "");
+	        EmailConnector.smtpPort = cfg.getConfigValue(SMTP_PORT, "");
 	        
-	        smtpUser = cfg.getConfigValue(SMTP_USER, "");
+	        EmailConnector.smtpUser = cfg.getConfigValue(SMTP_USER, "");
 	        
-	        emailPwd = cfg.getConfigValue(EMAIL_P1, "");
+	        EmailConnector.emailPwd = cfg.getConfigValue(EMAIL_PWD, "");
 	       
 	       
 	    }
 
-		public String getHostName() {
+		public static String getHostName() {
 			return hostName;
 		}
 
-		public void setHostName(String hostName) {
-			EmailConnector.hostName = hostName;
-		}
-
-		public String getSmtpPort() {
+		
+		public static String getSmtpPort() {
 			return smtpPort;
 		}
 
-		public void setSmtpPort(String smtpPort) {
-			EmailConnector.smtpPort = smtpPort;
-		}
+		
 
-		public String getToAddress() {
+		public static String getToAddress() {
 			return toAddress;
 		}
 
-		public void setFromAddress(String toAddress) {
-			EmailConnector.toAddress = toAddress;
-		}
+		
 
-		public String getSmtpUser() {
+		public static String getSmtpUser() {
 			return smtpUser;
 		}
 
-		public void setSmtpUser(String smtpUser) {
-			EmailConnector.smtpUser = smtpUser;
-		}
+		
 
-		public  String getPassword() {
+		public static String getPassword() {
 			return emailPwd;
 		}
 
-		public  void setPassword(String password) {
-			EmailConnector.emailPwd = password;
-		}
+		
 
-		public  String getFromAddress() {
+		public static String getFromAddress() {
 			return fromAddress;
 		}
 		

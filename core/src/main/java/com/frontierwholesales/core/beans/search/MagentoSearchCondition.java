@@ -54,14 +54,17 @@ public class MagentoSearchCondition {
 	String getQueryString(int group_index, int index) {
 		String encodedValue = value;
 		
+		String searchCriteria = "searchCriteria[filter_groups][";
+		String filters ="][filters][";
+		
 		try {
 			encodedValue = URLEncoder.encode(encodedValue, "UTF-8");
 		} catch (UnsupportedEncodingException e) {
 			logger.warn("Unable to encode search term {}", new Object[]{encodedValue}, e);
 		}
 		
-		return "searchCriteria[filter_groups][" + group_index + "][filters][" + index + "][field]=" + field + "&" +
-			   "searchCriteria[filter_groups][" + group_index + "][filters][" + index + "][value]=" + encodedValue + "&" + 
-			   "searchCriteria[filter_groups][" + group_index + "][filters][" + index + "][condition_type]=" + type;
+		return searchCriteria + group_index + filters + index + "][field]=" + field + "&" +
+				searchCriteria + group_index + filters + index + "][value]=" + encodedValue + "&" + 
+				searchCriteria + group_index + filters + index + "][condition_type]=" + type;
 	}
 }

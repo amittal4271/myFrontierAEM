@@ -56,20 +56,20 @@ public class FrontierWholesalesEmailContactServlet extends SlingAllMethodsServle
 		String message = request.getParameter("message");
 		
 		Properties properties = System.getProperties();
-		String toEmail = emailConnector.getToAddress();
-		properties.put("mail.smtp.host", emailConnector.getHostName());
+		String toEmail = EmailConnector.getToAddress();
+		properties.put("mail.smtp.host", EmailConnector.getHostName());
 	   
-	    properties.put("mail.smtp.port", emailConnector.getSmtpPort());
+	    properties.put("mail.smtp.port", EmailConnector.getSmtpPort());
 	    properties.put("mail.debug","true");
 	    properties.put("mail.smtp.auth", "true");
 	    properties.put("mail.imap.ssl.enable", "true");
 	   properties.put("mail.smtp.starttls.enable", "true");
 	   
-	   String noReply = emailConnector.getFromAddress();
+	   String noReply = EmailConnector.getFromAddress();
 	    Authenticator auth = new Authenticator() {
 			//override the getPasswordAuthentication method
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(emailConnector.getSmtpUser(), emailConnector.getPassword());
+				return new PasswordAuthentication(EmailConnector.getSmtpUser(), EmailConnector.getPassword());
 			}
 		};
 	    
