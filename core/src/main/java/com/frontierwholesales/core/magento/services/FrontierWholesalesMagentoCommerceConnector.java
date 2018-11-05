@@ -2,7 +2,6 @@ package com.frontierwholesales.core.magento.services;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -351,15 +350,8 @@ public class FrontierWholesalesMagentoCommerceConnector  {
         log.info("Getting related products for SKU: {}", sku);
         List<MagentoRelatedProduct> productList;
         String api = "/rest/V1/products/" + sku + "/links/related";
-   		String response = constructAPIMethod("Get", adminToken, api, "getRelatedProductsForSku", null,null);
-	   
-        
-       /* InputStream inputStream = Request.Get(server + "/rest/V1/products/" + sku + "/links/related")
-                    .addHeader("Authorization", adminToken)
-                    .connectTimeout(TIME_OUT)
-                    .execute().returnResponse().getEntity().getContent();
-            log.debug("Related products for SKU response from endpoint:\n {}");
-        String response =  FrontierWholesalesUtils.parseMagentoResponseObject(inputStream,"getRelatedProductsForSku");*/
+   		String response = constructAPIMethod("Get", adminToken, api, "getRelatedProductsForSku", null,null);	   
+       
          try {
 			productList = mapper.readValue(response, new TypeReference<List<MagentoRelatedProduct>>(){});
 		} catch (com.fasterxml.jackson.core.JsonParseException e) {
