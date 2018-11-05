@@ -41,7 +41,8 @@ public class ShopByBrandModel extends BaseModel {
 	protected void init() {
 		mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
 		try {
-			brandListResponse = connector.getBrands(connector.getAdminToken());
+			connector.setServer(getMagentoServer());
+			brandListResponse = connector.getBrands(getAdminToken());
 
 			JsonArray brandsArr = parser.parse(brandListResponse).getAsJsonArray();
 			

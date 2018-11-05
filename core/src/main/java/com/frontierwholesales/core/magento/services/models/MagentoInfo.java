@@ -33,7 +33,7 @@ public class MagentoInfo extends BaseModel {
 
 	@PostConstruct
 	protected void init() {
-		
+			LOGGER.debug("MagentoInfo Model...");
 	}
 
 }

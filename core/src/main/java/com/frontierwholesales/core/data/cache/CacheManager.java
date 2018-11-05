@@ -2,7 +2,10 @@ package com.frontierwholesales.core.data.cache;
 
 public class CacheManager {
 
-	private static java.util.HashMap<String,Object> cacheHashMap = new java.util.HashMap<String,Object>();
+	private static java.util.HashMap<String,Object> cacheHashMap = new java.util.HashMap<>();
+	private CacheManager() {
+		
+	}
 	 
 	   public static void putCache(Object object, String identifier)
 	   {

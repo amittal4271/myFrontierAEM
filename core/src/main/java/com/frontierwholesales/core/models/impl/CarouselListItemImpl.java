@@ -23,6 +23,7 @@ import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.day.cq.wcm.foundation.Image;
 import com.frontierwholesales.core.models.Carousel;
+import com.frontierwholesales.core.services.constants.FrontierWholesalesConstants;
 
 public class CarouselListItemImpl implements ListItem {
     private static final Logger LOGGER = LoggerFactory.getLogger(CarouselListItemImpl.class);
@@ -65,11 +66,11 @@ public class CarouselListItemImpl implements ListItem {
 	    		this.isValidImageNode = (imageResource != null);
 	    		if( this.isValidImageNode ) {
 	    		
-	    			ValueMap imageMap = imageResource != null ? ResourceUtil.getValueMap(imageResource) : ValueMap.EMPTY;
+	    			ValueMap imageMap =  ResourceUtil.getValueMap(imageResource) ;
 	    			String imageSrc = imageMap.get(Image.PN_FILE_NAME, String.class);
 	    			
 	    			if( StringUtils.isBlank(imageSrc) ) {
-	    				ValueMap childImageMap = imageResource != null && imageResource.getChild(Carousel.PN_IMAGE_NODE) != null ? ResourceUtil.getValueMap(imageResource.getChild(Carousel.PN_IMAGE_NODE)) : ValueMap.EMPTY;
+	    				ValueMap childImageMap =  imageResource.getChild(Carousel.PN_IMAGE_NODE) != null ? ResourceUtil.getValueMap(imageResource.getChild(Carousel.PN_IMAGE_NODE)) : ValueMap.EMPTY;
 	    				imageSrc = childImageMap.get(Image.PN_FILE_NAME, String.class);
 	    			}
 	    			this.isValidImageRef = imageSrc != null;
@@ -77,8 +78,8 @@ public class CarouselListItemImpl implements ListItem {
 	    			
 	    			imageLink = imageMap.get("linkURL", String.class);
 	    			
-	    			if(imageLink != null && imageLink.startsWith("/") && !imageLink.contains(".html")) {
-	    				imageLink += ".html";
+	    			if(imageLink != null && imageLink.startsWith("/") && !imageLink.contains(FrontierWholesalesConstants.CONSTANT_EXTENSION_HTML)) {
+	    				imageLink += FrontierWholesalesConstants.CONSTANT_EXTENSION_HTML;
 	    			} 
 	    			
 	    			return imageSrc;	// is there default value if no image file found?
@@ -116,7 +117,7 @@ public class CarouselListItemImpl implements ListItem {
     		if(!StringUtils.isEmpty(imageLink)){
     			return imageLink;
     		} else {
-    			return request.getContextPath() + page.getPath() + ".html";
+    			return request.getContextPath() + page.getPath() + FrontierWholesalesConstants.CONSTANT_EXTENSION_HTML;
     		}
     		
     	} else {
@@ -162,11 +163,11 @@ public class CarouselListItemImpl implements ListItem {
         redirectCandidates.add(page.getPath());
         while( result != null && StringUtils.isNotEmpty((redirectTarget = result.getProperties().get(PageImpl.PN_REDIRECT_TARGET, String.class))) ) {
             result = pageManager.getPage(redirectTarget);
-            if( result != null ) {
-                if( !redirectCandidates.add(result.getPath()) ) {
+            if( result != null && !redirectCandidates.add(result.getPath()) ) {
+                
                     LOGGER.warn("Detected redirect loop for the following pages: {}.", redirectCandidates.toString());
                     break;
-                }
+                
             }
         }
         return result;

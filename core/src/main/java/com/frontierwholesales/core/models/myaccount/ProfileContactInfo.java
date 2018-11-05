@@ -102,7 +102,7 @@ public class ProfileContactInfo {
 	
 	@PostConstruct
 	protected void activate() {
-		
+		log.debug("activate method");
 	}
 
 }

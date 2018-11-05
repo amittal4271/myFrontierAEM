@@ -7,7 +7,10 @@ public enum FrontierWholesalesErrorCode {
 	MISSING_HEADER(2, "Required header is missing"),
 	IO_ERROR (3, "An IO error occurred"),
 	RELEASE_REDIRECT (5, "Could not release redirect"),
-	NAVIGATION_MODE (6, "Error in navigation mode");	
+	NAVIGATION_MODE (6, "Error in navigation mode"),
+	GENERAL_SERVICE_ERROR(7,"General Service Error"),
+	JSON_PARSE_ERROR(8,"Parsing Json Object Error"),
+	JSON_MAPPING_ERROR(9,"Json Mapping Error");
 	
 	// - Unauthorized
 

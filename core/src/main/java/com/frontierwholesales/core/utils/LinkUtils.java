@@ -17,7 +17,9 @@ public class LinkUtils
   private static final Pattern PROTOCOL_REGEX = Pattern.compile("^(https?://)");
   private static final Pattern RELATIVE_PATH_REGEX = Pattern.compile("^/[A-Za-z0-9]*");
   private static final Pattern DOMAIN_REGEX = Pattern.compile("^[A-Za-z0-9]*\\.[A-Za-z0-9]*\\..*");
-  
+  private LinkUtils() {
+	  
+  }
   public static String setupUrl(String url)
   {
     LOGGER.debug("----------------------------------------------------------");

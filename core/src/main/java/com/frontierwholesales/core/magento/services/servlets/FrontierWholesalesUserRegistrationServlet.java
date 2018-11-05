@@ -4,18 +4,22 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.Base64;
 
+import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.felix.scr.annotations.sling.SlingServlet;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
+import org.osgi.framework.Constants;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.frontierwholesales.core.magento.services.FrontierWholesalesMagentoCommerceConnector;
 import com.frontierwholesales.core.magento.services.FrontierWholesalesUserRegistration;
+import com.frontierwholesales.core.magento.services.MagentoCommerceConnectorService;
 import com.frontierwholesales.core.magento.services.exceptions.FrontierWholesalesBusinessException;
 import com.frontierwholesales.core.services.constants.FrontierWholesalesConstants;
 import com.google.gson.Gson;
@@ -24,9 +28,15 @@ import com.google.gson.JsonObject;
 
 
 
-@SlingServlet(label="FrontierWholesalesUserRegistration - Sling All Methods Servlet", 
-description="FrontierWholesales User Registration Sling All Methods Servlet.", 
-paths={"/services/registration"}, methods={"GET","POST"})
+@Component(immediate = true,service=Servlet.class,
+property={
+        Constants.SERVICE_DESCRIPTION + "=FrontierWholesalesUserRegistration - Sling All Methods Servlet",
+        "sling.servlet.methods={'GET','POST'}",
+       "sling.servlet.selectors=data",
+       "sling.servlet.paths=/services/registration",
+        "sling.servlet.extensions=html"      
+        
+})
 public class FrontierWholesalesUserRegistrationServlet  extends SlingAllMethodsServlet{
 
 	 private static final Logger log = LoggerFactory.getLogger(FrontierWholesalesUserRegistrationServlet.class);
@@ -35,7 +45,14 @@ public class FrontierWholesalesUserRegistrationServlet  extends SlingAllMethodsS
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	public FrontierWholesalesMagentoCommerceConnector connector = new FrontierWholesalesMagentoCommerceConnector();
+	private FrontierWholesalesMagentoCommerceConnector connector = new FrontierWholesalesMagentoCommerceConnector();
+	private FrontierWholesalesUserRegistration registration = new FrontierWholesalesUserRegistration();
+	private MagentoCommerceConnectorService config;
+	@Reference
+	public void activate(MagentoCommerceConnectorService config) {
+		
+		this.config = config;
+	}
 	
 	@Override
 	protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response)
@@ -46,19 +63,20 @@ public class FrontierWholesalesUserRegistrationServlet  extends SlingAllMethodsS
 		
 		try {
 			
-			String adminToken = connector.getAdminToken();
-			object = FrontierWholesalesUserRegistration.getCountriesWithRegions(adminToken);
+			String adminToken = config.getAppToken();
+			String server = config.getServer();
+			object = registration.getCountriesWithRegions(adminToken,server);
 			
 			response.getOutputStream().write(object.getBytes(FrontierWholesalesConstants.UTF8));
 		}catch(FrontierWholesalesBusinessException bEx) {
 			log.error("Exception occurred FrontierWholesalesBusinessException "+bEx.getMessage());
-			jsonObject.addProperty("Error", bEx.getMessage());
+			jsonObject.addProperty(FrontierWholesalesConstants.ERROR, bEx.getMessage());
 			response.getOutputStream().println(jsonObject.toString());
 		}
 		catch (Exception e) {
 			log.error("Exception occurred in doGet method "+e.getMessage());
 			e.printStackTrace();
-			jsonObject.addProperty("Error", "Error");
+			jsonObject.addProperty(FrontierWholesalesConstants.ERROR, "Error");
 			response.getOutputStream().println(jsonObject.toString());
 			
 		}
@@ -75,30 +93,31 @@ public class FrontierWholesalesUserRegistrationServlet  extends SlingAllMethodsS
 			JsonObject jsonObject = new JsonObject();
 			log.debug("entered into doPost method of registration");
 			try {
-			 
-				 String authorization = request.getHeader("Authorization");
+				 String adminToken = config.getAppToken();
+				String server = config.getServer();
+				 String authorization = request.getHeader(FrontierWholesalesConstants.AUTHORIZATION);
 			    if (authorization != null && authorization.startsWith("Basic")) {
 			        // Authorization: Basic base64credentials
 			        String base64Credentials = authorization.substring("Basic".length()).trim();
 			         credentials = new String(Base64.getDecoder().decode(base64Credentials),
 			                Charset.forName("UTF-8"));
-					
+			        
+			        	
 			        String action = request.getParameter("action");
 			        // buyers club registration
 			        if(action.equals("buyersClub")) {
 			        	String resetPwdData = request.getParameter("resetPwd");
 			        	String resetToken = request.getParameter("resetToken");
 			        	String customerId = request.getParameter("customerId");
-			        	String adminToken = connector.getAdminToken();
 			        	
-			        	String tokenValidateResponse = FrontierWholesalesUserRegistration.validateToken(adminToken, resetToken, customerId);
+			        	String tokenValidateResponse = registration.validateToken(adminToken, resetToken, customerId,server);
 			        	
 			        	if(tokenValidateResponse.equals("true")) {
 			        	
 			        	JsonObject resetPwdObject = updateJSONObject(resetPwdData, "newPassword", credentials);
 			        	
 			        	//get customer id here
-			        	String customerResponse = FrontierWholesalesUserRegistration.resetPassword(adminToken, resetPwdObject.toString());
+			        	String customerResponse = registration.resetPassword(adminToken, resetPwdObject.toString(),server);
 			        	//update first and lastname with customer id
 			        	log.debug("password is resetted successfully.");
 			        	String customerData = request.getParameter("customer");
@@ -109,16 +128,16 @@ public class FrontierWholesalesUserRegistrationServlet  extends SlingAllMethodsS
 			        	
 			        	JsonObject updatedCustomerData = updateJSONObject(customerData,"id",customerResponse,"customer");
 			        	
-			        	FrontierWholesalesUserRegistration.updateCustomers(adminToken, updatedCustomerData.toString(), customerResponse);
+			        	registration.updateCustomers(adminToken, updatedCustomerData.toString(), customerResponse,server);
 			        	log.debug("customer is successfully updated.");
 			        	
-			        	String addressResponse = FrontierWholesalesUserRegistration.addAddress(adminToken, updatedAddressData.toString());
+			        	String addressResponse = registration.addAddress(adminToken, updatedAddressData.toString(),server);
 			        	log.debug("buyersclub is registered successfully");
 			        	
 			        	if(addressResponse != null) {
 			        			bReturn = true;
 							  	jsonObject.addProperty("BuyersAddress", addressResponse);
-							  	//response.getOutputStream().println(jsonObject.toString());
+							  	
 						  }else {
 							 
 							  log.error("Returned object is null ");
@@ -130,11 +149,11 @@ public class FrontierWholesalesUserRegistrationServlet  extends SlingAllMethodsS
 			        	}
 			        	
 			        }else {
-			        	String adminToken = connector.getAdminToken();
+			        	
 			        	String data = request.getParameter("registration");
 			        	JsonObject updatedObject = updateJSONObject(data,"password",credentials);
 			        	
-			        	String customerId = FrontierWholesalesUserRegistration.registration(updatedObject.toString(),adminToken);
+			        	String customerId = registration.registration(updatedObject.toString(),adminToken,server);
 			        	 jsonObject.addProperty("CustomerData", customerId);
 			        	 bReturn = true;
 			        	 log.debug("Successfully user is registered ");
@@ -145,11 +164,15 @@ public class FrontierWholesalesUserRegistrationServlet  extends SlingAllMethodsS
 			    }
 			    if(bReturn) {
 			    	String username = request.getParameter("email");
+			    	connector.setServer(server);
 			    	String userToken = connector.getToken(username, credentials);		    	
 			    	
 			    	 jsonObject.addProperty("UserToken", userToken);
 			    	 response.getOutputStream().write(jsonObject.toString().getBytes("UTF-8"));
 			    }
+			}catch(FrontierWholesalesBusinessException businessEx) {
+				log.error("Error in FrontierWholesalesUserRegistrationServlet "+businessEx.getMessage());
+				response.getOutputStream().println("Error "+businessEx.getMessage());
 			}catch(Exception anyEx) {				
 				log.error("Error is "+anyEx.getMessage());
 				String msg = anyEx.getMessage();				
@@ -163,7 +186,7 @@ public class FrontierWholesalesUserRegistrationServlet  extends SlingAllMethodsS
 		
 	}
 	
-	private JsonObject updateJSONObject(String data,String key,String value) throws Exception{
+	private JsonObject updateJSONObject(String data,String key,String value) {
 		log.debug("updateJSONObject method start");
 		Gson json = new Gson();
 		JsonElement element = json.fromJson(data, JsonElement.class);
@@ -173,7 +196,7 @@ public class FrontierWholesalesUserRegistrationServlet  extends SlingAllMethodsS
 		return object;
 	}
 	
-	private JsonObject updateJSONObject(String data,String key,String value,String objName) throws Exception{
+	private JsonObject updateJSONObject(String data,String key,String value,String objName) {
 		log.debug("updateJSONObject start");
 		Gson json = new Gson();
 		JsonElement element = json.fromJson(data, JsonElement.class);
@@ -192,12 +215,5 @@ public class FrontierWholesalesUserRegistrationServlet  extends SlingAllMethodsS
 		return jsonObject;
 	}
 	
-	private String getCustomerId(String data) throws Exception{
-		Gson json = new Gson();
-		JsonElement element = json.fromJson(data, JsonElement.class);
-		JsonObject object = element.getAsJsonObject();
-		JsonElement idElement =  object.get("id");
-		return idElement.getAsString();
-	}
 
 }

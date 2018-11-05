@@ -1,30 +1,25 @@
 package com.frontierwholesales.core.magento.services.servlets;
 
 import java.io.IOException;
-import java.net.CookieManager;
-import java.net.CookieStore;
-import java.net.HttpCookie;
 import java.text.DecimalFormat;
 
-import javax.jcr.Node;
-import javax.jcr.NodeIterator;
-import javax.jcr.Session;
-import javax.jcr.query.Query;
-import javax.jcr.query.QueryManager;
-import javax.jcr.query.QueryResult;
+import javax.servlet.Servlet;
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
 
-import org.apache.felix.scr.annotations.sling.SlingServlet;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
+import org.osgi.framework.Constants;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.frontierwholesales.core.magento.services.FrontierWholesalesMagentoCommerceConnector;
+import com.frontierwholesales.core.magento.services.MagentoCommerceConnectorService;
+import com.frontierwholesales.core.magento.services.exceptions.FrontierWholesalesBusinessException;
 import com.frontierwholesales.core.services.constants.FrontierWholesalesConstants;
 import com.frontierwholesales.core.utils.FrontierWholesalesUtils;
 import com.google.gson.Gson;
@@ -34,9 +29,17 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 @SuppressWarnings("serial")
-@SlingServlet(label="FrontierWholesalesUserRegistration - Sling All Methods Servlet", 
-description="FrontierWholesales User Registration Sling All Methods Servlet.", 
-paths={"/services/cart"}, methods={"GET","POST"})
+
+
+@Component(immediate = true,service=Servlet.class,
+property={
+        Constants.SERVICE_DESCRIPTION + "=FrontierWholesalesShoppingCart - Sling All Methods Servlet",
+        "sling.servlet.methods={'GET','POST'}",
+       "sling.servlet.selectors=data",
+       "sling.servlet.paths=/services/cart",
+        "sling.servlet.extensions=html"      
+        
+})
 public class FrontierWholesalesShoppingCartServlet  extends SlingAllMethodsServlet{
 
 	private static final Logger log = LoggerFactory.getLogger(FrontierWholesalesShoppingCartServlet.class);
@@ -44,8 +47,12 @@ public class FrontierWholesalesShoppingCartServlet  extends SlingAllMethodsServl
 	private FrontierWholesalesMagentoCommerceConnector commerceConnector = new FrontierWholesalesMagentoCommerceConnector();
 	private ObjectMapper mapper = new ObjectMapper();
 	private FrontierWholesalesUtils utils = new FrontierWholesalesUtils();
-	
-	
+	private MagentoCommerceConnectorService config;
+	@Reference
+	public void activate(MagentoCommerceConnectorService config) {
+		
+		this.config = config;
+	}
 	
 	@Override
 	public void init() {
@@ -62,7 +69,9 @@ public class FrontierWholesalesShoppingCartServlet  extends SlingAllMethodsServl
 			String action = request.getParameter("action");
 			log.debug(" action is "+action);
 			String token = request.getHeader("Authorization");
-			
+			String adminToken = this.config.getAppToken();
+			String serverName = this.config.getServer();
+			commerceConnector.setServer(serverName);			
 			if(token == null) {
 			
 				throw new Exception("token is null");
@@ -89,8 +98,8 @@ public class FrontierWholesalesShoppingCartServlet  extends SlingAllMethodsServl
 				commerceConnector.initCart(token);
 			}
 			String cartObject = commerceConnector.getCartTotalWithItems(token);
-			String customerId = utils.getCustomerDetailsByParameter("id", token);
-			String adminToken = commerceConnector.getAdminToken();
+			String customerId = utils.getCustomerDetailsByParameter("id", token,serverName);
+			
 			String roleObject = commerceConnector.getUserRole(adminToken, customerId);
 			
 			String roleName = getRoleName(roleObject);
@@ -100,16 +109,22 @@ public class FrontierWholesalesShoppingCartServlet  extends SlingAllMethodsServl
 			
 			log.debug("shopping cart operations end ");
 			
-			response.getOutputStream().write(object.getBytes("UTF-8"));
+			response.getOutputStream().write(object.getBytes(FrontierWholesalesConstants.UTF8));
+			
+		}catch(FrontierWholesalesBusinessException businessEx) {
+			
+			log.debug("Error "+businessEx.getMessage());
+			
+			JsonObject errorJsonObject = new JsonObject();
+			errorJsonObject.addProperty("Fail", businessEx.getMessage());
+			response.getOutputStream().println(errorJsonObject.toString());
 			
 		}catch(Exception anyEx) {
-			
 			log.debug("Error "+anyEx.getMessage());
 			
 			JsonObject errorJsonObject = new JsonObject();
 			errorJsonObject.addProperty("Fail", anyEx.getMessage());
 			response.getOutputStream().println(errorJsonObject.toString());
-			
 		}
 		log.debug("FrontierWholesalesShoppingCartServlet doGet method End");
 	}

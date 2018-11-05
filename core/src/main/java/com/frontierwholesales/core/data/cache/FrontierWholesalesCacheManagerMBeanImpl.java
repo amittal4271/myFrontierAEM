@@ -2,8 +2,10 @@ package com.frontierwholesales.core.data.cache;
 
 import javax.management.DynamicMBean;
 import javax.management.NotCompliantMBeanException;
-import org.apache.felix.scr.annotations.*;
-//import org.osgi.service.component.annotations.Component;
+
+import org.apache.felix.scr.annotations.Component;
+import org.apache.felix.scr.annotations.Property;
+import org.apache.felix.scr.annotations.Service;
 
 import com.adobe.granite.jmx.annotation.AnnotatedStandardMBean;
 

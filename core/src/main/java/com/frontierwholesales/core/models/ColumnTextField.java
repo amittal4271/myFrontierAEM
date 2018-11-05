@@ -25,14 +25,14 @@ public class ColumnTextField extends BaseComponent {
 
 	@Override
 	protected void init() {
-		// TODO Auto-generated method stub
+		
 		try {
 			textItemList = new ArrayList<TextItem>();
 			for (int i = 0; i < textItems.length; i++) {
 				String textItem = textItems[i];
 				Gson gson = new Gson();
 				TextItem item = gson.fromJson(textItem, TextItem.class);
-				//LOG.info("Item Value"+item.getCol1());
+				
 				textItemList.add(item);
 			}
 		} catch (Exception e) {

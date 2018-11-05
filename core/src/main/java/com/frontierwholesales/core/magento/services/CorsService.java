@@ -53,12 +53,12 @@ public class CorsService implements Filter {
 			throws IOException, ServletException {
 		
 		log.debug("do filter method");
-		if(response instanceof SlingHttpServletResponse) {
-			if(this.allowedDomains != "") {
+		if(response instanceof SlingHttpServletResponse && this.allowedDomains != "") {
+			
 				SlingHttpServletResponse httpResponse = (SlingHttpServletResponse)response;
 				httpResponse.setHeader("Access-Control-Allow-Domain",this.allowedDomains);
 				httpResponse.setHeader("Access-Control-Allow-Credentials","true");
-			}
+			
 		}
 		chain.doFilter(request, response);
 		

@@ -19,7 +19,7 @@ public class FrontierWholesalesBusinessException extends Exception {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private static final Logger log = LoggerFactory.getLogger(FrontierWholesalesBusinessException.class);
+	
 
     private final FrontierWholesalesErrorCode code;
 

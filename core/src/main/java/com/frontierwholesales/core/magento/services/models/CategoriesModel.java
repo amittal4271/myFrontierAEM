@@ -18,7 +18,7 @@ public class CategoriesModel extends BaseModel {
 		try {
 		String adminToken = getAdminToken();
 		int categoryId = Integer.parseInt((String)slingHttpServletRequest.getAttribute("id"));
-		categories = connector.getCategories(adminToken, categoryId);
+		categories = connector.getCategories(adminToken, categoryId,"");
 		LOGGER.debug("CategoriesModel End");
 		}catch(Exception anyEx) {
 			LOGGER.error("Exception in CategoriesModel ",anyEx,anyEx.getMessage());

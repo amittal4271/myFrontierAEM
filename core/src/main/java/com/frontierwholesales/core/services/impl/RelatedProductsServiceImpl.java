@@ -37,7 +37,11 @@ import com.day.cq.wcm.foundation.Image;
 import com.frontierwholesales.core.beans.FrontierWholesalesProducts;
 import com.frontierwholesales.core.magento.models.MagentoRelatedProduct;
 import com.frontierwholesales.core.magento.services.FrontierWholesalesMagentoCommerceConnector;
+import com.frontierwholesales.core.magento.services.MagentoCommerceConnectorService;
+import com.frontierwholesales.core.magento.services.exceptions.FrontierWholesalesBusinessException;
+import com.frontierwholesales.core.magento.services.exceptions.FrontierWholesalesErrorCode;
 import com.frontierwholesales.core.services.RelatedProductsService;
+import com.frontierwholesales.core.services.constants.FrontierWholesalesConstants;
 import com.frontierwholesales.core.utils.FrontierWholesalesUtils;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
@@ -57,10 +61,15 @@ public class RelatedProductsServiceImpl implements RelatedProductsService {
 	private transient QueryBuilder queryBuilder;
 	
 	private FrontierWholesalesMagentoCommerceConnector magentoConnector;
-
+	private MagentoCommerceConnectorService config;
+	@Reference
+	public void activate(MagentoCommerceConnectorService config) {
+		
+		this.config = config;
+	}
 	
 	@Override
-	public Collection<FrontierWholesalesProducts> getRelatedProducts( SlingHttpServletRequest request, String sku ) throws Exception {
+	public Collection<FrontierWholesalesProducts> getRelatedProducts( SlingHttpServletRequest request, String sku ) throws FrontierWholesalesBusinessException {
 		if( magentoConnector == null ) {
 			magentoConnector = new FrontierWholesalesMagentoCommerceConnector();
 		}
@@ -68,10 +77,9 @@ public class RelatedProductsServiceImpl implements RelatedProductsService {
 		
 		String adminToken = null;
 		try {
-			adminToken = magentoConnector != null ? magentoConnector.getAdminToken() : null;
-		} catch( Exception ex ) {
-			log.error("Exception trying to retrieve admin token for Magento connector:\n{}", ex);
-		}
+			adminToken = this.config.getAppToken();
+			String server= this.config.getServer();
+			magentoConnector.setServer(server);
 
 		if( adminToken != null ) {
 			// call service GET /V1/products/{sku}/links/{type} where type = related
@@ -85,9 +93,8 @@ public class RelatedProductsServiceImpl implements RelatedProductsService {
 					
 					String productDetails = magentoConnector.getProductDetails(adminToken,relatedSku);
 					
-					//FrontierWholesalesProducts product = StringUtils.isNotBlank(relatedSku) ? getProductForSku(resourceResolver, relatedSku) : null;
 					log.debug("product is "+productDetails);
-					// TODO need to get path to product page
+					
 					if( productDetails != null ) {
 						log.debug("before adding into listitems");
 						listItems.add(parseJsonObject(productDetails,request));
@@ -96,12 +103,15 @@ public class RelatedProductsServiceImpl implements RelatedProductsService {
 				}
 			}
 		}
-
+		} catch( Exception ex ) {
+			log.error("Exception in getRelatedProducts:\n{}", ex);
+			throw new FrontierWholesalesBusinessException("Service Error ",FrontierWholesalesErrorCode.GENERAL_SERVICE_ERROR);
+		}
 		return listItems;
 	}
 	
 	
-	private FrontierWholesalesProducts parseJsonObject(String productDetails,SlingHttpServletRequest request) throws Exception{
+	private FrontierWholesalesProducts parseJsonObject(String productDetails,SlingHttpServletRequest request) throws FrontierWholesalesBusinessException{
 		FrontierWholesalesUtils utils = new FrontierWholesalesUtils();
 		Gson json = new Gson();
 		JsonElement element = json.fromJson(productDetails, JsonElement.class);
@@ -115,140 +125,20 @@ public class RelatedProductsServiceImpl implements RelatedProductsService {
 		log.debug("after name "+name.getAsString() );
 		
 		FrontierWholesalesProducts products = new FrontierWholesalesProducts();
-		products.setTitle(name.getAsString());
-		products.setProductSKU(skuElement.getAsString());
-		products.setUrlPath(name.getAsString().toLowerCase().replaceAll(" ", "-"));
-		products.setImagePath(utils.getImagePath(skuElement.getAsString(),request));
+		try {
+			products.setTitle(name.getAsString());
+			products.setProductSKU(skuElement.getAsString());
+			products.setUrlPath(name.getAsString().toLowerCase().replaceAll(" ", "-"));
+			products.setImagePath(utils.getImagePath(skuElement.getAsString(),request));
+		} catch( Exception ex ) {
+			log.error("Exception in parseJsonObject:\n{}", ex);
+			throw new FrontierWholesalesBusinessException("Service Error ",FrontierWholesalesErrorCode.GENERAL_SERVICE_ERROR);
+		}
 		log.debug("after the image");
 		return products;
 		
 		
 	}
 	
-	@Override
-	public FrontierWholesalesProducts getProductForSku( ResourceResolver resourceResolver, String sku ) {
-		FrontierWholesalesProducts product = null;
-
-		if( resourceResolver == null ) {
-			resourceResolver = getResourceResolver();
-			log.debug("Resource resolver was NULL from calling class, attempting to get service user: {}", resourceResolver);
-		}
-		
-		if( queryBuilder == null ) {
-			queryBuilder = resourceResolver.adaptTo(QueryBuilder.class);
-		}
-		Map<String, String> productPredicates = new HashMap<String, String>();
-		productPredicates.put("path", RelatedProductsService.COMMERCE_PRODUCT_START_PATH);
-		productPredicates.put("type", JcrConstants.NT_UNSTRUCTURED);
-		productPredicates.put("1_property", RelatedProductsService.PROPERTY_BASE_SKU);
-		productPredicates.put("1_property.value", sku);
-		productPredicates.put("2_property", JcrResourceConstants.SLING_RESOURCE_TYPE_PROPERTY);
-		productPredicates.put("2_property.value", RelatedProductsService.COMMERCE_PRODUCT_RESOURCE_TYPE);
-		productPredicates.put("3_property", CommerceConstants.PN_COMMERCE_TYPE);
-		productPredicates.put("3_property.value", "product");
-		
-		Session session = resourceResolver.adaptTo(Session.class);
-		Query query = queryBuilder.createQuery(PredicateGroup.create(productPredicates), session);
-
-		SearchResult result = query.getResult();
-		for( Hit hit : result.getHits() ) {
-			try {
-				Resource productResource = hit.getResource();
-				// need to determine the actual product page path of the related product
-				log.debug("Path to product node in /etc: {}", productResource.getPath());
-				ValueMap productMap = productResource != null ? ResourceUtil.getValueMap(productResource) : ValueMap.EMPTY;
-				Resource imageResource = productResource != null ? productResource.getChild("image") : null;
-				ValueMap imageMap = imageResource != null ? ResourceUtil.getValueMap(imageResource) : null;
-				
-				product = new FrontierWholesalesProducts();
-				product.setProductSKU(sku);
-				product.setTitle(productMap.get(JcrConstants.JCR_TITLE, String.class));
-				product.setImagePath(imageMap.get(Image.PN_REFERENCE, String.class));	// is there a default image if none found
-				
-				String productPagePath = getRelatedProductPagePath(resourceResolver, productResource.getPath());
-				product.setPath(productPagePath);
-			} catch( RepositoryException repoEx ) {
-				log.error("RepositoryException trying to get resource from search result:\n", repoEx);
-			}
-		}
-		return product;
-	}
 	
-	private String getRelatedProductPagePath( ResourceResolver resourceResolver, String productMasterPath ) {
-		String productPagePath = null;
-		
-		if( queryBuilder == null ) {
-			queryBuilder = resourceResolver.adaptTo(QueryBuilder.class);
-		}
-		Map<String, String> productPredicates = new HashMap<String, String>();
-		productPredicates.put("path", RelatedProductsService.PRODUCT_PAGES_START_PATH);
-		productPredicates.put("type", NameConstants.NT_PAGE);
-		productPredicates.put("1_property", RelatedProductsService.PROPERTY_PRODUCT_MASTER);
-		productPredicates.put("1_property.value", productMasterPath);
-		productPredicates.put("2_property", new StringBuilder(JcrConstants.JCR_CONTENT).append("/@").append(JcrResourceConstants.SLING_RESOURCE_TYPE_PROPERTY).toString());
-		productPredicates.put("2_property.value", RelatedProductsService.PRODUCT_PAGE_RESOURCE_TYPE);
-		
-		Session session = resourceResolver.adaptTo(Session.class);
-		Query query = queryBuilder.createQuery(PredicateGroup.create(productPredicates), session);
-		query.setHitsPerPage(1);
-		
-		SearchResult result = query.getResult();
-		for( Hit hit : result.getHits() ) {
-			try {
-				Resource productResource = hit.getResource();
-				productPagePath = productResource.getPath();
-
-			} catch( RepositoryException repoEx ) {
-				log.error("RepositoryException trying to get resource from search result:\n", repoEx);
-			}
-		}
-		
-		return productPagePath;
-	}
-
-	@Reference(service = QueryBuilder.class, cardinality = ReferenceCardinality.MANDATORY, policy = ReferencePolicy.STATIC, unbind = "unbindQueryBuilder") 
-	public void bindQueryBuilder( QueryBuilder queryBuilder ) { 
-		this.queryBuilder = queryBuilder; 
-	}
-	
-	public void unbindQueryBuilder( QueryBuilder queryBuilder ) {
-		if( this.queryBuilder == queryBuilder ) {
-			this.queryBuilder = null;
-		}
-	}
-	
-	@Reference(service = ResourceResolverFactory.class, cardinality = ReferenceCardinality.MANDATORY, policy = ReferencePolicy.STATIC, unbind = "unbindResourceResolverFactory")
-	public void bindResourceResolverFactory( ResourceResolverFactory resourceResolverFactory ) {
-		this.resourceResolverFactory = resourceResolverFactory;
-	}
-	
-	public void unbindResourceResolverFactory( ResourceResolverFactory resourceResolverFactory ) {
-		if( this.resourceResolverFactory == resourceResolverFactory ) {
-			this.resourceResolverFactory = null;
-		}
-	}
-	
-	@Reference(service = FrontierWholesalesMagentoCommerceConnector.class, cardinality = ReferenceCardinality.MANDATORY, policy = ReferencePolicy.STATIC, unbind = "unbindFrontierWholesalesMagentoCommerceConnector")
-	public void bindFrontierWholesalesMagentoCommerceConnector( FrontierWholesalesMagentoCommerceConnector frontierWholesalesMagentoCommerceConnector ) {
-		this.magentoConnector = frontierWholesalesMagentoCommerceConnector;
-	}
-	
-	public void unbindFrontierWholesalesMagentoCommerceConnector( FrontierWholesalesMagentoCommerceConnector frontierWholesalesMagentoCommerceConnector ) {
-		if( this.magentoConnector == frontierWholesalesMagentoCommerceConnector ) {
-			this.magentoConnector = null;
-		}
-	}
-	
-	private ResourceResolver getResourceResolver() {
-		Map<String, Object> param = new HashMap<String, Object>();  
-		// TODO get correct service user
-		param.put(ResourceResolverFactory.SUBSERVICE, "frontierwholesales-service-user");
-        ResourceResolver resourceResolver = null;
-		try {
-			resourceResolver = resourceResolverFactory.getServiceResourceResolver(param);
-		} catch( LoginException logEx ) {
-			log.error("LoginException trying to get writeService:\n", logEx);
-		}
-		return resourceResolver;
-	}
 }

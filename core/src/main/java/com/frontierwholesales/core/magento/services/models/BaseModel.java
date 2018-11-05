@@ -11,6 +11,7 @@ import org.apache.sling.models.annotations.Model;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.frontierwholesales.core.magento.services.FrontierWholesalesMagentoCommerceConnector;
+import com.frontierwholesales.core.magento.services.MagentoCommerceConnectorService;
 import com.frontierwholesales.core.services.constants.FrontierWholesalesConstants;
 
 @Model(adaptables= {SlingHttpServletRequest.class,Resource.class}, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
@@ -25,7 +26,8 @@ public abstract class BaseModel {
 
 	protected FrontierWholesalesMagentoCommerceConnector connector = new FrontierWholesalesMagentoCommerceConnector();
 	protected ObjectMapper mapper = new ObjectMapper();
-	
+	@Inject
+	private MagentoCommerceConnectorService config;
 	 @PostConstruct
 	  protected abstract void init();
 	 
@@ -33,7 +35,7 @@ public abstract class BaseModel {
 	 
 	 protected String getAdminToken() throws Exception{
 		
-		  return connector.getAdminToken();
+		  return config.getAppToken();
 			
 		
 	 }
@@ -46,6 +48,6 @@ public abstract class BaseModel {
 	 }
 	 
 	 public String getMagentoServer() {
-		 return connector.getServer();
+		 return config.getServer();
 	 }
 }

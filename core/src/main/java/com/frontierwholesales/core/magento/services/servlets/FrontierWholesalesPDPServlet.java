@@ -10,35 +10,56 @@ import javax.jcr.Session;
 import javax.jcr.query.Query;
 import javax.jcr.query.QueryManager;
 import javax.jcr.query.QueryResult;
-
+import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 
-import org.apache.felix.scr.annotations.sling.SlingServlet;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
+import org.apache.sling.api.servlets.HttpConstants;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
+import org.osgi.framework.Constants;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.frontierwholesales.core.magento.services.FrontierWholesalesMagentoCommerceConnector;
+import com.frontierwholesales.core.magento.services.MagentoCommerceConnectorService;
+import com.frontierwholesales.core.magento.services.exceptions.FrontierWholesalesBusinessException;
 import com.frontierwholesales.core.utils.FrontierWholesalesUtils;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
-@SuppressWarnings("serial")
-@SlingServlet(label="FrontierWholesalesUserRegistration - Sling All Methods Servlet", 
-description="FrontierWholesales Product details Sling All Methods Servlet.", 
-paths={"/services/pdp"}, methods={"GET"})
+
+@Component(immediate = true,service=Servlet.class,
+property={
+        Constants.SERVICE_DESCRIPTION + "=FrontierWholesalesPDPServlet",
+        "sling.servlet.methods=" + HttpConstants.METHOD_GET,
+       "sling.servlet.selectors=data",
+       "sling.servlet.paths=/services/pdp",
+        "sling.servlet.extensions=json"      
+        
+})
 public class FrontierWholesalesPDPServlet  extends SlingAllMethodsServlet{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static final Logger log = LoggerFactory.getLogger(FrontierWholesalesPDPServlet.class);	
 	private FrontierWholesalesMagentoCommerceConnector commerceConnector = new FrontierWholesalesMagentoCommerceConnector();
 	private FrontierWholesalesUtils utils = new FrontierWholesalesUtils();
+	private MagentoCommerceConnectorService config;
+	@Reference
+	public void activate(MagentoCommerceConnectorService config) {
+		
+		this.config = config;
+	}
 	@Override
 	protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response)
 			throws ServletException, IOException {
@@ -53,7 +74,9 @@ public class FrontierWholesalesPDPServlet  extends SlingAllMethodsServlet{
 			String productSku = request.getParameter("sku");
 			log.debug("Product details for #sku: {}",productSku);
 			
-			String adminToken  = commerceConnector.getAdminToken();
+			String adminToken  =this.config.getAppToken();
+			String server=this.config.getServer();
+			commerceConnector.setServer(server);
 			
 			if ((productSku != null) && (productSku.length()>0)){
 				
@@ -61,7 +84,7 @@ public class FrontierWholesalesPDPServlet  extends SlingAllMethodsServlet{
 				
 				
 				if(authorization != null) {
-					groupId = utils.getCustomerDetailsByParameter("group_id", authorization);
+					groupId = utils.getCustomerDetailsByParameter("group_id", authorization,server);
 				}
 				
 				response.getOutputStream().write(parseJsonObject(productDetails,request,groupId).getBytes("UTF-8"));
@@ -70,6 +93,9 @@ public class FrontierWholesalesPDPServlet  extends SlingAllMethodsServlet{
 			else {
 				response.getOutputStream().println("Empty SKU provided");
 			}
+		}catch(FrontierWholesalesBusinessException businessEx) {
+			log.error("Error in FrontierWholesalesPDPServlet "+businessEx.getMessage());
+			response.getOutputStream().println("Error "+businessEx.getMessage());
 		}catch(Exception anyEx) {
 			log.error("Error in pdpservlet {}", anyEx.getMessage());
 			
@@ -338,21 +364,16 @@ private JsonArray getImagePath(String productSku,SlingHttpServletRequest request
 			
 			if(newProduct.equals("1")  && closeOut.equals("1") && sale.equals("1")) {
 				
-				object.addProperty("new_product","1");
-				object.addProperty("close_out", "0");
-				object.addProperty("on_sale", "0");
+				utils.assignBadgeValues(object, "1", "0", "0");
 			}else if(closeOut.equals("1")  && sale.equals("1")) {
-				object.addProperty("new_product","0");
-				object.addProperty("close_out", "1");
-				object.addProperty("on_sale", "0");
+				
+				utils.assignBadgeValues(object, "0", "1", "0");
 			}else if(newProduct.equals("1") && sale.equals("1")) {
-				object.addProperty("new_product","1");
-				object.addProperty("close_out", "0");
-				object.addProperty("on_sale", "0");
+				
+				utils.assignBadgeValues(object, "1", "0", "0");
 			}else if(newProduct.equals("1") && closeOut.equals("1")) {
-				object.addProperty("new_product","1");
-				object.addProperty("close_out", "0");
-				object.addProperty("on_sale", "0");
+				
+				utils.assignBadgeValues(object, "1", "0", "0");
 			}
 		}
 		if(object.get("in_stock") == null) {

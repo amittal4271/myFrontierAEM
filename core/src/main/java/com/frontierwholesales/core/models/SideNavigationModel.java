@@ -13,15 +13,15 @@ import com.frontierwholesales.core.beans.FrontierWholesalePages;
 
 public class SideNavigationModel extends WCMUsePojo{
 	private List<FrontierWholesalePages> frontierWholesalePages;
-	private static final Logger LOGGER = LoggerFactory.getLogger(SideNavigationModel.class);
+	
 
 	public void activate() throws Exception {
 		Page root = this.getCurrentPage().getAbsoluteParent(2);
 		FrontierWholesalePages frontierRoot = new FrontierWholesalePages(root);
-		this.frontierWholesalePages = this.getChildren(frontierRoot, 0);
+		this.frontierWholesalePages = this.getChildren(frontierRoot);
 	}
 
-	private List<FrontierWholesalePages> getChildren(FrontierWholesalePages parent, int level) {
+	private List<FrontierWholesalePages> getChildren(FrontierWholesalePages parent) {
 		ArrayList<FrontierWholesalePages> pages = new ArrayList<FrontierWholesalePages>();
 		Iterator children = parent.getPage().listChildren();
 

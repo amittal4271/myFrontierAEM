@@ -15,8 +15,8 @@ public class MagentoCategory {
 	    public final long level;
 	    public final long product_count;
 	    public final MagentoCategory children_data[];
-	    private String displayName;
-	   // public String path;
+	    private  String displayName;
+	   
 
 	    @JsonCreator
 	    public MagentoCategory(@JsonProperty("id") long id, @JsonProperty("parent_id") long parent_id, @JsonProperty("name") String name,
@@ -36,10 +36,10 @@ public class MagentoCategory {
 	    }
 
 		public String getDisplayName() {
-			String name = this.name.toLowerCase();
-			name = name.replaceAll(" ", "-");
-			return name;
+			displayName = this.name.toLowerCase();
+			displayName = displayName.replaceAll(" ", "-");
+			return displayName;
 		}	
+		
 	    
-
-	   }
+}

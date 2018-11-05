@@ -24,6 +24,7 @@ import com.day.cq.search.QueryBuilder;
 import com.day.cq.search.Query;
 import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
+import com.frontierwholesales.core.services.constants.FrontierWholesalesConstants;
 import com.day.cq.search.PredicateGroup;
 import com.google.gson.stream.JsonWriter;
 
@@ -174,8 +175,8 @@ public class ProductSearchServlet extends SlingSafeMethodsServlet {
 	}
 	
 	private String getProductImage(Node productNode) throws RepositoryException {
-		if(productNode.hasNode("image")) {
-			Node imageNode = productNode.getNode("image");
+		if(productNode.hasNode(FrontierWholesalesConstants.IMAGE)) {
+			Node imageNode = productNode.getNode(FrontierWholesalesConstants.IMAGE);
 			return getProperty(imageNode, "fileReference");
 		}
 		

@@ -302,7 +302,6 @@ public class FrontierWholesalesUtils {
 			String path="";
 			String imgPath="";
 			
-			Resource res = request.getResource();
 			ResourceResolver resourceResolver = request.getResourceResolver();
 			
 			
@@ -320,7 +319,7 @@ public class FrontierWholesalesUtils {
 		    	Node node = nodeIter.nextNode();
 		        path = node.getPath();
 		       
-		        res = resourceResolver.getResource(path);	        
+		        Resource res = resourceResolver.getResource(path);	        
 		        String name = node.getName();
 		        if(name.equals("jcr:content")) {
 		        
@@ -352,11 +351,12 @@ public class FrontierWholesalesUtils {
 	     * @return
 	     * @throws Exception
 	     */
-	    public  String getCustomerDetailsByParameter(String id,String customerToken) throws Exception{
+	    public  String getCustomerDetailsByParameter(String id,String customerToken,String server) throws Exception{
 	    	log.debug("getCustomerDetailsByParameter Start");
 	    		String groupId ="";
 	    		try {
 		    		if(customerToken != null) {
+		    			commerceConnector.setServer(server);
 						String customerDetails = commerceConnector.getCustomerDetails(customerToken);
 						
 						if(customerDetails != null) {
@@ -405,22 +405,16 @@ public class FrontierWholesalesUtils {
 			
 			JsonObject object = element.getAsJsonObject();
 			JsonArray itemArray = object.getAsJsonArray("items");
-			
-			
-//			DecimalFormat priceFormat=new DecimalFormat("#0.00");
+	
 			for(int i=0;i<itemArray.size();i++) {
 				
 				JsonElement itemElement = itemArray.get(i);
 				JsonObject itemObject = itemElement.getAsJsonObject();
-				//JsonElement priceElement = itemObject.get("price");
-				//itemObject.addProperty("formattedPrice", "$"+priceFormat.format(priceElement.getAsDouble()));
+			
 				JsonElement skuElement = itemObject.get("sku");
 				
 				itemObject.addProperty("imgPath", this.getImagePath(skuElement.getAsString(),request));
 				JsonArray attributesArray = itemObject.getAsJsonArray("custom_attributes");
-				
-				String status = itemObject.get("status").getAsString();
-				String visibility = itemObject.get("visibility").getAsString();
 				
 				String newProduct="";
 				String closeOut="";
@@ -466,24 +460,17 @@ public class FrontierWholesalesUtils {
 					
 					if(newProduct.equals("1")  && closeOut.equals("1") && sale.equals("1")) {
 						
-						itemObject.addProperty("new_product","1");
-						itemObject.addProperty("close_out", "0");
-						itemObject.addProperty("on_sale", "0");
+						
+						assignBadgeValues(itemObject,"1","0","0");
 					}else if(closeOut.equals("1")  && sale.equals("1")) {
+						assignBadgeValues(itemObject,"0","1","0");
 						
-						itemObject.addProperty("new_product","0");
-						itemObject.addProperty("close_out", "1");
-						itemObject.addProperty("on_sale", "0");
 					}else if(newProduct.equals("1") && sale.equals("1")) {
+						assignBadgeValues(itemObject,"1","0","0");
 						
-						itemObject.addProperty("new_product","1");
-						itemObject.addProperty("close_out", "0");
-						itemObject.addProperty("on_sale", "0");
 					}else if(newProduct.equals("1") && closeOut.equals("1")) {
+						assignBadgeValues(itemObject,"1","0","0");
 						
-						itemObject.addProperty("new_product","1");
-						itemObject.addProperty("close_out", "0");
-						itemObject.addProperty("on_sale", "0");
 					}
 				}
 				
@@ -561,6 +548,12 @@ public class FrontierWholesalesUtils {
 	    		log.error("Could not add category list", e);
 	    		return objectJson;
 	    	}
+	    }
+	    
+	    public  void assignBadgeValues(JsonObject object,String newProduct,String closeOut,String onSale) {
+	    	object.addProperty("new_product",newProduct);
+	    	object.addProperty("close_out", closeOut);
+	    	object.addProperty("on_sale", onSale);
 	    }
 	    
 	    public static String parseMagentoResponseObject(InputStream inStream,String apiMethod) throws Exception{

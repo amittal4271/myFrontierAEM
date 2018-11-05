@@ -25,6 +25,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.frontierwholesales.core.beans.FrontierWholesaleBlogContent;
+import com.frontierwholesales.core.magento.services.exceptions.FrontierWholesalesBusinessException;
+import com.frontierwholesales.core.magento.services.exceptions.FrontierWholesalesErrorCode;
 import com.frontierwholesales.core.utils.FrontierWholesalesUtils;
 
 @Model(adaptables= {SlingHttpServletRequest.class,Resource.class}, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
@@ -127,13 +129,18 @@ public class BlogListModel {
 		}else {
 			log.debug("Node is null");
 		}
+		}catch(FrontierWholesalesBusinessException bEx) {
+			log.error("Exception occurred BlogListModel "+bEx.getMessage());
+			
+			
 		}catch(Exception anyEx) {
-			log.debug("Exception in list mode "+anyEx.getMessage());
+			log.debug("Exception in list model "+anyEx.getMessage());
 		}
 	}
 		
 		
-		private void getChildren(Node parent,ResourceResolver resolver) throws Exception{
+		private void getChildren(Node parent,ResourceResolver resolver) throws FrontierWholesalesBusinessException{
+			try {
 			NodeIterator it = parent.getNodes();
 			
 			while(it.hasNext()) { 
@@ -164,7 +171,9 @@ public class BlogListModel {
 				 this.getChildren(child,resolver);
 				
 			}
-			
+			}catch(Exception anyEx) {
+				throw new FrontierWholesalesBusinessException("Service Error",FrontierWholesalesErrorCode.GENERAL_SERVICE_ERROR);
+			}
 
 		}
 

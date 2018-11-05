@@ -20,10 +20,11 @@ import org.apache.sling.api.servlets.HttpConstants;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
 import org.osgi.framework.Constants;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.frontierwholesales.core.magento.services.EmailConnector;
+import com.frontierwholesales.core.magento.services.EmailConnectorService;
 
 @SuppressWarnings("serial")
 
@@ -40,11 +41,18 @@ property={
 public class FrontierWholesalesEmailContactServlet extends SlingAllMethodsServlet{
 
 	private static final Logger log = LoggerFactory.getLogger(FrontierWholesalesEmailContactServlet.class);
-	private EmailConnector emailConnector = new EmailConnector();
+	
+	EmailConnectorService connector;
+	@Reference
+	public void bindConnector(EmailConnectorService service) {
+		this.connector = service;
+	}
+	
 	@Override
 	protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response)
 			throws ServletException, IOException {
 		log.debug("doGet Method Start");
+		
 		String name = request.getParameter("name");
 		
 		String fromEmail = request.getParameter("email");
@@ -56,20 +64,22 @@ public class FrontierWholesalesEmailContactServlet extends SlingAllMethodsServle
 		String message = request.getParameter("message");
 		
 		Properties properties = System.getProperties();
-		String toEmail = EmailConnector.getToAddress();
-		properties.put("mail.smtp.host", EmailConnector.getHostName());
+		
+		String toEmail = connector.getToAddress();
+		
+		properties.put("mail.smtp.host", connector.getHostName());
 	   
-	    properties.put("mail.smtp.port", EmailConnector.getSmtpPort());
+	    properties.put("mail.smtp.port", connector.getSmtpPort());
 	    properties.put("mail.debug","true");
 	    properties.put("mail.smtp.auth", "true");
 	    properties.put("mail.imap.ssl.enable", "true");
 	   properties.put("mail.smtp.starttls.enable", "true");
 	   
-	   String noReply = EmailConnector.getFromAddress();
+	   String noReply = connector.getFromAddress();
 	    Authenticator auth = new Authenticator() {
 			//override the getPasswordAuthentication method
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(EmailConnector.getSmtpUser(), EmailConnector.getPassword());
+				return new PasswordAuthentication(connector.getSmtpUser(), connector.getEmailPwd());
 			}
 		};
 	    

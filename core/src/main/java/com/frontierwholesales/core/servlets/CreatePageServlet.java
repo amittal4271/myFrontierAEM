@@ -126,18 +126,7 @@ public class CreatePageServlet extends SlingAllMethodsServlet {
 										        }
 											}
 											String description = StringUtils.substringAfter(text,"</p>");
-											if(StringUtils.isNotEmpty(compTitle)) {
-												logger.info(compTitle);
-											}
-											if(StringUtils.isNotEmpty(date)){
-												logger.info("Date"+date);
-											}
-											if(StringUtils.isNotEmpty(dateTime)){
-												logger.info("Date Time"+dateTime);
-											}
-											if(StringUtils.isNotEmpty(description)){
-												logger.info(description);
-											}
+											
 											
 											createPage(resourceResolver, targetPath, pageManager, pageName, pageTitle, compTitle, description, calendarTime);
 	

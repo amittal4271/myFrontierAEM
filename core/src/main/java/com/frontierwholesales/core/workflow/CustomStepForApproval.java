@@ -74,14 +74,11 @@ public class CustomStepForApproval implements WorkflowProcess {
 		String userEmail = null;
 		try {
 			authorizable = userManager.getAuthorizable(initiator);
+			userEmail = PropertiesUtil.toString(authorizable.getProperty("profile/email"), "");
 		} catch (RepositoryException e) {
 			log.error("Issue getting user for workflow", e);
 		}
-		try {
-			userEmail = PropertiesUtil.toString(authorizable.getProperty("profile/email"), "");
-		} catch (RepositoryException e) {
-			log.error("Issue getting user email address for workflow", e);
-		}
+		
 
 		String workflowApproveRejectSelection = null;
 		List<HistoryItem> list = wfsession.getHistory(workflow);
@@ -98,16 +95,14 @@ public class CustomStepForApproval implements WorkflowProcess {
 			Email email = new SimpleEmail();
 
 			String emailToRecipients = userEmail;
-			// String emailCcRecipients = "abc@gmail.com";
-
+			
 			email.addTo(emailToRecipients);
-			// email.addCc(emailCcRecipients);
 			
 			email.setSubject("Frontier Wholesale Page Publication Request");
 			
 			email.setFrom(emailFrom);
 
-			if (workflowApproveRejectSelection.equals("approve")) {
+			if (workflowApproveRejectSelection != null && workflowApproveRejectSelection.equals("approve")) {
 				email.setMsg(
 						"This message is to inform you that the Frontier Wholesale content has been approved and activated which path is = "
 								+ payload);

@@ -43,7 +43,8 @@ public class SearchFacets extends BaseModel {
 	protected void init() {
 		mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
 		try {
-			searchFacetsListResponse = connector.getProductFacets(connector.getAdminToken());
+			connector.setServer(getMagentoServer());
+			searchFacetsListResponse = connector.getProductFacets(getAdminToken());
 			
 			Gson json = new Gson();
 			JsonElement element = json.fromJson(searchFacetsListResponse, JsonElement.class);

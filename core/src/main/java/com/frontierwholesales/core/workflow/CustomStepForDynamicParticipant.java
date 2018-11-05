@@ -28,15 +28,15 @@ public class CustomStepForDynamicParticipant implements ParticipantStepChooser {
 
 	public String getParticipant(WorkItem workitem, WorkflowSession wfSession, MetaDataMap metaDataMap)
 			throws WorkflowException {
+		logger.debug("getParticipant Start");
 		String participant = "admin";
 		Workflow workflow = workitem.getWorkflow();
 		String initiator = workflow.getInitiator();
 		List<HistoryItem> wfHistory = wfSession.getHistory(workflow);
 		if (!wfHistory.isEmpty()) {
 			participant = initiator;
-		} else {
-			participant = "admin";
 		}
+		logger.debug("getParticipant End");
 		return participant;
 	}
 }
