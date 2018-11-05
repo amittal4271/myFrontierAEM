@@ -160,7 +160,7 @@ function enableErrorMsg(errorCode){
         var errorText="The site is currently unavailable and unable to process your request.  Please check back later.";
             
             $('.global-server-side-message-holder').css('display','block');
-             $el = $('.global-server-side-message-holder');
+             var $el = $('.global-server-side-message-holder');
             $('.global-server-side-message-holder').children().text(errorText);
             scrollToElement($el);
     }

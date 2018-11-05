@@ -11,7 +11,7 @@ $(document).ready(function(){
 $("#btn-login").click(function(e){ 
     e.preventDefault(); 
     if($('#rememberCheckbox').is(":checked")) { 
-        user = $("#id_username").val(); 
+        var user = $("#id_username").val(); 
         if (user != "" && user != null) { 
             setCookie("usr_c",user,30);
         } 

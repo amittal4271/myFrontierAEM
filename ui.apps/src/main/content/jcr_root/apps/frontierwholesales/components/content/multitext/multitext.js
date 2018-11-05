@@ -1,18 +1,6 @@
 use(function () {
 
-    // TODO: change currentStyle to wcm.currentStyle
-
-    var CONST = {
-        PROP_TITLE: "jcr:titletext",
-        PROP_PAGE_TITLE: "pageTitle",
-        PROP_TYPE: "type",
-        PROP_DEFAULT_TYPE: "defaultType"
-    }
-
-    var multiContent = {};
-
-
-   
+    var multiContent = {};   
    
     multiContent.title = properties.get('./jcr:title');
     if (multiContent.title) {

@@ -1,8 +1,8 @@
-smartystreets_key = '8025961185538516';
+var smartystreets_key = '654859e6-99fa-3474-4a6e-466d363d9287';
 
 $(function() {	
 	jQuery.LiveAddress({
-		key: smartystreets_key,
+		key: smartystreets_key,       
 		target: "US",
 		autocomplete: 0,
 		addresses: [{

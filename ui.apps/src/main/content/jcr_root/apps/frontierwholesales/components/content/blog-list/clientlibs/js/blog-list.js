@@ -32,8 +32,7 @@ function goToPrevious($this){
     
         var currentPage = parseInt($('#current-page').val())-1;
         if(currentPage >=1 ){
-            var totalPages = parseInt($('#total-pages').val());
-
+            
             var url = window.currentPageURL+"/page/"+currentPage+"/";
             location.href=url;
         }else{

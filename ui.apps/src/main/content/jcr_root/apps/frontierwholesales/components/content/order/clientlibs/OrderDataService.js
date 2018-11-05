@@ -1,6 +1,6 @@
 app.service('OrderDataService', function($q,$http,$window) {
 
- getUserToken = function(){
+ this.getUserToken = function(){
 		var cookieValue = document.cookie;
         var cookieSplit=cookieValue.split(";");
         var userToken='';
@@ -44,7 +44,7 @@ app.service('OrderDataService', function($q,$http,$window) {
 		return deferred.promise;
     }
 
-    getCustomerOrders = function(customerId){
+    this.getCustomerOrders = function(customerId){
 		var deferred = $q.defer();
         getAdminToken().then(function(response){
 			adminToken = response;

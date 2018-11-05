@@ -146,7 +146,7 @@ var FontierwholesalesSearch = {
 				if (data) {
 					// Append results
 					$.each(data, function(i, item) {
-                        suggest = $("<li><a href='#'>" + item.title + "</a></li>");
+                        var suggest = $("<li><a href='#'>" + item.title + "</a></li>");
 					    suggestions.append(suggest);
 					    
 					    (function(suggest){

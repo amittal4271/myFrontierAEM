@@ -24,7 +24,7 @@ app.service('ShippingDataService', function($q,$http,$window,FactoryJsonData) {
                 var customerJsonData = response.data;
 
                 console.log("json data is "+customerJsonData.id);
-               email = customerJsonData.email;
+               var email = customerJsonData.email;
                 FactoryJsonData.email = email;
                  deferred.resolve(getCustomerShippingAddress(customerJsonData.id));
 
@@ -35,7 +35,7 @@ app.service('ShippingDataService', function($q,$http,$window,FactoryJsonData) {
 		return deferred.promise;
     }
 
-    getCustomerShippingAddress = function(customerId){
+    this.getCustomerShippingAddress = function(customerId){
 		var deferred = $q.defer();
 
         getAdminToken().then(function(response){
@@ -66,7 +66,7 @@ app.service('ShippingDataService', function($q,$http,$window,FactoryJsonData) {
      }
 
 
-    parseAddressObjAndAddEmail = function(response){
+    this.parseAddressObjAndAddEmail = function(response){
         var addressJson={};
         addressJson["region"]=response.region.region;
 		addressJson["region_id"]= response.region.region_id;
@@ -89,7 +89,7 @@ app.service('ShippingDataService', function($q,$http,$window,FactoryJsonData) {
     }
 
 
-    cartBillingAddress = function(address){
+    this.cartBillingAddress = function(address){
         var deferred = $q.defer();
 		var userToken = getUserToken();
         	$http({
@@ -120,7 +120,7 @@ app.service('ShippingDataService', function($q,$http,$window,FactoryJsonData) {
 		return deferred.promise;
     }
 
-    shippingMethods = function(){
+    this.shippingMethods = function(){
         var deferred = $q.defer();
 		var userToken = getUserToken();
         	$http({
@@ -148,7 +148,7 @@ app.service('ShippingDataService', function($q,$http,$window,FactoryJsonData) {
 		return deferred.promise;
     }
 
-    getRegions = function(paymentMethods){
+    this.getRegions = function(paymentMethods){
 		var deferred = $q.defer();
 		 getAdminToken().then(function(response){
              var adminToken = response;
@@ -184,7 +184,7 @@ app.service('ShippingDataService', function($q,$http,$window,FactoryJsonData) {
     }
 
 
-    cartTotal = function(regions,paymentMethods){
+   this.cartTotal = function(regions,paymentMethods){
 		 var deferred = $q.defer();
 		var userToken = getUserToken();
         	$http({

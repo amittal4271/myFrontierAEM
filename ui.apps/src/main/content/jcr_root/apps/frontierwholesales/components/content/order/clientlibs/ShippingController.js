@@ -10,8 +10,8 @@ $scope.JsonData = shippingData;
         //shipping information process
        
        
-        $validFlag = $("#shipping-address-form").valid();
-		//showLoadingScreen();
+        var $validFlag = $("#shipping-address-form").valid();
+		
        if($validFlag){
            $('.global-server-side-message-holder').css('display','none');
         $scope.getShippingAddress();
@@ -81,8 +81,7 @@ $scope.JsonData = shippingData;
      shippingJsonData['addressInformation']=shippingMethods;
 	FactoryJsonData.shippingInfoData=shippingJsonData;
 	$location.path("/paymenthome");
-   //jsonData['address']=JSON.stringify(shippingJsonData);
-       //  $scope.getShippingInfo(shippingJsonData);
+   
     }
 
 

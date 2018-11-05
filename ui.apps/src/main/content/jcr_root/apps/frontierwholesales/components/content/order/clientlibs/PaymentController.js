@@ -6,7 +6,7 @@ console.log("payment controller ");
  validation.billingAddressForm('#billing-address-form');
 
     $scope.submitForm = function(){
-         $validFlag = $("#billing-address-form").valid();
+        var $validFlag = $("#billing-address-form").valid();
 		
        if($validFlag){
             $('.global-server-side-message-holder').css('display','none');

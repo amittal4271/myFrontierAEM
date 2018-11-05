@@ -27,7 +27,7 @@ $(document).ready(function(){
         e.preventDefault();
         $buttonObj = $(this);
        
-         $validFlag = $("#general-membership-form").valid();
+         var $validFlag = $("#general-membership-form").valid();
         
         var buyerClubChecked = $('#id_account-buying_club').is(":checked");
         var btSelected = $('.radio-checkbox-section-holder input:radio:checked').attr('id');
@@ -205,68 +205,7 @@ function collectUserDetails(){
   
 }
 
-function validateEmailAndRegisterUser(jsonBuyersEmailList,customer,company,pwd){
-    
-    var serverurl = $('#serverurl').val();
-    var validation = false;
-    var jsonData={};
-    jsonData['customerEmail']=[]
-      
-   $(jsonBuyersEmailList.buying_groups.email).each(function(i,data){
-      if(undefined !== data && data !== ''){
-        jsonData['customerEmail'].push(data);  
-      } 
-   });
-    
-    jsonData['customerEmail'].push($('#id_membership-email').val());
-    jsonData['websiteId']=1;
-    var emailData={};
-    emailData['emailid']='id_membership-email';
-    emailData['value']=$('#id_membership-email').val();
-    emailWithId['list'].push(emailData);
-     
-    
-    Frontier.MagentoServices.emailValidation(serverurl,jsonData).done(function(data){
-          var bValid = true;
-       if($.isArray(data)){
-                
-                // true means email doesn't exists
-                $(data).each(function(i,data){ 
-                    if (data.status == false){
-                        bValid = false;
 
-                        var id = getEmailInputIdFromObj(data.email);
-
-                       $('#'+id).after($('<span/>',{'class':'validate-error','text':'Email address already has an account'}));
-
-
-                    }
-
-                });
-
-            if(bValid){
-                userRegistrationService(customer,company,pwd);
-            }
-       }else{
-           bValid=false;
-          
-       }         
-            
-       if(!bValid){
-           enableAjaxFormButton($buttonObj);    
-           enableErrorMsg(data);
-       }
-    }).fail(function(error){
-          
-       enableAjaxFormButton($buttonObj);    
-           enableErrorMsg(error);
-    });
-    
-  
-    
-     
-    
-}
 
 function getEmailInputIdFromObj(email){
     var emailid='';

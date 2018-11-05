@@ -10,7 +10,7 @@ $(document).ready(function(){
        
 	    $(document).on('click','.btn-mini-cart-remove',function(){
 	       var $this = $(this);
-	        var parentMiniCartItem = $this.parents('.each-mini-cart-item');
+	       
 	        var itemId = $this.data('itemid');
 	       
 	        $('#removeid-'+itemId).css('display','block');

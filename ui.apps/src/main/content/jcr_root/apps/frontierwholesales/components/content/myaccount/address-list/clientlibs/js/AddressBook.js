@@ -56,7 +56,7 @@ Frontier.AddressBook = new function() {
 	addresses = [];
 
 	function init() {
-		$componentContainer = $(".address-list");
+		var $componentContainer = $(".address-list");
 		var $uiConfigElem = $componentContainer.find(".ui-config");
 		uiConfig = {
 			editActionText : $uiConfigElem.attr("data-editActionText"),
@@ -88,7 +88,7 @@ Frontier.AddressBook = new function() {
         	if(!!getCustomerResponse.addresses && getCustomerResponse.addresses.length > 0) {
         		
         		
-	            for(i=0 ; i<=getCustomerResponse.addresses.length-1 ; i++){
+	            for(var i=0 ; i<=getCustomerResponse.addresses.length-1 ; i++){
 	            	var address = getCustomerResponse.addresses[i];
 					savedAddressesList[address.id] = address;
 					
@@ -144,7 +144,7 @@ Frontier.AddressBook = new function() {
 				"okButtonTxt": okButtonTxt
 		};
 		
-		confirmModal = $(confirmModalTemplate(confirmModalConfig));
+		var confirmModal = $(confirmModalTemplate(confirmModalConfig));
 		
 	    confirmModal.find('.btn-delete-address').click(function(event) {
 	      callback(confirmModal);
