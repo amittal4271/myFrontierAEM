@@ -33,7 +33,7 @@ public abstract class BaseModel {
 	 
 	 
 	 
-	 protected String getAdminToken() throws Exception{
+	 protected String getAdminToken(){
 		
 		  return config.getAppToken();
 			

@@ -89,8 +89,7 @@ public class FrontierWholesalesEmailContactServlet extends SlingAllMethodsServle
 			
 			response.getOutputStream().print("Success");
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			
 			log.debug("error "+e.getMessage());
 			response.getOutputStream().print("Error "+e.getMessage());
 		}

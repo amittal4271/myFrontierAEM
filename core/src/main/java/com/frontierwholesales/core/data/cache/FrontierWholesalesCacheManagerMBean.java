@@ -7,7 +7,7 @@ import com.adobe.granite.jmx.annotation.Name;
 public interface FrontierWholesalesCacheManagerMBean {
 
 	 @Description("Remove the cache with cache id ")
-	    String removeCacheWithKey(@Name("cacheKey") @Description("Valid cache key") String Cachekey);
+	    String removeCacheWithKey(@Name("cacheKey") @Description("Valid cache key") String cachekey);
 
 	    @Description("Remove All Cache")
 	    String removeCacheAll(); 

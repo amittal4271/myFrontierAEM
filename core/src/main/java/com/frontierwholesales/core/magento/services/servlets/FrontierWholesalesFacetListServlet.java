@@ -58,10 +58,6 @@ public class FrontierWholesalesFacetListServlet extends SlingAllMethodsServlet{
 			String facetlist = commerceConnector.getProductFacets(adminToken);		
 			
 			response.getOutputStream().println(facetlist);
-		}catch(FrontierWholesalesBusinessException bEx) {
-			log.error("Exception occurred FrontierWholesalesFacetListServlet "+bEx.getMessage());
-			
-			response.getOutputStream().println("Error in facetlist service");
 		}catch(Exception anyEx) {
 			log.error("Error in productList "+anyEx.getMessage());
 			response.getOutputStream().println("Error");

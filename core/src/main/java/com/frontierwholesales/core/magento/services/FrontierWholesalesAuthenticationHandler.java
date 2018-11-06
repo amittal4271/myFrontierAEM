@@ -1,7 +1,6 @@
 package com.frontierwholesales.core.magento.services;
 
 import java.io.IOException;
-import java.net.HttpCookie;
 import java.nio.charset.Charset;
 import java.util.Base64;
 import java.util.Map;
@@ -156,8 +155,7 @@ public class FrontierWholesalesAuthenticationHandler extends DefaultAuthenticati
 	            try {
 	            	deferredRedirectResponse.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,"Error");
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					
 					log.error("Error in login ",e,e.getMessage());
 					
 				}
@@ -186,7 +184,7 @@ public class FrontierWholesalesAuthenticationHandler extends DefaultAuthenticati
 	     * to redirect.
 	     */
 	    private class DeferredRedirectHttpServletResponse extends HttpServletResponseWrapper {
-	        private String ATTR_KEY = DeferredRedirectHttpServletResponse.class.getName() + "_redirectLocation";
+	        private String attKey = DeferredRedirectHttpServletResponse.class.getName() + "_redirectLocation";
 
 	        private HttpServletRequest request = null;
 
@@ -204,7 +202,7 @@ public class FrontierWholesalesAuthenticationHandler extends DefaultAuthenticati
 	        public void sendRedirect(String location) {
 	        	 log.info("sendRedirect...");
 	            // Capture the sendRedirect location, and hold onto it so it can be released later (via releaseRedirect())
-	            this.request.setAttribute(ATTR_KEY, location);
+	            this.request.setAttribute(attKey, location);
 	        }
 
 	        /**
@@ -213,7 +211,7 @@ public class FrontierWholesalesAuthenticationHandler extends DefaultAuthenticati
 	         */
 	        public final void releaseRedirect() throws IOException {
 	        	 log.info("releaseRedirect...");
-	            final String location = (String) this.request.getAttribute(ATTR_KEY);
+	            final String location = (String) this.request.getAttribute(attKey);
 	            log.info("final location is "+location);
 	            if (location != null) {
 	                super.sendRedirect(location);

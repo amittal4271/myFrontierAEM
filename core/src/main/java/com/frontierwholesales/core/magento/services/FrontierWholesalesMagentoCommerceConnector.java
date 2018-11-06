@@ -159,16 +159,7 @@ public class FrontierWholesalesMagentoCommerceConnector  {
     	return total;
     }
     
-    public String getShoppingCartList(String token) throws Exception {
-    	 
-		String cartList = Request.Get(this.server+CART_ITEM_API)
-				.addHeader(FrontierWholesalesConstants.AUTHORIZATION,FrontierWholesalesConstants.BEARER+token)
-				
-				.execute().returnContent().asString();
-		
-		return cartList;
-				
-	}
+   
     
     public String removeCartItem(String token,String itemId) throws FrontierWholesalesBusinessException{
     	
@@ -176,7 +167,7 @@ public class FrontierWholesalesMagentoCommerceConnector  {
     	String isItemRemoved;
     	try {
     	 isItemRemoved = Request.Delete(this.server+CART_ITEM_API+"/"+itemId)
-				.addHeader(FrontierWholesalesConstants.AUTHORIZATION,FrontierWholesalesConstants.BEARER+token)
+				.addHeader(FrontierWholesalesConstants.AUTHORIZATION,token)
 				
 				.execute().returnContent().asString();
     	
@@ -311,10 +302,8 @@ public class FrontierWholesalesMagentoCommerceConnector  {
     	
         	     
         	String api="/rest/V1/products/"+productID;
-            String response = constructAPIMethod("Get",adminToken,api,"getProductDetails",null,null);
+            return constructAPIMethod("Get",adminToken,api,"getProductDetails",null,null);
         		
-        	
-    		return response;
         
     }
     
@@ -487,18 +476,19 @@ public class FrontierWholesalesMagentoCommerceConnector  {
    	 	response = FrontierWholesalesUtils.parseMagentoResponseObject(inputStream,methodName);
    	 	}catch(IOException ioEx) {
    	 		log.debug("Error in constructAPIMethod "+methodName+" "+ioEx.getMessage());
-   	 		throw new FrontierWholesalesBusinessException("IOError", FrontierWholesalesErrorCode.IO_ERROR);
+   	 		throw new FrontierWholesalesBusinessException(ioEx.getMessage(), FrontierWholesalesErrorCode.IO_ERROR);
    	 	}catch(Exception anyEx){
    	 		log.debug("Error in constructAPIMethod "+methodName+" "+anyEx.getMessage());
-   	 		throw new FrontierWholesalesBusinessException("ServiceError", FrontierWholesalesErrorCode.GENERAL_SERVICE_ERROR);
+   	 		throw new FrontierWholesalesBusinessException(anyEx.getMessage(), FrontierWholesalesErrorCode.GENERAL_SERVICE_ERROR);
    	 	}finally {
-    		if(inputStream != null)
+    		if(inputStream != null) {
 				try {
 					inputStream.close();
 				} catch (IOException e) {
 					
 					log.debug("Error during stream closing");
 				}
+    		}
     	}
     	log.debug("constructAPIMethod "+ methodName+ " End");
     	return response;

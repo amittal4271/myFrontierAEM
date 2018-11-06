@@ -33,10 +33,10 @@ Frontier.SearchFacets = new function() {
 		};
 	
 	function hydrateTemplateObject(buckets, bucketName, facetLabel, isExpandable) {		
-		for(i=0 ; i<=buckets.bucket.length-1 ; i++) {
+		for(var i=0 ; i<=buckets.bucket.length-1 ; i++) {
         	var bucket = buckets.bucket[i];
         	if(bucket.value != null) {
-        		for(j=0 ; j<=bucket.value.length-1 ; j++) {
+        		for(var j=0 ; j<=bucket.value.length-1 ; j++) {
             		var option = bucket.value[j];
                 	
             		if(j>=5) {

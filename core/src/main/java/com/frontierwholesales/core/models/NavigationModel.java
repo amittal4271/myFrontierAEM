@@ -45,33 +45,31 @@ import com.frontierwholesales.core.magento.services.exceptions.FrontierWholesale
 		private MagentoCategory categories;
 		
 		 @Self
-		    private SlingHttpServletRequest request;
+	    private SlingHttpServletRequest request;
 
-		    @SlingObject
-		    private ResourceResolver resourceResolver;
+	    @SlingObject
+	    private ResourceResolver resourceResolver;
 
-		    @ScriptVariable
-		    private Page currentPage;
-		    private String navigationRootPage;
-		    @ScriptVariable
-		    private ValueMap properties;
-		    
-		    @ScriptVariable
-		    private Style currentStyle;
+	    @ScriptVariable
+	    private Page currentPage;
+	    
+	    @ScriptVariable
+	    private ValueMap properties;
+	    
+	    @ScriptVariable
+	    private Style currentStyle;
 
 		@Inject
 		private MagentoCommerceConnectorService config;
 		
 		@PostConstruct
-		public void init() throws Exception {
+		public void init() throws FrontierWholesalesBusinessException {
 			LOGGER.debug("activate method of navigation Start");
 			
-			try {
-				navigationRootPage = properties.get("navigationRoot", currentStyle.get("navigationRoot", String.class));
-				PageManager pageManager = currentPage.getPageManager();
+			try {				
+				
 	            Page root = currentPage.getAbsoluteParent(2);
 	           
-				//Page root = this.getCurrentPage().getAbsoluteParent(2);
 				FrontierWholesalePages frontierRoot = new FrontierWholesalePages(root);
 				
 				this.frontierWholesalePages =  (List<FrontierWholesalePages>)CacheManager.getCache(FrontierWholesalesConstants.AEM_CHILDREN_PAGES);
@@ -91,8 +89,8 @@ import com.frontierwholesales.core.magento.services.exceptions.FrontierWholesale
 					this.categories =  (MagentoCategory)CacheManager.getCache(FrontierWholesalesConstants.MAGENTO_CATEGORIES);
 				}
 			}
-			catch(FrontierWholesalesBusinessException e) {
-				LOGGER.error(e.getCode().getMessage(), e);
+			catch(Exception anyEx) {
+				LOGGER.error(anyEx.getMessage(), anyEx);
 			}
 			LOGGER.debug("activate method of navigation End");
 		}

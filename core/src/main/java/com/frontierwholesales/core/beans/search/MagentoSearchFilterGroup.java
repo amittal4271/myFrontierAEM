@@ -5,7 +5,7 @@ import java.util.List;
 
 public class MagentoSearchFilterGroup {
 
-	private List<MagentoSearchCondition> searchConditions = new ArrayList<MagentoSearchCondition>();
+	private List<MagentoSearchCondition> searchConditions = new ArrayList<>();
 	
 	public void addFilterCondition(MagentoSearchCondition condition) {
 		searchConditions.add(condition);

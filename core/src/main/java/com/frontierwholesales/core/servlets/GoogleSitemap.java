@@ -60,7 +60,6 @@ import org.slf4j.LoggerFactory;
 
 public final class GoogleSitemap extends SlingSafeMethodsServlet {
 	
-	private static final Logger logger = LoggerFactory.getLogger(GoogleSitemap.class);
 
     private static final FastDateFormat DATE_FORMAT = FastDateFormat.getInstance("yyyy-MM-dd");
 
@@ -86,7 +85,7 @@ public final class GoogleSitemap extends SlingSafeMethodsServlet {
 
     @Property(label = "DAM Folder Property", description = "The JCR property name which will contain DAM folders to include in the sitemap.")
     //overriding so that it does not try to pull the assets from the page. only the dam.
-   // private static final String PROP_DAM_ASSETS_PROPERTY = "damassets.property";
+  
     private static final String PROP_DAM_ASSETS_PROPERTY = "/content/dam/frontierwholesales";
 
     @Property(label = "DAM Asset MIME Types", unbounded = PropertyUnbounded.ARRAY, description = "MIME types allowed for DAM assets.")
@@ -119,7 +118,6 @@ public final class GoogleSitemap extends SlingSafeMethodsServlet {
 
     private String[] priorityProperties;
 
-    private String damAssetProperty;
 
     private List<String> damAssetTypes;
 
@@ -140,7 +138,7 @@ public final class GoogleSitemap extends SlingSafeMethodsServlet {
         this.changefreqProperties = PropertiesUtil.toStringArray(properties.get(PROP_CHANGE_FREQUENCY_PROPERTIES),
                 new String[0]);
         this.priorityProperties = PropertiesUtil.toStringArray(properties.get(PROP_PRIORITY_PROPERTIES), new String[0]);
-        this.damAssetProperty = PropertiesUtil.toString(properties.get(PROP_DAM_ASSETS_PROPERTY), "");
+        
         this.damAssetTypes = Arrays
                 .asList(PropertiesUtil.toStringArray(properties.get(PROP_DAM_ASSETS_TYPES), new String[0]));
         this.excludeFromSiteMapProperty = PropertiesUtil.toString(properties.get(PROP_EXCLUDE_FROM_SITEMAP_PROPERTY),
@@ -181,7 +179,7 @@ public final class GoogleSitemap extends SlingSafeMethodsServlet {
                     Resource assetFolderChild = children.next();
                     if (assetFolderChild.isResourceType(DamConstants.NT_DAM_ASSET)) {
                         Asset asset = assetFolderChild.adaptTo(Asset.class);
-                        // logger.info("what is the assets mime type: " + asset.getMimeType());
+                       
                         if (damAssetTypes.contains(asset.getMimeType())) {
                             writeAsset(asset, stream, resourceResolver);
                         }
@@ -276,7 +274,7 @@ public final class GoogleSitemap extends SlingSafeMethodsServlet {
             Resource assetFolderChild = children.next();
             if (assetFolderChild.isResourceType(DamConstants.NT_DAM_ASSET)) {
                 Asset asset = assetFolderChild.adaptTo(Asset.class);
-               // logger.info("what is the assets mime type: " + asset.getMimeType());
+               
                if (damAssetTypes.contains(asset.getMimeType())) {
                     writeAsset(asset, stream, resolver);
                 }

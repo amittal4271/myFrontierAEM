@@ -1,3 +1,4 @@
+ var timeoutID;
 function setup() {
     this.addEventListener("mousemove", resetTimer, false);
     this.addEventListener("mousedown", resetTimer, false);
@@ -14,7 +15,7 @@ setup();
 
 function startTimer() {
     // wait 20 mins before calling goInactive
-   var timeoutID = window.setTimeout(goInactive, 1200000);
+    timeoutID = window.setTimeout(goInactive, 1200000);
 }
  
 function resetTimer(e) {

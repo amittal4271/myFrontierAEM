@@ -93,9 +93,6 @@ public class FrontierWholesalesPDPServlet  extends SlingAllMethodsServlet{
 			else {
 				response.getOutputStream().println("Empty SKU provided");
 			}
-		}catch(FrontierWholesalesBusinessException businessEx) {
-			log.error("Error in FrontierWholesalesPDPServlet "+businessEx.getMessage());
-			response.getOutputStream().println("Error "+businessEx.getMessage());
 		}catch(Exception anyEx) {
 			log.error("Error in pdpservlet {}", anyEx.getMessage());
 			
@@ -111,8 +108,7 @@ private JsonArray getImagePath(String productSku,SlingHttpServletRequest request
 		QueryManager queryManager = session.getWorkspace().getQueryManager();
 		String path="";
 		String imgPath="";
-		//String nodeTitle="";
-		Resource res = request.getResource();
+		
 		ResourceResolver resourceResolver = request.getResourceResolver();
 		
 		JsonArray array = new JsonArray();
@@ -132,7 +128,7 @@ private JsonArray getImagePath(String productSku,SlingHttpServletRequest request
 	    	Node node = nodeIter.nextNode();
 	        path = node.getPath();
 	        log.debug("inside loop: "+path);
-	        res = resourceResolver.getResource(path);	        
+	        Resource res = resourceResolver.getResource(path);	        
 	        String name = node.getName();
 	        if(name.equals("jcr:content")) {
 	        	log.debug("INSIDE jcr:content");

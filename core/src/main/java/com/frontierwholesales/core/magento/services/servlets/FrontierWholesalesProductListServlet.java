@@ -116,9 +116,6 @@ public class FrontierWholesalesProductListServlet extends SlingAllMethodsServlet
 			log.debug(" FrontierWholesalesProductListServlet operations End ");
 			stream.write(jsonResponse.getBytes("UTF-8"));
 			
-		}catch(FrontierWholesalesBusinessException businessEx) {
-			log.error("Error in productList "+businessEx.getMessage());
-			response.getOutputStream().println("Error "+businessEx.getMessage());
 		}
 		catch(Exception anyEx) {
 			log.error("Error in productList "+anyEx.getMessage());
@@ -179,7 +176,7 @@ public class FrontierWholesalesProductListServlet extends SlingAllMethodsServlet
 			JsonArray parentArray = object.get("parent").getAsJsonArray();
 			JsonArray childArray = object.get("children").getAsJsonArray();
 			int count=0;
-			String parentNames="";
+			StringBuilder parentNames= new StringBuilder();
 			log.debug("before array");
 			for(JsonElement element:parentArray) {
 				log.debug("inside array");
@@ -188,7 +185,7 @@ public class FrontierWholesalesProductListServlet extends SlingAllMethodsServlet
 					JsonObject obj = element.getAsJsonObject();
 					String name = obj.get("name").getAsString();
 					name = name.toLowerCase();
-					parentNames+="/"+name.replaceAll(" ", "-");
+					parentNames.append("/").append(name.replaceAll(" ", "-"));
 					log.debug("name is "+name);
 					obj.addProperty("categoryname", name.replaceAll(" ", "-"));
 					
@@ -198,9 +195,9 @@ public class FrontierWholesalesProductListServlet extends SlingAllMethodsServlet
 				count++;
 			}
 			log.debug("before if condition");
-			if(parentNames != "") {
-				log.debug("parentNames are "+parentNames);
-				object.addProperty("fullpath", parentNames);
+			if(parentNames.toString() != "") {
+				log.debug("parentNames are "+parentNames.toString());
+				object.addProperty("fullpath", parentNames.toString());
 			}
 			
 			for(JsonElement element:childArray) {
@@ -211,7 +208,7 @@ public class FrontierWholesalesProductListServlet extends SlingAllMethodsServlet
 				name = name.toLowerCase();
 				
 				obj.addProperty("childname", name.replaceAll(" ","-"));
-				obj.addProperty("childpath", parentNames);
+				obj.addProperty("childpath", parentNames.toString());
 				
 				count++;
 			}

@@ -6,12 +6,6 @@
  
 package com.frontierwholesales.core.magento.services.exceptions;
 
-import java.io.IOException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import com.adobe.cq.commerce.api.CommerceException;
-import com.frontierwholesales.core.magento.services.CorsService;
-
 public class FrontierWholesalesBusinessException extends Exception {
 
 	/**

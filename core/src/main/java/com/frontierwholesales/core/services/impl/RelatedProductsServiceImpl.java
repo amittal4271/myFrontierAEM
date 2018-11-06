@@ -2,38 +2,16 @@ package com.frontierwholesales.core.services.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import javax.jcr.RepositoryException;
-import javax.jcr.Session;
 
 import org.apache.sling.api.SlingHttpServletRequest;
-import org.apache.sling.api.resource.LoginException;
-import org.apache.sling.api.resource.Resource;
-import org.apache.sling.api.resource.ResourceResolver;
-import org.apache.sling.api.resource.ResourceResolverFactory;
-import org.apache.sling.api.resource.ResourceUtil;
-import org.apache.sling.api.resource.ValueMap;
-import org.apache.sling.jcr.resource.api.JcrResourceConstants;
 import org.osgi.framework.Constants;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
-import org.osgi.service.component.annotations.ReferenceCardinality;
-import org.osgi.service.component.annotations.ReferencePolicy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.adobe.cq.commerce.api.CommerceConstants;
-import com.day.cq.commons.jcr.JcrConstants;
-import com.day.cq.search.PredicateGroup;
-import com.day.cq.search.Query;
 import com.day.cq.search.QueryBuilder;
-import com.day.cq.search.result.Hit;
-import com.day.cq.search.result.SearchResult;
-import com.day.cq.wcm.api.NameConstants;
-import com.day.cq.wcm.foundation.Image;
 import com.frontierwholesales.core.beans.FrontierWholesalesProducts;
 import com.frontierwholesales.core.magento.models.MagentoRelatedProduct;
 import com.frontierwholesales.core.magento.services.FrontierWholesalesMagentoCommerceConnector;
@@ -41,7 +19,6 @@ import com.frontierwholesales.core.magento.services.MagentoCommerceConnectorServ
 import com.frontierwholesales.core.magento.services.exceptions.FrontierWholesalesBusinessException;
 import com.frontierwholesales.core.magento.services.exceptions.FrontierWholesalesErrorCode;
 import com.frontierwholesales.core.services.RelatedProductsService;
-import com.frontierwholesales.core.services.constants.FrontierWholesalesConstants;
 import com.frontierwholesales.core.utils.FrontierWholesalesUtils;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
@@ -53,13 +30,6 @@ import com.google.gson.JsonObject;
 public class RelatedProductsServiceImpl implements RelatedProductsService {
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 
-	// @Reference does NOT work here! Throws annotation type not applicable to this kind of declaration when compiling!!!
-	// and The annotation @Reference is disallowed for this location in eclipse
-	// see below for bind/unbind
-    private transient ResourceResolverFactory resourceResolverFactory;
-
-	private transient QueryBuilder queryBuilder;
-	
 	private FrontierWholesalesMagentoCommerceConnector magentoConnector;
 	private MagentoCommerceConnectorService config;
 	@Reference
@@ -83,7 +53,7 @@ public class RelatedProductsServiceImpl implements RelatedProductsService {
 
 		if( adminToken != null ) {
 			// call service GET /V1/products/{sku}/links/{type} where type = related
-			List<MagentoRelatedProduct> productList = magentoConnector != null ? magentoConnector.getRelatedProductsForSku(adminToken, sku) : null;
+			List<MagentoRelatedProduct> productList = magentoConnector.getRelatedProductsForSku(adminToken, sku);
 			if( productList != null && !productList.isEmpty() ) {
 				log.debug("Related product list is not empty");
 				for( MagentoRelatedProduct magentoProduct : productList ) {

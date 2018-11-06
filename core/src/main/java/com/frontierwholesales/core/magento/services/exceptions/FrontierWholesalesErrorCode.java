@@ -10,7 +10,8 @@ public enum FrontierWholesalesErrorCode {
 	NAVIGATION_MODE (6, "Error in navigation mode"),
 	GENERAL_SERVICE_ERROR(7,"General Service Error"),
 	JSON_PARSE_ERROR(8,"Parsing Json Object Error"),
-	JSON_MAPPING_ERROR(9,"Json Mapping Error");
+	JSON_MAPPING_ERROR(9,"Json Mapping Error"),
+	TOKEN_ERROR(10,"Token is null or invalid");
 	
 	// - Unauthorized
 

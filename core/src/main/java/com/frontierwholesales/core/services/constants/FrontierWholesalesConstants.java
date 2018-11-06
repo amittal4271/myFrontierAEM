@@ -1,6 +1,10 @@
 package com.frontierwholesales.core.services.constants;
 
 public final class FrontierWholesalesConstants {
+	
+	private FrontierWholesalesConstants() {
+		
+	}
 
 	public static final String MAGENTO_ADMIN_TOKEN="MagentoAdminToken";
 	

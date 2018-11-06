@@ -5,9 +5,6 @@ import java.util.List;
 
 import javax.annotation.Nonnull;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 public class MagentoSearch {
 	public static final String SORT_ORDER_ASC = "ASC";
 	public static final String SORT_ORDER_DESC = "DESC";
@@ -15,8 +12,8 @@ public class MagentoSearch {
 	private int pageSize = 20;
 	private int currentPage = 0;
 	
-	private List<MagentoSearchFilterGroup> filterGroups = new ArrayList<MagentoSearchFilterGroup>();
-	private List<String> sortList = new ArrayList<String>();
+	private List<MagentoSearchFilterGroup> filterGroups = new ArrayList<>();
+	private List<String> sortList = new ArrayList<>();
 
 	public int getPageSize() {
 		return pageSize;
@@ -69,9 +66,7 @@ public class MagentoSearch {
 		sb.append("&searchCriteria[pageSize]=").append(pageSize);
 		sb.append("&searchCriteria[currentPage]=").append(currentPage);
 		
-		String query = sb.toString();
-		
-		return query;
+		return sb.toString();
 	}
 
 }

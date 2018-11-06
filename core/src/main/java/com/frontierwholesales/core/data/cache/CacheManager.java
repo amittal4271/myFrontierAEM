@@ -14,8 +14,8 @@ public class CacheManager {
 	 
 	   public static Object getCache(String identifier)
 	   {
-	   Object object = cacheHashMap.get(identifier);   
-	       return object;   
+	    return cacheHashMap.get(identifier);   
+	          
 	   }
 	 
 	    public static String removeCacheWithKey(String identifier)

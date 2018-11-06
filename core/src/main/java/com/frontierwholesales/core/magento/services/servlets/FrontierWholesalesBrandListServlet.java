@@ -1,7 +1,6 @@
 package com.frontierwholesales.core.magento.services.servlets;
 
 import java.io.IOException;
-import java.text.DecimalFormat;
 
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
@@ -16,15 +15,8 @@ import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.frontierwholesales.core.beans.FrontierWholesalesProductSearch;
 import com.frontierwholesales.core.magento.services.FrontierWholesalesMagentoCommerceConnector;
 import com.frontierwholesales.core.magento.services.MagentoCommerceConnectorService;
-import com.frontierwholesales.core.magento.services.exceptions.FrontierWholesalesBusinessException;
-import com.frontierwholesales.core.services.constants.FrontierWholesalesConstants;
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 
 @SuppressWarnings("serial")
 
@@ -65,10 +57,6 @@ public class FrontierWholesalesBrandListServlet extends SlingAllMethodsServlet{
 			
 			
 			response.getOutputStream().println(brandlist);
-		}catch(FrontierWholesalesBusinessException bEx) {
-			log.error("Exception occurred FrontierWholesalesBrandListServlet "+bEx.getMessage());
-			
-			response.getOutputStream().println("Error in brandlist service");
 		}catch(Exception anyEx) {
 			log.error("Error in productList "+anyEx.getMessage());
 			response.getOutputStream().println("Error");

@@ -102,6 +102,7 @@ public class FrontierWholesalesUserRegistration {
 	 */
 	public  String updateCustomers(String adminToken,String jsonData,String id,String server) throws FrontierWholesalesBusinessException{
 		log.debug("updateCustomers Method Start");
+		connector.setServer(server);
 		String api="/rest/V1/customers/"+id;
 		String response = connector.constructAPIMethod("Put", adminToken, api, "updateCustomers", null, jsonData);
 		
@@ -119,6 +120,7 @@ public class FrontierWholesalesUserRegistration {
 	 */
 	public  String addAddress(String adminToken,String jsonData,String server) throws FrontierWholesalesBusinessException{
 		log.debug("addAddress Method Start");
+		connector.setServer(server);
 		String api="/rest/all/V1/addNewAddress";
 		String response = connector.constructAPIMethod("Post", adminToken, api, "addAddress", null, jsonData);
 		
@@ -134,10 +136,10 @@ public class FrontierWholesalesUserRegistration {
 	 * @throws Exception
 	 */
 	public  String getWhoAmI(String userToken,String server) throws FrontierWholesalesBusinessException{
+		connector.setServer(server);
 		String api="/rest/all/V1/addNewAddress";
-		String response = connector.constructAPIMethod("Get", userToken, api, "getWhoAmI", null, null);
+		return connector.constructAPIMethod("Get", userToken, api, "getWhoAmI", null, null);
 		
-		return response;
 	}
 	
 	/**
@@ -151,6 +153,7 @@ public class FrontierWholesalesUserRegistration {
 	 */
 	public  String validateToken(String adminToken,String resetToken,String customerId,String server) throws FrontierWholesalesBusinessException{
 		log.debug("validateToken Method Start");
+		connector.setServer(server);
 		String api="/rest/V1/customers/"+customerId+"/password/resetLinkToken/"+resetToken;
 		String response = connector.constructAPIMethod("Get", adminToken, api, "validateToken", null, null);
 		

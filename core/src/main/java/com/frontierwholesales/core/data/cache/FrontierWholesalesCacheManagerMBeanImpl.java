@@ -22,9 +22,9 @@ public class FrontierWholesalesCacheManagerMBeanImpl extends AnnotatedStandardMB
 	}
 
 	@Override
-	public String removeCacheWithKey(String Cachekey) {
+	public String removeCacheWithKey(String cachekey) {
 		
-		return CacheManager.removeCacheWithKey(Cachekey);
+		return CacheManager.removeCacheWithKey(cachekey);
 	}
 
 	@Override

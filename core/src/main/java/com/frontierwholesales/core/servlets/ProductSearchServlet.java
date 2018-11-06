@@ -71,7 +71,6 @@ public class ProductSearchServlet extends SlingSafeMethodsServlet {
 		try {
 			
 			if(searchParam != null && searchParam.length()>0) {
-				// TODO: Assuming for now that resolver associated with request will have direct access to product data in repository.
 				// The project however should define some service users needed for specific use cases.
 				ResourceResolver resolver = request.getResourceResolver();
 				
@@ -83,10 +82,10 @@ public class ProductSearchServlet extends SlingSafeMethodsServlet {
 			}
 		
 		} finally {
-			if(writer != null) {
+			
 				writer.flush();
 				writer.close();
-			}
+			
 			
 			if(logger.isDebugEnabled()) {
 				logger.debug("Search request completed in {} ms", System.currentTimeMillis()-startTime);

@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 
@@ -16,9 +17,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.frontierwholesales.core.beans.FrontierWholesaleBrand;
-import com.frontierwholesales.core.magento.services.FrontierWholesalesMagentoCommerceConnector;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -33,9 +32,9 @@ public class ShopByBrandModel extends BaseModel {
 	
 	private JsonParser parser = new JsonParser();
 	
-	private ArrayList<String> letters = new ArrayList<String>();
+	private ArrayList<String> letters = new ArrayList<>();
 
-	private HashMap<String, List<FrontierWholesaleBrand>> brandMap = new HashMap<String, List<FrontierWholesaleBrand>>();
+	private Map<String, List<FrontierWholesaleBrand>> brandMap = new HashMap<>();
 
 	@PostConstruct
 	protected void init() {
@@ -55,9 +54,7 @@ public class ShopByBrandModel extends BaseModel {
 			    
 			    if(name != null && name.length() > 0 && !"".equals(name.trim())) {
 			    
-			    	String firstletter = " ";
-			    
-			    	firstletter = name.substring(0, 1).toUpperCase();
+			    	String firstletter = name.substring(0, 1).toUpperCase();
 				    
 				    if(!letters.contains(firstletter)) {
 				    	letters.add(firstletter);
@@ -76,17 +73,15 @@ public class ShopByBrandModel extends BaseModel {
 			
 			Collections.sort(letters, String.CASE_INSENSITIVE_ORDER);
 			
-			for(String key : brandMap.keySet()) {
-				Collections.sort(brandMap.get(key), new Comparator<FrontierWholesaleBrand>() {
-				    @Override
-				    public int compare(FrontierWholesaleBrand b1, FrontierWholesaleBrand b2) {
-				        
-				    	String s1 = b1.getName();
-				    	String s2 = b2.getName();
-				    	
-				    	return s1.compareToIgnoreCase(s2);
-				    }
-				});
+			for(Map.Entry<String, List<FrontierWholesaleBrand>> entry : brandMap.entrySet()) {
+				Comparator<FrontierWholesaleBrand> comp = (b1,b2) -> {
+					String s1 = b1.getName();
+			    	String s2 = b2.getName();
+			    	
+			    	return s1.compareToIgnoreCase(s2); 
+				};
+				Collections.sort(brandMap.get(entry.getKey()),comp);
+				
 			}
 			
 
@@ -103,7 +98,7 @@ public class ShopByBrandModel extends BaseModel {
 		return letters;
 	}
 	
-	public HashMap<String, List<FrontierWholesaleBrand>> getBrandMap(){
+	public Map<String, List<FrontierWholesaleBrand>> getBrandMap(){
 		return brandMap;
 	}
 

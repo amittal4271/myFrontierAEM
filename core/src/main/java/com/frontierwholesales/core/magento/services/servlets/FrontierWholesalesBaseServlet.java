@@ -14,9 +14,7 @@ import org.slf4j.LoggerFactory;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.frontierwholesales.core.magento.services.FrontierWholesalesMagentoCommerceConnector;
-import com.frontierwholesales.core.magento.services.FrontierWholesalesUserRegistration;
 import com.frontierwholesales.core.services.constants.FrontierWholesalesConstants;
-import com.google.gson.JsonObject;
 
 @SuppressWarnings("serial")
 @SlingServlet(label="FrontierWholesalesBaseServlet - Sling All Methods Servlet", 
