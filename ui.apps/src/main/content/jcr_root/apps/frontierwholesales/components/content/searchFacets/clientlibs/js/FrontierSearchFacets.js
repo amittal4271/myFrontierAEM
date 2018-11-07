@@ -84,7 +84,7 @@ Frontier.SearchFacets = new function() {
 	
 	function updateFilterOptions(buckets) {		
 		if(typeof buckets.bucket !== "undefined" && buckets.bucket != null && buckets.bucket.length > 0) {
-			for(i=0 ; i<=buckets.bucket.length-1 ; i++){
+			for(var i=0 ; i<=buckets.bucket.length-1 ; i++){
 	        	var bucket = buckets.bucket[i];
 			}
 			

@@ -29,6 +29,7 @@ import org.slf4j.LoggerFactory;
 import com.frontierwholesales.core.magento.services.FrontierWholesalesMagentoCommerceConnector;
 import com.frontierwholesales.core.magento.services.MagentoCommerceConnectorService;
 import com.frontierwholesales.core.magento.services.exceptions.FrontierWholesalesBusinessException;
+import com.frontierwholesales.core.magento.services.exceptions.FrontierWholesalesErrorCode;
 import com.frontierwholesales.core.utils.FrontierWholesalesUtils;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -190,12 +191,13 @@ private JsonArray getImagePath(String productSku,SlingHttpServletRequest request
 	}
 
 	
-	private String parseJsonObject(String productDetails,SlingHttpServletRequest request,String groupId) throws Exception{
+	private String parseJsonObject(String productDetails,SlingHttpServletRequest request,String groupId) throws FrontierWholesalesBusinessException{
 		log.debug("FrontierWholesalesPDPServlet parseJsonObject Start");
 		Gson json = new Gson();
 		JsonElement element = json.fromJson(productDetails, JsonElement.class);
 		
 		JsonObject object = element.getAsJsonObject();
+		
 		boolean bInformation = false;
 		
 		DecimalFormat priceFormat=new DecimalFormat("#0.00");
@@ -205,7 +207,11 @@ private JsonArray getImagePath(String productSku,SlingHttpServletRequest request
 		JsonElement skuElement = object.get("sku");
 		
 	
-		object.add("imgPath", getImagePath(skuElement.getAsString(),request));
+		try {
+			object.add("imgPath", getImagePath(skuElement.getAsString(),request));
+		} catch (Exception e) {
+			throw new FrontierWholesalesBusinessException(e.getMessage(),FrontierWholesalesErrorCode.GENERAL_SERVICE_ERROR);
+		}
 	
 		JsonObject extnObject = object.getAsJsonObject("extension_attributes");
 		
@@ -376,7 +382,7 @@ private JsonArray getImagePath(String productSku,SlingHttpServletRequest request
 			object.addProperty("in_stock", 0);
 		}
 		object.addProperty("additionalInformation", bInformation);
-		log.debug("FrontierWholesalesPDPServlet parseJsonObject End");
+		log.debug("FrontierWholesalesPDPServlet parseJsonObject End");		
 		return object.toString();
 	}
 	

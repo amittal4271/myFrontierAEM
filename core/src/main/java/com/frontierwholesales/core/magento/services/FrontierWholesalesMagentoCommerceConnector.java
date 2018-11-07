@@ -69,14 +69,14 @@ public class FrontierWholesalesMagentoCommerceConnector  {
         String api ="/rest/V1/integration/customer/token";
     	String response = constructAPIMethod("Login", null, api, "addItemToCart", authCredentials,null);
  	   
-        return "Bearer " + response.replace("\"", "");
+        return FrontierWholesalesConstants.BEARER + response.replace("\"", "");
 
     }
     
     public String getAdminToken() throws FrontierWholesalesBusinessException{
     	log.debug("getAdminToken Method ");
     	
-    	return "Bearer "+this.config.getAppToken();
+    	return FrontierWholesalesConstants.BEARER + this.config.getAppToken();
 
     }
     
@@ -91,9 +91,9 @@ public class FrontierWholesalesMagentoCommerceConnector  {
 			cartId = Request.Post(this.server + "/rest/V1/carts/mine")
 			        .addHeader(FrontierWholesalesConstants.AUTHORIZATION, authToken)               
 			        .execute().returnContent().asString();
-		} catch (IOException e) {
+		} catch (Exception e) {
 
-			throw new FrontierWholesalesBusinessException("Service Error", FrontierWholesalesErrorCode.GENERAL_SERVICE_ERROR);
+			throw new FrontierWholesalesBusinessException(e.getMessage(), FrontierWholesalesErrorCode.GENERAL_SERVICE_ERROR);
 		}
         log.debug("initCart method End ");
         return (cartId != null)?cartId.replace("\"", ""):null;
@@ -115,7 +115,7 @@ public class FrontierWholesalesMagentoCommerceConnector  {
 		           .execute().returnContent().asString();
 	} catch (Exception e) {
 		
-		throw new FrontierWholesalesBusinessException("Service Error", FrontierWholesalesErrorCode.GENERAL_SERVICE_ERROR);
+		throw new FrontierWholesalesBusinessException(e.getMessage(), FrontierWholesalesErrorCode.GENERAL_SERVICE_ERROR);
 	}
 	   log.debug("initCart method End ");
 	   return response;
@@ -172,7 +172,7 @@ public class FrontierWholesalesMagentoCommerceConnector  {
 				.execute().returnContent().asString();
     	
     	}catch(Exception anyEx) {
-    		throw new FrontierWholesalesBusinessException("Service Error", FrontierWholesalesErrorCode.GENERAL_SERVICE_ERROR);
+    		throw new FrontierWholesalesBusinessException(anyEx.getMessage(), FrontierWholesalesErrorCode.GENERAL_SERVICE_ERROR);
     	}
     	log.debug("removeCartItem Method End ");
 		return isItemRemoved;
@@ -265,7 +265,7 @@ public class FrontierWholesalesMagentoCommerceConnector  {
         } catch (IOException e) {
             
             log.error("Error getting Product Facet List: ERROR: " + e.getMessage());
-            throw new FrontierWholesalesBusinessException("IO Error", FrontierWholesalesErrorCode.IO_ERROR);
+            throw new FrontierWholesalesBusinessException(e.getMessage(), FrontierWholesalesErrorCode.IO_ERROR);
         }
         return response;
     }
@@ -292,7 +292,7 @@ public class FrontierWholesalesMagentoCommerceConnector  {
              response = constructAPIMethod("Get",adminToken,serviceURL,"getProductDetails",null,null);
 			
 		} catch(Exception anyEx) {
-			throw new FrontierWholesalesBusinessException("IO Error", FrontierWholesalesErrorCode.IO_ERROR);
+			throw new FrontierWholesalesBusinessException(anyEx.getMessage(), FrontierWholesalesErrorCode.IO_ERROR);
 		}
 			
 			return response;
@@ -319,13 +319,13 @@ public class FrontierWholesalesMagentoCommerceConnector  {
     	try {
 			category = mapper.readValue(response,MagentoCategory.class);
 		} catch(JsonParseException parseEx) {
-   	 		log.debug("Error in getCategories Method"+parseEx.getMessage());
+   	 		log.debug("JsonParseException in getCategories Method"+parseEx.getMessage());
 	 		throw new FrontierWholesalesBusinessException("Json Parse Error", FrontierWholesalesErrorCode.JSON_PARSE_ERROR);
    	 	}catch(IOException ioEx) {
-   	 		log.debug("Error in getCategories Method "+ioEx.getMessage());
+   	 		log.debug("IOException in getCategories Method "+ioEx.getMessage());
    	 		throw new FrontierWholesalesBusinessException("IOError", FrontierWholesalesErrorCode.IO_ERROR);
    	 	}catch(Exception anyEx) {
-   	 		log.debug("Error in getCategories Method "+anyEx.getMessage());
+   	 		log.debug("Exception in getCategories Method "+anyEx.getMessage());
    	 		throw new FrontierWholesalesBusinessException("Service Error", FrontierWholesalesErrorCode.GENERAL_SERVICE_ERROR);
    	 	}
     	log.debug("getCategories Method End");
@@ -343,15 +343,15 @@ public class FrontierWholesalesMagentoCommerceConnector  {
        
          try {
 			productList = mapper.readValue(response, new TypeReference<List<MagentoRelatedProduct>>(){});
-		} catch (com.fasterxml.jackson.core.JsonParseException e) {
-			log.debug("Error in getRelatedProductsForSku Method "+e.getMessage());
-   	 		throw new FrontierWholesalesBusinessException("PARSE Error", FrontierWholesalesErrorCode.JSON_PARSE_ERROR);
+		} catch (JsonParseException e) {
+			log.debug("JsonParseException in getRelatedProductsForSku Method "+e.getMessage());
+   	 		throw new FrontierWholesalesBusinessException(e.getMessage(), FrontierWholesalesErrorCode.JSON_PARSE_ERROR);
 		} catch (JsonMappingException e) {
-			log.debug("Error in getRelatedProductsForSku Method "+e.getMessage());
-   	 		throw new FrontierWholesalesBusinessException("MAPPING Error", FrontierWholesalesErrorCode.JSON_MAPPING_ERROR);
+			log.debug("JsonMappingException in getRelatedProductsForSku Method "+e.getMessage());
+   	 		throw new FrontierWholesalesBusinessException(e.getMessage(), FrontierWholesalesErrorCode.JSON_MAPPING_ERROR);
 		} catch (IOException e) {
-			log.debug("Error in getRelatedProductsForSku Method "+e.getMessage());
-   	 		throw new FrontierWholesalesBusinessException("IO Error", FrontierWholesalesErrorCode.IO_ERROR);
+			log.debug("IOException in getRelatedProductsForSku Method "+e.getMessage());
+   	 		throw new FrontierWholesalesBusinessException(e.getMessage(), FrontierWholesalesErrorCode.IO_ERROR);
 		}
    
         return productList;
@@ -475,10 +475,10 @@ public class FrontierWholesalesMagentoCommerceConnector  {
 	   	 	}
    	 	response = FrontierWholesalesUtils.parseMagentoResponseObject(inputStream,methodName);
    	 	}catch(IOException ioEx) {
-   	 		log.debug("Error in constructAPIMethod "+methodName+" "+ioEx.getMessage());
+   	 		log.debug("IOException in constructAPIMethod "+methodName+" "+ioEx.getMessage());
    	 		throw new FrontierWholesalesBusinessException(ioEx.getMessage(), FrontierWholesalesErrorCode.IO_ERROR);
    	 	}catch(Exception anyEx){
-   	 		log.debug("Error in constructAPIMethod "+methodName+" "+anyEx.getMessage());
+   	 		log.debug("Exception in constructAPIMethod "+methodName+" "+anyEx.getMessage());
    	 		throw new FrontierWholesalesBusinessException(anyEx.getMessage(), FrontierWholesalesErrorCode.GENERAL_SERVICE_ERROR);
    	 	}finally {
     		if(inputStream != null) {

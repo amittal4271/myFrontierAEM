@@ -17,7 +17,7 @@ console.log("payment controller ");
        }
     }
     $(document).on('click','.btn-payment-checkout',function(){
-        $validFlag = $("#billing-address-form").valid();
+        var $validFlag = $("#billing-address-form").valid();
 		
        if($validFlag){
             $('.global-server-side-message-holder').css('display','none');

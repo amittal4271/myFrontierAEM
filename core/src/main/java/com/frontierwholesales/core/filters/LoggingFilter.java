@@ -58,7 +58,7 @@ public class LoggingFilter implements Filter {
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
 		
-		
+		 logger.debug("init method");
 	}
 
 	/*
@@ -69,7 +69,7 @@ public class LoggingFilter implements Filter {
 	@Override
 	public void destroy() {
 		
-		
+		 logger.debug("destroy method");
 	}
 
 

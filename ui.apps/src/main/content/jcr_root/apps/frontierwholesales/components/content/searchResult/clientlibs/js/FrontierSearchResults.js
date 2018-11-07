@@ -22,7 +22,7 @@ Frontier.SearchResults = new function() {
 	           var currentPage = parseInt($('#currentPage').val());
 	         
 	           var pageTotal = parseInt($('#totalPage').val());
-	           var sortBy = $('#sortBy').val();
+	          // var sortBy = $('#sortBy').val();
 	           if(currentPage < pageTotal){
 	                currentPage = currentPage + 1;
 	               var recsPerPage = $('#itemPerPageSelect').val();
@@ -39,9 +39,9 @@ Frontier.SearchResults = new function() {
 	                if(currentPage > 1){
 	                var prevPage = currentPage - 1;
 
-	                     var pageTotal = parseInt($('#totalPage').val());
-	                     var recsPerPage = $('#itemPerPageSelect').val();
-	                     var sortBy = $('#sortBy').val();
+	                    // var pageTotal = parseInt($('#totalPage').val());
+	                     //var recsPerPage = $('#itemPerPageSelect').val();
+	                     v//ar sortBy = $('#sortBy').val();
 	                     Frontier.SearchController.updateResults(prevPage);
 	                }
 	            }
@@ -189,10 +189,7 @@ Frontier.SearchResults = new function() {
                  sortName = "newproduct";
             }
              $('#sortBy option[value='+ sortName+']').prop('selected',true);
-	        // var $el = $('#plp-search-header-holder');
-	        // scrollToElement($el);
-
-
+	       
 			// preserve scroll position on back from pdp to clp
             var pathName = document.location.pathname;
     

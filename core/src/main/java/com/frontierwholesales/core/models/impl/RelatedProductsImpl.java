@@ -2,6 +2,7 @@ package com.frontierwholesales.core.models.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
+
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
@@ -9,8 +10,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
-import org.apache.sling.api.resource.ResourceUtil;
-import org.apache.sling.api.resource.ValueMap;
+import org.apache.sling.models.annotations.Default;
+import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Exporter;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.InjectionStrategy;
@@ -18,12 +19,9 @@ import org.apache.sling.models.annotations.injectorspecific.RequestAttribute;
 import org.apache.sling.models.annotations.injectorspecific.ScriptVariable;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
-import org.apache.sling.models.annotations.Default;
-import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.adobe.cq.commerce.api.CommerceConstants;
 import com.adobe.cq.export.json.ExporterConstants;
 import com.day.cq.commons.jcr.JcrConstants;
 import com.day.cq.wcm.api.Page;
@@ -83,7 +81,7 @@ public class RelatedProductsImpl implements RelatedProducts {
 		
 		log.debug("Product SKU from which to get related products: {}", productSku);
 		// call service GET /V1/products/{sku}/links/{type} where type = related, cross_sell or up_sell
-		this.relatedProductsList = productsService != null && StringUtils.isNotBlank(productSku) ? productsService.getRelatedProducts(slingHttpServletRequest, productSku) : new ArrayList<FrontierWholesalesProducts>();
+		this.relatedProductsList = productsService != null && StringUtils.isNotBlank(productSku) ? productsService.getRelatedProducts(slingHttpServletRequest, productSku) : new ArrayList<>();
 		log.debug("Related products list size: {}", this.relatedProductsList != null ? this.relatedProductsList.size() : "LIST IS NULL");
 		}catch(Exception anyEx) {
 			log.error("Exception in getting related products "+anyEx.getMessage());

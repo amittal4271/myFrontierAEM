@@ -37,8 +37,7 @@ console.log("product list page..."+facetsquery);
             var currentPage = parseInt($('#currentPage').val());
              if(currentPage > 1){
              var prevPage = currentPage - 1;
-
-                  var pageTotal = parseInt($('#totalPage').val());
+                  
                  var recsPerPage = $('#itemPerPageSelect').val();
                   var sortBy = $('#sortBy').val();
                 getProductListByCategory(prevPage,recsPerPage,sortBy,facetsquery);
@@ -251,12 +250,10 @@ function adjustHeight(){
 
 
 
-function constructFilterConditions(){
-    var jsonData=[];
+function constructFilterConditions(){    
     var temp='';
     var group={};
-    var filterValues=[];
-    var jsonData={};
+    var filterValues=[];   
     var groupIdx = 2;
     var index = 0;
     var queryString='';
@@ -266,7 +263,7 @@ function constructFilterConditions(){
         findFilters =  $('#mobile-filters');
     }
    
-    findFilters.find('.selected-filter').each(function(i,data){
+    findFilters.find('.selected-filter').each(function(i,field){
        var code = $(this).parent().parent().data('code'); 
         var data = $(this).data('value').toString();
         var id = $(this).attr('id');

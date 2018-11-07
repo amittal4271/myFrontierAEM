@@ -219,7 +219,7 @@ $(document).ready(function() {
 			// empty main image holder then append loading icon until we add the new main image
 			$productMainImageHolder.empty().html($loadingIconHtml);
 			// create new image tag 
-			$switchedMainImage = '<img src="'+$dataMainSwitchImageUrl+'" alt="'+$altImageTitle+'"/>';
+			var $switchedMainImage = '<img src="'+$dataMainSwitchImageUrl+'" alt="'+$altImageTitle+'"/>';
 			// append new image to dom
 			$productMainImageHolder.html($switchedMainImage); 
 		}

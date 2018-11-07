@@ -1,24 +1,11 @@
 package com.frontierwholesales.core.models;
 
-import com.adobe.cq.sightly.WCMUsePojo;
-import com.day.cq.wcm.api.Page;
-import com.day.cq.wcm.api.PageManager;
-import com.day.cq.wcm.api.designer.Style;
-import com.frontierwholesales.core.beans.FrontierWholesalePages;
-import com.frontierwholesales.core.beans.MagentoCategory;
-import com.frontierwholesales.core.data.cache.CacheManager;
-import com.frontierwholesales.core.magento.services.FrontierWholesalesMagentoCommerceConnector;
-import com.frontierwholesales.core.magento.services.MagentoCommerceConnectorService;
-import com.frontierwholesales.core.services.constants.FrontierWholesalesConstants;
-import com.frontierwholesales.core.utils.FrontierWholesalesUtils;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
-import javax.servlet.http.Cookie;
 
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
@@ -29,12 +16,18 @@ import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.ScriptVariable;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
-import org.osgi.service.component.annotations.Activate;
-import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.day.cq.wcm.api.Page;
+import com.day.cq.wcm.api.designer.Style;
+import com.frontierwholesales.core.beans.FrontierWholesalePages;
+import com.frontierwholesales.core.beans.MagentoCategory;
+import com.frontierwholesales.core.data.cache.CacheManager;
+import com.frontierwholesales.core.magento.services.FrontierWholesalesMagentoCommerceConnector;
+import com.frontierwholesales.core.magento.services.MagentoCommerceConnectorService;
 import com.frontierwholesales.core.magento.services.exceptions.FrontierWholesalesBusinessException;
+import com.frontierwholesales.core.services.constants.FrontierWholesalesConstants;
 
 @Model(adaptables = { SlingHttpServletRequest.class, Resource.class },defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 	public class NavigationModel {
@@ -96,7 +89,7 @@ import com.frontierwholesales.core.magento.services.exceptions.FrontierWholesale
 		}
 
 		private List<FrontierWholesalePages> getChildren(FrontierWholesalePages parent, int level) {
-			ArrayList<FrontierWholesalePages> pages = new ArrayList<FrontierWholesalePages>();
+			ArrayList<FrontierWholesalePages> pages = new ArrayList<>();
 			Iterator<Page> children = parent.getPage().listChildren();
 
 			while (children.hasNext()) {
@@ -115,9 +108,8 @@ import com.frontierwholesales.core.magento.services.exceptions.FrontierWholesale
 		}
 		
 		private MagentoCategory getAllCategories(String adminToken,int categoryId) throws FrontierWholesalesBusinessException{
-			MagentoCategory _categories = connector.getCategories(adminToken, categoryId, config.getServer());
+			return connector.getCategories(adminToken, categoryId, config.getServer());
 			
-			return _categories;
 		}
 
 		public List<FrontierWholesalePages> getFrontierWholesalePages() {

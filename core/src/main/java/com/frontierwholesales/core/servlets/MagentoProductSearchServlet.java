@@ -97,11 +97,7 @@ public class MagentoProductSearchServlet extends SlingSafeMethodsServlet {
 			
 			writer.println(productList);
 			writer.flush();
-		}catch (FrontierWholesalesBusinessException e) {
-			log.error("Unable to process Magento search.", e);
-			writer.println("MagentoSearch Error");
-			writer.flush();
-		} catch (Exception e) {
+		}catch (Exception e) {
 			log.error("Unable to process Magento search.", e);
 			writer.println("Error in MagentoSearch");
 			writer.flush();
@@ -156,7 +152,7 @@ public class MagentoProductSearchServlet extends SlingSafeMethodsServlet {
 		return param;
 	}
 	
-	private String addUserTokenToObject(String object,String key,String value) throws Exception{
+	private String addUserTokenToObject(String object,String key,String value) throws FrontierWholesalesBusinessException{
 		log.debug("addUserTokenToObject Start");
 		JsonParser parser =  new JsonParser();
 		JsonObject jsonObject =parser.parse(object).getAsJsonObject();

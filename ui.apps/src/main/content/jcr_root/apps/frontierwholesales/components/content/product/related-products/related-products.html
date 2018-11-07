@@ -15,6 +15,7 @@
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/-->
 <div style="clear:both;" data-sly-test="${wcmmode.edit}">&nbsp;</div>
 <sly data-sly-test.sku="${request.requestPathInfo && request.requestPathInfo.suffix}"></sly>
+<sly data-sly-test="${sku}">
 <sly data-sly-use.products="${'com.frontierwholesales.core.models.RelatedProducts' @ mainProductSku=sku}"
      data-sly-use.template="core/wcm/components/commons/v1/templates.html" />
 <sly data-sly-test="${products.relatedProductsList.size > 0}">
@@ -59,5 +60,7 @@
     </div>
 </section>
 </sly>
+</sly>
+
 <sly data-sly-call="${template.placeholder @ isEmpty=!products.heading}"></sly>
 

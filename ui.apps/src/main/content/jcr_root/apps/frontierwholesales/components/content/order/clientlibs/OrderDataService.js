@@ -47,7 +47,7 @@ app.service('OrderDataService', function($q,$http,$window) {
     this.getCustomerOrders = function(customerId){
 		var deferred = $q.defer();
         getAdminToken().then(function(response){
-			adminToken = response;
+			var adminToken = response;
 
             var orders="/rest/V1/orders?searchCriteria[pageSize]=50"
             + "&searchCriteria[currentPage]=1&searchCriteria[filterGroups][0][filters][0][value]="+customerId

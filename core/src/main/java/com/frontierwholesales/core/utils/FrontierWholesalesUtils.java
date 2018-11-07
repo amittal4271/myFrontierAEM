@@ -1,5 +1,6 @@
 package com.frontierwholesales.core.utils;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
@@ -31,6 +32,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.frontierwholesales.core.magento.services.FrontierWholesalesMagentoCommerceConnector;
+import com.frontierwholesales.core.magento.services.exceptions.FrontierWholesalesBusinessException;
+import com.frontierwholesales.core.magento.services.exceptions.FrontierWholesalesErrorCode;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -295,9 +298,10 @@ public class FrontierWholesalesUtils {
 	     * @return
 	     * @throws Exception
 	     */
-	    public String getImagePath(String productSku,SlingHttpServletRequest request) throws Exception{
+	    public String getImagePath(String productSku,SlingHttpServletRequest request) throws FrontierWholesalesBusinessException{
 			log.debug("getImagePath Start");
 			Session session = request.getResourceResolver().adaptTo(Session.class);
+			try {
 			QueryManager queryManager = session.getWorkspace().getQueryManager();
 			String path="";
 			String imgPath="";
@@ -340,7 +344,11 @@ public class FrontierWholesalesUtils {
 		        	}
 		        	
 		        	
-		        }    
+		        }
+			}catch(Exception anyEx) {
+				log.debug("Exception in getImagePath "+anyEx.getMessage());
+				throw new FrontierWholesalesBusinessException(anyEx.getMessage(),FrontierWholesalesErrorCode.GENERAL_SERVICE_ERROR);
+			}
 		    return "";		    
 		}
 	    
@@ -351,7 +359,7 @@ public class FrontierWholesalesUtils {
 	     * @return
 	     * @throws Exception
 	     */
-	    public  String getCustomerDetailsByParameter(String id,String customerToken,String server) throws Exception{
+	    public  String getCustomerDetailsByParameter(String id,String customerToken,String server) throws FrontierWholesalesBusinessException{
 	    	log.debug("getCustomerDetailsByParameter Start");
 	    		String groupId ="";
 	    		try {
@@ -387,7 +395,7 @@ public class FrontierWholesalesUtils {
 	     * @return
 	     * @throws Exception
 	     */
-	    public String convertToDate(Date dtCreated) throws Exception{
+	    public String convertToDate(Date dtCreated) throws FrontierWholesalesBusinessException{
 	    	 log.debug("convertToDate Start...");
 	    	 String newDate = null;
 	    	 SimpleDateFormat sdf = new SimpleDateFormat("MMM dd, yyyy", Locale.getDefault());
@@ -397,7 +405,7 @@ public class FrontierWholesalesUtils {
 	    }
 	    
 	    public String parseJsonObject(String productList,int recsPerPage,int currentPage,
-				SlingHttpServletRequest request, String groupId) throws Exception{
+				SlingHttpServletRequest request, String groupId) throws FrontierWholesalesBusinessException{
 			
 			Gson json = new Gson();
 			JsonElement element = json.fromJson(productList, JsonElement.class);
@@ -556,11 +564,19 @@ public class FrontierWholesalesUtils {
 	    	object.addProperty("on_sale", onSale);
 	    }
 	    
-	    public static String parseMagentoResponseObject(InputStream inStream,String apiMethod) throws Exception{
+	    public static String parseMagentoResponseObject(InputStream inStream,String apiMethod) throws FrontierWholesalesBusinessException{
 	    	log.debug("parseMagentoResponseObject Start "+apiMethod);
-	    	String response = IOUtils.toString(inStream, StandardCharsets.UTF_8.name());
+	    	String response;
+			try {
+				response = IOUtils.toString(inStream, StandardCharsets.UTF_8.name());
+			} catch (IOException e) {
+				throw new FrontierWholesalesBusinessException(e.getMessage(),FrontierWholesalesErrorCode.IO_ERROR);
+			}
 	    	Gson json = new Gson();
-	    	
+	    	if(response == null) {
+	    		log.debug("JSON response is null");
+	    		throw new FrontierWholesalesBusinessException("IO Exception",FrontierWholesalesErrorCode.IO_ERROR);
+	    	}
 	    	JsonElement element = json.fromJson(response, JsonElement.class);
 	    	String msg = null;
 	    	if (element.isJsonObject()) {
@@ -570,7 +586,7 @@ public class FrontierWholesalesUtils {
 	    	
 	    	if(msg != null) {
 	    		log.debug("parseMagentoResponseObject Error in"+apiMethod+" "+msg);
-	    		throw new Exception(msg);
+	    		throw new FrontierWholesalesBusinessException(msg,FrontierWholesalesErrorCode.JSON_PARSE_ERROR);
 	    	}
 	    	log.debug("parseMagentoResponseObject End ");
 	    	return response;

@@ -17,7 +17,6 @@ import org.slf4j.LoggerFactory;
 
 import com.frontierwholesales.core.magento.services.FrontierWholesalesMagentoCommerceConnector;
 import com.frontierwholesales.core.magento.services.MagentoCommerceConnectorService;
-import com.frontierwholesales.core.magento.services.exceptions.FrontierWholesalesBusinessException;
 
 
 

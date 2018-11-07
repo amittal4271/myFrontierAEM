@@ -3,7 +3,6 @@ package com.frontierwholesales.core.services;
 import java.util.Collection;
 
 import org.apache.sling.api.SlingHttpServletRequest;
-import org.apache.sling.api.resource.ResourceResolver;
 
 import com.frontierwholesales.core.beans.FrontierWholesalesProducts;
 import com.frontierwholesales.core.magento.services.exceptions.FrontierWholesalesBusinessException;

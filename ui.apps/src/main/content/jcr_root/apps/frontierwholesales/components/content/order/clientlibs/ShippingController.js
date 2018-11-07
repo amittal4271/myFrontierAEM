@@ -38,7 +38,7 @@ $scope.JsonData = shippingData;
         
         var subtotal = $('#id_subtotal-price').text();
         subtotal = parseFloat(subtotal.substr(1,subtotal.length)).toFixed(2);
-        var shPrice = parseFloat(price.substr(1,price.length)).toFixed(2);
+        
         var taxAmount = $('#id_tax-amount').text();
         taxAmount = taxAmount.substr(1,taxAmount.length);
     

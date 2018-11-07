@@ -98,7 +98,7 @@ if(summaryAttribute !== undefined && infoAttribute !== undefined && additionalAt
         }
     }).done(function(results){
         hideLoadingScreen();
-        if(!results.startsWith("Error")){
+        if(!results.startsWith("Error") && !results.startsWith("Empty SKU")){
         var productDetails = JSON.parse(results);
        
         if(!!productDetails) {

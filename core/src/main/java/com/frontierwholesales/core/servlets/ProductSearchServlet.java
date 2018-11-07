@@ -50,7 +50,6 @@ public class ProductSearchServlet extends SlingSafeMethodsServlet {
 	@Reference 
 	private QueryBuilder queryBuilder;
 	
-	// TODO: make this configurable 
 	private String productsPath = DEFAULT_PRODUCTS_PATH;
 	
 	@Override
@@ -163,7 +162,9 @@ public class ProductSearchServlet extends SlingSafeMethodsServlet {
 		if(p != null) {
 			try {
 				num = Long.parseLong(p);
-			} catch(NumberFormatException nfe) {}
+			} catch(NumberFormatException nfe) {
+				logger.debug("Number Format Exception "+nfe.getMessage());
+			}
 		}
 		return num;
 	}

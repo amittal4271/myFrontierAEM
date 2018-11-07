@@ -1,6 +1,7 @@
 package com.frontierwholesales.core.beans;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * POJO for Nested Multi Field items
@@ -13,7 +14,7 @@ public class TouchNestedMultiFieldBean {
 	private String title;
 	private String link;
 	private int level;
-	private ArrayList<TouchNestedMultiFieldBean> subMenuItems = new ArrayList<TouchNestedMultiFieldBean>();
+	private List<TouchNestedMultiFieldBean> subMenuItems = new ArrayList<>();
 	
 	public String getTitle() {
 		return title;
@@ -31,7 +32,7 @@ public class TouchNestedMultiFieldBean {
 		this.link = link;
 	}
 
-	public ArrayList<TouchNestedMultiFieldBean> getSubMenuItems() {
+	public List<TouchNestedMultiFieldBean> getSubMenuItems() {
 		return subMenuItems;
 	}
 

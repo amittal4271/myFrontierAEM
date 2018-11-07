@@ -64,19 +64,6 @@ public final class MagentoFacet {
             return  label1.compareTo(label2);
 		};
 		Collections.sort(options,comp);
-		/*Collections.sort(options, new Comparator<MagentoFacetOption>() {
-            @Override
-            public int compare(MagentoFacetOption offer1, MagentoFacetOption offer2)
-            {
-                String label1 = (offer1.getLabel() != null) ? offer1.getLabel() : "";
-                String label2 = (offer2.getLabel() != null) ? offer2.getLabel() : "";
-                
-                label1 = label1.toLowerCase();
-                label2 = label2.toLowerCase();
-                
-                return  label1.compareTo(label2);
-            }
-        });*/
 		
 		return options;
 	}
