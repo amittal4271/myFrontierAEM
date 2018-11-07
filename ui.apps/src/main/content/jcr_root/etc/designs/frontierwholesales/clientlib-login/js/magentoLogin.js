@@ -10,38 +10,20 @@ $(document).ready(function(){
 $("#btn-login").click(function(e){ 
     e.preventDefault(); 
     if($('#rememberCheckbox').is(":checked")) { 
-        user = $("#id_username").val(); 
+        var user = $("#id_username").val(); 
         if (user != "" && user != null) { 
             setCookie("usr_c",user,30);
         } 
     }
 
-   
+   var serverURL = $('#serverURL').val();
     var userName = $("#id_username").val();
     var password= $("#id_password").val();
     clearErrorMessages();
     var valid =  validateForm(userName,password);
     if(valid){ 
-       
-         $.ajax({
-            type: "POST",  
-            url: '/frontier_auth_handler', 
-
-            headers:{
-
-                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-                'Authorization':'Basic '+btoa(userName+":"+password)
-            },
-            success:function(data,textStatus,jqXHR ){
-               console.log(textStatus);
-                window.location.href=getRedirectPath();
-                
-            }, error: function(XMLHttpRequest, textStatus, errorThrown) { 
-                $('.login-text').css('display','block');
-            }
-
-        }); 
-      
+       magentoLogin(serverURL,userName,password);
+        
     } else{ 
        
        return false;
@@ -63,8 +45,8 @@ function validateEmail(mail)
   
 }
 
-function magentoLogin(userName,password){
-     var loginURL = '/services/loginservlet';
+function magentoLogin(serverURL,userName,password){
+     var loginURL = serverURL+'/rest/V1/integration/customer/token';
    var jsonData = {};
     var bReturn = false;
     jsonData['username']=userName;
@@ -72,22 +54,33 @@ function magentoLogin(userName,password){
      $.ajax({
          url: loginURL,
          method: 'POST',
-        data:jsonData,
-         success: function(results){
-             console.log('logged into Magento... ');
-             var results = JSON.parse(results);
-             if(results.token == 'Token Error'){
-                 $('.login-text').css('display','block');
-                 return false;
-             }else{
-                 window.location.href=getRedirectPath();
-             }
-         },error: function(error){
-             console.log('error is '+error);
+        data:JSON.stringify(jsonData),
+         // crossDomain: "true",
+         dataType:"text",
+         beforeSend: function(xhr){
+              xhr.setRequestHeader('Content-Type', 'application/json');
+            }
+        
+       }).done(function(results){
+         console.log('logged into Magento... '+results);
+          var regx=new RegExp("\"","g");
+        results=results.replace(regx,"");
+         //var token = "MagentoUserToken=Bearer "+results+";";
+           var jsonData={};
+         jsonData['token']="Bearer "+results;
+        
+         var cookieData = "CustomerData="+JSON.stringify(jsonData)+"; path=/";
+        
+         addCookie(cookieData);
+        
+            window.location.href=Granite.HTTP.externalize(getRedirectPath());
+     }).fail(function(error){
+         console.log('error is '+error);
               $('.login-text').css('display','block');
              return false;
-         }
      });
+        
+     
 }
 
 function getRedirectPath(){

@@ -1,0 +1,885 @@
+On branch master
+Your branch is up to date with 'origin/master'.
+
+You have unmerged paths.
+  (fix conflicts and run "git commit")
+  (use "git merge --abort" to abort the merge)
+
+Changes to be committed:
+
+	new file:   .brackets.json
+	deleted:    UI_assets/Gruntfile.js
+	deleted:    UI_assets/account-address-add.php
+	deleted:    UI_assets/account-address-book.php
+	deleted:    UI_assets/account-authorized-users.php
+	deleted:    UI_assets/account-contact-information.php
+	deleted:    UI_assets/account-email-password.php
+	deleted:    UI_assets/account-landing.php
+	deleted:    UI_assets/account-nav.php
+	deleted:    UI_assets/account-pending-orders.php
+	deleted:    UI_assets/checkout-flow-approval.php
+	deleted:    UI_assets/content-page-about-frontier.php
+	deleted:    UI_assets/content-page-all-about-membership.php
+	deleted:    UI_assets/content-page-coop-membership.php
+	deleted:    UI_assets/content-page-our-history.php
+	deleted:    UI_assets/content-page-shipping.php
+	deleted:    UI_assets/css/bootstrap.min.css.map
+	deleted:    UI_assets/css/frontier-less.css
+	deleted:    UI_assets/css/frontier.css
+	deleted:    UI_assets/forgot-password.php
+	deleted:    UI_assets/frontierwholesales/images/0cbd62ed1fbdc3d9ae69baaae4d5d184.jpg
+	deleted:    UI_assets/frontierwholesales/images/0e89639821b24b25d76a3d6d4ee040c5.jpg
+	deleted:    UI_assets/frontierwholesales/images/2ebe5e22435d2ce064cefe30a9c6b4de.jpg
+	deleted:    UI_assets/frontierwholesales/images/6be238a9f0e57e4297c393a0b5d6a22e.jpg
+	deleted:    UI_assets/frontierwholesales/images/b882db9417df0e329a4ddf5d117a645b.jpg
+	deleted:    UI_assets/frontierwholesales/images/background-1.460918a89423.jpg
+	deleted:    UI_assets/frontierwholesales/images/banner-our-community.jpg
+	deleted:    UI_assets/frontierwholesales/images/bg-home-items.c9948a3ed034.png
+	deleted:    UI_assets/frontierwholesales/images/fa35585006fe9a08f286d162e88f7657.jpg
+	deleted:    UI_assets/frontierwholesales/images/fcaab8f954c9cfe76ebc3ef35e43566a.jpg
+	deleted:    UI_assets/frontierwholesales/images/footer-bg.7af45f7fd978.jpg
+	deleted:    UI_assets/frontierwholesales/images/header-bg@2x.a9aa6367fbbc.jpg
+	deleted:    UI_assets/frontierwholesales/images/header-clip-1.fb3e4e38c064.jpg
+	deleted:    UI_assets/frontierwholesales/images/header-clip-2.d05da0da5426.jpg
+	deleted:    UI_assets/frontierwholesales/images/logo--footer.e5c4f0948e3c.png
+	deleted:    UI_assets/frontierwholesales/images/rough-bg.9e4e7b909d11.jpg
+	deleted:    UI_assets/help-faq.php
+	deleted:    UI_assets/home-page.php
+	deleted:    UI_assets/js/main.js
+	deleted:    UI_assets/js/validate.js
+	deleted:    UI_assets/less/checkout-flow.less
+	deleted:    UI_assets/less/custom-alerts.less
+	deleted:    UI_assets/less/forms.less
+	deleted:    UI_assets/less/orders.less
+	deleted:    UI_assets/login.php
+	deleted:    UI_assets/membership-general.php
+	deleted:    UI_assets/membership-landing.php
+	deleted:    UI_assets/membership-lifetime.php
+	deleted:    UI_assets/package-lock.json
+	deleted:    UI_assets/package.json
+	deleted:    UI_assets/prod-assets/frontier-less-minified.css
+	deleted:    UI_assets/prod-assets/frontier-minified.js
+	deleted:    UI_assets/product-detail.php
+	deleted:    UI_assets/shopping-cart-regular.php
+	deleted:    UI_assets/shopping-cart.php
+	deleted:    UI_assets/snippets/account-nav.php
+	deleted:    UI_assets/snippets/blog-subscribe.php
+	deleted:    UI_assets/snippets/breadcrumbs.php
+	deleted:    UI_assets/snippets/checkout-header.php
+	deleted:    UI_assets/snippets/featured-brands.php
+	deleted:    UI_assets/snippets/footer-files-include.php
+	deleted:    UI_assets/snippets/footer.php
+	deleted:    UI_assets/snippets/header-files-include.php
+	deleted:    UI_assets/snippets/header.php
+	deleted:    UI_assets/snippets/navigation.php
+	deleted:    UI_assets/snippets/new-products-specials.php
+	deleted:    UI_assets/snippets/old-cart-table-just-to-save.php
+	deleted:    UI_assets/top-navigation-example-with-js.php
+	deleted:    UI_assets/top-navigation-example.php
+	modified:   core/pom.xml
+	new file:   core/src/main/java/com/frontierwholesales/core/FrontierPropertiesConfigurationService.java
+	new file:   core/src/main/java/com/frontierwholesales/core/FrontierPropertiesConfigurationServiceImpl.java
+	new file:   core/src/main/java/com/frontierwholesales/core/beans/FrontierWholesaleBlogContent.java
+	new file:   core/src/main/java/com/frontierwholesales/core/beans/FrontierWholesaleBrand.java
+	modified:   core/src/main/java/com/frontierwholesales/core/beans/FrontierWholesalePages.java
+	new file:   core/src/main/java/com/frontierwholesales/core/beans/FrontierWholesalesProductSearch.java
+	new file:   core/src/main/java/com/frontierwholesales/core/beans/FrontierWholesalesProducts.java
+	new file:   core/src/main/java/com/frontierwholesales/core/beans/MagentoCategory.java
+	new file:   core/src/main/java/com/frontierwholesales/core/beans/TouchNestedMultiFieldBean.java
+	new file:   core/src/main/java/com/frontierwholesales/core/beans/search/MagentoSearch.java
+	new file:   core/src/main/java/com/frontierwholesales/core/beans/search/MagentoSearchCondition.java
+	new file:   core/src/main/java/com/frontierwholesales/core/beans/search/MagentoSearchFilterGroup.java
+	new file:   core/src/main/java/com/frontierwholesales/core/data/cache/CacheManager.java
+	new file:   core/src/main/java/com/frontierwholesales/core/data/cache/FrontierWholesalesCacheManagerMBean.java
+	new file:   core/src/main/java/com/frontierwholesales/core/data/cache/FrontierWholesalesCacheManagerMBeanImpl.java
+	modified:   core/src/main/java/com/frontierwholesales/core/filters/LoggingFilter.java
+	new file:   core/src/main/java/com/frontierwholesales/core/magento/models/MagentoFacet.java
+	new file:   core/src/main/java/com/frontierwholesales/core/magento/models/MagentoFacetOption.java
+	new file:   core/src/main/java/com/frontierwholesales/core/magento/models/MagentoRelatedProduct.java
+	new file:   core/src/main/java/com/frontierwholesales/core/magento/services/CorsService.java
+	new file:   core/src/main/java/com/frontierwholesales/core/magento/services/EmailConnector.java
+	new file:   core/src/main/java/com/frontierwholesales/core/magento/services/EmailConnectorConfiguration.java
+	new file:   core/src/main/java/com/frontierwholesales/core/magento/services/EmailConnectorService.java
+	modified:   core/src/main/java/com/frontierwholesales/core/magento/services/FrontierWholesalesAuthenticationHandler.java
+	modified:   core/src/main/java/com/frontierwholesales/core/magento/services/FrontierWholesalesMagentoCommerceConnector.java
+	modified:   core/src/main/java/com/frontierwholesales/core/magento/services/FrontierWholesalesUserRegistration.java
+	new file:   core/src/main/java/com/frontierwholesales/core/magento/services/MagentoCommerceConnector.java
+	new file:   core/src/main/java/com/frontierwholesales/core/magento/services/MagentoCommerceConnectorConfiguration.java
+	new file:   core/src/main/java/com/frontierwholesales/core/magento/services/MagentoCommerceConnectorService.java
+	new file:   core/src/main/java/com/frontierwholesales/core/magento/services/exceptions/FrontierWholesalesBusinessException.java
+	new file:   core/src/main/java/com/frontierwholesales/core/magento/services/exceptions/FrontierWholesalesErrorCode.java
+	new file:   core/src/main/java/com/frontierwholesales/core/magento/services/models/BaseModel.java
+	new file:   core/src/main/java/com/frontierwholesales/core/magento/services/models/CategoriesModel.java
+	new file:   core/src/main/java/com/frontierwholesales/core/magento/services/models/MagentoInfo.java
+	new file:   core/src/main/java/com/frontierwholesales/core/magento/services/models/SearchFacets.java
+	new file:   core/src/main/java/com/frontierwholesales/core/magento/services/models/ShopByBrandModel.java
+	new file:   core/src/main/java/com/frontierwholesales/core/magento/services/servlets/FrontierWholesalesBrandListServlet.java
+	new file:   core/src/main/java/com/frontierwholesales/core/magento/services/servlets/FrontierWholesalesEmailContactServlet.java
+	new file:   core/src/main/java/com/frontierwholesales/core/magento/services/servlets/FrontierWholesalesFacetListServlet.java
+	new file:   core/src/main/java/com/frontierwholesales/core/magento/services/servlets/FrontierWholesalesPDPServlet.java
+	new file:   core/src/main/java/com/frontierwholesales/core/magento/services/servlets/FrontierWholesalesProductListServlet.java
+	new file:   core/src/main/java/com/frontierwholesales/core/magento/services/servlets/FrontierWholesalesShoppingCartServlet.java
+	modified:   core/src/main/java/com/frontierwholesales/core/magento/services/servlets/FrontierWholesalesUserRegistrationServlet.java
+	modified:   core/src/main/java/com/frontierwholesales/core/models/AccordionItem.java
+	modified:   core/src/main/java/com/frontierwholesales/core/models/AccordionSection.java
+	new file:   core/src/main/java/com/frontierwholesales/core/models/BasicPage.java
+	new file:   core/src/main/java/com/frontierwholesales/core/models/BlogListModel.java
+	new file:   core/src/main/java/com/frontierwholesales/core/models/Carousel.java
+	modified:   core/src/main/java/com/frontierwholesales/core/models/ColumnTextField.java
+	modified:   core/src/main/java/com/frontierwholesales/core/models/LinkUtil.java
+	modified:   core/src/main/java/com/frontierwholesales/core/models/NavigationModel.java
+	new file:   core/src/main/java/com/frontierwholesales/core/models/RelatedProducts.java
+	new file:   core/src/main/java/com/frontierwholesales/core/models/SessionModel.java
+	new file:   core/src/main/java/com/frontierwholesales/core/models/SideNavigationModel.java
+	modified:   core/src/main/java/com/frontierwholesales/core/models/TabItem.java
+	modified:   core/src/main/java/com/frontierwholesales/core/models/TabsSection.java
+	new file:   core/src/main/java/com/frontierwholesales/core/models/impl/CarouselImpl.java
+	new file:   core/src/main/java/com/frontierwholesales/core/models/impl/CarouselListItemImpl.java
+	new file:   core/src/main/java/com/frontierwholesales/core/models/impl/RelatedProductsImpl.java
+	new file:   core/src/main/java/com/frontierwholesales/core/models/myaccount/ProfileContactInfo.java
+	new file:   core/src/main/java/com/frontierwholesales/core/services/RelatedProductsService.java
+	deleted:    core/src/main/java/com/frontierwholesales/core/services/SitemapConfig.java
+	modified:   core/src/main/java/com/frontierwholesales/core/services/constants/FrontierWholesalesConstants.java
+	new file:   core/src/main/java/com/frontierwholesales/core/services/impl/RelatedProductsServiceImpl.java
+	deleted:    core/src/main/java/com/frontierwholesales/core/services/impl/SitemapConfigImpl.java
+	deleted:    core/src/main/java/com/frontierwholesales/core/servlets/CreatePageServlet.java
+	deleted:    core/src/main/java/com/frontierwholesales/core/servlets/ErrorMessage.java
+	deleted:    core/src/main/java/com/frontierwholesales/core/servlets/GoogleSitemap.java
+	new file:   core/src/main/java/com/frontierwholesales/core/servlets/MagentoProductSearchServlet.java
+	deleted:    core/src/main/java/com/frontierwholesales/core/servlets/NavigationElements.java
+	new file:   core/src/main/java/com/frontierwholesales/core/servlets/ProductSearchServlet.java
+	deleted:    core/src/main/java/com/frontierwholesales/core/servlets/SimpleServlet.java
+	deleted:    core/src/main/java/com/frontierwholesales/core/servlets/SitePages.java
+	deleted:    core/src/main/java/com/frontierwholesales/core/servlets/Sitemap.java
+	new file:   core/src/main/java/com/frontierwholesales/core/utils/FrontierWholesalesUtils.java
+	modified:   core/src/main/java/com/frontierwholesales/core/utils/LinkUtils.java
+	new file:   core/src/main/java/com/frontierwholesales/core/workflow/CustomStepForApproval.java
+	new file:   core/src/main/java/com/frontierwholesales/core/workflow/CustomStepForDynamicParticipant.java
+	modified:   pom.xml
+	modified:   ui.apps/buildNumber.properties
+	modified:   ui.apps/pom.xml
+	modified:   ui.apps/src/main/content/META-INF/vault/filter.xml
+	new file:   ui.apps/src/main/content/jcr_root/.brackets.json
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/ProductList/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/ProductList/ProductList.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/ProductList/clientlibs/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/ProductList/clientlibs/js.txt
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/ProductList/clientlibs/productlist.js
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/ProductList/productListTemplate.html
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/accordion/_cq_dialog/.content.xml
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/accordion/accordion.html
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/accordion/clientlib/style.css
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/accordion/commercial.html
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/accordion/images/accordion-minus.png
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/accordion/images/accordion-plus.png
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/accordion/north.html
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/accordion/residential.html
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/accordion/south.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/anchormenu/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/anchormenu/_cq_dialog/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/anchormenu/anchormenu.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/anchormenu/anchormenu.html.dir/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/anchormenu/anchormenu.js
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/anchormenu/anchormenu.js.dir/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/anchormenu/clientlibs/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/anchormenu/clientlibs/css.txt
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/anchormenu/clientlibs/fix.css
+	modified:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/banner/_cq_dialog/.content.xml
+	modified:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/banner/_cq_editConfig.xml
+	modified:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/banner/banner.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/banner/image.js
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/blog-content/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/blog-content/_cq_dialog/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/blog-content/_cq_editConfig.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/blog-content/blog-content.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/blog-content/blog-content.js
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/blog-landing/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/blog-landing/_cq_dialog/.content.xml
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/brand-of-the-month/_cq_editConfig.xml -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/blog-landing/_cq_editConfig.xml
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/brand-of-the-month/analytics/.content.xml -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/blog-landing/analytics/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/blog-landing/blog-landing.html
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/carousel/clientlibs/less/carousel.less -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/blog-landing/button.js
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/brand-of-the-month/design_dialog.xml -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/blog-landing/design_dialog.xml
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/brand-of-the-month/dialog.xml -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/blog-landing/dialog.xml
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/brand-of-the-month/icon.png -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/blog-landing/icon.png
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/featured-brand/image.js -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/blog-landing/image.js
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/blog-list/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/blog-list/_cq_dialog/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/blog-list/blog-list.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/blog-list/clientlibs/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/blog-list/clientlibs/js.txt
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/blog-list/clientlibs/js/blog-list.js
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/breadcrumb/.content.xml -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/breadcrumb/.content.xml
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/breadcrumb/_cq_dialog/.content.xml -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/breadcrumb/_cq_dialog/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/breadcrumb/breadcrumb.html
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/breadcrumb/breadcrumb.js -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/breadcrumb/breadcrumb.js
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/breadcrumb/clientlibs/.content.xml -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/breadcrumb/clientlibs/.content.xml
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/breadcrumb/clientlibs/breadcrumb.less -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/breadcrumb/clientlibs/breadcrumb.less
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/breadcrumb/clientlibs/css.txt -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/breadcrumb/clientlibs/css.txt
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/breadcrumb/design_dialog.xml -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/breadcrumb/design_dialog.xml
+	modified:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/button/_cq_dialog/.content.xml
+	modified:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/button/button.html
+	modified:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/button/button.js
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/carousel/_cq_dialog/.content.xml
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/carousel/carousel.html
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/carousel/clientlibs/css.txt
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/carousel/listitem.html
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/carousel/.content.xml -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/columnControl/colctrl/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/columnControl/colctrl/clientlib/.content.xml
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/accordion/clientlib/css.txt -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/columnControl/colctrl/clientlib/css.txt
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/carousel/carousel.js -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/columnControl/colctrl/clientlib/style.css
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/accordion/.content.xml -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/columnControl/columnControl/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/columnControl/columnControl/_cq_dialog/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/columnControl/columnControl/_cq_editConfig.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/columnControl/columnControl/clientlibs/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/columnControl/columnControl/clientlibs/css.txt
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/columnControl/columnControl/clientlibs/style.css
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/columnControl/columnControl/columnControl.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/columnControl/columnControl/dialog.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/contact/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/contact/clientlibs/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/contact/clientlibs/contact.js
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/contact/clientlibs/contact.less
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/contact/clientlibs/css.txt
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/contact/clientlibs/js.txt
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/contact/contact.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/faq/title-description/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/faq/title-description/_cq_dialog/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/faq/title-description/_cq_editConfig.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/faq/title-description/clientlibs/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/faq/title-description/clientlibs/css.txt
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/faq/title-description/clientlibs/less/titledescription.less
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/faq/title-description/title-description.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/faq/title-description/title-description.js
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/featured-blog/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/featured-blog/_cq_dialog/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/featured-blog/_cq_editConfig.xml
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/featured-brand/analytics/.content.xml -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/featured-blog/analytics/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/featured-blog/button.js
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/featured-brand/design_dialog.xml -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/featured-blog/design_dialog.xml
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/featured-brand/dialog.xml -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/featured-blog/dialog.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/featured-blog/featured-blog.html
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/featured-brand/icon.png -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/featured-blog/icon.png
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/featured-blog/image.js
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/featured-brand/featured-brand.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/footer/checkoutflow-footer/.content.xml
+	renamed:    UI_assets/snippets/checkout-footer.php -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/footer/checkoutflow-footer/checkoutflow-footer.html
+	modified:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/footer/footer.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/forgotpassword/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/forgotpassword/clientlibs/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/forgotpassword/clientlibs/js.txt
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/forgotpassword/clientlibs/js/forgotpwdiframe.js
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/forgotpassword/forgotpassword.html
+	modified:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/formentry/.content.xml
+	modified:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/formentry/_cq_dialog/.content.xml
+	modified:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/formentry/_cq_editConfig.xml
+	modified:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/formentry/formentry.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/header/clientlibs/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/header/clientlibs/header.js
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/header/clientlibs/js.txt
+	modified:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/header/header.html
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/brand-of-the-month/.content.xml -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/home/brand-of-the-month/.content.xml
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/featured-brand/_cq_dialog/.content.xml -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/home/brand-of-the-month/_cq_dialog/.content.xml
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/featured-brand/_cq_editConfig.xml -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/home/brand-of-the-month/_cq_editConfig.xml
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/form/container/_cq_template/.content.xml -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/home/brand-of-the-month/analytics/.content.xml
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/brand-of-the-month/brand-of-the-month.html -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/home/brand-of-the-month/brand-of-the-month.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/home/brand-of-the-month/button.js
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/home/brand-of-the-month/design_dialog.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/home/brand-of-the-month/dialog.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/home/brand-of-the-month/icon.png
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/home/brand-of-the-month/image.js
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/home/carousel/.content.xml
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/accordion/_cq_editConfig.xml -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/home/carousel/_cq_editConfig.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/home/carousel/carousel.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/home/carousel/clientlibs/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/home/carousel/clientlibs/carousel.css
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/home/carousel/clientlibs/css.txt
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/home/carousel/item.html
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/featured-brand/.content.xml -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/home/featured-brand/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/home/featured-brand/_cq_dialog/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/home/featured-brand/_cq_editConfig.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/home/featured-brand/analytics/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/home/featured-brand/button.js
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/home/featured-brand/design_dialog.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/home/featured-brand/dialog.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/home/featured-brand/featured-brand.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/home/featured-brand/icon.png
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/brand-of-the-month/image.js -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/home/featured-brand/image.js
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/from-the-blog/.content.xml -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/home/from-the-blog/.content.xml
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/textimage/_cq_dialog/.content.xml -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/home/from-the-blog/_cq_dialog/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/home/from-the-blog/_cq_editConfig.xml
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/header/clientlib/less/header.less -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/home/from-the-blog/button.js
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/from-the-blog/clientlibs/.content.xml -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/home/from-the-blog/clientlibs/.content.xml
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/from-the-blog/clientlibs/css.txt -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/home/from-the-blog/clientlibs/css.txt
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/from-the-blog/clientlibs/textimage.less -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/home/from-the-blog/clientlibs/textimage.less
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/from-the-blog/dialog.xml -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/home/from-the-blog/dialog.xml
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/from-the-blog/from-the-blog-empty.html -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/home/from-the-blog/from-the-blog-empty.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/home/from-the-blog/from-the-blog.html
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/from-the-blog/from-the-blog.js -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/home/from-the-blog/from-the-blog.js
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/from-the-blog/icon.png -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/home/from-the-blog/icon.png
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/home/home-text-image/.content.xml
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/from-the-blog/_cq_dialog/.content.xml -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/home/home-text-image/_cq_dialog/.content.xml
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/from-the-blog/_cq_editConfig.xml -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/home/home-text-image/_cq_editConfig.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/home/home-text-image/button.js
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/textimage/emptytextimage.html -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/home/home-text-image/emptytextimage.html
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/from-the-blog/from-the-blog.html -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/home/home-text-image/home-text-image.html
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/textimage/icon.png -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/home/home-text-image/icon.png
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/textimage/textimage.js -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/home/home-text-image/textimage.js
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/home/homepageControl/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/home/homepageControl/homepageControl.html
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/product-grid/.content.xml -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/hr-decoration/.content.xml
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/carousel/_cq_editConfig.xml -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/hr-decoration/_cq_editConfig.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/hr-decoration/hr-decoration.html
+	modified:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/image/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/image/_cq_design_dialog/.content.xml
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/brand-of-the-month/_cq_dialog/.content.xml -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/image/_cq_dialog/.content.xml
+	modified:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/image/_cq_editConfig.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/image/analytics/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/image/design_dialog.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/image/dialog.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/image/icon.png
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/image/image.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/image/image.js
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/login/clientlibs/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/login/clientlibs/css.txt
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/login/clientlibs/js.txt
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/login/clientlibs/less/login.less
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/login/clientlibs/login.js
+	modified:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/login/login.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/membership/ServerURL.js
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/membership/buyersclub/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/membership/buyersclub/buyersclub.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/membership/buyersclub/buyersclub.js
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/membership/generalmembership/clientlibs/js.txt
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/membership/generalmembership/clientlibs/registration.js
+	modified:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/membership/generalmembership/generalmembership.html
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/membership/lifetimemembership/clientlibs/js.txt
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/membership/lifetimemembership/clientlibs/lifetimeregistration.js
+	modified:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/membership/lifetimemembership/lifetimemembership.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/multitext/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/multitext/_cq_dialog/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/multitext/_cq_editConfig.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/multitext/dialog.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/multitext/multitext.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/multitext/multitext.html.dir/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/multitext/multitext.js
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/address-add/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/address-add/_cq_dialog/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/address-add/address-add.html
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/membership/lifetimemembership/clientlibs/.content.xml -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/address-add/clientlibs/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/address-add/clientlibs/js.txt
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/address-add/clientlibs/js/AddressAdd.js
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/address-edit/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/address-edit/_cq_dialog/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/address-edit/address-edit.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/address-edit/clientlibs/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/address-edit/clientlibs/js.txt
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/address-edit/clientlibs/js/AddressEdit.js
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/address-list/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/address-list/_cq_dialog/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/address-list/address-list.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/address-list/clientlibs/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/address-list/clientlibs/js.txt
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/address-list/clientlibs/js/AddressBook.js
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/authorized-users/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/authorized-users/_cq_dialog/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/authorized-users/authorized-users.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/magento-iframe/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/magento-iframe/_cq_dialog/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/magento-iframe/clientlibs/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/magento-iframe/clientlibs/css.txt
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/magento-iframe/clientlibs/css/magento-iframe.css
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/magento-iframe/clientlibs/js.txt
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/magento-iframe/clientlibs/js/magentoiframe.js
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/magento-iframe/magento-iframe.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/my-shelves/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/my-shelves/_cq_dialog/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/my-shelves/my-shelves.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/myaccount-dashboard/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/myaccount-dashboard/_cq_dialog/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/myaccount-dashboard/myaccount-dashboard.html
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/myaccount.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/navigation-authorable/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/navigation-authorable/_cq_dialog/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/navigation-authorable/_cq_editConfig.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/navigation-authorable/group.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/navigation-authorable/item.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/navigation-authorable/itemContent.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/navigation-authorable/navigation-authorable.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/navigation/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/navigation/group.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/navigation/item.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/navigation/itemContent.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/navigation/navigation.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/navigation/subnav.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/orders-pending/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/orders-pending/_cq_dialog/.content.xml
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/membership/generalmembership/clientlibs/.content.xml -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/orders-pending/clientlibs/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/orders-pending/clientlibs/js.txt
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/orders-pending/clientlibs/js/order.js
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/orders-pending/orders-pending.html
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/footer/.content.xml -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/orders-recent/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/orders-recent/_cq_dialog/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/orders-recent/orders-recent.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/profile-contact/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/profile-contact/_cq_dialog/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/profile-contact/clientlibs/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/profile-contact/clientlibs/js.txt
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/profile-contact/clientlibs/js/ProfileContact.js
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/profile-contact/profile-contact.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/profile-email-password/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/profile-email-password/_cq_dialog/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/profile-email-password/clientlibs/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/profile-email-password/clientlibs/js.txt
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/profile-email-password/clientlibs/js/ProfileEmailPassword.js
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/profile-email-password/profile-email-password.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/profile-patronage/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/profile-patronage/_cq_dialog/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/profile-patronage/profile-patronage.html
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/.content.xml -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/profile-subscriptions/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/profile-subscriptions/_cq_dialog/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/myaccount/profile-subscriptions/profile-subscriptions.html
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/navcart/.content.xml -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/navcart/.content.xml
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/navcart/cart.js -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/navcart/cart.js
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/navcart/clientlibs/.content.xml -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/navcart/clientlibs/.content.xml
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/navcart/clientlibs/css.txt -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/navcart/clientlibs/css.txt
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/navcart/clientlibs/js.txt -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/navcart/clientlibs/js.txt
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/navcart/clientlibs/js/cart.js -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/navcart/clientlibs/js/cart.js
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/navcart/clientlibs/less/cart.less -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/navcart/clientlibs/less/cart.less
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/navcart/mobilebutton.html -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/navcart/mobilebutton.html
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/navcart/navcart.html -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/navcart/navcart.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/navigation/clientlibs/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/navigation/clientlibs/js.txt
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/navigation/clientlibs/navigation.js
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/navigation/mobile-menu/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/navigation/mobile-menu/mobile-menu.html
+	modified:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/navigation/navigation.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/navigation/sidenavigation/sidenavigation.html
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/header/.content.xml -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/order/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/order/ServerURL.js
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/order/clientlibs/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/order/clientlibs/ConfirmationController.js
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/order/clientlibs/OrderController.js
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/order/clientlibs/OrderDataService.js
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/order/clientlibs/PaymentController.js
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/order/clientlibs/PaymentDataService.js
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/order/clientlibs/ShippingController.js
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/order/clientlibs/ShippingDataService.js
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/order/clientlibs/angular-route.min.js
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/order/clientlibs/angular.min.js
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/order/clientlibs/app.js
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/order/clientlibs/js.txt
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/order/clientlibs/order-info.js
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/order/confirmation.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/order/confirmation/.content.xml
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/accordion/clientlib/.content.xml -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/order/confirmation/clientlibs/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/order/confirmation/clientlibs/confirmation.js
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/order/confirmation/clientlibs/js.txt
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/order/confirmation/confirmation.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/order/order.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/order/order.js
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/order/orderhome.html
+	renamed:    UI_assets/checkout-flow-billing-payment-review.php -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/order/paymenthome.html
+	renamed:    UI_assets/checkout-flow-shipping.php -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/order/shippinghome.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/partial_navigation/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/partial_navigation/README.md
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/partial_navigation/_cq_design_dialog/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/partial_navigation/_cq_dialog/.content.xml
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/form/options/datasource/.content.xml -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/partial_navigation/clientlibs/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/partial_navigation/clientlibs/editor/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/partial_navigation/clientlibs/editor/js.txt
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/partial_navigation/clientlibs/editor/js/navigation.js
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/partial_navigation/clientlibs/styles/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/partial_navigation/clientlibs/styles/css.txt
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/partial_navigation/clientlibs/styles/pagenav.css
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/partial_navigation/group.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/partial_navigation/item.html
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/form/button/button.html -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/partial_navigation/itemContent.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/partial_navigation/partial_navigation.html
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/product-grid/_cq_dialog/.content.xml
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/product-grid/clientlibs/.content.xml
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/product-grid/clientlibs/css.txt
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/product-grid/clientlibs/js.txt
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/product-grid/clientlibs/js/product-item.js
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/product-grid/clientlibs/js/products-grid.js
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/product-grid/clientlibs/less/product-grid.less
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/product-grid/item/clientlib/.content.xml
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/product-grid/item/clientlib/css.txt
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/product-grid/item/clientlib/less/item.less
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/product-grid/item/item.html
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/product-grid/item/item.js
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/product-grid/list.js
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/product-grid/listitem.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/product/product/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/product/product/_cq_dialog/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/product/product/clientlib/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/product/product/clientlib/card.js
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/product/product/clientlib/css.txt
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/product/product/clientlib/js.txt
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/product/product/clientlib/style.less
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/footer/dialog.xml -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/product/product/dialog.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/product/product/product.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/product/productDetails/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/product/productDetails/_cq_dialog/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/product/productDetails/clientlibs/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/product/productDetails/clientlibs/css.txt
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/product/productDetails/clientlibs/js.txt
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/product/productDetails/clientlibs/productdetails.js
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/product/productDetails/clientlibs/style.less
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/product/productDetails/productDetails.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/product/related-products/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/product/related-products/_cq_dialog/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/product/related-products/related-products.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/product/title/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/questionform/.content.xml
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/header/_cq_dialog/.content.xml -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/questionform/_cq_dialog/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/questionform/questionform.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/quickorder/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/quickorder/clientlibs/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/quickorder/clientlibs/js.txt
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/quickorder/clientlibs/js/quickorderiframe.js
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/quickorder/quickorder.html
+	modified:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/richtext2/_cq_dialog/.content.xml
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/richtext2/richtext.html -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/richtext2/richtext2.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/search/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/search/clientlibs/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/search/clientlibs/js.txt
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/search/clientlibs/js/FrontierSearchController.js
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/search/search.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/searchFacets/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/searchFacets/clientlibs/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/searchFacets/clientlibs/js.txt
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/searchFacets/clientlibs/js/FrontierSearchFacets.js
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/searchFacets/searchFacets.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/searchResult/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/searchResult/_cq_dialog/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/searchResult/clientlibs/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/searchResult/clientlibs/css.txt
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/searchResult/clientlibs/css/searchResults.css
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/searchResult/clientlibs/js.txt
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/searchResult/clientlibs/js/FrontierSearchResults.js
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/searchResult/searchResult.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/searchResult/searchResultListTemplate.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/sharedHandlebarsTemplates/product-grid.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/sharedHandlebarsTemplates/product-pagination.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/sharedHandlebarsTemplates/product-sort.html
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/product-grid/item/.content.xml -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/shopbybrand/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/shopbybrand/brandimage/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/shopbybrand/brandimage/_cq_dialog/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/shopbybrand/brandimage/_cq_editConfig.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/shopbybrand/brandimage/analytics/.content.xml
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/banner/emptybanner.html -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/shopbybrand/brandimage/brandimage.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/shopbybrand/brandimage/button.js
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/shopbybrand/brandimage/design_dialog.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/shopbybrand/brandimage/dialog.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/shopbybrand/brandimage/icon.png
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/shopbybrand/brandimage/image.js
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/shopbybrand/shopbybrand.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/shoppingcart/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/shoppingcart/_cq_dialog/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/shoppingcart/clientlibs/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/shoppingcart/clientlibs/cart.js
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/shoppingcart/clientlibs/js.txt
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/shoppingcart/shoppingcart.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/shoppingcart/shoppingcart.js
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/textimage/clientlibs/.content.xml
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/textimage/clientlibs/css.txt
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/textimage/clientlibs/textimage.less
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/textimage/dialog.xml
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/textimage/textimage.html
+	modified:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/title-and-text/_cq_dialog/.content.xml
+	modified:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/title-and-text/_cq_editConfig.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/title-and-text/dialog.xml
+	modified:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/title-and-text/title-and-text.html
+	modified:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/title-and-text/title-and-text.js
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/textimage/.content.xml -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/wide-text-image/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/wide-text-image/_cq_dialog/.content.xml
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/textimage/_cq_editConfig.xml -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/wide-text-image/_cq_editConfig.xml
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/brand-of-the-month/button.js -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/wide-text-image/button.js
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/wide-text-image/clientlibs/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/wide-text-image/clientlibs/css.txt
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/wide-text-image/clientlibs/fix.css
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/form/options/datasource/countriesdatasource/countriesdatasource.html -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/wide-text-image/emptytextimage.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/wide-text-image/icon.png
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/banner/banner.js -> ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/wide-text-image/textimage.js
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/wide-text-image/wide-text-image.html
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/form/button/.content.xml
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/form/container/.content.xml
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/form/container/new/.content.xml
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/form/hidden/.content.xml
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/form/options/.content.xml
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/form/options/datasource/countriesdatasource/.content.xml
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/form/text/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/global-useapi/serverurl.js
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/serviceapi/clientlibs/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/serviceapi/clientlibs/js.txt
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/serviceapi/clientlibs/js/serviceapi.js
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/1-column-page/_cq_dialog/.content.xml
+	modified:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/1-column-page/body.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/2-column-page/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/2-column-page/_cq_dialog/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/2-column-page/body.html
+	modified:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/basic-page/basic-page.html
+	modified:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/basic-page/body.html
+	modified:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/basic-page/customfooterlibs.html
+	modified:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/basic-page/customheaderlibs.html
+	modified:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/basic-page/footer.html
+	modified:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/basic-page/header.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/blog-landing-page/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/blog-landing-page/_cq_dialog/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/blog-landing-page/body.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/blog-listing-page/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/blog-listing-page/body.html
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/breadcrumb/breadcrumb.html
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/footer/clientlibs/.content.xml
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/footer/clientlibs/css.txt
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/footer/clientlibs/less/footer.less
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/footer/footer.html
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/footer/footer.js
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/general-page/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/general-page/_cq_dialog/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/general-page/body.html
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/header/clientlib/.content.xml
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/header/clientlib/css.txt
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/header/clientlib/js.txt
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/header/clientlib/js/modal-search.js
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/header/clientlib/js/subitems.js
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/header/clientlib/less/languages-list.less
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/header/clientlib/less/modal-search.less
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/header/clientlib/less/modal-signin.less
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/header/clientlib/less/navbar.less
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/header/dialog.xml
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/header/header.html
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/header/header.js
+	modified:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/home-page/body.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/myaccount-page/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/myaccount-page/body.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/order-page/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/order-page/body.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/order-page/customfooterlibs.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/order-page/customheaderlibs.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/order-page/footer.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/order-page/header.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/order-page/order-page.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/product-page/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/product-page/body.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/product-page/customfooterlibs.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/product-page/customheaderlibs.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/product-page/footer.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/product-page/header.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/product-page/product-page.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/product-page/product-page.html.dir/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/product-test-details/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/product-test-details/_cq_dialog/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/structure/product-test-details/body.html
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/config.author.local/org.apache.sling.commons.log.LogManager.factory.config-frontierwholesales.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/config.prod.publish/org.apache.sling.security.impl.ReferrerFilter.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/config.publish/org.apache.sling.security.impl.ReferrerFilter.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/config.uat.publish/org.apache.sling.security.impl.ReferrerFilter.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/config/com.day.cq.wcm.notification.email.impl.EmailChannel.xml
+	modified:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/config/org.apache.sling.commons.log.LogManager.factory.config-frontierWholesales.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/config/org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended-frontierwholesales.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/config/rewriter/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/config/rewriter/default.xml
+	deleted:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/install/frontierWholesales.core-0.0.1-SNAPSHOT.jar
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/install/magento2.core-1.0.1-SNAPSHOT.jar
+	modified:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/templates/1-column-page/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/templates/2-column-page/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/templates/blog-content-page/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/templates/blog-landing-page/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/templates/blog-listing-page/.content.xml
+	modified:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/templates/home-page/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/templates/myaccount-page/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/templates/order-page/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/templates/product-page/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/templates/product-page/initial/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/templates/product-page/structure/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/templates/product-page/thumbnail.png
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/templates/shopping-cart-page/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/workflow/dialog/approval/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/workflow/dialog/approval/_cq_dialog/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/apps/frontierwholesales/workflow/script/replaceDialogvalue.ecma
+	modified:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/.content.xml
+	modified:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-all/.content.xml
+	modified:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-all/css.txt
+	deleted:    ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-all/css/bootstrap.min.css.map
+	modified:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-all/css/frontier-less-minified.css
+	modified:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-all/css/frontier-less.css
+	deleted:    ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-all/css/frontier-minified.js
+	modified:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-all/css/frontier.css
+	modified:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-all/js.txt
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-all/js/chat.js
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-all/js/frontier-minified.js
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-all/js/handlebars-intl.min.js
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-all/js/handlebars-intl.min.js.map
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-all/js/handlebars.min-latest.js
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-all/js/jquery.matchHeight.js
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-all/js/main.js
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-all/js/newsletter.js
+	renamed:    UI_assets/js/swiper.min.js -> ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-all/js/swiper.min.js
+	modified:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-all/js/validations.js
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-buyersclub/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-buyersclub/js.txt
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-buyersclub/js/buyersclub.js
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-chat/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-chat/js.txt
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-chat/js/chat.js
+	modified:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-common/.content.xml
+	modified:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-common/js.txt
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-common/js/cartoperations.js
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-common/js/common.js
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-common/js/timeout.js
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-formentry/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-formentry/formentry.js
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-formentry/js.txt
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-frontier-all/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-frontier-all/README.md
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-frontier-all/css.txt
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-frontier-all/js.txt
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-handlebars/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-handlebars/js.txt
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-handlebars/js/handlebars-intl.min.js
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-handlebars/js/handlebars-intl.min.js.map
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-handlebars/js/handlebars.min-latest.js
+	renamed:    ui.apps/src/main/content/jcr_root/apps/frontierwholesales/components/content/carousel/clientlibs/.content.xml -> ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-homepage/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-homepage/css.txt
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-homepage/js.txt
+	renamed:    UI_assets/less/home-page.less -> ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-homepage/less/home-page.less
+	renamed:    UI_assets/less/swiper.less -> ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-homepage/less/swiper.less
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-lifetime/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-lifetime/js.txt
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-lifetime/js/lifetimeregistration.js
+	modified:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-login/.content.xml
+	modified:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-login/js.txt
+	modified:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-login/js/magentoLogin.js
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-registration/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-registration/js.txt
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-registration/js/registration.js
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-uiassets/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-uiassets/README.md
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-uiassets/css.txt
+	renamed:    UI_assets/less/account-nav.less -> ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-uiassets/css/account-nav.less
+	renamed:    UI_assets/less/account.less -> ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-uiassets/css/account.less
+	renamed:    UI_assets/css/bootstrap.min.css -> ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-uiassets/css/bootstrap.min.css
+	renamed:    UI_assets/less/buttons.less -> ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-uiassets/css/buttons.less
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-uiassets/css/checkout-flow.less
+	renamed:    UI_assets/less/content-page.less -> ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-uiassets/css/content-page.less
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-uiassets/css/custom-alerts.less
+	renamed:    UI_assets/less/custom-breadcrumb.less -> ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-uiassets/css/custom-breadcrumb.less
+	renamed:    UI_assets/less/custom-mixins.less -> ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-uiassets/css/custom-mixins.less
+	renamed:    UI_assets/less/custom-modals.less -> ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-uiassets/css/custom-modals.less
+	renamed:    UI_assets/less/custom-variables.less -> ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-uiassets/css/custom-variables.less
+	renamed:    UI_assets/less/footer.less -> ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-uiassets/css/footer.less
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-uiassets/css/forms.less
+	renamed:    UI_assets/less/frontier.less -> ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-uiassets/css/frontier.less
+	renamed:    UI_assets/less/header.less -> ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-uiassets/css/header.less
+	renamed:    UI_assets/less/help-side-nav.less -> ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-uiassets/css/help-side-nav.less
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-uiassets/css/home-page-new.less
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-uiassets/css/home-page.less
+	renamed:    UI_assets/css/ie10-viewport-bug-workaround.css -> ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-uiassets/css/ie10-viewport-bug-workaround.css
+	renamed:    UI_assets/less/login.less -> ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-uiassets/css/login.less
+	renamed:    UI_assets/less/main-nav.less -> ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-uiassets/css/main-nav.less
+	renamed:    UI_assets/less/membership-forms.less -> ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-uiassets/css/membership-forms.less
+	renamed:    UI_assets/less/membership-landing.less -> ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-uiassets/css/membership-landing.less
+	renamed:    UI_assets/less/order-tables.less -> ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-uiassets/css/order-tables.less
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-uiassets/css/orders.less
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-uiassets/css/product-listing-search-page.less
+	renamed:    UI_assets/less/product-page.less -> ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-uiassets/css/product-page.less
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-uiassets/css/quick-order.less
+	renamed:    UI_assets/less/responsive-tables-new.less -> ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-uiassets/css/responsive-tables-new.less
+	renamed:    UI_assets/less/responsive-tables.less -> ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-uiassets/css/responsive-tables.less
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-uiassets/css/shop-by-brand.less
+	renamed:    UI_assets/less/shopping-cart.less -> ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-uiassets/css/shopping-cart.less
+	renamed:    UI_assets/less/stellarnav.less -> ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-uiassets/css/stellarnav.less
+	renamed:    UI_assets/less/styles.less -> ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-uiassets/css/styles.less
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-uiassets/css/swiper.less
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-uiassets/fonts/glyphicons-halflings-regular.eot
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-uiassets/fonts/glyphicons-halflings-regular.svg
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-uiassets/fonts/glyphicons-halflings-regular.ttf
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-uiassets/fonts/glyphicons-halflings-regular.woff
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-uiassets/fonts/glyphicons-halflings-regular.woff2
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-uiassets/js.txt
+	renamed:    UI_assets/js/bootstrap.js -> ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-uiassets/js/bootstrap.js
+	renamed:    UI_assets/js/bootstrap.min.js -> ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-uiassets/js/bootstrap.min.js
+	renamed:    UI_assets/js/ie-emulation-modes-warning.js -> ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-uiassets/js/ie-emulation-modes-warning.js
+	renamed:    UI_assets/js/ie10-viewport-bug-workaround.js -> ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-uiassets/js/ie10-viewport-bug-workaround.js
+	renamed:    UI_assets/js/ie8-responsive-file-warning.js -> ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-uiassets/js/ie8-responsive-file-warning.js
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-uiassets/js/jquery.form.min.js
+	renamed:    UI_assets/js/jquery.hoverIntent.min.js -> ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-uiassets/js/jquery.hoverIntent.min.js
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-uiassets/js/jquery.matchHeight.js
+	renamed:    UI_assets/js/jquery.min.js -> ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-uiassets/js/jquery.min.js
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-uiassets/js/jquery.validate.min.js
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-uiassets/js/main.js
+	renamed:    UI_assets/js/npm.js -> ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-uiassets/js/npm.js
+	renamed:    UI_assets/js/stellarnav.min.js -> ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-uiassets/js/stellarnav.min.js
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-uiassets/js/swiper.min.js
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-uiassets/js/validate.js
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-validation/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-validation/js.txt
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-validation/js/additional-methods.min.js
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlib-validation/js/validations.js
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlibs-address-validation/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlibs-address-validation/js.txt
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlibs-address-validation/js/address_validation.js
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlibs-address-validation/js/jquery.liveaddress.js
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlibs-search/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlibs-search/css.txt
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlibs-search/css/search.css
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlibs-search/js.txt
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/clientlibs-search/js/search.js
+	renamed:    UI_assets/frontierwholesales/images/all-about-membership-first-image.jpg -> ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/images/all-about-membership-first-image.jpg
+	renamed:    UI_assets/frontierwholesales/images/all-about-membership-second-image.jpg -> ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/images/all-about-membership-second-image.jpg
+	renamed:    UI_assets/frontierwholesales/images/banner-about-frontier.jpg -> ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/images/banner-about-frontier.jpg
+	renamed:    UI_assets/frontierwholesales/images/banner-all-about-membership.jpg -> ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/images/banner-all-about-membership.jpg
+	renamed:    UI_assets/frontierwholesales/images/banner-coop-membership.jpg -> ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/images/banner-coop-membership.jpg
+	renamed:    UI_assets/frontierwholesales/images/product-background.1df9adf11e80.png -> ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/images/bg-blog.png
+	renamed:    UI_assets/frontierwholesales/images/bg-grain-content.jpg -> ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/images/bg-grain-content.jpg
+	renamed:    UI_assets/frontierwholesales/images/bg-light-content.jpg -> ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/images/bg-light-content.jpg
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/images/blog-image-five.jpg
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/images/blog-image-four.jpg
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/images/blog-image-one.jpg
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/images/blog-image-three.jpg
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/images/blog-image-two.jpg
+	renamed:    UI_assets/frontierwholesales/images/community-first-image.jpg -> ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/images/community-first-image.jpg
+	renamed:    UI_assets/frontierwholesales/images/community-second-image.jpg -> ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/images/community-second-image.jpg
+	renamed:    UI_assets/frontierwholesales/images/community-third-image.jpg -> ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/images/community-third-image.jpg
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/images/mini-cart-item-one.jpg
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/images/mini-cart-item-two.jpg
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/images/pdp-related-one.jpg
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/images/pdp-related-three.jpg
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/images/pdp-related-two.jpg
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/images/search-result-item-1.jpg
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/images/search-result-item-2.jpg
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/images/search-result-item-3.jpg
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/images/search-result-item-4.jpg
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/images/search-result-item-5.jpg
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/images/search-result-item-6.jpg
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/images/search-result-item-7.jpg
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/images/search-result-item-8.jpg
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/images/search-result-item-9.jpg
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/images/shop-brand-one.jpg
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/images/shop-brand-three.jpg
+	new file:   ui.apps/src/main/content/jcr_root/etc/designs/frontierwholesales/images/shop-brand-two.jpg
+	new file:   ui.apps/src/main/content/jcr_root/etc/workflow/models/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/etc/workflow/models/request_for_activation/.content.xml
+	new file:   ui.apps/src/main/content/jcr_root/etc/workflow/models/request_for_activation/_jcr_content/model.xml
+	new file:   ui.apps/src/main/content/jcr_root/etc/workflow/scripts/replaceDialogvalue.ecma
+
+Unmerged paths:
+  (use "git add/rm <file>..." as appropriate to mark resolution)
+
+	deleted by them: UI_assets/index.php
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	.project
+	.scannerwork/
+	core/.gitignore
+	core/.project
+	core/.settings/
+	git.status.file
+	ui.apps/.gitignore
+	ui.apps/.project
+	ui.apps/.settings/
+

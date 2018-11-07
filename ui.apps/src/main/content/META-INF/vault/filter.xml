@@ -7,4 +7,6 @@
     <filter root="/etc/designs/frontierwholesales"/>
     <filter root="/etc/designs/fonts"/>
     <filter root="/etc/acs-commons/lists"/>
+    <filter root="/etc/workflow/models/request_for_activation"/>
+    <filter root="/etc/workflow/scripts/replaceDialogvalue.ecma"/>
 </workspaceFilter>

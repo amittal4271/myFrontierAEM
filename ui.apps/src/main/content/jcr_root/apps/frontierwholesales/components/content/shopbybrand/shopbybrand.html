@@ -1,0 +1,50 @@
+<sly data-sly-use.shopByBrands="com.frontierwholesales.core.magento.services.models.ShopByBrandModel"></sly>
+<section id="shop-by-brand-holder">
+<div class="featured-icon-center"></div>
+<div class="container">
+	<h2 class="featured-title">Shop By Brand</h2>
+	<div class="row top-three-brands clearfix">
+		<div class="row top-three-brands clearfix">
+			<div class="col-xs-4">
+
+				<sly
+					data-sly-resource="${'featuredbrand1' @ resourceType='frontierwholesales/components/content/shopbybrand/brandimage'}"
+					data-sly-unwrap></sly>
+			</div>
+			<div class="col-xs-4">
+
+				<sly
+					data-sly-resource="${'featuredbrand2' @ resourceType='frontierwholesales/components/content/shopbybrand/brandimage'}"
+					data-sly-unwrap></sly>
+			</div>
+			<div class="col-xs-4">
+
+				<sly
+					data-sly-resource="${'featuredbrand3' @ resourceType='frontierwholesales/components/content/shopbybrand/brandimage'}"
+					data-sly-unwrap></sly>
+			</div>
+		</div>
+	</div>
+	<div class="row brands-letter-filter">
+          <div class="content-page-glossary-header">
+               <ul id="glossary-filter-list" data-sly-list="${shopByBrands.getLetterList}">
+                    <li><a data-scrolltoid="start-of-${item}" href="#">${item}</a></li>
+               </ul>
+          </div>
+	</div>
+	<div class="row additional-brands clearfix">
+		<div class="col-md-12" data-sly-list.letter="${shopByBrands.getLetterList}">
+			<div class="row row-each-brand-filter clearfix">
+				<div class="col-xs-12">
+					<h2 class="shop-brand-letter" id="start-of-${letter}">${letter}</h2>
+				</div>
+				<div class="col-xs-12">
+                     <ul class="brand-list" data-sly-list.brand="${shopByBrands.brandMap[letter]}">
+                          <li><a href="/content/frontierwholesales/en/search.html?brand=${brand.id}">${brand.name}</a></li>
+                     </ul>
+                </div>
+           </div>
+		</div>
+	</div>
+</div>
+</section>

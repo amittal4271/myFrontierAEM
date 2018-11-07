@@ -1,0 +1,16 @@
+<sly data-sly-use.authorableNavigation="com.frontierwholesales.core.models.myaccount.AuthorableNavigation">
+	<nav class="account-nav-wrap cmp-navigation clearfix"
+	     data-sly-use.template="core/wcm/components/commons/v1/templates.html"
+	     data-sly-test.hasContent="${authorableNavigation.getNavigationItems.size > 0}"
+	     data-sly-use.groupTemplate="group.html"
+	     data-sly-call="${groupTemplate.group @ items=authorableNavigation.getNavigationItems, groupClass='account-nav'}">
+	</nav>
+	<ul data-sly-list="${authorableNavigation.getNavigationItems}" class="clearfix" id="sub-nav-holder-desktop">
+		<sly data-sly-test="${item.link == currentPage.path || item.link == currentPage.parent.path}" data-sly-list="${item.subMenuItems}">
+			<li class="sub-nav-holder-item ${ item.link == currentPage.path ? 'active-item' : ''}">
+				<a href="${item.link}.html">${item.title}</a>
+			</li>
+		</sly>
+	</ul>
+	<sly data-sly-call="${template.placeholder @ isEmpty=!hasContent, classAppend='account-nav-wrap'}"></sly>
+</sly>

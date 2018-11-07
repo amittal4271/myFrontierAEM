@@ -1,0 +1,11 @@
+<sly data-sly-use.blog="blog-content.js"></sly>
+<div class="blog-content-page">
+    <header>
+        <time class="blog-content-date">${'MMMM dd,yyyy' @ format=blog.date}</time>
+        <h1 class="content-main-heading">${blog.title}</h1>
+    </header>
+    <!-- blog description goes here -->
+    <div class="blog-page-description">
+        ${blog.description @ context='html'}
+    </div>
+</div>

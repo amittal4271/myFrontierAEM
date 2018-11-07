@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="MyAccount Profile - Edit Email/Password"
+    sling:resourceType="cq/gui/components/authoring/dialog"
+    helpPath="https://todo.frontier.com/a/future/help/path/for/authors.html">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/foundation/container">
+        <layout
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/foundation/layouts/tabs"
+            type="nav"/>
+        <items jcr:primaryType="nt:unstructured">
+            <column jcr:primaryType="nt:unstructured"
+				jcr:title="Edit Email/Password Labels"
+				sling:resourceType="granite/ui/components/foundation/container">
+				<layout jcr:primaryType="nt:unstructured"
+					sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns" />
+				<items jcr:primaryType="nt:unstructured">
+					<columns jcr:primaryType="nt:unstructured"
+						sling:resourceType="granite/ui/components/foundation/container">
+						<items jcr:primaryType="nt:unstructured">
+							<emailAndPasswordHeader
+								jcr:primaryType="nt:unstructured"
+								sling:resourceType="granite/ui/components/foundation/form/textfield"
+								fieldDescription="if left empty defaults to 'Email and Password'"
+								fieldLabel="Email and Password Header"
+								name="./emailAndPasswordHeader" />
+							<emailAddressLabel
+								jcr:primaryType="nt:unstructured"
+								sling:resourceType="granite/ui/components/foundation/form/textfield"
+								fieldDescription="if left empty defaults to 'Email address'"
+								fieldLabel="Email address Label" name="./emailAddressLabel" />
+							<updatePasswordLabel
+								jcr:primaryType="nt:unstructured"
+								sling:resourceType="granite/ui/components/foundation/form/textfield"
+								fieldDescription="if left empty defaults to 'Update Password'"
+								fieldLabel="Update Password Label" name="./updatePasswordLabel" />
+							<confirmPasswordLabel
+								jcr:primaryType="nt:unstructured"
+								sling:resourceType="granite/ui/components/foundation/form/textfield"
+								fieldDescription="if left empty defaults to 'Confirm Password'"
+								fieldLabel="Confirm Password Label" name="./confirmPasswordLabel" />
+							<passwordRequirementsText
+								jcr:primaryType="nt:unstructured"
+								sling:resourceType="granite/ui/components/foundation/form/textfield"
+								fieldDescription="if left empty defaults to 'Make sure to use a strong password, 8 character minimum!'"
+								fieldLabel="Password requirements Text"
+								name="./passwordRequirementsText" />
+							<updateButtonText jcr:primaryType="nt:unstructured"
+								sling:resourceType="granite/ui/components/foundation/form/textfield"
+								fieldDescription="if left empty defaults to 'Update'"
+								fieldLabel="Update Button Text" name="./updateButtonText" />
+						</items>
+					</columns>
+				</items>
+			</column>
+        </items>
+    </content>
+</jcr:root>

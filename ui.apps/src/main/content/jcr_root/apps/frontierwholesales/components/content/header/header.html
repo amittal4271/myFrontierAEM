@@ -1,50 +1,171 @@
+
+<!-- header component -->
 <header id="header">
+  <div id="left-header-icons-mobile">
+          <button id="mobile-menu-icon" class="header-mobile-icon" type="button">
+               <span class="menu-icon"><span class="glyphicon glyphicon-menu-hamburger"></span></span>
+               <span class="menu-text">Menu</span>
+          </button>
+          <button id="mobile-search-icon" class="header-mobile-icon" type="button">
+               <span class="glyphicon glyphicon-search"></span>
+               <span class="search-text visuallyhidden">Search</span>
+          </button>
+     </div>
         <div id="logo-header">
-          <a href="/" class="logo-link" title="Frontier Co-op Wholesale">
+          <a href="/content/frontierwholesales/en/home.html" class="logo-link" title="Frontier Co-op Wholesale">
                <span class="logo-icon-header">
-                    <img src="https://dh6qdiyp93d9u.cloudfront.net/static/frontierwholesale/images/logo.6694741e49f1.svg">
+                    <img src="/content/dam/frontierwholesales/images/logo.6694741e49f1.svg">
                     <span class="visuallyhidden">Frontier Co-op Wholesale</span>
                </span>
                <span class="logo-text" aria-hidden="">Wholesale Store</span>
           </a>
      </div>
-     <div id="search-header-holder">
-          <form action="" class="search-form form" id="search-form">
-               <input class="form-control search-input" placeholder="Search &amp; Save..." name="q" autocomplete="off" type="text">
-               <button class="btn btn-green-dark" id="btn-search">Search</button>
-          </form>
-     </div>
+     <div data-sly-resource="${'search' @ resourceType='frontierwholesales/components/content/search'}"></div>
      
      <div id="secondary-nav-holder">
           <ul class="user-menu">
-               <li><a href="#">Quick Order</a></li>
-               <li><a href="#">Help</a></li>
-               <li><a href="/content/frontierwholesales/en/membership.html">Join</a></li>
+               <li><a href="/content/frontierwholesales/en/quickorder.html">Quick Order</a></li>
+               <li><a href="#">Help</a>
+                <ul id="header-help-flyout" class="header-flyout-list">
+                         <li><a href="/content/frontierwholesales/en/contact.html">Contact</a></li>
+                         <li><a href="/content/frontierwholesales/en/faq.html">FAQ</a></li>
+                         <li><a href="/content/frontierwholesales/en/glossary.html">Glossary</a></li>
+                    </ul>
+               </li>
+                
+                   <li class="join-membership" style="display:none;">
+                       <a href="/content/frontierwholesales/en/membership.html">Join</a>
+                  </li>
+            
               
-               <li>
+               <li>                  
                   
-                   <sly data-sly-test="${currentSession.userID == 'anonymous'}">
-                    <a href="/content/frontierwholesales/en/login.html">My Account</a>
-                   </sly>
-                   
-                   <sly data-sly-test="${currentSession.userID != 'anonymous'}">
-                       <a href="#">My Account</a>
-                   </sly>
+                    <a class="myaccount-url">My Account</a>
+                    <ul id="header-account-flyout" class="log-in-menu header-flyout-list mobile-closed">
+                      <li class="login-menu"><a href="/content/frontierwholesales/en/login.html">Log In</a></li>
+                
+                         <li class="post-login-menu"><a href="/content/frontierwholesales/en/myaccount.html/addressbook">Address Book</a></li>
+                         <li class="post-login-menu"><a href="/content/frontierwholesales/en/myaccount.html/orders">Orders</a></li>
+                           <li class="post-login-menu"><a href="/content/frontierwholesales/en/myaccount.html/wishlist">Wish List</a></li>
+                         <li class="post-login-menu"><a id="signOut" href='#'>Sign Out</a></li>
+                    </ul>
+                  
               
               </li>
           </ul>
 
      </div>
+<div id="pageTitle" data-pagetitle="${currentPage.title}"></div>
+    <!-- min cart -->
+          <div id='minicarttemplate' ></div>
+      <script id="minicartTemplate" type="text/x-handlebars-template">
+     <div id="cart-holder" class="owner-account-cart-holder">
+         
+       
+         
+            <div class="signed-in-cart" style="display:none;">   
+              <a href="/content/frontierwholesales/en/cart.html" class="btn btn-cart-display cart-display" title="Cart">
+                   <span class="icon-cart">
+                        <span class="glyphicon glyphicon-shopping-cart"></span>
+                       {{#if quote.items_qty includedZero=false}}
+                        <span class="cart-count quantity">{{quote.items_qty}}</span>
+                       {{else}}
+                       <span class="cart-count quantity">0</span>
+                       {{/if}}
+                   </span>
+                   {{#if quote.items_qty includedZero=false}}
+                   <span class="cart-amount">My Total: <span id="shopping-cart-total" class="amount">{{subTotal}}</span></span>
+                  {{else}}
+                  <span class="cart-amount">My Total: <span id="shopping-cart-total" class="amount">$0.00</span></span>
+                  {{/if}}
 
-     
-     <div id="cart-holder">
-          <a href="#" class="btn btn-cart-display cart-display" title="Cart">
-               <span class="icon-cart">
+              </a>
+            
+             <a href="{{rolecheck role_name}}" class="btn btn-cart-display cart-display-owner-total" title="Cart">
+                 
+                   <span class="icon-cart">
+                        <span class="glyphicon glyphicon-shopping-cart"></span>
+                   </span>
+                 {{#if our_total includedZero=false}}
+                   <span class="cart-amount">Our Total: <span class="amount">{{formatNumber our_total  style="currency" currency="USD"}}</span></span>
+                 {{else}}
+                   <span class="cart-amount">Our Total: <span class="amount">$0.00</span></span>
+                 {{/if}}
+              </a>
+        </div>
+         
+         <div class='sign-in-cart'>
+            <a href="/content/frontierwholesales/en/login.html" class="btn btn-cart-display cart-display" title="Cart">
+                  <span class="icon-cart">
                     <span class="glyphicon glyphicon-shopping-cart"></span>
-                    <span class="cart-count quantity">0</span>
-               </span>
-               <span class="cart-amount">My Total: <span class="amount">$0.00</span></span>
-          </a>
+                  
+                   <span class="cart-count quantity">0</span>
+                  
+                    </span>
+              
+                    <span class="cart-amount">My Total: <span id="shopping-cart-total" class="amount">$0.00</span></span>
+              </a>
+            </div>
+         
+
+         <div class="mini-cart-holder mobile-closed">
+           {{#if noTotal}}
+             <h4 class="cart-empty-heading">Nothing in your cart yet.</h4>
+             {{else}}
+                {{#items}}
+                       <div data-cartitem="{{item_id}}" class="each-mini-cart-item">
+                            <div class="mini-cart-image-holder">
+                                {{#if imgPath}}
+                                 <img src="{{imgPath}}">
+                                {{else}}
+                                <img src="/content/dam/FrontierImages/default_product_image.jpg">
+                                {{/if}}
+                            </div>
+                            <div class="mini-cart-info-holder">
+                                 <div class="mini-cart-name">{{name}}</div>
+                                 <div class="mini-cart-price">
+                                     <span class="product-sale-price normal-price">{{price}} {{#quantities}}* {{qty}}{{/quantities}}</span>
+                                      
+                                 </div>
+                            </div>
+                            <div class="mini-cart-remove-holder">
+                                 <button data-itemid="{{item_id}}" class="btn btn-mini-cart-remove">
+                                      <span class="glyphicon glyphicon-remove"></span>
+                                      <span  class="remove-text" >Remove Item</span>
+                                 </button>
+                            </div>
+                           
+                           <div id="removeid-{{item_id}}" class="mini-cart-item-remove-confirmation" style="display:none;">
+                               <button type="button" data-itemid="{{item_id}}" class="btn btn-smaller btn-confirm-remove-mini-cart-item">Remove Item</button>
+                               <button type="button" class="btn btn-smaller btn-white-green btn-cancel-remove-mini-cart-item">Cancel</button>
+                            </div>
+                       </div>
+
+                      {{/items}}
+                     {{^items.length}}
+
+                      <h4 class="cart-empty-heading">Nothing in your cart yet.</h4>
+                      {{/items.length}}
+           {{/if}}
+              
+            
+               <div class="mini-cart-subtotal-holder">
+                    <div class="subtotal-text">Subtotal</div>
+                   {{#if subTotal}}
+                    <div class="subtotal-amount">{{subTotal}}</div>
+                   {{else}}
+                    <div class="subtotal-amount">$0.00</div>
+                   {{/if}}
+               </div>
+
+               <div class="mini-cart-go-to-cart-holder">
+                  
+                        <a href="/content/frontierwholesales/en/cart.html" class="btn btn-light-green btn-mini-cart-go-to-cart">Go to Cart</a>                        
+                  
+               </div>
+
+          </div>
+         
      </div>
         <div id="right-header-icons-mobile">
           <a href="#" id="mobile-account-icon" class="header-mobile-icon">
@@ -54,9 +175,16 @@
           <a id="mobile-cart-icon" href="#" class="header-mobile-icon">
                <span class="icon-cart">
                     <span class="glyphicon glyphicon-shopping-cart"></span>
-                    <span class="cart-count quantity">0</span>
+                   {{#if quote.items_qty includedZero=false}}
+                    <span class="cart-count quantity">{{quote.items_qty}}</span>
+                   {{else}}
+                   <span class="cart-count quantity">0</span>
+                   {{/if}}
                </span>
                <span class="visuallyhidden">Cart</span>
           </a>
      </div>
-    </header>
+     </script>
+     <!-- Delete Confirmation -->
+</header>    
+    <!--header component -->

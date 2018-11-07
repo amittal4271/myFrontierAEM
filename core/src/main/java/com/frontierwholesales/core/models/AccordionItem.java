@@ -14,11 +14,7 @@ public class AccordionItem {
     private String layout;
     private long l;
 
-    public AccordionItem(){
-    	
-    }
-    
-    public AccordionItem(String sectionTitle, String linkTitle, String anchorTitle,  Boolean defaultSelected, String selected, String layout, long l) {
+    public AccordionItem(String sectionTitle, String linkTitle, String anchorTitle,  Boolean defaultSelected, String selected, long l) {
         super();
         LOG.info("Begin AccordionItem init");
         this.sectionTitle = sectionTitle;

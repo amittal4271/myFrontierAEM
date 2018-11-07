@@ -1,0 +1,3 @@
+#base=js
+handlebars.min-latest.js
+handlebars-intl.min.js

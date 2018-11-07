@@ -1,0 +1,7 @@
+organization=amittal4271-github
+projectKey=myFInal2
+serverUrl=https://sonarcloud.io
+serverVersion=7.5.0.19078
+dashboardUrl=https://sonarcloud.io/dashboard?id=myFInal2
+ceTaskId=AWbqIo3P7oselY-ZpgBz
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AWbqIo3P7oselY-ZpgBz

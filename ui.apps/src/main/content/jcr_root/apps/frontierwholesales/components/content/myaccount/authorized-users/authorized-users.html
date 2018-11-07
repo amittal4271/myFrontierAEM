@@ -1,0 +1,231 @@
+<sly data-sly-use.url="../../../../global-useapi/serverurl.js"></sly>
+<script>
+  var serverURL = "${url.server @ context='html'}";
+</script>
+
+<sly data-sly-use.clientLib="${'/libs/granite/sightly/templates/clientlib.html'}"/>
+<sly data-sly-call="${clientlib.js @ categories='authorized-users'}" data-sly-unwrap/>
+
+<section class="account-main-holder clearfix"
+		 data-sly-use.authorizedusers="com.frontierwholesales.core.models.myaccount.AuthorizedUsers" 
+		 data-sly-use.myaccount="com.frontierwholesales.core.models.myaccount.MyAccount">
+                              
+	<div class="account-heading-holder table-below">
+	     <h2 class="account-heading">${authorizedusers.pendingInvitesTableHeader}</h2>
+	     <button type="button" class="btn btn-white-green btn-account-heading btn-account-form btn-account-invite-new-users">${authorizedusers.pendingInvitesTopButtonText}</button>
+	</div>
+	
+	<div class="account-information-holder">
+	
+	     <div class="grid-table-header order-information-header">
+	          <div class="each-order-header invites-header-first grid-header">${authorizedusers.pendingInvitesFirstNameColumnHeader}</div>
+	          <div class="each-order-header invites-header-last grid-header">${authorizedusers.pendingInvitesLastNameColumnHeader}</div>
+	          <div class="each-order-header invites-header-email grid-header">${authorizedusers.pendingInvitesEmailColumnHeader}</div>
+	          <div class="each-order-header invites-header-status grid-header">${authorizedusers.pendingInvitesStatusColumnHeader}</div>
+	          <div class="each-order-header invites-header-actions grid-header">${authorizedusers.pendingInvitesActionsColumnHeader}</div>
+	     </div>
+	     <div class="order-grid grid-table-data invites-data" data-sly-list.pendingInviteUser="${myaccount.getPendingInvites}">
+	          <div class="row-each-order">
+	               <div class="information-holder order-information-holder">
+	                    <div class="each-order-section invites-first-section">
+	                         <!--<span class="tablet-below-col-heading">First</span>-->
+	                         ${pendingInviteUser.firstName}
+	                    </div>
+	                    <div class="each-order-section invites-last-section">
+	                         <!--<span class="tablet-below-col-heading">Last</span>-->
+	                         ${pendingInviteUser.lastName}
+	                    </div>
+	                    <div class="each-order-section invites-email-section">
+	                         <!--<span class="tablet-below-col-heading">Email</span>-->
+	                         ${pendingInviteUser.email}
+	                    </div>
+	                    <div class="each-order-section invites-status-section">
+	                         <!--<span class="tablet-below-col-heading">Status</span>-->
+	                         ${pendingInviteUser.status}
+	                    </div>
+	                    <div class="each-order-section invites-action-section">
+	                         <span class="tablet-below-col-heading">Cancel Invite</span>
+	                         <a href="#" class="btn btn-only-green-icon" title="Remove">
+	                              <span class="address-link-text mobile-button-text-description">Cancel</span>
+	                              <span class="glyphicon glyphicon-remove"></span>
+	                         </a>
+	                    </div>
+	               </div>
+	          </div>
+	     </div>
+	     <!--
+	     <table class="simple-responsive">
+	          <thead>
+	               <tr>
+	                    <th scope="col">First</th>
+	                    <th scope="col">Last</th>
+	                    <th scope="col">Email</th>
+	                    <th scope="col">Status</th>
+	                    <th scope="col">Actions</th>
+	               </tr>
+	          </thead>
+	          <tbody>
+	               <tr>
+	                    <td scope="row" data-label="First">Joe</td>
+	                    <td data-label="Last">Guerrette</td>
+	                    <td data-label="Email">jguerrette@ztech.io</td>
+	                    <td data-label="Status">Invited</td>
+	                    <td data-label="Actions">
+	                         <a href="#" class="btn btn-only-green-icon" title="Remove">
+	                              <span class="address-link-text visuallyhidden">Cancel</span>
+	                              <span class="glyphicon glyphicon-remove"></span>
+	                         </a>
+	                    </td>
+	               </tr>
+	               <tr>
+	                    <td scope="row" data-label="First">Justin</td>
+	                    <td data-label="Last">Prahst</td>
+	                    <td data-label="Email">jprahst32@gmail.com</td>
+	                    <td data-label="Status">Invited</td>
+	                    <td data-label="Actions">
+	                         <a href="#" class="btn btn-only-green-icon" title="Remove">
+	                              <span class="address-link-text visuallyhidden">Cancel</span>
+	                              <span class="glyphicon glyphicon-remove"></span>
+	                         </a>
+	                    </td>
+	               </tr>
+	          </tbody>
+	     </table>
+	     -->
+	</div>
+	
+	<div class="account-heading-holder table-below below-section">
+	     <h2 class="account-heading">${authorizedusers.myClubMembersTableHeader}</h2>
+	</div>
+	<div class="account-information-holder">
+	     <div class="grid-table-header order-information-header">
+	          <div class="each-order-header members-header-first grid-header">${authorizedusers.myClubMembersFirstNameColumnHeader}</div>
+	          <div class="each-order-header members-header-last grid-header">${authorizedusers.myClubMembersLastNameColumnHeader}</div>
+	          <div class="each-order-header members-header-email grid-header">${authorizedusers.myClubMembersEmailColumnHeader}</div>
+	          <div class="each-order-header members-header-role grid-header">${authorizedusers.myClubMembersUserRoleColumnHeader}</div>
+	          <div class="each-order-header members-header-status grid-header">${authorizedusers.myClubMembersStatusColumnHeader}</div>
+	          <div class="each-order-header members-header-actions grid-header">${authorizedusers.myClubMembersActionsColumnHeader}</div>
+	     </div>
+	
+	     <div class="order-grid grid-table-data invites-data" data-sly-list.myClubMember="${myaccount.getMyClubMembers}">
+	          <div class="row-each-order">
+	               <div class="information-holder order-information-holder">
+	                    <div class="each-order-section members-first-section">
+	                         ${myClubMember.firstName}
+	                    </div>
+	                    <div class="each-order-section members-last-section">
+	                         ${myClubMember.lastName}
+	                    </div>
+	                    <div class="each-order-section members-email-section">
+	                         ${myClubMember.email}
+	                    </div>
+	                    <div class="each-order-section members-role-section">
+	                         ${myClubMember.userRole}
+	                    </div>
+	                    <div class="each-order-section members-status-section">
+	                         ${myClubMember.status}
+	                    </div>
+	                    <div class="each-order-section members-action-section">
+                             <div class="action-button-section-account">
+                                  <span class="tablet-below-col-heading">Deactivate</span>
+                                  <a href="#" class="btn btn-only-green-icon" title="Deactivate">
+                                       <span class="address-link-text mobile-button-text-description">Deactivate</span>
+                                       <span class="glyphicon glyphicon-remove"></span>
+                                  </a>
+                             </div>
+                             <div class="action-button-section-account">
+                                  <span class="tablet-below-col-heading">Edit</span>
+                                  <a href="#editRole2" data-toggle="collapse" class="btn btn-only-green-icon btn-edit-members-role" title="Edit">
+                                       <span class="address-link-text">Edit</span>
+                                  </a>
+                             </div>
+                        </div>
+	               </div>
+	          </div>
+	          <div class="collapse editRoleSection" id="editRole">
+                   <div class="roleHeader">
+                        <span>Update User Role</span>
+                        <span class="pull-right">
+                             <a class="editRoleDismiss glyphicon glyphicon-remove" href="#editRole" data-toggle="collapse"></a>
+                        </span>
+                   </div>
+                   <button class="btn btn-light-green" type="button">
+                        Manager
+                   </button>
+              </div>
+	     </div>
+	     <!--
+	     <table class="simple-responsive">
+	          <thead>
+	               <tr>
+	                    <th scope="col">First</th>
+	                    <th scope="col">Last</th>
+	                    <th class="members-email-th" scope="col">Email</th>
+	                    <th scope="col">User Role</th>
+	                    <th scope="col">Status</th>
+	                    <th scope="col">Actions</th>
+	               </tr>
+	          </thead>
+	          <tbody>
+	               <tr>
+	                    <td scope="row" data-label="First">Britt</td>
+	                    <td data-label="Last">Miller</td>
+	                    <td class="members-email-td" data-label="Email">Brittany.Miller@auracacia.net</td>
+	                    <td data-label="Role">Owner</td>
+	                    <td data-label="Status">Active</td>
+	                    <td data-label="Actions">
+	                         <a href="#" class="btn btn-only-green-icon" title="Remove">
+	                              <span class="address-link-text visuallyhidden">Cancel</span>
+	                              <span class="glyphicon glyphicon-remove"></span>
+	                         </a>
+	                         <button type="button" class="btn btn-green-edit-icon float-right" title="Edit">
+	                              <span class="address-link-text">Edit</span>
+	                              <span class="glyphicon glyphicon-menu-down"></span>
+	                         </button>
+	                    </td>
+	               </tr>
+	               <tr>
+	                    <td scope="row" data-label="First">Britt</td>
+	                    <td data-label="Last">Miller</td>
+	                    <td class="members-email-td" data-label="Email">Brittany.Miller@auracacia.net</td>
+	                    <td data-label="Role">Owner</td>
+	                    <td data-label="Status">Active</td>
+	                    <td data-label="Actions">
+	                         <a href="#" class="btn btn-only-green-icon" title="Remove">
+	                              <span class="address-link-text visuallyhidden">Cancel</span>
+	                              <span class="glyphicon glyphicon-remove"></span>
+	                         </a>
+	                         <button type="button" class="btn btn-green-edit-icon float-right" title="Edit">
+	                              <span class="address-link-text">Edit</span>
+	                              <span class="glyphicon glyphicon-menu-down"></span>
+	                         </button>
+	                    </td>
+	               </tr>
+	          </tbody>
+	     </table>
+	     -->
+	</div>
+	
+	
+	<div class="account-heading-holder below-section" id="new-users-section">
+	     <h2 class="account-heading">${authorizedusers.inviteNewUsersFormHeader}</h2>
+	</div>
+	<div class="account-information-holder">
+	     <form id="form-invite-new-users">
+	          <fieldset class="account-fieldset-third-holder">
+	               <div class="form-group width-half first">
+	                    <label for="id_name">${authorizedusers.inviteNewUsersNameFieldLabel}</label>
+	                    <input id="id_name" name="name" class="form-control" placeholder="${authorizedusers.inviteNewUsersNameFieldHint}" type="text">
+	               </div>
+	               <div class="form-group width-half">
+	                    <label for="id_email">${authorizedusers.inviteNewUsersEmailLabel}</label>
+	                    <input id="id_email" name="email" class="form-control" placeholder="${authorizedusers.inviteNewUsersEmailFieldHint}" type="email">
+	               </div>
+	               <div class="form-group button-holder">
+	                    <input type="submit" class="btn btn-white-green btn-account-form" value="${authorizedusers.inviteNewUsersButtonText}">
+	               </div>
+	          </fieldset>
+	     </form>
+	</div>
+     
+</section>

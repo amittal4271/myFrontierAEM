@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    jcr:primaryType="cq:ClientLibraryFolder"
+    categories="[frontierwholesales.frontier-all]"
+    embed="[frontierwholesales.handlebars,frontierwholesales.serviceapi,frontierwholesales.site,frontierwholesales.page,frontierwholesales.topnav,frontierwholesales.colctrl,frontierwholesales.textimage,frontierwholesales.shoppingcart,frontierwholesales.common, frontierwholesales.homepage, frontierwholesales.search,frontier-search-controller,frontier-search-facets,frontier-search-results,granite.utils, granite.jquery, cq.wcm.foundation, cq.wcm.foundation-main, frontierwholesales.uiassets,frontierwholesales.validation,frontierwholesales.chat,frontierwholesales.header,frontierwholesales.login,frontierwholesales.productlist,frontierwholesales.productdetails,frontierwholesales.magento-iframe,frontierwholesales.bloglist,frontierwholesales.formentry,frontierwholesales.quickorder,frontierwholesales.forgotpassword,frontierwholesales.contact, frontierwholesales.address-validation]"
+    cssProcessor="[default:none, min:yui]"
+    jsProcessor="[min:gcc]"/>

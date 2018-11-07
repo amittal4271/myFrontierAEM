@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="MyAccount Subscriptions"
+    sling:resourceType="cq/gui/components/authoring/dialog"
+    helpPath="https://todo.frontier.com/a/future/help/path/for/authors.html">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/foundation/container">
+        <layout
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/foundation/layouts/tabs"
+            type="nav"/>
+        <items jcr:primaryType="nt:unstructured">
+            <column jcr:primaryType="nt:unstructured"
+				jcr:title="Subscriptions Labels"
+				sling:resourceType="granite/ui/components/foundation/container">
+				<layout jcr:primaryType="nt:unstructured"
+					sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns" />
+				<items jcr:primaryType="nt:unstructured">
+					<columns jcr:primaryType="nt:unstructured"
+						sling:resourceType="granite/ui/components/foundation/container">
+						<items jcr:primaryType="nt:unstructured">
+							<subscriptionsHeader
+								jcr:primaryType="nt:unstructured"
+								sling:resourceType="granite/ui/components/foundation/form/textfield"
+								fieldDescription="if left empty defaults to 'Subscriptions'"
+								fieldLabel="Subscriptions Header" name="./subscriptionsHeader" />
+							<emailCheckboxLabel
+								jcr:primaryType="nt:unstructured"
+								sling:resourceType="granite/ui/components/foundation/form/textfield"
+								fieldDescription="if left empty defaults to 'Email - Email'"
+								fieldLabel="Email Checkbox Label" name="./emailCheckboxLabel" />
+							<printCheckboxLabel
+								jcr:primaryType="nt:unstructured"
+								sling:resourceType="granite/ui/components/foundation/form/textfield"
+								fieldDescription="if left empty defaults to 'Catalog - Print'"
+								fieldLabel="Print Checkbox Label" name="./printCheckboxLabel" />
+							<updateButtonText jcr:primaryType="nt:unstructured"
+								sling:resourceType="granite/ui/components/foundation/form/textfield"
+								fieldDescription="if left empty defaults to 'Update'"
+								fieldLabel="Update Button Text" name="./updateButtonText" />
+						</items>
+					</columns>
+				</items>
+			</column>
+        </items>
+    </content>
+</jcr:root>

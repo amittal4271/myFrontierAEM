@@ -1,0 +1,69 @@
+<sly data-sly-use.url="../../../../global-useapi/serverurl.js"></sly>
+<script>
+  var serverURL = "${url.server @ context='html'}";
+</script>
+
+<sly data-sly-use.clientLib="${'/libs/granite/sightly/templates/clientlib.html'}"/>
+<sly data-sly-call="${clientlib.js @ categories='profile-contact'}" data-sly-unwrap/>
+
+<section class="account-main-holder clearfix"
+		 data-sly-use.profileContactInfo="com.frontierwholesales.core.models.myaccount.ProfileContactInfo"
+	     data-sly-use.myaccount="com.frontierwholesales.core.models.myaccount.MyAccount">
+     <div class="account-heading-holder">
+          <h2 class="account-heading">${profileContactInfo.contactInformationHeader}</h2>
+     </div>
+     <div class="account-information-holder">
+          <form class="account-form" id="form-contact-information">
+               <fieldset class="account-fieldset-third-holder">
+                    <div class="form-group width-half first">
+                         <label for="id_company">${profileContactInfo.companyLabel}</label>
+                         <input id="id_company" maxlength="30" class="form-control" name="company" type="text" value="">
+                    </div>
+                    <div class="form-group width-half">
+                         <label for="id_name">${profileContactInfo.fullNameLabel}</label>
+                         <input id="id_name" maxlength="70" class="form-control" name="name" type="text" value="">
+                    </div>
+                    <div class="form-group width-half first">
+                         <label for="id_address">${profileContactInfo.addressLine1Label}</label>
+                         <input id="id_address" maxlength="150" class="form-control" name="address" placeholder="${profileContactInfo.addressLine1Hint}" type="text" value="">
+                    </div>
+                    <div class="form-group width-half">
+                         <label for="id_address2">${profileContactInfo.addressLine2Label}</label>
+                         <input id="id_address2" maxlength="75" class="form-control" name="address2" placeholder="${profileContactInfo.addressLine2Hint}" type="text">
+                    </div>
+                    <div class="form-group width-half first">
+                         <label for="id_city">${profileContactInfo.cityLabel}</label>
+                         <input id="id_city" maxlength="70" class="form-control" name="city" type="text" value="">
+                    </div>
+                    <div class="form-group width-half">
+                         <label for="id_locality">${profileContactInfo.stateLabel}</label>
+                         <select id="id_locality" class="form-control" name="locality">
+                              
+                         </select>
+                    </div>
+                    <div class="form-group width-half first">
+                         <label for="id_postal_code">${profileContactInfo.zipLabel}</label>
+                         <input id="id_postal_code" class="form-control" name="postal_code" type="text" value="">
+                    </div>
+                    <div class="form-group width-half">
+                         <label for="id_country">${profileContactInfo.countryLabel}</label>
+                         <select id="id_country" class="form-control" name="country">
+                              <option value="840" selected="selected">United States of America</option>
+                         </select>
+                    </div>
+                    <div class="form-group width-half first">
+                         <label for="id_phone">${profileContactInfo.phoneLabel}</label>
+                         <input id="id_phone" class="form-control" name="phone" type="text" value="">
+                    </div>
+                    <div class="form-group width-half">
+                         <label for="id_fax">${profileContactInfo.faxLabel}</label>
+                         <input id="id_fax" class="form-control" name="fax" type="text">
+                    </div>
+                    <div class="form-group button-holder">
+                         <input type="submit" class="btn btn-white-green btn-account-form" value="${profileContactInfo.saveButtonText}">
+                    </div>
+               </fieldset>
+          </form>
+     </div>
+     
+</section>

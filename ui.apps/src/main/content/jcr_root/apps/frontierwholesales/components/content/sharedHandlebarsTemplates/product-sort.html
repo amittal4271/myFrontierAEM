@@ -1,0 +1,45 @@
+
+{{#if total_count includedZero=false}}
+ <div id="search-sort-items">
+      <div id="filters-holder">
+           <div class="form-group">
+                <label for="sortby-type">Filters</label>
+                <button type="button" class="btn btn-black btn-filters-plp-search">View Options</button>
+           </div>
+      </div>
+      {{#if authToken}} 
+      <div class="sort-by-holder">
+           <div class="form-group">
+                <label for="sortby-type">Sort By</label>
+                <select id="sortBy" name="sortby-type" class="form-control">
+                     <!--<option value="featured">Featured</option>-->
+                     <option value="newproduct">New Arrivals</option>
+                     <option value="asc">Lowest Price</option>
+                     <option value="desc">Highest Price</option>
+                </select>
+           </div>
+      </div>
+     {{/if}}
+     {{#gt total_count}}
+      <div class="items-per-page-holder">
+           <div class="form-group">
+                <label for="sortby-items">Items Per Page:</label>
+                <select id="itemPerPageSelect" name="sortby-items"  class="form-control">
+                     <option value="28">28</option>
+                     <option value="56">56</option>
+                     <option value="100">100</option>
+                </select>
+           </div>
+      </div>
+     {{/gt}}
+ </div>
+{{else}}
+<div id="search-sort-items">
+      <div id="filters-holder">
+           <div class="form-group">
+                <label for="sortby-type">Filters</label>
+                <button type="button" class="btn btn-black btn-filters-plp-search">View Options</button>
+           </div>
+      </div>
+</div>
+{{/if}}

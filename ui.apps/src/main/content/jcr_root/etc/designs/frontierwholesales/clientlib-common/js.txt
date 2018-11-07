@@ -1,2 +1,4 @@
 #base=js
-navigation.js
+#navigation.js
+common.js
+timeout.js

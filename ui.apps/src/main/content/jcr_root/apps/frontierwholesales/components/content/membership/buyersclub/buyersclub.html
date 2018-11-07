@@ -1,0 +1,99 @@
+<sly
+    data-sly-use.clientLib="${'/libs/granite/sightly/templates/clientlib.html'}"/>
+<sly data-sly-call="${clientlib.js @ categories='frontierwholesales.buyersclub'}" data-sly-unwrap/>
+    <sly data-sly-use.email="${'buyersclub.js' @ params=request.queryString}" />
+<input type="hidden" id="customer-token" value="${request.requestParameterMap['token'][0].toString}">
+<input type="hidden" id="customer-id" value="${request.requestParameterMap['id'][0].toString}">
+    <input type="hidden" id="current-email-id" value="${email.email}">
+<section id="membership-holder">
+                    <div class="container">
+                         <div class="lifetime-leaf"></div>
+                         <h1 class="plan-heading">Buying Club Account</h1>
+                         <div class="membership-form-section">
+                              <form id="buyersclub-membership-form">
+
+                                   <fieldset class="each-form-section">
+                                        <legend class="each-form-title">
+                                             <span class="title-text">Join a Buying Club</span>
+                                        </legend>
+                                        <div class="each-form-information">
+                                             <span class="btn btn-white-green btn-special-section pull-right">Login to Account</span>
+                                        </div>
+                                   </fieldset>
+
+                                   <fieldset class="each-form-section">
+                                        <legend class="each-form-title">
+                                             <span class="title-text">Login Information</span>
+                                        </legend>
+                                        <div class="each-form-information">
+                                             <div class="form-group width-half first">
+                                                  <label for="id_membership-email">Email address</label>
+                                                  <input id="id_membership-email" class="form-control" name="membership-email" type="email" disabled value="${email.email}">
+                                             </div>
+                                             <div class="form-group width-half">
+                                                  <label for="id_membership-password">Password</label>
+                                                  <input id="id_membership-password" class="form-control" name="membership-password" type="password">
+                                                  <small class="small-form-element">A valid password must have an 8 character minimum, must contain a capital letter, a number, and a symbol.</small>
+                                             </div>
+                                             <div class="form-group width-half first">
+                                                  <label for="id_membership-password_confirm">Confirm Password</label>
+                                                  <input id="id_membership-password_confirm" class="form-control" name="membership-password_confirm" type="password">
+                                             </div>
+                                        </div>
+                                   </fieldset>
+
+                                  <fieldset class="each-form-section">
+                                        <legend class="each-form-title">
+                                             <span class="title-text">Contact Information</span>
+                                        </legend>
+                                        <div class="each-form-information">
+                                             
+                                             <div class="form-group width-half first">
+                                                  <label for="id_shipping-name">Full Name</label>
+                                                  <input id="id_shipping-name" class="form-control" maxlength="150" name="shipping-name" type="text" value="${request.requestParameterMap['firstname'][0].toString} ${request.requestParameterMap['lastname'][0].toString}">
+                                             </div>
+                                             <div class="form-group width-half">
+                                                  <label for="id_shipping-address">Address Line 1</label>
+                                                  <input id="id_shipping-address" maxlength="150" class="form-control" name="shipping-address" placeholder="123 Example Street" type="text">
+                                             </div>
+                                             <div class="form-group width-half first">
+                                                  <label for="id_shipping-address2">Address Line 2</label>
+                                                  <input id="id_shipping-address2" class="form-control" maxlength="75" name="shipping-address2" placeholder="Suite 55C" type="text">
+                                             </div>
+                                             <div class="form-group width-half">
+                                                  <label for="id_shipping-city">City</label>
+                                                  <input id="id_shipping-city" class="form-control" maxlength="70" name="shipping-city" type="text">
+                                             </div>
+                                             <div class="form-group width-half first">
+                                                  <label for="id_shipping-locality">State</label>
+                                                  <select id="id_shipping-locality" class="form-control" name="shipping-locality">
+                                                       
+                                                  </select>
+                                             </div>
+                                             <div class="form-group width-half">
+                                                  <label for="id_shipping-postal_code">Zip</label>
+                                                  <input id="id_shipping-postal_code" class="form-control" name="shipping-postal_code" type="text">
+                                             </div>
+                                             <div class="form-group width-half first">
+                                                  <label for="id_shipping-country">Country</label>
+                                                  <select id="id_shipping-country" class="form-control" name="shipping-country">
+                                                       <option value="840" selected="selected">United States of America</option>
+                                                  </select>
+                                             </div>
+                                             <div class="form-group width-half">
+                                                  <label for="id_shipping-phone">Phone</label>
+                                                  <input id="id_shipping-phone" class="form-control" name="shipping-phone" type="text">
+                                             	  <small class="small-form-element">When providing your phone number, please use the following format. Ex: xxx-xxx-xxxx</small>
+                                             </div>
+                                             <div class="submit-holder">
+                                                  <button data-textoriginal="Register" class="btn btn-white-green btn-account-form">Register</button>
+                                             </div>
+                                        </div>
+                                   </fieldset>
+
+                                   
+
+                              </form>
+                         </div>
+                    </div>
+               </section>

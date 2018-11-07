@@ -1,0 +1,255 @@
+<input id="productId" type=hidden value="${request.requestPathInfo.suffix}"/>
+<input id="currentPagePath" type=hidden value="${currentPage.path}"/>
+
+
+
+<input id="summaryAttribute" type="hidden" value="${properties.summaryAttribute}"/>
+<input id="infoAttribute" type="hidden" value="${properties.infoAttribute}"/>
+<input id="additionalAttribute" type="hidden" value="${properties.additionalAttribute}"/>
+<input id="summaryAttributeLabel" type="hidden" value="${properties.summaryAttributeLabel}"/>
+<sly data-sly-use.user="${'com.frontierwholesales.core.models.SessionModel'}"></sly>
+
+<div data-sly-test="${!request.requestPathInfo.suffix}">Product is not found.</div>
+<sly data-sly-test="${request.requestPathInfo.suffix}">
+
+<section id="product-detail">      
+</section>                             
+<script id="productDetailsTemplate" type="text/x-handlebars-template" >
+    <div class="container" >
+         <section id="breadcrumbs">
+                            <div class="container">
+                                 <ol class="breadcrumb">
+                                 <li><a href="/content/frontierwholesales/en/home.html">Home</a></li>
+                                    
+                                    <li class="active">{{{name}}}</li>
+                                           
+                                 </ol>
+                            </div>
+                       </section>  
+		<div id="product-images">
+              <div id="product-thumbnails">
+                  {{#each imgPath}}
+                  
+                      {{#if @first}}
+                                       <button type="button" class="each-thumbnail active" data-mainimageswitch="{{path}}">
+                                            <img src="{{path}}"/>
+                                       </button>
+                      {{else}}
+                       <button type="button" class="each-thumbnail {{@first}}" data-mainimageswitch="{{path}}">
+                                            <img src="{{path}}"/>
+                                       </button>
+                      {{/if}}
+                 
+                  {{/each}}
+              </div>
+              <div id="product-main-image">
+                                    {{#ifEquals new_product}}
+                                            <span class="badge badge-new">New</span>
+                                        {{/ifEquals}}
+                                        {{#ifEquals on_sale}}
+                                            <span class="badge badge-sale">Sale</span>
+                                        {{/ifEquals}}
+                                        {{#ifEquals close_out}}
+                                            <span class="badge badge-closeout">Closeout</span>
+                                        {{/ifEquals}}
+                                   <div class="product-main-image-holder">
+                                      {{#if imgPath}}
+                                         {{#each imgPath}}
+                                           {{#if @first}}
+                                            <img alt="Image Title" src="{{path}}" class="img-responsive" />
+                                           {{/if}}
+                                         {{/each}}
+                                       {{else}}
+                                             <img src="/content/dam/FrontierImages/default_product_image.jpg" alt="Product Name">
+                                      {{/if}}
+                                   </div>
+              </div>
+        </div>
+        <div id="product-information">
+			<div class="product-sku-number">
+				<span class="we-Product-code">Item #: <span>{{sku}}</span>
+                </span>
+			</div>
+            <h1 class="product-title-name">{{{name}}}</h1>
+			<div class="product-detail-attributes">
+                                   {{#if brand.length}}
+                                    
+                                   <span class="dt-label">Brand: </span>
+                                   <span class="dd-value brand">
+                                        <a href="#" class="dd-value-link">{{{brand}}}</a>
+                                   </span>
+                                 
+                                    {{/if}}
+                                    {{#if barcode.length}}
+                                   <span class="dt-label">UPC: </span>
+                                    
+                                   <span class="dd-value upc">{{barcode}}</span>
+                                    {{/if}}
+                                    
+                                   
+            </div>
+             {{#if ${user.authToken != null @context='scriptString' }}} 
+			<div class="product-price-summary"> 
+                                {{#if special_price includeZero=false}}
+                                   <span class="product-sale-price">{{formatNumber tierprice  style="currency" currency="USD"}}</span> 
+                                   <span class="product-now-price">Now {{formatNumber special_price style="currency" currency="USD"}}</span>
+                                {{else}}
+                                {{#priceCheck tierprice}}
+                                    <span class="product-sale-price normal-price"> {{ formatNumber ../tierprice style="currency" currency="USD"}}</span>
+                                {{/priceCheck}}
+                                {{/if}}
+                                   
+            </div>
+            {{/if}}
+            {{#if in_stock includeZero=false}}
+                <div class="product-detail-message">Availability: In Stock</div>
+            {{else}}
+                <div class="product-detail-message">Availability: Out of Stock</div>
+            {{/if}}
+            <div class="pdp-message-holder">
+                {{#if product_restriction includeZero=false}}
+                <div class="alert alert-danger" role="alert"> 
+                    <span class="glyphicon glyphicon-exclamation-sign"></span>
+                    <strong>Restricted Item:</strong> Item Requires Buyer Certification.
+                </div>
+                {{/if}}
+                {{#priceCheck tierprice}}
+                    {{#ifEquals ../bulk}}
+                    <div class="alert alert-bulk" role="alert">
+                        <span class="glyphicon glyphicon-info-sign"></span>
+                        <strong>Buy 5 to save 5%:</strong> Discount price will display in cart.
+                    </div>
+                    {{/ifEquals}}
+                {{/priceCheck}}
+                
+            </div>
+             {{#if ${user.authToken != null @context='scriptString' }}}
+             {{#priceCheck tierprice}}
+            <div class="product-wishlist">
+                 <div id="message-{{../sku}}" class="alert alert-add-to-cart" style="display: none;"></div>
+                <button data-skuid="{{../sku}}" class="btn btn-add-wishlist btn-wishlist">Add to Wishlist +</button>
+                <div class="add-to-shelf btn">
+                      <select data-prodid="{{../id}}" data-wishsku="{{../sku}}" class="requisition-list-select closed">
+                           <option>Add to Shelves +</option>
+
+                      </select>
+                 </div>
+            </div>
+
+			
+			<div>
+                <input type="hidden" name="redirect" v-model="product.pagePath" data-sly-attribute="${hapiProductForm.itemprop.redirectPath}" />
+                <input type="hidden" name="redirect-product-not-found" v-model="product.pagePath" data-sly-attribute="${hapiProductForm.itemprop.redirectErrorPath}" />
+                <input type="hidden" name="product-quantity" value="1" data-sly-attribute="${hapiProductForm.itemprop.quantity}" />
+                <input type="hidden" name="product-path" v-model="product.path" data-sly-attribute="${hapiProductForm.itemprop.productPath}" />
+                <input type="hidden" name=":operation" value="addToSmartList" />
+				
+
+				 
+				   <div class="product-add-options">
+						<div class="qty-holder">
+							 <button type="button" class="decrease qty-button qty-down">
+								  <span class="decrease-minus">-</span>
+								  <span class="visuallyhidden">decrease</span>
+							 </button>
+							 <input type="text" min="1" max="99" name="quantity" id="product-qty-input" class="grid-product-qty-input qty-input-field" value="1">
+							 <button type="button" class="increase qty-button qty-up">
+								  <span class="increase-plus">+</span>
+								  <span class="visuallyhidden">increase</span>
+							 </button>
+						</div>
+						<div class="add-to-cart-holder">
+                            <div id="cartMessage-{{../sku}}" class="alert alert-add-to-cart" style="display: none;">Added to your Cart!</div>
+							<button id="{{../sku}}" class="btn btn-light-green btn-add-to-cart">{{getBtnText ../call_to_order ../in_stock}}</button>
+						</div>
+					</div>
+					
+			</div>
+            {{/priceCheck}}
+            {{/if}}
+			
+            <div class="product-overview">
+			   <h2 class="heading-product-overview">Product Summary</h2>
+			   <p class="description-product-overview">
+					{{{description}}}
+					
+			   </p>
+               {{#if map}}
+                <div><a href="{{map}}" target="_blank">Map Agreement</a></div>
+                {{/if}}
+			   <ul class="overview-stat-list">
+                    {{#each custom_attributes}}
+                   {{#getAttrValues attribute_code value @index}}
+					<li class="each-stat icon-check">
+						 <span class="each-stat-icon">
+							  <span class="glyphicon glyphicon-ok"></span>
+						 </span>
+						 <span class="each-stat-name-text">{{getSummaryAttrLabel attribute_code}}</span>
+					</li>
+                   {{/getAttrValues}}
+			    {{/each}}
+					
+			   </ul>
+               
+		  	</div>
+			
+			<div class="product-detail-additional-details">
+                 {{#custom_attributes}}
+                {{#getInfoAttrValues attribute_code value}}                
+				   <span class="product-detail-overview-item-detail">
+						<span class="product-detail-overview-label">{{attribute_code}}</span>
+						<span class="product-detail-overview-value">{{value}}</span>
+				   </span>                
+                {{/getInfoAttrValues}}
+			     {{/custom_attributes}}
+				  
+			</div>
+            {{#additionalAttrValues features directions ingredients sug_uses pkg_contents safety_info}}
+			<div class="product-more-details">
+                
+				   <h3 class="heading-product-overview">Additional Product Details</h3>
+                {{#if features.length}}
+                 <div class="each-additional-section">
+						<h4 class="additional-heading">Product Features</h4>
+						<p class="additional-description">{{{features}}}</p>
+				   </div>
+                {{/if}}
+                {{#if directions.length}}
+				   <div class="each-additional-section">
+						<h4 class="additional-heading">Directions</h4>
+						<p class="additional-description">{{{directions}}}</p>
+				   </div>
+                 {{/if}}
+                {{#if ingredients.length}}
+                    <div class="each-additional-section">
+                        <h4 class="additional-heading">Ingredients</h4>
+                        <p class="additional-description">{{{ingredients}}}</p>
+                    </div>
+                 {{/if}}
+                {{#if sug_uses.length}}
+                 <div class="each-additional-section">
+                        <h4 class="additional-heading">Suggested Uses</h4>
+                        <p class="additional-description">{{{sug_uses}}}</p>
+                    </div>
+                 {{/if}}
+                {{#if pkg_contents.length}}
+                    <div class="each-additional-section">
+                        <h4 class="additional-heading">Package Content</h4>
+                        <p class="additional-description">{{{pkg_contents}}}</p>
+                    </div>
+                 {{/if}}
+                {{#if safety_info.length}}
+                 <div class="each-additional-section">
+                        <h4 class="additional-heading">Safety Information</h4>
+                        <p class="additional-description">{{{safety_info}}}</p>
+                    </div>
+                {{/if}}
+               
+            </div>
+             {{/additionalAttrValues}}
+
+
+    </div>
+</div>
+</script>
+</sly>

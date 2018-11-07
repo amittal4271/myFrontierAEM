@@ -51,7 +51,7 @@ public class AccordionSection extends BaseComponent {
     
     @Override public void init() {
     	LOG.info("AccordionSection Component Model init Begin");
-    	//LOG.info(request.getResource().getName());
+    	
     	if(request!=null && request.getResource()!=null)
     	{
     		accordionName = request.getResource().getName();

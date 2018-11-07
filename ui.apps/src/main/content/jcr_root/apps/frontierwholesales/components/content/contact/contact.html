@@ -1,0 +1,68 @@
+<h1 class="content-main-heading">Contact</h1>
+
+<section class="support-content support-content-contact">	
+
+	<h2>We Want to Hear From You</h2>
+	<p>Have feedback for us? Want to request more information? Or maybe there's a brand or product you wish we carried? Whatever you wish to communicate, please use the form below:</p>
+
+    <div class="contact-list">
+        <div class="contact-item">
+            <h2 class="contact-title">Contact</h2>
+            <div class="contact-company">Frontier Natural Products Co-op</div>
+            <address class="contact-address"><p>PO Box 299 3021 78th St. Norway, IA 52318</p></address>
+            <a href="mailto:customercare@frontiercoop.com" class="contact-email">customercare@frontiercoop.com</a>
+            <a href="tel:1-800-669-3275" class="contact-telephone">1-800-669-3275</a><br>
+        </div>
+		<div class="contact-item">
+            <h2 class="contact-title">Business Hours</h2>
+            <div class="contact-hours"><p>Monday through Friday, 7am - 6pm Central Time</p></div>
+		</div>
+	</div>
+
+    <form id="id_contact-form"  class="contact-form">
+    
+        <input type="hidden" name="csrfmiddlewaretoken" value="Y4Pqfpc6udBBKd4QKO6eOHNKqCbzBbGl">
+    
+        <div class="contact-form-list">
+    
+            <div class="contact-form-item contact-form-item-name">
+                <label for="id_name">Name</label>
+                <input id="id_name" name="name" type="text" required>
+            </div>	
+
+            <div class="contact-form-item contact-form-item-email">
+                <label for="id_email">Email</label>
+                <input id="id_email" name="email" type="email" required>			
+            </div>
+                        
+            <div class="contact-form-item contact-form-item-phone-number-optional">
+                <label for="id_phone_number">Phone Number (optional)</label>
+                <input id="id_phone_number" name="phone_number" type="text">
+            </div>
+    
+            <div class="contact-form-item contact-form-item-subject">
+                <label for="id_reason">Subject</label>
+                <select id="id_reason" name="reason" required>
+                    <option value="" selected="selected">Please Select</option>
+                    <option value="warranty">Warranty</option>
+                    <option value="order">Order Question</option>
+                    <option value="product">Product Inquiry</option>
+                    <option value="feedback">Product Feedback</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="contact-form-item contact-form-item-message">
+                <label for="id_message">Message</label>
+                <textarea cols="40" id="id_message" name="message" rows="10" required></textarea>
+            </div>
+    
+        </div>
+    
+        <div class="contact-form-submit">
+            <button class="contact-form__submit">Submit</button>
+        </div>
+
+    </form>
+
+</section>

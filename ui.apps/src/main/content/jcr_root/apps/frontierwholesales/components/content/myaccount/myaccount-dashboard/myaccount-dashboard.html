@@ -1,0 +1,10 @@
+<div class="clearfix">
+	<section id="my-account-message-area"
+			 data-sly-use.dashboard="com.frontierwholesales.core.models.myaccount.Dashboard"
+		     data-sly-use.myaccount="com.frontierwholesales.core.models.myaccount.MyAccount">
+	     <div class="account-message-holder">
+	          <div class="account-message-title">${dashboard.messageHeader}</div>
+	          <div data-sly-resource="${'message-parsys' @ resourceType='foundation/components/parsys'}"/>
+	     </div>
+	</section>
+</div>

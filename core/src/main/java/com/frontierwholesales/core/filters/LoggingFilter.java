@@ -50,10 +50,27 @@ public class LoggingFilter implements Filter {
         filterChain.doFilter(request, response);
     }
 
-    @Override
-    public void init(FilterConfig filterConfig) {}
+    /*
+     * This method is unused now
+     * (non-Javadoc)
+     * @see javax.servlet.Filter#init(javax.servlet.FilterConfig)
+     */
+	@Override
+	public void init(FilterConfig filterConfig) throws ServletException {
+		
+		 logger.debug("init method");
+	}
 
-    @Override
-    public void destroy() {}
+	/*
+	 * This method is unused now
+	 * (non-Javadoc)
+	 * @see javax.servlet.Filter#destroy()
+	 */
+	@Override
+	public void destroy() {
+		
+		 logger.debug("destroy method");
+	}
+
 
 }

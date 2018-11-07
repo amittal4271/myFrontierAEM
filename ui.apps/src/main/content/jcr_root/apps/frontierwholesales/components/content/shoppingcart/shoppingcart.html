@@ -1,0 +1,21 @@
+<sly data-sly-use.url="../../../global-useapi/serverurl.js"></sly>
+
+<script>
+  var serverURL = "${url.server @ context='html'}";
+
+  function cartIframeLoaded() {
+      var iFrameID = document.getElementById('magento-cart-iframe');
+      if(iFrameID) {
+          iFrameID.height = "";
+          iFrameID.height = iFrameID.contentWindow.document.body.scrollHeight + "px";
+      }   
+  }
+  window.addEventListener('resize', function(event){
+      cartIframeLoaded();
+  });
+
+
+</script>
+<div class="magento-iframe-container">
+	<iframe id="magento-cart-iframe" onload="cartIframeLoaded()"  frameborder="0" scrolling="auto" class="fullwidth"></iframe>
+</div>

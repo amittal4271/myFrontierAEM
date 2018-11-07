@@ -1,0 +1,51 @@
+<sly data-sly-use.confmodel="${'com.frontierwholesales.core.magento.services.models.OrderConfirmationModel'}"></sly>
+
+<sly data-sly-test="${confmodel.confirmation}">
+                    <section class="account-main-holder checkout-holder order-confirmation-page">
+                         <div id="order-confirmation-header">
+                              <h1 class="confirmation-header">Order Successful!</h1>
+                              <p class="confirmation-text">An order confirmation email has been sent to <span class="confirmation-email">${confmodel.confirmation.customerEmail}</span>.</p>
+                              <p class="confirmation-text">Thank you for placing your order with us here at Frontier Co-op wholesale. We appreciate your business. If you any questions or concerns, please feel free to contact us at <a href="mailto:customercare@frontiercoop.com">customercare@frontiercoop.com</a> or 1-800-669-3275.</p>
+                              <a href="/content/frontierwholesales/en/home.html" class="btn btn-light-green btn-continue-shopping-confirmation">Continue Shopping</a>
+                         </div>
+                            <div id="order-confirmation-items-holder">
+                              <div id="order-confirmation-items-header">
+                                   <p class="confirmation-order-id">
+                                        For future reference, your Order ID is listed below:<br>
+                                        <span class="confirmation-order-number">Order ID: ${confmodel.confirmation.confirmationId}</span>
+                                   </p>
+                                   <a href="javascript: window.print();" class="btn btn-white-green btn-print-confirmation">Print Order Details</a>
+                              </div>
+
+                                <div id="order-confirmation-items-section">
+                                   
+                                  <div data-sly-list.item="${confmodel.confirmation.items}" class="each-confirmation-item">
+                                        <div class="item-info">
+
+                                             <div class="confirmation-item-details">
+                                                                                 <a href="#" class="confirmation-item-product-name">${item.name}</a>
+                                                                                 <span class="confirmation-item-number">Item #${item.sku}</span>
+                                                                                 <span class="confirmation-price">$${item.price}</span>
+                                             </div>
+                                        </div>
+                                        <div class="qty-info">
+                                                                                 <span class="confirmation-qty-text">Qty: <span class="confirmation-qty">${item.qty_ordered}</span></span>
+                                        </div>
+                                   </div>
+                                   
+                                 </div>
+                         </div>
+                       </section>
+                    </sly> 
+<sly data-sly-test="${confmodel.confirmation == null}">
+
+                  <div class="global-server-side-message-holder">
+                        <div class="alert alert-danger" role="alert">The site is currently unavailable and unable to process your request.  Please check back later. </div>
+                   </div>    
+</sly>
+
+
+
+
+
+

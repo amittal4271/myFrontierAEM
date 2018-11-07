@@ -1,0 +1,47 @@
+<body>
+    <div id="ajax-form-overlay-holder">
+     <div class="loader"></div>
+</div>
+    <header id="header" class="checkout-header">
+    <div id="logo-header">
+          <a href="./" class="logo-link" title="Frontier Co-op Wholesale">
+               <span class="logo-icon-header">
+                    <img src="/content/dam/frontierwholesales/images/logo.6694741e49f1.svg">
+                    <span class="visuallyhidden">Frontier Co-op Wholesale</span>
+               </span>
+               <span class="logo-text" aria-hidden="">Wholesale Store</span>
+          </a>
+     </div>
+    </header>
+<main class="main-content-container account-section-max-1200">
+     <div class="container">
+        <nav class="checkout-nav clearfix">
+                         <ol class="checkout-nav-list">
+                              <li class="checkout-nav-item active">
+                                   <div class="checkout-nav-step">
+                                        <span class="checkout-nav-step-icon">1</span>
+                                   </div>
+                                   <span class="checkout-nav-info checkout-nav-info-1">Approval</span>
+                              </li>
+                              <li class="checkout-nav-item">
+                                   <div class="checkout-nav-step">
+                                        <span class="checkout-nav-step-icon">2</span>
+                                   </div>
+                                   <span class="checkout-nav-info checkout-nav-info-2">Shipping</span>
+                              </li>
+                              <li class="checkout-nav-item">
+                                   <div class="checkout-nav-step">
+                                        <span class="checkout-nav-step-icon">3</span>
+                                   </div>
+                                   <span class="checkout-nav-info checkout-nav-info-3">Review &amp; Payments</span>
+                              </li>
+                         </ol>
+                    </nav>
+         <!-- show error message for registration page -->
+<div class="global-server-side-message-holder" style="display:none;">
+                        <div class="alert alert-danger" role="alert"> <strong>Message Alert:</strong> Some type of message that shows errors </div>
+                   </div>
+    <sly data-sly-resource="${'par' @ resourceType='foundation/components/parsys'}" data-sly-unwrap></sly>
+    </div>
+</main>
+</body>

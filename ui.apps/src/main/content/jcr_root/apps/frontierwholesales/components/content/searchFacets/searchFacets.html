@@ -1,0 +1,46 @@
+<sly data-sly-use.searchFacets="com.frontierwholesales.core.magento.services.models.SearchFacets"></sly>
+<div id="mobile-filters-holder">
+     <div id="mobile-filters-header">
+          <div id="mobile-filters-heading">
+               <span>Filters</span>
+          </div>
+          <div id="mobile-filters-close-holder">
+               <button class="btn" id="close-filters-plp-search">
+                    <span class="hidden">Close</span>
+                    <span class="glyphicon glyphicon-remove"></span>
+               </button>
+          </div>
+     </div>
+     <!-- the HTML from id plp-search-left-nav-filters is injected here when opened on smaller devices -->
+     <div id="mobile-filters">
+     </div>
+</div>
+<div id="mobile-filters-overlay"></div>
+<aside id="plp-search-left-nav-filters" data-sly-list="${searchFacets.facets}">
+		<sly data-sly-test="${item.attribute_code == 'manufacturer'}">
+		<div class="each-filter-section hide">
+	        <h2 class="filter-heading"><label for="id_${item.attribute_code}">Brand</label></h2>
+	        <ul data-code="${item.attribute_code}" class="each-filters-list" data-sly-list.option="${item.options}">
+	        	<li data-sly-test="${option.value != '' && option.value != ' '}" class="filter-item ${optionList.index > 5 ? 'visuallyhidden' : ''}">
+					<a href="#" id="0" data-value="${option.value}" class="filter-link checkbox-link"><span class="text">${option.label}</span></a>
+				</li>
+				<li data-sly-test="${optionList.last}" class="filter-item filter-item-expand">
+					<button type="button" class="btn btn-view-more-filters">
+					     <span class="view-more-text">View More</span>
+					</button>
+				</li>
+	        </ul>
+        </div>
+		</sly>
+		
+		<sly data-sly-test="${item.attribute_code == 'certifications' && item.frontend_input != 'boolean'}">
+        <div class="each-filter-section hide">
+	        <h2 class="filter-heading"><label for="id_${item.attribute_code}">Certifications</label></h2>
+	        <ul data-code="${item.attribute_code}" class="each-filters-list" data-sly-list.option="${item.options}">
+	        	<li data-sly-test="${option.value != '' && option.value != ' '}" class="filter-item">
+					<a href="#" id="0" data-value="${option.value}" class="filter-link checkbox-link"><span class="text">${option.label}</span></a>
+				</li>
+	        </ul>
+        </div>
+		</sly>
+</aside>

@@ -1,0 +1,66 @@
+<!--/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  ~ Copyright 2018 Adobe Systems Incorporated
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/-->
+<div style="clear:both;" data-sly-test="${wcmmode.edit}">&nbsp;</div>
+<sly data-sly-test.sku="${request.requestPathInfo && request.requestPathInfo.suffix}"></sly>
+<sly data-sly-test="${sku}">
+<sly data-sly-use.products="${'com.frontierwholesales.core.models.RelatedProducts' @ mainProductSku=sku}"
+     data-sly-use.template="core/wcm/components/commons/v1/templates.html" />
+<sly data-sly-test="${products.relatedProductsList.size > 0}">
+<section class="related-products-holder" id="related-products-holder-pdp">
+    <div class="container">
+        <div class="related-products-heading-holder">
+            <h4 class="related-products-heading">${products.heading @ i18n}</h4>
+        </div>
+        <div id="pdp-scroller">
+            <div class="swiper-container" >
+                <div class="swiper-wrapper" data-sly-list.oneProduct="${products.relatedProductsList}">
+                    <div class="swiper-slide">
+                        <a class="each-slider-related-link-holder" href="/content/frontierwholesales/en/productdetail.html/${oneProduct.urlPath}/${oneProduct.productSKU}">
+                            <span class="image-holder">
+                                
+                                 <sly data-sly-test="${oneProduct.imagePath != null}">
+                                    <img src="${oneProduct.imagePath}"/>                               
+                                               
+                                </sly>
+                                <sly data-sly-test="${oneProduct.imagePath == ''}">
+                                     <img src="/content/dam/FrontierImages/default_product_image.jpg" alt="Product Name">
+                                </sly>
+                            </span>
+                            <span class="title-holder">
+                                <span class="product-tile-sku">${'Item #: {0}' @ i18n, format=[oneProduct.productSKU]}</span>
+                                <span class="product-tile-name">${oneProduct.title @ i18n}</span>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+
+                <sly data-sly-test="${products.relatedProductsList.size > products.maxItems}">
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+                </sly>
+            </div>
+            <sly data-sly-test="${products.relatedProductsList.size == 0}">
+                ${products.defaultText @ i18n}
+            </sly>
+        </div>
+    </div>
+</section>
+</sly>
+</sly>
+
+<sly data-sly-call="${template.placeholder @ isEmpty=!products.heading}"></sly>
+

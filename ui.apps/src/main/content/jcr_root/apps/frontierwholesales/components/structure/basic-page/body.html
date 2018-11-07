@@ -1,7 +1,13 @@
 <body>
-
+<div id="ajax-form-overlay-holder">
+     <div class="loader"></div>
+</div>
 <!-- Body text here -->
 <main id="test-home" class="main-content-container">
+<!-- show error message for registration page -->
+<div class="global-server-side-message-holder" style="display:none;">
+                        <div class="alert alert-danger" role="alert"> <strong>Message Alert:</strong> Some type of message that shows errors </div>
+                   </div>
 <section>
 <div class="container">
 <div data-sly-resource="${'content' @ resourceType='foundation/components/parsys'}"></div>

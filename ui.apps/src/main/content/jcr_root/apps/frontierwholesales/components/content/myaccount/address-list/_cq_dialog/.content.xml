@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="MyAccount Address List"
+    sling:resourceType="cq/gui/components/authoring/dialog"
+    helpPath="https://todo.frontier.com/a/future/help/path/for/authors.html">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/foundation/container">
+        <layout
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/foundation/layouts/tabs"
+            type="nav"/>
+        <items jcr:primaryType="nt:unstructured">
+            <column jcr:primaryType="nt:unstructured"
+				jcr:title="Address Book Labels"
+				sling:resourceType="granite/ui/components/foundation/container">
+				<layout jcr:primaryType="nt:unstructured"
+					sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns" />
+				<items jcr:primaryType="nt:unstructured">
+					<columns jcr:primaryType="nt:unstructured"
+						sling:resourceType="granite/ui/components/foundation/container">
+						<items jcr:primaryType="nt:unstructured">
+							<addressBookHeader
+								jcr:primaryType="nt:unstructured"
+								sling:resourceType="granite/ui/components/foundation/form/textfield"
+								fieldDescription="if left empty defaults to 'Address Book'"
+								fieldLabel="Address Book Header" name="./addressBookHeader" />
+							<addNewAddressButtonText
+								jcr:primaryType="nt:unstructured"
+								sling:resourceType="granite/ui/components/foundation/form/textfield"
+								fieldDescription="if left empty defaults to 'Add New Address'"
+								fieldLabel="Add New Address Button Text"
+								name="./addNewAddressButtonText" />
+							<addNewAddressButtonLink
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/foundation/form/pathbrowser"
+                                fieldDescription="if left empty defaults to '/content/frontierwholesales/en/myaccount/addresses/add'"
+                                fieldLabel="Add New Address Button Link"
+                                name="./addNewAddressButtonLink"
+                                rootPath="/content"/>
+							<editActionText jcr:primaryType="nt:unstructured"
+								sling:resourceType="granite/ui/components/foundation/form/textfield"
+								fieldDescription="if left empty defaults to 'Edit'"
+								fieldLabel="Edit Action Text" name="./editActionText" />
+							<deleteActionText jcr:primaryType="nt:unstructured"
+								sling:resourceType="granite/ui/components/foundation/form/textfield"
+								fieldDescription="if left empty defaults to 'Delete'"
+								fieldLabel="Delete Action Text" name="./deleteActionText" />
+							<deleteModalHeading jcr:primaryType="nt:unstructured"
+								sling:resourceType="granite/ui/components/foundation/form/textfield"
+								fieldDescription="if left empty defaults to 'Confirm Address Delete'"
+								fieldLabel="Delete Modal Heading" name="./deleteModalHeading" />
+							<deleteModalText jcr:primaryType="nt:unstructured"
+								sling:resourceType="granite/ui/components/foundation/form/textfield"
+								fieldDescription="if left empty defaults to 'Please confirm that you wish to delete the address.'"
+								fieldLabel="Delete Modal Text" name="./deleteModalText" />
+							<deleteModalCancelButtonText jcr:primaryType="nt:unstructured"
+								sling:resourceType="granite/ui/components/foundation/form/textfield"
+								fieldDescription="if left empty defaults to 'Cancel'"
+								fieldLabel="Delete Modal Cancel Button Text" name="./deleteModalCancelButtonText" />
+							<deleteModalConfirmButtonText jcr:primaryType="nt:unstructured"
+								sling:resourceType="granite/ui/components/foundation/form/textfield"
+								fieldDescription="if left empty defaults to 'Confirm'"
+								fieldLabel="Delete Modal Confirm Button Text" name="./deleteModalConfirmButtonText" />
+						</items>
+					</columns>
+				</items>
+			</column>
+        </items>
+    </content>
+</jcr:root>

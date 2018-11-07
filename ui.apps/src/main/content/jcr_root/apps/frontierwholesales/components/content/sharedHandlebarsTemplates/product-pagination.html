@@ -1,0 +1,28 @@
+{{#if pageTotal includedZero=false}}
+ <div id="search-pagination">
+      
+      <nav aria-label="Page navigation">
+           <ul class="pagination">
+                <li>
+                     <a href="#" class="pagination-previous pagination-arrow disabled" id="previous" aria-label="Previous">
+                          <span class="glyphicon glyphicon-triangle-left"></span>
+                     </a>
+                </li>
+                <li class="pagination-numbers">
+                  
+                   
+                     <span class="pag-number">{{search_criteria.current_page}} of {{pageTotal}}</span>
+                   
+                    
+                </li>
+                <li><input id="currentPage" type=hidden value="{{search_criteria.current_page}}">
+                    <input id="totalPage" type=hidden value="{{pageTotal}}">
+                     <a href="#" class="pagination-next pagination-arrow" id="next" aria-label="Next">
+                          <span class="glyphicon glyphicon-triangle-right"></span>
+                     </a>
+                </li>
+           </ul>
+      </nav>
+    
+ </div>
+{{/if}}

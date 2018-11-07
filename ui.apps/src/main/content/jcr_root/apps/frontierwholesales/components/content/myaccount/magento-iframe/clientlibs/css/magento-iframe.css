@@ -1,0 +1,8 @@
+.magento-iframe-container {
+    position: relative;
+    margin:-15px;
+}
+#magento-myaccount-iframe, #magento-cart-iframe, #magento-quickorder-iframe, #magento-forgotpwd-iframe {
+	width:100%;
+    min-height: 60vh;
+}

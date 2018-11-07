@@ -13,6 +13,7 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 */-->
-<a class="btn btn-primary btn-action cq-dd-linkTo"
-   data-sly-use.button="button.js"
-   href="${button.linkTo}" role="button">${properties.label}</a>
+<a data-sly-use.button="button.js"
+   href="${button.linkTo || '#'}" >
+	<span class="btn btn-light-green">${properties.label}</span>
+</a>

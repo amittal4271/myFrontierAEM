@@ -1,14 +1,56 @@
 <sly data-sly-use.wcmInit="/libs/wcm/foundation/components/page/initwcm.js"
      data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html">
 <!--/* Include the site client libraries (loading only the CSS in the header, JS will be loaded in the footer) */-->
-<sly data-sly-use.clientLib="/libs/granite/sightly/templates/clientlib.html" data-sly-call="${clientLib.css @ categories='frontierwholesales.all'}" />
-    
-    <!--/* Initializes the Experience Manager authoring UI */-->
+<sly data-sly-use.clientLib="/libs/granite/sightly/templates/clientlib.html" data-sly-call="${clientLib.css @ categories='frontierwholesales.frontier-all'}" />
+
+   <!--/* Initializes the Experience Manager authoring UI */-->
 <sly data-sly-include="/libs/wcm/core/components/init/init.jsp" data-sly-unwrap> </sly>
 
 <!--/* Include Adobe Dynamic Tag Management libraries for the header */-->
 <sly data-sly-include="/libs/cq/cloudserviceconfigs/components/servicelibs/servicelibs.jsp" data-sly-unwrap/>
-    <sly data-sly-use.clientLib="/libs/granite/sightly/templates/clientlib.html" data-sly-call="${clientLib.js @ categories='cq.widgets'}"/>
+    <sly data-sly-test.author="${wcmmode.edit || wcmmode.design}" data-sly-use.clientLib="/libs/granite/sightly/templates/clientlib.html" data-sly-call="${clientLib.js @ categories='cq.widgets'}"/>
+    
+    <sly data-sly-call="${clientlib.js @ categories='granite.utils'}"/>
+
+</sly>
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700|Open+Sans+Condensed:300,700|Open+Sans:300,400,700" rel="stylesheet">
+
+<sly data-sly-use.url="/apps/frontierwholesales/components/global-useapi/serverurl.js"></sly>
+<script>
+  var serverURL = "${url.server @ context='html'}";
+  var pageName = "${pageProperties.pageTitle @ context='html'}";
+</script>
+<!--/* Responsive metatag */-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--/* Favicon */-->
+
+<link rel="shortcut icon" href="/content/dam/frontierwholesales/images/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/content/dam/frontierwholesales/images/favicon.ico" type="image/x-icon">
+
+<!-- Hotjar Tracking Code -->
+<sly data-sly-use.frontierSiteConfig="com.frontierwholesales.core.FrontierPropertiesConfigurationService"
+	 data-sly-test="${frontierSiteConfig.getHotjarId}">
+<script>
+(function(h,o,t,j,a,r){
+h.hj=h.hj||function()
+
+{(h.hj.q=h.hj.q||[]).push(arguments)};
+h._hjSettings={hjid:${frontierSiteConfig.getHotjarId @ context='html'},hjsv:6};
+a=o.getElementsByTagName('head')[0];
+r=o.createElement('script');r.async=1;
+r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+a.appendChild(r);
+})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
+</sly>
+<sly data-sly-test="${!frontierSiteConfig.getHotjarId}">
+<!-- not displaying hotjar code, no hotjar id in AEM system console configuration 'Frontier properties configurator', update config to enable hotjar-->
 </sly>
 
-<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700|Open+Sans+Condensed:300,700|Open+Sans:300,400,700" rel="stylesheet">
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TCKTKRR');</script>
+<!-- End Google Tag Manager -->

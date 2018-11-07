@@ -14,11 +14,7 @@ public class TabItem {
     private String selected = "";
     private String layout;
 
-    public TabItem(){
-    	
-    }
-    
-    public TabItem(String sectionTitle, String linkTitle, String anchorTitle,  Boolean defaultSelected, String selected, String layout) {
+    public TabItem(String sectionTitle, String linkTitle, String anchorTitle,  Boolean defaultSelected, String selected) {
         super();
         LOG.info("Begin TabItem init");
         this.sectionTitle = sectionTitle;

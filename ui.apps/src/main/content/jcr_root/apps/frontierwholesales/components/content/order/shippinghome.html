@@ -1,0 +1,196 @@
+<div class="container">
+
+                    <nav class="checkout-nav clearfix">
+                         <ol class="checkout-nav-list">
+                              <li class="checkout-nav-item completed">
+                                   <a href="orderhome">
+                                        <div class="checkout-nav-step">
+                                             <span class="checkout-nav-step-icon">1</span>
+                                        </div>
+                                        <span class="checkout-nav-info checkout-nav-info-1">Approval</span>
+                                   </a>
+                              </li>
+                              <li class="checkout-nav-item active">
+                                   <div class="checkout-nav-step">
+                                        <span class="checkout-nav-step-icon">2</span>
+                                   </div>
+                                   <span class="checkout-nav-info checkout-nav-info-2">Shipping</span>
+                              </li>
+                              <li class="checkout-nav-item">
+                                   <div class="checkout-nav-step">
+                                        <span class="checkout-nav-step-icon">3</span>
+                                   </div>
+                                   <span class="checkout-nav-info checkout-nav-info-3">Review &amp; Payments</span>
+                              </li>
+                         </ol>
+                    </nav>
+
+                    
+                    <div id="checkout-message-holder" class="global-server-side-message-holder clearfix" style="display:none;">
+                         <div class="alert alert-danger" role="alert"> <strong>Message Alert:</strong> Some type of message that shows errors </div>
+                    </div>
+                    
+
+                    <section class="account-main-holder checkout-holder shipping-page clearfix">
+                         <div id="checkout-steps-holder">
+                              <form id="shipping-address-form">
+                                   <div class="account-heading-holder">
+                                        <h2 class="account-heading">1. Shipping</h2>
+                                   </div>
+                                   <fieldset id="shipping-address-holder" class="shipping-section">
+                                        <legend class="checkout-sub-header">Shipping Address</legend>
+                                        <div id="radio-shipping-address-options" class="clearfix">
+                                             <div class="radio">
+                                                  <label for="shipping_address_0">
+                                                       <input id="shipping_address_0" name="existing_address" class="existing-shipping-address-input" type="radio" value="">
+                                                       <span class="label-text">(Contact) Justin Prahst, Justin Company, 1485 W 6th Ave, Columbus OH 43212-2429, USA</span>
+                                                  </label>
+                                             </div>
+                                             <div class="radio">
+                                                  <label for="shipping_address_1">
+                                                       <input id="shipping_address_1" name="existing_address" class="existing-shipping-address-input" type="radio" value="">
+                                                       <span class="label-text">Justin Prahst, Test Company, 1485 W 6th Ave, Columbus OH 43212-2429, USA</span>
+                                                  </label>
+                                             </div>
+                                             <div class="radio">
+                                                  <label for="shipping_address_2">
+                                                       <input id="shipping_address_2" name="existing_address" class="existing-shipping-address-input new-address-input" type="radio" value="">
+                                                       <span class="label-text">New Address</span>
+                                                  </label>
+                                             </div>
+                                        </div>
+                                        <div id="shipping-new-address-holder">
+                                             <div class="form-group width-half first">
+                                                  <label for="id_shipping-company">Company</label>
+                                                  <input id="id_shipping-company" class="form-control" maxlength="30" name="shipping-company" type="text">
+                                             </div>
+                                             <div class="form-group width-half">
+                                                  <label for="id_shipping-name">Full Name</label>
+                                                  <input id="id_shipping-name" class="form-control" maxlength="150" name="shipping-name" type="text">
+                                             </div>
+                                             <div class="form-group width-half first">
+                                                  <label for="id_shipping-address">Address Line 1</label>
+                                                  <input id="id_shipping-address" maxlength="150" class="form-control" name="shipping-address" placeholder="123 Example Street" type="text">
+                                             </div>
+                                             <div class="form-group width-half">
+                                                  <label for="id_shipping-address2">Address Line 2</label>
+                                                  <input id="id_shipping-address2" class="form-control" maxlength="75" name="shipping-address2" placeholder="Suite 55C" type="text">
+                                             </div>
+                                             <div class="form-group width-half first">
+                                                  <label for="id_shipping-city">City</label>
+                                                  <input id="id_shipping-city" class="form-control" maxlength="70" name="shipping-city" type="text">
+                                             </div>
+                                             <div class="form-group width-half">
+                                                  <label for="id_shipping-locality">State</label>
+                                                   <select id="id_shipping-locality" class="form-control"  ng-model="selectedRegions" name="shipping-locality" >
+                                                                                 <option ng-repeat="region in JsonData.regions" data-id="{{region.id}}" value="{{region.code}}">{{region.name}}</option>
+                                                  </select>
+                                             </div>
+                                             <div class="form-group width-half first">
+                                                  <label for="id_shipping-postal_code">Zip</label>
+                                                  <input id="id_shipping-postal_code" class="form-control" name="shipping-postal_code" type="text">
+                                             </div>
+                                             <div class="form-group width-half">
+                                                  <label for="id_shipping-country">Country</label>
+                                                  <select id="id_shipping-country" class="form-control" name="shipping-country">
+                                                       <option value="US" selected="selected">United States of America</option>
+                                                  </select>
+                                             </div>
+                                             <div class="form-group width-half first">
+                                                  <label for="id_shipping-phone">Phone</label>
+                                                  <input id="id_shipping-phone" class="form-control" name="shipping-phone" type="text">
+                                             	  <small class="small-form-element">When providing your phone number, please use the following format. Ex: xxx-xxx-xxxx</small>
+                                             </div>
+                                             <div class="form-group width-half">
+                                                  <label for="id_shipping-building">Building</label>
+                                                  <select id="id_shipping-building" class="form-control" name="shipping-building">
+                                                       <option value="1">Commercial</option>
+                                                       <option value="5">Residential</option>
+                                                  </select>
+                                             </div>
+
+                                             
+                                        </div>
+                                   </fieldset>
+
+                                   <fieldset id="shipping-rate-holder" class="shipping-section below-section">
+                                        <legend class="checkout-sub-header">Delivery Method</legend>
+                                        <div id="radio-shipping-rate-options" class="clearfix">
+
+                                            
+                                             <div ng-repeat="methods in JsonData.paymentMethods" class="radio">
+                                                                                 <label for="shipping_rate_{{$index}}">
+                                                                                 <input id="shipping_rate_{{$index}}" class="delivery-methods" 
+                                                                                 data-carriercode="{{methods.carrier_code}}" data-methodcode="{{methods.method_code}}" name="shipping_rate" type="radio" value="">
+                                                                                 <span class="label-text">{{methods.carrier_title}} {{methods.method_title}} - <span class="bold">{{methods.price_incl_tax | currency}}</span></span>
+                                                  </label>
+                                             </div>
+
+                                           
+                                        </div>
+                                   </fieldset>
+
+                                   <div class="submit-holder checkout-flow">
+                                        <button  class="btn btn-light-green btn-larger btn-cart-checkout btn-shipping" ng-click="submitForm()">Continue to Next Step</button>
+                                   </div>
+
+                                   <div class="account-heading-holder checkout-next-steps">
+                                        <h2 class="account-heading">2. Billing / Payment / Review</h2>
+                                   </div>
+
+                              </form>
+                         </div>
+
+
+
+                             
+                         <aside  id="cart-order-summary-holder">
+                              <h3 class="checkout-sub-header">Your Cart</h3>
+                              <div class="order-summary-holder">
+                                   <table class="table-order-summary">
+                                        <colgroup>
+                                             <col class="description">
+                                             <col class="cost">
+                                        </colgroup>
+                                        <thead>
+                                             <tr>
+                                                  <th>Description</th>
+                                                  <th>Cost</th>
+                                             </tr>
+                                        </thead>
+                                        <tbody>
+                                             <tr class="subtotal">
+                                                                                 <td>{{JsonData.items_qty}} Item Subtotal</td>
+                                                                                 <td id="id_subtotal-price" class="amount">{{JsonData.base_subtotal | currency}}</td>
+                                             </tr>
+                                             <tr class="shipping">
+                                                  <td class="method">Shipping</td>
+                                                  <td id="id_shipping-amount" class="amount">$0.00</td>
+                                             </tr>
+
+                                             <tr class="tax">
+                                                  <td>Tax</td>
+                                                                                 <td id="id_tax-amount" class="amount">{{JsonData.tax_amount | currency}}</td>
+                                             </tr>
+
+                                             <tr class="discounts">
+                                                  <td>Discounts</td>
+                                                                                 <td id="id_discount-amount" class="amount">{{JsonData.discount_amount | currency}}</td>
+                                             </tr>
+                                        </tbody>
+                                        <tfoot>
+                                             <tr class="total">
+                                                  <td>
+                                                       <strong>Total</strong>
+                                                  </td>
+                                                  <td class="amount">
+                                                                                 <strong id="id_grand-total" class="total-amount">{{JsonData.base_grand_total | currency}}</strong>
+                                                  </td>
+                                             </tr>
+                                        </tfoot>
+                                   </table>
+                              </div>
+                             </aside>
+                    </section>
+
+               </div>

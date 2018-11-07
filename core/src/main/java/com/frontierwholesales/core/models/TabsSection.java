@@ -55,11 +55,11 @@ public class TabsSection extends BaseComponent {
     @Override public void init() {
     	LOG.info("TabsSection Component Model init Begin");
         try {
-			listItems = new ArrayList<TabItem>();
-			southListItems = new ArrayList<TabItem>();
-			northListItems = new ArrayList<TabItem>();
-			commercialListItems = new ArrayList<TabItem>();
-			residentailListItems = new ArrayList<TabItem>();
+			listItems = new ArrayList<>();
+			southListItems = new ArrayList<>();
+			northListItems = new ArrayList<>();
+			commercialListItems = new ArrayList<>();
+			residentailListItems = new ArrayList<>();
 			
 			LOG.info("Created list Items");
 			

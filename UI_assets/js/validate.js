@@ -1,7 +1,0 @@
-;(function($) {
-
-	window.validation = {
-
-	};
-
-})(jQuery);

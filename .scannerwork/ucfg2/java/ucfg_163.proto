@@ -1,0 +1,22 @@
+
+¡com.frontierwholesales.core.magento.services.FrontierWholesalesMagentoCommerceConnector#getProductDetails(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+__unknown_file (
+adminToken	productID"1*–
+1©
+œ/Users/anantmittal/dev/frontier/WholesaleAEM/core/src/main/java/com/frontierwholesales/core/magento/services/FrontierWholesalesMagentoCommerceConnector.java° °((æ
+ã
+©
+œ/Users/anantmittal/dev/frontier/WholesaleAEM/core/src/main/java/com/frontierwholesales/core/magento/services/FrontierWholesalesMagentoCommerceConnector.java° °(2
+%0"__concat*
+/rest/V1/products/*
+
+	productIDÄ
+Á
+©
+œ/Users/anantmittal/dev/frontier/WholesaleAEM/core/src/main/java/com/frontierwholesales/core/magento/services/FrontierWholesalesMagentoCommerceConnector.java°	 °(3
+api"__id*
+
+%0"´
+©
+œ/Users/anantmittal/dev/frontier/WholesaleAEM/core/src/main/java/com/frontierwholesales/core/magento/services/FrontierWholesalesMagentoCommerceConnector.java± ±(Z
+""

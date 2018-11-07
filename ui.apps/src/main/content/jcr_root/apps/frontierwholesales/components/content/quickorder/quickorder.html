@@ -1,0 +1,19 @@
+<sly data-sly-use.url="../../../global-useapi/serverurl.js"></sly>
+<sly data-sly-use.user="com.frontierwholesales.core.models.SessionModel"></sly>
+<script>
+  var serverURL = "${url.server @ context='html'}";
+
+  function quickOrderIframeLoaded() {
+          var iFrameID = document.getElementById('magento-quickorder-iframe');
+          if(iFrameID) {
+          iFrameID.height = "";
+          iFrameID.height = iFrameID.contentWindow.document.body.scrollHeight + "px";
+      }   
+  }
+  window.addEventListener('resize', function(event){
+      quickOrderIframeLoaded();
+  });
+</script>
+<div class="magento-iframe-container">
+	<iframe id="magento-quickorder-iframe" onload="quickOrderIframeLoaded()" frameborder="0" scrolling="auto" class="fullwidth"></iframe>
+</div>

@@ -288,7 +288,7 @@ input, select, textarea {
 }
 
 #header {
-    background-image: url('/etc/designs/frontierwholesales/clientlib-all/css/images/header-bg@2x.a9aa6367fbbc.jpg');
+    background-image: url('../../../images/header-bg@2x.a9aa6367fbbc.jpg');
     background-size: auto 114px;
     background-position: left top;
     background-repeat: repeat-x;
@@ -346,7 +346,7 @@ input, select, textarea {
 }
 .search-input {
     float: left;
-    width: 70% !important;
+    width: 70%;
 }
 
 #secondary-nav-holder {
@@ -382,7 +382,7 @@ input, select, textarea {
 }
 
 #footer {
-    background-image: url('/etc/designs/frontierwholesales/clientlib-all/css/images/footer-bg.7af45f7fd978.jpg');
+    background-image: url('../../../images/footer-bg.7af45f7fd978.jpg');
     background-repeat: no-repeat;
     background-position: center top;
     background-size: cover;

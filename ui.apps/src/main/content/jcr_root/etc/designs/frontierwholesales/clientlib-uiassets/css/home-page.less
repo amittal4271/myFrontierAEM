@@ -1,0 +1,522 @@
+.home-page {
+    #main-nav {
+        border-bottom: none;
+    }
+}
+
+#test-home {
+    float: left;
+    width: 100%;
+    clear: both;
+    margin-bottom: 0;
+    margin-top: 15px;
+
+    .breakpoint_992({
+        margin-bottom: 30px;
+    });
+
+    .breakpoint_1200({
+        margin-top: 0;
+    });
+}
+#scroller-content {
+    float: left;
+    width: 100%;
+}
+#homepage-scroller {
+    float: left;
+    width: 100%;
+
+    .breakpoint_992({
+        width: 65%;
+    });
+
+    .swiper-container {
+        width: 100%;
+
+        .swiper-slide {
+            width: 100%;
+            img {
+                max-width: 100%;
+                display: block;
+            }
+        }
+
+        .swiper-pagination {
+            position: relative;
+            bottom: 0;
+            float: left;
+            width: 100%;
+            margin-top: 20px;
+            margin-bottom: 30px;
+
+            .breakpoint_992({
+                margin-bottom: 0;
+            });
+
+            .swiper-pagination-bullet {
+                background: #8bba4a;
+                opacity: 1;
+                width: 12px;
+                height: 12px;
+                margin: 0 6px;
+            }
+            .swiper-pagination-bullet-active {
+                background: #189060;
+            }
+        }
+
+        .swiper-button-next, .swiper-button-prev {
+            display: none;
+        }
+    }
+}
+#homepage-scroller .each-image {
+    float: left;
+    width: 100%;
+}
+#homepage-scroller .each-image img {
+    float: left;
+    width: 100%;
+}
+#homepage-right-side {
+    float: right;
+    width: 100%;
+
+    .breakpoint_992({
+        width: 35%;
+        padding-left: 20px;
+    });
+    
+}
+#homepage-right-side .each-side-image {
+    float: left;
+    width: 100%;
+    border-left: 1px solid #e6e6e6;
+    border-bottom: 1px solid #e6e6e6;
+    border-top: 1px solid #e6e6e6;
+    margin-bottom: 25px;
+}
+#homepage-right-side .each-side-image a {
+    float: left;
+    width: 100%;
+    position: relative;
+}
+#homepage-right-side .each-side-image.background-image a {
+    background-position: center;
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    background-size: cover;
+    min-height: 190px;
+    width: 100%;
+    padding: 20px;
+}
+
+#homepage-right-side .each-side-image a img {
+
+}
+#homepage-right-side .each-side-image a .right-image-heading {
+    font-size: 28px;
+    color: #5a524b;
+    margin-bottom: 20px;
+    letter-spacing: .02px;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-family: 'Open Sans', sans-serif;
+    line-height: 36px;
+    float: left;
+    width: 100%;
+}
+#homepage-right-side .each-side-image a .right-image-heading.white {
+    color: @white;
+}
+#homepage-right-side .each-side-image a .btn-call-to-action-right-side {
+    float: left;
+    clear: both;
+    margin-top: 10px;
+}
+
+/*featured brands*/
+.featured-icon-center {
+    width: 107px;
+    height: 50px;
+    background-image: url('../../../frontierwholesales/images/header-clip-1.fb3e4e38c064.jpg');
+    position: absolute;
+    top: -30px; 
+    left: 50%;
+    margin-left: -53px;
+}
+.home-featured-brands {
+    padding: 40px 0 20px 0;
+    border-top: 4px dotted @dottedgray;
+    float: left;
+    width: 100%; 
+    margin-top: 30px;
+    position: relative;
+
+    .breakpoint_768({
+        margin-top: 60px;
+    });
+    .breakpoint_992({
+        padding-bottom: 60px;
+    });
+}
+.featured-title {
+    font-size: 40px;
+    color: #5a524b;
+    letter-spacing: 0.8px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+.featured-subtext {
+    margin: 0 auto 45px auto;
+    max-width: 447px;
+    text-align: center;
+}
+.featured-holder {
+    float: left;
+    width: 100%;
+}
+
+.each-featured-section {
+    float: left;
+    width: 100%;
+    position: relative; 
+    margin-bottom: 40px;
+
+    .breakpoint_768({
+        width: 100%;
+        padding: 0 15px;  
+    });
+
+    .breakpoint_992({
+        width: 25%;  
+        margin-bottom: 0;
+    });
+}
+
+.featured-link-holder {
+    float: left;
+    width: 100%;
+
+    .breakpoint_992({
+        background-image: url('../../../frontierwholesales/images/product-background.1df9adf11e80.png');
+        background-position: center bottom;
+        background-repeat: no-repeat;
+        -webkit-background-size: cover;
+        background-size: cover;
+        padding: 0 0 70px 0;
+    });
+}
+
+.featured-info {
+    float: left;
+    width: 100%;
+    background-image: url('../../../frontierwholesales/images/product-background.1df9adf11e80.png');
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    background-size: cover;
+    padding: 0 30px 70px 30px;
+
+    .breakpoint_480({
+        width: 50%;
+    });
+    
+    .breakpoint_992({
+        width: 100%;
+        min-height: 480px;
+        background-image: none;
+        padding: 0 20px;
+    });
+}
+
+.brand-image {
+    width: 100%;
+    float: left;
+    .breakpoint_480({
+        width: 50%;
+    });
+    .breakpoint_992({
+        width: 100%;
+    });
+} 
+
+.brand-name, .featured-description {
+    float: left;
+    width: 100%;
+}
+.brand-image img {
+    max-width: 100%;
+    width: 100%;
+    display: block;
+}
+.brand-name {
+    color: #5a524b;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 28px;
+    letter-spacing: 0.8px;
+    padding: 25px 0 0 0;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 700;
+    width: 100%;
+
+    .breakpoint_768({
+        padding-bottom: 25px;
+    });
+}
+.featured-description {
+    margin: 0 auto 10px 0;
+    text-align: center;
+}
+.brand-copy {
+    display: none;
+    .breakpoint_768({
+        display: block;
+    });
+}
+
+.brand-copy ul {
+    list-style: disc!important;
+    float: left;
+    width: 100%;
+    clear: both;
+    margin: 10px 0 0 0;
+}
+
+.brand-copy ul li {
+    float: left;
+    width: 100%;
+    clear: both;
+    margin: 3px 0;
+    text-align: center;
+    color: #817266;
+    display: block;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+}
+.brand-copy ul li:before {
+    content: "- ";
+}
+.brand-button-holder {
+    float: left;
+    width: 100%;
+    clear: both;
+    margin: 20px 0 0 0;
+    text-align: center;
+}
+/* end featured brands */
+
+
+
+
+
+/* new products specials */
+.new-products-specials {
+    background-image: url('../../../frontierwholesales/images/background-1.460918a89423.jpg');
+    -webkit-background-size: cover;
+    background-size: cover;
+    padding: 75px 0;
+    float: left;
+    width: 100%;
+
+    .breakpoint_992({
+        margin-bottom: 20px;
+    });
+}
+.each-special-section {
+    float: left;
+    width: 100%;
+    padding: 0 20px;
+
+    .breakpoint_600({
+        width: 50%;
+    });
+
+    .breakpoint_992({
+        margin: 0 1.25%;
+        padding:0 50px;
+        width: 47.5%;
+    });
+
+    &.first {
+        margin-bottom: 60px;
+        .breakpoint_600({
+            margin-bottom: 0;
+        });
+    }
+}
+.special-section-link {
+    float: left;
+    width: 100%;
+    background-image: url('../../../frontierwholesales/images/bg-home-items.c9948a3ed034.png');
+    background-position: bottom center;
+    background-repeat: no-repeat;
+    padding-bottom: 50px;
+}
+.special-image-holder {
+    float: left;
+    width: 100%;
+    clear: both;
+}
+.special-image-holder img {
+    width: 100%;
+    max-width: 100%;
+    display: block;
+}
+.special-info {
+    float: left;
+    width: 100%;
+    clear: both;
+    padding: 30px 30px 70px 30px;
+    min-height: 300px;
+    background: @white;
+}
+.special-heading {
+    font-size: 35px;
+    color: #5a524b;
+    letter-spacing: 0.8px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+.special-text {
+    margin: 0 auto 10px 0;
+    color: #817266;
+    font-family: 'Open Sans',sans-serif;
+    line-height: 24px;
+    font-size: 14px;
+}
+.special-button-holder {
+    float: left;
+    clear: both;
+    width: 100%;
+    margin-top: 20px;
+}
+/* new products specials */
+
+
+/* blog subscribe */
+.blog-subscribe {
+    background-image: url('../../../frontierwholesales/images/background-1.460918a89423.jpg');
+    -webkit-background-size: cover;
+    background-size: cover;
+    padding: 30px 0;
+    float: left;
+    width: 100%;
+
+    .breakpoint_992({
+        padding: 75px 0 100px 0;
+    });
+}
+.blog-section {
+    float: left;
+    width: 100%;
+    margin-bottom: 30px;
+
+    .breakpoint_992({
+        width: 60%;
+        margin-bottom: 0;
+    });
+
+    a {
+        float: left;
+        width: 100%;
+    }
+}
+.blog-info {
+    float: left;
+    width: 100%;
+    background-image: url('../../../frontierwholesales/images/rough-bg.9e4e7b909d11.jpg');
+    background-repeat: repeat;
+    padding: 30px;
+
+    .breakpoint_768({
+        width: 45%;
+    });
+}
+.blog-image-holder {
+    float: left;
+    width: 100%;
+    .breakpoint_768({
+        width: 55%;
+    });
+}
+.blog-image-holder img {
+    width: 100%;
+    max-width: 100%;
+    display: block;
+    border: none;
+
+    .breakpoint_768({
+        border-left: none;
+        border: 1px solid #f2f2f2;
+    });
+}
+.blog-note {
+    color: #5a524b;
+    display: block;
+    font-family: 'Lato', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.4px;
+    font-weight: 700;
+    text-align: left;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+.blog-header {
+    color: #5a524b;
+    font-size: 28px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+.blog-text, .subscribe-text {
+    margin: 0 auto 10px 0;
+}
+.subscribe-section {
+    float: left;
+    width: 100%;
+    padding: 30px;
+    background-image: url('../../../frontierwholesales/images/rough-bg.9e4e7b909d11.jpg');
+    background-repeat: repeat;
+
+    .breakpoint_992({
+        width: 35%;
+        margin-left: 5%;
+    });
+}
+.subscribe-header {
+    color: #5a524b;
+    font-size: 35px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+#newsletter-form {
+    float: left;
+    width: 100%;
+    clear: both;
+    margin: 20px 0 10px 0;
+    position: relative;
+}
+#submit-email {
+    position: absolute;
+    top: 0px;
+    right: 5px;
+    background: transparent;
+    color: #8bba4a;
+    font-weight: 700;
+}
+.badge-container {
+    float: left;
+    width: 100%;
+    clear: both;
+    text-align: center;
+    margin: 20px 0 10px 0;
+}
+/* end blog subscribe */

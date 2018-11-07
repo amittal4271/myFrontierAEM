@@ -1,13 +1,5 @@
-
-
-
-<sly
-    data-sly-use.clientLib="${'/libs/granite/sightly/templates/clientlib.html'}"
-    data-sly-call="${clientLib.all @ categories='frontierwholesales.login'}" data-sly-unwrap/>
-
-
-
-
+ <sly data-sly-use.url="../../../global-useapi/serverurl.js"></sly>
+<input type="hidden" id="serverURL" value="${url.server}">
 <section class="login-section">
                     <div class="container">
                          
@@ -19,8 +11,8 @@
                               <form id="login-form"  class="form-section-start" method="POST">
                                   <div class="error-text login-text">Please enter a correct email or user name and password. Note that password is case-sensitive.</div>
                                    <div class="form-group">
-                                        <label for="id_username" class="hidden">Email address (or user name):</label>
-                                        <input id="id_username" class="form-control" maxlength="254" name="username" type="text" placeholder="Email address (or user name)">
+                                        <label for="id_username" class="hidden">Email Address</label>
+                                        <input id="id_username" class="form-control" maxlength="254" name="username" type="text" placeholder="Email Address">
                                        <div class="error-text userid-text">This field is required.</div>
                                    </div>
                                    
@@ -33,7 +25,7 @@
                                        <button  class="btn btn-light-green btn-account-form" id="btn-login" value="Sign In">Sign In</button>
                                    </div>
                                    <small class="login-forgot-password small-form-element">
-                                        <a href="/account/password-reset/" class="login-password-link">Forgot password?</a>
+                                        <a href="/content/frontierwholesales/en/forgotpassword.html" class="login-password-link">Forgot password?</a>
                                    </small>
                                    <div id='errordiv'></div>
                                   <span><input type='hidden' id='url' value='${pageProperties.homePagePath}/j_security_check'/></span>

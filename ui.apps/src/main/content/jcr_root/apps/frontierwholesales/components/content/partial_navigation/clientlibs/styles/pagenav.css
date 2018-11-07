@@ -1,0 +1,11 @@
+.category-nav-item.pagenav {
+    display: inline-block;
+    padding: 0 20px 20px 20px;
+    text-transform: uppercase;
+}
+
+.sub-nav.first-level.pagenav {
+    text-align: center; 
+    margin-bottom: 60px;
+    border-bottom: 3px solid #ececec;
+}

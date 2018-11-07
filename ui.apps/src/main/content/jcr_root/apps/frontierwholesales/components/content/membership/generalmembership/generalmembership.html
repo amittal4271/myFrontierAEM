@@ -1,8 +1,11 @@
 <sly
     data-sly-use.clientLib="${'/libs/granite/sightly/templates/clientlib.html'}"/>
-<sly data-sly-call="${clientlib.js @ categories='registration'}" data-sly-unwrap/>
-<sly data-sly-call="${clientLib.css @ categories='frontierwholesales.login'}" data-sly-unwrap/>
+<sly data-sly-call="${clientlib.js @ categories='frontierwholesales.registration'}" data-sly-unwrap/>
+<!--<sly data-sly-call="${clientlib.js @ categories='frontierwholesales.login'}" data-sly-unwrap/>-->
 
+<div data-sly-use.url="../../../../global-useapi/serverurl.js">
+    <input type='hidden' id='serverurl' name='serverurl' value='${url.server}'>
+</div>
      
 <main class="main-content-container account-section-max-1200">
                
@@ -12,7 +15,7 @@
                          <div class="lifetime-leaf"></div>
                          <h1 class="plan-heading">General Account</h1>
                          <div class="membership-form-section">
-                              <form id="lifetime-membership-form">
+                              <form id="general-membership-form">
 
                                    <fieldset class="each-form-section">
                                         <legend class="each-form-title">
@@ -20,73 +23,128 @@
                                         </legend>
                                         <div class="each-form-information">
                                              <div class="checkbox">
-                                                  <label for="id_account-buying_club_0">
-                                                       <input id="id_account-buying_club_0"  name="account-buying_club" type="checkbox">
+                                                  <label for="id_account-buying_club">
+                                                       <input id="id_account-buying_club"  data-buyerclub="BC" name="account-buying_club" type="checkbox">
                                                        <span class="label-text">Buying Club</span>
                                                   </label>
                                              </div>
+
+
+                                               <div id="buying-club-additional-invites-holder">
+                                                  <small class="small-form-element">You must invite 4 people to join the buying club</small>
+
+                                                  <input type="hidden" value="4" id="buyer-member-count-input">
+
+                                                  <div id="buyer-club-group-holder">
+                                                       <div id="invite-group-section-1" class="each-invite-group-section">
+                                                            <div class="form-group name-group width-half first">
+                                                                 <label for="id_invite-1-name">Name</label>
+                                                                 <input id="id_invite-1-name" name="invite_1_name" placeholder="Name" type="text" class="form-control">
+                                                            </div>
+                                                            <div class="form-group email-group width-half">
+                                                                 <label for="id_invite-1-email">Email</label>
+                                                                 <input id="id_invite-1-email" name="invite_1_email" placeholder="Email" type="text" class="form-control">
+                                                            </div>
+                                                       </div>
+
+                                                       <div id="invite-group-section-2" class="each-invite-group-section">
+                                                            <div class="form-group name-group width-half first">
+                                                                 <label for="id_invite-2-name">Name</label>
+                                                                 <input id="id_invite-2-name" name="invite_2_name" placeholder="Name" type="text" class="form-control">
+                                                            </div>
+                                                            <div class="form-group email-group width-half">
+                                                                 <label for="id_invite-2-email">Email</label>
+                                                                 <input id="id_invite-2-email" name="invite_2_email" placeholder="Email" type="text" class="form-control">
+                                                            </div>
+                                                       </div>
+
+                                                       <div id="invite-group-section-3" class="each-invite-group-section">
+                                                            <div class="form-group name-group width-half first">
+                                                                 <label for="id_invite-3-name">Name</label>
+                                                                 <input id="id_invite-3-name" name="invite_3_name" placeholder="Name" type="text" class="form-control">
+                                                            </div>
+                                                            <div class="form-group email-group width-half">
+                                                                 <label for="id_invite-3-email">Email</label>
+                                                                 <input id="id_invite-3-email" name="invite_3_email" placeholder="Email" type="text" class="form-control">
+                                                            </div>
+                                                       </div>
+
+                                                       <div id="invite-group-section-4" class="each-invite-group-section">
+                                                            <div class="form-group name-group width-half first">
+                                                                 <label for="id_invite-4-name">Name</label>
+                                                                 <input id="id_invite-4-name" name="invite_4_name" placeholder="Name" type="text" class="form-control">
+                                                            </div>
+                                                            <div class="form-group email-group width-half">
+                                                                 <label for="id_invite-4-email">Email</label>
+                                                                 <input id="id_invite-4-email" name="invite_4_email" placeholder="Email" type="text" class="form-control">
+                                                            </div>
+                                                       </div>
+                                                  </div>
+
+                                                  <div id="invite-group-actions">
+                                                       <button type="button" class="btn btn-link green-link btn-add-another-buyer-member">
+                                                            <span class="glyphicon glyphicon-plus"></span>Add Another Line
+                                                       </button>
+                                                  </div>
+                                             </div>
+
                                              <hr class="line-separator after-buying-club">
                                              <div class="radio-checkbox-section-holder thirds">
                                                   <div class="radio">
-                                                       <label for="id_account-business_type_1">
-                                                            <input id="id_account-business_type_1" name="account-business_type" type="radio" value="food-service">
+                                                       <label for="id_account-business_type_FS">
+                                                            <input id="id_account-business_type_FS" class="other-than-buying-club-input" name="account-business_type" type="radio" value="food-service">
                                                             <span class="label-text">Food Service</span>
                                                        </label>
                                                   </div>
                                                   <div class="radio">
-                                                       <label for="id_account-business_type_2">
-                                                            <input id="id_account-business_type_2" name="account-business_type" type="radio" value="grocery">
+                                                       <label for="id_account-business_type_GR">
+                                                            <input id="id_account-business_type_GR" class="other-than-buying-club-input" name="account-business_type" type="radio" value="grocery">
                                                             <span class="label-text">Grocery</span>
                                                        </label>
                                                   </div>
                                                   <div class="radio">
-                                                       <label for="id_account-business_type_3">
-                                                            <input id="id_account-business_type_3" name="account-business_type" type="radio" value="health">
+                                                       <label for="id_account-business_type_HP">
+                                                            <input id="id_account-business_type_HP" class="other-than-buying-club-input" name="account-business_type" type="radio" value="health">
                                                             <span class="label-text">Health Practitioner</span>
                                                        </label>
                                                   </div>
 
 
                                                   <div class="radio">
-                                                       <label for="id_account-business_type_4">
-                                                            <input id="id_account-business_type_4" name="account-business_type" type="radio" value="massage">
+                                                       <label for="id_account-business_type_MT">
+                                                            <input id="id_account-business_type_MT" class="other-than-buying-club-input" name="account-business_type" type="radio" value="massage">
                                                             <span class="label-text">Massage/Spa</span>
                                                        </label>
                                                   </div>
                                                   <div class="radio">
-                                                       <label for="id_account-business_type_5">
-                                                            <input id="id_account-business_type_5" name="account-business_type" type="radio" value="natural-foods">
+                                                       <label for="id_account-business_type_NF">
+                                                            <input id="id_account-business_type_NF" class="other-than-buying-club-input" name="account-business_type" type="radio" value="natural-foods">
                                                             <span class="label-text">Natural Foods Retailer</span>
                                                        </label>
                                                   </div>
                                                   <div class="radio">
-                                                       <label for="id_account-business_type_6">
-                                                            <input id="id_account-business_type_6" name="account-business_type" type="radio" value="other">
+                                                       <label for="id_account-business_type_OT">
+                                                            <input id="id_account-business_type_OT" class="other-than-buying-club-input" name="account-business_type" type="radio" value="other">
                                                             <span class="label-text">Other</span>
                                                        </label>
                                                   </div>
 
                                                   <div class="radio">
-                                                       <label for="id_account-business_type_7">
-                                                            <input id="id_account-business_type_7" name="account-business_type" type="radio" value="retail">
+                                                       <label for="id_account-business_type_RB">
+                                                            <input id="id_account-business_type_RB" class="other-than-buying-club-input" name="account-business_type" type="radio" value="retail">
                                                             <span class="label-text">Retail Business</span>
                                                        </label>
                                                   </div>
                                                   <div class="radio">
-                                                       <label for="id_account-business_type_8">
-                                                            <input id="id_account-business_type_8" name="account-business_type" type="radio" value="web">
+                                                       <label for="id_account-business_type_WB">
+                                                            <input id="id_account-business_type_WB" class="other-than-buying-club-input" name="account-business_type" type="radio" value="web">
                                                             <span class="label-text">Web Retailer</span>
                                                        </label>
                                                   </div>
                                              </div>
                                              <hr class="line-separator after-radio-section">
-                                             <div class="checkbox width-one-third">
-                                                  <label for="id_account-online_only">
-                                                       <input id="id_account-online_only" name="account-online_only" type="checkbox">
-                                                       <span class="label-text">Online Only Store</span>
-                                                  </label>
-                                             </div>
-                                             <div class="form-group width-two-thirds">
+                                            
+                                             <div id="webaddress-data" class="form-group width-two-thirds" style="display:none;">
                                                   <label for="id_account-url">Web Address</label>
                                                   <input id="id_account-url" class="form-control" name="account-url" placeholder="www.youronlinestore.com" type="text">
                                              </div>
@@ -101,7 +159,7 @@
 
                                              <p class="form-title-information">Frontier Co-op does not currently sell to manufacturers of industrial suppliers.</p>
 
-                                             <p class="form-title-information">Unless we have a valid signed sales tax exemption form covering the address to which an order is shipped, we charge applicable sales tax in California, Colorado, Illinois, Iowa, Texas, Virginia, and Washington. <a href="//dh6qdiyp93d9u.cloudfront.net/media/files/membership-sale-tax-uniform-exemption-19-d1f5.pdf" target="_blank" rel="noopener noreferrer">Sales Tax Uniform Exemption Form</a> 
+                                             <p class="form-title-information">Unless we have a valid signed sales tax exemption form covering the address to which an order is shipped, we charge applicable sales tax in California, Colorado, Illinois, Iowa, Texas, Virginia, and Washington. <a href="/content/dam/frontierwholesales/pdfs/membership-sale-tax-uniform-exemption-19-d1f5.pdf" target="_blank" rel="noopener noreferrer">Sales Tax Uniform Exemption Form</a> 
                                              </p>
                                         </legend>
                                         <div class="each-form-information">
@@ -110,18 +168,18 @@
                                              <div class="form-group width-half first">
                                                   <label for="id_shipping-name">Full Name</label>
                                                   <input id="id_shipping-name" class="form-control" maxlength="150" name="shipping-name" type="text">
-                                                 <div class="error-text shipping-name-text"></div>
+                                                
                                              </div>
                                              <div class="form-group width-half">
                                                   <label for="id_shipping-company">Company</label>
                                                   <input id="id_shipping-company" class="form-control" maxlength="30" name="shipping-company" type="text">
-                                                 <div class="error-text company-text"></div>
+                                                
                                                  
                                              </div>
                                              <div class="form-group">
                                                   <label for="id_shipping-address">Address Line 1</label>
                                                   <input id="id_shipping-address" maxlength="150" class="form-control" name="shipping-address" placeholder="123 Example Street" type="text">
-                                                 <div class="error-text address1-text"></div>
+                                                 
                                              </div>
                                              <div class="form-group width-half first">
                                                   <label for="id_shipping-address2">Address Line 2</label>
@@ -130,7 +188,7 @@
                                              <div class="form-group width-half">
                                                   <label for="id_shipping-city">City</label>
                                                   <input id="id_shipping-city" class="form-control" maxlength="70" name="shipping-city" type="text">
-                                                 <div class="error-text city-text"></div>
+                                                 
                                              </div>
                                              <div class="form-group width-half first">
                                                   <label for="id_shipping-locality">State</label>
@@ -156,7 +214,7 @@
                                              <div class="form-group width-half">
                                                   <label for="id_shipping-phone">Phone</label>
                                                   <input id="id_shipping-phone" class="form-control" name="shipping-phone" type="text">
-                                                 <div class="error-text phone-text"></div>
+                                                  <small class="small-form-element">When providing your phone number, please use the following format. Ex: xxx-xxx-xxxx</small>
                                              </div>
                                              <div class="form-group">
                                                   <div class="lifetime-membership-disclaimer">
@@ -172,13 +230,9 @@
                                              <div class="form-group">
                                                   <label for="id_account-signature"><strong>Signature</strong></label>
                                                   <input id="id_account-signature" class="form-control" name="account-signature" type="text" required>
+                                                  <small class="small-form-element">Signature must contain a space.</small>
                                              </div>
-                                             <div class="checkbox">
-                                                  <label for="id_account-credit_terms">
-                                                       <input id="id_account-credit_terms" name="account-credit_terms" type="checkbox">
-                                                       <span class="label-text">Do you wish to be considered for credit terms? Approx. 30 business days for approval.</span>
-                                                  </label>
-                                             </div>
+                                             
                                         </div>
                                    </fieldset>
 
@@ -191,18 +245,18 @@
                                                   <label for="id_membership-name">Name</label>
                                                   <input id="id_membership-name" class="form-control" name="membership-name" type="text">
                                                 
-                                                 <div class="error-text name-text"></div>
+                                                
                                              </div>
                                              <div class="form-group width-half">
                                                   <label for="id_membership-email">Email</label>
                                                   <input id="id_membership-email" class="form-control" name="membership-email" type="email">
-                                                  <div class="error-text email-text"></div>
+                                                 
                                              </div>
                                              <div class="form-group width-half first">
                                                   <label for="id_membership-password">Password</label>
                                                   <input id="id_membership-password" class="form-control" name="membership-password" type="password">
-                                                  <small class="small-form-element">Make sure to use a strong password, 8 character minimum!</small>
-                                                 <div class="error-text password-text"></div>
+                                                  <small class="small-form-element">A valid password must have an 8 character minimum, must contain a capital letter, a number, and a symbol.</small>
+                                                
                                              </div>
                                              <div class="form-group width-half">
                                                   <label for="id_membership-password_confirm">Confirm Password</label>
@@ -212,7 +266,7 @@
                                    </fieldset>
 
                                    <div class="submit-holder">
-                                       <button  id="btn-general-registration" class="btn btn-light-green btn-account-form" >Submit for Approval</button>
+                                       <button  id="btn-general-registration" data-textoriginal="Submit for Approval" class="btn btn-light-green btn-account-form" >Submit for Approval</button>
                                    </div>
 
                               </form>
